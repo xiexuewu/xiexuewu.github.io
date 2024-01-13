@@ -34,57 +34,57 @@
 		
 			<dd>
 				<span class="channel-num">1</span>
-				<a href='/intro/'>数据结构概述</a>
+				<a href='/github/intro/'>数据结构概述</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">2</span>
-				<a href='/linear_list/'>线性表</a>
+				<a href='/github/linear_list/'>线性表</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">3</span>
-				<a href='/stack_queue/'>栈和队列</a>
+				<a href='/github/stack_queue/'>栈和队列</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">4</span> <a href="/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/175.html">什么是串存储结构</a></dd><dd>4.2 <a href="/view/176.html">串的定长顺序存储</a></dd><dd>4.3 <a href="/view/177.html">串的堆分配存储</a></dd><dd>4.4 <a href="/view/178.html">串的块链存储</a></dd><dd>4.5 <a href="/view/179.html">BF算法（串模式匹配算法）</a></dd><dd>4.6 <a href="/view/vip_227.html">KMP算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/vip_228.html">[项目实践]字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/github/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/github/view/175.html">什么是串存储结构</a></dd><dd>4.2 <a href="/github/view/176.html">串的定长顺序存储</a></dd><dd>4.3 <a href="/github/view/177.html">串的堆分配存储</a></dd><dd>4.4 <a href="/github/view/178.html">串的块链存储</a></dd><dd>4.5 <a href="/github/view/179.html">BF算法（串模式匹配算法）</a></dd><dd>4.6 <a href="/github/view/vip_227.html">KMP算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/github/view/vip_228.html">[项目实践]字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
-				<a href='/array_list/'>数组和广义表</a>
+				<a href='/github/array_list/'>数组和广义表</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">6</span>
-				<a href='/tree/'>树</a>
+				<a href='/github/tree/'>树</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">7</span>
-				<a href='/graph/'>图</a>
+				<a href='/github/graph/'>图</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
+				<a href='/github/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">9</span>
-				<a href='/search/'>查找算法</a>
+				<a href='/github/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">10</span>
-				<a href='/sort/'>排序算法</a>
+				<a href='/github/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">11</span>
-				<a href='/out_sort/'>外部排序算法</a>
+				<a href='/github/out_sort/'>外部排序算法</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">12</span>
-				<a href='/video/'>数据结构与算法视频教程</a>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
 			</dd>
 		
 	</div>
@@ -119,7 +119,7 @@
 <br />
 本节，先来学习<span style="color:#008000;">普通模式匹配（BF）算法</span>的实现。<br />
 <h2>
-	BF算法原理</h2>
+	<u><a href='/view/179.html' target='_blank'>BF算法</a></u>原理</h2>
 普通模式匹配算法，其实现过程没有任何技巧，就是简单粗暴地拿一个串同另一个串中的字符一一比对，得到最终结果。<br />
 <br />
 例如，使用普通模式匹配算法判断串 A（&quot;abcac&quot;）是否为串 B（&quot;ababcabacabab&quot;）子串的判断过程如下：<br />
@@ -153,7 +153,7 @@
 接下来，我们要编写代码实现两个串的模式匹配（图 1 ~图 4）。<br />
 <h2>
 	BF算法实现</h2>
-BF 算法的实现思想是：将用户指定的两个串 A 和串 B，使用串的定长顺序存储结构存储起来，然后循环实现两个串的模式匹配过程，C 语言实现代码如下：<br />
+<u><a href='/view/179.html' target='_blank'>BF 算法</a></u>的实现思想是：将用户指定的两个串 A 和串 B，使用串的定长顺序存储结构存储起来，然后循环实现两个串的模式匹配过程，C 语言实现代码如下：<br />
 <pre class="cpp">
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -211,7 +211,7 @@ BF 算法的实现过程很 &quot;无脑&quot;，不包含任何技巧，在对�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 179;
-window.arcId = "21b1SGqHgEC+cmgUwTjkec5DvBo+CCciFibkkfFzHv8vopRJDadSbUWc4Q";
+window.arcId = "d2d9qg29Hg/ujz0jZjycP7+rPBnrYOZ6QtA9WsHAn1m47IGwTKZM+kRmjQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
