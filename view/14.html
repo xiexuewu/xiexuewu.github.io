@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构之多维数组</title>
+<meta name="keywords" content="从,数据结构,的,角度,重新认识,维,数组,从," />
+<meta name="description" content="数组，几乎所有的程序设计语言学习之初都有它的身影。根据数组中存储的数据元素之间的逻辑关系，可以将数组分为：一维数组、二维数组、、n维数组。 n维数组中，维数的判断：根" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构之多维数组</h1>
+			<div id="arc-body"><u><a href='/view/181.html' target='_blank'>数组</a></u>，所有的程序设计语言学习之初都有它的身影。根据数组中存储的数据元素之间的逻辑关系，可以将数组分为 : 一维数组、二维数组、&hellip;、n维数组。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">n维数组中，维数 n 的判断依据是：根据数组中为确定元素所在位置使用的最少的下标个数。</span>例如，二维数组中想唯一确定一个元素的位置，至少需要使用 2 个下标， a[1][1]代表二维数组中行坐标为 1，列坐标为 1 的数据元素的值。</p>
+</blockquote>
+<h2>
+	数组VS<u><a href='/view/158.html' target='_blank'>顺序表</a></u></h2>
+数组和顺序表的本质不同。数组作为一种数据类型，作用是将类型相同的数据存储在一整块内存中，数组中存储的数据之间没有任何逻辑关系，谁也不认识谁。<br />
+<br />
+顺序表作为<u><a href='/view/157.html' target='_blank'>线性表</a></u>的存储结构，存储的这些数据元素在物理存储结构上相邻的同时，在逻辑结构上也相邻，每个数据元素都清楚地知道紧挨着它的前边的元素和后边的元素。<br />
+<br />
+<span style="color:#b22222;">如果用一句话来描述两者之间的关系，就是：用数组来存储的线性表是顺序表</span>。
+<h2>
+	数组的逻辑结构</h2>
+一维数组由于本身存储的数据元素类型相同、且各数据元素在逻辑结构上相邻（物理结构上也相邻），是线性表的顺序存储结构的具体实现。可以说：一维数组是线性表的一种表示形式。<br />
+<br />
+一维数组中存储的各成员如果还是一维数组，就变成了二维数组：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH00934215c.png" style="width: 250px; height: 204px;" /></div>
+<div style="text-align: center;">
+	<u><a href='/view/200.html' target='_blank'>图</a></u>1 二维数组的逻辑结构</div>
+<br />
+图1中，一维数组 b[6] 中每个单元都存放着长度为 6 的数组（例如：b[0] 存放的是 a[6] ，b[1] ~ b[5] 也和 b[0] 一样），就组成了 array[6][6] 的二维数组。<br />
+<br />
+同样，三维数组，也就可以看作是存储二维数组的一维数组；对于 n 维数组来说，可以看作是存储有 (n-1) 维数组的一维数组。<br />
+<br />
+<span style="color:#b22222;">所以，n 维数组可以看作是线性表的一种扩展。</span>
+<h2>
+	数组的顺序存储结构</h2>
+数组在存储时有两种存储方式：
+<ul>
+	<li>
+		以列序为主(先列后行)</li>
+	<li>
+		以行序为主(先行后列)</li>
+</ul>
+<br />
+例如，a[6][6] 以列序存储：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0093G4557.png" style="width: 500px; height: 90px;" /></div>
+<div style="text-align: center;">
+	图2 数组的列序存储</div>
+以行序存储：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0093I33G.png" style="width: 500px; height: 76px;" /></div>
+<div style="text-align: center;">
+	图3 数组的行序存储</div>
+<div class="info-box">
+	<span style="color:#b22222;">C语言中，使用的是以行序为主的顺序存储方式。</span></div>
+<h2>
+	数组中调取数据元素</h2>
+在 n 维数组中调取数据元素，需要知道以下因素：
+<ol>
+	<li>
+		数组存放的起始位置（也就是数组中第一个元素的存储位置）。</li>
+	<li>
+		被调取元素在 n 维数组中的具体位置（例如，二维数组需要知道被调取元素 a<sub>ij&nbsp;</sub>在数组中的行标 i 和列标 j ）。</li>
+	<li>
+		数组中单个数据元素占用的内存空间，一般用 L 表示（数组中存放的数据的类型都一样）。</li>
+</ol>
+<br />
+如果在以行序存储的二维数组 a<sub>nm&nbsp;</sub>中查找某个数据元素 a<sub>ij&nbsp;</sub>的存储位置，方法是：
+<div class="info-box">
+	LOC(i,j) = LOC (0,0) + (i*m+j)*L；</div>
+LOC(i,j) :&nbsp; a<sub>ij</sub> 在内存中的地址；LOC(0,0) : a<sub>00</sub> 存储的地址，其实就是整个二维数组存放的起始地址。<br />
+<br />
+同样，以列序存储的查找方法是：
+<div class="info-box">
+	LOC(i,j) = LOC (0,0) + (i*n+j)*L；</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 14;
+window.arcId = "27d30B4dTJqtCo0FMBvgj5OlxUOzuTjwghwNF8QKvTpf2u56+ZwZFhCm";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

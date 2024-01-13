@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>线性表的概念：1分钟了解什么是线性表</title>
+<meta name="keywords" content="线性,表,的,概念,1分钟,理解,什么,是,线性,表," />
+<meta name="description" content="线性表是数据结构中最简单的数据存储结构。存储的对象是在逻辑结构上相邻、类型相同的数据。 线性表只要求数据在逻辑结构上相邻，物理结构上不作要求。 也就是说，线性表中的数" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>线性表的概念：1分钟了解什么是线性表</h1>
+			<div id="arc-body"><u><a href='/view/157.html' target='_blank'>线性表</a></u>是数据结构中最简单的数据存储结构，可以理解为&ldquo;线性的表&rdquo;。<br />
+<br />
+线性，是说数据在逻辑结构上具有线性关系。<span style="color:#b22222;">将具有线性关系的数据存储到计算机中所使用的存储结构称为</span><span style="color:#008000;">线性表</span><span style="color:#b22222;">。</span><br />
+<br />
+<div class="info-box">
+	线性关系指的是数据一个挨着一个，总体呈线性分布。就好比&ldquo;老鹰捉小鸡&rdquo;游戏中，小鸡们全都手拉着手，它们之间的关系就可以称为<span style="color:#008000;">线性关系</span>。</div>
+<br />
+换句话说，线性表中的数据在逻辑结构上相互挨着（手牵手），中间没有空隙。每个数据元素，在它的前面可以找到唯一一个数据和它挨着，后面也只有一个数据和它挨着。这样，数据在逻辑结构呈线性分布，称这样的存储结构为线性表。<br />
+<blockquote>
+	<p>
+		线性表只对数据的逻辑结构有要求，根据实际存储的物理结构的不同（分散存储或者集中存储），线性表还可以进行更详细的分类，本节最后会详细介绍。</p>
+</blockquote>
+<h2>
+	前趋和后继</h2>
+对于线性表中的数据来说，位于当前数据之前的数据统称为&ldquo;<span style="color:#008000;">前趋元素</span>&rdquo;，前边紧挨着的数据称为&ldquo;<span style="color:#008000;">直接前趋</span>&rdquo;；同样，后边的数据统称为&ldquo;<span style="color:#008000;">后继元素</span>&rdquo;，后边紧挨着的数据称为&ldquo;<span style="color:#008000;">直接后继</span>&rdquo;。除非在线性表中插入或者删除数据元素，否则数据之间的关系不会改变。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170719/2-1FG9152Saa.png" /></div>
+<div style="text-align: center;">
+	<span style="text-align: center;">&nbsp; <u><a href='/view/200.html' target='_blank'>图</a></u>1 前趋和后继元素</span></div>
+<h2>
+	数据元素、数据项、记录和文件</h2>
+在线性表中，无论数据本身由多少种数据类型（每一种被称为一个&ldquo;<span style="color:#008000;">数据项</span>&rdquo;）组成，每一条数据被称为&ldquo;<span style="color:#008000;">数据元素</span>&rdquo;。<br />
+<br />
+如果数据元素本身包含的数据项非常多，就可以称这个数据元素为一个&ldquo;<span style="color:#008000;">记录</span>&rdquo;，多条记录组成一个&ldquo;<span style="color:#008000;">文件</span>&rdquo;。
+<h2>
+	线性表的特点</h2>
+用线性表存储的数据有两个特点：<br />
+<br />
+<ul>
+	<li>
+		存储的数据本身的类型一定保持相同，是int型就都是int型，是结构体就都是一种结构体。</li>
+	<li>
+		数据一旦用线性表存储，各个数据元素之间的相对位置就固定了。</li>
+</ul>
+<blockquote>
+	相对位置，指的是各数据元素在逻辑结构上的前后次序。</blockquote>
+<h2>
+	线性表的分类</h2>
+<span style="color:#b22222;">之前讲过，逻辑结构上相邻的数据在实际的物理存储中有两种形式：</span><span style="color:#008000;">分散存储</span><span style="color:#b22222;">和</span><span style="color:#008000;">集中存储</span><span style="color:#b22222;">。</span><br />
+<br />
+考虑到这两种情况，线性表分为两种，分别解决两种情况下数据的存储问题：
+<ul>
+	<li>
+		数据元素在内存中集中存储，采用<u><a href='/view/158.html' target='_blank'>顺序表</a></u>示结构，简称<span style="color:#008000;">&ldquo;顺序存储&rdquo;</span>；</li>
+	<li>
+		数据元素在内存中分散存储，采用链式表示结构，简称<span style="color:#008000;">&ldquo;链式存储&rdquo;</span>。</li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 3;
+window.arcId = "f0e5UXDZCHOZSCGQGJOsvIvTBNjOer17YeXJtiFpFQj0z1oEQlpW58g";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>时间复杂度和空间复杂度及其计算方法详解</title>
+<meta name="keywords" content="时间,复杂度,和,空间,计算,方法,详解,时间," />
+<meta name="description" content="在计算机科学中，算法的时间复杂度是一个函数，它定量地描述了一个算法的运行时间。时间复杂度常用一个大 O 符号（不是零）来表示，不包括这个函数的低阶项和首项系数。 时间复" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>时间复杂度和空间复杂度及其计算方法详解</h1>
+			<div id="arc-body">在计算机科学中，算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>是一个函数，它定量地描述了一个算法的运行时间。时间复杂度常用一个大 O 符号（不是零）来表示，不包括这个函数的低阶项和首项系数。<br />
+<br />
+时间复杂度是渐近的，考虑的是这个值趋于无穷时的情况。比如一个算法的执行时间为 3n<sup>2</sup>+2n+3，这里我们用大 O 符号来表示时，不考虑低阶项，也就是只考虑最高阶项 3n<sup>2</sup>，也不考虑首项的系数，所以我们会直接将这个算法的时间复杂度表示为 O(n<sup>2</sup>)。<br />
+<br />
+一般我们在计算时间复杂度时，需要考虑算法是否会有多重嵌套循环（即代码中包含的循环内部还有一个循环操作），因为嵌套循环势必会使时间复杂度升阶。而对于一个列表进行循环有限次数的操作，则无须考虑，因为我们会忽略首项的系数。<br />
+<br />
+我们在计算一个算法的时间复杂度时，首先需要找出算法的核心部分，然后根据代码确认时间复杂度。<br />
+<br />
+一般的时间复杂度按照性能从差到好有这么几种：O(n<sup>3</sup>)、O(n<sup>2</sup>)、O(nlogn)、O(n)、O(logn)、O(1)。当然，性能差的情况可能还有 O(n<sup>4</sup>) 甚至更高的幂数，但是当算法的时间复杂度达到 O(n<sup>2</sup>) 以上时，性能就会相当差，我们应该寻找更优的方案。当然，对于某些比较特殊的算法，可能最优的性能也不会很好。<br />
+<br />
+另外，O(nlogn)、O(logn) 内部的内容在数学里是错误的，一般应该是 log<sub>2</sub>n 等，但是这里的系数并不在我们的考虑范围之内，所以我们一般在计算复杂度时直接将其表示为 O(nlogn) 和 O(logn)。<br />
+<br />
+下面我们看看这段代码示例。<br />
+<pre class="cpp">
+for(int I = 0; i &lt; n; i++){
+        //some code here
+    for(int j=0; j &lt; n; j++){
+        //some code here
+        for(int k=0; k&lt;n; k++){
+            //some code here;
+        }
+    }
+}</pre>
+这段代码是个三重嵌套循环代码（且每重循环都执行了完整的 n 遍），n 一般指算法的规模，很容易推断出这段代码的时间复杂度是 O(n<sup>3</sup>)。<br />
+<br />
+所以如果是两重的嵌套循环，那么时间复杂度是 O(n<sup>2</sup>)；如果只有一重循环，那么时间复杂度是 O(n)。什么时候会出现 O(nlogn) 呢？我们接着看一段代码。<br />
+<pre class="cpp">
+for(int i =0; i &lt; n; i++){
+    //some code here
+    for(j=i; j &lt; n; j++){
+        //some code here
+    }
+}</pre>
+我们发现，在内层循环中 j 的起始量是 i，而随着每次外层循环i的增加，j 的一层循环执行的次数将会越少。对于这种情况，我们把时间复杂度称为 O(nlogn)。<br />
+<br />
+一般我们把下面这段代码的时间复杂度称为 O(logn) 的时间复杂度，并将这种情况称为对数阶，性能要优于 O(n)。<br />
+<pre class="cpp">
+for(int i=0; i &lt; n; i*=2){
+    //some code here
+}</pre>
+性能最好的算法的时间复杂度为 O(1)，也就是在执行有限次的操作之后达到目标。比如一些计算类型的代码或者交换值的代码等。<br />
+<pre class="cpp">
+int a = 10;
+int b = 100;
+//1.计算
+int sum = a * b;
+//2.交换
+int temp = a;
+int a = b;
+int b = temp;</pre>
+当然，一个算法能不能达到 O(1) 的时间复杂度，要看具体情况，我们当然希望程序的性能能够达到最优，所以算法的时间复杂度能够低于 O(n<sup>2</sup>) 一般来说已经很不错了。不要忘了，算法的性能除考虑时间复杂度外还要考虑<u><a href='/view/2.html' target='_blank'>空间复杂度</a></u>，在大多数情况下往往需要在时间复杂度和空间复杂度之间进行权衡。<br />
+<br />
+我们在上面提到的情况都只有一个规模参数，有时规模参数也可能有两个。比如两层嵌套循环的规模不一样，我们假设分别为 m 和 n，这时我们一般会把时间复杂度写为 O(m&times;n)，但是我们自己需要明确，如果 m 和 n 非常相近，则这个时间复杂度趋于 O(n<sup>2</sup>)；如果 m 通常比较小（也就是说我们能够明白 m 的范围是多少），则这个时间复杂度趋于 O(n)。在这两种情况下，虽然时间复杂度都是 O(m&times;n)，但是真实的时间复杂度可能相差很大。<br />
+<br />
+实际上，一个算法的执行时间是不可能通过我们的计算得出的，必须到机器上真正执行才能知道，而且每次的运行时间不一样。但是我们没必要将每个算法都到机器上运行和测试，并且对于很多算法，我们通过简单的分析就能知道其性能的好坏，而没有必要详细地写出来，所以时间复杂度的计算还是非常有用的。<br />
+<br />
+时间复杂度其实还分为平均时间复杂度、最好时间复杂度和最坏时间复杂度。对于一个算法来说，往往有很多特殊情况，一般而言，我们所说的时间复杂度都指最坏时间复杂度，因为在最坏的情况下，我们才能够评估一个算法的性能最差会到什么地步，这样我们才能更好地选择相应的算法去解决问题。<br />
+<h2>
+	空间复杂度</h2>
+其实我们在做算法分析时，往往会忽略空间复杂度，可能是因为现在计算机的空间已经越来越便宜了，成本很低，而一台计算机的 CPU 的性能始终很难得到太大的提升。但是空间复杂度作为另一个算法性能指标，也是我们需要掌握的，这能够让程序在时间和空间上都得到优化，成为一个好的算法。<br />
+<br />
+空间复杂度的表示其实和时间复杂度是一样的，都用大 O 符号表示。空间复杂度是对一个算法在运行过程中所消耗的临时空间的一个度量。<br />
+<br />
+空间复杂度的计算方式和时间复杂度一样，也不包括这个函数的低阶项和首项系数。<br />
+<br />
+一般我们认为对于一个算法，本身的数据会消耗一定的空间，可能还需要一些其他空间，如果需要的其他空间是有限的，那么这个时间复杂度为 O(1)。相对地，也有 O(n)、O(nlogn)、O(n<sup>2</sup>)。<br />
+<br />
+在学会了时间复杂度的相关内容之后，学习空间复杂度其实就没有什么难点了，对于更多的内容，我们会通过后面的算法慢慢地了解。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 114;
+window.arcId = "816aL4V3ernrS/9E+/GX7rUoEFh5hiyMhNEsquVi+Jgi2qqvBuypRb4wDA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

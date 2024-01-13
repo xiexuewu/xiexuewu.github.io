@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>拓扑排序算法及C语言实现</title>
+<meta name="keywords" content="图,的,拓扑,排序,算法,图,的,拓扑,排序,算法," />
+<meta name="description" content="拓扑排序指的是将 有向无环图 （又称 DAG图 ）中的顶点按照图中指定的先后顺序进行排序。 图 1 有向无环图 例如，图 1 中的两个图都是有向无环图，都可以使用拓扑排序对图中的顶点" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>拓扑排序算法及C语言实现</h1>
+			<div id="arc-body"><span style="color:#b22222;">拓扑排序指的是将</span><span style="color:#008000;">有向无环<u><a href='/view/200.html' target='_blank'>图</a></u></span><span style="color:#b22222;">（又称</span><span style="color:#008000;">&ldquo;DAG&rdquo;图</span><span style="color:#b22222;">）中的顶点按照图中指定的先后顺序进行排序。</span>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F9111G254232.png" style="width: 586px; height: 160px;" /><br />
+	图 1 有向无环图</div>
+<p>
+	例如，图 1 中的两个图都是有向无环图，都可以使用拓扑排序对图中的顶点进行排序，两个图形的区别是：左图中的 V2 和 V3 之间没有明确的前后顺序；而右图中任意两个顶点之间都有前后顺序。<br />
+	&nbsp;</p>
+所以，左图中顶点之间的关系被称为&ldquo;<span style="color:#008000;">偏序</span>&rdquo;关系；右图中顶点之间的关系被称为&rdquo;<span style="color:#008000;">全序</span>&ldquo;关系。<br />
+<br />
+在有向无环图中，弧的方向代表着顶点之间的先后次序，例如从 V1 指向 V2 的弧表示在进行排序时 V1 在前， V2 在后。
+<blockquote>
+	<p>
+		<span style="color:#b22222;">全序是偏序的一种特殊情况。</span>对于任意一个有向无环图来说，通过拓扑排序得到的序列首先一定是偏序，如果任意两个顶点都具有前后顺序，那么此序列是全序。</p>
+</blockquote>
+<h2>
+	拓扑排序的方法</h2>
+对有向无环图进行拓扑排序，只需要遵循两个原则：
+<ol>
+	<li>
+		在图中选择一个没有前驱的顶点 V；</li>
+	<li>
+		从图中删除顶点 V 和所有以该顶点为尾的弧。</li>
+</ol>
+<br />
+例如，在对图 1 中的左图进行拓扑排序时的步骤如图 2 所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F9111G640192.png" style="width: 370px; height: 378px;" /><br />
+	图 2 拓扑排序</div>
+<br />
+有向无环图如果顶点本身具有某种实际意义，例如用有向无环图表示大学期间所学习的全部课程，每个顶点都表示一门课程，有向边表示课程学习的先后次序，例如要先学《程序设计基础》和《离散数学》，然后才能学习《数据结构》。<span style="color:#b22222;">所以用来表示某种活动间的优先关系的有向图</span><span style="color:#b22222;">简称为&ldquo;</span><span style="color:#008000;">AOV网</span><span style="color:#b22222;">&rdquo;</span>。<br />
+<br />
+进行拓扑排序时，首先找到没有前驱的顶点 V1，如图 2（1）所示；在删除顶点 V1 及以 V1 作为起点的弧后，继续查找没有前驱的顶点，此时， V2 和 V3 都符合条件，可以随机选择一个，例如图 2（2） 所示，选择 V2 ，然后继续重复以上的操作，直至最后找不到没有前驱的顶点。<br />
+<br />
+所以，针对图 2 来说，拓扑排序最后得到的序列有两种：<br />
+<ul>
+	<li>
+		V1 -&gt; V2 -&gt; V3 -&gt; V4</li>
+	<li>
+		V1 -&gt; V3 -&gt; V2 -&gt; V4</li>
+</ul>
+<div class="info-box">
+	如果顶点之间只是具有偏序关系，那么拓扑排序的结果肯定不唯一；如果顶点之间是全序关系，那么拓扑排序得到的序列唯一。</div>
+<h2>
+	拓扑排序的C语言实现</h2>
+在编写程序解决拓扑排序的问题时，大致思路为：首先通过<u><a href='/view/203.html' target='_blank'>邻接表</a></u>将 AOV 网进行存储，由于拓扑排序的整个过程中，都是以顶点的入度为依据进行排序，所以需要根据建立的邻接表统计出各顶点的入度。<br />
+<br />
+在得到各顶点的入度后，首先找到入度为 0 的顶点作为拓扑排序的起始点，然后查找以该顶点为起始点的所有顶点，如果入度为 1，说明如果删除前一个顶点后，该顶点的入度为 0，为拓扑排序的下一个对象。<br />
+<br />
+实现代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define  MAX_VERTEX_NUM 20//最大顶点个数
+#define  VertexType int//顶点数据的类型
+typedef enum{false,true} bool;
+typedef struct ArcNode{
+    int adjvex;//邻接点在<u><a href='/view/181.html' target='_blank'>数组</a></u>中的位置下标
+    struct ArcNode * nextarc;//指向下一个邻接点的指针
+}ArcNode;
+
+typedef struct VNode{
+    VertexType data;//顶点的数据域
+    ArcNode * firstarc;//指向邻接点的指针
+}VNode,AdjList[MAX_VERTEX_NUM];//存储各<u><a href='/view/160.html' target='_blank'>链表</a></u>头结点的数组
+
+typedef struct {
+    AdjList vertices;//图中顶点及各邻接点数组
+    int vexnum,arcnum;//记录图中顶点数和边或弧数
+}ALGraph;
+//找到顶点对应在邻接表数组中的位置下标
+int LocateVex(ALGraph G,VertexType u){
+    for (int i=0; i&lt;G.vexnum; i++) {
+        if (G.vertices[i].data==u) {
+            return i;
+        }
+    }
+    return -1;
+}
+//创建AOV网，构建邻接表
+void CreateAOV(ALGraph **G){
+    *G=(ALGraph*)malloc(sizeof(ALGraph));
+   
+    scanf(&quot;%d,%d&quot;,&amp;((*G)-&gt;vexnum),&amp;((*G)-&gt;arcnum));
+    for (int i=0; i&lt;(*G)-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;,&amp;((*G)-&gt;vertices[i].data));
+        (*G)-&gt;vertices[i].firstarc=NULL;
+    }
+    VertexType initial,end;
+    for (int i=0; i&lt;(*G)-&gt;arcnum; i++) {
+        scanf(&quot;%d,%d&quot;,&amp;initial,&amp;end);
+       
+        ArcNode *p=(ArcNode*)malloc(sizeof(ArcNode));
+        p-&gt;adjvex=LocateVex(*(*G), end);
+        p-&gt;nextarc=NULL;
+       
+        int locate=LocateVex(*(*G), initial);
+        p-&gt;nextarc=(*G)-&gt;vertices[locate].firstarc;
+        (*G)-&gt;vertices[locate].firstarc=p;
+    }
+}
+//结构体定义<u><a href='/view/169.html' target='_blank'>栈</a></u>结构
+typedef struct stack{
+    VertexType data;
+    struct stack * next;
+}stack;
+//初始化栈结构
+void initStack(stack* *S){
+    (*S)=(stack*)malloc(sizeof(stack));
+    (*S)-&gt;next=NULL;
+}
+//判断链表是否为空
+bool StackEmpty(stack S){
+    if (S.next==NULL) {
+        return true;
+    }
+    return false;
+}
+//进栈，以头插法将新结点插入到链表中
+void push(stack *S,VertexType u){
+    stack *p=(stack*)malloc(sizeof(stack));
+    p-&gt;data=u;
+    p-&gt;next=NULL;
+    p-&gt;next=S-&gt;next;
+    S-&gt;next=p;
+}
+//弹栈函数，删除链表首元结点的同时，释放该空间，并将该结点中的数据域通过地址传值给变量i;
+void pop(stack *S,VertexType *i){
+    stack *p=S-&gt;next;
+    *i=p-&gt;data;
+    S-&gt;next=S-&gt;next-&gt;next;
+    free(p);
+}
+//统计各顶点的入度
+void FindInDegree(ALGraph G,int indegree[]){
+    //初始化数组，默认初始值全部为0
+    for (int i=0; i&lt;G.vexnum; i++) {
+        indegree[i]=0;
+    }
+    //遍历邻接表，根据各链表中结点的数据域存储的各顶点位置下标，在indegree数组相应位置+1
+    for (int i=0; i&lt;G.vexnum; i++) {
+        ArcNode *p=G.vertices[i].firstarc;
+        while (p) {
+            indegree[p-&gt;adjvex]++;
+            p=p-&gt;nextarc;
+        }
+    }
+}
+void TopologicalSort(ALGraph G){
+    int indegree[G.vexnum];//创建记录各顶点入度的数组
+    FindInDegree(G,indegree);//统计各顶点的入度
+    //建立栈结构，程序中使用的是链表
+    stack *S;
+    initStack(&amp;S);
+    //查找度为0的顶点，作为起始点
+    for (int i=0; i&lt;G.vexnum; i++) {
+        if (!indegree[i]) {
+            push(S, i);
+        }
+    }
+    int count=0;
+    //当栈为空，说明排序完成
+    while (!StackEmpty(*S)) {
+        int index;
+        //弹栈，并记录栈中保存的顶点所在邻接表数组中的位置
+        pop(S,&amp;index);
+        printf(&quot;%d&quot;,G.vertices[index].data);
+        ++count;
+        //依次查找跟该顶点相链接的顶点，如果初始入度为1，当删除前一个顶点后，该顶点入度为0
+        for (ArcNode *p=G.vertices[index].firstarc; p; p=p-&gt;nextarc) {
+            VertexType k=p-&gt;adjvex;
+            if (!(--indegree[k])) {
+                //顶点入度为0，入栈
+                push(S, k);
+            }
+        }
+    }
+    //如果count值小于顶点数量，表明该有向图有环
+    if (count&lt;G.vexnum) {
+        printf(&quot;该图有回路&quot;);
+        return;
+    }
+}
+
+int main(){
+    ALGraph *G;
+    CreateAOV(&amp;G);//创建AOV网
+    TopologicalSort(*G);//进行拓扑排序
+    return  0;
+}</pre>
+例如使用上述完整代码解决下图的有向无环图时，拓扑排序的结果为：
+<div>
+	<img alt="" src="/uploads/allimg/170911/2-1F9111GSIX.png" style="width: 143px; height: 198px;" /></div>
+运行效果：
+<div class="info-box">
+	6,8<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	6<br />
+	1,2<br />
+	1,4<br />
+	1,3<br />
+	3,2<br />
+	3,5<br />
+	4,5<br />
+	6,4<br />
+	6,5<br />
+	6 1 4 3 2 5</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 43;
+window.arcId = "8e269PSOZpLPmcTQ2dlSss84K68gAn0E5Cyop/KepAcZImT9Yp88Ug92";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

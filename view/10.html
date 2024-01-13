@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>队列（Queue）：“先进先出”的数据结构</title>
+<meta name="keywords" content="队列,Queue,队列,Queue," />
+<meta name="description" content="队列是线性表的一种，在操作数据元素时，和栈一样，有自己的规则：使用队列存取数据元素时，数据元素只能从表的一端进入队列，另一端出队列，如图1。 图1 队列示意图 称进入队列" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>队列（Queue）：“先进先出”的数据结构</h1>
+			<div id="arc-body"><u><a href='/view/172.html' target='_blank'>队列</a></u>是<a href="/view/3.html" target="_blank">线性表</a>的一种，在操作数据元素时，和<u><a href='/view/169.html' target='_blank'>栈</a></u>一样，有自己的规则：<span style="color:#b22222;">使用队列存取数据元素时，数据元素只能从表的一端进入队列，另一端出队列</span>，如<u><a href='/view/200.html' target='_blank'>图</a></u>1。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170719/2-1FG91032244Y.png" style="width: 500px; height: 155px;" /></div>
+<div style="text-align: center;">
+	图1 队列示意图</div>
+<br />
+<span style="color:#b22222;">称进入队列的一端为</span><span style="color:#008000;">&ldquo;队尾&rdquo;</span><span style="color:#b22222;">；出队列的一端为</span><span style="color:#008000;">&ldquo;队头&rdquo;</span><span style="color:#b22222;">。数据元素全部由队尾陆续进队列，由队头陆续出队列。</span>
+<h2>
+	队列的先进先出原则</h2>
+队列从一端存入数据，另一端调取数据的原则称为<span style="color:#008000;">&ldquo;先进先出&rdquo;</span>原则。<span style="color:#008000;">（first in first out，简称&ldquo;FIFO&rdquo;）</span><br />
+<br />
+图1中，根据队列的先进先出原则，（a<sub>1</sub>,a<sub>2</sub>,a<sub>3</sub>,&hellip;,a<sub>n</sub>）中，由于 a<sub>1 </sub>最先从队尾进入队列，所以可以最先从队头出队列，对于 a<sub>2</sub> 来说，只有 a<sub>1</sub> 出队之后，a<sub>2</sub> 才能出队。<br />
+<blockquote>
+	<p>
+		类似于日常生活中排队买票，先排队（入队列），等自己前面的人逐个买完票，逐个出队列之后，才轮到你买票。买完之后，你也出队列。先进入队列的人先买票并先出队列（不存在插队）。</p>
+</blockquote>
+<h2>
+	队列的实现方式</h2>
+队列的实现同样有两种方式：<span style="color:#008000;">顺序存储</span>和<span style="color:#008000;">链式存储</span>。<br />
+<div class="info-box">
+	两者的区别同样在于数据元素在物理存储结构上的不同。</div>
+<h2>
+	队列的<u><a href='/view/158.html' target='_blank'>顺序表</a></u>示和实现</h2>
+使用顺序存储结构表示队列时，首先申请足够大的内存空间建立一个<u><a href='/view/181.html' target='_blank'>数组</a></u>，除此之外，为了满足队列从队尾存入数据元素，从队头删除数据元素，还需要定义两个指针分别作为头指针和尾指针。<br />
+<br />
+当有数据元素进入队列时，将数据元素存放到队尾指针指向的位置，然后队尾指针增加 1；当删除对头元素（即使想删除的是队列中的元素，也必须从队头开始一个个的删除）时，只需要移动头指针的位置就可以了。<br />
+<br />
+顺序表示是在数组中操作数据元素，由于数组本身有下标，所以队列的头指针和尾指针可以用数组下标来代替，既实现了目的，又简化了程序。<br />
+<br />
+例如，将队列（1，2，3，4）依次入队，然后依次出队并输出。<br />
+<br />
+代码实现：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int enQueue(int *a,int rear,int data){
+    a[rear]=data;
+    rear++;
+    return rear;
+}
+void deQueue(int *a,int front,int rear){
+    //如果 front==rear，表示队列为空
+    while (front!=rear) {
+        printf(&quot;%d&quot;,a[front]);
+        front++;
+    }
+}
+int main() {
+    int a[100];
+    int front,rear;
+    //设置队头指针和队尾指针，当队列中没有元素时，队头和队尾指向同一块地址
+    front=rear=0;
+    //入队
+    rear=enQueue(a, rear, 1);
+    rear=enQueue(a, rear, 2);
+    rear=enQueue(a, rear, 3);
+    rear=enQueue(a, rear, 4);
+    //出队
+    deQueue(a, front, rear);
+    return 0;
+}</pre>
+<h2>
+	顺序存储存在的问题</h2>
+当使用<u><a href='/view/157.html' target='_blank'>线性表</a></u>的顺序表示实现队列时，由于按照先进先出的原则，队列的队尾一直不断的添加数据元素，队头不断的删除数据元素。由于数组申请的空间有限，到某一时间点，就会出现 rear 队列尾指针到了数组的最后一个存储位置，如果继续存储，由于 rear 指针无法后移，就会出错。<br />
+<div class="info-box">
+	在数组中做删除数据元素的操作，只是移动了队头指针而没有释放所占空间。</div>
+<span style="color:#b22222;">数组真的满了吗？</span>队头由于删除元素，front 后移， front 前边还会有可以使用的空间。所以为了充分利用这部分空间，可以考虑使用下面这种方式。
+<h2>
+	顺序存储的升级版</h2>
+<span style="color:#b22222;">使用数组存取数据元素时，可以将数组申请的空间想象成首尾连接的环状空间使用</span>。例如，在申请的内存空间大小为 5 的情况下，将数字 1-6 进队后再出队（普通方式中 6 是无法进队的）：<br />
+<br />
+代码实现：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define max 5
+int enQueue(int *a,int front,int rear,int data){
+    //循环队列中，如果尾指针和头指针重合，证明数组存放的数据已满
+    if ((rear+1)%max==front) {
+        printf(&quot;空间已满&quot;);
+        return rear;
+    }
+    a[rear%max]=data;
+    rear++;
+    return rear;
+}
+int  deQueue(int *a,int front,int rear){
+    //如果front==rear，表示队列为空
+    if(front==rear) {
+        printf(&quot;队列为空&quot;);
+        return front;
+    }
+    printf(&quot;%d&quot;,a[front]);
+    front=(front+1)%max;
+    return front;
+}
+int main() {
+    int a[max];
+    int front,rear;
+    //设置队头指针和队尾指针，当队列中没有元素时，队头和队尾指向同一块地址
+    front=rear=0;
+    //入队
+    rear=enQueue(a,front,rear, 1);
+    rear=enQueue(a,front,rear, 2);
+    rear=enQueue(a,front,rear, 3);
+    rear=enQueue(a,front,rear, 4);
+    //出队
+    front=deQueue(a, front, rear);
+   
+    rear=enQueue(a,front,rear, 5);
+   
+    front=deQueue(a, front, rear);
+    rear=enQueue(a,front,rear, 6);
+    front=deQueue(a, front, rear);
+    front=deQueue(a, front, rear);
+    front=deQueue(a, front, rear);
+    front=deQueue(a, front, rear);
+    return 0;
+}</pre>
+运行结果：<br />
+123456<br />
+<br />
+在使用循环队列判断数组是否已满时，出现下面情况：
+<ul>
+	<li>
+		当队列为空时，队列的头指针等于队列的尾指针</li>
+	<li>
+		当数组满员时，队列的头指针等于队列的尾指针</li>
+</ul>
+<blockquote>
+	<p>
+		要将空队列和队列满的情况区分开，办法是：牺牲掉数组中的一个存储空间，判断数组满员的条件是：尾指针的下一个位置和头指针相遇，就说明数组满了。</p>
+</blockquote>
+<h2>
+	队列的链式表示和实现（简称为&ldquo;<u><a href='/view/174.html' target='_blank'>链队列</a></u>&rdquo;）</h2>
+<span style="color:#b22222;">队列的链式存储是在<u><a href='/view/160.html' target='_blank'>链表</a></u>的基础上，按照&ldquo;先进先出&rdquo;的原则操作数据元素。</span><br />
+<br />
+例如，将队列（1，2，3，4）依次入队，然后再依次出队。<br />
+<br />
+代码实现：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct QNode{
+    int data;
+    struct QNode * next;
+}QNode;
+QNode * initQueue(){
+    QNode * queue=(QNode*)malloc(sizeof(QNode));
+    queue-&gt;next=NULL;
+    return queue;
+}
+QNode* enQueue(QNode * rear,int data){
+    QNode * enElem=(QNode*)malloc(sizeof(QNode));
+    enElem-&gt;data=data;
+    enElem-&gt;next=NULL;
+    //使用尾插法向链队列中添加数据元素
+    rear-&gt;next=enElem;
+    rear=enElem;
+    return rear;
+}
+void DeQueue(QNode * front,QNode * rear){
+    if (front-&gt;next==NULL) {
+        printf(&quot;队列为空&quot;);
+        return ;
+    }
+    QNode * p=front-&gt;next;
+    printf(&quot;%d&quot;,p-&gt;data);
+    front-&gt;next=p-&gt;next;
+    if (rear==p) {
+        rear=front;
+    }
+    free(p);
+}
+int main() {
+    QNode * queue,*front,*rear;
+    queue=front=rear=initQueue();//创建头结点
+    //向链队列中添加结点，使用尾插法添加的同时，队尾指针需要指向链表的最后一个元素
+    rear=enQueue(rear, 1);
+    rear=enQueue(rear, 2);
+    rear=enQueue(rear, 3);
+    rear=enQueue(rear, 4);
+    //入队完成，所有数据元素开始出队列
+    DeQueue(front, rear);
+    DeQueue(front, rear);
+    DeQueue(front, rear);
+    DeQueue(front, rear);
+    DeQueue(front, rear);
+    return 0;
+}</pre>
+运行结果：<br />
+1234队列为空
+<h2>
+	使用链队列的心得体会</h2>
+在使用链队列时，最简便的方法就是链表的表头一端表示队列的队头，表的另一端表示队列的队尾，这样的设置会使程序更简单。
+<div class="info-box">
+	反过来的话，队列在增加元素的时候，要采用头插法，在删除数据元素的时候，由于要先进先出，需要删除链表最末端的结点，就需要将倒数第二个结点的next指向NULL，这个过程是需要遍历链表的。</div>
+<br />
+另外需要注意的是，在删除队列中数据元素的时候，每次都需要判断队列是否为空，这就需要寻找一个判断队列为空的条件：如果头结点的指针域为NULL，说明队列为空；如果队头和队尾指针都指向头结点，说明队列为空。（二选一）<br />
+<br />
+使用链队列解决问题时，要避免&ldquo;野指针&rdquo;的出现：<br />
+<br />
+<ol>
+	<li>
+		当删除最后一个数据元素时，由于一贯地认为数据元素出队列只跟队头指针有关系，会忽略队尾指针。</li>
+	<li>
+		当链队列中只剩有一个数据元素时，队尾指针指向的就是这个数据元素，被删除后，队尾指针指向的内存空间被释放，还有可能给别的程序使用。这时候，队尾指针如果不进行重定义，就会变成&ldquo;野指针&rdquo;。</li>
+</ol>
+<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 10;
+window.arcId = "d171TuxripCxA2kHOW9d+xw87sB994jUbQhFemDy8aFdJpwz9KUVVXYz";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

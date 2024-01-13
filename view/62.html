@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>键树查找法（双链树和字典树）及C语言实现</title>
+<meta name="keywords" content="键树,数字,查找,树,键树,数字,查找,树," />
+<meta name="description" content="键树 ，又称为 数字查找树 （根结点的子树个数 = 2） ，同以往所学习的树不同的是， 键树的结点中存储的不是某个关键字，而是只含有组成关键字的单个符号。 如果关键字本身是字符" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>键树查找法（双链树和字典树）及C语言实现</h1>
+			<div id="arc-body"><span style="color:#008000;">键<u><a href='/view/23.html' target='_blank'>树</a></u></span>，又称为<span style="color:#008000;">数字查找树</span><span style="color:#b22222;">（根结点的子树个数 &gt;= 2）</span>，同以往所学习的树不同的是，<span style="color:#b22222;">键树的结点中存储的不是某个关键字，而是只含有组成关键字的单个符号。</span><br />
+<blockquote>
+	<p>
+		如果关键字本身是字符<u><a href='/view/175.html' target='_blank'>串</a></u>，则键树中的一个结点只包含有一个字符；如果关键字本身是数字，则键树中的一个结点只包含一个数位。每个关键字都是从键树的根结点到叶子结点中经过的所有结点中存储的组合。</p>
+</blockquote>
+例如，当使用键树表示查找表<code>{CAI，CAO，CHEN，LI，LAN，ZHAO}</code>时，为了查找方便，首先对该查找表中关键字按照首字符进行分类（相同的在一起）：
+<div class="info-box">
+	{{CAI,CAO,CHEN},{LI,LAN},{ZHAO}}</div>
+然后继续分割，按照第二个字符、第三个字符、...，最终得到的查找表为：
+<div class="info-box">
+	{{CAI,CAO},{CHEN},{LI,LAN},{ZHAO}}</div>
+然后使用键树结构表示该查找表，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024150A44I.png" style="width: 412px; height: 310px;" /><br />
+	图 1 键树表示多个关键字</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>键树中叶子结点的特殊符号 $ 为结束符，表示字符串的结束。使用键树表示查找表时，为了方便后期的查找和插入操作，约定键树是有序树（兄弟结点之间自左至右有序），同时约定结束符 &lsquo;$&rsquo; 小于任何字符。</p>
+</blockquote>
+<h2>
+	键树的存储结构</h2>
+键树的存储结构有两种：<span style="color:#b22222;">一种是通过使用树的<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>来表示键树，即</span><span style="color:#008000;">双链树</span>；<span style="color:#b22222;">另一种是以树的多重<u><a href='/view/160.html' target='_blank'>链表</a></u>表示键树，即</span><span style="color:#008000;"> Trie 树</span><span style="color:#b22222;">，又称</span><span style="color:#008000;">字典树</span>。
+<h2>
+	双链树</h2>
+当使用孩子兄弟表示法表示键树时，树的结点构成分为3部分：
+<ul>
+	<li>
+		symbol域：存储关键字的一个字符；</li>
+	<li>
+		first域：存储指向孩子结点的指针；</li>
+	<li>
+		next域：存储指向兄弟结点的指针；</li>
+</ul>
+<div class="info-box">
+	<span style="color:#b22222;">注意：</span>对于叶子结点来说，由于其没有孩子结点，在构建叶子结点时，将 first 指针换成 infoptr 指针，用于指向该关键字。当叶子结点（结束符 &lsquo;$&rsquo; 所在的结点）中使用 infoptr 域指向该自身的关键字时，此时的键树被称为双链树。</div>
+如图 1 中的键树用孩子兄弟表示法表示为双链树时，如图 2 所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024151153J1.png" style="width: 419px; height: 428px;" /><br />
+	图 2 双链树</div>
+<div class="info-box">
+	<span style="color:#b22222;">提示：</span>每个关键字的叶子结点 $ 的 infoptr 指针指向的是各自的关键字，通过该指针就可以找到各自的关键字的首地址。</div>
+<h2>
+	双链树查找功能的具体实现</h2>
+在使用孩子兄弟表示法表示的键树中做查找操作，从树的根结点出发，依次同被查找的关键字进行比对，如果比对成功，进行下一字符的比对；反之，如果比对失败，则跳转至该结点的兄弟结点中去继续比对，直至比对成功或者为找到该关键字。<br />
+<br />
+具体实现的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+typedef enum{LEFT,BRANCH}NodeKind;//定义结点的类型，是叶子结点还是其他类型的结点
+typedef  struct {
+    char a[20];//存储关键字的<u><a href='/view/181.html' target='_blank'>数组</a></u>
+    int num;//关键字长度
+}KeysType;
+//定时结点结构
+typedef struct DLTNode{
+    char symbol;//结点中存储的数据
+    struct DLTNode *next;//指向兄弟结点的指针
+    NodeKind *kind;//结点类型
+    union{//其中两种指针类型每个结点二选一
+        struct DLTNode* first;//孩子结点
+        struct DLTNode* infoptr;//叶子结点特有的指针
+    };
+}*DLTree;
+//查找函数，如果查找成功，返回该关键字的首地址，反则返回NULL。T 为用孩子兄弟表示法表示的键树，K为被查找的关键字。
+DLTree SearchChar(DLTree T, KeysType k){
+    int i = 0;
+    DLTree p = T-&gt;first;//首先令指针 P 指向根结点下的含有数据的孩子结点
+    //如果 p 指针存在，且关键字中比对的位数小于总位数时，就继续比对
+    while (p &amp;&amp; i &lt; k.num){
+        //如果比对成功，开始下一位的比对
+        if (k.a[i] == p-&gt;symbol){
+            i++;
+            p = p-&gt;first;
+        }
+        //如果该位比对失败，则找该结点的兄弟结点继续比对
+        else{
+            p = p-&gt;next;
+        }
+    }
+    //比对完成后，如果比对成功，最终 p 指针会指向该关键字的叶子结点 $，通过其自有的 infoptr 指针找到该关键字。
+    if ( i == k.num){
+        return p-&gt;infoptr;
+    }
+    else{
+        return NULL;
+    }
+}</pre>
+<h2>
+	Trie树（字典树）</h2>
+若以树的多重链表表示键树，则树中如同双链树一样，会含有两种结点：
+<ol>
+	<li>
+		叶子结点：叶子结点中含有关键字域和指向该关键字的指针域；</li>
+	<li>
+		除叶子结点之外的结点（分支结点）：含有 d 个指针域和一个整数域（记录该结点中指针域的个数）；</li>
+</ol>
+<div class="info-box">
+	d 表示每个结点中存储的关键字的所有可能情况，如果存储的关键字为数字，则 d= 11（0&mdash;9，以及 $），同理，如果存储的关键字为字母，则 d=27（26个字母加上结束符 $）。</div>
+图 1 中的键树，采用字典树表示如图 3所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024151423451.png" style="width: 491px; height: 334px;" /><br />
+	图 3 Trie树</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>在 Trie 树中，如果从某个结点一直到叶子结点都只有一个孩子，这些结点可以用一个叶子结点来代替，例如 ZHAO 就可以直接作为叶子结点。</p>
+</blockquote>
+<h2>
+	字典树查找功能的具体实现</h2>
+使用 Trie 树进行查找时，从根结点出发，沿和对应关键字中的值相对应的指针逐层向下走，一直到叶子结点，如果全部对应相等，则查找成功；反之，则查找失败。<br />
+具体实现代码为：
+<pre class="cpp">
+typedef enum{LEFT,BRANCH}NodeKind;//定义结点类型
+typedef struct {//定义存储关键字的数组
+    char a[20];
+    int num;
+}KeysType;
+//定义结点结构
+typedef struct TrieNode{
+    NodeKind kind;//结点类型
+    union{
+        struct { KeysType k; struct TrieNode *infoptr; }lf;//叶子结点
+        struct{ struct TrieNode *ptr[27]; int num; }bh;//分支结点
+    };
+}*TrieTree;
+//求字符 a 在字母表中的位置
+int ord(char  a){
+    int b = a - &#39;A&#39;+1;
+    return b;
+}
+//查找函数
+TrieTree SearchTrie(TrieTree T, KeysType K){
+    int i=0;
+    TrieTree p = T;
+    while (i &lt; K.num){
+        if (p &amp;&amp; p-&gt;kind==BRANCH &amp;&amp; p-&gt;bh.ptr[ord(K.a[i])]){
+            i++;
+            p = p-&gt;bh.ptr[ord(K.a[i])];
+        }
+        else{
+            break;
+        }
+    }
+    if (p){
+        return p-&gt;lf.infoptr;
+    }
+    return p;
+}</pre>
+使用 Trie 树进行查找的过程实际上是走了一条从根结点到叶子结点的路径，所以使用 Trie 进行的查找效率取决于该树的深度。
+<h2>
+	总结</h2>
+双链树和字典树是键树的两种表示方法，各有各的特点，具体使用哪种方式表示键树，需要根据实际情况而定。例如，若键树中结点的孩子结点较多，则使用字典树较双链树更为合适。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 62;
+window.arcId = "d535SMRKhwRwp1f1nVGE6BqqS93MLd7Zm6gGzam+dTdTXU649Ae/COZx";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

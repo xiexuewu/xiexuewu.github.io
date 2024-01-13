@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构实践项目之移动迷宫小游戏(初级版)</title>
+<meta name="keywords" content="《,移动迷宫,》,小游戏,《,移动迷宫,》," />
+<meta name="description" content="《移动迷宫》游戏简介： 迷宫只有两个门，一个入口，一个出口。一个骑士骑马从入口走进迷宫，迷宫中设置有很多墙壁，对前进方向造成障碍。骑士需要在迷宫中寻找通路以到达出口" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构实践项目之移动迷宫小游戏(初级版)</h1>
+			<div id="arc-body"><span style="color:#b22222;">《移动迷宫》游戏简介：</span>迷宫只有两个门，一个入口，一个出口。一个骑士骑马从入口走进迷宫，迷宫中设置有很多墙壁，对前进方向造成障碍。骑士需要在迷宫中寻找通路以到达出口。<br />
+<blockquote>
+	<p>
+		本游戏的迷宫是&ldquo;移动&rdquo;的，每次骑士进入迷宫时，迷宫的入口、出口，甚至是迷宫中设置的障碍都是不同的。</p>
+</blockquote>
+<h2>
+	设计思路</h2>
+解决类似的问题，使用<span style="color:#b22222;">回溯法</span>是最行之有效的解题方法。骑士从入口开始，不断地对周围的道路进行试探：若能走通，则进入该位置，继续对周围进行试探；反之，则后退一步，继续寻求其他的可行路径。<br />
+<br />
+通过不停地对可行道路进行试探，结果有两种：
+<ul>
+	<li>
+		骑士最终找到了一条通往出口的道路；</li>
+	<li>
+		试探结束，没有通往出口的道路，骑士最终只能被迫返回入口，继续等到迷宫的下一次变化（程序结束）。</li>
+</ul>
+<h2>
+	实例分析</h2>
+假设迷宫为一块长为 10 ，宽为 8 的矩形区域，其中随机设置了入口、出口和该区域内可供通行的道路，如下<u><a href='/view/200.html' target='_blank'>图</a></u>所示：<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171128/2-1G12QAR2219.png" style="width: 300px; height: 274px;" /></div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>迷宫中，&lsquo;0&rsquo; 表示道路，&lsquo;#&rsquo; 表示障碍。</p>
+</blockquote>
+当骑士处于入口的位置时，他会前后左右的进行探索式前进，当他发现前方道路可行时，即坐标为（2，1）的通路，此时骑士会快速移动至该位置，进行以该位置为中心的再次探索式前进。<br />
+<br />
+通过骑士不断地探索，对于该实例中列举的迷宫，骑士最终可以找到一条通往出口的道路，如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171128/2-1G12QA914Q7.png" style="width: 300px; height: 274px;" /></div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>迷宫中，新增的&lsquo;X&rsquo;表示骑士走过的道路（找出一条通路即可）。</p>
+</blockquote>
+<h2>
+	完整实现代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+typedef enum {false,true} bool;
+//迷宫本身是一个8行10列的矩形
+int ROWS=8;
+int COLS=10;
+//初始化迷宫，随机设置迷宫出入口，同时在迷宫中随机设置可行道路。
+void mazeGenerator(char [][COLS],int *,int *,int *,int *);
+//使用回溯法从入口处不断地尝试找到出口的路径
+void mazeTraversal(char maze[ROWS][COLS],int row,int col,int entryRow,int entryCol,int exitrow,int exitcol);
+//迷宫的输出函数
+void printMaze(const char[][COLS]);
+//判断每一次移动是否有效
+bool validMove(const char [][COLS],int,int);
+
+int main()
+{
+    printf(&quot;*********移动迷宫小项目（数据结构就该这么学）*********\n&quot;);
+    char maze[ROWS][COLS];
+    int xStart,yStart,x,y;
+    srand(time(0));//种下随机种子数，每次运行种下不同的种子，后序通过rand()函数获得的随机数就不同。
+    //通过一个嵌套循环，先将迷宫中各个地方设置为死路(&lsquo;#&rsquo;表示为墙，表示此处不可通过)
+    for(int loop=0;loop&lt;ROWS;++loop ){
+        for(int loop2=0;loop2&lt;COLS;++loop2 ){
+            maze[loop][loop2]=&#39;#&#39;;
+        }
+    }
+    //初始化迷宫，即在迷宫中随机设置出口、入口和中间的道路，用&lsquo;0&rsquo;表示。通过此函数，可同时得到入口的坐标
+    mazeGenerator(maze,&amp;xStart,&amp;yStart,&amp;x,&amp;y);
+
+    printf(&quot;迷宫入口位置坐标为(%d,%d);出口位置坐标为：(%d，%d);\n&quot;,xStart+1,yStart+1,x+1,y+1);
+    printf(&quot;迷宫设置如下（&lsquo;#&rsquo;表示墙，&lsquo;0&rsquo;表示通路）：\n&quot;);
+    printMaze(maze);//输出一个初始化好的迷宫
+    //使用回溯法，通过不断地进行尝试，试图找到一条通往出口的路。
+    mazeTraversal(maze,xStart,yStart,xStart,yStart,x,y);
+}
+//由于迷宫整体布局为矩形，有四条边，在初始化迷宫的出口和入口时，随机选择不同的两条边作为设置出口和入口的边
+void mazeGenerator(char maze[][COLS],int *xPtr,int *yPtr,int *exitx,int *exity){
+    int a,x,y,entry,exit;
+    do {
+        entry=rand()%4;
+        exit=rand()%4;
+    }while(entry==exit);
+    // 确定入口位置，0 代表选择的为左侧的边，1 代表为上边，2代表为右侧的边，3 代表为下边
+    if(entry==0){
+        *xPtr=1+rand()%(ROWS-2);
+        *yPtr=0;
+        maze[*xPtr][*yPtr]=&#39;0&#39;;
+    }else if(entry==1){
+        *xPtr=0;
+        *yPtr=1+rand()%(COLS-2);
+        maze[*xPtr][*yPtr]=&#39;0&#39;;
+    }else if(entry==2){
+        *xPtr=1+rand()%(ROWS-2);
+        *yPtr=COLS-1;
+        maze[*xPtr][*yPtr]=&#39;0&#39;;
+    }else{
+        *xPtr=ROWS-1;
+        *yPtr=1+rand()%(COLS-2);
+        maze[*xPtr][*yPtr]=&#39;0&#39;;
+    }
+    //确定出口位置
+    if(exit==0){
+        a=1+rand()%(ROWS-2);
+        *exitx=a;
+        *exity=0;
+        maze[a][0]=&#39;0&#39;;}
+    else if(exit==1){
+        a=1+rand()%(COLS-2);
+        *exitx=0;
+        *exity=a;
+        maze[0][a]=&#39;0&#39;;}
+    else if(exit==2){
+        a=1+rand()%(ROWS-2);
+        *exitx=a;
+        *exity=COLS-1;
+        maze[a][COLS-1]=&#39;0&#39;;}
+    else{
+        a=1+rand()%(COLS-2);
+        *exitx=ROWS-1;
+        *exity=a;
+        maze[ROWS-1][a]=&#39;0&#39;;
+    }
+    //在迷宫中央设置多出不同的随机通路
+    for(int loop=1;loop&lt;(ROWS-2)*(COLS-2);++loop) {
+        x=1+rand()%(ROWS-2);
+        y=1+rand()%(COLS-2);
+        maze[x][y]=&#39;0&#39;;}
+}
+
+void mazeTraversal(char maze[ROWS][COLS],int row,int col,int entryRow,int entryCol,int exitrow,int exitcol){
+    //由于从入口处进入，为了区分走过的通路和没走过的通路，将走过的通路设置为&lsquo;x&rsquo;，
+    maze[row][col]=&#39;x&#39;;
+    static bool judge=false;//设置一个判断变量，判断在入口位置是否有通路存在。
+    static int succ=0;//用于统计从入口到出口的可行通路的条数
+    if (row==exitrow &amp;&amp; col==exitcol) {
+        printf(&quot;成功走出迷宫，道路图如下：\n&quot;);
+        printMaze(maze);
+        succ++;
+        return;
+    }
+    //判断当前位置的下方是否为通路
+    if (validMove(maze, row+1, col)) {
+        judge=true;//证明起码有路存在，下面证明是否有可通往出口的路
+        mazeTraversal(maze, row+1, col,entryRow,entryCol,exitrow,exitcol);//以下方的位置为起点继续尝试
+    }
+    //判断当前位置的右侧是否为通路
+    if (validMove(maze, row, col+1)) {
+        judge=true;
+        mazeTraversal(maze, row, col+1,entryRow,entryCol,exitrow,exitcol);
+    }
+    //判断当前位置的上方是否为通路
+    if (validMove(maze, row-1, col)) {
+        judge=true;
+        mazeTraversal(maze, row-1, col,entryRow,entryCol,exitrow,exitcol);
+    }
+    //判断当前位置的左侧是否为通路
+    if (validMove(maze, row, col-1)) {
+        judge=true;
+        mazeTraversal(maze, row, col-1,entryRow,entryCol,exitrow,exitcol);
+    }
+    //如果judge仍为假，说明在入口处全部被墙包围，无路可走
+    if (judge==false) {
+        printf(&quot;入口被封死，根本无路可走！\n&quot;);
+        printMaze(maze);
+    }
+    //如果judge为真，但是succ值为0，且最终又回到了入口的位置，证明所有的尝试工作都已完成，但是没有发现通往出口的路
+    else if(judge==true &amp;&amp; row==entryRow &amp;&amp; col==entryCol &amp;&amp; succ==0){
+        printf(&quot;尝试了所有道路，出口和入口之间没有通路！\n&quot;);
+        printMaze(maze);
+    }
+}
+//有效移动，即证明该位置处于整个迷宫的矩形范围内，且该位置是通路，不是墙，也从未走过
+bool validMove(const char maze[][COLS],int r,int c){
+    return(r&gt;=0&amp;&amp;r&lt;=ROWS-1&amp;&amp;c&gt;=0&amp;&amp;c&lt;=COLS-1&amp;&amp;maze[r][c]!=&#39;#&#39;&amp;&amp; maze[r][c]!=&#39;x&#39;);
+}
+//输出迷宫
+void printMaze(const char maze[][COLS] ){
+    for(int x=0;x&lt;ROWS;++x){
+        for(int y=0;y&lt;COLS;++y){
+            printf(&quot;%c &quot;,maze[x][y]);
+        }
+        printf(&quot;\n&quot;);
+    }
+    printf(&quot;\n&quot;);
+}</pre>
+<blockquote>
+	<p>
+		该程序由于每次运行产生不同的迷宫，所以每次运行结果不同，可自行运行，查看结果，这里不再进行描述。</p>
+</blockquote>
+<h2>
+	总结</h2>
+通过练习《移动迷宫》小游戏，旨在让大家熟悉回溯法的解题思路。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">回溯 PK 递归回忆：</span>比如说你在面对一个二叉路口，不知道要走哪条，此时就要做尝试（尝试这个动作就是一个函数）你选择先尝试左边这条，往左边走，走着走着发现又有一个二叉路口，此时你需要上一次尝试的过程中要再做一次尝试，即在函数内再调用一次函数，这是递归。但是如果你发现这条路走不通，就知道上一个二岔路你选择错了，此时你回到原来的岔路口选择右边，这就是回溯（<span style="color:#b22222;">回溯使用递归的思想实现的一种算法结构</span>）。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 81;
+window.arcId = "2901nEuEl9RZvFQXgNsPAX56FNvWRS+7glEMqxkC5xFkBhdTGoveZM1o";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

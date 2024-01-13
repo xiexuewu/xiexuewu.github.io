@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>中文数字转阿拉伯数字（C++实现）</title>
+<meta name="keywords" content="中文,数字,转,阿拉伯数字,C++,实现,中文,数字," />
+<meta name="description" content="中文数字的权位是明的，阿拉伯数字的权位则隐含在数字的位置中。比如中文数字一万，对应的阿拉伯数字是10000，如何确定补多少个 0 才能将 1 顶在正确的位置上？这正是中文数字转换" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>中文数字转阿拉伯数字（C++实现）</h1>
+			<div id="arc-body">中文数字的权位是明的，阿拉伯数字的权位则隐含在数字的位置中。比如中文数字&ldquo;一万&rdquo;，对应的阿拉伯数字是10000，如何确定补多少个 0 才能将 1 顶在正确的位置上？这正是中文数字转换成阿拉伯数字的关键，如何将明的权位转换成数字的位置。<br />
+<h2>
+	转换的基本方法</h2>
+对于十进制阿拉伯数字，数字的所在位数就是该数字与10的倍数关系。个位就是 1 倍，十位就是 10 倍，百位就是 100 倍，以此类推。<br />
+<br />
+通过这个关系，可以将阿拉伯数字隐含的权位转换成 10 的倍数表示，比如中文数字&ldquo;五百&rdquo;，就可以转换成 5x100，其结果就是 500。再来看一个复杂的中文数字&ldquo;四万二千五百一十三&rdquo;，对每个权位依次转换成倍数并求和：<br />
+<p class="info-box">
+	4x 10000 + 2x 1000 + 5x 100 +1 x 10+3x1</p>
+就可以得到对应的阿拉伯数字 42513。<br />
+<br />
+<span style="color:#b22222;">由以上分析可知，从中文数字转阿拉伯数字的基本方法就是从中文数字中逐个识别出数字和权位的组合，然后根据权位和阿拉伯数字倍数的对应关系计算出每个数字和权位组合的值，最后求和得到结果。</span><br />
+<br />
+但是中文数字并不是严格用&ldquo;数字&rdquo;+&ldquo;权位&rdquo;组合成的，&ldquo;零&rdquo;的使用就是个特例，它在数字中出现，却没有权位。<br />
+<br />
+除此之外，节权位也需要考虑，因为它常和其他权位连在一起使用，比如&ldquo;二十万&rdquo;中的&ldquo;十&rdquo;是数字权位，&ldquo;万&rdquo;是节权位。在设计算法时，由于&ldquo;零&rdquo;没有权位，因此对于中文数字中的&ldquo;零&rdquo;不需处理，直接跳过即可。节权位比较特殊，它不是与之相邻的数字的倍数，而是整个小节的倍数，因此转换过程中，需要临时保存每个节权位出现之前的小节的值。<br />
+<h2>
+	算法实现</h2>
+中文数字转换成阿拉伯数字的算法实现，首先要做两件事情：
+<ol>
+	<li>
+		将中文数字转换成阿拉伯数字；</li>
+	<li>
+		将中文权位转换成 10 的倍数。</li>
+</ol>
+<br />
+中文数字转换成阿拉伯数字可以通过反查 chnNumChar 表实现。将中文权位转成 10 的倍数需要事先建立一个中文权位与 10 的倍数的关系表，我们这样定义一个中文权位和 10 的倍数关系：
+<pre class="cpp">
+typedef struct {
+    const char *name; //中文权位名称
+    int value; //10的倍数值
+    bool secUnit; //是否是节权位
+}CHN_NAME_VALUE;</pre>
+根据这个关系的定义建立的权位与 10 的倍数的关系表如下：<br />
+<pre class="cpp">
+CHN_NAME_VALUE chnValuePair[]={
+{&quot;十&quot;,10, false }, {&quot;百&quot;, 100, false }, {&quot;千&quot;, 1000, false }, {&quot;万&quot;，10000, true }, {&quot;亿&quot;,100000000, true }
+};</pre>
+根据以上定义实现的转换算法如下：<br />
+<pre class="cpp">
+unsigned int ChineseToNumber(const std::string&amp; chnString)
+{
+    unsigned int rtn = 0;
+    unsigned int section = 0;
+    int number = 0;
+    bool secUnit = false;
+    std::string::size_type pos = 0;
+    while(pos &lt; chnString.length())
+    {
+        int num = ChineseToValue(chnString.substr(pos, CHN_CHAR_LENGTH));
+        if(num &gt;= 0) /*数字还是单位？ */
+        {
+            number = num;
+            pos += CHN_CHAR_LENGTH;
+            if (pos &gt;= chnString.length())//如果是最后一位数字，直接结束
+            {
+                section += number;
+                rtn += section;
+                break;
+            }
+        }
+        else
+        {
+            int unit = ChineseToUnit(chnString.substr(pos,CHN_CHAR_LENGTH), secUnit);
+            if(SeCUnit)//是节权位说明一个节己经结束
+            {
+                section = (section + number) * unit;
+                rtn += section;
+                section = 0;
+            }
+            else
+            {
+                section += (number * unit);
+            }
+            number = 0;
+            pos += CHN_CHAR_LENGTH;
+            if(pos &gt;= chnString.length())
+            {
+                rtn += section;
+                break;
+            }
+        }
+    }
+    return rtn;
+}</pre>
+<code>ChineseToNumber()</code> 函数就是中文数字转阿拉伯数字算法的主要部分，<code>chnString</code> 参数就是合法的中文字符<u><a href='/view/175.html' target='_blank'>串</a></u>，转换的过程就是对 <code>chnString</code> 中的中文逐个处理：
+<ul>
+	<li>
+		如果遇到中文数字，就存放在 number 变量中，对于&ldquo;零&rdquo;不处理，直接跳过。</li>
+	<li>
+		如果是中文权位，则将其对应的倍数与 number 相乘得到对应的数字，同时累加到 section 变量中。</li>
+	<li>
+		如果是节权位，则将节权位对应的倍数与 section 相乘得到对应的数字，同时累加到最终的结果 rtn 变量中。</li>
+</ul>
+<br />
+<code>ChineseToValue()</code> 函数负责查表完成中文数字到英文数字的转换，如果返回 -1，则表示这是一个权位字符。<code>ChineseToUnit()</code> 函数负责查 <code>chnValuePair</code> 表得到权位对应的 10 的倍数。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 147;
+window.arcId = "aabbzGb/G9FJgm/BozSu6VTi9a4i2FXi0d2QFdVeoTqp0gd7Jg993dPuSw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

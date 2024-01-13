@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>快速排序算法（QSort，快排）及C语言实现</title>
+<meta name="keywords" content="快速,排序,算法,QSort,简称,“,快排,”,快速," />
+<meta name="description" content="上节介绍了如何使用起泡排序的思想对无序表中的记录按照一定的规则进行排序，本节再介绍一种排序算法 快速排序 （Quick Sort，简称快排） 。 C语言中自带函数库中就有快速排序qsor" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>快速排序算法（QSort，快排）及C语言实现</h1>
+			<div id="arc-body">上节介绍了如何使用起泡排序的思想对无序表中的记录按照一定的规则进行排序，本节再介绍一种排序算法&mdash;&mdash;<span style="color:#008000;">快速排序算法</span><span style="color:#b22222;">（Quick Sort）</span>。<br />
+<blockquote>
+	<p>
+		C语言中自带函数库中就有快速排序&mdash;&mdash;qsort函数 ，包含在 &lt;stdlib.h&gt; 头文件中。</p>
+</blockquote>
+快速排序算法是在起泡排序的基础上进行改进的一种算法，其实现的基本思想是：通过一次排序将整个无序表分成相互独立的两部分，其中一部分中的数据都比另一部分中包含的数据的值小，然后继续沿用此方法分别对两部分进行同样的操作，直到每一个小部分不可再分，所得到的整个序列就成为了有序序列。<br />
+<br />
+例如，对无序表<code>{49，38，65，97，76，13，27，49}</code>进行快速排序，大致过程为：
+<ol>
+	<li>
+		首先从表中选取一个记录的关键字作为分割点（称为<span style="color:#008000;">&ldquo;枢轴&rdquo;</span>或者<span style="color:#008000;">支点</span>，一般选择第一个关键字），例如选取 49；</li>
+	<li>
+		将表格中大于 49 个放置于 49 的右侧，小于 49 的放置于 49 的左侧，假设完成后的无序表为：<code>{27，38，13，49，65，97，76，49}</code>；</li>
+	<li>
+		以 49 为支点，将整个无序表分割成了两个部分，分别为<code>{27，38，13}</code>和<code>{65，97，76，49}</code>，继续采用此种方法分别对两个子表进行排序；</li>
+	<li>
+		前部分子表以 27 为支点，排序后的子表为<code>{13，27，38}</code>，此部分已经有序；后部分子表以 65 为支点，排序后的子表为<code>{49，65，97，76}</code>；</li>
+	<li>
+		此时前半部分子表中的数据已完成排序；后部分子表继续以 65为支点，将其分割为<code>{49}</code>和<code>{97，76}</code>，前者不需排序，后者排序后的结果为<code>{76，97}</code>；</li>
+	<li>
+		通过以上几步的排序，最后由子表<code>{13，27，38}</code>、<code>{49}</code>、<code>{49}</code>、<code>{65}</code>、<code>{76，97}</code>构成有序表：<code>{13，27，38，49，49，65，76，97}</code>；</li>
+</ol>
+<br />
+整个过程中最重要的是实现第 2 步的分割操作，具体实现过程为：<br />
+<br />
+<ul>
+	<li>
+		设置两个指针 low 和 high，分别指向无序表的表头和表尾，如下<u><a href='/view/200.html' target='_blank'>图</a></u>所示：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G04923K2.png" style="width: 322px; height: 93px;" /></div>
+<ul>
+	<li>
+		先由 high 指针从右往左依次遍历，直到找到一个比 49 小的关键字，所以 high 指针走到 27 的地方停止。找到之后将该关键字同 low 指向的关键字进行互换：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G049532B.png" style="width: 322px; height: 95px;" /></div>
+<ul>
+	<li>
+		然后指针 low 从左往右依次遍历，直到找到一个比 49 大的关键字为止，所以 low 指针走到 65 的地方停止。同样找到后同 high 指向的关键字进行互换：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G05009508.png" style="width: 324px; height: 96px;" /></div>
+<ul>
+	<li>
+		指针 high 继续左移，到 13 所在的位置停止（13&lt;49），然后同 low 指向的关键字进行互换：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G05034131.png" style="width: 325px; height: 98px;" /></div>
+<ul>
+	<li>
+		指针 low 继续右移，到 97 所在的位置停止（97&gt;49），然后同 high 指向的关键字互换位置：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G05050L2.png" style="width: 324px; height: 97px;" /></div>
+<ul>
+	<li>
+		指针 high 继续左移，此时两指针相遇，整个过程结束；</li>
+</ul>
+<br />
+该操作过程的具体实现代码为：
+<pre class="cpp">
+#define MAX 8
+typedef struct {
+    int key;
+}SqNote;
+
+typedef struct {
+    SqNote r[MAX];
+    int length;
+}SqList;
+//交换两个记录的位置
+void swap(SqNote *a,SqNote *b){
+    int key=a-&gt;key;
+    a-&gt;key=b-&gt;key;
+    b-&gt;key=key;
+}
+//快速排序，分割的过程
+int Partition(SqList *L,int low,int high){
+    int pivotkey=L-&gt;r[low].key;
+    //直到两指针相遇，程序结束
+    while (low&lt;high) {
+        //high指针左移，直至遇到比pivotkey值小的记录，指针停止移动
+        while (low&lt;high &amp;&amp; L-&gt;r[high].key&gt;=pivotkey) {
+            high--;
+        }
+        //交换两指针指向的记录
+        swap(&amp;(L-&gt;r[low]), &amp;(L-&gt;r[high]));
+        //low 指针右移，直至遇到比pivotkey值大的记录，指针停止移动
+        while (low&lt;high &amp;&amp; L-&gt;r[low].key&lt;=pivotkey) {
+            low++;
+        }
+        //交换两指针指向的记录
+        swap(&amp;(L-&gt;r[low]), &amp;(L-&gt;r[high]));
+    }
+    return low;
+}</pre>
+<span style="color:#b22222;">该方法其实还有可以改进的地方：</span>在上边实现分割的过程中，每次交换都将支点记录的值进行移动，而实际上只需在整个过程结束后（low==high），两指针指向的位置就是支点记录的准确位置，所以无需每次都移动支点的位置，最后移动至正确的位置即可。<br />
+<br />
+所以上边的算法还可以改写为：
+<pre class="cpp">
+//此方法中，存储记录的<u><a href='/view/181.html' target='_blank'>数组</a></u>中，下标为 0 的位置时空着的，不放任何记录，记录从下标为 1 处开始依次存放
+int Partition(SqList *L,int low,int high){
+    L-&gt;r[0]=L-&gt;r[low];
+    int pivotkey=L-&gt;r[low].key;
+    //直到两指针相遇，程序结束
+    while (low&lt;high) {
+        //high指针左移，直至遇到比pivotkey值小的记录，指针停止移动
+        while (low&lt;high &amp;&amp; L-&gt;r[high].key&gt;=pivotkey) {
+            high--;
+        }
+        //直接将high指向的小于支点的记录移动到low指针的位置。
+        L-&gt;r[low]=L-&gt;r[high];
+        //low 指针右移，直至遇到比pivotkey值大的记录，指针停止移动
+        while (low&lt;high &amp;&amp; L-&gt;r[low].key&lt;=pivotkey) {
+            low++;
+        }
+        //直接将low指向的大于支点的记录移动到high指针的位置
+        L-&gt;r[high]=L-&gt;r[low];
+    }
+    //将支点添加到准确的位置
+    L-&gt;r[low]=L-&gt;r[0];
+    return low;
+}</pre>
+<h2>
+	快速排序的完整实现代码（C语言）</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX 9
+//单个记录的结构体
+typedef struct {
+    int key;
+}SqNote;
+//记录表的结构体
+typedef struct {
+    SqNote r[MAX];
+    int length;
+}SqList;
+//此方法中，存储记录的数组中，下标为 0 的位置时空着的，不放任何记录，记录从下标为 1 处开始依次存放
+int Partition(SqList *L,int low,int high){
+    L-&gt;r[0]=L-&gt;r[low];
+    int pivotkey=L-&gt;r[low].key;
+    //直到两指针相遇，程序结束
+    while (low&lt;high) {
+        //high指针左移，直至遇到比pivotkey值小的记录，指针停止移动
+        while (low&lt;high &amp;&amp; L-&gt;r[high].key&gt;=pivotkey) {
+            high--;
+        }
+        //直接将high指向的小于支点的记录移动到low指针的位置。
+        L-&gt;r[low]=L-&gt;r[high];
+        //low 指针右移，直至遇到比pivotkey值大的记录，指针停止移动
+        while (low&lt;high &amp;&amp; L-&gt;r[low].key&lt;=pivotkey) {
+            low++;
+        }
+        //直接将low指向的大于支点的记录移动到high指针的位置
+        L-&gt;r[high]=L-&gt;r[low];
+    }
+    //将支点添加到准确的位置
+    L-&gt;r[low]=L-&gt;r[0];
+    return low;
+}
+void QSort(SqList *L,int low,int high){
+    if (low&lt;high) {
+        //找到支点的位置
+        int pivotloc=Partition(L, low, high);
+        //对支点左侧的子表进行排序
+        QSort(L, low, pivotloc-1);
+        //对支点右侧的子表进行排序
+        QSort(L, pivotloc+1, high);
+    }
+}
+void QuickSort(SqList *L){
+    QSort(L, 1,L-&gt;length);
+}
+int main() {
+    SqList * L=(SqList*)malloc(sizeof(SqList));
+    L-&gt;length=8;
+    L-&gt;r[1].key=49;
+    L-&gt;r[2].key=38;
+    L-&gt;r[3].key=65;
+    L-&gt;r[4].key=97;
+    L-&gt;r[5].key=76;
+    L-&gt;r[6].key=13;
+    L-&gt;r[7].key=27;
+    L-&gt;r[8].key=49;
+    QuickSort(L);
+    for (int i=1; i&lt;=L-&gt;length; i++) {
+        printf(&quot;%d &quot;,L-&gt;r[i].key);
+    }
+    return 0;
+}</pre>
+运行结果：
+<div class="info-box">
+	13 27 38 49 49 65 76 97</div>
+<h2>
+	总结</h2>
+快速排序算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(nlogn)</code>，是所有时间复杂度相同的排序方法中性能最好的排序算法。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 71;
+window.arcId = "390723+JYaGNye9unFkQO7aEDwK9eYrzd5qtJiO+ZNqjSFgi5mG6+5Km";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

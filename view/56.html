@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>分块查找算法（索引顺序查找）及C语言实现</title>
+<meta name="keywords" content="静态,查找,表之,分块,算法,静态,查找,表之," />
+<meta name="description" content="本节介绍一种在顺序查找的基础上对其进行改进的算法 分块查找算法 。 分块查找 ，也叫 索引顺序查找 ，算法实现除了需要查找表本身之外，还需要根据查找表建立一个索引表。例如" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>分块查找算法（索引顺序查找）及C语言实现</h1>
+			<div id="arc-body"><span style="color:#b22222;">本节介绍一种在<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>的基础上对其进行改进的算法</span>&mdash;&mdash;<span style="color:#008000;">分块查找算法</span>。<br />
+<br />
+<span style="color:#008000;">分块查找</span>，也叫<span style="color:#008000;">索引顺序查找</span>，算法实现除了需要查找表本身之外，还需要根据查找表建立一个索引表。例如<u><a href='/view/200.html' target='_blank'>图</a></u> 1，给定一个查找表，其对应的索引表如图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G01610424A16.png" style="width: 541px; height: 267px;" /><br />
+	图 1 查找表及其对应的索引表<br />
+	&nbsp;</div>
+图 1 中，查找表中共 18 个查找关键字，将其平均分为 3 个子表，对每个子表建立一个索引，索引中包含中两部分内容：<span style="color:#008000;">该子表部分中最大的关键字</span>以及<span style="color:#008000;">第一个关键字在总表中的位置</span>，即该子表的起始位置。<br />
+<blockquote>
+	<p>
+		建立的索引表要求按照关键字进行升序排序，查找表要么整体有序，要么分块有序。</p>
+</blockquote>
+<span style="color:#008000;">分块有序</span><span style="color:#b22222;">指的是第二个子表中所有关键字都要大于第一个子表中的最大关键字，第三个子表的所有关键字都要大于第二个子表中的最大关键字，依次类推。</span><br />
+<br />
+块（子表）中各关键字的具体顺序，根据各自可能会被查找到的概率而定。如果各关键字被查找到的概率是相等的，那么可以随机存放；否则可按照被查找概率进行降序排序，以提高算法运行效率。
+<h2>
+	分块查找的具体实现</h2>
+所有前期准备工作完成后，开始在此基础上进行分块查找。分块查找的过程分为两步进行：<br />
+<ol>
+	<li>
+		确定要查找的关键字可能存在的具体块（子表）；</li>
+	<li>
+		在具体的块中进行顺序查找。</li>
+</ol>
+<br />
+以图 1 中的查找表为例，假设要查找关键字 38 的具体位置。首先将 38 依次和索引表中各最大关键字进行比较，因为 22 &lt; 38 &lt; 48，所以可以确定 38 如果存在，肯定在第二个子表中。<br />
+<br />
+由于索引表中显示第二子表的起始位置在查找表的第 7 的位置上，所以从该位置开始进行顺序查找，一直查找到该子表最后一个关键字（一般将查找表进行等分，具体子表个数根据实际情况而定）。结果在第 10 的位置上确定该关键字即为所找。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>在第一步确定块（子表）时，由于索引表中按照关键字有序，所有可以采用<u><a href='/view/55.html' target='_blank'>折半查找</a></u>算法。而在第二步中，由于各子表中关键字没有严格要求有序，所以只能采用顺序查找的方式。</p>
+</blockquote>
+<p>
+	具体实现代码:</p>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct index {  //定义块的结构
+    int key;
+    int start;
+} newIndex[3];   //定义结构体<u><a href='/view/181.html' target='_blank'>数组</a></u>
+
+int search(int key, int a[]);
+
+int cmp(const void *a,const void* b){
+    return (*(struct index*)a).key&gt;(*(struct index*)b).key?1:-1;
+}
+int main(){
+    int i, j=-1, k, key;
+    int a[] = {33,42,44,38,24,48, 22,12,13,8,9,20,  60,58,74,49,86,53};
+    //确认模块的起始值和最大值
+    for (i=0; i&lt;3; i++) {
+        newIndex[i].start = j+1;  //确定每个块范围的起始值
+        j += 6;
+        for (int k=newIndex[i].start; k&lt;=j; k++) {
+            if (newIndex[i].key&lt;a[k]) {
+                newIndex[i].key=a[k];
+            }
+        }
+    }
+    //对结构体按照 key 值进行排序
+    qsort(newIndex,3, sizeof(newIndex[0]), cmp);
+
+    //输入要查询的数，并调用函数进行查找
+    printf(&quot;请输入您想要查找的数：\n&quot;);
+    scanf(&quot;%d&quot;, &amp;key);
+    k = search(key, a);
+    //输出查找的结果
+    if (k&gt;0) {
+        printf(&quot;查找成功！您要找的数在数组中的位置是：%d\n&quot;,k+1);
+    }else{
+        printf(&quot;查找失败！您要找的数不在数组中。\n&quot;);
+    }
+    return 0;
+}
+int search(int key, int a[]){
+    int i, startValue;
+    i = 0;
+    while (i&lt;3 &amp;&amp; key&gt;newIndex[i].key) { //确定在哪个块中，遍历每个块，确定key在哪个块中
+        i++;
+    }
+    if (i&gt;=3) {  //大于分得的块数，则返回0
+        return -1;
+    }
+    startValue = newIndex[i].start;  //startValue等于块范围的起始值
+    while (startValue &lt;= startValue+5 &amp;&amp; a[startValue]!=key)
+    {
+        startValue++;
+    }
+    if (startValue&gt;startValue+5) {  //如果大于块范围的结束值，则说明没有要查找的数
+        return -1;
+    }
+    return startValue;
+}</pre>
+<p>
+	运行结果：</p>
+<div class="info-box">
+	请输入您想要查找的数：<br />
+	22<br />
+	查找成功！您要找的数在数组中的位置是：7</div>
+<h2>
+	分块查找的性能分析</h2>
+分块查找算法的运行效率受两部分影响：<span style="color:#b22222;">查找块的操作和块内查找的操作</span>。查找块的操作可以采用顺序查找，也可以采用折半查找（更优）；块内查找的操作采用顺序查找的方式。相比于折半查找，分块查找时间效率上更低一些；相比于顺序查找，由于在子表中进行，比较的子表个数会不同程度的减少，所有分块查找算法会更优。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">总体来说，分块查找算法的效率介于顺序查找和折半查找之间。</span></p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 56;
+window.arcId = "a920SW944lHaEaXU2sRt9ezZfPkTdMI1ACR1ZVshVLCtDc446ivMg8QK";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

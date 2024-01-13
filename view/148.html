@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>妖怪与和尚过河问题解法完全攻略（C++完整代码实现）</title>
+<meta name="keywords" content="妖怪,与,和尚,过河,问题,解法,完全攻略,C++," />
+<meta name="description" content="如图 1 所示。有三个和尚和三个妖怪（也可翻译为传教士和食人妖）要利用唯一一条小船过河，这条小船一次只能载两个人，同时，无论是在河的两岸还是在船上，只要妖怪的数量大于" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>妖怪与和尚过河问题解法完全攻略（C++完整代码实现）</h1>
+			<div id="arc-body">如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。有三个和尚和三个妖怪（也可翻译为传教士和食人妖）要利用唯一一条小船过河，这条小船一次只能载两个人，同时，无论是在河的两岸还是在船上，只要妖怪的数量大于和尚的数量，妖怪们就会将和尚吃掉。现在需要选择一种过河的安排，保证和尚和妖怪都能过河且和尚不能被妖怪吃掉。<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181104/1-1Q1041526435G.gif" /><br />
+	图 1 妖怪与和尚过河游戏</div>
+<br />
+这其实是一个很简单的游戏，过河的策略就是无论何时都要保证在河的任意一侧和尚数盘多于妖怪。先来看一种过河的方法：<br />
+<ul>
+	<li>
+		两个妖怪先过河，一个妖怪返回；</li>
+	<li>
+		再两个妖怪过河，一个妖怪返回；</li>
+	<li>
+		两个和尚过河，一个妖怪和一个和尚返回；</li>
+	<li>
+		两个和尚过河，一个妖怪返回；</li>
+	<li>
+		两个妖怪过河，一个妖怪返回；</li>
+	<li>
+		两个妖怪过河。</li>
+</ul>
+<br />
+这个游戏的答案不止一个，到底有几个答案呢？写个算法来找找吧。<br />
+<h2>
+	问题与求解思路</h2>
+题目的初始条件是三个和尚和三个妖怪在河的一边，和它们在一起的还有一条小船。过河后的情况应该是三个和尚和三个妖怪安全地过到河的对岸，虽然没有明确提到船的状态，但是船也应该跟着到了对岸，否则岂不闹鬼了？<br />
+<br />
+我们看这个问题里的三个关键因素，就是和尚、妖怪和小船，当然，还有它们的位置。假如我们要让计算机理解这个问题，除了对这三个事物进行描述，还要定义它们的位置信息。如果把任意时刻妖怪、和尚和小船的位置信息合在一起看作一个&ldquo;状态&rdquo;，则要解决这个问题只需要找到一条从初始状态变换到终止状态的路径即可。我们可以尝试使用穷举方法，遍历所有由妖怪、和尚和小船的位罝构成的状态空间，寻找一条或多条从初始状态到最终状态的转换路径。<br />
+<br />
+从初始状态开始，通过构造特定的搜索算法，对状态空间中的所有状态进行穷举，就得到一棵以初始状态为根的状态<u><a href='/view/23.html' target='_blank'>树</a></u>。如果状态树上某个叶子节点是题目要求的最终状态，则从根节点到此叶子节点之间的所有状态节点就是一个过河问题的解决过程。<br />
+<h2>
+	建立数学模型</h2>
+本章介绍的算法是从一个根状态开始对状态空间进行搜索，其结果也是一棵状态搜索树。解决本问题的算法关键是建立状态和动作的数学模型，并找到一种持续驱动动作产生的搜索方法。<br />
+<br />
+本问题并不复杂，因此建立数学模型的工作就&ldquo;退化&rdquo;成建立描述问题的数据结构。本问题的状态模型不仅要能够描述静止状态，还要能够描述并记录状态转换动作，尤其是对状态转换的描述，因为这会影响到状态树搜索算法的设计。<br />
+<br />
+除此之外，当搜索算法找到一个最终状态时，需要输出从开始状态到最终状态的动作序列，这也需要状态模型能够和动作模型结合在一起。下面一起来看看本问题的状态模型以及状态树的设计。<br />
+<h2>
+	状态的数学模型与状态树</h2>
+观察一下本问题的状态，看起来好像是3个和尚、3和妖怪加上一只船一共7个属性，佢是仔细研宄就会发现，3个和尚之间和3个妖怪之间没有差异，也没有顺序关系，因此在考虑数学模型的时候不需要赋予它们太多的属性，只要用数量表示它们就可以了。<br />
+<br />
+对于和尚和妖怪的状态，分别用两个值表示它们在河两岸的数量，这样只需4个属性就可以表示，分别是河左岸和尚数量、河左岸妖怪数量、河对岸和尚数量和河对岸妖怪数量。<br />
+<br />
+每当有妖怪或和尚随船的移动发生变化时，只需要修改和尚和妖怪在河两岸的数量即可完成状态的转换。除了和尚和妖怪的数量，还有一个关键因素也会影响到状态的变化，那就是小船的位罝。小船的位罝是个非常重要的状态属性，不仅决定了状态的差异，还会影响后序动作的选择。<br />
+<br />
+最后的状态模型中，和尚与妖怪的状态就是数值，船有两个枚举状态，在河左岸（LOCAL）和在河对岸（REMOTE）。我们用一个五元组来表示某个时刻的过河状态：<br />
+<p class="info-box">
+	[本地和尚数，本地妖怪数，对岸和尚数，对岸妖怪数，船的位罝]</p>
+用五元组表示的初始状态就是 [3,3,0，0, LOCAL]，问题解决的过河状态是 [0, 0，3，3，REMOTE]。<br />
+<br />
+和尚、妖怪和小船的状态模型定义的数据结构如下所示。<br />
+<pre class="cpp">
+struct Itemstate
+{
+    int local_monster;
+    int local_monk;
+    int remote_monster;
+    int remote_monk;
+    B0AT_L0CATI0N boat;/*LOCAL or REMOTE*/
+    ...
+};</pre>
+状态模型确定以后，整个状态空间的树形模型也就确定了。接下来就要确定和尚与妖怪过河的动作模型，过河动作是驱动状态变化的关键。<br />
+<h2>
+	过河动作的数学模型</h2>
+河两岸的和尚与妖怪的数量发生变化的直接原因是小船的位置关系发生变化，因为船上至少要有一个和尚或妖怪，所以只要船的位罝发生变化，必然会引起状态的变化。<br />
+<br />
+过河动作是促使船的位罝发生变化的原因，也是连接两个状态的转换关系。这个转换关系包含两部分内容，一部分是船的位置变化，另一部分是船上的妖怪或和尚的数量，这个数量会引起两岸的和尚和妖怪的数量发生变化。<br />
+<br />
+过河动作的数学模型需要明确定义两个内容，即动作引起船的位置变化情况和此动作移动的和尚或妖怪的数量。<br />
+<br />
+过河动作的具体数据结构定义如下：
+<pre class="cpp">
+typedef struct tagActionEffection
+{
+    ACTION_NAME act；
+    BOAT_LOCATION boat_to； //船移动的方向
+    int move_monster;//此次移动的妖怪数量
+    int move_monk;//此次移动的和尚数量
+}ACTION_EFFECTION;</pre>
+ACTION_NAME 是一个比较有意思的属性，其实是对动作的一个命名。通过对问题的观察，我们发现过河问题的所有过河动作其实是一个有限的动作集合。<br />
+<br />
+看一下 ACTION_EFFECTION 的定义，根据题目的要求，无论船是从左岸到对岸，还是从对岸返回到左岸，船上装载的妖怪和和尚的情况只能是以下五种：一个妖怪、一个和尚、两个妖怪、两个和尚以及一个妖怪加一个和尚。结合船移动的方向，一共只有 10 种过河动作可供选择，分别是：<br />
+<ol>
+	<li>
+		一个妖怪过河；</li>
+	<li>
+		两个妖怪过河；</li>
+	<li>
+		一个和尚过河；</li>
+	<li>
+		两个和尚过河；</li>
+	<li>
+		一个妖怪和一个和尚过河；</li>
+	<li>
+		&mdash;个妖怪返回；</li>
+	<li>
+		两个妖怪返回；</li>
+	<li>
+		一个和尚返回；</li>
+	<li>
+		两个和尚返回；</li>
+	<li>
+		一个妖怪和一个和尚返回；</li>
+</ol>
+<br />
+于是，ACTION_NAME 的定义如下:
+<pre class="cpp">
+typedef enum tagActionName {
+    ONE_MONSTER_GO = 0,
+    TWO_MONSTER_GO,
+    ONE_MONK_GO,
+    TWO_MONK_GO,
+    ONE_MONSTER_ONE_MONK_GO,
+    ONE_MONSTER_BACK,
+    TWO_MONSTER_BACK,
+    ONE_MONK_BACK,
+    TWO_MONK_BACK,
+    ONE_MONSTER_ONE_MONK_BACK,
+    INVALID_ACTION_NAME,
+}ACTION_NAME;</pre>
+请注意，如果 ACTION_NAME 不同，其对应的 boat_to、move_monster 和 move_monk 三个属性也不相同。这个问题有 10 种不同的动作，如果对这10种动作不能用一个抽象的记录进行一致性处理，那么我们的算法代码就不可避免地出现长长的if...else语句或switch...case语句。<br />
+<br />
+代码中长的 if...else 或 switch...case 语句正是各种问题的起源，我们要尽量避免出现这种情况。怎么做一致性处理？这是算法设计中常用的技巧之一，总结起来就是两点：
+<ol>
+	<li>
+		首先对要处理的数据进行归纳处理，确定共性的部分和差异的部分；</li>
+	<li>
+		然后对差异部分进行量化处理，将逻辑的差异转化成计算机能一致性处理的差异，比如数字的大小变化、字符<u><a href='/view/175.html' target='_blank'>串</a></u>的长短变化，等等。</li>
+</ol>
+<br />
+在本例中，动作名称和小船的位罝是共性的部分，计算机己经不用区分动作的实际类型就可以进行一致处理。和尚和妖怪的移动方法随动作类型不同而变化，无法统一处理，但是可以转化成数字的加减法处理。举个例子，一个和尚和一个妖怪过河的动作，实际效果就是河左岸的和尚数量和妖怪数量各减一，河对岸的和尚数量和妖怪数量各加一。整理起来，所有的动作可归纳为以下动作列表：
+<pre class="cpp">
+ACTION_EFFECTION actEffect[]=
+{
+    { ONE_MONSTER_GO, REMOTE, -1, 0 },
+    { TWO_MONSTER_GO, REMOTE, -2, 0 },
+    { ONE_MONK_GO, REMOTE, 0, -1 },
+    { TWO_MONK_GO, REMOTE, 0, -2 },
+    { ONE_MONSTER_ONE_MONK_GO, REMOTE, -1, -1 },
+    { ONE_MONSTER_BACK, LOCAL, 1, Q },
+    { TWO_MONSTER_BACK, LOCAL, 2, Q },
+    { ONE_MONK_BACK, LOCAL, 0, 1 },
+    { TWO_MONK_BACK, LOCAL, 0, 2 },
+    { ONE_MONSTER_ONE_MONK_BACK, LOCAL, 1, 1 }
+};</pre>
+<h2>
+	搜索算法</h2>
+本章介绍的算法仍然采用深度优先遍历算法，每次遍历只暂时保存当前搜索的分支的所有状态，之前搜索过的分支上的状态是不保存的，只在必要的时候输出结果。<br />
+<br />
+因此，算法不需要完整的树状数据结构保存整个状态树（也没有必要这么做），只需要一个<u><a href='/view/172.html' target='_blank'>队列</a></u>能晳时存储当前搜索分支上的所有状态即可。这个队列初始时只有一个初始状态，随着搜索的进行逐步增加，当搜索算法完成后，队列中应该仍然只有一个初始状态。状态树的搜索过程就是状态树的生成过程，因此状态树一开始并不完整，只有一个初始状态的根节点，当搜索（也就是遍历）操作完成时，状态树才完整。<br />
+<br />
+一个静止状态结合不同的过河动作会迁移到不同的状态。刚刚已经分析过了，每个状态所能采用的过河动作只能是ActionName标识的10种动作中的一种（当然并不是每种动作都适用于此状态），有了这个动作范围，搜索状态树的穷举算法就非常简单了，只需将当前状态分别与这10种动作进行组合，就可以得到状态树上这个状态所有可能的新状态，对新状态继续应用各种过河动作，再得到新状态，直到出现最终状态，得到一个过河过程。图 2 就是一个过河结果的状态转换过程。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181104/1-1Q104153640G6.gif" /><br />
+	图 2 &mdash;个过河结果的状态转换过程</div>
+<h2>
+	状态树的遍历</h2>
+状态树的遍历暗含了一个状态生成的过程，就是促使状态树上的一个状态向下一个状态转换的驱动过程，这是一个很重要的部分，如果不能正确地驱动状态变化，就不能实现状态树的遍历（搜索）。<br />
+<br />
+前面提到的动作模型，就是驱动状态变化的关键因子。算法的动作模型一共定义了10种动作，每种动作结合当前状态就可以产生一个新的状态，就可以推动状态产生变化。当然，并不是所有的动作都能适用于当前状态，比如，假设当前状态是只有两个妖怪在河左岸，则&ldquo;一个和尚过河&rdquo;&ldquo;两个和尚过河&rdquo;和&ldquo;一个和尚和一个妖怪过河&rdquo;这三种动作就不适用于当前状态。<br />
+<br />
+状态树遍历的关键就是处理过河动作列表 actEffeet，依次处理一遍这个列表中的每个动作就实现了状态树的搜索，因为使用了表结构，代码变得非常简单：<br />
+<pre class="cpp">
+/*尝试用种动作分别与当前状态组合*/
+for(int i = 0; i &lt; sizeof(actEffect) / sizeof(actEffect[0]); i++)
+{
+    ProcessStateOnNewAction(states, current, actEffect[i]);
+}</pre>
+<h2>
+	剪枝和重复状态判断</h2>
+前面己经提到过，并不是所有的动作都适用于当前状态，那么，如何判断一个动作是否适用于当前状态？<br />
+<br />
+首先，当前状态中船的位置很关键，如果船的位置在河对岸，那么所有的过河动作就都不适用。其次是移动的妖怪或和尚的数敏是否与当前状态相适应，比如河左岸没有和尚，那么所有需要移动和尚的动作就都不适用。根据以上分析，我们可以给出判断动作合法性的算法：
+<pre class="cpp">
+bool Itemstate::CanTakeAction(ACTION_EFFECTlON&amp; ae) const {
+    if(boat == ae.boat_to)
+        return false;
+    if((local_monster + ae.move_monster) &lt; 0|| (local_monster + ae.move_monster) &gt; monster_count)
+        return false;
+    if((local_monk + ae.move_monk) &lt; 0|| (localjnonk + ae.move_monk) &gt; monk_count)
+        return false;
+    return true;
+}</pre>
+应用这个判断，可以省去很多不必要的状态变化，避免出现一些不符合题目要求的错误状态，比如河左岸有 -1 个和尚，河对岸有 4 个和尚这种情况。<br />
+<br />
+本算法采用深度优先原则搜索状态树，就会遇到重复出现的状态导致状态环路的问题。比如某一时刻采用的动作是&ldquo;一个和尚和一个妖怪过河&rdquo;，到了河对岸形成新的状态，如果新状态采用的动作是&ldquo;一个和尚和一个妖怪返回&rdquo;，则最后的状态就变成了过河之前的状态，这两个状态加上这两个动作就会形成状态环路，搜索路径上存在状态环路的后果就是搜索算法可能会陷入死循环。<br />
+<br />
+除此之外，如果对一个状态树分支上的某个状态经过搜索，其结果己经知道，则在另一个状态树分支上搜索时再遇到这个状态时，可以直接给出结果，或跳过搜索，以便提高搜索算法的效率。在这个过程中因重复出现被放弃或跳过的状态，可以理解为另一种形式的&ldquo;剪枝&rdquo;，可以使一次深度优先遍历很快收敛到初始状态。<br />
+<br />
+因此，本算法采用双端队列来组织搜索过程中的己处理状态。<br />
+<h2>
+	算法实现</h2>
+算法的核心依然是递归搜索，从初始状态开始调用 SearchState() 函数。函数每次从状态队列尾部取出当前要处理的状态，首先判断是否是最终的过河状态，如果是则输出一组过河方案，如果不是，则尝试用动作列表中的动作与当前状态结合，看看是否能生成合法的新状态。<br />
+<pre class="cpp">
+void SearchState(std::deque&lt;ItemState&gt;&amp; states)
+{
+    Itemstate current = states.back(); /*每次都从当前状态开始*/
+    if(current.IsFinalState())
+    {
+        PrintResult(states);
+        return;
+    }
+    /*尝试用10种动作分别与当前状态组合*/
+    for(int i = 0; i &lt; sizeof(actEffect) / sizeof(actEffect[0]); i++)
+    {
+        SearchStateOnNewAction(states, current, actEffect[i]);
+    }
+}</pre>
+搜索的递归关系是通过 SearchStateOnNewAction() 函数体现的，这个函数首先判断当前状态和制定的过河动作是否能生成一个新状态，如果能得到一个合法的新状态，则继续处理这个新状态。<br />
+<pre class="cpp">
+void SearchStateOnNewAction(std::deque&lt;ItemState&gt;&amp; states,ItemState&amp; current, ACTI0N_EFFECTI0N&amp; ae)
+{
+    Itemstate next;
+    if(MakeActionNewState(current&gt; ae, next))
+    {
+        if(next.IsValidState() &amp;&amp; !IsProcessedState(states&gt; next))
+        {
+            states.push_back(next);
+            SearchState(states);
+            states.pop back();
+        }
+    }
+}</pre>
+MakeActionNewState() 函数是一个很有意思的函数，它就是这个算法设计的通过过河动作属性列表对所有动作进行一致性处理的体现，通过对属性的直接加或减计算，避免了长 if...else 语句或 switch...case 代码。<br />
+<pre class="cpp">
+bool MakeActionNewState(const ItemState&amp; curState, ACTION_EFFECTION&amp; ae, ItemState&amp; newState)
+{
+    if(curState.CanTakeAction(ae))
+    {
+        newState = curState;
+        newState.local_monster += ae.move_monster;
+        newState.localjnonk += ae.move_monk;
+        newState.remote_monster -= ae.move_monster;
+        newState.remote_monk -= ae.move_monk;
+        newState.boat = ae.boat_to;
+        newState.curAct = ae.act;
+        return true;
+    }
+    return false;
+}</pre>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 148;
+window.arcId = "1e3bWIQi0i4c7pPRI+f4FtNVi9xo29TFk6X6cDyVUzBS3wG2g6nA0KBA7A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

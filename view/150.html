@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>匈牙利算法详解（含时间复杂度）</title>
+<meta name="keywords" content="匈牙利,算法,详解,含,时间,复杂度,匈牙利," />
+<meta name="description" content="寻找二部图最大匹配的匈牙利数学家埃德蒙德斯在1965年提出的一个简化的最大流算法。该算法根据二部图匹配这个问题的特点将最大流算法进行了简化，提高了效率。 普通的最大流算法" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>匈牙利算法详解（含时间复杂度）</h1>
+			<div id="arc-body">寻找二部<u><a href='/view/200.html' target='_blank'>图</a></u>最大匹配的匈牙利数学家埃德蒙德斯在1965年提出的一个简化的最大流算法。该算法根据二部图匹配这个问题的特点将最大流算法进行了简化，提高了效率。<br />
+<br />
+普通的最大流算法一般都是基于带权网络模型的，二部图匹配问题不需要区分图中的源点和汇点，也不关心边的方向，因此不需要复杂的网络图模型，这就是匈牙利算法简化的原因。<br />
+<br />
+正是因为这个原因，匈牙利算法成为一种很简单的二分匹配算法，其基本流程是：<br />
+<p class="info-box">
+	将图 G 最大匹配初始化为空<br />
+	while(从Xi点开始在图G中找到新的增广路径)<br />
+	{<br />
+	&nbsp;&nbsp;&nbsp; 将增广路径假如到最大匹配中;<br />
+	}<br />
+	输出图 G 的最大匹配;</p>
+根据匈牙利算法的流程看，寻找图 G 中的增广路径是匈牙利算法的关键。先来看看什么是增广路径，二部图中的增广路径具有以下性质：
+<ul>
+	<li>
+		路径中边的条数是奇数；</li>
+	<li>
+		路径的起点在二部图的左半边，终点在二部图的右半边；</li>
+	<li>
+		路径上的点一个在左半边，一个在右半边，交替出现，整条路径上没有重复的点；</li>
+	<li>
+		只有路径的起点和终点都是未覆盖的点，路径上其他的点都已经配对；</li>
+	<li>
+		对路径上的边按照顺序编号，所有奇数编号的边都不在已知的匹配中，所有偶数编号的边都在已知的匹配中；</li>
+	<li>
+		对增广路径进行&ldquo;取反&rdquo;操作，新的匹配数就比已知匹配数增加一个，也就是说，可以得到一个更大的匹配；</li>
+</ul>
+<br />
+所谓的增广路径取反操作，就是把增广路径上奇数编号的边加入到已知匹配中，并把增广路径上偶数编号的边从已知匹配中删除。每做一次&ldquo;取反&rdquo;操作，得到的匹配就比原匹配多一个。<br />
+<br />
+匈牙利算法的思路就是不停地寻找增广路径，增加匹配的个数，当不能再找到增广路径时，算法就结束了，得到的匹配就是最大匹配。<br />
+<br />
+增广路径的起点总是在二部图的左边，因此寻找增广路径的算法总是从一侧的顶点开始，逐个顶点搜索。从 X<sub>i</sub> 顶点开始搜索增广路径的流程如下：
+<p class="info-box">
+	while(从 X<sub>i</sub> 的<u><a href='/view/203.html' target='_blank'>邻接表</a></u>中找到下一个关联顶点 Y<sub>j</sub>)<br />
+	{<br />
+	&nbsp;&nbsp;&nbsp; if(顶点 Y<sub>j</sub> 不在增广路径上)<br />
+	&nbsp;&nbsp;&nbsp; {<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 将 Y<sub>j</sub> 加入增广路径;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(Y<sub>j</sub> 是未覆盖点或者从与 Y<sub>j</sub> 相关连的顶点(X<sub>k</sub>)能找到增广路径)<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 将 Y<sub>j</sub> 的关联顶点修改为 X<sub>i</sub>；<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 从顶点 X<sub>i</sub> 开始有增广路径，返回 true；<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+	&nbsp;&nbsp;&nbsp; }<br />
+	&nbsp;&nbsp;&nbsp; 从顶点 X<sub>i</sub> 开始没有增广路径，返回 false；<br />
+	}</p>
+在这个算法流程中，&ldquo;从与 Y<sub>j</sub> 相关连的顶点（X<sub>k</sub>）能找到增广路径&rdquo;这一步体现的是一个递归过程。因为如果之前的搜索已经将 Y<sub>j</sub> 加入到增广路径中，说明 Y<sub>j</sub> 在 X 集合中一定有一个关联点，我们假设 Y<sub>j</sub> 在 X 集合中的这个关联点是 X<sub>k</sub>，所以要从 X<sub>k</sub> 开始继续寻找增广路径。当从 X<sub>k</sub> 开始的递归搜索完成后，通过&ldquo;将 Y<sub>j</sub> 的关联顶点修改为 X<sub>i</sub>&rdquo;这一步操作，将其与 X<sub>i</sub> 连在一起，形成一条更长的增广路径。<br />
+<br />
+到现在为止，匈牙利算法的流程已经很清楚了，现在我们来给出实现代码。<br />
+<br />
+首先定义求最大匹配的数据结构，这个数据结构要能表示二部图的边的关系，还要能体现最终的增广路径结果，给出如下定义：
+<pre class="cpp">
+typedef struct tagMaxMatch
+{
+    int edge[UNIT_COUNT][UNIT_COUNT];
+    bool on_path[UNIT_COUNT];
+    int path[UNIT_COUNT];
+    int max_match;
+}GRAPH_MATCH;</pre>
+edge 是顶点与边的关系表，用来表示二部图，on_path 用来表示顶点 Y<sub>j</sub> 是否已经在当前搜索过程中形成的增广路径上了，path 是当前找到的增广路径，max_match 是当前增广路径中边的条数，当算法结束时，如果 max_match 不等于顶点个数，说明有顶点不在最大增广路径上，也就是说，找不到能覆盖所有点的增广路径，此二部图没有最大匹配。<br />
+<br />
+从 X<sub>i</sub> 寻找增广路径的算法实现如下：
+<pre class="cpp">
+bool FindAugmentPath(GRAPH_MATCH *match, int xi)
+{
+    for(int yj = 0; yj &lt; UNIT_COUNT; yj++)
+    {
+        if((match-&gt;edge[xi][yj] == 1) &amp;&amp; !match-&gt;on_path[yj])
+        {
+            match-&gt;on_path[yj] = true;
+            if( (match-&gt;path[yj] == -1)
+                || FindAugmentPath(match, match-&gt;path[yj]) )
+            {
+                match-&gt;path[yj] = xi;
+                return true;
+            }
+        }
+    }
+    return false;
+}</pre>
+算法实现基本上是按照之前的算法流程实现的，不需要做特别说明，唯一需要注意的是 path 中存放增广路径的方式。读者可能已经注意到了，存放的方式是以 Y 集合中的顶点为索引存放，其值是对应的关联顶点在 X 集合中的索引。搜索是按照 X 集合中的顶点索引进行的，增广路径以 Y 集合中的顶点为索引存储，关系是反的。<br />
+<br />
+输出结果的时候，需要结合 Y 集合中的顶点索引输出，如果需要以 X 集合的顺序输出结果，需要反向转换，转换的方法非常简单：
+<pre class="cpp">
+int path[UNIT_COUNT] = { 0 };
+for(int i = 0; i &lt; match-&gt;max_match; i++)
+{
+    path[match-&gt;path[i]] = i;
+}</pre>
+转换后 path 中就是以 X 集合的顺序存放的结果。结合之前给出的匈牙利算法基本流程，最后给出匈牙利算法的入口函数实现：
+<pre class="cpp">
+bool Hungary_Match(GRAPH_MATCH *match)
+{
+    for(int xi = 0; xi &lt; UNIT_COUNT; xi++)
+    {
+        if(FindAugmentPath(match, xi))
+        {
+            match-&gt;max_match++;
+        }
+
+        ClearOnPathSign(match);
+    }
+    return (match-&gt;max_match == UNIT_COUNT);
+}</pre>
+每完成一个顶点的搜索，需要重置 Y 集合中相关顶点的 on_path 标志，ClearOnPathSign() 函数就负责干这个事情。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181111/1-1Q111131943a0.gif" /><br />
+	图 1 二部图</div>
+<br />
+我们用图 1 中的二部图数据初始化 GRAPH_MATCH 中的顶点关系表 edge，然后调用 Hungary_Match() 函数得到一组匹配：
+<p class="info-box">
+	X1&lt;---&gt;Y3<br />
+	X2&lt;---&gt;Y1<br />
+	X3&lt;---&gt;Y4<br />
+	X4&lt;---&gt;Y2<br />
+	X5&lt;---&gt;Y5</p>
+结果与图 2 一致，因为这个最大匹配没有未覆盖点，所以是完美匹配。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181111/1-1Q11113203X64.gif" /><br />
+	图 2</div>
+<br />
+匈牙利算法的实现以顶点集合 V 为基础，每次 X 集合中选一个顶点 X<sub>i</sub> 做增广路径的起点搜索增广路径。搜索增广路径需要遍历边集 E 内的所有边，遍历方法可以采用深度优先遍历（<u><a href='/view/39.html' target='_blank'>DFS</a></u>），也可以采用广度优先遍历（<u><a href='/view/39.html' target='_blank'>BFS</a></u>），无论什么方法，其<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>都是 <code>O(E)</code>。<br />
+<br />
+匈牙利算法每个顶点 V<sub>i</sub> 只能选择一次，因此算法的整体时间复杂度是 <code>O(V*E)</code>，总的来说，是一个相当高效的算法。<br /></div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 150;
+window.arcId = "aa4bwUk7+FS/7XN2x/zKfktzeB68ZjGs7RI4sHbK6+jl1e00UDx/xKIE3A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

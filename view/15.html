@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>矩阵压缩存储(十字链表、三元组顺序表、行逻辑链接的顺序表）</title>
+<meta name="keywords" content="矩阵,的,压缩,存储,矩阵,的,压缩,存储," />
+<meta name="description" content="针对于有很多相同的元素甚至是0元素的矩阵，可以考虑对其进行适当的压缩存储。 有必要压缩存储的矩阵大致分为两大类： 矩阵中含有大量的相同数值或者大量的0，称为特殊矩阵；（" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>矩阵压缩存储(十字链表、三元组顺序表、行逻辑链接的顺序表）</h1>
+			<div id="arc-body">如果矩阵中有很多数值相同的数据元素，在存储时，可以考虑对其进行适当的压缩存储。<br />
+<br />
+有必要压缩存储的矩阵大致分为两大类：
+<ul>
+	<li>
+		矩阵中含有大量的相同数值，称为<span style="color:#008000;">特殊矩阵</span>（例如对称矩阵和上下三角矩阵）。</li>
+	<li>
+		矩阵中只有极少量的元素是非 0 元素，称为<span style="color:#008000;">稀疏矩阵</span>。</li>
+</ul>
+<br />
+两类矩阵压缩存储的方法：
+<ol>
+	<li>
+		特殊矩阵中，对于相同的数据元素，只存储一个。</li>
+	<li>
+		稀疏矩阵中，只需要存储非 0 元素。</li>
+</ol>
+<h2>
+	对称矩阵</h2>
+<span style="color:#b22222;">如果n阶矩阵中的元素满足： a<sub>ij</sub> = a<sub>ji</sub>&nbsp;( i 为行标， j 为列标)，就称这个矩阵为</span><span style="color:#008000;">对称矩阵</span><span style="color:#b22222;">。</span>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0095T2621.png" style="width: 200px; height: 200px;" /></div>
+<div style="text-align: center;">
+	<u><a href='/view/200.html' target='_blank'>图</a></u>1 对称矩阵</div>
+<div class="info-box">
+	图1 为 3 阶对称矩阵，图中的虚线为矩阵的 <span style="color:#008000;">&ldquo;主对角线&rdquo;</span> ，主对角线上方区域称为 <span style="color:#008000;">&ldquo;上三角&rdquo;</span> ；主对角线下方称为 <span style="color:#008000;">&ldquo;下三角&rdquo;</span> ，沿主对角线对称的数据元素一一相等，所以对于此矩阵来说，只需要存储 6 个元素即可。</div>
+<br />
+若将对称矩阵压缩存储在一维<u><a href='/view/181.html' target='_blank'>数组</a></u> S[k] 中，矩阵中数据元素在数组中存储的位置和所在的行标（用 i 表示）和列标（用 j 表示）有关。<br />
+<br />
+对称矩阵沿主对角线对称的数据元素相等，任选一边的数据元素进行存储即可：<br />
+<br />
+存储下三角区域的数据元素：
+<div class="info-box">
+	<img alt="" src="/uploads/allimg/170720/2-1FH010022V01.png" style="width: 100px; height: 41px;" /></div>
+存储上三角区域的数据元素：
+<div class="info-box">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0100455262.png" style="width: 100px; height: 36px;" /></div>
+<h2>
+	上下三角矩阵</h2>
+上下三角矩阵，和对称矩阵类似，不同在于，上三角矩阵是指主对角线下方的元素（不包括主对角线上的）都是常数C（包括数值 0 ）；同理，下三角矩阵是指主对角线上方的元素都是常数C。<br />
+<br />
+例如：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170726/2-1FH6162640239.png" style="width: 195px; height: 198px;" /></div>
+<div style="text-align: center;">
+	图2 下三角矩阵</div>
+存储时，上（下）三角存储上（下）三角的数据元素，除此之外，额外存储一个下（上）三角含有的常数C（图 2 中，C==0）。
+<h2>
+	稀疏矩阵</h2>
+稀疏矩阵，简单的说，就是矩阵中只含有少量的非 0 元素，相比于使用普通方式将矩阵中的所有数据元素一一存储，不如只存储非 0 元素更节省内存空间。<br />
+<div>
+	<br />
+	例如：</div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170726/2-1FH6163022E2.png" style="width: 195px; height: 167px;" /><br />
+	图 3 稀疏矩阵&nbsp;</div>
+<h2>
+	矩阵压缩存储的方式</h2>
+矩阵压缩存储的方式有 3 种，分别为：<span style="color:#008000;"><u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u></span>、<span style="color:#008000;"><u><a href='/view/185.html' target='_blank'>行逻辑链接的顺序表</a></u></span>和<span style="color:#008000;"><u><a href='/view/186.html' target='_blank'>十字链表</a></u></span>。
+<h2>
+	三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u></h2>
+在存储稀疏矩阵时，除了要存储非 0 元素的值之外，还需要存储元素所在矩阵中的行标 i 和列标 j ，三个元素构成三元组（行标，列标，元素值）。<br />
+<br />
+所以，表示三元组结构需要使用结构体进行自定义：
+<pre class="cpp">
+//三元组结构体
+typedef struct {
+    int i,j;//行标i，列标j
+    int data;//元素值
+}triple;</pre>
+每个稀疏矩阵的表示，需要存储矩阵中所有非 0 元素的三元组，并且还需要记录矩阵的行数和列数，这样才能唯一确定一个稀疏矩阵。<br />
+<br />
+所以，表示矩阵的结构也需要使用结构体实现：
+<pre class="cpp">
+#define number 100
+//矩阵的结构表示
+typedef struct {
+    triple data[number];//存储该矩阵中所有非0元素的三元组
+    int n,m,num;//n和m分别记录矩阵的行数和列数，num记录矩阵中所有的非0元素的个数
+}TSMatrix;</pre>
+例如，对于图 3 的稀疏矩阵来说，即将（2，2，3）、（2，3，4）、（3，2，5）存储进 data 数组，并且存储稀疏矩阵的行数 3 和列数 3 ，该稀疏矩阵中非 0 元素有 3 个。<br />
+<h2>
+	行逻辑链接的顺序表</h2>
+使用三元组顺序表存储矩阵后，当需要提取矩阵某一行的非 0 元素时，需要遍历整个顺序表。<br />
+<br />
+<span style="color:#b22222;">为了提高查找的效率，在三元组顺序表的基础上，增加一个数组用于记录每一行第一个非 0 元素的存储位置，这样的存储结构，称为：行逻辑链接的顺序表。</span><br />
+<br />
+结构代码：
+<pre class="cpp">
+#define number 100
+typedef struct {
+    int i,j;
+    int data;
+}triple;
+typedef struct {
+    triple data[number];
+    int rpos[number];//存储各行第一个非0元素在三元组表中的位置
+    int n,m,num;
+}TSMatrix;</pre>
+<h2>
+	十字<u><a href='/view/160.html' target='_blank'>链表</a></u></h2>
+以上两种存储稀疏矩阵的方法，说到底，还是操作数组，在进行矩阵运算过程中，如果有插入非 0 元素或者删除某一个元素的操作，可能需要大量的移动数组中的三元组。这时，就要考虑使用链表的存储结构。<br />
+<br />
+例如在进行&ldquo;将矩阵 B 加到矩阵 A 上&rdquo;的操作时，矩阵 A 中的数据元素会发生很大的变化，之前的 0 元素可能变成非 0 元素，非 0 元素也可能变成 0 （正负数相加为 0）。<span style="color:#b22222;">在这种情况下，就需要使用链表的存储结构来存储矩阵，这种存储方式称为：十字链表法。</span><br />
+<br />
+例如，将下列矩阵以十字链表的方式存储起来：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH010305Y06.png" style="width: 469px; height: 150px;" /><br />
+	图4 十字链表</div>
+采用十字链表法存储矩阵的非 0 元素时，链表中的结点由 5 部分组成：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0101K6448.png" style="width: 250px; height: 89px;" /></div>
+<div style="text-align: center;">
+	图5 十字链表中的结点</div>
+<div class="info-box">
+	两个指针域：一个指向所在列的下一个元素，一个指向所在行的下一个元素。</div>
+<br />
+结构代码：
+<pre class="cpp">
+typedef struct OLNode{
+    int i,j;
+    int data;
+    struct OLNode * right,*down;
+}OLNode;
+//此结构体表示一个矩阵，其中包含矩阵的行数，列数，非0元素的个数以及用于存储各行以及各列元素头指针的动态数组rhead和chead。
+typedef struct {
+    OLNode * rhead,*chead;
+    int n,m,num;
+}CrossList;</pre>
+<h2>
+	总结</h2>
+稀疏矩阵的三种不同的存储方法，采用哪种方法要看程序具体要实现的功能：<br />
+<br />
+<ol>
+	<li>
+		如果想完成例如矩阵的转置这样的操作，宜采用三元组顺序表；</li>
+	<li>
+		如果想实现矩阵的乘法这样的功能，宜采用行逻辑链接的顺序表；</li>
+	<li>
+		如果矩阵运算过程中（例如矩阵的加法），需要不断地插入非 0 元素或删除变为 0 的元素，宜采用十字链表法。</li>
+</ol>
+<br />
+<div class="info-box">
+	有关三种存储方法的实例：矩阵转置、矩阵的乘法和矩阵的加法各自利用一节来详细介绍。</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 15;
+window.arcId = "9a23xPJkgJhPzVCbJ397YUrhXxp6XgrOuFWe5dD7URJeaqFzaLxNDAGz";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

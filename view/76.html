@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>一眨眼的功夫了解什么是外部排序算法</title>
+<meta name="keywords" content="外部,排序,算法,就,这么,简单,外部,排序,算法," />
+<meta name="description" content="上一章介绍了很多排序算法，插入排序、选择排序、归并排序等等，这些算法都属于 内部排序算法 ，即排序的整个过程只是在内存中完成。 而当待排序的文件比内存的可使用容量还大" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/github/out_sort/">外部排序算法</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/github/view/76.html">什么是外部排序算法</a></dd><dd>11.2 <a href="/github/view/77.html">多路平衡归并排序算法</a></dd><dd>11.3 <a href="/github/view/78.html">置换选择排序算法</a></dd><dd>11.4 <a href="/github/view/79.html">最佳归并树</a></dd></dl>
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>一眨眼的功夫了解什么是外部排序算法</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/out_sort/">外部排序算法</a></span>
+                    <span class="next right"><a href="/view/77.html">多路平衡归并排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/out_sort/";window.nextPageURL = "/view/77.html";</script>
+			<div id="arc-body">上一章介绍了很多排序算法，插入排序、<u><a href='/view/72.html' target='_blank'>选择排序</a></u>、归并排序等等，这些算法都属于<span style="color:#008000;">内部排序算法</span>，即排序的整个过程只是在内存中完成。而当待排序的文件比内存的可使用容量还大时，文件无法一次性放到内存中进行排序，需要借助于外部存储器（例如硬盘、U盘、光盘），这时就需要用到本章介绍的<span style="color:#008000;">外部排序算法</span>来解决。<br />
+<br />
+<span style="color:#b22222;">外部排序算法由两个阶段构成：</span><br />
+<ol>
+	<li>
+		按照内存大小，将大文件分成若干长度为 l 的子文件（l 应小于内存的可使用容量），然后将各个子文件依次读入内存，使用适当的内部排序算法对其进行排序（排好序的子文件统称为<span style="color:#008000;">&ldquo;归并段&rdquo;</span>或者<span style="color:#008000;">&ldquo;顺段&rdquo;</span>），将排好序的归并段重新写入外存，为下一个子文件排序腾出内存空间；</li>
+	<li>
+		对得到的顺段进行合并，直至得到整个有序的文件为止。</li>
+</ol>
+<br />
+例如，有一个含有 10000 个记录的文件，但是内存的可使用容量仅为 1000 个记录，毫无疑问需要使用外部排序算法，具体分为两步：<br />
+<br />
+<ul>
+	<li>
+		将整个文件其等分为 10 个临时文件（每个文件中含有 1000 个记录），然后将这 10 个文件依次进入内存，采取适当的内存排序算法对其中的记录进行排序，将得到的有序文件（初始归并段）移至外存。</li>
+	<li>
+		对得到的 10 个初始归并段进行如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 的两两归并，直至得到一个完整的有序文件。</li>
+</ul>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>此例中采用了将文件进行等分的操作，还有不等分的算法，后面章节会介绍。</p>
+</blockquote>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171117/2-1G11F9433NX.png" style="width: 700px; height: 210px;" /></div>
+<div style="text-align: center;">
+	图 1 2-路平衡归并</div>
+<br />
+如图 1 所示有 10 个初始归并段到一个有序文件，共进行了 4 次归并，每次都由 m 个归并段得到 &lceil;m/2&rceil; 个归并段，这种归并方式被称为<span style="color:#008000;"> 2-路平衡归并</span>。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>在实际归并的过程中，由于内存容量的限制不能满足同时将 2 个归并段全部完整的读入内存进行归并，只能不断地取 2 个归并段中的每一小部分进行归并，通过不断地读数据和向外存写数据，直至 2 个归并段完成归并变为 1 个大的有序文件。</p>
+</blockquote>
+<span style="color:#b22222;">对于外部排序算法来说，影响整体排序效率的因素主要取决于读写外存的次数，即访问外存的次数越多，算法花费的时间就越多，效率就越低。</span><br />
+<div class="info-box">
+	计算机中处理数据的为中央处理器（CPU），如若需要访问外存中的数据，只能通过将数据从外存导入内存，然后从内存中获取。同时由于内存读写速度快，外存读写速度慢的差异，更加影响了外部排序的效率。</div>
+<span style="color:#b22222;">对于同一个文件来说，对其进行外部排序时访问外存的次数同归并的次数成正比，即归并操作的次数越多，访问外存的次数就越多。</span>图 1 中使用的是 2-路平衡归并的方式，举一反三，还可以使用 3-路归并、4-路归并甚至是 10-路归并的方式，图 2 为 5-路归并的方式：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171117/2-1G11F94K0454.png" style="width: 700px; height: 105px;" /></div>
+<div style="text-align: center;">
+	图 2 5-路平衡归并</div>
+<br />
+对比 图 1 和图 2可以看出，对于 k-路平衡归并中 k 值得选择，增加 k 可以减少归并的次数，从而减少外存读写的次数，最终达到提高算法效率的目的。<span style="color:#b22222;">除此之外，一般情况下对于具有 m 个初始归并段进行 k-路平衡归并时，归并的次数为：s=&lfloor;log<sub>k</sub>⁡m &rfloor;（其中 s 表示归并次数）。</span><br />
+<br />
+从公式上可以判断出，想要达到减少归并次数从而提高算法效率的目的，可以从两个角度实现：<br />
+<br />
+<ul>
+	<li>
+		增加 k-路平衡归并中的 k 值；</li>
+	<li>
+		尽量减少初始归并段的数量 m，即增加每个归并段的容量；</li>
+</ul>
+<blockquote>
+	<p>
+		其增加 k 值的想法引申出了一种外部排序算法：<span style="color:#008000;">多路平衡归并算法</span>；增加数量 m 的想法引申出了另一种外部排序算法：<span style="color:#008000;">置换-选择排序算法</span>。两种外部排序算法会在后序章节中详细介绍。</p>
+</blockquote>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/out_sort/">外部排序算法</a></span>
+                    <span class="next right"><a href="/view/77.html">多路平衡归并排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/out_sort/";window.nextPageURL = "/view/77.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 76;
+window.arcId = "1b24cF7aHa45+WKutq+ezw47DHHSJAL/9KVyH+QSM1+jTXFm4Dp297lb";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

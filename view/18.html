@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>矩阵加法（基于十字链表）及C语言代码实现</title>
+<meta name="keywords" content="十字,链表,法,完成,矩阵,加法,的,计算,十字," />
+<meta name="description" content="矩阵之间能够进行加法运算的前提条件是： 各矩阵的行数和列数必须相等 。 在行数和列数都相等的情况下，矩阵相加的结果就是矩阵中对应位置的值相加所组成的矩阵，例如： 图1 矩" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>矩阵加法（基于十字链表）及C语言代码实现</h1>
+			<div id="arc-body"><span style="color:#b22222;">矩阵之间能够进行加法运算的前提条件是：</span><span style="color:#008000;">各矩阵的行数和列数必须相等</span><span style="color:#b22222;">。</span><br />
+<br />
+在行数和列数都相等的情况下，矩阵相加的结果就是矩阵中对应位置的值相加所组成的矩阵，例如：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0150230544.png" style="width: 400px; height: 97px;" /></div>
+<div style="text-align: center;">
+	<u><a href='/view/200.html' target='_blank'>图</a></u>1 矩阵相加</div>
+<h2>
+	<u><a href='/view/186.html' target='_blank'>十字链表</a></u>法</h2>
+之前所介绍的都是采用顺序存储结构存储三元组，在类似于矩阵的加法运算中，矩阵中的数据元素变化较大（这里的变化主要为：非0元素变为0，0变为非0元素），就需要考虑采用另一种结构&mdash;&mdash;链式存储结构来存储三元组。<br />
+<br />
+<span style="color:#b22222;">采用链式存储结构存储稀疏矩阵三元组的方法，称为</span><span style="color:#008000;">&ldquo;十字<u><a href='/view/160.html' target='_blank'>链表</a></u>法&rdquo;</span><span style="color:#b22222;">。</span>
+<h2>
+	十字链表法表示矩阵</h2>
+例如，用十字链表法表示矩阵 A ，为：&nbsp;&nbsp;
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH015035U12.png" style="width: 390px; height: 141px;" /></div>
+<div style="text-align: center;">
+	图2 矩阵用十字链表法表示<br />
+	&nbsp;</div>
+由此可见，采用十字链表表示矩阵时，矩阵的每一行和每一个列都可以看作是一个单独的链表，而之所以能够表示矩阵，是因为行链表和列链表都分别存储在各自的<u><a href='/view/181.html' target='_blank'>数组</a></u>中
+<div class="info-box">
+	图 2 中：存储行链表的数组称为&nbsp;<span style="color:#008000;">rhead 数组</span>；存储列链表的数组称为&nbsp;<span style="color:#008000;">chead 数组</span>。</div>
+<h2>
+	十字链表中的结点</h2>
+从图2中的十字链表表示矩阵的例子可以看到，十字链表中的结点由 5 部分组成：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0150452337.png" style="width: 250px; height: 107px;" /></div>
+<div style="text-align: center;">
+	图3 十字链表中的结点</div>
+<div class="info-box">
+	指针域A存储的是矩阵中结点所在列的下一个结点的地址（称为&nbsp;<span style="color:#008000;">&ldquo;down域&rdquo;</span>）；<br />
+	指针域B存储的是矩阵中该结点所在行的下一个结点的地址（称为&nbsp;<span style="color:#008000;">&ldquo;right域&rdquo;</span>）；</div>
+<br />
+用结构体自定义表示为：
+<pre class="cpp">
+typedef struct OLNode
+{
+    int i,j,e;                      //矩阵三元组 i 代表行 j 代表列 e 代表当前位置的数据
+    struct OLNode *right,*down;     //指针域 右指针 下指针
+}OLNode,*OLink;</pre>
+<h2>
+	十字链表的结构</h2>
+使用十字链表表示一个完整的矩阵，在了解矩阵中各结点的结构外，还需要存储矩阵的行数、列数以及非 0 元素的个数，另外，还需要将各结点链接成的链表存储在数组中。<br />
+<br />
+所以，采用结构体自定义十字链表的结构，为：<br />
+<pre class="cpp">
+typedef struct
+{
+    OLink *rhead,*chead;            //存放各行和列链表头指针的数组
+    int mu,nu,tu;                   //矩阵的行数,列数和非零元的个数
+}CrossList;</pre>
+<h2>
+	十字链表存储矩阵三元组</h2>
+由于三元组存储的是该数据元素的行标、列标和数值，所以，通过行标和列标，就能在十字链表中唯一确定一个位置。<br />
+<blockquote>
+	<p>
+		判断方法为：在同一行中通过列标来判断位置；在同一列中通过行标来判断位置。</p>
+</blockquote>
+首先判断该数据元素 A（例如三元组为：（i，j，k））所在行的具体位置：
+<ul>
+	<li>
+		如果 A 的列标 j 值比该行第一个非 0 元素 B 的 j 值小，说明该数据元素在元素 B 的左侧，这时 A 就成为了该行第一个非0元素（也适用于当该行没有非 0 元素的情况，可以一并讨论）</li>
+	<li>
+		如果 A 的列标 j 比该行第一个非 0 元素 B 的 j 值大，说明 A 在 B 的右侧，这时，就需要遍历该行链表，找到插入位置的前一个结点，进行插入。</li>
+</ul>
+<br />
+对应行链表的位置确定之后，判断数据元素 A 在对应列的位置：
+<ul>
+	<li>
+		如果 A 的行标比该列第一个非 0 元素 B 的行标 i 值还小，说明 A 在 B 的上边，这时 A 就成了该列第一个非 0 元素。（也适用于该列没有非 0 元素的情况）</li>
+	<li>
+		反之，说明 A 在 B 的下边，这时就需要遍历该列链表，找到要插入位置的上一个数据元素，进行插入。</li>
+</ul>
+<br />
+实现代码：
+<pre class="cpp">
+//创建系数矩阵M,采用十字链表存储表示
+CrossList CreateMatrix_OL(CrossList M)
+{
+    int m,n,t;
+    int i,j,e;
+    OLNode *p,*q;//定义辅助变量
+    scanf(&quot;%d%d%d&quot;,&amp;m,&amp;n,&amp;t);  //输入矩阵的行列及非零元的数量
+    //初始化矩阵的行列及非零元的数量
+    M.mu=m;
+    M.nu=n;
+    M.tu=t;
+    if(!(M.rhead=(OLink*)malloc((m+1)*sizeof(OLink)))||!(M.chead=(OLink*)malloc((n+1)*sizeof(OLink))))
+    {
+        printf(&quot;初始化矩阵失败&quot;);
+        exit(0);      //初始化矩阵的行列链表
+    }
+    for(i=1;i&lt;=m;i++)
+    {
+        M.rhead[i]=NULL;   //初始化行
+    }
+    for(j=1;j&lt;=n;j++)
+    {
+        M.chead[j]=NULL;   //初始化列
+    }
+    for(scanf(&quot;%d%d%d&quot;,&amp;i,&amp;j,&amp;e);0!=i;scanf(&quot;%d%d%d&quot;,&amp;i,&amp;j,&amp;e)) //输入三元组 直到行为0结束
+    {
+        if(!(p=(OLNode*)malloc(sizeof(OLNode))))
+        {
+            printf(&quot;初始化三元组失败&quot;);
+            exit(0);                 //动态生成p
+        }
+        p-&gt;i=i;
+        p-&gt;j=j;
+        p-&gt;e=e;                             //初始化p
+        if(NULL==M.rhead[i]||M.rhead[i]-&gt;j&gt;j)
+        {
+            p-&gt;right=M.rhead[i];
+            M.rhead[i]=p;
+        }
+        else
+        {
+            for(q=M.rhead[i];(q-&gt;right)&amp;&amp;q-&gt;right-&gt;j&lt;j;q=q-&gt;right);
+            p-&gt;right=q-&gt;right;
+            q-&gt;right=p;
+        }
+       
+        if(NULL==M.chead[j]||M.chead[j]-&gt;i&gt;i)
+        {
+            p-&gt;down=M.chead[j];
+            M.chead[j]=p;
+        }
+        else
+        {
+            for (q=M.chead[j];(q-&gt;down)&amp;&amp; q-&gt;down-&gt;i&lt;i;q=q-&gt;down);
+            p-&gt;down=q-&gt;down;
+            q-&gt;down=p;
+        }
+    }
+    return M;
+}</pre>
+<h2>
+	十字链表解决矩阵相加问题</h2>
+在解决 &ldquo;将矩阵 B 加到矩阵 A &rdquo; 的问题时，由于采用的是十字链表法存储矩阵的三元组，所以在相加的过程中，针对矩阵 B 中每一个非 0 元素，需要判断在矩阵 A 中相对应的位置，有三种情况：<br />
+<br />
+<ol>
+	<li>
+		提取到的 B 中的三元组在 A 相应位置上没有非 0 元素，此时直接加到矩阵 A 该行链表的对应位置上；</li>
+	<li>
+		提取到的 B 中三元组在 A 相应位置上有非 0 元素，且相加不为 0 ，此时只需要更改 A 中对应位置上的三元组的值即可；</li>
+	<li>
+		提取到的 B 中三元组在 A 响应位置上有非 0 元素，但相加为 0 ，此时需要删除矩阵 A 中对应结点。</li>
+</ol>
+<br />
+<div class="info-box">
+	提示：算法中，只需要逐个提取矩阵 B 中的非 0 元素，然后判断矩阵 A 中对应位置上是否有非 0 元素，根据不同的情况，相应作出处理。</div>
+<br />
+设指针 pa 和 pb 分别表示矩阵 A 和矩阵 B 中同一行中的结点（ pb 和 pa 都是从两矩阵的第一行的第一个非0元素开始遍历），针对上面的三种情况，细分为 4 种处理过程（第一种情况下有两种不同情况）：<br />
+<br />
+<ol>
+	<li>
+		当 pa 结点的列值 j &gt; pb 结点的列值 j 或者 pa == NULL （说明矩阵 A 该行没有非 0 元素），两种情况下是一个结果，就是将 pb 结点插入到矩阵 A 中。</li>
+	<li>
+		当 pa 结点的列值 j &lt; pb 结点的列值 j ，说明此时 pb 指向的结点位置比较靠后，此时需要移动 pa 的位置，找到离 pb 位置最近的非 0 元素，然后在新的 pa 结点的位置后边插入；</li>
+	<li>
+		当 pa 的列值 j == pb 的列值 j， 且两结点的值相加结果不为 0 ，只需要更改 pa 指向的结点的值即可；</li>
+	<li>
+		当 pa 的列值 j == pb 的列值 j ，但是两结点的值相加结果为 0 ，就需要从矩阵 A 的十字链表中删除 pa 指向的结点。</li>
+</ol>
+<br />
+实现代码：
+<pre class="cpp">
+CrossList AddSMatrix(CrossList M,CrossList N){
+    OLNode * pa,*pb;//新增的两个用于遍历两个矩阵的结点
+    OLink * hl=(OLink*)malloc(M.nu*sizeof(OLink));//用于存储当前遍历的行为止以上的区域每一个列的最后一个非0元素的位置。
+    OLNode * pre=NULL;//用于指向pa指针所在位置的此行的前一个结点
+    //遍历初期，首先要对hl数组进行初始化，指向每一列的第一个非0元素
+    for (int j=1; j&lt;=M.nu; j++) {
+        hl[j]=M.chead[j];
+    }
+    //按照行进行遍历
+    for (int i=1; i&lt;=M.mu; i++) {
+        //遍历每一行以前，都要pa指向矩阵M当前行的第一个非0元素；指针pb也是如此，只不过遍历对象为矩阵N
+        pa=M.rhead[i];
+        pb=N.rhead[i];
+        //当pb为NULL时，说明矩阵N的当前行的非0元素已经遍历完。
+        while (pb!=NULL) {
+            //创建一个新的结点，每次都要复制一个pb结点，但是两个指针域除外。（复制的目的就是排除指针域的干扰）
+            OLNode * p=(OLNode*)malloc(sizeof(OLNode));
+            p-&gt;i=pb-&gt;i;
+            p-&gt;j=pb-&gt;j;
+            p-&gt;e=pb-&gt;e;
+            p-&gt;down=NULL;
+            p-&gt;right=NULL;
+           
+            //第一种情况
+            if (pa==NULL||pa-&gt;j&gt;pb-&gt;j) {
+                //如果pre为NULL，说明矩阵M此行没有非0元素
+                if (pre==NULL) {
+                    M.rhead[p-&gt;i]=p;
+                }else{//由于程序开始时pre肯定为NULL，所以，pre指向的是第一个p的位置，在后面的遍历过程中，p指向的位置是逐渐向后移动的，所有，pre肯定会在p的前边
+                    pre-&gt;right=p;
+                }
+                p-&gt;right=pa;
+                pre=p;
+                //在链接好行链表之后，链接到对应列的列链表中的相应位置
+                if (!M.chead[p-&gt;j]||M.chead[p-&gt;j]-&gt;i&gt;p-&gt;i) {
+                    p-&gt;down=M.chead[p-&gt;j];
+                    M.chead[p-&gt;j]=p;
+                }else{
+                    p-&gt;down=hl[p-&gt;j]-&gt;down;
+                    hl[p-&gt;j]-&gt;down=p;
+                }
+                //更新hl中的数据
+                hl[p-&gt;j]=p;
+            }else{
+                //第二种情况，只需要移动pa的位置，继续判断pa和pb的位置，一定要有continue
+                if (pa-&gt;j&lt;pb-&gt;j) {
+                    pre=pa;
+                    pa=pa-&gt;right;
+                    continue;
+                }
+                //第三、四种情况，当行标和列标都想等的情况下，需要讨论两者相加的值的问题
+                if (pa-&gt;j==pb-&gt;j) {
+                pa-&gt;e+=pb-&gt;e;
+                //如果为0，摘除当前结点，并释放所占的空间
+                if (pa-&gt;e==0) {
+                    if (pre==NULL) {
+                        M.rhead[pa-&gt;i]=pa-&gt;right;
+                    }else{
+                        pre-&gt;right=pa-&gt;right;
+                    }
+                    p=pa;
+                    pa=pa-&gt;right;
+                    if (M.chead[p-&gt;j]==p) {
+                        M.chead[p-&gt;j]=hl[p-&gt;j]=p-&gt;down;
+                    }else{
+                        hl[p-&gt;j]-&gt;down=p-&gt;down;
+                    }
+                    free(p);
+                    }
+                }
+            }
+            pb=pb-&gt;right;
+        }
+    }
+    //用于输出矩阵三元组的功能函数
+    display(M);
+    return M;
+}</pre>
+<h2>
+	完整代码演示</h2>
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+
+typedef struct OLNode
+{
+    int i,j,e;                      //矩阵三元组i代表行 j代表列 e代表当前位置的数据
+    struct OLNode *right,*down;     //指针域 右指针 下指针
+}OLNode,*OLink;
+
+typedef struct
+{
+    OLink *rhead,*chead;            //行和列链表头指针
+    int mu,nu,tu;                   //矩阵的行数,列数和非零元的个数
+}CrossList;
+
+CrossList CreateMatrix_OL(CrossList M);
+CrossList AddSMatrix(CrossList M,CrossList N);
+
+void display(CrossList M);
+
+void main()
+{
+    CrossList M,N;
+    printf(&quot;输入测试矩阵M:\n&quot;);
+    M=CreateMatrix_OL(M);
+    printf(&quot;输入测试矩阵N:\n&quot;);
+    N=CreateMatrix_OL(N);
+    M=AddSMatrix(M,N);
+    printf(&quot;矩阵相加的结果为:\n&quot;);
+    display(M);
+}
+
+CrossList CreateMatrix_OL(CrossList M)
+{
+    int m,n,t;
+    int i,j,e;
+    OLNode *p,*q;
+    scanf(&quot;%d%d%d&quot;,&amp;m,&amp;n,&amp;t);
+    M.mu=m;
+    M.nu=n;
+    M.tu=t;
+    if(!(M.rhead=(OLink*)malloc((m+1)*sizeof(OLink)))||!(M.chead=(OLink*)malloc((n+1)*sizeof(OLink))))
+    {
+        printf(&quot;初始化矩阵失败&quot;);
+        exit(0);
+    }
+    for(i=1;i&lt;=m;i++)
+    {
+        M.rhead[i]=NULL;
+    }
+    for(j=1;j&lt;=n;j++)
+    {
+        M.chead[j]=NULL;
+    }
+    for(scanf(&quot;%d%d%d&quot;,&amp;i,&amp;j,&amp;e);0!=i;scanf(&quot;%d%d%d&quot;,&amp;i,&amp;j,&amp;e))    {
+        if(!(p=(OLNode*)malloc(sizeof(OLNode))))
+        {
+            printf(&quot;初始化三元组失败&quot;);
+            exit(0);
+        }
+        p-&gt;i=i;
+        p-&gt;j=j;
+        p-&gt;e=e;
+        if(NULL==M.rhead[i]||M.rhead[i]-&gt;j&gt;j)
+        {
+            p-&gt;right=M.rhead[i];
+            M.rhead[i]=p;
+        }
+        else
+        {
+            for(q=M.rhead[i];(q-&gt;right)&amp;&amp;q-&gt;right-&gt;j&lt;j;q=q-&gt;right);
+            p-&gt;right=q-&gt;right;
+            q-&gt;right=p;
+        }
+       
+        if(NULL==M.chead[j]||M.chead[j]-&gt;i&gt;i)
+        {
+            p-&gt;down=M.chead[j];
+            M.chead[j]=p;
+        }
+        else
+        {
+            for (q=M.chead[j];(q-&gt;down)&amp;&amp; q-&gt;down-&gt;i&lt;i;q=q-&gt;down);
+            p-&gt;down=q-&gt;down;
+            q-&gt;down=p;
+        }
+    }
+    return M;
+}
+
+CrossList AddSMatrix(CrossList M,CrossList N){
+    OLNode * pa,*pb;
+    OLink * hl=(OLink*)malloc(M.nu*sizeof(OLink));
+    OLNode * pre=NULL;
+    for (int j=1; j&lt;=M.nu; j++) {
+        hl[j]=M.chead[j];
+    }
+    for (int i=1; i&lt;=M.mu; i++) {
+        pa=M.rhead[i];
+        pb=N.rhead[i];
+        while (pb!=NULL) {
+            OLNode * p=(OLNode*)malloc(sizeof(OLNode));
+            p-&gt;i=pb-&gt;i;
+            p-&gt;j=pb-&gt;j;
+            p-&gt;e=pb-&gt;e;
+            p-&gt;down=NULL;
+            p-&gt;right=NULL;
+            if (pa==NULL||pa-&gt;j&gt;pb-&gt;j) {
+                if (pre==NULL) {
+                    M.rhead[p-&gt;i]=p;
+                }else{
+                    pre-&gt;right=p;
+                }
+                p-&gt;right=pa;
+                pre=p;
+                if (!M.chead[p-&gt;j]||M.chead[p-&gt;j]-&gt;i&gt;p-&gt;i) {
+                    p-&gt;down=M.chead[p-&gt;j];
+                    M.chead[p-&gt;j]=p;
+                }else{
+                    p-&gt;down=hl[p-&gt;j]-&gt;down;
+                    hl[p-&gt;j]-&gt;down=p;
+                }
+                hl[p-&gt;j]=p;
+            }else{
+                if (pa-&gt;j&lt;pb-&gt;j) {
+                    pre=pa;
+                    pa=pa-&gt;right;
+                    continue;
+                }
+                if (pa-&gt;j==pb-&gt;j) {
+                pa-&gt;e+=pb-&gt;e;
+                if (pa-&gt;e==0) {
+                    if (pre==NULL) {
+                        M.rhead[pa-&gt;i]=pa-&gt;right;
+                    }else{
+                        pre-&gt;right=pa-&gt;right;
+                    }
+                    p=pa;
+                    pa=pa-&gt;right;
+                    if (M.chead[p-&gt;j]==p) {
+                        M.chead[p-&gt;j]=hl[p-&gt;j]=p-&gt;down;
+                    }else{
+                        hl[p-&gt;j]-&gt;down=p-&gt;down;
+                    }
+                    free(p);
+                    }
+                }
+            }
+            pb=pb-&gt;right;
+        }
+    }
+    display(M);
+    return M;
+}
+
+void display(CrossList M){
+    printf(&quot;输出测试矩阵:\n&quot;);
+    printf(&quot;M:\n---------------------\ni\tj\te\n---------------------\n&quot;);
+    for (int i=1;i&lt;=M.nu;i++)
+    {
+        if (NULL!=M.chead[i])
+        {
+           OLink p=M.chead[i];
+            while (NULL!=p)
+            {
+                printf(&quot;%d\t%d\t%d\n&quot;,p-&gt;i,p-&gt;j,p-&gt;e);
+                p=p-&gt;down;
+            }
+        }
+    }
+
+}</pre>
+运行结果：
+<div class="info-box">
+	输入测试矩阵M:<br />
+	3 3 3<br />
+	1 2 1<br />
+	2 1 1<br />
+	3 3 1<br />
+	0 0 0<br />
+	输入测试矩阵N:<br />
+	3 3 4<br />
+	1 2 -1<br />
+	1 3 1<br />
+	2 3 1<br />
+	3 1 1<br />
+	0 0 0<br />
+	矩阵相加的结果为:<br />
+	输出测试矩阵:<br />
+	M:<br />
+	---------------------<br />
+	i j e<br />
+	---------------------<br />
+	2 1 1<br />
+	3 1 1<br />
+	1 3 1<br />
+	2 3 1<br />
+	3 3 1</div>
+<h2>
+	总结</h2>
+使用十字链表法解决稀疏矩阵的压缩存储的同时，在解决矩阵相加的问题中，对于某个单独的结点来说，算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为一个常数（全部为选择结构），算法的整体的时间复杂度取决于两矩阵中非0元素的个数。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 18;
+window.arcId = "e1a4AbEaBlayap06GEHXInxKvc91mTugB8tB4RDCvszxb68M/p4HZ+Cz";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

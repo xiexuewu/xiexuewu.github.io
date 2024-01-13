@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>背包问题详解（带源码+解析）</title>
+<meta name="keywords" content="背包,问题,详解,带,源码,解析,本节,解决,如," />
+<meta name="description" content="本节解决如下一个背包问题： 设： 有一个背包可以放入的物品重量为 t。现有 n 件物品，重量分别为：w 1 、w 2 、w n 。问题是：能够从这 n 件物品中选择若干件放入此背包，使得放入的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>背包问题详解（带源码+解析）</h1>
+			<div id="arc-body"><span style="color:#008000;">本节解决如下一个背包问题：</span><br />
+<span style="color:#b22222;">设：</span>有一个背包可以放入的物品重量为 t。现有 n 件物品，重量分别为：w<sub>1</sub>、w<sub>2</sub>、&hellip;w<sub>n</sub>。问题是：能够从这 n 件物品中选择若干件放入此背包，使得放入的重量之和正好为 t。<span style="color:#b22222;">如果存在一种符合上述要求的选择，则称此背包问题有解，否则此问题无解。</span><br />
+<br />
+例如，t=10，n=5，w[5]={1,4,4,5,7}，则此背包问题有解：
+<ol>
+	<li>
+		方案 1 为：向背包中放入 w[0]、w[1] 和 w[3]；</li>
+	<li>
+		方案 2 为：向背包中放入 w[0]、w[2] 和 w[3]；</li>
+</ol>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>虽然 w[1] 和 w[2] 物品重量相同，但其不是同一件物品，所以会产生以上两种方案。</p>
+</blockquote>
+<h2>
+	解题思路</h2>
+可以使用<span style="color:#b22222;">递归思想</span>解决此问题：<span style="color:#008000;">用 knap(w,t,n) 表示上述背包问题的解</span>。这个函数返回的值要么为 1（表示解为真），要么为 0（表示解为假），同时其参数应满足 t 大于等于 0 ，且 n 大于等于1 。<br />
+<br />
+背包问题如果有解，其选择只可能有两种可能：
+<ul>
+	<li>
+		选择的一组物品中不包含 w<sub>n</sub>，这样 knap(w,t,n) 的解就是 knap(w,t,n-1)的解；</li>
+	<li>
+		选择的一组物品中包含 w<sub>n</sub>，这样 knap(w,t,n) 的解就是 knap(w,t-w<sub>n</sub>,n-1)的解。</li>
+</ul>
+<br />
+另外，递归的出口有以下几种情况：
+<ul>
+	<li>
+		若 t 的值为0，则说明背包问题总有解，即 knap(w,0,n) = 1，不选择任何物品进入背包；</li>
+	<li>
+		若 t 的值小于0，则背包问题肯定无解，即knap(w,t,n) = 0，因为无论怎样选择也不能使重量之和为负值；</li>
+	<li>
+		若 t 的值大于0，但 n 的值小于 1，此种情况背包问题也无解，即 knap(w,t,n) =0，因为不取任何东西却要使重量为正值，其本身是矛盾的。</li>
+</ul>
+<br />
+所以，此种方法的实现代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int knap(int w[],int t,int n){
+    //递归出口，当 t=0时，背包问题有解
+    if(t==0){
+        return 1;
+    }
+    else{
+        //递归出口，符合 t&lt;0 或 t&gt;0同时 n&lt;1 时，背包问题无解
+        if(t&lt;0 || (t&gt;0 &amp;&amp;n&lt;1) ){
+            return 0;
+        }
+        //如果以上情况都不是，则可能有解
+        else{
+            //选择一组物件包含 wn，如果最终结果为 1，则输出可能的一种解
+            if(knap(w,t-w[n-1],n-1)==1){
+                printf(&quot;result:n=%d,w[%d]=%d\n&quot;,n,n-1,w[n-1]);
+                return 1;
+            }else{
+                //选择一组物件中不包含wn
+                return knap(w,t,n-1);
+            }
+        }
+    }
+}
+
+int main(){
+    int w[5] = {1,4,4,5,7};
+    int n = 5;
+    int t = 10;
+    knap(w,t,n);
+    return 0;
+}</pre>
+<span style="color:#008000;">运行结果：</span>
+<div class="info-box">
+	result:n=1,w[0]=1<br />
+	result:n=3,w[2]=4<br />
+	result:n=4,w[3]=5</div>
+<blockquote>
+	<p>
+		<span style="color:#008000;">此算法不足之处在于：</span>如果背包问题有多种解，则使用该程序就只能输出一种。</p>
+</blockquote>
+<span style="color:#b22222;">为了能够输出所有解，我们可以将递归算法改为用<u><a href='/view/169.html' target='_blank'>栈</a></u>实现的非递归算法。</span><span style="color:#008000;">具体思路是：</span>设置一个栈，用来存放加入背包的物品序号，若某一时刻栈中物品的总重量恰好等于背包要求容纳的重量，则此为一个解。
+<p>
+	<br />
+	利用栈的特点，可以输出此背包问题的所有解，其实现代码为<span style="color:#b22222;">（有详细注释）</span>：</p>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;string.h&gt;
+#define MAXSIZE 100
+typedef int ElemType;//栈中存放数据的类型
+typedef struct{
+    ElemType data[MAXSIZE];//栈空间
+    int top;//栈顶指针
+}SqStack;
+//初始化栈
+void Init_SqStack(SqStack * S){
+    S-&gt;top = -1;
+}
+//判断栈是否为空
+int Empty_SqStack(SqStack * S){
+    if(S-&gt;top ==-1){
+        return 1;
+    }
+    return 0;
+}
+//将数据 x 进栈
+void Push_SqStack(SqStack * S,ElemType x){
+    //在 x 进栈之前，需要判断栈是否已满
+    if(S-&gt;top == MAXSIZE-1){
+        printf(&quot;栈满&quot;);
+        exit(0);
+    }else{
+        S-&gt;data[++S-&gt;top]=x;
+    }
+}
+//弹栈，并将弹出的数据赋值给 x
+void Pop_SqStack(SqStack *S,ElemType *x){
+    if(Empty_SqStack(S)){
+        printf(&quot;栈空&quot;);
+        exit(0);
+    }else{
+        *x = S-&gt;data[S-&gt;top];
+        S-&gt;top--;
+    }
+}
+//背包问题处理函数
+int knap(int w[],int t,int n){
+    SqStack S;
+    int j,k;
+    Init_SqStack(&amp;S);
+    k =0;//表示几号物品
+    do{//从 0 号物品开始判断
+        while(t&gt;0 &amp;&amp; k&lt;n){
+            if(t-w[k] &gt;= 0){
+                Push_SqStack(&amp;S,k);
+                t-=w[k];
+            }
+            k++;
+        }
+        //如果此时 t 为 0，证明栈中存放的数据为背包问题的一个解
+        if(t==0){
+            printf(&quot;result:\n&quot;);
+            for(j=0; j&lt;=S.top;j++){
+                printf(&quot;n=%d,w[%d]=%d\n&quot;,S.data[j]+1,S.data[j],w[S.data[j]]);
+            }
+        }
+        //回溯去寻找下一个解
+        Pop_SqStack(&amp;S,&amp;k);
+        //弹出一个物品，其背包的剩余重量需要增加
+        t+=w[k];
+        k++;
+    }while(!Empty_SqStack(&amp;S) || k != n);
+}
+int main(){
+    int w[5]={1,4,4,5,7};
+    int n = 5;
+    int t = 10;
+    knap(w,t,n);
+    return 0;
+}</pre>
+<span style="color:#008000;">运行结果：</span>
+<div class="info-box">
+	result:<br />
+	n=1,w[0]=1<br />
+	n=2,w[1]=4<br />
+	n=4,w[3]=5<br />
+	result:<br />
+	n=1,w[0]=1<br />
+	n=3,w[2]=4<br />
+	n=4,w[3]=5</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 92;
+window.arcId = "a1b2653GmMmp3s7emLC1cVPtooSfIgJBCxxHBcnTrYM6Frorev0jhqLT";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

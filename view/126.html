@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序表的删除操作原理及C语言完整实现</title>
+<meta name="keywords" content="顺序,表,的,删除,操作,原理,及,完整,实现," />
+<meta name="description" content="前面讲过，顺序表的实现使用的是数组，换句话说，顺序表中删除元素问题可以转换成如何在数组中实现删除元素的操作。 在数组中删除元素时，只需将该元素所在位置后的所有数据元" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>顺序表的删除操作原理及C语言完整实现</h1>
+			<div id="arc-body">前面讲过，<u><a href='/view/158.html' target='_blank'>顺序表</a></u>的实现使用的是<u><a href='/view/181.html' target='_blank'>数组</a></u>，换句话说，顺序表中删除元素问题可以转换成如何在数组中实现删除元素的操作。<br />
+<br />
+在数组中删除元素时，只需将该元素所在位置后的所有数据元素整体前移 1 个位置即可。因为前移的过程中，被删除元素会被后一个元素覆盖掉，间接实现了删除元素的目的。<br />
+<br />
+实现代码：
+<pre class="cpp">
+table delTable(table t,int add){
+    if (add&gt;t.length || add&lt;1) {
+        printf(&quot;被删除元素的位置有误&quot;);
+        exit(0);
+    }
+    //删除操作
+    for (int i=add; i&lt;t.length; i++) {
+        t.head[i-1]=t.head[i];
+    }
+    t.length--;
+    return t;
+}</pre>
+<p>
+	<br />
+	完整程序如下（可根据实际需要适当更改代码）：</p>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define Size 4
+typedef struct Table{
+    int * head;
+    int length;
+    int size;
+}table;
+
+table initTable(){
+    table t;
+    t.head=(int*)malloc(Size*sizeof(int));
+    if (!t.head)
+    {
+        printf(&quot;初始化失败&quot;);
+        exit(0);
+    }
+    t.length=0;
+    t.size=Size;
+    return t;
+}
+table delTable(table t,int add){
+    if (add&gt;t.length || add&lt;1) {
+        printf(&quot;被删除元素的位置有误&quot;);
+        exit(0);
+    }
+    for (int i=add; i&lt;t.length; i++) {
+        t.head[i-1]=t.head[i];
+    }
+    t.length--;
+    return t;
+}
+void displayTable(table t){
+    for (int i=0;i&lt;t.length;i++) {
+        printf(&quot;%d&quot;,t.head[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+int main(){
+    table t1=initTable();
+    for (int i=1; i&lt;=Size; i++) {
+        t1.head[i-1]=i;
+        t1.length++;
+    }
+    printf(&quot;原顺序表：\n&quot;);
+    displayTable(t1);
+   
+    printf(&quot;删除元素1:\n&quot;);
+    t1=delTable(t1, 1);
+    displayTable(t1);
+    return 0;
+}</pre>
+输出结果：<br />
+<pre class="info-box">
+原顺序表：
+1234
+删除元素1:
+234
+</pre>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 126;
+window.arcId = "eed3Zlqs1YdxyY5g/vHPcfM4DjGCD9QAfc4FWWPAVhT5QCea0JzTbETA8g";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

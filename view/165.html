@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>静态链表和动态链表区别详解（无师自通）</title>
+<meta name="keywords" content="静态,链表,和,动态,区别,详解,无师自通,前面," />
+<meta name="description" content="前面学习了链表，其存储结构如图 1 所示： 图 1 链表存储结构 类似图 1 这样的链表，它更喜欢人们称它为 动态链表 。 随后又接触了静态链表。同样是存储图 1 中的数据 {1,2,3} ，使用静" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>静态链表和动态链表区别详解（无师自通）</h1>
+			<div id="arc-body">前面学习了<u><a href='/view/160.html' target='_blank'>链表</a></u>，其存储结构如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="链表存储结构" src="/uploads/allimg/181123/2-1Q12321243O36.gif" /><br />
+	图 1 链表存储结构</div>
+<br />
+类似图 1 这样的链表，它更喜欢人们称它为 &quot;<span style="color:#008000;">动态链表</span>&quot;。<br />
+<br />
+随后又接触了<u><a href='/view/163.html' target='_blank'>静态链表</a></u>。同样是存储图 1 中的数据 <code>{1,2,3}</code>，使用静态链表存储数据的状态如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="静态链表存储数据示意图" src="/uploads/allimg/181126/2-1Q1260S34aS.gif" /><br />
+	图 2 静态链表存储数据示意图</div>
+<br />
+为了让读者分清动态链表和静态链表，本节来分析一下它们之间的区别和联系。<br />
+<p class="info-box">
+	静态链表和动态链表的共同点是，数据之间&quot;一对一&quot;的逻辑关系都是依靠指针（静态链表中称&quot;游标&quot;）来维持，仅此而已。</p>
+<h2>
+	静态链表</h2>
+使用静态链表存储数据，需要预先申请足够大的一整块内存空间，也就是说，静态链表存储数据元素的个数从其创建的那一刻就已经确定，后期无法更改。<br />
+<br />
+比如，如果创建静态链表时只申请存储 10 个数据元素的空间，那么在使用静态链表时，数据的存储个数就不能超过 10 个，否则程序就会发生错误。<br />
+<br />
+不仅如此，静态链表是在固定大小的存储空间内随机存储各个数据元素，这就造成了静态链表中需要使用另一条链表（通常称为&quot;备用链表&quot;）来记录空间存储空间的位置，以便后期分配给新添加元素使用，如图 2 所示。<br />
+<br />
+这意味着，如果你选择使用静态链表存储数据，你需要通过操控两条链表，一条是存储数据，另一条是记录空闲空间的位置。<br />
+<h2>
+	动态链表</h2>
+使用动态链表存储数据，不需要预先申请内存空间，而是在需要的时候才向内存申请。也就是说，动态链表存储数据元素的个数是不限的，想存多少就存多少。<br />
+<br />
+同时，使用动态链表的整个过程，你也只需操控一条存储数据的链表。当表中添加或删除数据元素时，你只需要通过 malloc 或 free 函数来申请或释放空间即可，实现起来比较简单。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 165;
+window.arcId = "2f99o8tWqyK/nlOGqd7Zvd/sLOzbrN0huagtWxS3fwBQUdPzM8Ogc/JnYQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

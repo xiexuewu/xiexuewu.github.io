@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>二叉树的链式存储结构及实现（C语言完整代码+详细注释）</title>
+<meta name="keywords" content="二叉,树,的,链式,存储,结构,及,实现,语言," />
+<meta name="description" content="链式存储结构存储二叉树，实际上就是采用链表存储二叉树。 既然是使用链表，首先需要构建链表中节点的结构。考虑到存储对象为二叉树，其各个节点最多包含 3 部分，依次是：左孩" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>二叉树的链式存储结构及实现（C语言完整代码+详细注释）</h1>
+			<div id="arc-body"><span style="color:#b22222;"><strong>链式存储结构存储<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，实际上就是采用<u><a href='/view/160.html' target='_blank'>链表</a></u>存储二叉<u><a href='/view/23.html' target='_blank'>树</a></u>。</strong></span><br />
+<br />
+既然是使用链表，首先需要构建链表中节点的结构。考虑到存储对象为二叉树，其各个节点最多包含 3 部分，依次是：左孩子、节点数据和右孩子，因此，链表的每个节点都由这 3 部分组成：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0105JE64.png" style="width: 182px; height: 40px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 二叉链表结点构成</div>
+<br />
+图 1 中，<code>Lchild</code>&nbsp;代表指向左孩子的指针域；<code>data</code>&nbsp;为数据域；<code>Rchild</code>&nbsp;代表指向右孩子的指针域。使用此种结点构建的二叉树称为<span style="color: rgb(0, 128, 0);">&ldquo;二叉链表&rdquo;</span>。<br />
+<br />
+结点结构用代码表示为：<br />
+<pre class="cpp">
+typedef struct BiTNode{
+    TElemType data;//数据域
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;</pre>
+如果后期再使用链表的过程中需要频繁地访问某结点的父结点，可以在构建链表时使用下面这种结点结构：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0105U3C6.png" style="width: 243px; height: 40px;" /><br />
+	图 2 三叉链表结点构成</div>
+<br />
+图 2 中，<code>Lchild</code>&nbsp;指向左孩子；<code>Rchild</code>&nbsp;指向右孩子；<code>data</code>&nbsp;为数据域；<code>parent</code>&nbsp;指向父结点。使用这种结构的结点创建的树称为<span style="color: rgb(0, 128, 0);">&ldquo;三叉链表&rdquo;</span>。<br />
+<br />
+结点结构代码表示：<br />
+<pre class="cpp">
+typedef struct BiTNode{
+    TElemType data;//数据域
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+    struct BiTNode *parent;
+}BiTNode,*BiTree;</pre>
+<div>
+	例如，下图为分别用以上两种节点结构构建的二叉树：<br />
+	&nbsp;</div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0105945M6.png" style="width: 540px; height: 215px;" /><br />
+	<br />
+	图 3 单支树示意图</div>
+<br />
+图 3 中二叉链表的C语言实现代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define TElemType int
+
+typedef struct BiTNode{
+    TElemType data;//数据域
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+
+void CreateBiTree(BiTree *T){
+    *T=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;data=1;
+    (*T)-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild=NULL;
+    (*T)-&gt;lchild-&gt;data=2;            
+    (*T)-&gt;lchild-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;lchild-&gt;rchild=NULL;
+    (*T)-&gt;lchild-&gt;lchild-&gt;data=3;
+    (*T)-&gt;lchild-&gt;lchild-&gt;lchild=NULL;
+    (*T)-&gt;lchild-&gt;lchild-&gt;rchild=NULL;
+}
+int main() {
+    BiTree Tree;
+    CreateBiTree(&amp;Tree);
+    printf(&quot;%d&quot;,Tree-&gt;lchild-&gt;lchild-&gt;data);
+    return 0;
+}</pre>
+运行结果：
+<div class="info-box">
+	3</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 142;
+window.arcId = "1172K9tXd2yfliGk1verJ57xJWKnAglEQ7gCDN2gQ+LJmQSyXXnV6zGY/g";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

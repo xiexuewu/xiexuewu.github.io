@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>扑克牌游戏及C语言实现</title>
+<meta name="keywords" content="扑克牌,游戏,—,推,小车,小时候,在,刚开始," />
+<meta name="description" content="小时候在刚开始接触扑克牌的时候，最初学会的扑克游戏就是类似于推小车这样的无脑游戏，本节带领大家使用学过的知识编写推小车卡牌游戏。 推小车扑克牌游戏适合 2-3 个人玩，游" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>扑克牌游戏及C语言实现</h1>
+			<div id="arc-body">小时候在刚开始接触扑克牌的时候，最初学会的扑克游戏就是类似于&ldquo;推小车&rdquo;这样的无脑游戏，本节带领大家使用学过的知识编写推小车卡牌游戏。<br />
+<br />
+&ldquo;推小车&rdquo;扑克牌游戏适合 2-3 个人玩，游戏规则也超级简单：将一副扑克牌平均分成两份，每人拿一份，每个人手中的扑克牌全部反面朝上，叠成一摞。游戏进行时，每个人轮流拿出第一张扑克牌放到桌上，将其排成一竖行。如果打出的牌与桌上某张牌的数字（红桃 5 和黑桃 5 在此游戏中相等）相等，即可将两张相同的牌以及两张中间所夹的所有的牌全部取走，每次取走的一小摞牌都必须放到自己本摞的下面。<br />
+<br />
+游戏过程中，一旦有人手中没有牌，则宣布另一人获胜，同时游戏结束。
+<h2>
+	设计思路</h2>
+假设模拟两个人进行该扑克牌游戏。每个人在游戏过程中都是不断地从自己这一摞扑克牌的最上方去取牌，放到桌子上；当发现自己的牌同桌子上的牌相等时，将赢得的牌依次放在自己扑克牌的下方。这是典型的<a href="/view/10.html" target="_blank">队列</a>的&ldquo;先进先出&rdquo;。<br />
+<br />
+<span style="color:#b22222;">而对于桌子而言，就相当于是一个<a href="/view/9.html" target="_blank">栈</a>。</span>每次放到桌子上的扑克牌，都相当于进<u><a href='/view/169.html' target='_blank'>栈</a></u>；当有相同的扑克牌时，相同的扑克牌连通之间的所有的扑克牌则依次出栈。<br />
+<br />
+所以，<span style="color:#b22222;">模拟该扑克牌游戏需要同时使用 2 个<u><a href='/view/172.html' target='_blank'>队列</a></u>和 1 个栈</span>。
+<h2>
+	实现代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct queue
+{
+    int data[1000];
+    int head;
+    int tail;
+};
+struct stack
+{
+    int data[10];
+    int top;
+};
+void showCard(struct queue *q,int *book,struct stack *s){
+    int t=(*q).data[(*q).head]; //打出一张牌，即从队列 q 的队头取元素（此时还不往桌子的栈里放）
+    //判断取出的这张牌是否会赢牌
+    if(book[t]==0){ //若不赢牌，只需放到桌子上入栈即可
+        (*q).head++;//由于此时牌已经打出，所以队列的队头需要前进
+        (*s).top++;
+        (*s).data[(*s).top]=t; //再把打出的牌放到桌上，即入栈
+        book[t]=1; //标记桌上现在已经有牌面为t的牌
+    }
+    else{
+        (*q).head++;//由于此时已经打出去一张牌，所以队头需要 +1
+        (*q).data[(*q).tail]=t;//将打出的牌放到手中牌的最后（再入队）
+        (*q).tail++;
+        //把桌子上赢得的牌依次放到手中牌的最后（依次出栈在入队列的过程）
+        while((*s).data[(*s).top]!=t){
+            book[(*s).data[(*s).top]]=0;//取消对该牌号的标记
+            (*q).data[(*q).tail]=(*s).data[(*s).top];//依次放入队尾
+            (*q).tail++;
+            (*s).top--;
+        }
+        //最后别忘了将最后一张相等的牌取出放入队列
+        book[(*s).data[(*s).top]]=0;
+        (*q).data[(*q).tail]=(*s).data[(*s).top];
+        (*q).tail++;
+        (*s).top--;
+    }
+}
+
+int main()
+{
+    struct queue q1,q2;//两个队列，分别模拟两个人，假设分别为小王和小李
+    struct stack s;//栈，模拟桌子
+    int book[14];//为了便于判断桌子上的牌是否有相同的，增加一个<u><a href='/view/181.html' target='_blank'>数组</a></u>用于判断
+    int i;
+    //初始化队列
+    q1.head=0; q1.tail=0;
+    q2.head=0; q2.tail=0;
+    //初始化栈
+    s.top=-1;
+    //初始化用来标记的数组
+    for(i=0;i&lt;=13;i++)
+        book[i]=0;
+    //假设初期每个人手中仅有 6 张牌，每个人拥有的牌都是随机的，但都在 1-13 之间
+    for(i=1;i&lt;=6;i++){
+        q1.data[q1.tail]=rand()%13+1;
+        q1.tail++;
+    }
+    for(i=1;i&lt;=6;i++){
+        q2.data[q2.tail]=rand()%13+1;
+        q2.tail++;
+    }
+    //仅当其中一个人没有牌时，游戏结束
+    while(q1.head&lt;q1.tail &amp;&amp; q2.head&lt;q2.tail ){         showCard(&amp;q2, book, &amp;s);//小李出牌
+        showCard(&amp;q1, book, &amp;s);//小王出牌
+    }
+    //游戏结束时，输出最后的赢家以及手中剩余的牌数
+    if(q2.head==q2.tail){
+        printf(&quot;小李赢\n&quot;);
+        printf(&quot;手中还有：%d 张牌&quot;,q1.tail-q1.head);
+    }
+    else{
+        printf(&quot;小王赢\n&quot;);
+        printf(&quot;手中还有：%d 张牌&quot;,q2.tail-q2.head);
+    }
+    return 0;
+}</pre>
+运行结果：
+<div class="info-box">
+	小王赢<br />
+	手中还有：7 张牌</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 88;
+window.arcId = "1321Xp8qVHpBQl2jlH2UhzP6wxU+mQDSArwTnATD87MgNfAWfyj0X0XH";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

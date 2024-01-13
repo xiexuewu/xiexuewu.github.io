@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>BF算法（串模式匹配算法）C语言详解</title>
+<meta name="keywords" content="算法,串,模式,匹配,语言,详解,串,的,模式," />
+<meta name="description" content="串的模式匹配算法，通俗地理解，是一种用来判断两个串之间是否具有主串与子串关系的算法。 主串与子串：如果串 A（如 shujujiegou）中包含有串 B（如 ju），则称串 A 为主串，串 B 为" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/github/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/github/view/175.html">什么是串存储结构</a></dd><dd>4.2 <a href="/github/view/176.html">串的定长顺序存储</a></dd><dd>4.3 <a href="/github/view/177.html">串的堆分配存储</a></dd><dd>4.4 <a href="/github/view/178.html">串的块链存储</a></dd><dd>4.5 <a href="/github/view/179.html">BF算法（串模式匹配算法）</a></dd><dd>4.6 <a href="/github/view/vip_227.html">KMP算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/github/view/vip_228.html">[项目实践]字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>BF算法（串模式匹配算法）C语言详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/178.html">串的块链存储</a></span>
+                    <span class="next right"><a href="/view/vip_227.html">KMP算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/178.html";window.nextPageURL = "/view/vip_227.html";</script>
+			<div id="arc-body"><span style="color:#b22222;"><u><a href='/view/175.html' target='_blank'>串</a></u>的模式匹配算法，通俗地理解，是一种用来判断两个串之间是否具有&quot;主串与子串&quot;关系的算法。</span><br />
+<br />
+主串与子串：如果串 A（如 &quot;shujujiegou&quot;）中包含有串 B（如 &quot;ju&quot;），则称串 A 为主串，串 B 为子串。主串与子串之间的关系可简单理解为一个串 &quot;包含&quot; 另一个串的关系。<br />
+<br />
+实现串的模式匹配的算法主要有以下两种：
+<ol>
+	<li>
+		普通的模式匹配算法；</li>
+	<li>
+		快速模式匹配算法；</li>
+</ol>
+<br />
+本节，先来学习<span style="color:#008000;">普通模式匹配（BF）算法</span>的实现。<br />
+<h2>
+	<u><a href='/view/179.html' target='_blank'>BF算法</a></u>原理</h2>
+普通模式匹配算法，其实现过程没有任何技巧，就是简单粗暴地拿一个串同另一个串中的字符一一比对，得到最终结果。<br />
+<br />
+例如，使用普通模式匹配算法判断串 A（&quot;abcac&quot;）是否为串 B（&quot;ababcabacabab&quot;）子串的判断过程如下：<br />
+<br />
+首先，将串 A 与串 B 的首字符对齐，然后逐个判断相对的字符是否相等，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="串的第一次模式匹配示意图" src="/uploads/allimg/181210/2-1Q210200205160.gif" /><br />
+	图 1 串的第一次模式匹配示意图</div>
+<br />
+图 1 中，由于串 A 与串 B 的第 3 个字符匹配失败，因此需要将串 A 后移一个字符的位置，继续同串 B 匹配，如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="串的第二次模式匹配示意图" src="/uploads/allimg/181210/2-1Q210200229316.gif" /><br />
+	图 2 串的第二次模式匹配示意图</div>
+<br />
+图 2 中可以看到，两串匹配失败，串 A 继续向后移动一个字符的位置，如图 3 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="串的第三次模式匹配示意图" src="/uploads/allimg/181210/2-1Q21020024b12.gif" /><br />
+	图 3 串的第三次模式匹配示意图</div>
+<br />
+图 3 中，两串的模式匹配失败，串 A 继续移动，一直移动至图 4 的位置才匹配成功：
+<div style="text-align: center;">
+	<br />
+	<img alt="串模式匹配成功示意图" src="/uploads/allimg/181210/2-1Q210200309607.gif" /><br />
+	图 4 串模式匹配成功示意图</div>
+<br />
+由此，串 A 与串 B 以供经历了 6 次匹配的过程才成功，通过整个模式匹配的过程，证明了串 A 是串 B 的子串（串 B 是串 A 的主串）。<br />
+<br />
+接下来，我们要编写代码实现两个串的模式匹配（图 1 ~图 4）。<br />
+<h2>
+	BF算法实现</h2>
+<u><a href='/view/179.html' target='_blank'>BF 算法</a></u>的实现思想是：将用户指定的两个串 A 和串 B，使用串的定长顺序存储结构存储起来，然后循环实现两个串的模式匹配过程，C 语言实现代码如下：<br />
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+//串普通模式匹配算法的实现函数，其中 B是伪主串，A是伪子串
+int mate(char * B,char *A){
+    int i=0,j=0;
+    while (i&lt;strlen(B) &amp;&amp; j&lt;strlen(A)) {
+        if (B[i]==A[j]) {
+            i++;
+            j++;
+        }else{
+            i=i-j+1;
+            j=0;
+        }
+    }
+    //跳出循环有两种可能，i=strlen(B)说明已经遍历完主串，匹配失败；j=strlen(A),说明子串遍历完成，在主串中成功匹配
+    if (j==strlen(A)) {
+        return i-strlen(A)+1;
+    }
+    //运行到此，为i==strlen(B)的情况
+    return 0;
+}
+int main() {
+    int number=mate(&quot;ababcabcacbab&quot;, &quot;abcac&quot;);
+    printf(&quot;%d&quot;,number);
+    return 0;
+}</pre>
+程序运行结果：
+<p class="info-box">
+	6</p>
+注意，在实现过程中，我们借助 i-strlen(A)+1 就可以得到成功模式匹配所用的次数，也就是串 A 移动的总次数。<br />
+<h2>
+	BF算法<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u></h2>
+该算法最理想的时间复杂度 <code>O(n)</code>，n 表示串 A 的长度，即第一次匹配就成功。<br />
+<br />
+BF 算法最坏情况的时间复杂度为 <code>O(n*m)</code>，n 为串 A 的长度，m 为串 B 的长度。例如，串 B 为 &quot;0000000001&quot;，而串 A 为 &quot;01&quot;，这种情况下，两个串每次匹配，都必须匹配至串 A 的最末尾才能判断匹配失败，因此运行了 n*m 次。<br />
+<h2>
+	总结</h2>
+BF 算法的实现过程很 &quot;无脑&quot;，不包含任何技巧，在对数据量大的串进行模式匹配时，算法的效率很低。<br />
+<br />
+其实，BF 算法还可以改进，就是下节要学的 KMP 算法。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/178.html">串的块链存储</a></span>
+                    <span class="next right"><a href="/view/vip_227.html">KMP算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/178.html";window.nextPageURL = "/view/vip_227.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 179;
+window.arcId = "d2d9qg29Hg/ujz0jZjycP7+rPBnrYOZ6QtA9WsHAn1m47IGwTKZM+kRmjQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

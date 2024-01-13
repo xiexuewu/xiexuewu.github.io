@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>三元组顺序表，稀疏矩阵的三元组表示法</title>
+<meta name="keywords" content="三元,组,顺序,表,稀疏,矩阵,的,组表,示法," />
+<meta name="description" content="因此，每个非 0 元素的三元组需要使用结构体进行自定义： //三元组结构体typedef struct { int i,j;//行标i，列标j int data;//元素值}triple; 稀疏矩阵的存储，一方面要存储矩阵中所有非 0 元素" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>三元组顺序表，稀疏矩阵的三元组表示法</h1>
+			<div id="arc-body"><u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u>，用于稀疏矩阵的存储，因此经常被称为系数矩阵的三元组表示，它们是一个意思。<br />
+<br />
+稀疏矩阵，即包含大量值为 0 的矩阵，此类矩阵的一种存储方法是将矩阵中所有非 0 元素所在的位置（行标和列标）和元素值存储在<u><a href='/view/158.html' target='_blank'>顺序表</a></u>（<u><a href='/view/181.html' target='_blank'>数组</a></u>）中，通过存储由所有非 0 元素的三元组构成的顺序表，以及该稀疏矩阵的行数和列数，即可完成对整个稀疏矩阵的存储，这就是稀疏矩阵使用三元组表示的实现思想。<br />
+<br />
+因此，每个非 0 元素的三元组需要使用结构体进行自定义：
+<pre class="cpp">
+//三元组结构体
+typedef struct {
+    int i,j;//行标i，列标j
+    int data;//元素值
+}triple;</pre>
+稀疏矩阵的存储，一方面要存储矩阵中所有非 0 元素的三元组，同时还要记录该稀疏矩阵的行数、列数以及矩阵中非 0 元素的个数，因此表示矩阵的结构也需要使用结构体实现：
+<pre class="cpp">
+#define number 100
+//矩阵的结构表示
+typedef struct {
+    triple data[number];//存储该矩阵中所有非0元素的三元组
+    int n,m,num;//n和m分别记录矩阵的行数和列数，num记录矩阵中所有的非0元素的个数
+}TSMatrix;</pre>
+例如，有<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示的稀疏矩阵：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170726/2-1FH6163022E2.png" style="text-align: center; width: 195px; height: 167px;" /><br style="text-align: center;" />
+	<span style="text-align: center;">图 1 稀疏矩阵&nbsp;</span></div>
+<br />
+对于该稀疏矩阵来说，即将（2，2，3）、（2，3，4）、（3，2，5）存储进 data 数组，并且存储稀疏矩阵的行数 3 和列数 3 ，以及非 0 元素的个数 3 存储起来，即可实现队此矩阵的存储。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 137;
+window.arcId = "d7b5zeNl3r7F7/nzjYTt87pGXz/h8EJhumiL0SHYm65TQA9bpYLea8CRIQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

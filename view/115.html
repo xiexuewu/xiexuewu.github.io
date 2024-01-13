@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>桶排序（箱排序）原理及其时间复杂度详解</title>
+<meta name="keywords" content="桶,排序,原理,及其,时间,复杂度,详解,桶,排序," />
+<meta name="description" content="排序充斥着我们的生活，比如站队、排队买票、考试排名、公司业绩排名、将电子邮件按时间排序、QQ 好友列表中的会员红名靠前，等等。 这里先举个例子，通过这个例子让我们接触第" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>桶排序（箱排序）原理及其时间复杂度详解</h1>
+			<div id="arc-body">排序充斥着我们的生活，比如站队、排队买票、考试排名、公司业绩排名、将电子邮件按时间排序、QQ 好友列表中的会员红名靠前，等等。<br />
+<br />
+这里先举个例子，通过这个例子让我们接触第 1 个算法。<br />
+<br />
+在某个期末考试中，老师要把大家的分数排序，比如有 5 个学生，分别考 5、9、5、1、6 分（满分 10 分），从大到小排序应该是 9、6、5、5、1，大家有没有办法写一段程序随机读取 5 个数，然后对它们排序呢？<br />
+<br />
+看到这个问题，我们用 5 分钟想一下该怎么办。办法当然很多，这里使用桶排序的思想来处理。<br />
+<br />
+我们找到 11 个桶，分别编号为 0-10，对应 0-10 分，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/180923/2-1P9231514234Z.jpg" /><br />
+	图 1 准备 11 个桶并编号</div>
+<br />
+接着我们把这些分数按照桶的编号放入桶中，如图 2 所示。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/180923/2-1P92315144Y17.jpg" /><br />
+	图 2 把分数都放入桶中</div>
+<br />
+接着我们从最大编号的桶到最小编号的桶依次输出每个桶中的分数，分别是 9、6、5、5、1 了。是不是很轻松地完成排序了呢？这就是桶排序的思想。<br />
+<h2>
+	什么是桶排序</h2>
+<span style="color:#008000;">桶排序</span><span style="color:#b22222;">，也叫作</span><span style="color:#008000;">箱排序</span><span style="color:#b22222;">，是一个排序算法，也是所有排序算法中最快、最简单的排序算法。</span>其中的思想是我们首先需要知道所有待排序元素的范围，然后需要有在这个范围内的同样数量的桶，接着把元素放到对应的桶中，最后按顺序输出。<br />
+<br />
+这实际上是简易版的桶排序，我们想象一下，如果考试分数的范围是 0～100 万该怎么办？弄 100 万个桶吗？<br />
+<br />
+实际上在这种情况下，一个桶并不总是放同一个元素，在很多时候一个桶里可能会放多个元素，这是不是与<u><a href='/view/63.html' target='_blank'>散列表</a></u>有点相似呢？其实真正的桶排序和散列表有一样的原理。<br />
+<br />
+除了对一个桶内的元素做<u><a href='/view/160.html' target='_blank'>链表</a></u>存储，我们也有可能对每个桶中的元素继续使用其他排序算法进行排序，所以更多时候，桶排序会结合其他排序算法一起使用。<br />
+<h2>
+	桶排序的实现</h2>
+我们怎么在代码中实现桶排序呢？其实很简单，使用<u><a href='/view/181.html' target='_blank'>数组</a></u>就好了。比如有 11 个桶，我们只需要声明一个长度为 11 的数组，然后每把一个元素往桶中放时，就把数组指定位置的值加 1，最终倒序输出数组的下标，数组每个位置的值为几就输出几次下标，这样就可以实现桶排序了。<br />
+<br />
+下面我们一起看看桶排序的代码。<br />
+<pre class="java">
+package me.irfen.algorithm.ch03;
+public class BucketSort {
+    private int[] buckets;
+    private int[] array;
+
+    public BucketSort(int range, int[] array) {
+        this.buckets = new int[range];
+        this.array = array;
+    }
+
+    /**
+     * 排序
+     */
+    public void sort() {
+        if (array != null &amp;&amp; array.length &gt; 1) {
+            for (int i = 0; i &lt; array.length; i++) {
+                buckets[array[i]] ++;
+            }
+        }
+    }
+
+    /**
+     * 从大到小排序
+     */
+    public void print() {
+        // 倒序输出数据
+        for (int i = buckets.length - 1; i &gt;= 0; i--) {
+            // 元素中值为几，说明有多少个相同值的元素，则输出几遍
+            for (int j = 0; j &lt; buckets[i]; j ++) {
+                System.out.println(i);
+            }
+        }
+    }
+}</pre>
+下面来看看调用的测试代码。
+<pre class="java">
+package me.irfen.algorithm.ch03;
+public class SortTest{
+    public static void main(String[] args){
+        testBucketSort();
+    }
+    //桶排序
+    private static void testBucketSort(){
+        int [] array = {5,9,1,9,5,3,7,6,1};
+        BucketSort bucketSort = new BucketSort(11,array);
+        bucketSort.sort();
+        bucketSoet.print();
+    }
+}</pre>
+<h2>
+	桶排序的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u></h2>
+桶排序实际上只需要遍历一遍所有的待排序元素，然后依次放入指定的位置。如果加上输出排序的时间，那么需要遍历所有的桶，时间复杂度就是 O(n+m)，其中，n 为待排序的元素的个数，m 为桶的个数。这是相当快速的排序算法，但是对于空间的消耗来说有点太大了。<br />
+<br />
+比如我们对 1、10、100、1000 这四个元素排序，那么我们需要长度为 1001 的数组用来排序，如果是对 1、1000、100000 排序呢？我们发现，当元素的跨度范围越大时，空间的浪费就越大，即使只有几个元素，但是这个范围才是空间的大小。所以桶排序的<u><a href='/view/2.html' target='_blank'>空间复杂度</a></u>是 O(m)，其中 m 为桶的个数，待排序元素分布越均匀，也就是说当元素能够非常均匀地填满所有的桶时，这个空间的利用率是最好的。不过这种情况并不多见，在多数情况下，数据并不会均匀地分布。<br />
+<br />
+通过上面的性能分析，我们可以知道桶排序的特点，那就是速度快、简单，但是也有相应的弱点，那就是空间利用率低，如果数据跨度过大，则空间可能无法承受，或者说这些元素并不适合使用桶排序算法。<br />
+<h2>
+	桶排序的适用场景</h2>
+桶排序的适用场景非常明了，那就是在数据分布相对比较均匀或者数据跨度范围并不是很大时，排序的速度还是相当快且简单的。<br />
+<br />
+但是当数据跨度过大时，这个空间消耗就会很大；如果数值的范围特别大，那么对空间消耗的代价肯定也是不切实际的，所以这个算法还有一定的局限性。同样，由于时间复杂度为 O(n+m)，如果 m 比 n 大太多，则从时间上来说，性能也并不是很好。<br />
+<br />
+但是实际上在使用桶排序的过程中，我们会使用类似散列表的方式去实现，这时的空间利用率会高很多，同时时间复杂度会有一定的提升，但是效率还不错。<br />
+<br />
+我们在开发过程中，除了对一些要求特别高并且数据分布较为均匀的情况使用桶排序，还是很少使用桶排序的，所以即使桶排序很简单、很快，我们也很少使用它。<br />
+<br />
+桶排序更多地被用于一些特定的环境，比如数据范围较为局限或者有一些特定的要求，比如需要通过哈希映射快速获取某些值、需要统计每个数的数量。但是这一切都需要确认数据的范围，如果范围太大，就需要巧妙地解决这个问题或者使用其他算法了。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 115;
+window.arcId = "c7835/hD56auM9w/YdV7MuatzS1uB6CIvF3CXurtaO3zCF60MwdkCY0M1A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

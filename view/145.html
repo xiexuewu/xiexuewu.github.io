@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>二叉树后序遍历（递归与非递归）算法及C语言实现</title>
+<meta name="keywords" content="二叉,树,后序,遍历,递归,与,非,算法,及,语言," />
+<meta name="description" content="二叉树后序遍历的实现思想是：从根节点出发，依次遍历各节点的左右子树，直到当前节点左右子树遍历完成后，才访问该节点元素。 图 1 二叉树 如图 1 中，对此二叉树进行后序遍历的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/github/tree/">树</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/github/view/23.html">树的存储结构</a></dd><dd>6.2 <a href="/github/view/192.html">什么是二叉树</a></dd><dd>6.3 <a href="/github/view/193.html">二叉树的顺序存储结构</a></dd><dd>6.4 <a href="/github/view/194.html">二叉树的链式存储结构</a></dd><dd>6.5 <a href="/github/view/vip_237.html">浅谈二叉树的（4种）遍历算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.6 <a href="/github/view/143.html">二叉树先序遍历（递归与非递归）</a></dd><dd>6.7 <a href="/github/view/144.html">二叉树中序遍历（递归和非递归）</a></dd><dd>6.8 <a href="/github/view/145.html">二叉树后序遍历（递归与非递归）</a></dd><dd>6.9 <a href="/github/view/27.html">二叉树层次遍历</a></dd><dd>6.10 <a href="/github/view/vip_265.html">线索二叉树(C语言实现)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.11 <a href="/github/view/vip_266.html">双向线索二叉树的建立</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.12 <a href="/github/view/196.html">树的双亲表示法</a></dd><dd>6.13 <a href="/github/view/197.html">树的孩子表示法</a></dd><dd>6.14 <a href="/github/view/198.html">树的孩子兄弟表示法</a></dd><dd>6.15 <a href="/github/view/vip_241.html">森林转化为二叉树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.16 <a href="/github/view/33.html">哈夫曼树</a></dd><dd>6.17 <a href="/github/view/34.html">回溯算法</a></dd><dd>6.18 <a href="/github/view/35.html">n个结点的二叉树种类</a></dd><dd>6.19 <a href="/github/view/vip_242.html">[项目实践]移动迷宫小游戏(初级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>二叉树后序遍历（递归与非递归）算法及C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/144.html">二叉树中序遍历（递归和非递归）</a></span>
+                    <span class="next right"><a href="/view/27.html">二叉树层次遍历</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/144.html";window.nextPageURL = "/view/27.html";</script>
+			<div id="arc-body"><u><a href='/view/192.html' target='_blank'>二叉树</a></u>后序遍历的实现思想是：从根节点出发，依次遍历各节点的左右子<u><a href='/view/23.html' target='_blank'>树</a></u>，直到当前节点左右子树遍历完成后，才访问该节点元素。<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170830/2-1FS01325394F.png" style="text-align: center; width: 274px; height: 186px;" /><br style="text-align: center;" />
+	<span style="text-align: center;"><u><a href='/view/200.html' target='_blank'>图</a></u> 1 二叉树</span><br />
+	&nbsp;</div>
+如图 1 中，对此二叉树进行后序遍历的操作过程为：
+<ul>
+	<li>
+		从根节点 1 开始，遍历该节点的左子树（以节点 2 为根节点）；</li>
+	<li>
+		遍历节点 2 的左子树（以节点 4 为根节点）；</li>
+	<li>
+		由于节点 4 既没有左子树，也没有右子树，此时访问该节点中的元素 4，并回退到节点 2 ，遍历节点 2 的右子树（以 5 为根节点）；</li>
+	<li>
+		由于节点 5 无左右子树，因此可以访问节点 5 ，并且此时节点 2 的左右子树也遍历完成，因此也可以访问节点 2；</li>
+	<li>
+		此时回退到节点 1 ，开始遍历节点 1 的右子树（以节点 3 为根节点）；</li>
+	<li>
+		遍历节点 3 的左子树（以节点 6 为根节点）；</li>
+	<li>
+		由于节点 6 无左右子树，因此访问节点 6，并回退到节点 3，开始遍历节点 3 的右子树（以节点 7 为根节点）；</li>
+	<li>
+		由于节点 7 无左右子树，因此访问节点 7，并且节点 3 的左右子树也遍历完成，可以访问节点 3；节点 1 的左右子树也遍历完成，可以访问节点 1；</li>
+	<li>
+		到此，整棵树的遍历结束。</li>
+</ul>
+由此，对图 1 中二叉树进行后序遍历的结果为：
+<p class="info-box">
+	4 5 2 6 7 3 1</p>
+<h2>
+	递归实现</h2>
+后序遍历的递归实现代码为：<br />
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#define TElemType int
+//构造结点的结构体
+typedef struct BiTNode{
+    TElemType data;//数据域
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+//初始化树的函数
+void CreateBiTree(BiTree *T){
+    *T=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;data=1;
+    (*T)-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+  
+    (*T)-&gt;lchild-&gt;data=2;
+    (*T)-&gt;lchild-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;lchild-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;lchild-&gt;rchild-&gt;data=5;
+    (*T)-&gt;lchild-&gt;rchild-&gt;lchild=NULL;
+    (*T)-&gt;lchild-&gt;rchild-&gt;rchild=NULL;
+    (*T)-&gt;rchild-&gt;data=3;
+    (*T)-&gt;rchild-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild-&gt;lchild-&gt;data=6;
+    (*T)-&gt;rchild-&gt;lchild-&gt;lchild=NULL;
+    (*T)-&gt;rchild-&gt;lchild-&gt;rchild=NULL;
+    (*T)-&gt;rchild-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild-&gt;rchild-&gt;data=7;
+    (*T)-&gt;rchild-&gt;rchild-&gt;lchild=NULL;
+    (*T)-&gt;rchild-&gt;rchild-&gt;rchild=NULL;
+    (*T)-&gt;lchild-&gt;lchild-&gt;data=4;
+    (*T)-&gt;lchild-&gt;lchild-&gt;lchild=NULL;
+    (*T)-&gt;lchild-&gt;lchild-&gt;rchild=NULL;
+}
+
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){
+    printf(&quot;%d &quot;,elem-&gt;data);
+}
+//后序遍历
+void PostOrderTraverse(BiTree T){
+    if (T) {
+        PostOrderTraverse(T-&gt;lchild);//遍历左孩子
+        PostOrderTraverse(T-&gt;rchild);//遍历右孩子
+        displayElem(T);//调用操作结点数据的函数方法
+    }
+    //如果结点为空，返回上一层
+    return;
+}
+int main() {
+    BiTree Tree;
+    CreateBiTree(&amp;Tree);
+    printf(&quot;后序遍历: \n&quot;);
+    PostOrderTraverse(Tree);
+}</pre>
+运行结果：
+<div class="info-box">
+	后序遍历:<br />
+	4 5 2 6 7 3 1</div>
+<h2>
+	非递归实现</h2>
+递归算法底层的实现使用的是<u><a href='/view/169.html' target='_blank'>栈</a></u>存储结构，所以可以直接使用栈写出相应的非递归算法。<br />
+<br />
+后序遍历是在遍历完当前结点的左右孩子之后，才调用操作函数，所以需要在操作结点进栈时，为每个结点配备一个标志位。当遍历该结点的左孩子时，设置当前结点的标志位为 0，进栈；当要遍历该结点的右孩子时，设置当前结点的标志位为 1，进栈。<br />
+<br />
+这样，当遍历完成，该结点弹栈时，查看该结点的标志位的值：如果是 0，表示该结点的右孩子还没有遍历；反之如果是 1，说明该结点的左右孩子都遍历完成，可以调用操作函数。<br />
+<br />
+完整实现代码为：<br />
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#define TElemType int
+int top=-1;//top变量时刻表示栈顶元素所在位置
+//构造结点的结构体
+typedef struct BiTNode{
+    TElemType data;//数据域
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+//初始化树的函数
+void CreateBiTree(BiTree *T){
+    *T=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;data=1;
+    (*T)-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;lchild-&gt;data=2;
+    (*T)-&gt;lchild-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;lchild-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;lchild-&gt;rchild-&gt;data=5;
+    (*T)-&gt;lchild-&gt;rchild-&gt;lchild=NULL;
+    (*T)-&gt;lchild-&gt;rchild-&gt;rchild=NULL;
+    (*T)-&gt;rchild-&gt;data=3;
+    (*T)-&gt;rchild-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild-&gt;lchild-&gt;data=6;
+    (*T)-&gt;rchild-&gt;lchild-&gt;lchild=NULL;
+    (*T)-&gt;rchild-&gt;lchild-&gt;rchild=NULL;
+    (*T)-&gt;rchild-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild-&gt;rchild-&gt;data=7;
+    (*T)-&gt;rchild-&gt;rchild-&gt;lchild=NULL;
+    (*T)-&gt;rchild-&gt;rchild-&gt;rchild=NULL;
+    (*T)-&gt;lchild-&gt;lchild-&gt;data=4;
+    (*T)-&gt;lchild-&gt;lchild-&gt;lchild=NULL;
+    (*T)-&gt;lchild-&gt;lchild-&gt;rchild=NULL;
+}
+//弹栈函数
+void pop( ){
+    if (top==-1) {
+        return ;
+    }
+    top--;
+}
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){
+    printf(&quot;%d &quot;,elem-&gt;data);
+}
+
+//后序遍历非递归算法
+typedef struct SNode{
+    BiTree p;
+    int tag;
+}SNode;
+//后序遍历使用的进栈函数
+void postpush(SNode *a,SNode sdata){
+    a[++top]=sdata;
+}
+//后序遍历函数
+void PostOrderTraverse(BiTree Tree){
+    SNode a[20];//定义一个<u><a href='/view/170.html' target='_blank'>顺序栈</a></u>
+    BiTNode * p;//临时指针
+    int tag;
+    SNode sdata;
+    p=Tree;
+    while (p||top!=-1) {
+        while (p) {
+            //为该结点入栈做准备
+            sdata.p=p;
+            sdata.tag=0;//由于遍历是左孩子，设置标志位为0
+            postpush(a, sdata);//压栈
+            p=p-&gt;lchild;//以该结点为根结点，遍历左孩子
+        }
+        sdata=a[top];//取栈顶元素
+        pop();//栈顶元素弹栈
+        p=sdata.p;
+        tag=sdata.tag;
+        //如果tag==0，说明该结点还没有遍历它的右孩子
+        if (tag==0) {
+            sdata.p=p;
+            sdata.tag=1;
+            postpush(a, sdata);//更改该结点的标志位，重新压栈
+            p=p-&gt;rchild;//以该结点的右孩子为根结点，重复循环
+        }
+        //如果取出来的栈顶元素的tag==1，说明此结点左右子树都遍历完了，可以调用操作函数了
+        else{
+            displayElem(p);
+            p=NULL;
+        }
+    }
+}
+int main(){
+    BiTree Tree;
+    CreateBiTree(&amp;Tree);
+    printf(&quot;后序遍历: \n&quot;);
+    PostOrderTraverse(Tree);
+}</pre>
+运行结果
+<div class="info-box">
+	后序遍历:<br />
+	4 5 2 6 7 3 1</div>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/144.html">二叉树中序遍历（递归和非递归）</a></span>
+                    <span class="next right"><a href="/view/27.html">二叉树层次遍历</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/144.html";window.nextPageURL = "/view/27.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 145;
+window.arcId = "7b55jjkomRrSat0Nn8BitSR9HEZQcRvQc8F2iOpV+yyYX6qeR5qVh1HUjA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

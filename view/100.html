@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>二叉树遍历算法（源码+解析）</title>
+<meta name="keywords" content="二叉,树,遍历,算法,源码,解析,建立,一棵,二叉," />
+<meta name="description" content="建立一棵二叉树，并分别按先序、中序和后序遍历这棵二叉树，要求以 二叉链表 作为存储结构。 技术要点 创建二叉树的二叉链表， 其基本思想为： 首先对一般的二叉树添加若干个虚" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>二叉树遍历算法（源码+解析）</h1>
+			<div id="arc-body">建立一棵<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，并分别按先序、中序和后序遍历这棵二叉<u><a href='/view/23.html' target='_blank'>树</a></u>，要求以<span style="color:#b22222;">二叉<u><a href='/view/160.html' target='_blank'>链表</a></u></span>作为存储结构。
+<h2>
+	技术要点</h2>
+创建二叉树的二叉链表，<span style="color:#008000;">其基本思想为：</span><span style="color:#b22222;">首先对一般的二叉树添加若干个虚结点，使其每一个结点均有左右孩子，然后按先序遍历的顺序依次输入结点信息。</span><br />
+<br />
+若输入的结点不是虚结点，则建立一个新结点，然后依次建立该结点的左孩子和右孩子；否则，新结点为空。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/180504/2-1P504145634R8.png" style="width: 400px; height: 213px;" /></div>
+<br />
+例如，建立如上<u><a href='/view/200.html' target='_blank'>图</a></u>（a）所示的二叉树，其扩充二叉树如上图（b）所示，输入序列应为：A B D @ @ @ C E @ G @ @ F @ @ ，其中 @ 为虚结点。<br />
+<br />
+构建好二叉树之后，在按照先序、中序和后序的遍历方式遍历二叉链表。<br />
+<blockquote>
+	<p>
+		有关三种遍历方式的详细介绍，请阅读<a href="http://data.biancheng.net/view/25.html" target="_blank">《二叉树的三种遍历方式》</a>一文，本节不再过多讲述。</p>
+</blockquote>
+<h2>
+	实现代码（附有详细注释）</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+//结点结构体
+typedef struct BiTNode{
+    char data;//数据
+    struct BiTNode * lchild,*rchild;//左右孩子指针
+}BiTNode ,*BiTree;
+//初始化二叉树的二叉链表T
+void Create_BiTree(BiTree * T){
+    char ch;
+    ch = getchar();
+    //@ 表示此处无结点，为虚结点
+    if(ch == &#39;@&#39;){
+        *T = NULL;
+    }
+    //# 表示构造结束
+    else if(ch == &#39;#&#39;){
+        return ;
+    }
+    //排除以上两种情况，则为有数据的结点，对其进行构造
+    else{
+        *T = (BiTree)malloc(sizeof(BiTNode));
+        (*T)-&gt;data = ch;
+        //继续构造其左右孩子结点
+        Create_BiTree(&amp;(*T)-&gt;lchild);
+        Create_BiTree(&amp;(*T)-&gt;rchild);
+    }
+}
+//先序遍历二叉树
+void PreOrder(BiTree T){
+    if(T){
+        //遇到结点先输出其结点信息，然后按照先左后右的方式进行遍历
+        printf(&quot;%3c&quot;,T-&gt;data);
+        PreOrder(T-&gt;lchild);
+        PreOrder(T-&gt;rchild);
+    }
+}
+//中序遍历二叉树
+void InOrder(BiTree T){
+    if(T){
+        //中序遍历，即先遍历左孩子，然后输出结点数据，在遍历右孩子
+        InOrder(T-&gt;lchild);
+        printf(&quot;%3c&quot;,T-&gt;data);
+        InOrder(T-&gt;rchild);
+    }
+}
+//后序遍历二叉树
+void PostOrder(BiTree T){
+    if(T){
+        PostOrder(T-&gt;lchild);
+        PostOrder(T-&gt;rchild);
+        printf(&quot;%3c&quot;,T-&gt;data);
+    }
+}
+int main(){
+    BiTree T;
+    printf(&quot;input PreOrder str:&quot;);
+    //构造二叉树
+    Create_BiTree(&amp;T);
+    printf(&quot;\n&quot;);
+    //分别按照先序、中序、后序的方式遍历二叉树
+    printf(&quot;preorder list of  T :&quot;);
+    PreOrder(T);
+    printf(&quot;\nInOrder list of T :&quot;);
+    InOrder(T);
+    printf(&quot;\nPostOrder list of T:&quot;);
+    PostOrder(T);
+}</pre>
+<span style="color:#008000;">运行结果为：</span>
+<div class="info-box">
+	input PreOrder str:ABD@@@CE@G@@F@@#<br />
+	<br />
+	preorder list of&nbsp; T :&nbsp; A&nbsp; B&nbsp; D&nbsp; C&nbsp; E&nbsp; G&nbsp; F<br />
+	InOrder list of T :&nbsp; D&nbsp; B&nbsp; A&nbsp; E&nbsp; G&nbsp; C&nbsp; F<br />
+	PostOrder list of T:&nbsp; D&nbsp; B&nbsp; G&nbsp; E&nbsp; F&nbsp; C&nbsp; A</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 100;
+window.arcId = "a4ddcYwAg4aK9WcxTVekiEmS4zUZCEdd2uX28C22lgBIobwyVmsahi1z4w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

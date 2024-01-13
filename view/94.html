@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>链表的创建，尾插法创建单链表（带源码+解析）</title>
+<meta name="keywords" content="链表,的,创建,尾,插法,单链表,带,源码,解析," />
+<meta name="description" content="尾插法创建单链表 ，即每次都将新的结点链接到链表的最后一个结点的后面，从而达到创建单链表的过程。 例如，使用尾插法将数据 {1,2,3,4} 用单链表的形式进行存储，其存储过程如下" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>链表的创建，尾插法创建单链表（带源码+解析）</h1>
+			<div id="arc-body"><span style="color:#b22222;">尾插法创建单<u><a href='/view/160.html' target='_blank'>链表</a></u></span>，即每次都将新的结点链接到链表的最后一个结点的后面，从而达到创建单链表的过程。<br />
+<br />
+例如，使用尾插法将数据 {1,2,3,4} 用单链表的形式进行存储，其存储过程如下<u><a href='/view/200.html' target='_blank'>图</a></u>所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180426/2-1P426131350253.png" style="width: 400px; height: 359px;" /></div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>图中所示的单链表没有设置头结点，如链表中需要设置头结点，则只需在每个链表前添加一个空结点即可。</p>
+</blockquote>
+<h2>
+	实现代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+typedef struct Link {
+&nbsp;&nbsp;&nbsp; int&nbsp; elem;
+&nbsp;&nbsp;&nbsp; struct Link *next;
+}link;
+//无头结点链表的尾插法实现函数
+link * creatLink(int * arc, int length) {
+&nbsp;&nbsp;&nbsp; int i;
+&nbsp;&nbsp;&nbsp; //最初状态下，头指针 H 没有任何结点，所以，插入第一个元素，就相当于是创建结点 H
+&nbsp;&nbsp;&nbsp; link * H =(link*)malloc(sizeof(link));
+&nbsp;&nbsp;&nbsp; H-&gt;elem = arc[0];
+&nbsp;&nbsp;&nbsp; H-&gt;next = NULL;
+
+&nbsp;&nbsp;&nbsp; link * temp=H;
+&nbsp;&nbsp;&nbsp; //如果采用尾插法插入超过 1 个元素，则需添加到链表表尾
+&nbsp;&nbsp;&nbsp; for (i = 1; i&lt;length; i++) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //创建新结点并对其进行初始化
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; link * a = (link*)malloc(sizeof(link));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a-&gt;elem = arc[i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a-&gt;next = NULL;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //将新结点添加到链表的尾部
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp-&gt;next = a;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //循环过程中，temp时刻指向链表中的最后一个结点
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = temp-&gt;next;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; return H;
+}
+//有头结点链表的尾插法实现函数
+link * HcreatLink(int * arc, int length) {
+&nbsp;&nbsp;&nbsp; int i;
+&nbsp;&nbsp;&nbsp; //创建头结点 H，其链表的头指针也是 H
+&nbsp;&nbsp;&nbsp; link * H = (link*)malloc(sizeof(link));
+&nbsp;&nbsp;&nbsp; H-&gt;elem = 0;
+&nbsp;&nbsp;&nbsp; H-&gt;next = NULL;
+&nbsp;&nbsp;&nbsp; //设置一个指针，在遍历链表时用
+&nbsp;&nbsp;&nbsp; link * temp = H;
+&nbsp;&nbsp;&nbsp; //采用尾插法创建链表
+&nbsp;&nbsp;&nbsp; for (i = 0; i&lt;length; i++) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //创建新结点并对其进行初始化
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; link * a = (link*)malloc(sizeof(link));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a-&gt;elem = arc[i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a-&gt;next = NULL;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //将新结点链接到链表的表尾
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp-&gt;next = a;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //循环过程中，temp始终指向链表表尾的结点
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = temp-&gt;next;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; return H;
+}
+//链表的输出函数
+void display(link *p) {
+&nbsp;&nbsp;&nbsp; while (p) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf(&quot;%d &quot;, p-&gt;elem);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = p-&gt;next;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; printf(&quot;\n&quot;);
+}
+int main() {
+&nbsp;&nbsp;&nbsp; int a[4] = { 1,2,3,4};
+&nbsp;&nbsp;&nbsp; //采用尾插法创建无头结点链表
+&nbsp;&nbsp;&nbsp; link * H = creatLink(a, 4);
+&nbsp;&nbsp;&nbsp; display(H);
+&nbsp;&nbsp;&nbsp; //采用尾插法创建有头结点链表
+&nbsp;&nbsp;&nbsp; link * head = HcreatLink(a, 4);
+&nbsp;&nbsp;&nbsp; display(head);
+&nbsp;&nbsp;&nbsp; //使用完毕后，释放即可
+&nbsp;&nbsp;&nbsp; free(H);
+&nbsp;&nbsp;&nbsp; free(head);
+&nbsp;&nbsp;&nbsp; return 0;
+}
+</pre>
+<span style="color:#008000;">运行结果：</span>
+<div class="info-box">
+	1 2 3 4<br />
+	0 1 2 3 4</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>首元素为 0 ，即表示链表中带有头结点。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 94;
+window.arcId = "a7d3rMbxP8ICu3WCVnBvytH4rCvch8F5o96pbQz3y3diYDuyJFLQc9aE";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

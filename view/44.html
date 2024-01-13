@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>关键路径法及C语言实现</title>
+<meta name="keywords" content="关键,路径,关键,路径," />
+<meta name="description" content="在学习拓扑排序一节时讲到拓扑排序只适用于AOV网，本节所介绍的求关键路径针对的是和AOV网相近的AOE网。 AOE网 AOE网是在AOV网的基础上，其中每一个边都具有各自的权值，是一个有向无" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/github/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/github/view/200.html">什么是图存储结构</a></dd><dd>7.2 <a href="/github/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/github/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/github/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/github/view/203.html">图的邻接表存储法</a></dd><dd>7.6 <a href="/github/view/204.html">图的十字链表存储法</a></dd><dd>7.7 <a href="/github/view/205.html">图的邻接多重表存储法</a></dd><dd>7.8 <a href="/github/view/39.html">深度优先搜索和广度优先搜索</a></dd><dd>7.9 <a href="/github/view/45.html">深度优先生成树和广度优先生成树</a></dd><dd>7.10 <a href="/github/view/vip_245.html">普里姆算法(Prim算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.11 <a href="/github/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/github/view/42.html">重连通图</a></dd><dd>7.13 <a href="/github/view/vip_247.html">拓扑排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/github/view/44.html">关键路径</a></dd><dd>7.15 <a href="/github/view/vip_248.html">迪杰斯特拉算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.16 <a href="/github/view/vip_249.html">弗洛伊德算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/github/view/vip_250.html">[项目实践]移动迷宫小游戏(升级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>关键路径法及C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_247.html">拓扑排序算法</a></span>
+                    <span class="next right"><a href="/view/vip_248.html">迪杰斯特拉算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_247.html";window.nextPageURL = "/view/vip_248.html";</script>
+			<div id="arc-body">在学习拓扑排序一节时讲到拓扑排序只适用于 AOV 网，本节所介绍的求<u><a href='/view/44.html' target='_blank'>关键路径</a></u>针对的是和 AOV 网相近的 AOE 网。
+<h2>
+	AOE网</h2>
+AOE 网是在 AOV 网的基础上，其中每一个边都具有各自的权值，是一个有向无环网。其中权值表示活动持续的时间。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170912/2-1F912154422b1.png" style="width: 564px; height: 222px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 AOE网<br />
+	&nbsp;</div>
+如图 1 所示就是一个 AOE 网，例如 a1=6 表示完成 a1 活动完成需要 6 天；AOE 网中每个顶点表示在它之前的活动已经完成，可以开始后边的活动，例如 V5 表示 a4 和 a5 活动已经完成，a7 和 a8 可以开始。<br />
+<br />
+使用 AOE 网可以帮助解决这样的问题：<span style="color:#b22222;">如果将 AOE 网看做整个项目，那么完成整个项目至少需要多少时间？</span><br />
+<br />
+解决这个问题的关键在于从 AOE 网中找到一条从起始点到结束点长度最长的路径，这样就能保证所有的活动在结束之前都能完成。
+<blockquote>
+	<p>
+		起始点是入度为 0 的点，称为<span style="color:#008000;">&ldquo;源点&rdquo;</span>；结束点是出度为 0 的点，称为<span style="color:#008000;">&ldquo;汇点&rdquo;</span>。这条最长的路径，被称为<span style="color:#008000;">&rdquo;关键路径&ldquo;</span>。</p>
+</blockquote>
+<h2>
+	关键路径</h2>
+为了求出一个给定 AOE 网的关键路径，需要知道以下 4 个统计数据：
+<ul>
+	<li>
+		对于 AOE 网中的顶点有两个时间：最早发生时间（用 Ve(j) 表示）和最晚发生时间（用 Vl(j) 表示）；</li>
+	<li>
+		对于边来说，也有两个时间：最早开始时间（用 e(i) 表示）和最晚开始时间（&nbsp;l(i) 表示）。</li>
+</ul>
+<br />
+<span style="color:#008000;">Ve(j)：</span>对于 AOE 网中的任意一个顶点来说，从源点到该点的最长路径代表着该顶点的最早发生时间，通常用 Ve(j) 表示。<br />
+<div class="info-box">
+	例如，图 1 中从 V1 到 V5 有两条路径，V1 作为源点开始后，a1 和 a2 同时开始活动，但由于 a1 和 a2 活动的时间长度不同，最终 V1-V3-V5 的这条路径率先完成。但是并不是说 V5 之后的活动就可以开始，而是需要等待 V1-V2-V5 这条路径也完成之后才能开始。所以对于 V5 来讲，Ve(5) = 7。</div>
+<br />
+<span style="color:#008000;">Vl(j)：</span>表示在不推迟整个工期的前提下，事件 Vk 允许的最晚发生时间。<br />
+<div class="info-box">
+	例如，图 1 中，在得知整个工期完成的时间是 18 天的前提下，V7 最晚要在第 16 天的时候开始，因为 a10 活动至少需要 2 天时间才能完成，如果在 V7 事件在推迟，就会拖延整个工期。所以，对于 V7 来说，它的 Vl(7)=16。</div>
+<br />
+<span style="color:#008000;">e(i)：</span>表示活动 ai 的最早开始时间，如果活动 ai 是由弧 &lt;Vk,Vj&gt; 表示的，那么活动 ai 的最早开始的时间就等于时间 Vk 的最早发生时间，也就是说：e[i] = ve[k]。<br />
+<div class="info-box">
+	e(i)很好理解，拿图 1 中 a4 来说，如果 a4 想要开始活动，那么首先前提就是 V2 事件开始。所以 e[4]=ve[2]。</div>
+<br />
+<span style="color:#008000;">l(i)：</span>表示活动 ai 的最晚开始时间，如果活动 ai 是由弧 &lt;Vk,Vj&gt; 表示，ai 的最晚开始时间的设定要保证 Vj 的最晚发生时间不拖后。所以，l[i]=Vl[j]-len&lt;Vk,Vj&gt;。<br />
+<br />
+在得知以上四种统计数据后，就可以直接求得 AOE 网中关键路径上的所有的关键活动，方法是：<span style="color:#b22222;">对于所有的边来说，如果它的最早开始时间等于最晚开始时间，称这条边所代表的活动为关键活动。由关键活动构成的路径为关键路径。</span>
+<h2>
+	求关键路径的具体过程</h2>
+对图 1 中的 AOE 图求关键路径，首先完成 Ve(j)、Vl(j)、e(i)、l(i) 4 种统计信息的准备工作。<br />
+<br />
+Ve(j)，求出从源点到各顶点的最长路径长度为（长度最大的）：<br />
+<br />
+<img alt="" src="/uploads/allimg/170912/2-1F91215503aH.png" style="width: 404px; height: 72px;" /><br />
+<br />
+Vl(j)，求出各顶点的最晚发生时间（从后往前推，多种情况下选择最小的）：<br />
+<br />
+<img alt="" src="/uploads/allimg/170912/2-1F912155103423.png" style="width: 404px; height: 72px;" /><br />
+<br />
+e(i)，求出各边中ai活动的最早开始时间：<br />
+<br />
+<img alt="" src="/uploads/allimg/170912/2-1F91215511SY.png" style="width: 484px; height: 72px;" /><br />
+<br />
+l(i),求各边中ai活动的最晚开始时间（多种情况下，选择最小的）：<br />
+<br />
+<img alt="" src="/uploads/allimg/170912/2-1F912155132560.png" style="width: 484px; height: 72px;" /><br />
+<br />
+通过对比 l(i) 和 e(i) ，其中 a1 、 a4 、 a7 、 a8 、 a10 、 a11 的值都各自相同，所以，在图 1 中的 AOE 网中有两条关键路径：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170912/2-1F912155150E8.png" style="width: 564px; height: 222px;" /><br />
+	图 2 关键路径</div>
+<br />
+关键路径的代码实现
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define  MAX_VERTEX_NUM 20//最大顶点个数
+#define  VertexType int//顶点数据的类型
+typedef enum{false,true} bool;
+//建立全局变量，保存边的最早开始时间
+VertexType ve[MAX_VERTEX_NUM];
+//建立全局变量，保存边的最晚开始时间
+VertexType vl[MAX_VERTEX_NUM];
+typedef struct ArcNode{
+    int adjvex;//邻接点在<u><a href='/view/181.html' target='_blank'>数组</a></u>中的位置下标
+    struct ArcNode * nextarc;//指向下一个邻接点的指针
+    VertexType dut;
+}ArcNode;
+
+typedef struct VNode{
+    VertexType data;//顶点的数据域
+    ArcNode * firstarc;//指向邻接点的指针
+}VNode,AdjList[MAX_VERTEX_NUM];//存储各<u><a href='/view/160.html' target='_blank'>链表</a></u>头结点的数组
+
+typedef struct {
+    AdjList vertices;//图中顶点及各邻接点数组
+    int vexnum,arcnum;//记录图中顶点数和边或弧数
+}ALGraph;
+//找到顶点对应在<u><a href='/view/203.html' target='_blank'>邻接表</a></u>数组中的位置下标
+int LocateVex(ALGraph G,VertexType u){
+    for (int i=0; i&lt;G.vexnum; i++) {
+        if (G.vertices[i].data==u) {
+            return i;
+        }
+    }
+    return -1;
+}
+//创建AOE网，构建邻接表
+void CreateAOE(ALGraph **G){
+    *G=(ALGraph*)malloc(sizeof(ALGraph));
+   
+    scanf(&quot;%d,%d&quot;,&amp;((*G)-&gt;vexnum),&amp;((*G)-&gt;arcnum));
+    for (int i=0; i&lt;(*G)-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;,&amp;((*G)-&gt;vertices[i].data));
+        (*G)-&gt;vertices[i].firstarc=NULL;
+    }
+    VertexType initial,end,dut;
+    for (int i=0; i&lt;(*G)-&gt;arcnum; i++) {
+        scanf(&quot;%d,%d,%d&quot;,&amp;initial,&amp;end,&amp;dut);
+       
+        ArcNode *p=(ArcNode*)malloc(sizeof(ArcNode));
+        p-&gt;adjvex=LocateVex(*(*G), end);
+        p-&gt;nextarc=NULL;
+        p-&gt;dut=dut;
+       
+        int locate=LocateVex(*(*G), initial);
+        p-&gt;nextarc=(*G)-&gt;vertices[locate].firstarc;
+        (*G)-&gt;vertices[locate].firstarc=p;
+    }
+}
+//结构体定义<u><a href='/view/169.html' target='_blank'>栈</a></u>结构
+typedef struct stack{
+    VertexType data;
+    struct stack * next;
+}stack;
+
+stack *T;
+
+//初始化栈结构
+void initStack(stack* *S){
+    (*S)=(stack*)malloc(sizeof(stack));
+    (*S)-&gt;next=NULL;
+}
+//判断栈是否为空
+bool StackEmpty(stack S){
+    if (S.next==NULL) {
+        return true;
+    }
+    return false;
+}
+//进栈，以头插法将新结点插入到链表中
+void push(stack *S,VertexType u){
+    stack *p=(stack*)malloc(sizeof(stack));
+    p-&gt;data=u;
+    p-&gt;next=NULL;
+    p-&gt;next=S-&gt;next;
+    S-&gt;next=p;
+}
+//弹栈函数，删除链表首元结点的同时，释放该空间，并将该结点中的数据域通过地址传值给变量i;
+void pop(stack *S,VertexType *i){
+    stack *p=S-&gt;next;
+    *i=p-&gt;data;
+    S-&gt;next=S-&gt;next-&gt;next;
+    free(p);
+}
+//统计各顶点的入度
+void FindInDegree(ALGraph G,int indegree[]){
+    //初始化数组，默认初始值全部为0
+    for (int i=0; i&lt;G.vexnum; i++) {
+        indegree[i]=0;
+    }
+    //遍历邻接表，根据各链表中结点的数据域存储的各顶点位置下标，在indegree数组相应位置+1
+    for (int i=0; i&lt;G.vexnum; i++) {
+        ArcNode *p=G.vertices[i].firstarc;
+        while (p) {
+            indegree[p-&gt;adjvex]++;
+            p=p-&gt;nextarc;
+        }
+    }
+}
+
+bool TopologicalOrder(ALGraph G){
+    int indegree[G.vexnum];//创建记录各顶点入度的数组
+    FindInDegree(G,indegree);//统计各顶点的入度
+    //建立栈结构，程序中使用的是链表
+    stack *S;
+    //初始化栈
+    initStack(&amp;S);
+    for (int i=0; i&lt;G.vexnum; i++) {
+        ve[i]=0;
+    }
+    //查找度为0的顶点，作为起始点
+    for (int i=0; i&lt;G.vexnum; i++) {
+        if (!indegree[i]) {
+            push(S, i);
+        }
+    }
+    int count=0;
+    //栈为空为结束标志
+    while (!StackEmpty(*S)) {
+        int index;
+        //弹栈，并记录栈中保存的顶点所在邻接表数组中的位置
+        pop(S,&amp;index);
+        //压栈，为求各边的最晚开始时间做准备
+        push(T, index);
+        ++count;
+        //依次查找跟该顶点相链接的顶点，如果初始入度为1，当删除前一个顶点后，该顶点入度为0
+        for (ArcNode *p=G.vertices[index].firstarc; p ; p=p-&gt;nextarc) {
+           
+            VertexType k=p-&gt;adjvex;
+           
+            if (!(--indegree[k])) {
+                //顶点入度为0，入栈
+                push(S, k);
+            }
+            //如果边的源点的最长路径长度加上边的权值比汇点的最长路径长度还长，就覆盖ve数组中对应位置的值，最终结束时，ve数组中存储的就是各顶点的最长路径长度。
+            if (ve[index]+p-&gt;dut&gt;ve[k]) {
+                ve[k]=ve[index]+p-&gt;dut;
+            }
+        }
+    }
+    //如果count值小于顶点数量，表明有向图有环
+    if (count&lt;G.vexnum) {
+        printf(&quot;该图有回路&quot;);
+        return false;
+    }
+    return true;
+}
+//求各顶点的最晚发生时间并计算出各边的最早和最晚开始时间
+void CriticalPath(ALGraph G){
+    if (!TopologicalOrder(G)) {
+        return ;
+    }
+    for (int i=0 ; i&lt;G.vexnum ; i++) {
+        vl[i]=ve[G.vexnum-1];
+    }
+    int j,k;
+    while (!StackEmpty(*T)) {
+        pop(T, &amp;j);
+        for (ArcNode* p=G.vertices[j].firstarc ; p ; p=p-&gt;nextarc) {
+            k=p-&gt;adjvex;
+            //构建Vl数组，在初始化时，Vl数组中每个单元都是18，如果每个边的汇点-边的权值比源点值小，就保存更小的。
+            if (vl[k]-p-&gt;dut&lt;vl[j]) {
+                vl[j] = vl[k]-p-&gt;dut;
+            }
+        }
+    }
+    for (j = 0; j &lt; G.vexnum; j++) {
+        for (ArcNode*p = G.vertices[j].firstarc; p ;p = p-&gt;nextarc) {
+            k = p-&gt;adjvex;
+            //求各边的最早开始时间e[i],等于ve数组中相应源点存储的值
+            int ee = ve[j];
+            //求各边的最晚开始时间l[i]，等于汇点在vl数组中存储的值减改边的权值
+            int el = vl[k]-p-&gt;dut;
+            //判断e[i]和l[i]是否相等，如果相等，该边就是关键活动，相应的用*标记；反之，边后边没标记
+            char tag = (ee==el)?&#39;*&#39;:&#39; &#39;;
+            printf(&quot;%3d%3d%3d%3d%3d%2c\n&quot;,j,k,p-&gt;dut,ee,el,tag);
+        }
+    }
+}
+int main(){
+    ALGraph *G;
+    CreateAOE(&amp;G);//创建AOE网
+    initStack(&amp;T);
+    TopologicalOrder(*G);
+    CriticalPath(*G);
+    return  0;
+}</pre>
+拿图 1 中的 AOE 网为例，运行的结果为：
+<div class="info-box">
+	9,11<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	6<br />
+	7<br />
+	8<br />
+	9<br />
+	1,2,6<br />
+	1,3,4<br />
+	1,4,5<br />
+	2,5,1<br />
+	3,5,1<br />
+	4,6,2<br />
+	5,7,9<br />
+	5,8,7<br />
+	6,8,4<br />
+	7,9,2<br />
+	8,9,4<br />
+	&nbsp; 0&nbsp; 3&nbsp; 5&nbsp; 0&nbsp; 3&nbsp;<br />
+	&nbsp; 0&nbsp; 2&nbsp; 4&nbsp; 0&nbsp; 2&nbsp;<br />
+	&nbsp; 0&nbsp; 1&nbsp; 6&nbsp; 0&nbsp; 0 *<br />
+	&nbsp; 1&nbsp; 4&nbsp; 1&nbsp; 6&nbsp; 6 *<br />
+	&nbsp; 2&nbsp; 4&nbsp; 1&nbsp; 4&nbsp; 6&nbsp;<br />
+	&nbsp; 3&nbsp; 5&nbsp; 2&nbsp; 5&nbsp; 8&nbsp;<br />
+	&nbsp; 4&nbsp; 7&nbsp; 7&nbsp; 7&nbsp; 7 *<br />
+	&nbsp; 4&nbsp; 6&nbsp; 9&nbsp; 7&nbsp; 7 *<br />
+	&nbsp; 5&nbsp; 7&nbsp; 4&nbsp; 7 10&nbsp;<br />
+	&nbsp; 6&nbsp; 8&nbsp; 2 16 16 *<br />
+	&nbsp; 7&nbsp; 8&nbsp; 4 14 14 *</div>
+<br />
+通过运行结果，可以看出关键活动有 6 个（后面带有 * 号的），而组成的关键路径就如图 2 中所示。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_247.html">拓扑排序算法</a></span>
+                    <span class="next right"><a href="/view/vip_248.html">迪杰斯特拉算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_247.html";window.nextPageURL = "/view/vip_248.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 44;
+window.arcId = "9b55RN+XVZt9f9w58vyGlZ1tH2NW2FCIc3BiEj7JGaWRp/LsYYIztc3P";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

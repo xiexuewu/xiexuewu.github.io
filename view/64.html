@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>哈希查找算法及C语言实现</title>
+<meta name="keywords" content="哈希,表,的,查找,算法,及其,具体,实现,语言," />
+<meta name="description" content="上一节介绍了有关哈希表及其构造过程的相关知识，本节将介绍如何利用哈希表实现查找操作。 在哈希表中进行查找的操作同哈希表的构建过程类似，对于给定的关键字 K，将其带入哈" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>哈希查找算法及C语言实现</h1>
+			<div id="arc-body">上一节介绍了有关<u><a href='/view/63.html' target='_blank'>哈希表</a></u>及其构造过程的相关知识，本节将介绍如何利用哈希表实现查找操作。<br />
+<br />
+<span style="color:#b22222;">在哈希表中进行查找的操作同哈希表的构建过程类似，其具体实现思路为：</span>对于给定的关键字 K，将其带入哈希函数中，求得与该关键字对应的数据的哈希地址，如果该地址中没有数据，则证明该查找表中没有存储该数据，查找失败：如果哈希地址中有数据，就需要做进一步的证明（排除冲突的影响），找到该数据对应的关键字同 K 进行比对，如果相等，则查找成功；反之，如果不相等，说明在构造哈希表时发生了冲突，需要根据构造表时设定的处理冲突的方法找到下一个地址，同地址中的数据进行比对，直至遇到地址中数据为 NULL（说明查找失败），或者比对成功。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">回顾：</span>哈希表在构造过程中，处理冲突的方法有：开放定址法、再哈希法、链地址法、建立公共溢出区法。</p>
+</blockquote>
+假设哈希表在构造过程采用的开放定址法处理的冲突，则哈希表的查找过程用代码实现为：
+<pre class="cpp">
+#include &quot;stdio.h&quot;
+#include &quot;stdlib.h&quot;
+#define HASHSIZE 7 //定义<u><a href='/view/63.html' target='_blank'>散列表</a></u>长为<u><a href='/view/181.html' target='_blank'>数组</a></u>的长度
+#define NULLKEY -1
+typedef struct{
+    int *elem;//数据元素存储地址，动态分配数组
+    int count; //当前数据元素个数
+}HashTable;
+//对哈希表进行初始化
+void Init(HashTable *hashTable){
+    int i;
+    hashTable-&gt;elem= (int *)malloc(HASHSIZE*sizeof(int));
+    hashTable-&gt;count=HASHSIZE;
+    for (i=0;i&lt;HASHSIZE;i++){
+        hashTable-&gt;elem[i]=NULLKEY;
+    }
+}
+//哈希函数(除留余数法)
+int Hash(int data){
+    return data%HASHSIZE;
+}
+//哈希表的插入函数，可用于构造哈希表
+void Insert(HashTable *hashTable,int data){
+    int hashAddress=Hash(data); //求哈希地址
+    //发生冲突
+    while(hashTable-&gt;elem[hashAddress]!=NULLKEY){
+        //利用开放定址法解决冲突
+        hashAddress=(++hashAddress)%HASHSIZE;
+    }
+    hashTable-&gt;elem[hashAddress]=data;
+}
+
+//哈希表的查找算法
+int Search(HashTable *hashTable,int data){
+    int hashAddress=Hash(data); //求哈希地址
+    while(hashTable-&gt;elem[hashAddress]!=data){//发生冲突
+        //利用开放定址法解决冲突
+        hashAddress=(++hashAddress)%HASHSIZE;
+        //如果查找到的地址中数据为NULL，或者经过一圈的遍历回到原位置，则查找失败
+        if (hashTable-&gt;elem[hashAddress]==NULLKEY||hashAddress==Hash(data)){
+            return -1;
+        }
+    }
+    return hashAddress;
+}
+int main(){
+    int i,result;
+    HashTable hashTable;
+    int arr[HASHSIZE]={13,29,27,28,26,30,38};
+    //初始化哈希表
+    Init(&amp;hashTable);
+    //利用插入函数构造哈希表
+    for (i=0;i&lt;HASHSIZE;i++){
+        Insert(&amp;hashTable,arr[i]);
+    }
+    //调用查找算法
+    result= Search(&amp;hashTable,29);
+    if (result==-1) printf(&quot;查找失败&quot;);
+    else printf(&quot;29在哈希表中的位置是:%d&quot;,result+1);
+    return  0;
+}</pre>
+运行结果为：
+<div class="info-box">
+	29在哈希表中的位置是:2</div>
+<h2>
+	查找算法的效率分析</h2>
+在构造哈希表的过程中，由于冲突的产生，使得哈希表的查找算法仍然会涉及到比较的过程，因此对于哈希表的查找效率仍需以平均查找长度来衡量。<br />
+<br />
+在哈希表的查找过程中需和给定值进行比较的关键字的个数取决于以下 3 个因素：
+<ul>
+	<li>
+		<span style="color:#008000;">哈希函数</span>：哈希函数的&ldquo;好坏&rdquo;取决于影响出现冲突的频繁程度。但是一般情况下，哈希函数相比于后两种的影响，可以忽略不计。</li>
+	<li>
+		<span style="color:#008000;">处理冲突的方式</span>：对于同一组关键字，设定相同的哈希函数，使用不同的处理冲突的方式得到的哈希表是不同的，表的平均查找长度也不同。</li>
+	<li>
+		<span style="color:#008000;">哈希表的装填因子</span>：在一般情况下，当处理冲突的方式相同的情况下，其平均查找长度取决于哈希表的装满程度：装的越满，插入数据时越有可能发生冲突；反之则越小。</li>
+</ul>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">装填因子=哈希表中数据的个数/哈希表的长度</span>，用字符 &alpha; 表示（是数学符号，而不是字符 a）。装填因子越小，表示哈希表中空闲的位置就越多。</p>
+</blockquote>
+经过计算，在假设查找表中的所有数据的查找概率相等的情况下，对于表长为 m，数据个数为 n 的哈希表：
+<ul>
+	<li>
+		其查找成功的平均查找长度约为：-1/&alpha; * ln⁡(1-&alpha;)</li>
+	<li>
+		其查找不成功的平均查找长度约为：1/(1-&alpha;)</li>
+</ul>
+通过公式可以看到，<span style="color:#b22222;">哈希表的查找效率只同装填因子有关，而同哈希表中的数据的个数无关</span>，所以在选用哈希表做查找操作时，选择一个合适的装填因子是非常有必要的。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 64;
+window.arcId = "661cg/Dm+B6Bcp+iKcQCHrU3uMi+4YbNfq6W16eecDhmOf5seZekZ+Mc";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

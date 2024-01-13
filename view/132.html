@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>栈的基本操作及C语言代码实现</title>
+<meta name="keywords" content="栈,的,基本操作,及,语言,代码,实现,栈,的," />
+<meta name="description" content="由于栈本身是一种特殊的线性表（遵循先入先出原则），因此栈的实现由两种方式， 顺序栈（通过数组实现） 和 链栈（通过链表实现） 。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>栈的基本操作及C语言代码实现</h1>
+			<div id="arc-body">由于<u><a href='/view/169.html' target='_blank'>栈</a></u>本身是一种特殊的<u><a href='/view/157.html' target='_blank'>线性表</a></u>（遵循&ldquo;先入先出&rdquo;原则），因此栈的实现由两种方式，<span style="color:#008000;"><u><a href='/view/170.html' target='_blank'>顺序栈</a></u>（通过<u><a href='/view/181.html' target='_blank'>数组</a></u>实现）</span>和<span style="color:#008000;"><u><a href='/view/171.html' target='_blank'>链栈</a></u>（通过<u><a href='/view/160.html' target='_blank'>链表</a></u>实现）</span>。<br />
+<br />
+栈操作数据元素只有两种动作：
+<ol>
+	<li>
+		数据元素用栈的数据结构存储起来，称为<span style="color:#008000;">&ldquo;入栈&rdquo;</span>，也叫<span style="color:#008000;">&ldquo;压栈&rdquo;</span>。</li>
+	<li>
+		数据元素由于某种原因需要从栈结构中提取出来，称为<span style="color:#008000;">&ldquo;出栈&rdquo;</span>，也叫<span style="color:#008000;">&ldquo;弹栈&rdquo;</span>。</li>
+</ol>
+<h2>
+	顺序栈</h2>
+顺序栈的实现采用的是数组。<br />
+<br />
+在顺序栈中设定一个随时指向栈顶元素的变量（一般命名为 top ），当 top 的值为 -1 时，说明数组中没有数据，即栈中没有数据元素，为<span style="color: rgb(0, 128, 0);">&ldquo;空栈&rdquo;</span>；只要数据元素进栈，top 就加 1 ；数据元素出栈， top 就减 1 。<br />
+<br />
+例如，使用顺序栈的存储结构将 (&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;) 四个元素逐个压栈并输出栈顶元素。<br />
+<br />
+实现代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+//元素elem进栈
+int push(char* a,int top,char elem){
+    a[++top]=elem;
+    return top;
+}
+//数据元素出栈
+int pop(char * a,int top){
+    if (top==-1) {
+        printf(&quot;空栈&quot;);
+        return -1;
+    }
+    printf(&quot;弹栈元素：%c\n&quot;,a[top]);
+    top--;
+    return top;
+}
+int main() {
+    char a[100];
+    int top=-1;
+    top=push(a, top, &#39;a&#39;);
+    top=push(a, top, &#39;b&#39;);
+    top=push(a, top, &#39;c&#39;);
+    top=push(a, top, &#39;d&#39;);
+    top=pop(a, top);
+    top=pop(a, top);
+    top=pop(a, top);
+    top=pop(a, top);
+    top=pop(a, top);
+    return 0;
+}</pre>
+输出结果：
+<div class="info-box">
+	弹栈元素：d<br />
+	弹栈元素：c<br />
+	弹栈元素：b<br />
+	弹栈元素：a<br />
+	空栈</div>
+<h2>
+	链栈</h2>
+<span style="color: rgb(178, 34, 34);">链栈，用线性表的链式存储结构实现。</span><br />
+<blockquote>
+	<p>
+		链栈一般不需要创建头结点，头结点会增加程序的复杂性，只需要创建一个头指针就可以了。</p>
+</blockquote>
+用链表表示栈时，用链表头结点的一端作为栈的栈顶端，这样做的好处是当数据元素压栈或者弹栈时，直接使用头指针就可以完成，不需要增设额外的指针。<br />
+<br />
+例如，用链栈实现将 (&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;) 四个数据元素压栈，再依次弹栈：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct lineStack{
+    char data;
+    struct lineStack * next;
+}lineStack;
+lineStack* push(lineStack * stack,char a){
+    lineStack * line=(lineStack*)malloc(sizeof(lineStack));
+    line-&gt;data=a;
+    line-&gt;next=stack;
+    stack=line;
+    return stack;
+}
+lineStack * pop(lineStack * stack){
+    if (stack) {
+        lineStack * p=stack;
+        stack=stack-&gt;next;
+        printf(&quot;弹栈元素：%c &quot;,p-&gt;data);
+        if (stack) {
+            printf(&quot;栈顶元素：%c\n&quot;,stack-&gt;data);
+        }else{
+            printf(&quot;栈已空\n&quot;);
+        }
+        free(p);
+    }else{
+        printf(&quot;栈内没有元素&quot;);
+        return stack;
+    }
+    return stack;
+}
+int main() {
+    lineStack * stack=NULL;
+    stack=push(stack, &#39;a&#39;);
+    stack=push(stack, &#39;b&#39;);
+    stack=push(stack, &#39;c&#39;);
+    stack=push(stack, &#39;d&#39;);
+    stack=pop(stack);
+    stack=pop(stack);
+    stack=pop(stack);
+    stack=pop(stack);
+    stack=pop(stack);
+    return 0;
+}</pre>
+输出结果：
+<div class="info-box">
+	弹栈元素：d 栈顶元素：c<br />
+	弹栈元素：c 栈顶元素：b<br />
+	弹栈元素：b 栈顶元素：a<br />
+	弹栈元素：a 栈已空<br />
+	栈内没有元素</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 132;
+window.arcId = "bfd11yhMAjfAIh/+INY4gyP2583P2cCQE5pL5zCn8xBn/4kUk+ZoUuAaLQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

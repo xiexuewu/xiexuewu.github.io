@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构中的图存储结构</title>
+<meta name="keywords" content="一分钟,认识,数据结构,中的,图,一分钟,认识," />
+<meta name="description" content="通过前面的学习，已经接触到了线性表和树两种数据结构。对于之间具有一对一关系的数据，可以考虑使用线性表进行表示和存储；之间具有一对多关系的数据，可以考虑使用树进行表" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构中的图存储结构</h1>
+			<div id="arc-body">通过前面的学习，已经接触到了<u><a href='/view/157.html' target='_blank'>线性表</a></u>和<u><a href='/view/23.html' target='_blank'>树</a></u>两种数据结构。对于之间具有&ldquo;一对一&rdquo;关系的数据，可以选择使用线性表进行表示和存储；之间具有&ldquo;一对多&rdquo;关系的数据，可以考虑使用树进行表示和存储。除此之外，对于之间还可能具有&ldquo;多对多&rdquo;关系的数据，<span style="color:#b22222;">数据结构表示和存储这类数据的结构使用的是&mdash;&mdash;</span><span style="color:#008000;"><u><a href='/view/200.html' target='_blank'>图</a></u></span><span style="color:#b22222;">。</span>
+<h2>
+	有关图的基本常识</h2>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5141001L0.png" style="width: 420px; height: 186px;" /></div>
+<div style="text-align: center;">
+	图 1 有向图和无向图</div>
+<br />
+<span style="color:#008000;">顶点 ：</span><span style="color:#b22222;">使用图表示的每个数据元素称作</span><span style="color:#008000;">顶点（Vertex）</span>，图中所有顶点构成的集合习惯上用 V 表示。<br />
+<div class="info-box">
+	例如，图 1（A） 表示的就是一个图，其中 V1、V2、V3、V4 都是构成图的顶点，用集合 V 表示为：<code>{V1,V2,V3,V4}</code>。</div>
+<span style="color:#008000;">VR ：</span>VR 本身是集合，存储的是任意两个顶点之间的关系。
+<blockquote>
+	<p>
+		顶点之间的关系有两种：如图 1 中的两个图所示，（A）中顶点 V1 和 V2 只有单方向的关系，只能通过 V1 找到 V2，反过来行不通，因此两顶点之间的关系表示为：<code><font face="monospace">&lt;V1,V2&gt;</font></code>；另一种关系如（B），顶点之间具有双向的关系，之间用直线连通，对于V1 和 V2 顶点来说，既可以通过 V1 找到 V2，也可以通过 V2 找到 V1，两顶点之间的关系表示为：<code>(V1,V2)</code>。</p>
+</blockquote>
+<p>
+	图 1（A）中，VR 集合存储的顶点之间的关系为：<br />
+	<code>{&lt;v1,v2&gt;,&lt;v1,v3&gt;,&lt;v3,v4&gt;,&lt;v4,v1&gt;}；</code><br />
+	图 1（B）中，VR 集合存储的顶点之间的关系为：<br />
+	<code>{(v1,v2),(v1,v4),(v2,v3),(v3,v4),(v3,v5)}</code></p>
+<br />
+<span style="color:#008000;">有向图和无向图 ：</span>之间只具有单向关系的顶点构成的图称为<span style="color:#008000;">有向图</span>，如图 1 （A）；之间具有双向关系的顶点构成的图称为<span style="color:#008000;">无向图</span>，如图 1（B）。<br />
+<br />
+<span style="color:#008000;">&ldquo;弧&rdquo;和&ldquo;边&rdquo; ：</span>在有向图中，<code>&lt;v,w&gt; </code>表示为从 v 到 w 的一条<span style="color:#008000;">弧</span>；在无向图中，<code>（v,w）</code>表示为顶点 v 和顶点 w 之间的一条<span style="color:#008000;">边</span>。
+<div>
+	<br />
+	例如，图 1（A）为有向图，每个箭头表示从一个顶点到另一个顶点的一条弧，其中无箭头一端的顶点又被称为<span style="color:#008000;">&ldquo;弧尾&rdquo;</span>或者<span style="color:#008000;">&ldquo;初始点&rdquo;</span>；有箭头一端的顶点称为<span style="color:#008000;">&ldquo;弧头&rdquo;</span>或者<span style="color:#008000;">&ldquo;终端点&rdquo;</span>。图 1（B） 为无向图，每条直线表示顶点之间的一条边。</div>
+<br />
+<span style="color:#008000;">完全图 ：</span>对于无向图来说，如果图中每个顶点都和除自身之外的所有顶点有关系，那么就称这样的无向图为<span style="color:#008000;">完全图</span>。如图 2 所示就是一个完全图。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5141634U1.png" style="width: 203px; height: 171px;" /><br />
+	图 2 完全图</div>
+<br />
+对于有 n 个顶点的完全图，其中的边的数目为：
+<p>
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5141ALS.png" style="width: 100px; height: 56px;" /><br />
+	<span style="color:#008000;">有向完全图 ：</span>对于有向图来说，通过图中的每个顶点，都能找到图中的所有其它的顶点，那么就称这样的有向图为<span style="color:#008000;">有向完全图</span>。如图 3 所示就是一个有向完全图。</p>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5141K1260.png" style="width: 203px; height: 171px;" /><br />
+	图 3 有向完全图</div>
+对于有 n 个顶点的有向完全图，所具有的弧的数目为：<br />
+<img alt="" src="/uploads/allimg/170905/2-1FZ5141R0414.png" style="width: 100px; height: 42px;" /><br />
+<span style="color:#008000;">稀疏图和稠密图 ：</span>如果图中具有很少的边或弧，就称这个图为<span style="color:#008000;">&ldquo;稀疏图&rdquo;</span>；反之，称为<span style="color:#008000;">&ldquo;稠密图&rdquo;</span>。
+<blockquote>
+	<p>
+		稀疏和稠密的判断条件是：<code>e &lt; nlogn</code>（e表示图中边或弧的数量，n为顶点数），满足条件即为稀疏图；反之为稠密图。</p>
+</blockquote>
+<span style="color:#008000;">权 ：</span>图中的边或者弧有时会携带有一个与之相匹配的数，这种与边或弧相匹配的数被称为<span style="color:#008000;">&ldquo;权&rdquo;</span>。相应地，带权的图通常称为<span style="color:#008000;">&ldquo;网&rdquo;（Network</span>）。
+<div class="info-box">
+	每一条边或者弧的权往往具备某种意义，例如代表从一个顶点到另一个顶点之间的距离，等等。</div>
+<span style="color:#008000;">子图 ：</span>图中的一部分顶点和边构成的图，称为原图的子图。
+<h2>
+	出度和入度</h2>
+<span style="color:#b22222;">在有向图中，对于一个顶点 v 来说，箭头指向顶点 v 的弧的数目为该</span><span style="color:#008000;">顶点的入度（InDegree，记为ID（v））</span><span style="color:#b22222;">；箭头远离顶点 v 的弧的数目为该</span><span style="color:#008000;">顶点的出度（OutDegree，记为OD（v））</span><span style="color:#b22222;">。</span> <span style="color:#008000;">有向图顶点的度</span>就是该顶点出度和入度的和。例如图 1（A）中，顶点 V1 的入度为 1 ，出度为 2 ，所以顶点V1的度为 3 。
+<h2>
+	路径和回路</h2>
+<span style="color:#008000;">路径 ：</span>在图中从一个顶点到另一个顶点所走过的多个顶点组成的序列，就称为<span style="color:#008000;">&ldquo;路径&rdquo;</span>。 在有向图中，路径是有向的。如果在路径中第一个顶点和最后一个顶点相同，此路径称为<span style="color:#008000;">&ldquo;回路&rdquo;</span>或<span style="color:#008000;">&ldquo;环&rdquo;</span>。 如果路径中每个顶点互相都不重复，这个路径就是<span style="color:#008000;">简单路径</span>；同样，一个回路中顶点之间不重复出现，称为<span style="color:#008000;">&ldquo;简单回路&rdquo;</span>或<span style="color:#008000;">&ldquo;简单环&rdquo;</span>。 例如，在图 1（A）中，从 V1 回到 V1 存在一条路径，为：<code>（V1，V3，V4，V1）</code>，此路径是一个环，也是一条简单回路。
+<h2>
+	<u><a href='/view/201.html' target='_blank'>连通图</a></u></h2>
+<span style="color:#b22222;">在无向图中，如果一个顶点到另一个顶点存在至少一条路径，称它们之间是连通的。</span> <span style="color:#b22222;">如果图中任意两个顶点之间都是连通的，则此图为连通图</span>。例如图 1（B）就是一个连通图。 如果一个图本身不是连通图，但是图中某个子图是连通图，那么这个子图又被称为<span style="color:#008000;">&ldquo;连通分量&rdquo;</span>。
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>这里的&ldquo;子图&rdquo;指的是无向图中最大的连通子图。</p>
+</blockquote>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5142220141.png" style="width: 650px; height: 201px;" /></div>
+<div style="text-align: center;">
+	图 4 连通分量</div>
+例如，图 4（a）中本身不是连通图，但是本身有 3 个连通分量，如（B）所示。 在有向图中，如果任意一对顶点 Vi 和 Vj，从 Vi 到 Vj 和从 Vj 到 Vi 都含有至少一条通路，那么称此图为<span style="color:#008000;">强连通图</span>。如果有向图的连通分量也具有此特征，则为<span style="color:#008000;">强连通分量</span>。 例如，图 1（A）本身不是强连通图，但是如果删除 V2 这个顶点，就是一个强连通图，如图 5 所示。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5142352L9.png" style="width: 167px; height: 155px;" /><br />
+	图 5 强连通图</div>
+<h2>
+	<u><a href='/view/202.html' target='_blank'>生成树</a></u>和生成森林</h2>
+对于连通图来说，如果对其进行遍历，遍历过程中经过的顶点和边其实质是一棵树，在这里称之为<span style="color:#008000;">&ldquo;生成树&rdquo;</span>。
+<blockquote>
+	<p>
+		由于连通图中，任意两顶点之间可能含有多条通路，所以一个连通图可能会对应多个生成树。</p>
+</blockquote>
+对于连通图来说，它的生成树须满足两个要求：
+<ul>
+	<li>
+		包含图中所有的顶点。</li>
+	<li>
+		任意两顶点之间有且仅有一条通路。</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ51426133b.png" style="width: 403px; height: 192px;" /><br />
+	图 6 连通图及其生成树<br />
+	&nbsp;</div>
+例如，图 6（A）是一个连通图，（B）为它的生成树（不唯一）。 <span style="color:#b22222;">连通图的生成树中，边的数量永远要比顶点的数量少1。如果少更多，顶点之间无法做到连通；反之，生成树中会存在回路（环）。</span> 生成树是针对于连通图而言的，如果是非连通图，其中含有的多个连通分量，每个连通分量对应不止一棵生成树，所以非连通图对应的是由多棵生成树组成的生成森林。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5142H5Y8.png" style="width: 475px; height: 171px;" /><br />
+	图 7 非连通图的生成森林<br />
+	&nbsp;</div>
+例如，图 4（a）本身为非连通图，其有 3 个连通分量（如图2（b）所示），每个连通分量分别对应的生成树如图 7 所示，3 个生成树构成的为非连通图的生成森林。<br />
+<blockquote>
+	<p>
+		本节主要设计到有关图的一些基本概念，只有了解了这些基本常识，后边章节的内容才能看得懂。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 36;
+window.arcId = "3b6e8nou5ILlqEzNRrflC2iPZegs5F+UGSIzP8tjwwAzIhdrCpHJYk5E";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

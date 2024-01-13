@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>哈夫曼树（赫夫曼树、最优树）及C语言实现</title>
+<meta name="keywords" content="哈夫曼,树,赫夫,曼树,、,最优,及其,语言,代码," />
+<meta name="description" content="赫夫曼树，别名哈夫曼树、最优树以及最优二叉树。学习哈夫曼树之前，首先要了解几个名词。 哈夫曼树相关的几个名词 路径 ：在一棵树中，一个结点到另一个结点之间的通路，称为" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/github/tree/">树</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/github/view/23.html">树的存储结构</a></dd><dd>6.2 <a href="/github/view/192.html">什么是二叉树</a></dd><dd>6.3 <a href="/github/view/193.html">二叉树的顺序存储结构</a></dd><dd>6.4 <a href="/github/view/194.html">二叉树的链式存储结构</a></dd><dd>6.5 <a href="/github/view/vip_237.html">浅谈二叉树的（4种）遍历算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.6 <a href="/github/view/143.html">二叉树先序遍历（递归与非递归）</a></dd><dd>6.7 <a href="/github/view/144.html">二叉树中序遍历（递归和非递归）</a></dd><dd>6.8 <a href="/github/view/145.html">二叉树后序遍历（递归与非递归）</a></dd><dd>6.9 <a href="/github/view/27.html">二叉树层次遍历</a></dd><dd>6.10 <a href="/github/view/vip_265.html">线索二叉树(C语言实现)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.11 <a href="/github/view/vip_266.html">双向线索二叉树的建立</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.12 <a href="/github/view/196.html">树的双亲表示法</a></dd><dd>6.13 <a href="/github/view/197.html">树的孩子表示法</a></dd><dd>6.14 <a href="/github/view/198.html">树的孩子兄弟表示法</a></dd><dd>6.15 <a href="/github/view/vip_241.html">森林转化为二叉树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.16 <a href="/github/view/33.html">哈夫曼树</a></dd><dd>6.17 <a href="/github/view/34.html">回溯算法</a></dd><dd>6.18 <a href="/github/view/35.html">n个结点的二叉树种类</a></dd><dd>6.19 <a href="/github/view/vip_242.html">[项目实践]移动迷宫小游戏(初级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>哈夫曼树（赫夫曼树、最优树）及C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_241.html">森林转化为二叉树</a></span>
+                    <span class="next right"><a href="/view/34.html">回溯算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_241.html";window.nextPageURL = "/view/34.html";</script>
+			<div id="arc-body">赫夫曼<u><a href='/view/23.html' target='_blank'>树</a></u>，别名&ldquo;<u><a href='/view/33.html' target='_blank'>哈夫曼树</a></u>&rdquo;、&ldquo;最优树&rdquo;以及&ldquo;最优<u><a href='/view/192.html' target='_blank'>二叉树</a></u>&rdquo;。学习哈夫曼树之前，首先要了解几个名词。
+<h2>
+	哈夫曼树相关的几个名词</h2>
+<span style="color:#008000;">路径</span>：<span style="color:#b22222;">在一棵树中，一个结点到另一个结点之间的通路，称为</span><span style="color:#008000;">路径</span>。<u><a href='/view/200.html' target='_blank'>图</a></u> 1 中，从根结点到结点 a 之间的通路就是一条路径。<br />
+<br />
+<span style="color:#008000;">路径长度</span>：在一条路径中，每经过一个结点，路径长度都要加 1 。例如在一棵树中，规定根结点所在层数为1层，那么从根结点到第 i 层结点的路径长度为 i - 1 。图 1 中从根结点到结点 c 的路径长度为 3。<br />
+<br />
+<span style="color:#008000;">结点的权</span>：<span style="color:#b22222;">给每一个结点赋予一个新的数值，被称为这个结点的权</span>。例如，图 1 中结点 a 的权为 7，结点 b 的权为 5。<br />
+<br />
+<span style="color:#008000;">结点的带权路径长度</span>：<span style="color:#b22222;">指的是从根结点到该结点之间的路径长度与该结点的权的乘积</span>。例如，图 1 中结点 b 的带权路径长度为 2 * 5 = 10 。<br />
+<br />
+树的带权路径长度为树中所有叶子结点的带权路径长度之和。通常记作<span style="color:#008000;"> &ldquo;WPL&rdquo;</span> 。例如图 1 中所示的这颗树的带权路径长度为：
+<blockquote>
+	<p>
+		WPL = 7 * 1 + 5 * 2 + 2 * 3 + 4 * 3</p>
+</blockquote>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ509310DJ.png" style="width: 185px; height: 217px;" /><br />
+	图1 哈夫曼树</div>
+<h2>
+	什么是哈夫曼树</h2>
+<span style="color:#b22222;">当用 n 个结点（都做叶子结点且都有各自的权值）试图构建一棵树时，如果构建的这棵树的带权路径长度最小，称这棵树为&ldquo;最优二叉树&rdquo;，有时也叫&ldquo;赫夫曼树&rdquo;或者&ldquo;哈夫曼树&rdquo;。</span><br />
+<br />
+在构建哈弗曼树时，要使树的带权路径长度最小，只需要遵循一个原则，那就是：权重越大的结点离树根越近。在图 1 中，因为结点 a 的权值最大，所以理应直接作为根结点的孩子结点。
+<h2>
+	构建哈夫曼树</h2>
+对于给定的有各自权值的 n 个结点，构建哈夫曼树有一个行之有效的办法：<br />
+<ol>
+	<li>
+		在 n 个权值中选出两个最小的权值，对应的两个结点组成一个新的二叉树，且新二叉树的根结点的权值为左右孩子权值的和；</li>
+	<li>
+		在原有的 n 个权值中删除那两个最小的权值，同时将新的权值加入到&nbsp;n&ndash;2 个权值的行列中，以此类推；</li>
+	<li>
+		重复 1 和 2 ，直到所以的结点构建成了一棵二叉树为止，这棵树就是哈夫曼树。</li>
+</ol>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ509425D12.png" style="width: 427px; height: 433px;" /></div>
+<div style="text-align: center;">
+	图 2 哈夫曼树的构建过程<br />
+	&nbsp;</div>
+图 2 中，（A）给定了四个结点a，b，c，d，权值分别为7，5，2，4；第一步如（B）所示，找出现有权值中最小的两个，2 和 4 ，相应的结点 c 和 d 构建一个新的二叉树，树根的权值为 2 + 4 = 6，同时将原有权值中的 2 和 4 删掉，将新的权值 6 加入；进入（C），重复之前的步骤。直到（D）中，所有的结点构建成了一个全新的二叉树，这就是哈夫曼树。
+<h2>
+	哈弗曼树中结点结构</h2>
+构建哈夫曼树时，首先需要确定树中结点的构成。由于哈夫曼树的构建是从叶子结点开始，不断地构建新的父结点，直至树根，所以结点中应包含指向父结点的指针。但是在使用哈夫曼树时是从树根开始，根据需求遍历树中的结点，因此每个结点需要有指向其左孩子和右孩子的指针。<br />
+<br />
+所以，哈夫曼树中结点构成用代码表示为：
+<pre class="cpp">
+//哈夫曼树结点结构
+typedef struct {
+    int weight;//结点权重
+    int parent, left, right;//父结点、左孩子、右孩子在<u><a href='/view/181.html' target='_blank'>数组</a></u>中的位置下标
+}HTNode, *HuffmanTree;</pre>
+<h2>
+	哈弗曼树中的查找算法</h2>
+构建哈夫曼树时，需要每次根据各个结点的权重值，筛选出其中值最小的两个结点，然后构建二叉树。<br />
+<br />
+查找权重值最小的两个结点的思想是：从树组起始位置开始，首先找到两个无父结点的结点（说明还未使用其构建成树），然后和后续无父结点的结点依次做比较，有两种情况需要考虑：<br />
+<ul>
+	<li>
+		如果比两个结点中较小的那个还小，就保留这个结点，删除原来较大的结点；</li>
+	<li>
+		如果介于两个结点权重值之间，替换原来较大的结点；</li>
+</ul>
+<br />
+实现代码：
+<pre class="cpp">
+//HT数组中存放的哈夫曼树，end表示HT数组中存放结点的最终位置，s1和s2传递的是HT数组中权重值最小的两个结点在数组中的位置
+void Select(HuffmanTree HT, int end, int *s1, int *s2)
+{
+    int min1, min2;
+    //遍历数组初始下标为 1
+    int i = 1;
+    //找到还没构建树的结点
+    while(HT[i].parent != 0 &amp;&amp; i &lt;= end){
+        i++;
+    }
+    min1 = HT[i].weight;
+    *s1 = i;
+   
+    i++;
+    while(HT[i].parent != 0 &amp;&amp; i &lt;= end){
+        i++;
+    }
+    //对找到的两个结点比较大小，min2为大的，min1为小的
+    if(HT[i].weight &lt; min1){
+        min2 = min1;
+        *s2 = *s1;
+        min1 = HT[i].weight;
+        *s1 = i;
+    }else{
+        min2 = HT[i].weight;
+        *s2 = i;
+    }
+    //两个结点和后续的所有未构建成树的结点做比较
+    for(int j=i+1; j &lt;= end; j++)
+    {
+        //如果有父结点，直接跳过，进行下一个
+        if(HT[j].parent != 0){
+            continue;
+        }
+        //如果比最小的还小，将min2=min1，min1赋值新的结点的下标
+        if(HT[j].weight &lt; min1){
+            min2 = min1;
+            min1 = HT[j].weight;
+            *s2 = *s1;
+            *s1 = j;
+        }
+        //如果介于两者之间，min2赋值为新的结点的位置下标
+        else if(HT[j].weight &gt;= min1 &amp;&amp; HT[j].weight &lt; min2){
+            min2 = HT[j].weight;
+            *s2 = j;
+        }
+    }
+}</pre>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意</span>：s1和s2传入的是实参的地址，所以函数运行完成后，实参中存放的自然就是哈夫曼树中权重值最小的两个结点在数组中的位置。</p>
+</blockquote>
+<h2>
+	构建哈弗曼树的代码实现</h2>
+<pre class="cpp">
+//HT为地址传递的存储哈夫曼树的数组，w为存储结点权重值的数组，n为结点个数
+void CreateHuffmanTree(HuffmanTree *HT, int *w, int n)
+{
+    if(n&lt;=1) return; // 如果只有一个编码就相当于0
+    int m = 2*n-1; // 哈夫曼树总节点数，n就是叶子结点
+    *HT = (HuffmanTree) malloc((m+1) * sizeof(HTNode)); // 0号位置不用
+    HuffmanTree p = *HT;
+    // 初始化哈夫曼树中的所有结点
+    for(int i = 1; i &lt;= n; i++)
+    {
+        (p+i)-&gt;weight = *(w+i-1);
+        (p+i)-&gt;parent = 0;
+        (p+i)-&gt;left = 0;
+        (p+i)-&gt;right = 0;
+    }
+    //从树组的下标 n+1 开始初始化哈夫曼树中除叶子结点外的结点
+    for(int i = n+1; i &lt;= m; i++)
+    {
+        (p+i)-&gt;weight = 0;
+        (p+i)-&gt;parent = 0;
+        (p+i)-&gt;left = 0;
+        (p+i)-&gt;right = 0;
+    }
+    //构建哈夫曼树
+    for(int i = n+1; i &lt;= m; i++)
+    {
+        int s1, s2;
+        Select(*HT, i-1, &amp;s1, &amp;s2);
+        (*HT)[s1].parent = (*HT)[s2].parent = i;
+        (*HT)[i].left = s1;
+        (*HT)[i].right = s2;
+        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight;
+    }
+}</pre>
+<h2>
+	哈夫曼编码</h2>
+<span style="color:#b22222;">哈夫曼编码就是在哈夫曼树的基础上构建的，这种编码方式最大的优点就是用最少的字符包含最多的信息内容。</span><br />
+<br />
+根据发送信息的内容，通过统计文本中相同字符的个数作为每个字符的权值，建立哈夫曼树。对于树中的每一个子树，统一规定其左孩子标记为 0 ，右孩子标记为 1 。这样，用到哪个字符时，从哈夫曼树的根结点开始，依次写出经过结点的标记，最终得到的就是该结点的哈夫曼编码。
+<blockquote>
+	<p>
+		文本中字符出现的次数越多，在哈夫曼树中的体现就是越接近树根。编码的长度越短。</p>
+</blockquote>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5095536108.png" style="width: 167px; height: 201px;" /><br />
+	图 3 哈夫曼编码<br />
+	&nbsp;</div>
+如图 3 所示，字符 a 用到的次数最多，其次是字符 b 。字符 a 在哈夫曼编码是 <code>0</code> ，字符 b 编码为 <code>10</code> ，字符 c 的编码为 <code>110</code> ，字符 d 的编码为 <code>111</code> 。<br />
+<br />
+使用程序求哈夫曼编码有两种方法：
+<ol>
+	<li>
+		从叶子结点一直找到根结点，逆向记录途中经过的标记。例如，图 3 中字符 c 的哈夫曼编码从结点 c 开始一直找到根结点，结果为：0 1 1 ，所以字符 c 的哈夫曼编码为：1 1 0（逆序输出）。</li>
+	<li>
+		从根结点出发，一直到叶子结点，记录途中经过的标记。例如，求图 3 中字符 c 的哈夫曼编码，就从根结点开始，依次为：1 1 0。</li>
+</ol>
+<br />
+采用方法 1 的实现代码为：
+<pre class="cpp">
+//HT为哈夫曼树，HC为存储结点哈夫曼编码的二维动态数组，n为结点的个数
+void HuffmanCoding(HuffmanTree HT, HuffmanCode *HC,int n){
+    *HC = (HuffmanCode) malloc((n+1) * sizeof(char *));
+    char *cd = (char *)malloc(n*sizeof(char)); //存放结点哈夫曼编码的字符<u><a href='/view/175.html' target='_blank'>串</a></u>数组
+    cd[n-1] = &#39;\0&#39;;//字符串结束符
+   
+    for(int i=1; i&lt;=n; i++){
+        //从叶子结点出发，得到的哈夫曼编码是逆序的，需要在字符串数组中逆序存放
+        int start = n-1;
+        //当前结点在数组中的位置
+        int c = i;
+        //当前结点的父结点在数组中的位置
+        int j = HT[i].parent;
+        // 一直寻找到根结点
+        while(j != 0){
+            // 如果该结点是父结点的左孩子则对应路径编码为0，否则为右孩子编码为1
+            if(HT[j].left == c)
+                cd[--start] = &#39;0&#39;;
+            else
+                cd[--start] = &#39;1&#39;;
+            //以父结点为孩子结点，继续朝树根的方向遍历
+            c = j;
+            j = HT[j].parent;
+        }
+        //跳出循环后，cd数组中从下标 start 开始，存放的就是该结点的哈夫曼编码
+        (*HC)[i] = (char *)malloc((n-start)*sizeof(char));
+        strcpy((*HC)[i], &amp;cd[start]);
+    }
+    //使用malloc申请的cd动态数组需要手动释放
+    free(cd);
+}</pre>
+采用第二种算法的实现代码为：
+<pre class="cpp">
+//HT为哈夫曼树，HC为存储结点哈夫曼编码的二维动态数组，n为结点的个数
+void HuffmanCoding(HuffmanTree HT, HuffmanCode *HC,int n){
+    *HC = (HuffmanCode) malloc((n+1) * sizeof(char *));
+    int m=2*n-1;
+    int p=m;
+    int cdlen=0;
+    char *cd = (char *)malloc(n*sizeof(char));
+    //将各个结点的权重用于记录访问结点的次数，首先初始化为0
+    for (int i=1; i&lt;=m; i++) {
+        HT[i].weight=0;
+    }
+    //一开始 p 初始化为 m，也就是从树根开始。一直到p为0
+    while (p) {
+        //如果当前结点一次没有访问，进入这个if语句
+        if (HT[p].weight==0) {
+            HT[p].weight=1;//重置访问次数为1
+            //如果有左孩子，则访问左孩子，并且存储走过的标记为0
+            if (HT[p].left!=0) {
+                p=HT[p].left;
+                cd[cdlen++]=&#39;0&#39;;
+            }
+            //当前结点没有左孩子，也没有右孩子，说明为叶子结点，直接记录哈夫曼编码
+            else if(HT[p].right==0){
+                (*HC)[p]=(char*)malloc((cdlen+1)*sizeof(char));
+                cd[cdlen]=&#39;\0&#39;;
+                strcpy((*HC)[p], cd);
+            }
+        }
+        //如果weight为1，说明访问过一次，即是从其左孩子返回的
+        else if(HT[p].weight==1){
+            HT[p].weight=2;//设置访问次数为2
+            //如果有右孩子，遍历右孩子，记录标记值 1
+            if (HT[p].right!=0) {
+                p=HT[p].right;
+                cd[cdlen++]=&#39;1&#39;;
+            }
+        }
+        //如果访问次数为 2，说明左右孩子都遍历完了，返回父结点
+        else{
+            HT[p].weight=0;
+            p=HT[p].parent;
+            --cdlen;
+        }
+    }
+}</pre>
+<h2>
+	本节完整代码（可运行）</h2>
+<pre class="cpp">
+#include&lt;stdlib.h&gt;
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+//哈夫曼树结点结构
+typedef struct {
+    int weight;//结点权重
+    int parent, left, right;//父结点、左孩子、右孩子在数组中的位置下标
+}HTNode, *HuffmanTree;
+//动态二维数组，存储哈夫曼编码
+typedef char ** HuffmanCode;
+
+//HT数组中存放的哈夫曼树，end表示HT数组中存放结点的最终位置，s1和s2传递的是HT数组中权重值最小的两个结点在数组中的位置
+void Select(HuffmanTree HT, int end, int *s1, int *s2)
+{
+    int min1, min2;
+    //遍历数组初始下标为 1
+    int i = 1;
+    //找到还没构建树的结点
+    while(HT[i].parent != 0 &amp;&amp; i &lt;= end){
+        i++;
+    }
+    min1 = HT[i].weight;
+    *s1 = i;
+   
+    i++;
+    while(HT[i].parent != 0 &amp;&amp; i &lt;= end){
+        i++;
+    }
+    //对找到的两个结点比较大小，min2为大的，min1为小的
+    if(HT[i].weight &lt; min1){
+        min2 = min1;
+        *s2 = *s1;
+        min1 = HT[i].weight;
+        *s1 = i;
+    }else{
+        min2 = HT[i].weight;
+        *s2 = i;
+    }
+    //两个结点和后续的所有未构建成树的结点做比较
+    for(int j=i+1; j &lt;= end; j++)
+    {
+        //如果有父结点，直接跳过，进行下一个
+        if(HT[j].parent != 0){
+            continue;
+        }
+        //如果比最小的还小，将min2=min1，min1赋值新的结点的下标
+        if(HT[j].weight &lt; min1){
+            min2 = min1;
+            min1 = HT[j].weight;
+            *s2 = *s1;
+            *s1 = j;
+        }
+        //如果介于两者之间，min2赋值为新的结点的位置下标
+        else if(HT[j].weight &gt;= min1 &amp;&amp; HT[j].weight &lt; min2){
+            min2 = HT[j].weight;
+            *s2 = j;
+        }
+    }
+}
+
+//HT为地址传递的存储哈夫曼树的数组，w为存储结点权重值的数组，n为结点个数
+void CreateHuffmanTree(HuffmanTree *HT, int *w, int n)
+{
+    if(n&lt;=1) return; // 如果只有一个编码就相当于0
+    int m = 2*n-1; // 哈夫曼树总节点数，n就是叶子结点
+    *HT = (HuffmanTree) malloc((m+1) * sizeof(HTNode)); // 0号位置不用
+    HuffmanTree p = *HT;
+    // 初始化哈夫曼树中的所有结点
+    for(int i = 1; i &lt;= n; i++)
+    {
+        (p+i)-&gt;weight = *(w+i-1);
+        (p+i)-&gt;parent = 0;
+        (p+i)-&gt;left = 0;
+        (p+i)-&gt;right = 0;
+    }
+    //从树组的下标 n+1 开始初始化哈夫曼树中除叶子结点外的结点
+    for(int i = n+1; i &lt;= m; i++)
+    {
+        (p+i)-&gt;weight = 0;
+        (p+i)-&gt;parent = 0;
+        (p+i)-&gt;left = 0;
+        (p+i)-&gt;right = 0;
+    }
+    //构建哈夫曼树
+    for(int i = n+1; i &lt;= m; i++)
+    {
+        int s1, s2;
+        Select(*HT, i-1, &amp;s1, &amp;s2);
+        (*HT)[s1].parent = (*HT)[s2].parent = i;
+        (*HT)[i].left = s1;
+        (*HT)[i].right = s2;
+        (*HT)[i].weight = (*HT)[s1].weight + (*HT)[s2].weight;
+    }
+}
+//HT为哈夫曼树，HC为存储结点哈夫曼编码的二维动态数组，n为结点的个数
+void HuffmanCoding(HuffmanTree HT, HuffmanCode *HC,int n){
+    *HC = (HuffmanCode) malloc((n+1) * sizeof(char *));
+    char *cd = (char *)malloc(n*sizeof(char)); //存放结点哈夫曼编码的字符串数组
+    cd[n-1] = &#39;\0&#39;;//字符串结束符
+   
+    for(int i=1; i&lt;=n; i++){
+        //从叶子结点出发，得到的哈夫曼编码是逆序的，需要在字符串数组中逆序存放
+        int start = n-1;
+        //当前结点在数组中的位置
+        int c = i;
+        //当前结点的父结点在数组中的位置
+        int j = HT[i].parent;
+        // 一直寻找到根结点
+        while(j != 0){
+            // 如果该结点是父结点的左孩子则对应路径编码为0，否则为右孩子编码为1
+            if(HT[j].left == c)
+                cd[--start] = &#39;0&#39;;
+            else
+                cd[--start] = &#39;1&#39;;
+            //以父结点为孩子结点，继续朝树根的方向遍历
+            c = j;
+            j = HT[j].parent;
+        }
+        //跳出循环后，cd数组中从下标 start 开始，存放的就是该结点的哈夫曼编码
+        (*HC)[i] = (char *)malloc((n-start)*sizeof(char));
+        strcpy((*HC)[i], &amp;cd[start]);
+    }
+    //使用malloc申请的cd动态数组需要手动释放
+    free(cd);
+}
+//打印哈夫曼编码的函数
+void PrintHuffmanCode(HuffmanCode htable,int *w,int n)
+{
+    printf(&quot;Huffman code : \n&quot;);
+    for(int i = 1; i &lt;= n; i++)
+        printf(&quot;%d code = %s\n&quot;,w[i-1], htable[i]);
+}
+int main(void)
+{
+    int w[5] = {2, 8, 7, 6, 5};
+    int n = 5;
+    HuffmanTree htree;
+    HuffmanCode htable;
+    CreateHuffmanTree(&amp;htree, w, n);
+    HuffmanCoding(htree, &amp;htable, n);
+    PrintHuffmanCode(htable,w, n);
+    return 0;
+}</pre>
+运行结果
+<div class="info-box">
+	Huffman code :<br />
+	2 code = 100<br />
+	8 code = 11<br />
+	7 code = 01<br />
+	6 code = 00<br />
+	5 code = 101</div>
+<blockquote>
+	<p>
+		本节中介绍了两种遍历哈夫曼树获得哈夫曼编码的方法，同时也给出了各自完整的实现代码的函数，在完整代码中使用的是第一种逆序遍历哈夫曼树的方法。</p>
+</blockquote>
+<h2>
+	总结</h2>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5095P9356.png" style="width: 551px; height: 328px;" /><br />
+	图 4 程序运行效果图</div>
+<br />
+本节的程序中对权重值分别为 2，8，7，6，5 的结点构建的哈夫曼树如图 4（A）所示。图 4（B）是另一个哈夫曼树，两棵树的带权路径长度相同。<br />
+<br />
+程序运行效果图之所以是（A）而不是（B），原因是在构建哈夫曼树时，结点 2 和结点 5 构建的新的结点 7 存储在动态树组的最后面，所以，在程序继续选择两个权值最小的结点时，直接选择了的叶子结点 6 和 7 。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_241.html">森林转化为二叉树</a></span>
+                    <span class="next right"><a href="/view/34.html">回溯算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_241.html";window.nextPageURL = "/view/34.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 33;
+window.arcId = "b856KBfd4wyVm5RJZfiIRAbzpmoQvuQlOJlz7m+62cOQ/p4Y0gYaFLOr";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

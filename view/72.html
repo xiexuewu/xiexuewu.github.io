@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>简单选择排序、树形选择排序和堆排序算法及其C语言实现</title>
+<meta name="keywords" content="选择,排序,算法,简单,树形,和,堆,及其,各," />
+<meta name="description" content="本节介绍三种选择排序算法，分别为： 简单选择排序 、 树形选择排序 和 堆排序 。 简单选择排序 该算法的实现思想为：对于具有 n 个记录的无序表遍历 n-1 次，第 i 次从无序表中第" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/github/sort/">排序算法</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/github/view/65.html">插入排序算法</a></dd><dd>10.2 <a href="/github/view/66.html">折半插入排序算法</a></dd><dd>10.3 <a href="/github/view/67.html">2-路插入排序算法</a></dd><dd>10.4 <a href="/github/view/68.html">表插入排序算法</a></dd><dd>10.5 <a href="/github/view/vip_259.html">希尔排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.6 <a href="/github/view/70.html">冒泡排序算法</a></dd><dd>10.7 <a href="/github/view/vip_260.html">快速排序算法（QSort，快排）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="/github/view/72.html">选择排序算法</a></dd><dd>10.9 <a href="/github/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.10 <a href="/github/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.11 <a href="/github/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>简单选择排序、树形选择排序和堆排序算法及其C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_260.html">快速排序算法（QSort，快排）</a></span>
+                    <span class="next right"><a href="/view/vip_261.html">归并排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_260.html";window.nextPageURL = "/view/vip_261.html";</script>
+			<div id="arc-body">本节介绍三种<u><a href='/view/72.html' target='_blank'>选择排序</a></u>算法，分别为：<span style="color:#008000;">简单选择排序</span>、<span style="color:#008000;"><u><a href='/view/23.html' target='_blank'>树</a></u>形选择排序</span>和<span style="color:#008000;">堆排序</span>。
+<h2>
+	简单选择排序</h2>
+<span style="color:#b22222;">该算法的实现思想为：对于具有 n 个记录的无序表遍历 n-1 次，第 i 次从无序表中第 i 个记录开始，找出后序关键字中最小的记录，然后放置在第 i 的位置上。</span><br />
+<br />
+例如对无序表<code>{56，12，80，91，20}</code>采用简单选择排序算法进行排序，具体过程为：
+<ul>
+	<li>
+		第一次遍历时，从下标为 1 的位置即 56 开始，找出关键字值最小的记录 12，同下标为 0 的关键字 56 交换位置：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G11033T5.png" style="width: 201px; height: 41px;" /></div>
+<ul>
+	<li>
+		第二次遍历时，从下标为 2 的位置即 56 开始，找出最小值 20，同下标为 2 的关键字 56 互换位置：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G1105KP.png" style="width: 201px; height: 41px;" /></div>
+<ul>
+	<li>
+		第三次遍历时，从下标为 3 的位置即 80 开始，找出最小值 56，同下标为 3 的关键字 80 互换位置：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G11112303.png" style="width: 201px; height: 41px;" /></div>
+<ul>
+	<li>
+		第四次遍历时，从下标为 4 的位置即 91 开始，找出最小是 80，同下标为 4 的关键字 91 互换位置：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G1112A61.png" style="width: 201px; height: 41px;" /></div>
+<ul>
+	<li>
+		到此简单选择排序算法完成，无序表变为有序表。</li>
+</ul>
+<br />
+简单选择排序的实现代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX 9
+//单个记录的结构体
+typedef struct {
+    int key;
+}SqNote;
+//记录表的结构体
+typedef struct {
+    SqNote r[MAX];
+    int length;
+}SqList;
+//交换两个记录的位置
+void swap(SqNote *a,SqNote *b){
+    int key=a-&gt;key;
+    a-&gt;key=b-&gt;key;
+    b-&gt;key=key;
+}
+//查找表中关键字的最小值
+int SelectMinKey(SqList *L,int i){
+    int min=i;
+    //从下标为 i+1 开始，一直遍历至最后一个关键字，找到最小值所在的位置
+    while (i+1&lt;L-&gt;length) {
+        if (L-&gt;r[min].key&gt;L-&gt;r[i+1].key) {
+            min=i+1;
+        }
+        i++;
+    }
+    return min;
+}
+//简单选择排序算法实现函数
+void SelectSort(SqList * L){
+    for (int i=0; i&lt;L-&gt;length; i++) {
+        //查找第 i 的位置所要放置的最小值的位置
+        int j=SelectMinKey(L,i);
+        //如果 j 和 i 不相等，说明最小值不在下标为 i 的位置，需要交换
+        if (i!=j) {
+            swap(&amp;(L-&gt;r[i]),&amp;(L-&gt;r[j]));
+        }
+    }
+}
+
+int main() {
+    SqList * L=(SqList*)malloc(sizeof(SqList));
+    L-&gt;length=8;
+    L-&gt;r[0].key=49;
+    L-&gt;r[1].key=38;
+    L-&gt;r[2].key=65;
+    L-&gt;r[3].key=97;
+    L-&gt;r[4].key=76;
+    L-&gt;r[5].key=13;
+    L-&gt;r[6].key=27;
+    L-&gt;r[7].key=49;
+    SelectSort(L);
+    for (int i=0; i&lt;L-&gt;length; i++) {
+        printf(&quot;%d &quot;,L-&gt;r[i].key);
+    }
+    return 0;
+}</pre>
+运行结果：
+<div class="info-box">
+	13 27 38 49 49 65 76 97</div>
+<h2>
+	树形选择排序</h2>
+<span style="color:#008000;">树形选择排序</span>（又称<span style="color:#008000;">&ldquo;锦标赛排序&rdquo;</span>），是一种按照锦标赛的思想进行选择排序的方法，即所有记录采取两两分组，筛选出较小（较大）的值；然后从筛选出的较小（较大）值中再两两分组选出更小（更大）值，依次类推，直到最后选出一个最小（最大）值。同样可以采用此方式筛选出次小（次大）值等。<br />
+<br />
+整个排序的过程，可以用一棵具有 n 个叶子结点的完全<u><a href='/view/192.html' target='_blank'>二叉树</a></u>表示。例如对无序表<code>{49，38，65，97，76，13，27，49}</code>采用树形选择的方式排序，过程如下：<br />
+<ul>
+	<li>
+		首先将无序表中的记录采用两两分组，筛选出各组中的较小值（如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 中的（a）过程）；然后将筛选出的较小值两两分组，筛选出更小的值，以此类推（如图 1 中的（b）（c）过程），最终整棵树的根结点中的关键字即为最小关键字：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G11310U9.png" style="width: 600px; height: 238px;" /><br />
+	图 1 树形选择排序（一）</div>
+<ul>
+	<li>
+		筛选出关键字 13 之后，继续重复此方式找到剩余记录中的最小值，此时由于关键字 13 已经筛选完成，需要将关键字 13 改为&ldquo;最大值&rdquo;，继续重复此过程，如图 2 所示：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G11341338.png" style="width: 600px; height: 238px;" /><br />
+	图 2 树形选择排序（二）</div>
+<br />
+通过不断地重复此过程，可依次筛选出从小到大的所有关键字。该算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(nlogn)</code>，同简单选择排序相比，该算法减少了不同记录之间的比较次数，但是程序运行所需要的空间较多。
+<h2>
+	堆排序</h2>
+<span style="color:#b22222;">在学习堆排序之前，首先需要了解堆的含义：在含有 n 个元素的序列中，如果序列中的元素满足下面其中一种关系时，此序列可以称之为</span><span style="color:#008000;">堆</span><span style="color:#b22222;">。</span><br />
+<br />
+<ul>
+	<li>
+		k<sub>i</sub> &le; k<sub>2i</sub> 且 k<sub>i</sub> &le; k<sub>2i+1</sub>（在 n 个记录的范围内，第 i 个关键字的值小于第 2*i 个关键字，同时也小于第 2*i+1 个关键字）</li>
+	<li>
+		k<sub>i</sub> &ge; k<sub>2i</sub> 且 k<sub>i</sub> &ge; k<sub>2i+1</sub>（在 n 个记录的范围内，第 i 个关键字的值大于第 2*i 个关键字，同时也大于第 2*i+1 个关键字）</li>
+</ul>
+<br />
+对于堆的定义也可以使用完全二叉树来解释，因为在完全二叉树中第 i 个结点的左孩子恰好是第 2i 个结点，右孩子恰好是 2i+1 个结点。如果该序列可以被称为堆，则使用该序列构建的完全二叉树中，每个根结点的值都必须不小于（或者不大于）左右孩子结点的值。<br />
+<br />
+以无序表<code>{49，38，65，97，76，13，27，49}</code>来讲，其对应的堆用完全二叉树来表示为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G11P3256.png" style="width: 273px; height: 250px;" /><br />
+	图 3 无序表对应的堆</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>堆用完全二叉树表示时，其表示方法不唯一，但是可以确定的是树的根结点要么是无序表中的最小值，要么是最大值。</p>
+</blockquote>
+<span style="color:#b22222;">通过将无序表转化为堆，可以直接找到表中最大值或者最小值，然后将其提取出来，令剩余的记录再重建一个堆，取出次大值或者次小值，如此反复执行就可以得到一个有序序列，此过程为</span><span style="color:#008000;">堆排序</span>。<br />
+<br />
+堆排序过程的代码实现需要解决两个问题：
+<ol>
+	<li>
+		如何将得到的无序序列转化为一个堆？</li>
+	<li>
+		在输出堆顶元素之后（完全二叉树的树根结点），如何调整剩余元素构建一个新的堆？</li>
+</ol>
+首先先解决第 2 个问题。图 3 所示为一个完全二叉树，若去除堆顶元素，即删除二叉树的树根结点，此时用二叉树中最后一个结点 97 代替，如下图所示：<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G1192WU.png" style="width: 239px; height: 187px;" /></div>
+此时由于结点 97 比左右孩子结点的值都大，破坏了堆的结构，所以需要进行调整：首先以 堆顶元素 97 同左右子树比较，同值最小的结点交换位置，即 27 和 97 交换位置：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G1194A41.png" style="width: 239px; height: 187px;" /><br />
+	&nbsp;</div>
+由于替代之后破坏了根结点右子树的堆结构，所以需要进行和上述一样的调整，即令 97 同 49 进行交换位置：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G12003264.png" style="width: 239px; height: 187px;" /><br />
+	&nbsp;</div>
+通过上述的调整，之前被破坏的堆结构又重新建立。<span style="color:#b22222;">从根结点到叶子结点的整个调整的过程，被称为</span><span style="color:#008000;">&ldquo;筛选&rdquo;</span>。<br />
+<br />
+解决第一个问题使用的就是不断筛选的过程，如下图所示，无序表<code>{49，38，65，97，76，13，27，49}</code>初步建立的完全二叉树，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G12041N3.png" style="width: 268px; height: 267px;" /><br />
+	&nbsp;</div>
+在对上图做筛选工作时，规律是从底层结点开始，一直筛选到根结点。对于具有 n 个结点的完全二叉树，筛选工作开始的结点为第 &lfloor;n/2&rfloor;个结点（此结点后序都是叶子结点，无需筛选）。<br />
+<br />
+所以，对于有 9 个结点的完全二叉树，筛选工作从第 4 个结点 97 开始，由于 97 &gt; 49 ,所以需要相互交换，交换后如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G1212b35.png" style="width: 268px; height: 267px;" /><br />
+	&nbsp;</div>
+然后再筛选第 3 个结点 65 ，由于 65 比左右孩子结点都大，则选择一个最小的同 65 进行交换，交换后的结果为：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G1214J09.png" style="width: 268px; height: 267px;" /><br />
+	&nbsp;</div>
+然后筛选第 2 个结点，由于其符合要求，所以不用筛选；最后筛选根结点 49 ，同 13 进行交换，交换后的结果为：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G12204617.png" style="width: 268px; height: 267px;" /><br />
+	&nbsp;</div>
+交换后，发现破坏了其右子树堆的结构，所以还需要调整，最终调整后的结果为：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G12221A8.png" style="width: 268px; height: 267px;" /></div>
+所以实现堆排序的完整代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX 9
+//单个记录的结构体
+typedef struct {
+    int key;
+}SqNote;
+//记录表的结构体
+typedef struct {
+    SqNote r[MAX];
+    int length;
+}SqList;
+//将以 r[s]为根结点的子树构成堆，堆中每个根结点的值都比其孩子结点的值大
+void HeapAdjust(SqList * H,int s,int m){
+    SqNote rc=H-&gt;r[s];//先对操作位置上的结点数据进行保存，放置后序移动元素丢失。
+    //对于第 s 个结点，筛选一直到叶子结点结束
+    for (int j=2*s; j&lt;=m; j*=2) {
+        //找到值最大的孩子结点
+        if (j+1&lt;m &amp;&amp; (H-&gt;r[j].key&lt;H-&gt;r[j+1].key)) {
+            j++;
+        }
+        //如果当前结点比最大的孩子结点的值还大，则不需要对此结点进行筛选，直接略过
+        if (!(rc.key&lt;H-&gt;r[j].key)) {
+            break;
+        }
+        //如果当前结点的值比孩子结点中最大的值小，则将最大的值移至该结点，由于 rc 记录着该结点的值，所以该结点的值不会丢失
+        H-&gt;r[s]=H-&gt;r[j];
+        s=j;//s相当于指针的作用，指向其孩子结点，继续进行筛选
+    }
+    H-&gt;r[s]=rc;//最终需将rc的值添加到正确的位置
+}
+//交换两个记录的位置
+void swap(SqNote *a,SqNote *b){
+    int key=a-&gt;key;
+    a-&gt;key=b-&gt;key;
+    b-&gt;key=key;
+}
+void HeapSort(SqList *H){
+    //构建堆的过程
+    for (int i=H-&gt;length/2; i&gt;0; i--) {
+        //对于有孩子结点的根结点进行筛选
+        HeapAdjust(H, i, H-&gt;length);
+    }
+    //通过不断地筛选出最大值，同时不断地进行筛选剩余元素
+    for (int i=H-&gt;length; i&gt;1; i--) {
+        //交换过程，即为将选出的最大值进行保存大表的最后，同时用最后位置上的元素进行替换，为下一次筛选做准备
+        swap(&amp;(H-&gt;r[1]), &amp;(H-&gt;r[i]));
+        //进行筛选次最大值的工作
+        HeapAdjust(H, 1, i-1);
+    }
+}
+
+int main() {
+    SqList * L=(SqList*)malloc(sizeof(SqList));
+    L-&gt;length=8;
+    L-&gt;r[1].key=49;
+    L-&gt;r[2].key=38;
+    L-&gt;r[3].key=65;
+    L-&gt;r[4].key=97;
+    L-&gt;r[5].key=76;
+    L-&gt;r[6].key=13;
+    L-&gt;r[7].key=27;
+    L-&gt;r[8].key=49;
+    HeapSort(L);
+    for (int i=1; i&lt;=L-&gt;length; i++) {
+        printf(&quot;%d &quot;,L-&gt;r[i].key);
+    }
+    return 0;
+}</pre>
+运行结果为：
+<div class="info-box">
+	13 27 38 49 49 65 76 97</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示:</span>代码中为了体现构建堆和输出堆顶元素后重建堆的过程，堆在构建过程中，采用的是堆的第二种关系，即父亲结点的值比孩子结点的值大；重建堆的过程也是如此。</p>
+</blockquote>
+堆排序在最坏的情况下，其时间复杂度仍为<code>O(nlogn)</code>。这是相对于快速排序的优点所在。同时堆排序相对于树形选择排序，其只需要一个用于记录交换（rc）的辅助存储空间，比树形选择排序的运行空间更小。
+<h2>
+	总结</h2>
+本节介绍了三种选择排序：<span style="color:#008000;">简单选择排序</span>、<span style="color:#008000;">树形选择排序</span>和<span style="color:#008000;">堆排序</span>。树形选择排序的产生是考虑到为了减少简单选择排序过程中做比较操作的次数；堆排序的产生是考虑到树形选择排序在运行时申请的辅助存储空间多。要根据特定地情况，选择合适的选择排序算法。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_260.html">快速排序算法（QSort，快排）</a></span>
+                    <span class="next right"><a href="/view/vip_261.html">归并排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_260.html";window.nextPageURL = "/view/vip_261.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 72;
+window.arcId = "1f58J3ZtO2MG7kDozwZQBWEZy9U8SCuSZ39JbpLryYq2Vlouv/y7M5YC";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

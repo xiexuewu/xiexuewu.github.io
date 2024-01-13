@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构中的树存储结构</title>
+<meta name="keywords" content="数据结构,中的,树,存储,结构,数据结构,中的," />
+<meta name="description" content="之前介绍的所有的数据结构都是线性存储结构。本章所介绍的树结构是一种非线性存储结构，存储的是具有一对多关系的数据元素的集合。 (A) (B) 图 1 树的示例 图1(A)是使用树结构存储的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/github/tree/">树</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/github/view/23.html">树的存储结构</a></dd><dd>6.2 <a href="/github/view/192.html">什么是二叉树</a></dd><dd>6.3 <a href="/github/view/193.html">二叉树的顺序存储结构</a></dd><dd>6.4 <a href="/github/view/194.html">二叉树的链式存储结构</a></dd><dd>6.5 <a href="/github/view/vip_237.html">浅谈二叉树的（4种）遍历算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.6 <a href="/github/view/143.html">二叉树先序遍历（递归与非递归）</a></dd><dd>6.7 <a href="/github/view/144.html">二叉树中序遍历（递归和非递归）</a></dd><dd>6.8 <a href="/github/view/145.html">二叉树后序遍历（递归与非递归）</a></dd><dd>6.9 <a href="/github/view/27.html">二叉树层次遍历</a></dd><dd>6.10 <a href="/github/view/vip_265.html">线索二叉树(C语言实现)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.11 <a href="/github/view/vip_266.html">双向线索二叉树的建立</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.12 <a href="/github/view/196.html">树的双亲表示法</a></dd><dd>6.13 <a href="/github/view/197.html">树的孩子表示法</a></dd><dd>6.14 <a href="/github/view/198.html">树的孩子兄弟表示法</a></dd><dd>6.15 <a href="/github/view/vip_241.html">森林转化为二叉树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.16 <a href="/github/view/33.html">哈夫曼树</a></dd><dd>6.17 <a href="/github/view/34.html">回溯算法</a></dd><dd>6.18 <a href="/github/view/35.html">n个结点的二叉树种类</a></dd><dd>6.19 <a href="/github/view/vip_242.html">[项目实践]移动迷宫小游戏(初级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构中的树存储结构</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/tree/">树</a></span>
+                    <span class="next right"><a href="/view/192.html">什么是二叉树</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/tree/";window.nextPageURL = "/view/192.html";</script>
+			<div id="arc-body">之前介绍的所有的数据结构都是线性存储结构。本章所介绍的<u><a href='/view/23.html' target='_blank'>树</a></u>结构是一种非线性存储结构，存储的是具有&ldquo;一对多&rdquo;关系的数据元素的集合。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0094003158.png" style="width: 579px; height: 244px;" /></div>
+<span style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+<div style="text-align: center;">
+	<span style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp;(A) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(B)&nbsp;</span></div>
+<div style="text-align: center;">
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 树的示例</div>
+<br />
+图 1(A) 是使用树结构存储的集合 {A,B,C,D,E,F,G,H,I,J,K,L,M} 的示意图。对于数据 A 来说，和数据 B、C、D 有关系；对于数据 B 来说，和 E、F 有关系。这就是<span style="color:#008000;">&ldquo;一对多&rdquo;</span>的关系。<br />
+<br />
+将具有&ldquo;一对多&rdquo;关系的集合中的数据元素按照图 1（A）的形式进行存储，整个存储形状在逻辑结构上看，类似于实际生活中倒着的树（图 1（B）倒过来），所以称这种存储结构为<span style="color:#008000;">&ldquo;树型&rdquo;</span>存储结构。
+<h2>
+	树的结点</h2>
+<span style="color:#008000;">结点</span>：使用树结构存储的每一个数据元素都被称为&ldquo;结点&rdquo;。例如，图 1（A）中，数据元素 A 就是一个结点；<br />
+<br />
+<span style="color:#008000;">父结点（双亲结点）、子结点和兄弟结点</span>：对于图 1（A）中的结点 A、B、C、D 来说，A 是 B、C、D 结点的父结点（也称为&ldquo;双亲结点&rdquo;），而 B、C、D 都是 A 结点的子结点（也称<span style="color:#008000;">&ldquo;孩子结点&rdquo;</span>）。对于 B、C、D 来说，它们都有相同的父结点，所以它们互为兄弟结点。<br />
+<br />
+<span style="color:#008000;">树根结点（简称&ldquo;根结点&rdquo;）</span>：每一个非空树都有且只有一个被称为根的结点。图 1（A）中，结点A就是整棵树的根结点。<br />
+<div class="info-box">
+	树根的判断依据为：如果一个结点没有父结点，那么这个结点就是整棵树的根结点。</div>
+<span style="color:#008000;">叶子结点</span>：如果结点没有任何子结点，那么此结点称为叶子结点（叶结点）。例如图 1（A）中，结点 K、L、F、G、M、I、J 都是这棵树的叶子结点。
+<h2>
+	子树和空树</h2>
+<span style="color:#008000;">子树</span>：如图 1（A）中，整棵树的根结点为结点 A，而如果单看结点 B、E、F、K、L 组成的部分来说，也是棵树，而且节点 B 为这棵树的根结点。所以称 B、E、F、K、L 这几个结点组成的树为整棵树的子树；同样，结点 E、K、L 构成的也是一棵子树，根结点为 E。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>单个结点也是一棵树，只不过根结点就是它本身。图 1（A）中，结点 K、L、F 等都是树，且都是整棵树的子树。</p>
+</blockquote>
+知道了子树的概念后，<span style="color:#b22222;">树也可以这样定义：树是由根结点和若干棵子树构成的</span>。<br />
+<br />
+<span style="color:#008000;">空树</span>：如果集合本身为空，那么构成的树就被称为空树。<span style="color:#b22222;">空树中没有结点。</span><br />
+<div class="info-box">
+	补充：在树结构中，对于具有同一个根结点的各个子树，相互之间不能有交集。例如，图 1（A）中，除了根结点 A，其余元素又各自构成了三个子树，根结点分别为 B、C、D，这三个子树相互之间没有相同的结点。如果有，就破坏了树的结构，不能算做是一棵树。</div>
+<h2>
+	结点的度和层次</h2>
+<span style="color:#b22222;">对于一个结点，拥有的子树数（结点有多少分支）称为结点的</span><span style="color:#008000;">度（Degree）</span>。例如，图 1（A）中，根结点 A 下分出了 3 个子树，所以，结点 A 的度为 3。<br />
+<div class="info-box">
+	一棵树的度是树内各结点的度的最大值。图 1（A）表示的树中，各个结点的度的最大值为 3，所以，整棵树的度的值是 3。</div>
+<span style="color:#008000;">结点的层次</span>：从一棵树的树根开始，树根所在层为第一层，根的孩子结点所在的层为第二层，依次类推。对于图 1（A）来说，A 结点在第一层，B、C、D 为第二层，E、F、G、H、I、J 在第三层，K、L、M 在第四层。
+<div class="info-box">
+	一棵树的深度（高度）是树中结点所在的最大的层次。图 1（A）树的深度为 4。</div>
+如果两个结点的父结点虽不相同，但是它们的父结点处在同一层次上，那么这两个结点互为堂兄弟。例如，图 1（A）中，结点 G 和 E、F、H、I、J 的父结点都在第二层，所以之间为堂兄弟的关系。
+<h2>
+	有序树和无序树</h2>
+如果树中结点的子树从左到右看，谁在左边，谁在右边，是有规定的，这棵树称为<span style="color:#008000;">有序树</span>；反之称为<span style="color:#008000;">无序树</span>。<br />
+<div class="info-box">
+	在有序树中，一个结点最左边的子树称为<span style="color:#008000;">&quot;第一个孩子&quot;</span>，最右边的称为<span style="color:#008000;">&quot;最后一个孩子&quot;</span>。</div>
+<p>
+	拿图 1（A）来说，如果是其本身是一棵有序树，则以结点 B 为根结点的子树为整棵树的第一个孩子，以结点 D 为根结点的子树为整棵树的最后一个孩子。</p>
+<h2>
+	森林</h2>
+<span style="color:#b22222;">由 m（m &gt;= 0）个互不相交的树组成的集合被称为</span><span style="color:#008000;">森林</span>。图 1（A）中，分别以 B、C、D 为根结点的三棵子树就可以称为森林。<br />
+<br />
+前面讲到，树可以理解为是由根结点和若干子树构成的，而这若干子树本身是一个森林，所以，树还可以理解为是由根结点和森林组成的。用一个式子表示为：
+<div class="info-box">
+	Tree =（root,F）</div>
+其中，root 表示树的根结点，F 表示由 m（m &gt;= 0）棵树组成的森林。
+<h2>
+	树的表示方法</h2>
+除了图 1（A）表示树的方法外，还有其他表示方法：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS00952413Y.png" style="width: 400px; height: 245px;" /></div>
+<div>
+	&nbsp;</div>
+<div style="text-align: center;">
+	<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （A） &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （B）</div>
+<div style="text-align: center;">
+	图2 树的表示形式<br />
+	&nbsp;</div>
+图 2（A）是以嵌套的集合的形式表示的<span style="color:#b22222;">（集合之间绝不能相交，即图中任意两个圈不能相交）</span>。<br />
+<br />
+图 2（B）使用的是<span style="color:#008000;">凹入表示法</span>（了解即可），表示方式是：最长条为根结点，相同长度的表示在同一层次。例如 B、C、D 长度相同，都为 A 的子结点，E 和 F 长度相同，为 B 的子结点，K 和 L 长度相同，为 E 的子结点，依此类推。<br />
+<br />
+最常用的表示方法是使用<u><a href='/view/189.html' target='_blank'>广义表</a></u>的方式。图 1（A）用广义表表示为：
+<div class="info-box">
+	(A , ( B ( E ( K , L ) , F ) , C ( G ) , D ( H ( M ) , I , J ) ) )</div>
+<h2>
+	总结</h2>
+树型存储结构类似于家族的族谱，各个结点之间也同样可能具有父子、兄弟、表兄弟的关系。本节中，要重点理解树的根结点和子树的定义，同时要会计算树中各个结点的度和层次，以及树的深度。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/tree/">树</a></span>
+                    <span class="next right"><a href="/view/192.html">什么是二叉树</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/tree/";window.nextPageURL = "/view/192.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 23;
+window.arcId = "2bb5xNKkLzobtm+B+k11hF1dIBStNAx1Nij1e13xNL5QaegIHDnzkIAl";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

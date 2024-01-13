@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>浅谈二叉树的（4种）遍历算法</title>
+<meta name="keywords" content="浅谈,二叉,树,的,4种,遍历,算法,遍历,二叉,树," />
+<meta name="description" content="遍历二叉树可以算作是对树存储结构做的最多的操作，既是重点，也是难点。本节将从初学者的角度给大家分析一下 4 种遍历二叉树算法的由来。 图 1 二叉树示意图 图 1 是一棵二叉树，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>浅谈二叉树的（4种）遍历算法</h1>
+			<div id="arc-body">遍历<u><a href='/view/192.html' target='_blank'>二叉树</a></u>可以算作是对<u><a href='/view/23.html' target='_blank'>树</a></u>存储结构做的最多的操作，既是重点，也是难点。本节将从初学者的角度给大家分析一下 4 种遍历二叉树算法的由来。<br />
+<h2>
+	遍历二叉树的算法</h2>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/181229/2-1Q22920424A23.gif" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 二叉树示意图</div>
+<br />
+图 1 是一棵二叉树，对于初学者而言，遍历这棵二叉树无非有以下两种方式。<br />
+<h4>
+	层次遍历</h4>
+前面讲过，树是有层次的，拿图 1 来说，该二叉树的层次为 3。通过对树中各层的节点从左到右依次遍历，即可实现对正棵二叉树的遍历，此种方式称为<span style="color:#008000;">层次遍历</span>。<br />
+<br />
+比如，对图 1 中二叉树进行层次遍历，遍历过程如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181229/2-1Q2292043234L.gif" /><br />
+	图 2 层次遍历二叉树示意图</div>
+<h4>
+	普通遍历</h4>
+其实，还有一种更普通的遍历二叉树的思想，即按照 &quot;从上到下，从左到右&quot; 的顺序遍历整棵二叉树。<br />
+<br />
+还拿图 1 中的二叉树举例，其遍历过程如图 3 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181229/2-1Q22920434Q44.gif" /><br />
+	图 3 普通方式遍历二叉树</div>
+<br />
+以上仅是从初学者的角度，对遍历二叉树的过程进行了分析。接下来我们从程序员的角度再对以上两种遍历方式进行剖析。<br />
+<p class="info-box">
+	这里，我们要建立一个共识，即成功遍历二叉树的标志是能够成功访问到二叉树中所有的节点。</p>
+<h2>
+	二叉树遍历算法再剖析</h2>
+首先观察图 2 中的层次遍历，整个遍历过程只经过各个节点一次，因此在层次遍历过程，每经过一个节点，都必须立刻访问该节点，否则错失良机，后续无法再对其访问。<br />
+<br />
+若对图 1 中二叉树进行层次遍历，则访问树中节点的次序为：
+<p class="info-box">
+	1 2 3 4 5 6 7</p>
+而普通遍历方式则不同，通过观察图 3 可以看到，整个遍历二叉树的过程中，每个节点都被经过了 3 次（虽然叶子节点看似只经过了 2 次，但实际上可以看做是 3 次）。以图 3 中的节点 2 为例，如图 4 所示，它被经过了 3 次。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181229/2-1Q229204439414.gif" /><br />
+	图 4 遍历节点 2 的过程示意图</div>
+<br />
+因此，在编程实现时，我们可以设定真正访问各个节点的时机，换句话说，我们既可以在第一次经过各节点时就执行访问程序，也可以在第二次经过各节点时访问，甚至可以在最后一次经过各节点时访问。<br />
+<br />
+这也就引出了以下 3 种遍历二叉树的算法：
+<ol>
+	<li>
+		<span style="color:#008000;">先序遍历</span>：每遇到一个节点，先访问，然后再遍历其左右子树（对应图 4 中的 ①）；</li>
+	<li>
+		<span style="color:#008000;">中序遍历</span>：第一次经过时不访问，等遍历完左子树之后再访问，然后遍历右子树（对应图 4 中的 ②）；</li>
+	<li>
+		<span style="color:#008000;">后序遍历</span>：第一次和第二次经过时都不访问，等遍历完该节点的左右子树之后，最后访问该节点（对应图 4 中的 ③）；</li>
+</ol>
+<br />
+以图 1 中的二叉树为例，其先序遍历算法访问节点的先后次序为：
+<p class="info-box">
+	1 2 4 5 3 6 7</p>
+中序遍历算法访问节点的次序为：
+<p class="info-box">
+	4 2 5 1 6 3 7</p>
+后序遍历访问节点的次序为：
+<p class="info-box">
+	4 5 2 6 7 3 1</p>
+<br />
+以上就是二叉树 4 种遍历算法的由来，其各个算法的具体实现过程其代码实现后续章节会详解介绍。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 195;
+window.arcId = "5c1dmAY1p5owv+k9HhRQZr1j061ohGDkqLhnmr9tHzQ8ITL+FRS5VmLVnQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

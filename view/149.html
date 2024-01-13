@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>Gale-Shapley算法解决舞伴问题过程详解（C++实现）</title>
+<meta name="keywords" content="Gale-Shapley,算法,解决,舞伴,问题,过程,详解" />
+<meta name="description" content="舞伴问题 是这样的：有 n 个男孩与 n 个女孩参加舞会，每个男孩和女孩均交给主持一个名单，写上他（她）中意的舞伴名字。无论男孩还是女孩，提交给主持人的名单都是按照偏爱程度" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>Gale-Shapley算法解决舞伴问题过程详解（C++实现）</h1>
+			<div id="arc-body"><span style="color:#008000;">舞伴问题</span>是这样的：有 n 个男孩与 n 个女孩参加舞会，每个男孩和女孩均交给主持一个名单，写上他（她）中意的舞伴名字。无论男孩还是女孩，提交给主持人的名单都是按照偏爱程度排序的，排在前面的都是他们最中意的舞伴。试问主持人在收到名单后，是否可以将他们分成 n 对，使每个人都能和他们中意的舞伴结对跳舞？为了避免舞会上出现不和谐的情况，要求这些舞伴的关系是稳定的。<br />
+<br />
+假如有两对分好的舞伴：（男孩 A，女孩 B)和（男孩 B，女孩 A），但是男孩A更偏爱女孩 A，女孩 A 也更偏爱男孩 A，同样，女孩 B 更偏爱男孩 B，而男孩 B 也更偏爱女爱 B。在这种情况下，这两对舞伴就倾向于分开，然后重新组合，这就是不稳定因素。很显然，这个问题需要的是一个稳定匹配的结果，适合使用<span style="color:#008000;"> Gale-Shapley 算法</span>。<br />
+<h2>
+	算法实现</h2>
+首先定义舞伴的数据结构，根据题意，一个舞伴至少要包含两个属性，就是每个人的偏爱舞伴列表和他（她）们当前选择的舞伴。根据 Gale-Shapley 算法的规则，还需要有一个属性表示下一次要向哪个偏爱舞伴提出跳舞要求。当然，这个属性并不是男生和女生同时需要的，当使用&ldquo;男士优先&rdquo;策略时，男生需要这个属性，当使用&ldquo;女士优先&rdquo;策略时，女生需要这个属性。为了使程序输出更有趣味，需要为每个角色提供一个名字。<br />
+<br />
+综上所述，舞伴的数据结构定义如下：
+<pre class="cpp">
+typedef struct tagPartner {
+    char *name; //名宇
+    int next; //下一个邀请对象
+    int current; //当前舞伴，-1表示还没有舞伴
+    int pcount; //偏爱列表中舞伴个数
+    int perfect[UNIT_C0UNT]; //偏爱列表
+}PARTNER;</pre>
+UNIT_COUNT 是男孩或女孩的数量（稳定匹配问题总是假设男孩和女孩的数虽相等），pcount 是偏爱列表中的舞伴个数。根据标准的&ldquo;稳定婚姻问题&rdquo;的要求，pcount 的值应该是和 UNIT_COUNT &mdash;致的，但是某些情况下（比如一些算法比赛题目的特殊要求）也会要求伙伴们提供的偏爱列表可长可短，因此我们增加了这个属性。<br />
+<br />
+这里给出的实现算法使用<u><a href='/view/181.html' target='_blank'>数组</a></u>来存储参加舞会的男孩和女孩列表，因此这个数据结构中的 next、current 和 perfect 列表中存放的都是数组索引，了解这一点有助于理解算法的实现代码。<br />
+<br />
+Gale-Shapley 算法的实现非常简单，完整的算法代码如下：
+<pre class="cpp">
+bool Gale_Shapley(PARTNER *boys, PARTNER *girls, int count)
+{
+    int bid = FindFreePartner(boys, count);
+    while(bid &gt;= 0)
+    {
+        int gid = boys[bid].perfect[boys[bid].next];
+        if(girls[gid].current == -1)
+        {
+            boys[bid].current = gid;
+            girls[gid].current = bid;
+        }
+        else
+        {
+            int bpid = girls[gid].current;
+            //女孩喜欢bid胜过其当前舞伴bpid
+            if(GetPerfectPosition(&amp;girls[gid],bpid) &gt; GetPerfectPosition(&amp;girls[gid], bid)) {
+                boys [bpid].current = -1; //当前舞伴恢复自由身
+                boys[bid].current = gid; //结交新舞伴
+                girls[gid].current = bid;
+            }
+        }
+        boys[bid] .next++; //无论是否配对成功，对同一个女孩只邀请一次 bid = FindFreePartner(boys, count);
+    }
+    return IsAllPantnerMatch(boys&gt; count);
+}</pre>
+FindFreePartner() 函数负责从男孩列表中找一个还没有舞伴、并且偏好列表中还有没有邀请过的女孩的男孩，返回男孩在列表（数组）中的索引。如果返回值等于 -1，表示没有符合条件的男孩了，于是主循环停止，算法就结束了。<br />
+<br />
+GetPerfectPosition() 函数用于判断女孩喜欢一个舞伴的程度，通过返回舞伴在自己的偏爱列表中的位罝来判断，位罝越靠前，也就是 GetPerfectPosition() 函数的返回值越小，说明女孩越喜欢这个舞伴。<br />
+<br />
+GetPerfectPosition() 函数的实说代码如下：
+<pre class="cpp">
+int GetPerfectPosition(PARTNER *partner, int id)
+{
+    for(int i = 0; i &lt; partner-&gt;pCount; i++)
+    {
+        if(partner-&gt;perfect[i] == id)
+        {
+            return i;
+        }
+    }
+    //返回一个非常大的值，意味着根本排不上对
+    return 0X7FFFFFFF;
+}</pre>
+按照&ldquo;稳定婚姻问题&rdquo;的要求，这个函数应该总是能够得到 ID 指定的异性舞伴在 partner 的偏爱列表中的位置，因为每个 partner 的偏爱列表包含所有异性舞伴。但是当题目有特殊需求时，partner 的偏爱列表可能只有部分异性舞伴。比如 partner 非常恨一个人，他们绝对不能成为舞伴，那么 partner 的偏爱列表肯定不会包含这个人。<br />
+<br />
+考虑到算法的通用性，GetPerfectPosition() 函数默认返回一个非常大的数，返回这个数这意味着 ID 指定的异性舞伴在 partner 的偏爱列表中根本没有位罝（非常恨），根据算法的规则，partner 最不喜欢的异性舞伴的位置都比id指定的异性舞伴位置靠前。这也是算法一致性处理的一个技巧，GetPerfectPosition() 函数当然可以设计成返回 -1 表示 ID 指定的异性舞伴不在 partner 的偏爱列表中，但是大家想一想，算法中是不是要对这个返回值做特殊处理？<br />
+<br />
+原来代码中判断位置关系的一行代码处理：<br />
+<pre class="cpp">
+if(GetPerfectPosition(&amp;girls[gid], bpid) &gt; GetPerfectPosition(&amp;girls[gid], bid))</pre>
+就会变得非常繁琐，让我们看看会是什么情况：<br />
+<pre class="cpp">
+if((GetPerfectPosition(&amp;girls[gid], bpid) == -1)&amp;&amp; (GetPerfectPosition(&amp;girls[gid], bid) == -1))
+{
+    //当前舞伴bpid和bid都不在女孩的喜欢列表中，太糟糕了
+    ...
+}
+else if(GetPerfectPosition(&amp;girls[gid], bpid) == -1)
+{
+    //当前舞伴bpid不在女孩的喜欢列表中，bid有机会
+    ...
+}
+else if(GetPerfectPosition(&amp;girls[gid], bid) == -1)
+{
+    //bid不在女孩的喜欢列表中，当前舞伴bPid维持原状
+    ...
+}
+else if(GetPerfectPosition(&amp;girls[gid], bpid) &gt;GetPerfectPosition(&amp;girls[gid], bid))
+{
+    //女孩喜欢bid胜过其当前舞伴bpid\
+    ...
+}
+else
+{
+    //女孩喜欢当前舞伴bpid胜过bid
+    ...
+}</pre>
+这是我最不喜欢的代码逻辑，真的，太糟糕了。可见，这个小小的技巧为代码的逻辑处理带来了极大的好处。类似的技巧被广泛应用，在排序算法中经常使用&ldquo;哨兵&rdquo;位，避免每次都要判断是否比较完全部元素。面向对象技术中常用的&ldquo;DuramyObject&rdquo;技术，也是类似的思想。<br />
+<br />
+Gale-Shapley 算法原来如此简单，你是不是为沙普利能获得诺贝尔奖愤愤不平？其实不然，算法原理的简单并不等于其解决的问题也简单，小算法解决大问题。<br />
+<h2>
+	改进优化：空间换时间</h2>
+Gale_Shapley() 函数给出的算法还有点问题，主要是 GetPerfectPosition() 函数的策略，这个函数每次都要遍历 partner 的偏爱舞伴列表才能确定 bid 的位罝，很可能导致理论上<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为的算法在实际实现时变成的时间复杂度。为了避免算法在多轮选择过程中频繁遍历每个 partner 的偏爱舞伴列表，需要对 partner 到底更偏爱哪个舞伴的判断策略进行改进。<br />
+<br />
+改进的原则就是&ldquo;以空间换时间&rdquo;。简单来讲，以空间换时间的方法就是用一张事先初始化好的表存储这些位罝关系，在使用个过程中，以 <code>O(1)</code> 时间复杂度的方式直接查表确定偏爱舞伴的关系。这样的表可以是<u><a href='/view/157.html' target='_blank'>线性表</a></u>，也可以是<u><a href='/view/63.html' target='_blank'>哈希表</a></u>这样的映射表。<br />
+<br />
+对于这个问题，我们选择使用二维表来存储这些位置关系。假设存在二维表 priority[n][n]，我们用 priority[w][m] 表示在 w 的偏爱列表中的位置，这个值越小，表示 m 在 w 的偏爱列表中的位置越靠前。在算法开始之前，首先初始化这个关系表：<br />
+<pre class="cpp">
+for(int w = 0; w &lt; unit_count； w++)
+{
+    //初始化成最大值，原理同上
+    for(int j = 0; j &lt; UNIT_COUNT; j++)
+    {
+        priority= 0X7FFFFFFF;
+    }
+    //给偏爱舞伴指定位置关系
+    int pos = 0;
+    for(int m = 0; m &lt; girls[w].pCount; m++)
+    {
+        priority[w][girls[w].perfect[m]] = pos++;
+    }
+}</pre>
+最后，将对 GetPerfectPosition() 函数的调用替换成查表：<br />
+<pre class="cpp">
+if(priority[gid][bpid] &gt; priority[gid][bid])</pre>
+对于一些在算法执行过程中不会发生变化的静态数据，如果算法执行过程中需要反复读取这些数据，并且读取操作存在一定时间开销的场合，比较适合使用这种&ldquo;以空间换时间&rdquo;的策略。用合理的方式组织这些数据，使得数据能够在 <code>O(1)</code> 时间复杂度内实现是这种策略的关键。<br />
+<br />
+对本问题应用&ldquo;以空间换时间&rdquo;的策略，需要在算法开始的准备阶段初始化好 priority 二维表，这需要一些额外的开销，但是相对于 n<sup>2</sup> 次查询节省的时间来说，这点开销是能够容忍的。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 149;
+window.arcId = "d5a6uwyVTcZLC6AX4DHUxdn8APoMlLQGol4WZdkQDo77OcW/qvJnGlogeQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

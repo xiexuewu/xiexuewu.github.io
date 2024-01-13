@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>基数排序及其C语言实现</title>
+<meta name="keywords" content="基数,排序,及其,语言,实现,基数,排序,及其," />
+<meta name="description" content="基数排序不同于之前所介绍的各类排序，前边介绍到的排序方法或多或少的是通过使用比较和移动记录来实现排序，而基数排序的实现不需要进行对关键字的比较，只需要对关键字进行" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>基数排序及其C语言实现</h1>
+			<div id="arc-body"><span style="color:#b22222;">基数排序</span>不同于之前所介绍的各类排序，前边介绍到的排序方法或多或少的是通过使用比较和移动记录来实现排序，而基数排序的实现不需要进行对关键字的比较，只需要对关键字进行<span style="color:#b22222;">&ldquo;分配&rdquo;</span>与<span style="color:#b22222;">&ldquo;收集&rdquo;</span>两种操作即可完成。<br />
+<br />
+例如对无序表<code>{50，123，543，187，49，30，0，2，11，100}</code>进行基数排序，由于每个关键字都是整数数值，且其中的最大值由个位、十位和百位构成，每个数位上的数字从 0 到 9，首先将各个关键字按照其个位数字的不同进行分配分配表如下<u><a href='/view/200.html' target='_blank'>图</a></u>所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G51924160.png" style="width: 264px; height: 332px;" /><br />
+	&nbsp;</div>
+通过按照各关键字的个位数进行分配，按照顺序收集得到的序列变为：<code>{50，30，0，100，11，2，123，543，187，49}</code>。在该序列表的基础上，再按照各关键字的十位对各关键字进行分配，得到的分配表如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G5203O92.png" style="width: 264px; height: 332px;" /><br />
+	&nbsp;</div>
+由上表顺序收集得到的记录表为：<code>{0、100、2、11、123、30、543、49、50、187}</code>。在该无序表的基础上，依次将表中的记录按照其关键字的百位进行分配，得到的分配如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G521323L.png" style="width: 264px; height: 332px;" /><br />
+	&nbsp;</div>
+最终通过三次分配与收集，最终得到的就是一个排好序的有序表：<code>{0、2、11、30、49、50、100、123、187、543}</code>。<br />
+<br />
+例子中是按照个位-十位-百位的顺序进行基数排序，此种方式是从最低位开始排序，所以被称为<span style="color:#008000;">最低位优先法</span><span style="color:#b22222;">（简称&ldquo;LSD法&rdquo;）</span>。<br />
+<br />
+同样还可以按照百位-十位-各位的顺序进行排序，称为<span style="color:#008000;">最高位优先法</span><span style="color:#b22222;">（简称&ldquo;MSD法&rdquo;）</span>，使用该方式进行排序同最低位优先法不同的是：当无序表中的关键字进行分配后，相当于进入了多个子序列，后序的排序工作分别在各个子序列中进行（最低位优先法每次分配与收集都是相对于整个序列表而言的）。<br />
+<br />
+例如还是对<code>{50，123，543，187，49，30，0，2，11，100}</code>使用最高位优先法进行排序，首先按照百位的不同进行分配，得到的分配表为：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G52325938.png" style="width: 332px; height: 332px;" /><br />
+	&nbsp;</div>
+由上图所示，整个无序表被分为了 3 个子序列，序列 1 和序列 2 中含有多个关键字，序列 3 中只包含了一个关键字，<span style="color:#b22222;">最高位优先法完成排序的标准为：直到每个子序列中只有一个关键字为止</span>，所以需要分别对两个子序列进行再分配，各自的分配表如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171107/2-1G10G52354334.png" style="width: 567px; height: 368px;" /><br />
+	&nbsp;</div>
+上表中，序列 1 中还有含有两个关键字的子序列，所以还需要根据个位进行分配，最终按照各子序列的顺序同样会得到一个有序表。
+<h2>
+	基数排序的具体实现（采用LSD法）</h2>
+基数排序较宜使用链式存储结构作为存储结构，相比于顺序存储结构更节省排序过程中所需要的存储空间，称之为<span style="color:#008000;">&ldquo;链式基数排序&rdquo;</span>。<br />
+<br />
+其具体的实现代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX_NUM_OF_KEY 8//构成关键字的组成部分的最大个数
+#define RADIX 10        //基数，例如关键字是数字，无疑由0~9组成，基数就是10；如果关键字是字符<u><a href='/view/175.html' target='_blank'>串</a></u>（字母组成），基数就是 26
+#define MAX_SPACE 10000
+//<u><a href='/view/163.html' target='_blank'>静态链表</a></u>的结点结构
+typedef struct{
+    int data;//存储的关键字
+    int keys[MAX_NUM_OF_KEY];//存储关键字的<u><a href='/view/181.html' target='_blank'>数组</a></u>（此时是一位一位的存储在数组中）
+    int next;//做指针用，用于是静态<u><a href='/view/160.html' target='_blank'>链表</a></u>，所以每个结点中存储着下一个结点所在数组中的位置下标
+}SLCell;
+//静态链表结构
+typedef struct{
+    SLCell r[MAX_SPACE];//静态链表的可利用空间，其中r[0]为头结点
+    int keynum;//当前所有的关键字中最大的关键字所包含的位数，例如最大关键字是百，说明所有keynum=3
+    int recnum;//静态链表的当前长度
+} SLList;
+
+typedef int  ArrType[RADIX];//指针数组，用于记录各子序列的首尾位置
+//排序的分配算法，i表示按照分配的位次（是个位，十位还是百位），f表示各子序列中第一个记录和最后一个记录的位置
+void Distribute(SLCell *r,int i,ArrType f,ArrType e){
+    //初始化指针数组
+    for (int j=0; j&lt;RADIX; j++) {
+        f[j]=0;
+    }
+    //遍历各个关键字
+    for (int p=r[0].next; p; p=r[p].next) {
+        int j=r[p].keys[i];//取出每个关键字的第 i 位，由于采用的是最低位优先法，所以，例如，第 1 位指的就是每个关键字的个位
+        if (!f[j]) {//如果只想该位数字的指针不存在，说明这是第一个关键字，直接记录该关键字的位置即可
+            f[j]=p;
+        }else{//如果存在，说明之前已经有同该关键字相同位的记录，所以需要将其进行连接，将最后一个相同的关键字的next指针指向该关键字所在的位置，同时最后移动尾指针的位置。
+            r[e[j]].next=p;
+        }
+        e[j]=p;//移动尾指针的位置
+    }
+}
+//基数排序的收集算法，即重新设置链表中各结点的尾指针
+void Collect(SLCell *r,int i,ArrType f,ArrType e){
+    int j;
+    //从 0 开始遍历，查找头指针不为空的情况，为空表明该位没有该类型的关键字
+    for (j=0;!f[j]; j++);
+    r[0].next=f[j];//重新设置头结点
+    int t=e[j];//找到尾指针的位置
+    while (j&lt;RADIX) {
+        for (j++; j&lt;RADIX; j++) {
+            if (f[j]) {
+                r[t].next=f[j];//重新连接下一个位次的首个关键字
+                t=e[j];//t代表下一个位次的尾指针所在的位置
+            }
+        }
+    }
+    r[t].next=0;//0表示链表结束
+}
+void RadixSort(SLList *L){
+    ArrType f,e;
+    //根据记录中所包含的关键字的最大位数，一位一位的进行分配与收集
+    for (int i=0; i&lt;L-&gt;keynum; i++) {
+        //秉着先分配后收集的顺序
+        Distribute(L-&gt;r, i, f, e);
+        Collect(L-&gt;r, i, f, e);
+    }
+}
+//创建静态链表
+void creatList(SLList * L){
+    int key,i=1,j;
+    scanf(&quot;%d&quot;,&amp;key);
+    while (key!=-1) {
+        L-&gt;r[i].data=key;
+        for (j=0; j&lt;=L-&gt;keynum; j++) {
+            L-&gt;r[i].keys[j]=key%10;
+            key/=10;
+        }
+        L-&gt;r[i-1].next=i;
+        i++;
+        scanf(&quot;%d&quot;,&amp;key);
+    }
+    L-&gt;recnum=i-1;
+    L-&gt;r[L-&gt;recnum].next=0;
+}
+//输出静态链表
+void print(SLList*L){
+    for (int p=L-&gt;r[0].next; p; p=L-&gt;r[p].next) {
+        printf(&quot;%d &quot;,L-&gt;r[p].data);
+    }
+    printf(&quot;\n&quot;);
+}
+int main(int argc, const char * argv[]) {
+    SLList *L=(SLList*)malloc(sizeof(SLList));
+    L-&gt;keynum=3;
+    L-&gt;recnum=0;
+    creatList(L);//创建静态链表
+    printf(&quot;排序前：&quot;);
+    print(L);
+   
+    RadixSort(L);//对静态链表中的记录进行基数排序
+   
+    printf(&quot;排序后：&quot;);
+    print(L);
+    return 0;
+}</pre>
+运行结果为：
+<div class="info-box">
+	50<br />
+	123<br />
+	543<br />
+	187<br />
+	49<br />
+	30<br />
+	0<br />
+	2<br />
+	11<br />
+	100<br />
+	-1<br />
+	排序前：50 123 543 187 49 30 0 2 11 100<br />
+	排序后：0 2 11 30 49 50 100 123 187 543</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 74;
+window.arcId = "4116sznDQfKl5J0sy006/3/Lvw2XZMvw6o3ouTpPSt7wedbLMwYKnFA3";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

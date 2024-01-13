@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>阿拉伯数字转中文数字方法详解（C++实现）</title>
+<meta name="keywords" content="阿拉伯数字,转,中文,数字,方法,详解,C++,实现," />
+<meta name="description" content="阿拉伯数字与中文数字没有一一对应关系，不存在直接转换的公式化算法，因此需要根据两种数字体系的特点精心构造转换算法。 中文计数有一个特点，就是零的使用变化多端。阿拉伯" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>阿拉伯数字转中文数字方法详解（C++实现）</h1>
+			<div id="arc-body">阿拉伯数字与中文数字没有一一对应关系，不存在直接转换的公式化算法，因此需要根据两种数字体系的特点精心构造转换算法。<br />
+<br />
+中文计数有一个特点，就是&ldquo;零&rdquo;的使用变化多端。阿拉伯数字中数字的权位依靠数字在整个数字长度中的偏移位置确定，因此数字中间出现的0用于标记数字的偏移位置，即便是连续出现的0也不能省略。中文计数方式中每个数字的权位都直接跟在数字后面，因此代表连续出现的若干个0。<br />
+<br />
+尽管如此，也不是所有的情况都使用&ldquo;零&rdquo;，比如阿拉伯数字 20001234，中文数字表示为&ldquo;二千万一千二百三十四&rdquo;，没有用一个&ldquo;零&rdquo;；再比如阿拉伯数字 12000，中文数字表示为&ldquo;一万二千&rdquo;，也没有用&ldquo;零&rdquo;；但是对于阿拉伯数字 10210300，中文数字表示为&ldquo;一千零二十一万零三百&rdquo;，两次出现&ldquo;零&rdquo;。<br />
+<br />
+针对这种情况，中文数字对&ldquo;零&rdquo;的使用总结起来有以下三条规则：
+<ol>
+	<li>
+		以 10000 为小节，小节的结尾即使是 0，也不使用&ldquo;零&rdquo;。</li>
+	<li>
+		小节内两个非&nbsp;0 数字之间要使用&ldquo;零&rdquo;。</li>
+	<li>
+		当小节的&ldquo;千&rdquo;位是 0 时，若本小节的前一小节无其他数字，则不用&ldquo;零&rdquo;，否则就要用&ldquo;零&rdquo;。</li>
+</ol>
+<br />
+从阿拉伯数字到中文数字的转换，第一步是以&ldquo;万&rdquo;为单位分节，并确定节权位。第二步是对每小节内的数字确定权位，并按照前面的三种方法处理&ldquo;零&rdquo;的问题：<br />
+<h2>
+	一个转换示例</h2>
+以阿拉伯数字 200001010200 为例，首先以&ldquo;万&rdquo;为单位对其分节，可分为三节：2000 0101 0200:
+<ul>
+	<li>
+		第一节 2000，节权位是&ldquo;亿&rdquo;，因为这一节的 0 都在结尾，根据规则 1，此处不使用&ldquo;零&rdquo;，直接表示为&ldquo;二千亿&rdquo;。</li>
+	<li>
+		第二节 0101，节权位是&ldquo;万&rdquo;，因两个 1 之间有 0，根据规则&nbsp;2，101 可以描述为&ldquo;一百零一&rdquo;。另外，此节的千位是 0，根据规则 3，因本小节前还有数字，因此需要用&ldquo;零&rdquo;。也就是说，本小节需要两个&ldquo;零&rdquo;。</li>
+	<li>
+		最后一个小节，结尾的两个 0 根据规则 1，不使用&ldquo;零&rdquo;，但是千位的 0 根据规则 3，需要使用&ldquo;零&rdquo;。</li>
+</ul>
+<br />
+根据以上分析，将三个小节的转换结果组合在一起，阿拉伯数字 200001010200 的中文表示就是&ldquo;二千亿零一百零一万零二百&rdquo;。<br />
+<br />
+从这个例子可以看出来，对阿拉伯数字分节，确定数字的权位很简单，最难处理的就是 0 的转换，需要根据三个规则灵活选择是否需要使用&ldquo;零&rdquo;。<br />
+<h2>
+	转换算法设计</h2>
+设计阿拉伯数字转中文数字的算法，也可以遵循上例中的两个步骤来处理，但是需要解决三个问题。<br />
+<br />
+第一个问题是单个数字的转换，这个并不难，因为阿拉伯数字 0〜9 与相应的中文数字是一一对应的。对这个转换设计算法非常简单，可以定义中文数字表：<br />
+<pre class="cpp">
+const char *chnNumChar[CHN_NUM_CHAR_COUNT] = {&quot;零&quot;,&quot;一&quot;,&quot;二&quot;,&quot;三&quot;,&quot;四&quot;,&quot;五&quot;,&quot;六&quot;,&quot;七&quot;,&quot;八&quot;,&quot;九&quot;};</pre>
+待转换的阿拉伯数字作为<u><a href='/view/181.html' target='_blank'>数组</a></u>下标，比如 chnNumChar[5] 就是阿拉伯数字 5 对应的中文数字。<br />
+<br />
+第二个需要解决的问题是节与权位的识别。节的划分很简单，以&ldquo;万&rdquo;为单位截断即可。节权位的定义也釆用一维表，可以利用数组下标直接定位出节权的中文名称：<br />
+<pre class="cpp">
+const char *chnUnitSection[] = {&quot;万&quot;,&quot;亿&quot;,&quot;万亿&quot;};</pre>
+对于 32 位正数能表达的最大数来说，最大节权是&ldquo;万亿&rdquo;己经足够了，如果要转换更大的数，可以延伸这个节权表的定义，比如增加&ldquo;亿亿&rdquo;。数字中最低的节没有节权，使用空字符<u><a href='/view/175.html' target='_blank'>串</a></u>作为占位符也是一个算法设计常用的一致性处理的技巧：对最低的节不做特殊处理，<br />
+<br />
+和其他节一样指定节权位，只不过节权位是空字符串，对转换出的中文数字最终结果没有影响。每个节内的数字对应的权位也采用这种方式定义：<br />
+<pre class="cpp">
+const char *chnUnitChar[] = {&quot;十&quot;,&quot;百&quot;,&quot;千&quot;};</pre>
+最低位的权位是空字符串，处理方式和节权位的处理方式一样。数字权位的确定并不困难，通过移位就可以确定每个数字对应的权位。阿拉伯数字的权位是隐含在数字的位数中的，使用 0 作为占位符。比如数字 1000，要使1处在千位，一定会补 3 个 0 作为占位符，否则1就不代表&ldquo;一千&rdquo;。&nbsp;<br />
+<br />
+既然每一位的权都在固定的位置上，只要记录移位的次数就可以确定阿拉伯数字的权位，以移位次数做下标，直接查 chnUnitSection 和 chnUnitChar 表就可以得到正确的中文数字的权位。<br />
+<br />
+第三个需要解决的问题是如何处理中文&ldquo;零&rdquo;。这个问题稍微有点困难，需要根据文章开头给出的三个规则灵活判断，此外，对于连续出现的阿拉伯数字 0，也只能用一个中文&ldquo;零&rdquo;。<br />
+<h2>
+	算法实现</h2>
+转换算法首先要对阿拉伯数字分节，并确定节权位名称。num 对 10000 取模可得到一个 section，将这个 section 转成中文数字，然后根据节的位置补上节权位，即可完成一个节的中文数字转换。重复这个过程，直到 num 等于 0 为止，整个转换就算完成。<br />
+<br />
+unitPos 变量记录节的位置，0 对应空字符串，1 对应&ldquo;万&rdquo;，2 对应&ldquo;亿&rdquo;，随着 unitPos 的增加，节权位也越来越大。全 0 的节不需要节权位，这个在代码中也有处理。根据规则 3 的定义，如果一节内数字的千位是 0，需要根据前面是否还有数字决定是否需要加&ldquo;零&rdquo;，NumberToChinese() 函数中利用变量 needZero 和 <code>while(num &gt; 0)</code> 循环语句，巧妙地做了这个加&ldquo;零&rdquo;处理，省去了一个if判断。<br />
+<pre class="cpp">
+//num == 0需要特殊处理，直接返回&quot;零&quot;
+void NumberToChinese(unsigned int num, std::string&amp; chnStr)
+{
+    int unitPos = 0;
+    std::string strIns;
+    bool needZero = false;
+    while(num &gt; 0)
+    {
+        unsigned int section = num % 10000;
+        if(needZero)
+        {
+            chnStr.insert(0, chnNumChar[0])；
+        }
+        SectionToChinese(section, strIns);
+        /*是否需要节权位？ */
+        strIns += (section != 0) ? chnUnitSection[unitPos] : chnUnitSection[0];
+        chnStr.insert(0, strIns);
+        /*千位是0需要在下一个section补零*/
+        needZero = (section &lt; 1000) &amp;&amp; (section &gt; 0);
+        num = num / 10000;
+        unitPos++;
+    }
+}</pre>
+SectionToChinese() 函数将一个节的数字转换成中文数字，利用中文数字表 chnNumChar 转换中文数字，利用表 chnUnitChar 得到数字权位，unitPos 变量用作权位索引。SectionToChinese() 函数的关键部分是对 0 的处理，根据规则 1 和规则 2，小节结尾的 0 不需要转换成&ldquo;零&rdquo;，但是两个数字之间的 0 需要转换成&ldquo;零&rdquo;。如果两个数字之间有 多个 0，也只转换一个&ldquo;零&rdquo;，变量 zero 用于控制&ldquo;零&rdquo;的转换，避免出现多个&ldquo;零&rdquo;连在一起的情况。
+<pre class="cpp">
+void SectionToChinese(unsigned int section, std::string&amp; chnStr)
+{
+    std::string strIns;
+    int unitPos = 0;
+    bool zero = true;
+    while(section &gt; 0)
+    {
+        int v = section % 10;
+        if(v == 0)
+        {
+            if( (section ==0) || Izero )
+            {
+                zero = true; /*需要补，zero的作用是确保对连续的多个，只补一个中文零*/
+                chnStr.insert(0, chnNumChar[v]);
+            }
+        }
+        else
+        {
+            zero = false; //至少有一个数字不是
+            strIns = chnNumChar[v]; //此位对应的中文数字
+            strIns += chnUnitChar [unitPos]; //此位对应的中文权位
+            chnStr.insert(0, strIns);
+        }
+        unitPos++; //移位
+        section = section / 10;
+    }
+}</pre>
+<h2>
+	中文大写数字</h2>
+中文数字还有一个很有意思的现象，就是中文数字大写。所谓的大写其实就是用一些笔画复杂的汉字代替简单的数字汉字，其目的就是为了保证其不容易被篡改。中文大写用&ldquo;壹贰叁肆伍陆柒捌玫&rdquo;代替&ldquo;一二三四五六七八九&rdquo;，用&ldquo;拾佰仟&rdquo;代替&ldquo;十百千&rdquo;。这些数字的繁写其实在唐代就己经出现，但正式作为记载钱粮、税收等项目用的官方数字，是在明朝初年著名的&ldquo;郭桓案&rdquo;之后。<br />
+<p class="info-box">
+	郭桓案：与空印案、胡惟庸案和蓝玉案一起并称为明初四大案。郭桓案发生在明朝洪武十八年（1385年），属于官吏贪污案件。户部侍郎郭桓等人，串通地方官吏作弊，篡改账册，私吞太平、镇江等府的赋税，还盗卖官粮。后被揭发，以其涉案金额巨大，对经济领域影响深远而为世人瞩目，对此，明太祖将六部左、右侍郎以下官员全部处死，地方官吏死于狱中者达数万人以上。为了追赃，牵连到全国各地的小富百姓，遭到抄家破产的不计其数。由于牵扯面 广，全国百姓对此案非常不满意，明太祖为了平息民怨，将审刑官吴席等人也一并处死。</p>
+实现中文大写数字的转换，只需要将 chnNumChar、chnUnitSection 中的中文数字和权位名称替换成大写数字就可以了，转换算法是一样的。如果用于人民币记账，可调整节权位的名称，加上&ldquo;圆&rdquo;或&ldquo;圆整&rdquo;等权名，有兴趣的读者可自行完成转换代码。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 146;
+window.arcId = "6199v5mOHZ9WMmcODTuHTCueQm8v8tJONqBJBeybcKcc5WToamtDIIKqGw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

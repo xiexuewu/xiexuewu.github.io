@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>树的双亲表示法、孩子表示法和孩子兄弟表示法</title>
+<meta name="keywords" content="树,的,双亲,表,示法,、,孩子,和,兄弟,树,的," />
+<meta name="description" content="在使用树结构描述实际问题时，大多数不是二叉树，更多的是普通的树结构，在存储之间具有普通树结构的数据时，经常使用的方法有3种： 双亲表示法 孩子表示法 孩子兄弟表示法 双亲" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>树的双亲表示法、孩子表示法和孩子兄弟表示法</h1>
+			<div id="arc-body">在使用<u><a href='/view/23.html' target='_blank'>树</a></u>结构描述实际问题时，大多数不是<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，更多的是普通的树结构，在存储之间具有普通树结构的数据时，经常使用的方法有3种：
+<ol>
+	<li>
+		<u><a href='/view/196.html' target='_blank'>双亲表示法</a></u></li>
+	<li>
+		<u><a href='/view/197.html' target='_blank'>孩子表示法</a></u></li>
+	<li>
+		<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u></li>
+</ol>
+<h2>
+	双亲表示法</h2>
+取一块连续的内存空间，在存储每个结点的同时，各自都附加一个记录其父结点位置的变量。<br />
+<br />
+<div class="info-box">
+	在树结构中，除了树根外，每个结点都只有一个父结点（又叫<span style="color:#b22222;">&ldquo;双亲结点&rdquo;</span>）。</div>
+<br />
+代码表示：
+<pre class="cpp">
+#define tree_size 100//宏定义树中结点的最大数量
+#define TElemType int//宏定义树结构中数据类型
+typedef struct PTNode{
+    TElemType data;//树中结点的数据类型
+    int parent;//结点的父结点在<u><a href='/view/181.html' target='_blank'>数组</a></u>中的位置下标
+}PTNode;
+typedef struct {
+    PTNode nodes[tree_size];//存放树中所有结点
+    int r,n;//根的位置下标和结点数
+}PTree;</pre>
+<br />
+例如，使用双亲表示法存储<u><a href='/view/200.html' target='_blank'>图</a></u> 1（A）中的树结构时，数组存储结果为（B）：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS015503O53.png" style="width: 519px; height: 273px;" /><br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （A） &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （B）<br />
+	<br />
+	图 1 双亲表示法<br />
+	&nbsp;</div>
+当算法中需要在树结构中频繁地查找某结点的父结点时，使用双亲表示法最合适。当频繁地访问结点的孩子结点时，双亲表示法就很麻烦，采用孩子表示法就很简单。
+<h2>
+	孩子表示法</h2>
+将树中的每个结点的孩子结点排列成一个<u><a href='/view/157.html' target='_blank'>线性表</a></u>，用<u><a href='/view/160.html' target='_blank'>链表</a></u>存储起来。对于含有 n 个结点的树来说，就会有 n 个单链表，将 n 个单链表的头指针存储在一个线性表中，这样的表示方法就是<span style="color:#008000;">孩子表示法</span>。<br />
+<blockquote>
+	<p>
+		如果结点没有孩子（例如叶子结点），那么它的单链表为空表。</p>
+</blockquote>
+代码表示：
+<pre class="cpp">
+#define TElemType int
+#define Tree_Size 100
+//孩子表示法
+typedef struct CTNode{
+    int child;//链表中每个结点存储的不是数据本身，而是数据在数组中存储的位置下标
+    struct CTNode * next;
+}*ChildPtr;
+typedef struct {
+    TElemType data;//结点的数据类型
+    ChildPtr firstchild;//孩子链表的头指针
+}CTBox;
+typedef struct{
+    CTBox nodes[Tree_Size];//存储结点的数组
+    int n,r;//结点数量和树根的位置
+}CTree;</pre>
+例如，使用孩子表示法存储图 1 （A），存储效果如图 2：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0155F5a9.png" style="width: 358px; height: 302px;" /><br />
+	<br />
+	图 2 孩子表示法</div>
+<br />
+使用孩子表示法存储的树结构，正好和双亲表示法相反，适用于查找某结点的孩子结点，不适用于查找其父结点。可以将两种表示方法合二为一，存储效果如图 3：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0155K59A.png" style="width: 378px; height: 302px;" /><br />
+	<br />
+	图 3 孩子双亲表示法</div>
+<h2>
+	孩子兄弟表示法</h2>
+使用链式存储结构存储普通树。链表中每个结点由 3 部分组成：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0155TD42.png" style="width: 269px; height: 38px;" /><br />
+	<br />
+	图 4 结点构成<br />
+	&nbsp;</div>
+其中孩子指针域，表示指向当前结点的第一个孩子结点，兄弟结点表示指向当前结点的下一个兄弟结点。<br />
+<br />
+代码表示：
+<pre class="cpp">
+#define ElemType int
+typedef struct CSNode{
+    ElemType data;
+    struct CSNode * firstchild,*nextsibling;
+}CSNode,*CSTree;</pre>
+<br />
+通过孩子兄弟表示法，普通树转化为了二叉树，所以孩子兄弟表示法又被称为<span style="color:#008000;">&ldquo;二叉树表示法&rdquo;</span>或者<span style="color:#008000;">&ldquo;二叉链表表示法&rdquo;</span>。<br />
+<br />
+例如，用孩子兄弟表示法表示图 1 （A）的普通树，存储结果为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0160020200.png" style="width: 296px; height: 458px;" /><br />
+	<br />
+	图 5 二叉链表表示法</div>
+<h2>
+	补：森林和二叉树的相互转化</h2>
+通过孩子兄弟表示法的学习，对于任意一棵树，都可以找到唯一的一棵二叉树与之对应。<br />
+<blockquote>
+	<p>
+		普通树转化成的二叉树，其根结点都没有右孩子，即普通树对应的二叉树肯定没有右子树。</p>
+</blockquote>
+而森林是由多棵树组成，为了便于对森林的遍历等操作，需要将森林中的所有树都组合成一颗大的二叉树，转化步骤为：<br />
+<ol>
+	<li>
+		首先将森林中树各自转化为二叉树；</li>
+	<li>
+		森林中第一棵二叉树的树根作为转化后二叉树的树根；</li>
+	<li>
+		其他树的树根作为第一棵树树根的兄弟结点，进行连接；</li>
+</ol>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170830/2-1FS016013VG.png" style="width: 562px; height: 443px;" /><br />
+	<br />
+	图 6 森林转化成二叉树</div>
+<br />
+如图 6 所示，（A）中由三棵普通树组成的森林，首先三棵普通树采用孩子兄弟表示法各自转化成二叉树，如（B）所示；然后由（B）转（C）时，将森林中第一棵树的树根作为转化后的整棵二叉树的树根，其他数的树根作为第一棵树的树根的兄弟结点，如（C）所示。<br />
+<br />
+转化成二叉树的森林，做的最多的操作就是查找树中的结点。在遍历转化后的二叉树时，遍历方式有先序遍历、中序遍历和后序遍历。<br />
+<div class="info-box">
+	对森林使用先序和中序遍历的结果和对转化后的二叉树使用先序和中序遍历得到的序列是一样的，而使用后序遍历得到的结果不同。例如图 6（B）中森林采用中序遍历和（C）中二叉树采用中序遍历得到的结果是相同的，遍历序列都为：<code>B C D A F E H J I G</code>。</div>
+<h2>
+	总结</h2>
+树的三种表示方法中，双亲表示法和孩子表示法在实际算法中的应用场景正好相反：双亲表示法应用于解决查找某结点的父结点，而孩子表示法应用于查找某结点的孩子结点。<br />
+<br />
+<span style="color:#b22222;">孩子兄弟表示法可以将普通树转化成二叉树存储，在实际操作中，可以应用二叉树的性质来解决普通树或者森林的问题。</span><br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 30;
+window.arcId = "fe1fTWxBzjSApC2gMJfX2gjKeu7GJvONZYcR+iN0Y//w6+M/ynx71OUt";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

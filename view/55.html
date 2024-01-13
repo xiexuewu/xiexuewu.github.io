@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>二分查找法(折半查找法)及C语言实现</title>
+<meta name="keywords" content="静态,查找,表之,折半,二分,静态,查找,表之," />
+<meta name="description" content="折半查找 ，也称 二分查找 ，在某些情况下相比于顺序查找，使用折半查找算法的效率更高。 但是该算法的使用的前提是静态查找表中的数据必须是有序的 。 例如，在 {5,21,13,19,37,75" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/github/search/">查找算法</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/github/view/53.html">什么是查找表</a></dd><dd>9.2 <a href="/github/view/54.html">顺序查找算法</a></dd><dd>9.3 <a href="/github/view/55.html">折半查找（二分查找）</a></dd><dd>9.4 <a href="/github/view/vip_252.html">分块查找算法（索引顺序查找）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.5 <a href="/github/view/vip_253.html">静态树表查找算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.6 <a href="/github/view/58.html">二叉排序树（二叉查找树）</a></dd><dd>9.7 <a href="/github/view/59.html">平衡二叉树（AVL树）</a></dd><dd>9.8 <a href="/github/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.9 <a href="/github/view/vip_255.html">B-树及其基本操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.10 <a href="/github/view/vip_256.html">B+树及插入和删除操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.11 <a href="/github/view/vip_257.html">键树查找法（双链树和字典树）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.12 <a href="/github/view/63.html">什么是哈希表（散列表）</a></dd><dd>9.13 <a href="/github/view/vip_258.html">哈希查找算法</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>二分查找法(折半查找法)及C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/54.html">顺序查找算法</a></span>
+                    <span class="next right"><a href="/view/vip_252.html">分块查找算法（索引顺序查找）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/54.html";window.nextPageURL = "/view/vip_252.html";</script>
+			<div id="arc-body"><span style="color:#008000;"><u><a href='/view/55.html' target='_blank'>折半查找</a></u></span>，也称<span style="color:#008000;"><u><a href='/view/55.html' target='_blank'>二分查找</a></u></span>，在某些情况下相比于<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>，使用折半查找算法的效率更高。<span style="color:#b22222;">但是该算法的使用的前提是静态查找表中的数据必须是有序的</span>。<br />
+<br />
+例如，在<code>{5,21,13,19,37,75,56,64,88 ,80,92}</code>这个查找表使用折半查找算法查找数据之前，需要首先对该表中的数据按照所查的关键字进行排序：<code>{5,13,19,21,37,56,64,75,80,88,92}</code>。<br />
+<blockquote>
+	<p>
+		在折半查找之前对查找表按照所查的关键字进行排序的意思是：若查找表中存储的数据元素含有多个关键字时，使用哪种关键字做折半查找，就需要提前以该关键字对所有数据进行排序。</p>
+</blockquote>
+<h2>
+	折半查找算法</h2>
+对静态查找表<code>{5,13,19,21,37,56,64,75,80,88,92}</code>采用折半查找算法查找关键字为 21 的过程为：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G016102104D7.png" style="width: 363px; height: 95px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 折半查找的过程（a）</div>
+<br />
+如上图 1 所示，指针 low 和 high 分别指向查找表的第一个关键字和最后一个关键字，指针 mid 指向处于 low 和 high 指针中间位置的关键字。在查找的过程中每次都同 mid 指向的关键字进行比较，由于整个表中的数据是有序的，因此在比较之后就可以知道要查找的关键字的大致位置。<br />
+<br />
+例如在查找关键字 21 时，首先同 56 作比较，由于<code>21 &lt; 56</code>，而且这个查找表是按照升序进行排序的，所以可以判定如果静态查找表中有 21 这个关键字，就一定存在于 low 和 mid 指向的区域中间。<br />
+<br />
+因此，再次遍历时需要更新 high 指针和 mid 指针的位置，令 high 指针移动到 mid 指针的左侧一个位置上，同时令 mid 重新指向 low 指针和 high 指针的中间位置。如图 2 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G016102250N2.png" style="width: 363px; height: 95px;" /><br />
+	图 2 折半查找的过程（b）<br />
+	&nbsp;</div>
+同样，用 21 同 mid 指针指向的 19 作比较，<code>19 &lt; 21</code>，所以可以判定 21 如果存在，肯定处于 mid 和 high 指向的区域中。所以令 low 指向 mid 右侧一个位置上，同时更新 mid 的位置。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G01610231cS.png" style="width: 363px; height: 129px;" /><br />
+	<br />
+	图 3 折半查找的过程（3）</div>
+当第三次做判断时，发现 mid 就是关键字 21 ，查找结束。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>在做查找的过程中，如果 low 指针和 high 指针的中间位置在计算时位于两个关键字中间，即求得 mid 的位置不是整数，需要统一做取整操作。</p>
+</blockquote>
+折半查找的实现代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define keyType int
+typedef struct {
+    keyType key;//查找表中每个数据元素的值
+    //如果需要，还可以添加其他属性
+}ElemType;
+
+typedef struct{
+    ElemType *elem;//存放查找表中数据元素的<u><a href='/view/181.html' target='_blank'>数组</a></u>
+    int length;//记录查找表中数据的总数量
+}SSTable;
+//创建查找表
+void Create(SSTable **st,int length){
+    (*st)=(SSTable*)malloc(sizeof(SSTable));
+    (*st)-&gt;length=length;
+    (*st)-&gt;elem = (ElemType*)malloc((length+1)*sizeof(ElemType));
+    printf(&quot;输入表中的数据元素：\n&quot;);
+    //根据查找表中数据元素的总长度，在存储时，从数组下标为 1 的空间开始存储数据
+    for (int i=1; i&lt;=length; i++) {
+        scanf(&quot;%d&quot;,&amp;((*st)-&gt;elem[i].key));
+    }
+}
+//折半查找算法
+int Search_Bin(SSTable *ST,keyType key){
+    int low=1;//初始状态 low 指针指向第一个关键字
+    int high=ST-&gt;length;//high 指向最后一个关键字
+    int mid;
+    while (low&lt;=high) {
+        mid=(low+high)/2;//int 本身为整形，所以，mid 每次为取整的整数
+        if (ST-&gt;elem[mid].key==key)//如果 mid 指向的同要查找的相等，返回 mid 所指向的位置
+        {
+            return mid;
+        }else if(ST-&gt;elem[mid].key&gt;key)//如果mid指向的关键字较大，则更新 high 指针的位置
+        {
+            high=mid-1;
+        }
+        //反之，则更新 low 指针的位置
+        else{
+            low=mid+1;
+        }
+    }
+    return 0;
+}
+
+int main(int argc, const char * argv[]) {
+    SSTable *st;
+    Create(&amp;st, 11);
+    getchar();
+    printf(&quot;请输入查找数据的关键字：\n&quot;);
+    int key;
+    scanf(&quot;%d&quot;,&amp;key);
+    int location=Search_Bin(st, key);
+    //如果返回值为 0，则证明查找表中未查到 key 值，
+    if (location==0) {
+        printf(&quot;查找表中无该元素&quot;);
+    }else{
+        printf(&quot;数据在查找表中的位置为：%d&quot;,location);
+    }
+    return 0;
+}</pre>
+以图 1 的查找表为例，运行结果为：
+<div class="info-box">
+	输入表中的数据元素：<br />
+	5 13 19 21 37 56 64 75 80 88 92<br />
+	请输入查找数据的关键字：<br />
+	21<br />
+	数据在查找表中的位置为：4</div>
+<h2>
+	折半查找的性能分析</h2>
+<span style="color:#b22222;">折半查找的运行过程可以用<u><a href='/view/192.html' target='_blank'>二叉树</a></u>来描述，这棵<u><a href='/view/23.html' target='_blank'>树</a></u>通常称为</span><span style="color:#008000;">&ldquo;判定树&rdquo;</span>。例如图 1 中的静态查找表中做折半查找的过程，对应的判定树如图 4：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G01610244a11.png" style="width: 475px; height: 233px;" /><br />
+	图 4 折半查找对应的判定树</div>
+<br />
+在判定树中可以看到，如果想在查找表中查找 21 的位置，只需要进行 3 次比较，依次和 56、19、21 进行比较，而比较的次数恰好是该关键字所在判定树中的层次（关键字 21 在判定树中的第 3 层）。<br />
+<br />
+对于具有 n 个结点（查找表中含有 n 个关键字）的判定树，它的层次数至多为：<code>log<sub>2</sub>n + 1</code>（如果结果不是整数，则做取整操作，例如： <code>log<sub>2</sub>11 +1 = 3 + 1 = 4</code> ）。<br />
+<br />
+同时，在查找表中各个关键字被查找概率相同的情况下，折半查找的平均查找长度为：<code>ASL = log<sub>2</sub>(n+1) &ndash; 1</code>。
+<h2>
+	总结</h2>
+通过比较折半查找的平均查找长度，同前面介绍的顺序查找相对比，明显折半查找的效率要高。但是折半查找算法只适用于有序表，同时仅限于查找表用顺序存储结构表示。<br />
+<div class="info-box">
+	当查找表使用链式存储结构表示时，折半查找算法无法有效地进行比较操作（排序和查找操作的实现都异常繁琐）。</div>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/54.html">顺序查找算法</a></span>
+                    <span class="next right"><a href="/view/vip_252.html">分块查找算法（索引顺序查找）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/54.html";window.nextPageURL = "/view/vip_252.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 55;
+window.arcId = "1fab1X30LsW0MnAp0TvOD/MmibnwNrjxSlY6lHu+gQzc6R+Q0K9M3F3J";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

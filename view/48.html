@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构之动态内存管理机制</title>
+<meta name="keywords" content="一分钟,了解,计算机,如何,动态,管理,存储," />
+<meta name="description" content="通过前面的学习，介绍很多具体的数据结构的存储以及遍历的方式，过程中只是很表面地介绍了数据的存储，而没有涉及到更底层的有关的存储空间的分配与回收。从本节开始将做更深" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/github/memory/">动态内存管理</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/github/view/48.html">动态内存管理</a></dd><dd>8.2 <a href="/github/view/49.html">边界标识法</a></dd><dd>8.3 <a href="/github/view/50.html">伙伴系统</a></dd><dd>8.4 <a href="/github/view/51.html">系统垃圾回收机制</a></dd><dd>8.5 <a href="/github/view/52.html">内存紧缩（内存碎片化处理）</a></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构之动态内存管理机制</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/memory/">动态内存管理</a></span>
+                    <span class="next right"><a href="/view/49.html">边界标识法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/memory/";window.nextPageURL = "/view/49.html";</script>
+			<div id="arc-body">通过前面的学习，介绍很多具体的数据结构的存储以及遍历的方式，过程中只是很表面地介绍了数据的存储，而没有涉及到更底层的有关的存储空间的分配与回收，从本节开始将做更深入地介绍。<br />
+<blockquote>
+	<p>
+		在使用早期的计算机上编写程序时，有关数据存储在什么位置等这样的问题都是需要程序员自己来给数据分配内存。而现在的高级语言，大大的减少了程序员的工作，不需要直接和存储空间打交道，程序在编译时由编译程序去合理地分配空间。</p>
+</blockquote>
+<span style="color:#b22222;">本章重点解决的问题是</span>：<br />
+<ul>
+	<li>
+		对于用户向系统提出的申请空间的请求，系统如何分配内存？</li>
+	<li>
+		当用户不在使用之前申请的内存空间后，系统又如何回收？</li>
+</ul>
+<div class="info-box">
+	这里的<span style="color:#008000;">用户</span>，不是普通意义上的用户，可能是一个普通的变量，一个应用程序，一个命令等等。只要是向系统发出内存申请的，都可以称之为<span style="color:#008000;">用户</span>。</div>
+<h2>
+	占用块和空闲块</h2>
+<span style="color:#b22222;">对于计算机中的内存来说，称已经分配给用户的的内存区统称为</span><span style="color:#008000;">&ldquo;占用块&rdquo;</span>；<span style="color:#b22222;">还未分配出去的内存区统称为</span><span style="color:#008000;">&ldquo;空闲块&rdquo;</span><span style="color:#b22222;">或者</span><span style="color:#008000;">&ldquo;可利用空间块&rdquo;</span>。
+<h2>
+	系统的内存管理</h2>
+对于初始状态下的内存来说，整个空间都是一个空闲块（<span style="color:#b22222;">在编译程序中称为</span><span style="color:#008000;">&ldquo;堆&rdquo;</span>）。但是随着不同的用户不断地提出存储请求，系统依次分配。<br />
+<br />
+整个内存区就会分割成两个大部分：<span style="color:#b22222;">低地址区域会产生很多占用块；高地址区域还是空闲块</span>。如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170928/2-1F92P94501539.png" style="width: 480px; height: 85px;" /><br />
+	图 1 动态分配过程中的内存状态</div>
+<br />
+但是当某些用户运行结束，所占用的内存区域就变成了空闲块，如图 2 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170928/2-1F92P94524502.png" style="width: 480px; height: 85px;" /><br />
+	图 2 动态分配过程中的内存变化</div>
+<br />
+<span style="color:#b22222;">此时，就形成了占用块和空闲块犬牙交错的状态</span>。当后续用户请求分配内存时，系统有两种分配方式：<br />
+<br />
+<ol>
+	<li>
+		系统继续利用高地址区域的连续空闲块分配给用户，不去理会之前分配给用户的内存区域的状态。直到分配无法进行，也就是高地址的空闲块不能满足用户的需求时，系统才会去回收之前的空闲块，重新组织继续分配；</li>
+	<li>
+		当用户运行一结束，系统马上将其所占空间进行回收。当有新的用户请求分配内存时，系统遍历所有的空闲块，从中找出一个合适的空闲块分配给用户。</li>
+</ol>
+<div class="info-box">
+	合适的空闲块指的是能够满足用户要求的空闲块，具体的查找方式有多种，后续会介绍。</div>
+<h2>
+	可利用空间表</h2>
+当采用第 2 种方式时，系统需要建立一张记录所有空闲块信息的表。表的形式有两种：<span style="color:#008000;">目录表</span>和<span style="color:#008000;"><u><a href='/view/160.html' target='_blank'>链表</a></u></span>。各自的结构如图 3 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170928/2-1F92P94631260.png" style="width: 507px; height: 555px;" /><br />
+	图 3 目录表和链表</div>
+<span style="color:#008000;">目录表：</span>表中每一行代表一个空闲块，由三部分组成：<br />
+<br />
+<ul>
+	<li>
+		<span style="color:#008000;">初始地址：</span>记录每个空闲块的起始地址。</li>
+	<li>
+		<span style="color:#008000;">空闲块大小：</span>记录每个空闲块的内存大小。</li>
+	<li>
+		<span style="color:#008000;">使用情况：</span>记录每个空闲块是否存储被占用的状态。</li>
+</ul>
+<br />
+<span style="color:#008000;">链表：</span>表中每个结点代表一个空闲块，每个结点中需要记录空闲块的使用情况、大小和连接下一个空闲块的指针域。<br />
+<div class="info-box">
+	由于链表中有指针的存在，所以结点中不需要记录各内存块的起始地址。</div>
+<br />
+系统在不同的环境中运行，根据用户申请空间的不同，存储空闲块的可利用空间表有以下不同的结构：<br />
+<br />
+<ol>
+	<li>
+		如果每次用户请求的存储空间大小相同，对于此类系统中的内存来说，在用户运行初期就将整个内存存储块按照所需大小进行分割，然后通过链表链接。当用户申请空间时，从链表中摘除一个结点归其使用；用完后再链接到可利用空间表上。</li>
+	<li>
+		每次如果用户申请的都是若干种大小规格的存储空间，针对这种情况可以建立若干个可利用空间表，每一个链表中的结点大小相同。当用户申请某一规格大小的存储空间时，就从对应的链表中摘除一个结点供其使用；用完后链接到相同规格大小的链表中。</li>
+	<li>
+		用户申请的内存的大小不固定，所以造成系统分配的内存块的大小也不确定，回收时，链接到可利用空间表中每个结点的大小也各不一样。</li>
+</ol>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">第 2 种情况下容易面临的问题是：</span>如果同用户申请空间大小相同的链表中没有结点时，就需要找结点更大的链表，从中取出一个结点，一部分给用户使用，剩余部分插入到相应大小的链表中；回收时，将释放的空闲块插入到大小相同的链表中去。如果没有比用户申请的内存空间相等甚至更大的结点时，就需要系统重新组织一些小的连续空间，然后给用户使用。</p>
+</blockquote>
+<h2>
+	分配存储空间的方式</h2>
+通常情况下系统中的可利用空间表是第 3 种情况。如图 3(C) 所示。由于链表中各结点的大小不一，在用户申请内存空间时，就需要从可利用空间表中找出一个合适的结点，有三种查找的方法：<br />
+<br />
+<ul>
+	<li>
+		<span style="color:#008000;">首次拟合法：</span>在可利用空间表中从头开始依次遍历，将找到的第一个内存不小于用户申请空间的结点分配给用户，剩余空间仍留在链表中；回收时只要将释放的空闲块插入在链表的表头即可。</li>
+	<li>
+		<span style="color:#008000;">最佳拟合法：</span>和首次拟合法不同，最佳拟合法是选择一块内存空间不小于用户申请空间，但是却最接近的一个结点分配给用户。为了实现这个方法，首先要将链表中的各个结点按照存储空间的大小进行从小到大排序，由此，在遍历的过程中只需要找到第一块大于用户申请空间的结点即可进行分配；用户运行完成后，需要将空闲块根据其自身的大小插入到链表的相应位置。</li>
+	<li>
+		<span style="color:#008000;">最差拟合法：</span>和最佳拟合法正好相反，该方法是在不小于用户申请空间的所有结点中，筛选出存储空间最大的结点，从该结点的内存空间中提取出相应的空间给用户使用。为了实现这一方法，可以在开始前先将可利用空间表中的结点按照存储空间大小从大到小进行排序，第一个结点自然就是最大的结点。回收空间时，同样将释放的空闲块插入到相应的位置上。</li>
+</ul>
+<br />
+以上三种方法各有所长：<br />
+<br />
+<ul>
+	<li>
+		最佳拟合法由于每次分配相差不大的结点给用户使用，所以会生成很多存储空间特别小的结点，以至于根本无法使用，使用过程中，链表中的结点存储大小发生两极分化，大的很大，小的很小。该方法适用于申请内存大小范围较广的系统</li>
+	<li>
+		最差拟合法，由于每次都是从存储空间最大的结点中分配给用户空间，所以链表中的结点大小不会起伏太大。依次适用于申请分配内存空间较窄的系统。</li>
+	<li>
+		首次拟合法每次都是随机分配。在不清楚用户申请空间大小的情况下，使用该方法分配空间。</li>
+</ul>
+<br />
+同时，三种方法中，最佳拟合法相比于其它两种方式，无论是分配过程还是回收过程，都需要遍历链表，所有最费时间。
+<h2>
+	空间分配与回收过程产生的问题</h2>
+无论使用以上三种分配方式中的哪一种，最终内存空间都会成为一个一个特别小的内存空间，对于用户申请的空间的需求，单独拿出任何一个结点都不能够满足。<br />
+<br />
+但是并不是说整个内存空间就不够用户使用。在这种情况下，就需要系统在回收的过程考虑将地址相邻的空闲块合并。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">合并的具体方法会在后面章节详细介绍。</span></p>
+</blockquote>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/memory/">动态内存管理</a></span>
+                    <span class="next right"><a href="/view/49.html">边界标识法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/memory/";window.nextPageURL = "/view/49.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 48;
+window.arcId = "e302PiwEwBQm7JDRbLOeRRs7vOxZAKVWf27F99TDXHTillfv/J6iojeZ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

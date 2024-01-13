@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>表插入排序算法</title>
+<meta name="keywords" content="表,插入,排序,算法,表,插入,排序,算法," />
+<meta name="description" content="前面章节中所介绍到的三种插入排序算法，其基本结构都采用数组的形式进行存储，因而无法避免排序过程中产生的数据移动的问题。如果想要从根本上解决只能改变数据的存储结构，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/github/sort/">排序算法</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/github/view/65.html">插入排序算法</a></dd><dd>10.2 <a href="/github/view/66.html">折半插入排序算法</a></dd><dd>10.3 <a href="/github/view/67.html">2-路插入排序算法</a></dd><dd>10.4 <a href="/github/view/68.html">表插入排序算法</a></dd><dd>10.5 <a href="/github/view/vip_259.html">希尔排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.6 <a href="/github/view/70.html">冒泡排序算法</a></dd><dd>10.7 <a href="/github/view/vip_260.html">快速排序算法（QSort，快排）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="/github/view/72.html">选择排序算法</a></dd><dd>10.9 <a href="/github/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.10 <a href="/github/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.11 <a href="/github/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>表插入排序算法</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/67.html">2-路插入排序算法</a></span>
+                    <span class="next right"><a href="/view/vip_259.html">希尔排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/67.html";window.nextPageURL = "/view/vip_259.html";</script>
+			<div id="arc-body">前面章节中所介绍到的三种<u><a href='/view/65.html' target='_blank'>插入排序算法</a></u>，其基本结构都采用<u><a href='/view/181.html' target='_blank'>数组</a></u>的形式进行存储，因而无法避免排序过程中产生的数据移动的问题。如果想要从根本上解决只能改变数据的存储结构，改用<u><a href='/view/160.html' target='_blank'>链表</a></u>存储。<br />
+<br />
+<span style="color:#008000;">表插入排序</span>，<span style="color:#b22222;">即使用链表的存储结构对数据进行插入排序。</span>在对记录按照其关键字进行排序的过程中，不需要移动记录的存储位置，只需要更改结点间指针的指向。<br />
+<br />
+链表的存储结构用代码表示为：
+<pre class="cpp">
+#define SIZE 100
+typedef struct {
+    int rc;//记录项
+    int next;//指针项，由于在数组中，所以只需要记录下一个结点所在数组位置的下标即可。
+}SLNode;
+typedef struct {
+    SLNode r[SIZE];//存储记录的链表
+    int length;//记录当前链表长度
+}SLinkListType;</pre>
+在使用数组结构表示的链表中，设定数组下标为 0 的结点作为链表的表头结点，并令其关键字取最大整数。则表插入排序的具体实现过程是：首先将链表中数组下标为 1 的结点和表头结点构成一个循环链表，然后将后序的所有结点按照其存储的关键字的大小，依次插入到循环链表中。<br />
+<br />
+例如，将无序表<code>{49，38，76，13，27}</code>用表插入排序的方式进行排序，其过程为：<br />
+<br />
+<ul>
+	<li>
+		首先使存储 49 的结点与表头结点构成一个初始的循环链表，完成对链表的初始化，如下表所示：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G0311053559D.png" style="width: 378px; height: 72px;" /><br />
+	&nbsp;</div>
+<ul>
+	<li>
+		然后将以 38 为关键字的记录插入到循环链表中（只需要更改其链表的 next 指针即可），插入后的链表为：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G031105424251.png" style="width: 378px; height: 72px;" /><br />
+	&nbsp;</div>
+<ul>
+	<li>
+		再将以 76 为关键字的结点插入到循环链表中，插入后的链表为:</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G03110543U10.png" style="width: 378px; height: 72px;" /><br />
+	&nbsp;</div>
+<ul>
+	<li>
+		再将以 13 为关键字的结点插入到循环链表中，插入后的链表为：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G031105450D4.png" style="width: 378px; height: 72px;" /><br />
+	&nbsp;</div>
+<ul>
+	<li>
+		最后将以 27 为关键字的结点插入到循环链表中，插入后的链表为：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G031105501R0.png" style="width: 378px; height: 72px;" /><br />
+	&nbsp;</div>
+<ul>
+	<li>
+		最终形成的循环链表为：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G0311055305c.png" style="width: 183px; height: 230px;" /><br />
+	&nbsp;</div>
+从表插入排序的实现过程上分析，与直接插入排序相比只是避免了移动记录的过程（修改各记录结点中的指针域即可），而插入过程中同其它关键字的比较次数并没有改变，所以<u><a href='/view/68.html' target='_blank'>表插入排序算法</a></u>的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>仍是<code>O(n<sup>2</sup>)</code>。
+<h2>
+	对链表进行再加工</h2>
+在表插入排序算法求得的有序表是用链表表示的，也就注定其只能进行<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>。而如果想用<u><a href='/view/55.html' target='_blank'>折半查找</a></u>的算法，就需要对链表进行再加工，即对链表中的记录进行重新排列，<span style="color:#b22222;">具体做法为：遍历链表，将链表中第 i 个结点移动至数组的第 i 个下标位置中</span>。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G031105ISb.png" style="width: 378px; height: 72px;" /><br />
+	&nbsp;</div>
+例如，上表是已经构建好的链表，对其进行再加工的过程为：<br />
+<br />
+<ul>
+	<li>
+		首先，通过其表头结点得知记录中关键字最小的是数组下标为 4 的关键字 13，而 13 应该放在数组下标为 1 的位置，所以需要同下标为 1 中存放的关键字进行调换。但是为了后期能够找到 49，将 13 的 next 域指向 49 所在的位置（改变之前需要保存原来的值，这里用 q 指针表示），如下表所示：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G031105SX34.png" style="width: 397px; height: 112px;" /></div>
+<ul>
+	<li>
+		然后通过 q 指针找到原本 13 指向的下一位关键字 27，同时 q 指针指向下标为 2 的关键字 38，由于 27 应该移至下标为 2 的位置，所以同关键字 38 交换，同时改变关键字 27 的 next 域，如下表所示：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G031105Z1X4.png" style="width: 378px; height: 120px;" /></div>
+<ul>
+	<li>
+		之后再通过 q 指针找到下一位关键字时，发现所指位置为下标 2，而之前已经经过了 2 次 移动，所以可以判定此时数组中存放的已经不是要找的，所以需要通过下标为 2 中的 next 域继续寻找，找到下标为 5 的位置，即关键字 38，由于下标 5 远远大于 2，可以判断 38 即为要找的值，所以同下标为 3 的记录交换位置，还要更改其 next 域，同时将 q 指针指向下标为 1 的位置，如下表所示：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G03110591Gc.png" style="width: 378px; height: 120px;" /></div>
+<ul>
+	<li>
+		然后通过 q 指针找到下一位关键字，由于其指向位置的下标 1 中的记录已经发生移动，所以通过 next 域找到关键字 49，发现它的位置不用改变；同样，当通过关键字 49 的 next 域找到下标为 3 的位置，还是需要通过其 next 域找到关键字 76 ，它的位置也不用改变。</li>
+</ul>
+<br />
+重新排列的具体代码实现为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define SIZE 6
+typedef struct {
+    int rc;//记录项
+    int next;//指针项，由于在数组中，所以只需要记录下一个结点所在数组位置的下标即可。
+}SLNode;
+typedef struct {
+    SLNode r[SIZE];//存储记录的链表
+    int length;//记录当前链表长度
+}SLinkListType;
+//重新排列函数
+void Arrange(SLinkListType *SL){
+    //令 p 指向当前要排列的记录
+    int p=SL-&gt;r[0].next;
+    for (int i=1; i&lt;SL-&gt;length; i++) {
+        //如果条件成立，证明原来的数据已经移动，需要通过不断找 next 域，找到其真正的位置
+        while (p&lt;i) {
+            p=SL-&gt;r[p].next;
+        }
+        //找到之后，令 q 指针指向其链表的下一个记录所在的位置
+        int q=SL-&gt;r[p].next;
+        //条件成立，证明需要同下标为 i 的记录进行位置交换
+        if (p!=i) {
+            SLNode t;
+            t=SL-&gt;r[p];
+            SL-&gt;r[p]=SL-&gt;r[i];
+            SL-&gt;r[i]=t;
+            //交换完成后，该变 next 的值，便于后期遍历
+            SL-&gt;r[i].next=p;
+        }
+        //最后令 p 指向下一条记录
+        p=q;
+    }
+}
+
+int main(int argc, const char * argv[]) {
+
+    SLinkListType *SL=(SLinkListType*)malloc(sizeof(SLinkListType));
+    SL-&gt;length=6;
+    SL-&gt;r[0].rc=0;
+    SL-&gt;r[0].next=4;
+   
+    SL-&gt;r[1].rc=49;
+    SL-&gt;r[1].next=3;
+   
+    SL-&gt;r[2].rc=38;
+    SL-&gt;r[2].next=1;
+   
+    SL-&gt;r[3].rc=76;
+    SL-&gt;r[3].next=0;
+   
+    SL-&gt;r[4].rc=13;
+    SL-&gt;r[4].next=5;
+   
+    SL-&gt;r[5].rc=27;
+    SL-&gt;r[5].next=2;
+   
+    Arrange(SL);
+    for (int i=1; i&lt;6; i++) {
+        printf(&quot;%d &quot;,SL-&gt;r[i].rc);
+    }
+    return 0;
+}</pre>
+运行结果为:
+<div class="info-box">
+	13 27 38 49 76</div>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/67.html">2-路插入排序算法</a></span>
+                    <span class="next right"><a href="/view/vip_259.html">希尔排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/67.html";window.nextPageURL = "/view/vip_259.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 68;
+window.arcId = "37b52dDfQkxMFpyoXmGueROWa577w/1i67CV7j8MaaM878yTzHNZrEqg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

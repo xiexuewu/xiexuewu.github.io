@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构实践项目之移动迷宫小游戏(升级版)</title>
+<meta name="keywords" content="《,移动迷宫,》,升级版,《,移动迷宫,》," />
+<meta name="description" content="在上一章的《移动迷宫》小游戏中，使用回溯法帮助骑士在迷宫中找到了通往出口的一条通路，但是骑士还并不太满意，他又提高了需求。 《移动迷宫》升级版游戏简介： 迷宫只有两个" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构实践项目之移动迷宫小游戏(升级版)</h1>
+			<div id="arc-body">在上一章的《移动迷宫》小游戏中，使用回溯法帮助骑士在迷宫中找到了通往出口的一条通路，但是骑士并不太满意，他又提出了更高的需求。<br />
+<br />
+<span style="color:#b22222;">《移动迷宫》升级版游戏简介：</span>迷宫只有两个门，一个入口，一个出口。一个骑士骑马从入口走进迷宫，迷宫中设置有很多墙壁，对前进方向造成障碍。先需要你从迷宫中找到一条最短的通路，将行走路线和行走的最短距离告知骑士。
+<h2>
+	设计思路</h2>
+类似于寻找最短路径这样的问题，最直接的方法就是使用<span style="color:#b22222;">迪杰斯特拉算法</span>和<span style="color:#b22222;">弗洛伊德算法</span>。<br />
+<br />
+<span style="color:#b22222;">两种算法面对的数据结构是<u><a href='/view/200.html' target='_blank'>图</a></u>，但是迷宫是在二维<u><a href='/view/181.html' target='_blank'>数组</a></u>中进行存储的，所以如果使用前面两种算法的话，需要首先将二维数组转化为图的存储形式。</span>
+<h2>
+	二维数组转化成图</h2>
+如下图所示，此为 3*3 迷宫：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171128/2-1G12QF531E3.png" style="width: 212px; height: 173px;" /><br />
+	图 1 移动迷宫</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>S 为入口，E 为出口，# 为墙壁，- 为通路。</p>
+</blockquote>
+在编写程序向计算机中输入该迷宫的数据时，宜使用二维数组进行存储。但是无论是迪杰斯特拉算法还是弗洛伊德算法，其处理对象都是有向网或者无向网。迷宫中并不涉及到具体的方向，所以需要将存储迷宫的二维数组转化为无向网。<br />
+<br />
+无向网的存储方式也是用二维数组来实现，将迷宫中所有的顶点看作是图中的顶点，对于上图的迷宫来说，共有 9 个顶点，所以转化为无向网时，需要用 9*9 的一个二维数组来表示。<br />
+<br />
+在转化时，从迷宫的左上角（上图的 S 开始），一行一行的进行转化，对于每个顶点来说，<span style="color:#b22222;">只需要判断其右侧和相邻的下方顶点是否为通路</span>，如果是通路，转化为图中的直接体现就是两顶点之间有线连接。<br />
+<br />
+例如，上图中的 S 其右侧和下方的顶点都是 - ，骑士可以通过，那在图中的表现就是 S 同其右侧顶点和下方顶点之间存储通路，如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171128/2-1G12QFJ0301.png" style="width: 85px; height: 100px;" /></div>
+对于图 1 中的二维数组，其完全转化为图，如下图所示（每个顶点用其二维数组中的坐标来表示，00 表示第 0 行第 0 列）：<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171128/2-1G12QFKB03.png" style="width: 302px; height: 97px;" /></div>
+图 1 中的二维数组转化为图的存储表示如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171128/2-1G12QFR0K3.png" style="width: 379px; height: 326px;" /></div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>1 表示有通路，0 表示没有通路，# 由于表示墙壁，同其它任何顶点之间都没有通路。</p>
+</blockquote>
+<h2>
+	迪杰斯特拉算法</h2>
+使用迪杰斯特拉算法求迷宫的最短路径，其完整代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAX_VERtEX_NUM 1000              //顶点的最大个数
+#define VRType int                          //表示弧的权值的类型
+#define VertexType char                     //图中顶点的数据类型
+#define INFINITY 65535
+typedef enum{false,true} bool;
+typedef struct {
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据
+    VRType arcs[MAX_VERtEX_NUM][MAX_VERtEX_NUM];                         //二维数组，记录顶点之间的关系
+    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数
+}MGraph;
+typedef int PathMatrix[MAX_VERtEX_NUM];     //用于存储最短路径中经过的顶点的下标
+typedef int ShortPathTable[MAX_VERtEX_NUM]; //用于存储各个最短路径的权值和
+
+//迪杰斯特拉算法，v0表示有向网中起始点所在数组中的下标
+void ShortestPath_Dijkstra(MGraph G,int v0,PathMatrix *p,ShortPathTable *D){
+    int final[MAX_VERtEX_NUM];//用于存储各顶点是否已经确定最短路径的数组
+    //对各数组进行初始化
+    for (int v=0; v&lt;G.vexnum; v++) {
+        final[v]=0;
+        (*D)[v]=G.arcs[v0][v];
+        (*p)[v]=0;
+    }
+    //以起点为下标的顶点为起始点，所以不用再判断
+    (*D)[v0]=0;
+    final[v0]=1;
+    int k = 0;
+    for (int i=0; i&lt;G.vexnum; i++) {
+        int min=INFINITY;
+        //选择到各顶点权值最小的顶点，即为本次能确定最短路径的顶点
+        for (int w=0; w&lt;G.vexnum; w++) {
+            if (!final[w]) {
+                if ((*D)[w]&lt;min) {
+                    k=w;
+                    min=(*D)[w];
+                }
+            }
+        }
+        //设置该顶点的标志位为1，避免下次重复判断
+        final[k]=1;
+        //对从起点到各顶点的权值进行更新
+        for (int w=0; w&lt;G.vexnum; w++) {
+            if (!final[w]&amp;&amp;(min+G.arcs[k][w]&lt;(*D)[w])) {
+                (*D)[w]=min+G.arcs[k][w];
+                (*p)[w]=k;//记录各个最短路径上存在的顶点
+            }
+        }
+    }
+}
+//在将二维数组转化为图的过程中，需要判断当前的点是否越界或者是否为通路
+bool canUsed(int i,int j,int n,int m,char a[][110]){
+    if (a[i][j]!=&#39;#&#39; &amp;&amp; i&gt;=0 &amp;&amp; i&lt;n &amp;&amp; j&gt;=0 &amp;&amp; j&lt;m) {
+        return true;
+    }
+    return false;
+}
+int main(){
+    char a[110][110];
+    int n,m;
+    scanf(&quot;%d %d&quot;,&amp;n,&amp;m);
+    getchar();
+    MGraph G;
+    G.vexnum=0;
+    G.arcnum=0;
+    //记录入口在图的顶点数组中的位置下标
+    int start =0;
+    //记录出口在图的顶点数组中的位置下标
+    int exit=0;
+    //初始化记录图的边的二维数组，假设各个边的长度为无穷大，即两顶点之间没有边
+    for (int i=0; i&lt;n*m; i++) {
+        for (int j=0; j&lt;n*m; j++) {
+            G.arcs[i][j]=INFINITY;
+        }
+    }
+    //输入二维数组，同时记录入口和出口的位置
+    for (int i=0; i&lt;n; i++) {
+        for (int j=0; j&lt;m; j++) {
+            scanf(&quot;%c&quot;,&amp;a[i][j]);
+            G.vexs[i*m+j]=a[i][j];
+            G.vexnum++;
+            if (a[i]
+                [j]==&#39;S&#39;) {
+                start=i*m+j;
+            }else if(a[i][j]==&#39;E&#39;){
+                exit=i*m+j;
+            }
+        }
+        getchar();//作用是为了读取缓存区中的换行符（因为迷宫是一行一行输入到内存中的）
+    }
+    //将二维数组转换为无向图，在转换时，从二维数组的左上角开始，每次判断当前顶点的右侧和下侧是否为通路，这样所有的通路就可以转换为无向图中的边。
+    for (int i=0; i&lt;n; i++) {
+        for (int j=0; j&lt;m; j++) {
+            //首先判断当前点是否为通路
+            if (canUsed(i, j, n, m, a)) {
+                if (canUsed(i+1, j, n, m, a)) {
+                    //设定两顶点之间的边的权值为 1
+                    G.arcs[i*m+j][(i+1)*m+j]=1;
+                    G.arcs[(i+1)*m+j][i*m+j]=1;
+                    G.arcnum++;
+                }
+                if (canUsed(i, j+1, n, m, a)) {
+                    G.arcs[i*m+j][i*m+j+1]=1;
+                    G.arcs[i*m+j+1][i*m+j]=1;
+                    G.arcnum++;
+                }
+            }
+        }
+    }
+    PathMatrix P;
+    ShortPathTable D;
+    //进行迪杰斯特拉算法
+    ShortestPath_Dijkstra(G,start, &amp;P, &amp;D);
+    //如果最终记录的权值和还是无穷大，证明，入口和出口之间没有通路
+    if (D[exit]==INFINITY) {
+        printf(&quot;-1&quot;);
+    }else{
+        printf(&quot;入口到出口的最短路径长度为:\n&quot;);
+        printf(&quot;%d\n&quot;,D[exit]);
+        printf(&quot;入口到出口的最短路径为(逆序):\n&quot;);
+        printf(&quot;(%d,%d) &quot;,exit/m,exit%m);
+        while (P[exit]!=0) {
+            printf(&quot;(%d,%d) &quot;,P[exit]/m,P[exit]%m);
+            exit=P[exit];
+        }
+        printf(&quot;(%d,%d)\n&quot;,start/m,start%m);
+    }
+    return 0;
+}</pre>
+<div class="info-box">
+	运行结果：<br />
+	<span style="color:#b22222;">程序输入：</span><br />
+	3 3<br />
+	S-#<br />
+	---<br />
+	##E<br />
+	<span style="color:#b22222;">程序输出：</span><br />
+	入口到出口的最短路径长度为:<br />
+	4<br />
+	入口到出口的最短路径为(逆序):<br />
+	(2,2) (1,2) (1,1) (0,1) (0,0)</div>
+<h2>
+	<u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>解决最短路径问题</h2>
+除了以上两种可以称得上是直接求最短路径的方法，还可以应用本章的<span style="color:#b22222;">广度优先搜索算法</span>查找最短路径，该算法的实现可以直接在二维数组中完成，没有必要转化为图的形式。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171128/2-1G12QI0441b.png" style="width: 300px; height: 274px;" /></div>
+例如拿上图中的迷宫举例，骑士一开始只能选择向右走，当走到坐标为 (2,2) 的位置，骑士有两个选择：向上走或者向下走。<br />
+<blockquote>
+	<p>
+		对于广度优先搜索来说，其实现使用的数据存储结构为<u><a href='/view/172.html' target='_blank'>队列</a></u>，在搜索的过程中，将每种可选情况都入队，然后一轮一轮的对队列中的可选情况进行尝试，知道尝试出想要的结果为止。</p>
+</blockquote>
+对于此时的骑士来说，结合对广度优先算法的理解，就相当于骑士会分身术，一分为二，一个往上，一个往下，每个人每次只能走一步（你走一步然后我走一步）。<br />
+<br />
+例如假设骑士走下，分身去上，当骑士走到坐标为（3，4）的位置时，又需要选择，要么往右，要么往下，此时骑士又分身，各走各的。但是无论怎么分，所有的骑士都是每次只走一步。<br />
+<br />
+<span style="color:#b22222;">在这种情况下，当只要有一个骑士找到出口时，他所走的路径就绝对是最短路径。</span><br />
+<blockquote>
+	<p>
+		对于广度优先搜索来说，使用的是队列的数据结构，等同于在遍历一棵<u><a href='/view/192.html' target='_blank'>二叉树</a></u>时，一层一层的遍历（从上往下，从左往右），可以看做是，对于每种情况，轮流去试探，每次只走一步。</p>
+</blockquote>
+在实际编程实现时，使用广度优先搜索查找最短路径时，只能求得最短路径的长度，如果想要获取最短路径的具体路线，还需要结合其他算法。<br />
+<br />
+在本节，给大家的一个解决思路是：<span style="color:#b22222;">在存储迷宫时，对于每个顶点都分配一个整形变量，在进行广度优先搜索时，骑士和其分身每走一步，该顶点所携带的整形变量的值都是骑士之前所处位置的整形变量+1。</span><br />
+<br />
+例如，对于下图的迷宫来说，骑士在最终找到出口时的整形变量为：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171128/2-1G12QI53c46.png" style="width: 212px; height: 173px;" /><br />
+	&nbsp;</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>从入口开始，初始值假设为 0 ，其右侧通路和下方通路的整形变量的值是0+1=1，最终其出口自身所携带的整形变量值就是最短路径的长度。</p>
+</blockquote>
+通过对&ldquo;骑士们&rdquo;所走路线中整形变量的设置，此时我们可以结合回溯法，从入口开始寻找骑士所可能走的所有的最短路径（此时找到的可能不只有一条）。<br />
+<br />
+在使用回溯法时，从入口出发，每次同当前顶点周围查找比自身整形变量值大 1 的顶点，就是骑士所走的路线。如果找不到，回退再找，直到将所有的情况都试探完。<br />
+<br />
+<span style="color:#b22222;">广度优先搜索+回溯法解决移动迷宫问题的完整代码为：</span>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+typedef enum{false,true} bool;
+
+typedef struct {
+    int x;
+    int y;
+    char mess;
+    int value;
+}check;
+
+bool canUsed(int x,int y,char data,int n,int m){
+    if (x&gt;=0 &amp;&amp; x&lt;n &amp;&amp; y&gt;=0 &amp;&amp; y&lt;m &amp;&amp; data!=&#39;#&#39;) {
+        return true;
+    }
+    return false;
+}
+void createMaze(int n,int m,check a[][110],int *entryx,int *entryy,int *exitx,int *exity){
+    for (int i=0; i&lt;n; i++) {
+        for (int j=0; j&lt;m; j++) {
+            scanf(&quot;%c&quot;,&amp;a[i][j].mess);
+            a[i][j].x=i;
+            a[i][j].y=j;
+            if (a[i][j].mess==&#39;S&#39;) {
+                *entryx=i;
+                *entryy=j;
+            }else if(a[i][j].mess==&#39;E&#39;){
+                *exitx=i;
+                *exity=j;
+            }
+        }
+        getchar();
+    }
+}
+//使用的广度优先搜索的思想，采用队列的数据结构实现
+void findRoad(check a[][110],int top,int rear,check queue[],int *value,int entryx,int entryy,int n,int m){
+    //首先将入口顶点入队
+    check data;
+    data.x=entryx;
+    data.y=entryy;
+    a[entryx][entryy].mess=&#39;#&#39;;
+    data.mess=a[entryx][entryy].mess;
+    data.value=0;
+    queue[rear]=data;
+    bool success=false;
+    rear++;
+    //队列不满
+    while (top!=rear) {
+        //逐个出队
+        check temp=queue[top];
+        a[temp.x][temp.y].value=temp.value;
+        top++;
+        //对于出队的顶点判断是否是出口，首个判断为出口的顶点，其value值就是最短路径的长度
+        if (temp.mess==&#39;E&#39;) {
+            *value=temp.value;
+            printf(&quot;%d\n&quot;,temp.value);
+            success=true;
+            break;
+        }
+        //每次入队，判断其上、下、左、右的顶点是否符合条件，若符合，则入队，同时对其value值赋值为前一个顶点value+1，为了避免重复判断此顶点，对每个入队的顶点，设定其字符为&lsquo;#&rsquo;
+        if(canUsed(temp.x-1,temp.y,a[temp.x-1][temp.y].mess,n,m)){
+            data.x=temp.x-1;
+            data.y=temp.y;
+            data.mess=a[temp.x-1][temp.y].mess;
+            data.value=temp.value+1;
+            queue[rear]=data;
+            a[temp.x-1][temp.y].mess=&#39;#&#39;;
+            rear++;
+        }
+        //右边
+        if(canUsed(temp.x,temp.y+1,a[temp.x][temp.y+1].mess,n,m)){
+            data.x=temp.x;
+            data.y=temp.y+1;
+            data.mess=a[temp.x][temp.y+1].mess;
+            data.value=temp.value+1;
+            queue[rear]=data;
+            a[temp.x][temp.y+1].mess=&#39;#&#39;;
+            rear++;
+        }
+        //下边
+        if(canUsed(temp.x+1,temp.y,a[temp.x+1][temp.y].mess,n,m)){
+            data.x=temp.x+1;
+            data.y=temp.y;
+            data.mess=a[temp.x+1][temp.y].mess;
+            data.value=temp.value+1;
+            queue[rear]=data;
+            a[temp.x+1][temp.y].mess=&#39;#&#39;;
+            rear++;
+        }
+        //左边
+        if(canUsed(temp.x,temp.y-1,a[temp.x][temp.y-1].mess,n,m)){
+            data.x=temp.x;
+            data.y=temp.y-1;
+            data.mess=a[temp.x][temp.y-1].mess;
+            data.value=temp.value+1;
+            queue[rear]=data;
+            a[temp.x][temp.y-1].mess=&#39;#&#39;;
+            rear++;
+        }
+    }
+    //如果不成功，证明出口和入口之间没有通路
+    if (success==false) {
+        printf(&quot;-1\n&quot;);
+    }
+}
+//用于输出最短路径时回溯过程中的判断
+bool judgeValue(int x,int y,int n,int m){
+    if (x&gt;=0 &amp;&amp; x&lt;n &amp;&amp; y&gt;=0 &amp;&amp; y&lt;m ){
+        return true;
+    }
+    return false;
+}
+//在输出时，由于最短路径中从入口开始，一直到出口，所经过的顶点的 value 值逐渐 +1，所以采用回溯法查找所有可能的最短路径
+void displayRoad(check a[][110],int entryx,int entryy,int n,int m,int value){
+    //设置静态数组，实现<u><a href='/view/169.html' target='_blank'>栈</a></u>的作用
+    static check stack[1000];
+    static int top=-1;//栈的栈顶
+    //对于每个当前的顶点，首先需要判断其是否符合最基本的要求，由于在前期二维数组中的通路都变成了&lsquo;#&rsquo;，这里采用另一个关键字 ，value的值为主关键字进行搜索
+    if (judgeValue(entryx, entryy, n, m)) {
+        //回溯思想的实现用的是递归，所以需要设置一个出口，出口就是当查找到顶点的value值为最短路径的顶点数时，表明此时已经搜索在出口位置，此时就可以依次输出栈内存储的各个经过的顶点的坐标
+        if (a[entryx][entryy].value==value) {
+            for (int i=0; i&lt;top; i++) {
+                printf(&quot;(%d,%d) &quot;,stack[i].x,stack[i].y);
+            }
+            printf(&quot;\n&quot;);
+            return;
+        }
+        //从入口出发，判断当前点的上、下、左、右位置上的顶点是否符合要求：1、该顶点的坐标没有超出范围；2该顶点的value值是前一个顶点的value值+1，如果都符合，说明之前判断最短路径时就途径此顶点，将其入栈进行保存
+        if (judgeValue(entryx+1, entryy, n, m) &amp;&amp; a[entryx+1][entryy].value==a[entryx][entryy].value+1) {
+            top++;
+            stack[top]=a[entryx+1][entryy];
+            displayRoad(a, entryx+1, entryy, n, m,value);
+            //当运行至此，又两种情况：途径此顶点最终找到出口，并将最终结果输出，此时应将该顶点弹栈；该顶点的路径不是正确的，应弹栈。两种情况都应弹栈。
+            top--;
+        }
+        if (judgeValue(entryx-1, entryy, n, m) &amp;&amp; a[entryx-1][entryy].value==a[entryx][entryy].value+1) {
+            top++;
+            stack[top]=a[entryx-1][entryy];
+            displayRoad(a, entryx-1, entryy, n, m,value);
+            top--;
+        }
+        if (judgeValue(entryx, entryy+1, n, m) &amp;&amp; a[entryx][entryy+1].value==a[entryx][entryy].value+1) {
+            top++;
+            stack[top]=a[entryx][entryy+1];
+            displayRoad(a, entryx, entryy+1, n, m,value);
+            top--;
+        }
+        if (judgeValue(entryx, entryy-1, n, m) &amp;&amp; a[entryx][entryy-1].value==a[entryx][entryy].value+1) {
+            top++;
+            stack[top]=a[entryx][entryy-1];
+            displayRoad(a, entryx, entryy-1, n, m,value);
+            top--;
+        }
+    }
+}
+int main(int argc, const char * argv[]) {
+    check a[110][110];
+    check queue[100000];
+    int top=0,rear=0;   
+    int n,m;
+    int entryx = 0,entryy=0,exitx=0,exity=0;
+    scanf(&quot;%d %d&quot;,&amp;n,&amp;m);
+    getchar();
+    //创建迷宫，并找到入口和出口的位置坐标
+    createMaze(n,m,a,&amp;entryx,&amp;entryy,&amp;exitx,&amp;exity);
+    //在迷宫中查找从入口到出口的最短路径，若有，输出最短路径的长度；反之，输出-1
+    int value;
+    findRoad(a,top,rear,queue,&amp;value,entryx,entryy,n,m);
+    //输出所有的最短路径
+    displayRoad(a, entryx, entryy, n, m, value);
+    return 0;
+}</pre>
+<div class="info-box">
+	运行结果:<br />
+	<span style="color:#b22222;">输入部分：</span><br />
+	3 3<br />
+	S-#<br />
+	---<br />
+	#-E<br />
+	4<br />
+	<span style="color:#b22222;">程序输出部分：</span><br />
+	(1,0) (1,1) (2,1)<br />
+	(1,0) (1,1) (1,2)<br />
+	(0,1) (1,1) (2,1)<br />
+	(0,1) (1,1) (1,2)</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>通过对通路进行整体的回溯，可以找到所有可能的结果，这个例子中，有四条长度相同的最短路径。</p>
+</blockquote>
+<h2>
+	总结</h2>
+<p>
+	本节主要解决的是求有关点到点的最短路径的问题，其问题的解决既可以使用&ldquo;专业工具&rdquo; -- 迪杰斯特拉算法和弗洛伊德算法，也有&ldquo;组合套装&rdquo; -- 广度优先搜索 + 回溯法。通过这个项目，大家要学会将所学的知识融会贯通，综合运用。</p>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 82;
+window.arcId = "d209XTgWpVK9D3g3d6LIK9XF/rKE217fgWd/aO6JTWDAOU/o/G8w6m9i";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

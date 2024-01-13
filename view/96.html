@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>农夫过河问题 宽搜（bfs）算法详解</title>
+<meta name="keywords" content="农夫,过河,问题,宽搜,bfs,算法,详解,农夫,过河," />
+<meta name="description" content="农夫过河问题（农夫、狼、羊和白菜的问题）描述如下： 一个农夫，带着一只狼、一只羊、和一棵白菜，身处河的南岸，他要把这些东西全部运到北岸。农夫的面前有一条小船，船小到" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>农夫过河问题 宽搜（bfs）算法详解</h1>
+			<div id="arc-body"><span style="color:#b22222;">农夫过河问题（农夫、狼、羊和白菜的问题）</span>，描述如下：<br />
+<br />
+一个农夫，带着一只狼、一只羊、和一棵白菜，身处河的南岸，他要把这些东西全部运到北岸。农夫的面前有一条小船，船小到只能容下他和一件物件。另外，只能农夫会撑船。又因为狼能吃羊，而羊爱吃白菜，所以农夫不能留下羊和白菜而自己离开，也不能留下狼和羊而自己离开。但狼属于食肉动物，不吃白菜。<br />
+<br />
+<span style="color:#008000;">问农夫采取什么方案才能将所有的东西运过河？</span><br />
+<h2>
+	解题思路</h2>
+<span style="color:#b22222;">农夫过河问题的求解方法是使用</span><span style="color:#008000;"><u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>（<u><a href='/view/39.html' target='_blank'>BFS</a></u>）</span>，即在搜索过程中总是最先搜索下面一步的所有可能状态，然后再进行考虑更后面的各种情况。<br />
+<br />
+<span style="color:#b22222;">要实现广度优先搜索，一般采用<u><a href='/view/172.html' target='_blank'>队列</a></u>结构。</span>把下一步所有可能达到的状态都列举出来，放在这个队列中，然后顺序取出来分别对其进行处理，处理过程中再把下一步的状态放在队列里。<br />
+<br />
+在采用编程解决农夫过河的问题时，首先需要考虑以下几个问题：
+<ul>
+	<li>
+		程序中为了方便描述农夫过河过程中几个角色的位置（位于南岸还是北岸），最好的方法是用 4 个二进制数，分别<u><a href='/view/158.html' target='_blank'>顺序表</a></u>示农夫、狼、白菜和羊的位置。在本节程序中，用二进制 0 表示某角色在河的南岸，用 1 表示某角色在河的北岸。例如，整数 5（其二进制为 0101），表示农夫和白菜在河的南岸，而狼和羊在北岸。</li>
+	<li>
+		为了方便获取各个角色当前所在的位置，程序中设置了如下 4 个函数。其中，函数返回值为 1，反之则表示角色在河的北岸：</li>
+</ul>
+<pre class="cpp" style="margin-left: 40px;">
+//表示农夫状态的函数，返回0 ，表示农夫在南岸，反之在北岸。
+int farmer(int location){
+    return(0!=(location &amp; 0x08));
+}
+//表示狼的状态的函数，返回0 ，表示农夫在南岸，反之在北岸
+int wolf(int location){
+    return(0!=(location &amp; 0x04));
+}
+//表示白菜状态的函数，返回0 ，表示农夫在南岸，反之在北岸
+int cabbage(int location){
+    return(0!=(location &amp; 0x02));
+}
+//表示羊状态的函数，返回0 ，表示农夫在南岸，反之在北岸
+int goat(int location){
+    return(0!=(location &amp; 0x01));
+}</pre>
+<p style="margin-left: 40px;">
+	<br />
+	其中，<span style="color:#008000;">location</span> 为当前 4 种角色所处的状态，其值为 0（0000） 到 15（1111） 之间的数。通过 location 与不同角色二进制的<span style="color:#b22222;">按位与</span>运算，可获得当前状态下各个角色的位置。</p>
+<ul>
+	<li>
+		任何角色移动后，都需要进行判断：<span style="color:#b22222;">当前移动是否是有问题的。</span>例如，当农夫不在的情况下，是否狼和羊同时在一起，又或是羊和白菜同时在一起，这两种情况都是不安全的。所以该函数应该写为：</li>
+</ul>
+<pre class="cpp" style="margin-left: 40px;">
+//判断当前状态是否合理的函数
+int safe(int location){
+    //如果农夫不在羊身边，而羊和白菜在一起，则为不安全
+    if(goat(location) == cabbage(location) &amp;&amp; goat(location) != farmer(location)){
+        return 0;
+    }
+    //如果农夫不在狼身边，而狼和羊在一起，也不安全
+    if(goat(location) == wolf(location) &amp;&amp; goat(location) != farmer(location)){
+        return 0;
+    }
+    //其他情况都安全
+    return 1;
+}</pre>
+<ul>
+	<li>
+		为了记录各个角色的移动过程，程序中设置了<u><a href='/view/181.html' target='_blank'>数组</a></u> route，由于无论移动，其采用二进制表示时都会位于 0000 &ndash; 1111 之间，即十进制 0-15 之间，所以，route 数组的长度设置为 16 即可。</li>
+</ul>
+<p style="margin-left: 40px;">
+	<br />
+	初始状态下，route 中的每个分量都为 -1，每当在队列中加入一个新状态时，就把数组中与该状态对应的位置的值改为达到此状态的前一状态的下标值。即此位置存储上一状态所在位置的下标（便于最后输出整个的移动方案）。在route数组中，一个元素具有非负值，表明这个状态已被访问过。</p>
+<br />
+解决以上 4 个难题，农夫过河的问题就很简单了，实现代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAXSIZE 100 //队列的最大长度
+typedef int ElemType;
+typedef struct{
+    ElemType data[MAXSIZE];//队列的存储空间
+    int front,rear;//队列的队头指针和队尾指针
+}SqQueue;
+//初始化队列
+void Init_SqQueue(SqQueue *Q){
+    Q-&gt;front = Q-&gt;rear =0;
+}
+//判断队列是否为空
+int Empty_SqQueue(SqQueue *Q){
+    return Q-&gt;rear == Q-&gt;front;//为真，返回1 则表示队列为空
+}
+//数据 e 进队列
+void In_SqQueue(SqQueue *Q, int e){
+    if(Q-&gt;rear == MAXSIZE){
+        return;
+    }
+    Q-&gt;data[Q-&gt;rear] = e;
+    Q-&gt;rear+=1;
+}
+//数据出队列，通过将出队列数据赋值给 e
+void Out_SqQueue(SqQueue *Q,int *e){
+    //出队之前，先判断队列是否为空
+    if(Q-&gt;rear == Q-&gt;front){
+        return;
+    }
+    *e = Q-&gt;data[Q-&gt;front];
+    Q-&gt;front+=1;
+}
+//表示农夫状态的函数，返回0 ，表示农夫在南岸，反之在北岸
+int farmer(int location){
+    return(0!=(location &amp; 0x08));
+}
+//表示狼的状态的函数，返回0 ，表示农夫在南岸，反之在北岸
+int wolf(int location){
+    return(0!=(location &amp; 0x04));
+}
+//表示白菜状态的函数，返回0 ，表示农夫在南岸，反之在北岸
+int cabbage(int location){
+    return(0!=(location &amp; 0x02));
+}
+//表示羊状态的函数，返回0 ，表示农夫在南岸，反之在北岸
+int goat(int location){
+    return(0!=(location &amp; 0x01));
+}
+//判断当前状态是否合理的函数
+int safe(int location){
+    //如果农夫不在羊身边，而羊和白菜在一起，则为不安全
+    if(goat(location) == cabbage(location) &amp;&amp; goat(location) != farmer(location)){
+        return 0;
+    }
+    //如果农夫不在狼身边，而狼和羊在一起，也不安全
+    if(goat(location) == wolf(location) &amp;&amp; goat(location) != farmer(location)){
+        return 0;
+    }
+    //其他情况都安全
+    return 1;
+}
+//农夫过河的实现函数
+void farmerproblem(){
+    int movers,location,newlocation;
+    int route[16];//用于记录已考虑的状态路径
+    int i;
+    SqQueue moveto;
+    Init_SqQueue(&amp;moveto);
+    //以所有角色都在南岸开始
+    In_SqQueue(&amp;moveto,0x00);
+    //对记录路径的数组初始化
+    for(i=0;i&lt;16;i++){
+        route[i] = -1;
+    }
+    //记录所有角色都在南岸的路径
+    route[0] = 0;
+    while(!Empty_SqQueue(&amp;moveto) &amp;&amp; (route[15] == -1)){
+        Out_SqQueue(&amp;moveto,&amp;location);//出队列，并将状态赋值给location
+        //依次移动羊、白菜、狼和农夫，movers每次左移一位，所以其值每次为1,2,4,8
+        for(movers =1;movers&lt;=8;movers&lt;&lt;=1){
+            //判断农夫与要移动的角色是否位于河岸的同一侧
+            if(((location &amp; 0x08)!=0) == ((location &amp; movers)!=0)){
+                //若农夫与该角色在同一侧则尝试移至对岸（异或运算）
+                newlocation = location^(0x08|movers);
+                //判断此移动是否安全
+                if(safe(newlocation) &amp;&amp; route[newlocation] == -1){
+                    //如果安全，且之前没有移动过，则进行记录，记录方法是在新位置记录之前的移动位置
+                    route[newlocation] = location;
+                    //将新的移动方案入队
+                    In_SqQueue(&amp;moveto , newlocation);
+                }
+            }
+        }
+    }
+    //如果最终移动成功，即由 0000 变成 1111则视为成功
+    if(route[15]!=-1){
+        printf(&quot;the reverse path is :&quot;);
+        for(i=15; i&gt;=0; i=route[i]){
+            printf(&quot;\n the location is:%d&quot;,i);
+            if(i==0){
+                break;
+            }
+        }
+    }else{
+        printf(&quot;no path&quot;);
+    }
+}
+int main(){
+    farmerproblem();
+    return 0;
+}</pre>
+<span style="color:#008000;">运行结果为：</span>
+<div class="info-box">
+	the reverse path is :<br />
+	the location is:15<br />
+	the location is:6<br />
+	the location is:14<br />
+	the location is:2<br />
+	the location is:11<br />
+	the location is:1<br />
+	the location is:9<br />
+	the location is:0</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>输出的各个数字，要转化为二进制看，才有意义，例如，15，二进制为1111，表示农夫、狼、白菜和羊都在河的北岸；而最终的 0，二进制为 0000，表示其都在南岸。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 96;
+window.arcId = "e591xLsX9fyrmy27IyT/FYBvNmKDYkSMqZmMsjQpfCcMDZ7vRkVcXzwU";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

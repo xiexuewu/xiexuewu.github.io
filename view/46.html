@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>迪杰斯特拉算法详解及C语言实现</title>
+<meta name="keywords" content="最短,路径,之迪,杰,斯特拉,算法,最短,路径," />
+<meta name="description" content="如今，出行已经不需要再为找不着路而担心了，车上有车载导航，手机中有导航App。只需要确定起始点和终点，导航会自动规划出可行的距离最短的道路。这就是最短路径在人们实际生" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>迪杰斯特拉算法详解及C语言实现</h1>
+			<div id="arc-body">如今出行已经不需要再为找不着路而担心了，车上有车载导航，手机中有导航App。只需要确定起点和终点，导航会自动规划出可行的距离最短的道路。这是最短路径在人们实际生活中最典型的应用。<br />
+<br />
+在一个网（有权<u><a href='/view/200.html' target='_blank'>图</a></u>）中，求一个顶点到另一个顶点的最短路径的计算方式有两种：<span style="color:#008000;">迪杰斯特拉（Dijkstra算法）</span>和<span style="color:#008000;">弗洛伊德（Floyd）算法</span>。<span style="color:#b22222;">迪杰斯特拉算法计算的是有向网中的某个顶点到其余所有顶点的最短路径；弗洛伊德算法计算的是任意两顶点之间的最短路径。</span><br />
+<blockquote>
+	<p>
+		最短路径算法既适用于有向网，也同样适用于无向网。本节将围绕有向网讲解迪杰斯特拉算法的具体实现。</p>
+</blockquote>
+<h2>
+	迪杰斯特拉（Dijkstra算法）</h2>
+迪杰斯特拉算法计算的是从网中一个顶点到其它顶点之间的最短路径问题。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170922/2-1F922163925J8.png" style="width: 276px; height: 246px;" /><br />
+	图 1 带权有向图</div>
+<br />
+如图 1 所示是一个有向网，在计算 V0 到其它所有顶点之间的最小路径时，迪杰斯特拉算法的计算方式为：<br />
+<br />
+从 V0 出发，由于可以直接到达 V2 和 V5 ，而其它顶点和 V0 之间没有弧的存在，所以之间的距离设定为无穷大，可以得到下面这个表格：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170922/2-1F922164041616.png" style="width: 358px; height: 103px;" /></div>
+从表格中可以看到，V0 到 V2 的距离最近，所以迪杰斯特拉算法设定 V0-V2 为 V0 到 V2 之间的最短路径，最短路径的权值和为 10。<br />
+<br />
+已经判断 V0-V2 是最短路径，所以以 V2 为起始点，判断 V2 到除了 V0 以外的其余各点之间的距离，如果对应的权值比前一张表格中记录的数值小，就说明网中有一条更短的路径，直接更新表格；反之表格中的数据不变。可以得到下面这个表格：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171127/2-1G12G53335193.png" style="width: 435px; height: 103px;" /></div>
+例如，表格中 V0 到 V3 的距离，发现当通过 V2 到达 V3 的距离比之前的 &infin; 要小，所以更新表格。<br />
+<br />
+更新之后，发现 V0-V4 的距离最近，设定 V0 到 V4 的最短路径的值为 30。之后从 V4 出发，判断到未确定最短路径的其它顶点的距离，继续更新表格：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170922/2-1F922164233D0.png" style="width: 435px; height: 103px;" /></div>
+更新后确定从 V0 到 V3 的最短路径为 V0-V4-V3，权值为 50。然后从 V3 出发，继续判断：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170922/2-1F922164254b9.png" style="width: 435px; height: 103px;" /></div>
+对于 V5 来说，通过 V0-V4-V3-V5 的路径要比之前的权值 90 还要小，所以更新表格，更新后可以看到，V0-V5 的距离此时最短，可以确定 V0 到 V5 的最短路径为 60。<br />
+<br />
+最后确定 V0-V1 的最短路径，由于从 V0 无法到达 V1 ，最终设定 V0 到 V1 的最短路径为<span style="color:#008000;"> &infin;（无穷大）</span>。<br />
+<br />
+在确定了 V0 与其他所有顶点的最短路径后，迪杰斯特拉算法才算结束。<br />
+<div class="info-box">
+	事例中借用了图 1 的有向网对迪杰斯特拉算法进行了讲解，实际上无向网中的最短路径问题也可以使用迪杰斯特拉算法解决，解决过程和上述过程完全一致。</div>
+<h2>
+	迪杰斯特拉算法的代码实现</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAX_VERtEX_NUM 20                   //顶点的最大个数
+#define VRType int                          //表示弧的权值的类型
+#define VertexType int                      //图中顶点的数据类型
+#define INFINITY 65535
+typedef struct {
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据
+    VRType arcs[MAX_VERtEX_NUM][MAX_VERtEX_NUM];                         //二维<u><a href='/view/181.html' target='_blank'>数组</a></u>，记录顶点之间的关系
+    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数
+}MGraph;
+
+typedef int PathMatrix[MAX_VERtEX_NUM];     //用于存储最短路径中经过的顶点的下标
+typedef int ShortPathTable[MAX_VERtEX_NUM]; //用于存储各个最短路径的权值和
+
+//根据顶点本身数据，判断出顶点在二维数组中的位置
+int LocateVex(MGraph * G,VertexType v){
+    int i=0;
+    //遍历一维数组，找到变量v
+    for (; i&lt;G-&gt;vexnum; i++) {
+        if (G-&gt;vexs[i]==v) {
+            break;
+        }
+    }
+    //如果找不到，输出提示语句，返回-1
+    if (i&gt;G-&gt;vexnum) {
+        printf(&quot;no such vertex.\n&quot;);
+        return -1;
+    }
+    return i;
+}
+//构造有向网
+void CreateUDG(MGraph *G){
+    scanf(&quot;%d,%d&quot;,&amp;(G-&gt;vexnum),&amp;(G-&gt;arcnum));
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;,&amp;(G-&gt;vexs[i]));
+    }
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        for (int j=0; j&lt;G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j]=INFINITY;
+        }
+    }
+    for (int i=0; i&lt;G-&gt;arcnum; i++) {
+        int v1,v2,w;
+        scanf(&quot;%d,%d,%d&quot;,&amp;v1,&amp;v2,&amp;w);
+        int n=LocateVex(G, v1);
+        int m=LocateVex(G, v2);
+        if (m==-1 ||n==-1) {
+            printf(&quot;no this vertex\n&quot;);
+            return;
+        }
+        G-&gt;arcs[n][m]=w;
+    }
+}
+//迪杰斯特拉算法，v0表示有向网中起始点所在数组中的下标
+void ShortestPath_Dijkstra(MGraph G,int v0,PathMatrix *p,ShortPathTable *D){
+    int final[MAX_VERtEX_NUM];//用于存储各顶点是否已经确定最短路径的数组
+    //对各数组进行初始化
+    for (int v=0; v&lt;G.vexnum; v++) {
+        final[v]=0;
+        (*D)[v]=G.arcs[v0][v];
+        (*p)[v]=0;
+    }
+    //由于以v0位下标的顶点为起始点，所以不用再判断
+    (*D)[v0]=0;
+    final[v0]=1;
+    int k = 0;
+    for (int i=0; i&lt;G.vexnum; i++) {
+        int min=INFINITY;
+        //选择到各顶点权值最小的顶点，即为本次能确定最短路径的顶点
+        for (int w=0; w&lt;G.vexnum; w++) {
+            if (!final[w]) {
+                if ((*D)[w]&lt;min) {
+                    k=w;
+                    min=(*D)[w];
+                }
+            }
+        }
+        //设置该顶点的标志位为1，避免下次重复判断
+        final[k]=1;
+        //对v0到各顶点的权值进行更新
+        for (int w=0; w&lt;G.vexnum; w++) {
+            if (!final[w]&amp;&amp;(min+G.arcs[k][w]&lt;(*D)[w])) {
+                (*D)[w]=min+G.arcs[k][w];
+                (*p)[w]=k;//记录各个最短路径上存在的顶点
+            }
+        }
+    }
+}
+int main(){
+    MGraph G;
+    CreateUDG(&amp;G);
+    PathMatrix P;
+    ShortPathTable D;
+    ShortestPath_Dijkstra(G, 0, &amp;P, &amp;D);
+    for (int i=1; i&lt;G.vexnum; i++) {
+        printf(&quot;V%d - V%d的最短路径中的顶点有(逆序)：&quot;,0,i);
+        printf(&quot; V%d&quot;,i);
+        int j=i;
+        //由于每一段最短路径上都记录着经过的顶点，所以采用嵌套的方式输出即可得到各个最短路径上的所有顶点
+        while (P[j]!=0) {
+            printf(&quot; V%d&quot;,P[j]);
+            j=P[j];
+        }
+        printf(&quot; V0\n&quot;);
+    }
+    printf(&quot;源点到各顶点的最短路径长度为:\n&quot;);
+    for (int i=1; i&lt;G.vexnum; i++) {
+        printf(&quot;V%d - V%d : %d \n&quot;,G.vexs[0],G.vexs[i],D[i]);
+    }
+    return 0;
+}</pre>
+运行以上代码，计算如图 1 所示的有向网，运行结果为：
+<div class="info-box">
+	6,8<br />
+	0<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	0,5,100<br />
+	0,4,30<br />
+	0,2,10<br />
+	1,2,5<br />
+	2,3,50<br />
+	3,5,10<br />
+	4,3,20<br />
+	4,5,60<br />
+	V0 - V1的最短路径中的顶点有： V1 V0<br />
+	V0 - V2的最短路径中的顶点有： V2 V0<br />
+	V0 - V3的最短路径中的顶点有： V3 V4 V0<br />
+	V0 - V4的最短路径中的顶点有： V4 V0<br />
+	V0 - V5的最短路径中的顶点有： V5 V3 V4 V0<br />
+	源点到各顶点的最短路径长度为:<br />
+	V0 - V1 : 65535<br />
+	V0 - V2 : 10<br />
+	V0 - V3 : 50<br />
+	V0 - V4 : 30<br />
+	V0 - V5 : 60</div>
+<h2>
+	总结</h2>
+迪杰斯特拉算法解决的是从网中的一个顶点到所有其它顶点之间的最短路径，算法整体的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(n2)</code>。但是如果需要求任意两顶点之间的最短路径，使用迪杰斯特拉算法虽然最终虽然也能解决问题，但是大材小用，相比之下使用弗洛伊德算法解决此类问题会更合适。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">弗洛伊德算法实现的具体过程下一节会作详细介绍。</span></p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 46;
+window.arcId = "eee5y6gp3pfIFBXV5FzxIs3FCmg8nVTT4D3re08JyfBak01hn6RvkPHO";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

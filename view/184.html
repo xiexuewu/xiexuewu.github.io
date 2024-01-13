@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>三元组顺序表，稀疏矩阵的三元组表示及（C语言）实现</title>
+<meta name="keywords" content="三元,组,顺序,表,稀疏,矩阵,的,表示,及,语言," />
+<meta name="description" content="本节介绍稀疏矩阵的三元组顺序表压缩存储方式。 通过《 矩阵的压缩存储 》一节我们知道，稀疏矩阵的压缩存储，至少需要存储以下信息： 矩阵中各非 0 元素的值，以及所在矩阵中的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/github/array_list/">数组和广义表</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/github/view/181.html">什么是数组</a></dd><dd>5.2 <a href="/github/view/182.html">数组的顺序存储</a></dd><dd>5.3 <a href="/github/view/183.html">矩阵（稀疏矩阵）压缩存储</a></dd><dd>5.4 <a href="/github/view/184.html">三元组顺序表</a></dd><dd>5.5 <a href="/github/view/185.html">行逻辑链接的顺序表</a></dd><dd>5.6 <a href="/github/view/186.html">十字链表法</a></dd><dd>5.7 <a href="/github/view/187.html">矩阵的转置算法</a></dd><dd>5.8 <a href="/github/view/vip_229.html">稀疏矩阵的快速转置</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.9 <a href="/github/view/vip_230.html">矩阵乘法（基于行逻辑链接的顺序表）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.10 <a href="/github/view/vip_231.html">矩阵加法（基于十字链表）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.11 <a href="/github/view/189.html">什么是广义表</a></dd><dd>5.12 <a href="/github/view/190.html">广义表的存储结构</a></dd><dd>5.13 <a href="/github/view/vip_232.html">广义表的深度和长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.14 <a href="/github/view/21.html">复制广义表</a></dd></dl>
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>三元组顺序表，稀疏矩阵的三元组表示及（C语言）实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/183.html">矩阵（稀疏矩阵）压缩存储</a></span>
+                    <span class="next right"><a href="/view/185.html">行逻辑链接的顺序表</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/183.html";window.nextPageURL = "/view/185.html";</script>
+			<div id="arc-body">本节介绍稀疏矩阵的<u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u>压缩存储方式。<br />
+<br />
+通过《<a href="/view/183.html" target="_blank">矩阵的压缩存储</a>》一节我们知道，稀疏矩阵的压缩存储，至少需要存储以下信息：
+<ul>
+	<li>
+		矩阵中各非 0 元素的值，以及所在矩阵中的行标和列标；</li>
+	<li>
+		矩阵的总行数和总列数；</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181216/2-1Q216124S1131.gif" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 稀疏矩阵示意图</div>
+<br />
+例如，图 1 是一个稀疏矩阵，若对其进行压缩存储，矩阵中各非 0 元素的存储状态如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181216/2-1Q216144254546.gif" /><br />
+	图 2 稀疏矩阵的压缩存储示意图</div>
+<br />
+图 2 的<u><a href='/view/181.html' target='_blank'>数组</a></u>中，存储的是三元组（即由 3 部分数据组成的集合），组中数据分别表示（行标，列标，元素值）。<br />
+<p class="info-box">
+	注意，这里矩阵的行标和列标都从 1 开始。</p>
+C 语言中，三元组需要用结构体实现，如下所示：<br />
+<pre class="cpp">
+//三元组结构体
+typedef struct {
+    int i,j;//行标i，列标j
+    int data;//元素值
+}triple;</pre>
+由于稀疏矩阵中非 0 元素有多个，因此需要建立 triple 数组存储各个元素的三元组。除此之外，考虑到还要存储矩阵的总行数和总列数，因此可以采用以下结构表示整个稀疏矩阵：
+<pre class="cpp">
+#define number 20
+//矩阵的结构表示
+typedef struct {
+    triple data[number];//存储该矩阵中所有非0元素的三元组
+    int n,m,num;//n和m分别记录矩阵的行数和列数，num记录矩阵中所有的非0元素的个数
+}TSMatrix;</pre>
+可以看到，TSMatrix 是一个结构体，其包含一个三元组数组，以及用于存储矩阵总行数、总列数和非 0 元素个数的变量。<br />
+<br />
+假设采用 TSMatrix 结构体存储图 1 中的稀疏矩阵，其 C 语言实现代码应该为：<br />
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#define number 3
+typedef struct {
+    int i,j;
+    int data;
+}triple;
+typedef struct {
+    triple data[number];
+    int n,m,num;
+}TSMatrix;
+//输出存储的稀疏矩阵
+void display(TSMatrix M);
+int main() {
+    TSMatrix M;
+    M.m=3;
+    M.n=3;
+    M.num=3;
+
+    M.data[0].i=1;
+    M.data[0].j=1;
+    M.data[0].data=1;
+
+    M.data[1].i=2;
+    M.data[1].j=3;
+    M.data[1].data=5;
+
+    M.data[2].i=3;
+    M.data[2].j=1;
+    M.data[2].data=3;
+    display(M);
+    return 0;
+}
+void display(TSMatrix M){
+    for(int i=1;i&lt;=M.n;i++){
+        for(int j=1;j&lt;=M.m;j++){
+            int value =0;
+            for(int k=0;k&lt;M.num;k++){
+                if(i == M.data[k].i &amp;&amp; j == M.data[k].j){
+                    printf(&quot;%d &quot;,M.data[k].data);
+                    value =1;
+                    break;
+                }
+            }
+            if(value == 0)
+                printf(&quot;0 &quot;);
+        }
+        printf(&quot;\n&quot;);
+    }
+}</pre>
+输出结果为：
+<p class="info-box">
+	1 0 0<br />
+	0 0 5<br />
+	3 0 0</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/183.html">矩阵（稀疏矩阵）压缩存储</a></span>
+                    <span class="next right"><a href="/view/185.html">行逻辑链接的顺序表</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/183.html";window.nextPageURL = "/view/185.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 184;
+window.arcId = "e308WUK6HjvSgUJl6MTtBkT7YjZAZfONwaQjmQbhx44RrLwJ6oJaTO2ZjQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

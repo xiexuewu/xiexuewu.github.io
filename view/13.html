@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>KMP算法(快速模式匹配算法)详解以及C语言实现</title>
+<meta name="keywords" content="快速,模拟,匹配,算法,“,KMP,”,快速,模拟," />
+<meta name="description" content="通过上一节的介绍，学习了串的普通模式匹配算法，大体思路是：模式串从主串的第一个字符开始匹配，每匹配失败，主串中记录匹配进度的指针i都要进行i-j+1的回退操作（这个过程称" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>KMP算法(快速模式匹配算法)详解以及C语言实现</h1>
+			<div id="arc-body">通过上一节的介绍，学习了<u><a href='/view/175.html' target='_blank'>串</a></u>的<a href="/view/12.html" target="_blank">普通模式匹配算法</a>，大体思路是：模式串从主串的第一个字符开始匹配，每匹配失败，主串中记录匹配进度的指针 i 都要进行 i-j+1 的回退操作（这个过程称为<span style="color:#008000;">&ldquo;指针回溯&rdquo;</span>），同时模式串向后移动一个字符的位置。一次次的循环，直到匹配成功或者程序结束。<br />
+<br />
+<span style="color:#008000;">&quot;KMP&quot;算法</span>相比于&quot;BF&quot;算法，优势在于：
+<ul>
+	<li>
+		在保证指针 i 不回溯的前提下，当匹配失败时，让模式串向右移动最大的距离；</li>
+	<li>
+		并且可以在<code>O(n+m)</code>的时间数量级上完成对串的模式匹配操作；</li>
+</ul>
+<br />
+故，&quot;KMP&quot;算法称为<span style="color:#008000;">&ldquo;快速模式匹配算法&rdquo;</span>。
+<h2>
+	模式串向右移动距离的计算</h2>
+在模式串和主串匹配时，各有一个指针指向当前进行匹配的字符（主串中是指针 i ，模式串中是指针 j ），在保证 i 指针不回溯的前提下，如果想实现功能，就只能让 j 指针回溯。<br />
+<div class="info-box">
+	j 指针回溯的距离，就相当于模式串向右移动的距离。 j 指针回溯的越多，说明模式串向右移动的距离越长。</div>
+计算模式串向右移动的距离，就可以转化成：当某字符匹配失败后， j 指针回溯的位置。<br />
+<br />
+对于一个给定的模式串，其中每个字符都有可能会遇到匹配失败，这时对应的 j 指针都需要回溯，具体回溯的位置其实还是由模式串本身来决定的，和主串没有关系。<br />
+<br />
+<span style="color:#b22222;">模式串中的每个字符所对应 j 指针回溯的位置，可以通过算法得出，得到的结果相应地存储在一个<u><a href='/view/181.html' target='_blank'>数组</a></u>中（默认数组名为 next ）。</span><br />
+<br />
+计算方法是：对于模式串中的某一字符来说，提取它前面的字符串，分别从字符串的两端查看连续相同的字符串的个数，在其基础上 +1 ，结果就是该字符对应的值。
+<div class="info-box">
+	每个模式串的第一个字符对应的值为 0 ，第二个字符对应的值为 1 。</div>
+例如：求模式串 &ldquo;abcabac&rdquo; 的 next 。前两个字符对应的 0 和 1 是固定的。<br />
+<br />
+对于字符 &lsquo;c&rsquo; 来说，提取字符串 &ldquo;ab&rdquo; ，&lsquo;a&rsquo; 和 &lsquo;b&rsquo; 不相等，相同的字符串的个数为 0 ，0 + 1 = 1 ，所以 &lsquo;c&rsquo; 对应的 next 值为 1 ；<br />
+<br />
+第四个字符 &lsquo;a&rsquo; ，提取 &ldquo;abc&rdquo; ，从首先 &lsquo;a&rsquo; 和 &lsquo;c&rsquo; 就不相等，相同的个数为 0 ，0 + 1 = 1 ，所以，&lsquo;a&rsquo; 对应的 next 值为 1 ；<br />
+<br />
+第五个字符 &lsquo;b&rsquo; ，提取 &ldquo;abca&rdquo; ，第一个 &lsquo;a&rsquo; 和最后一个 &lsquo;a&rsquo; 相同，相同个数为 1 ，1 + 1 = 2 ，所以，&lsquo;b&rsquo; 对应的 next 值为 2 ；<br />
+<br />
+第六个字符 &lsquo;a&rsquo; ，提取 &ldquo;abcab&rdquo; ，前两个字符 &ldquo;ab&rdquo; 和最后两个 &ldquo;ab&rdquo; 相同，相同个数为 2 ，2 + 1 = 3 ，所以，&lsquo;a&rsquo; 对应的 next 值为 3 ；<br />
+<br />
+最后一个字符 &lsquo;c&rsquo; ，提取 &ldquo;abcaba&rdquo; ，第一个字符 &lsquo;a&rsquo; 和最后一个 &lsquo;a&rsquo; 相同，相同个数为 1 ，1 + 1 = 2 ，所以 &lsquo;c&rsquo; 对应的 next 值为 2 ；<br />
+<br />
+所以，字符串 &ldquo;abcabac&rdquo; 对应的 next 数组中的值为（0,1,1,1,2,3,2）。<br />
+<br />
+上边求值过程中，每次都需要判断字符串头部和尾部相同字符的个数，而在编写算法实现时，对于某个字符来说，可以借用前一个字符的判断结果，计算当前字符对应的 next 值。<br />
+<br />
+具体的算法如下：<br />
+<br />
+模式串T为(下标从1开始)：&ldquo;abcabac&rdquo;<br />
+next数组(下标从1开始)： &nbsp; &nbsp;01<br />
+<br />
+第三个字符 &lsquo;c&rsquo; ：由于前一个字符 &lsquo;b&rsquo; 的 next 值为 1 ，取 T[1] = &lsquo;a&rsquo; 和 &lsquo;b&rsquo; 相比较，不相等，继续；由于 next[1] = 0，结束。 &lsquo;c&rsquo; 对应的 next 值为1；（只要循环到 next[1] = 0 ,该字符的 next 值都为 1 ）<br />
+<br />
+模式串T为： &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&ldquo;abcabac&rdquo;<br />
+next数组(下标从1开始)：011<br />
+<br />
+第四个字符 &rsquo;a&lsquo; ：由于前一个字符 &lsquo;c&rsquo; 的 next 值为 1 ，取 T[1] = &lsquo;a&rsquo; 和 &lsquo;c&rsquo; 相比较，不相等，继续；由于 next[1] = 0 ，结束。&lsquo;a&rsquo; 对应的 next 值为 1 ；<br />
+<br />
+模式串T为： &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&ldquo;abcabac&rdquo;<br />
+next数组(下标从1开始)：0111<br />
+<br />
+第五个字符 &rsquo;b&rsquo; ：由于前一个字符 &lsquo;a&rsquo; 的 next 值为 1 ，取 T[1] = &lsquo;a&rsquo; 和 &lsquo;a&rsquo; 相比较，相等，结束。 &lsquo;b&rsquo; 对应的 next 值为：1(前一个字符 &lsquo;a&rsquo; 的 next 值) + 1 = 2 ；<br />
+<br />
+模式串T为： &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&ldquo;abcabac&rdquo;<br />
+next数组(下标从1开始)：01112<br />
+<br />
+第六个字符 &lsquo;a&rsquo; ：由于前一个字符 &lsquo;b&rsquo; 的 next 值为 2，取 T[2] = &lsquo;b&rsquo; 和 &lsquo;b&rsquo; 相比较，相等，所以结束。&lsquo;a&rsquo; 对应的 next 值为：2 (前一个字符 &lsquo;b&rsquo; 的 next 值) + 1 = 3 ；<br />
+<br />
+模式串T为： &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&ldquo;abcabac&rdquo;<br />
+next数组(下标从1开始)：011123<br />
+<br />
+第七个字符 &lsquo;c&rsquo; ：由于前一个字符 &lsquo;a&rsquo; 的 next 值为 3 ，取 T[3] = &lsquo;c&rsquo; 和 &lsquo;a&rsquo; 相比较，不相等，继续；由于 next[3] = 1 ，所以取 T[1] = &lsquo;a&rsquo; 和 &lsquo;a&rsquo; 比较，相等，结束。&lsquo;a&rsquo; 对应的 next 值为：1 ( next[3] 的值) + 1 = 2 ；<br />
+<br />
+模式串T为： &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&ldquo;abcabac&rdquo;<br />
+next数组(下标从1开始)：0111232<br />
+<br />
+算法实现：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+void Next(char*T,int *next){
+    int i=1;
+    next[1]=0;
+    int j=0;
+    while (i&lt;strlen(T)) {
+        if (j==0||T[i-1]==T[j-1]) {
+            i++;
+            j++;
+            next[i]=j;
+        }else{
+            j=next[j];
+        }
+    }
+}</pre>
+<div class="info-box">
+	<span style="color:#b22222;">注意：</span>在此程序中，next 数组使用的下标初始值为 1 ，next[0] 没有用到（也可以存放 next 数组的长度）。而串的存储是从数组的下标 0 开始的，所以程序中为 T[i-1] 和 T[j-1]。</div>
+<h2>
+	基于next的KMP算法的实现</h2>
+先看一下 KMP 算法运行流程（假设主串：ababcabcacbab，模式串：abcac）。<br />
+<br />
+第一次匹配：<br />
+<img alt="" src="/uploads/allimg/170719/2-1FG9143449259.png" style="width: 250px; height: 140px;" /><br />
+匹配失败，i 指针不动，j = 1（字符&lsquo;c&rsquo;的next值）;<br />
+<br />
+第二次匹配：<br />
+<img alt="" src="/uploads/allimg/170719/2-1FG9143511593.png" style="width: 250px; height: 139px;" /><br />
+相等，继续，直到：<br />
+<img alt="" src="/uploads/allimg/170719/2-1FG914352A03.png" style="width: 250px; height: 139px;" /><br />
+匹配失败，i 不动，j = 2 （ j 指向的字符 &lsquo;c&rsquo; 的 next 值）;<br />
+<br />
+第三次匹配：<br />
+<img alt="" src="/uploads/allimg/170719/2-1FG9143541348.png" style="width: 250px; height: 139px;" /><br />
+相等，i 和 j 后移，最终匹配成功。
+<div class="info-box">
+	使用普通算法，需要匹配 6 次；而使用 KMP 算法，则只匹配 3 次。</div>
+实现代码：
+<pre class="cpp">
+int KMP(char * S,char * T){
+    int next[10];
+    Next(T,next);//根据模式串T,初始化next数组
+    int i=1;
+    int j=1;
+    while (i&lt;=strlen(S)&amp;&amp;j&lt;=strlen(T)) {
+        //j==0:代表模式串的第一个字符就和指针i指向的字符不相等；S[i-1]==T[j-1],如果对应位置字符相等，两种情况下，指向当前测试的两个指针下标i和j都向后移
+        if (j==0 || S[i-1]==T[j-1]) {
+            i++;
+            j++;
+        }
+        else{
+            j=next[j];//如果测试的两个字符不相等，i不动，j变为当前测试字符串的next值
+        }
+    }
+    if (j&gt;strlen(T)) {//如果条件为真，说明匹配成功
+        return i-(int)strlen(T);
+    }
+    return -1;
+}</pre>
+<h2>
+	KMP算法完整代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+void Next(char*T,int *next){
+    int i=1;
+    next[1]=0;
+    int j=0;
+    while (i&lt;strlen(T)) {
+        if (j==0||T[i-1]==T[j-1]) {
+            i++;
+            j++;
+            next[i]=j;
+        }else{
+            j=next[j];
+        }
+    }
+}
+int KMP(char * S,char * T){
+    int next[10];
+    Next(T,next);//根据模式串T,初始化next数组
+    int i=1;
+    int j=1;
+    while (i&lt;=strlen(S)&amp;&amp;j&lt;=strlen(T)) {
+        //j==0:代表模式串的第一个字符就和当前测试的字符不相等；S[i-1]==T[j-1],如果对应位置字符相等，两种情况下，指向当前测试的两个指针下标i和j都向后移
+        if (j==0 || S[i-1]==T[j-1]) {
+            i++;
+            j++;
+        }
+        else{
+            j=next[j];//如果测试的两个字符不相等，i不动，j变为当前测试字符串的next值
+        }
+    }
+    if (j&gt;strlen(T)) {//如果条件为真，说明匹配成功
+        return i-(int)strlen(T);
+    }
+    return -1;
+}
+
+int main() {
+    int i=KMP(&quot;ababcabcacbab&quot;,&quot;abcac&quot;);
+    printf(&quot;%d&quot;,i);
+    return 0;
+}</pre>
+运行结果：<br />
+6
+<h2>
+	升级版的next</h2>
+注意：KMP 算法的关键在于 next 数组的确定，其实对于上边的KMP算法中的next数组，不是最精简的，还可以简化。<br />
+<br />
+例如：
+<div class="info-box">
+	模式串T：a b c a c<br />
+	&nbsp;&nbsp;&nbsp; next&nbsp; ：0 1 1 1 2</div>
+在模式串&ldquo;abcac&rdquo;中，有两个字符 &lsquo;a&rsquo;，我们假设第一个为 a1，第二个为 a2。在程序匹配过程中，如果 j 指针指向 a2 时匹配失败，那么此时，主串中的 i 指针不动，j 指针指向 a1 ，很明显，由于 a1==a2，而 a2！=S[i]，所以 a1 也肯定不等于 S[i]。<br />
+<br />
+为了避免不必要的判断，需要对 next 数组进行精简，对于&ldquo;abcac&rdquo;这个模式串来说，由于 T[4] == T[next[4]] ，所以，可以将next数组改为：<br />
+<div class="info-box">
+	模式串T：a b c a c<br />
+	&nbsp;&nbsp;&nbsp; next&nbsp; ：0 1 1 0 2</div>
+这样简化，如果匹配过程中由于 a2 匹配失败，那么也不用再判断 a1 是否匹配，因为肯定不可能，所以直接绕过 a1，进行下一步。<br />
+<br />
+实现代码：
+<pre class="cpp">
+void Next(char*T,int *next){
+    int i=1;
+    next[1]=0;
+    int j=0;
+    while (i&lt;strlen(T)) {
+        if (j==0||T[i-1]==T[j-1]) {
+            i++;
+            j++;
+            if (T[i-1]!=T[j-1]) {
+               next[i]=j;
+            }
+            else{
+                next[i]=next[j];
+            }
+        }else{
+            j=next[j];
+        }
+    }
+}</pre>
+使用精简过后的 next 数组在解决例如模式串为&ldquo;aaaaaaab&rdquo;这类的问题上，会减少很多不必要的判断次数，提高了KMP算法的效率。<br />
+<br />
+例如：精简前为 next1，精简后为 next2：
+<div class="info-box">
+	模式串：a a a a a a a b<br />
+	&nbsp; next1：0 1 2 3 4 5 6 7<br />
+	&nbsp; next2：0 0 0 0 0 0 0 7</div>
+<h2>
+	总结</h2>
+KMP 算法，之所以比 <u><a href='/view/179.html' target='_blank'>BF 算法</a></u>快的根本原因在于：KMP 算法其实也和 BF 算法一样，都是从主串开头开始匹配，但是在匹配过程中，KMP算法记录了一些必要的信息。根据这些信息，在后续的匹配过程中，跳过了一些无意义的匹配过程。<br />
+<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 13;
+window.arcId = "5e84foJvplUr0mW4PBcsqo0sEq+KW3B3dJZC7GseyBe4JxlUWJnoyCLR";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

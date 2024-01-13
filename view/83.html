@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构实践项目之俄罗斯轮盘赌小游戏</title>
+<meta name="keywords" content="数据结构,实践,项目,之,俄罗斯,轮,盘赌," />
+<meta name="description" content="俄罗斯轮盘赌，想必很多人都听说过，一种残忍的赌博游戏。游戏的道具是一把左轮手枪，其规则也很简单：在左轮手枪中的 6 个弹槽中随意放入一颗或者多颗子弹，在任意旋转转轮之" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构实践项目之俄罗斯轮盘赌小游戏</h1>
+			<div id="arc-body">俄罗斯轮盘赌，想必很多人都听说过，一种残忍的赌博游戏。游戏的道具是一把左轮手枪，其规则也很简单：在左轮手枪中的 6 个弹槽中随意放入一颗或者多颗子弹，在任意旋转转轮之后，关上转轮。游戏的参加者轮流把手枪对着自己，扣动扳机：中枪或是怯场，即为输的一方；坚持到最后的即为胜者。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171130/2-1G130134U5332.png" style="width: 300px; height: 255px;" /><br />
+	&nbsp;</div>
+本节实践项目同轮盘赌类似，<span style="color:#b22222;">游戏规则</span>：n 个参加者排成一个环，每次由主持向左轮手枪中装一颗子弹，并随机转动关上转轮，游戏从第一个人开始，轮流拿枪；中枪者退出赌桌，退出者的下一个人作为第一人开始下一轮游戏。直至最后剩余一个人，即为胜者。要求：模拟轮盘赌的游戏规则，找到游戏的最终胜者。
+<h2>
+	设计思路</h2>
+解决类似的问题，使用<a href="/view/4.html" target="_blank">线性表的顺序存储结构</a>和链式存储结构都能实现，根据游戏规则，在使用链式存储结构时只需使用<a href="/view/7.html" target="_blank">循环链表</a>即可轻松解决问题。
+<h2>
+	顺序存储结构模拟轮盘赌</h2>
+采用顺序存储结构时，同样要在脑海中将<u><a href='/view/181.html' target='_blank'>数组</a></u>的首尾进行连接，即当需要从数组中最后一个位置寻找下一个位置时，要能够跳转到数组的第一个位置。（使用取余运算可以解决）<br />
+<br />
+具体实现代码如下:
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+typedef struct gambler {
+    int number;
+}gambler;
+
+int main() {
+    int n = 0;
+    int round = 1;
+    int location = 1;
+    int shootNum = 0;
+    int i = 0, j = 0;
+    gambler gamblers[100];//存储赌徒编号的数组
+    srand((int)time(0));//设置获得随机数的种子（固定代码，没有这句，随机数是固定不变的）
+    printf(&quot;输入赌徒的人数（&lt;100）：&quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+    printf(&quot;将赌徒依次编号为 1-%d\n&quot;, n);
+
+    for (i = 1; i &lt;= n; i++) {//依次为参加者分配编号
+        gamblers[i].number = i;
+    }
+    //当只剩余一个人时，此场结束
+    while (n != 1) {
+        int k = 0;
+        printf(&quot;第 %d 轮开始，从编号为 %d 的人开始，&quot;, round, gamblers[location].number);
+        shootNum = rand() % 6 + 1;
+        printf(&quot;枪在第 %d 次扣动扳机时会响\n&quot;, shootNum);
+        for (i = location; i &lt; location + shootNum; i++);//找到每轮退出的人的位置（i-1 才是，此处求得的i值为下一轮开始的位置）
+        i = i % n;//由于参与者排成的是环，所以需要对求得 i 值进行取余处理
+        if (i == 1 || i == 0) {//当 i=1或者i=0时，实际上指的是位于数组开头和结尾的参与者，需要重新调整 i 的值
+            i = n + i;
+        }
+        printf(&quot;编号为 %d 的赌徒退出赌博,剩余赌徒编号依次为：\n&quot;, gamblers[i - 1].number);
+        //使用顺序存储时，如果删除元素，需要将其后序位置的元素进行全部前移
+        for (j = i - 1; j + 1 &lt;= n; j++) {
+            gamblers[j] = gamblers[j + 1];
+        }
+        n--;//此时参与人数由 n 个人变为 n-1 个人
+        for (k = 1; k &lt;= n; k++) {
+            printf(&quot;%d &quot;, gamblers[k].number);
+        }
+        printf(&quot;\n&quot;);
+        location = i - 1;//location表示的是下一轮开始的位置
+        //同样注意location值的范围
+        if (location &gt; n) {
+            location %= n;
+        }
+        round++;
+    }
+    printf(&quot;最终胜利的赌徒编号是：%d\n&quot;, gamblers[1].number);
+}</pre>
+运行结果示例：
+<p class="info-box">
+	输入赌徒的人数：5<br />
+	将赌徒依次编号为 1-5<br />
+	第 1 轮开始，从编号为 1 的人开始，枪在第 4 次扣动扳机时会响<br />
+	编号为 4 的赌徒退出赌博,剩余赌徒编号依次为：<br />
+	1 2 3 5<br />
+	第 2 轮开始，从编号为 5 的人开始，枪在第 6 次扣动扳机时会响<br />
+	编号为 1 的赌徒退出赌博,剩余赌徒编号依次为：<br />
+	2 3 5<br />
+	第 3 轮开始，从编号为 2 的人开始，枪在第 2 次扣动扳机时会响<br />
+	编号为 3 的赌徒退出赌博,剩余赌徒编号依次为：<br />
+	2 5<br />
+	第 4 轮开始，从编号为 5 的人开始，枪在第 5 次扣动扳机时会响<br />
+	编号为 5 的赌徒退出赌博,剩余赌徒编号依次为：<br />
+	2<br />
+	最终胜利的赌徒编号是：2</p>
+<h2>
+	链式存储结构模拟轮盘赌</h2>
+采用链式存储结构对于求此类问题是最容易理解的，同时也避免了当参与人数较多时，像顺序存储那样频繁地移动数据。<br />
+<br />
+具体实现代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+typedef enum { false, true } bool;
+
+typedef struct line {
+    int No;
+    struct line * next;
+}line;
+
+line* initLine(line * head, int n);
+void display(line * head);
+
+int main() {
+    line * head = NULL, *lineNext = NULL;
+    int n = 0, shootNum = 0, round = 1;
+    printf(&quot;输入赌徒人数：&quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+    head = initLine(head, n);
+    lineNext = head;//用于记录每轮开始的位置
+    //仅当<u><a href='/view/160.html' target='_blank'>链表</a></u>中只含有一个结点时，即头结点时，退出循环
+    srand((int)time(0));
+    while (head-&gt;next != head) {
+        int i;
+        line * temp = NULL, *del = NULL;
+        printf(&quot;第 %d 轮开始，从编号为 %d 的人开始，&quot;, round, lineNext-&gt;No);
+        shootNum = rand() % n + 1;
+        printf(&quot;枪在第 %d 次扣动扳机时会响\n&quot;, shootNum);
+        temp = lineNext;
+        //遍历循环链表，找到将要删除结点的上一个结点
+        for (i = 1; i &lt; shootNum - 1; i++) {
+            temp = temp-&gt;next;
+        }
+        //将要删除结点从链表中删除，并释放其占用空间
+        printf(&quot;编号为 %d 的赌徒退出赌博,剩余赌徒编号依次为：\n&quot;, temp-&gt;next-&gt;No);
+        del = temp-&gt;next;
+        temp-&gt;next = temp-&gt;next-&gt;next;
+        if (del == head) {
+            head = head-&gt;next;
+        }
+        free(del);
+        display(head);
+        //赋值新一轮开始的位置
+        lineNext = temp-&gt;next;
+        round++;//记录循环次数
+    }
+    printf(&quot;最终胜利的赌徒编号是：%d\n&quot;, head-&gt;No);
+    return 0;
+}
+
+//按照赌徒人数，初始化循环链表
+line* initLine(line * head, int n) {
+    int i = 0;
+    line * list = NULL;
+    head = (line*)malloc(sizeof(line));
+    head-&gt;next = NULL;
+    head-&gt;No = 1;
+    list = head;
+    for (i = 1; i &lt; n; i++) {
+        line * body = (line*)malloc(sizeof(line));
+        body-&gt;next = NULL;
+        body-&gt;No = i + 1;
+        list-&gt;next = body;
+        list = list-&gt;next;
+    }
+    list-&gt;next = head;//将链表成环
+    return head;
+}
+//输出链表中所有的结点信息
+void display(line * head) {
+    line * temp = head;
+    while (temp-&gt;next != head) {
+        printf(&quot;%d &quot;, temp-&gt;No);
+        temp = temp-&gt;next;
+    }
+    printf(&quot;%d\n&quot;, temp-&gt;No);
+}</pre>
+运行结果示例：
+<p class="info-box">
+	输入赌徒人数：5<br />
+	第 1 轮开始，从编号为 1 的人开始，枪在第 4 次扣动扳机时会响<br />
+	编号为 4 的赌徒退出赌博,剩余赌徒编号依次为：<br />
+	1 2 3 5<br />
+	第 2 轮开始，从编号为 5 的人开始，枪在第 3 次扣动扳机时会响<br />
+	编号为 2 的赌徒退出赌博,剩余赌徒编号依次为：<br />
+	1 3 5<br />
+	第 3 轮开始，从编号为 3 的人开始，枪在第 4 次扣动扳机时会响<br />
+	编号为 3 的赌徒退出赌博,剩余赌徒编号依次为：<br />
+	1 5<br />
+	第 4 轮开始，从编号为 5 的人开始，枪在第 4 次扣动扳机时会响<br />
+	编号为 1 的赌徒退出赌博,剩余赌徒编号依次为：<br />
+	5<br />
+	最终胜利的赌徒编号是：5</p>
+<h2>
+	总结</h2>
+本节借轮盘赌小游戏，带领大家重新熟悉了<u><a href='/view/157.html' target='_blank'>线性表</a></u>的顺序存储结构和链式存储结构，如果你能够根据项目要求自行完成两种结构代码实现的编写工作，恭喜你可以顺利进入下面章节的学习。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 83;
+window.arcId = "dd0cdaC2NEj5CXC8ExljVKu0QzXBoa2xshikx8YdEOzzWhhQlbSHZImA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

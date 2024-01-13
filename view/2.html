@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>算法时间复杂度和空间复杂度的计算</title>
+<meta name="keywords" content="算法,的,时间,复杂度,和,空间,算法,即,解决," />
+<meta name="description" content="算法，即解决问题的方法。同一个问题，使用不同的算法，虽然可能得到的结果都是对的，但是耗费的时间和资源肯定是不同的。 就比如要拧一个螺母，使用扳手还是钳子是有区别的，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>算法时间复杂度和空间复杂度的计算</h1>
+			<div id="arc-body"><span style="color:#b22222;">算法，即解决问题的方法。同一个问题，使用不同的算法，虽然得到的结果相同，但是耗费的时间和资源是不同的。</span><br />
+<br />
+就比如要拧一个螺母，使用扳手还是钳子是有区别的，虽然使用钳子也能拧螺母，但是没有扳手好用。<br />
+<br />
+&ldquo;条条大路通罗马&rdquo;，解决问题的算法有多种，这就需要判断哪个算法<span style="color:#b22222;">&ldquo;更好&rdquo;</span>。
+<h2>
+	算法VS程序</h2>
+很多人误以为程序就是算法，其实不然：算法是解决某个问题的想法、思路；而程序是在心中有算法的前提下编写出来的可以运行的代码。<br />
+<br />
+例如，要解决依次输出一维<u><a href='/view/181.html' target='_blank'>数组</a></u>中的数据元素的值的问题，首先想到的是使用循环结构（ for 或者 while ），在有这个算法的基础上，开始编写程序。<br />
+<br />
+所以，<span style="color:#b22222;">算法相当于是程序的雏形</span>。当解决问题时，首先心中要有解决问题的算法，围绕算法编写出程序代码。
+<h2>
+	有算法一定能解决问题吗？</h2>
+对于一个问题，想出解决的算法，不一定就能解决这个问题。<br />
+<br />
+例如拧螺母，扳手相对于钳子来说更好使（选择算法的过程），但是在拧的过程（编写程序的过程）中发现螺母生锈拧不动，这时就需要另想办法。<br />
+<br />
+为了避免这种情况的发生，要充分全面地思考问题，尽可能地考虑到所有地可能情况，慎重选择算法（需要在实践中不断地积累经验）。
+<h2>
+	&ldquo;好&rdquo;算法的标准</h2>
+对于一个问题的算法来说，之所以称之为算法，首先它必须能够解决这个问题（称为<span style="color:#008000;">准确性</span>）。其次，通过这个算法编写的程序要求在任何情况下不能崩溃（称为<span style="color:#008000;">健壮性</span>）。<br />
+<br />
+如果准确性和健壮性都满足，接下来，就要考虑最重要的一点：通过算法编写的程序，运行的效率怎么样。<br />
+<br />
+运行效率体现在两方面：
+<ul>
+	<li>
+		算法的运行时间。（称为<span style="color:#008000;">&ldquo;<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>&rdquo;</span>）</li>
+	<li>
+		运行算法所需的内存空间大小。（称为<span style="color:#008000;">&ldquo;<u><a href='/view/2.html' target='_blank'>空间复杂度</a></u>&rdquo;</span>）</li>
+</ul>
+<br />
+<span style="color:#b22222;">好算法的标准就是：在符合算法本身的要求的基础上，使用算法编写的程序运行的时间短，运行过程中占用的内存空间少，就可以称这个算法是&ldquo;好算法&rdquo;。</span><br />
+<div class="info-box">
+	调查表明，人们对于软件或者 APP 的运行效率有极高的要求，例如对于网页打开的忍耐极限是 6 秒甚至更短，如果你设计的网页打开的时间超过 6 秒，多数人会在 4 秒甚至 3 秒的时候毫不犹豫地关掉而去浏览其他网页。在这个大背景下，一个好的&ldquo;算法&rdquo;更注重的是时间复杂度，而空间复杂度只要在一个合理的范围内就可以。</div>
+<h2>
+	时间复杂度的计算</h2>
+计算一个算法的时间复杂度，不可能把所有的算法都编写出实际的程序出来让计算机跑，这样会做很多无用功，效率太低。实际采用的方法是估算算法的时间复杂度。<br />
+<br />
+在学习C语言的时候讲过，程序由三种结构构成：顺序结构、分支结构和循环结构。顺序结构和分支结构中的每段代码只运行一次；循环结构中的代码的运行时间要看循环的次数。<br />
+<br />
+由于是估算算法的时间复杂度，相比而言，循环结构对算法的执行时间影响更大。所以，算法的时间复杂度，主要看算法中使用到的循环结构中代码循环的次数（称为<span style="color:#008000;">&ldquo;频度&rdquo;</span>）。次数越少，算法的时间复杂度越低。<br />
+<br />
+例如：<br />
+a) ++x; s=0;<br />
+b) for (int i=1; i&lt;=n; i++) { ++x; s+=x; }<br />
+c) for (int i=1; i&lt;=n; i++) { for (int j=1; i&lt;=n; j++) { ++x; s+=x; } }<br />
+<br />
+上边这个例子中，a 代码的运行了 1 次，b 代码的运行了 n 次，c 代码运行了 n*n 次。
+<h2>
+	时间复杂度的表示</h2>
+算法的时间复杂度的表示方式为：
+<div class="info-box">
+	O(频度)</div>
+这种表示方式称为<code>大&ldquo;O&rdquo;记法</code>。
+<blockquote>
+	注意，是大写的字母<code>O</code>，不是数字<code>0</code>。</blockquote>
+对于上边的例子而言，a 的时间复杂度为<code>O(1)</code>，b 的时间复杂度为<code>O(n)</code>，c 的时间复杂度为为<code>O(n<sup>2</sup>)</code>。<br />
+<br />
+如果a、b、c组成一段程序，那么算法的时间复杂度为<code>O(n<sup>2</sup>+n+1)</code>。但这么表示是不对的，还需要对<code>n<sup>2</sup>+n+1</code>进行简化。<br />
+<br />
+简化的过程总结为3步：
+<ul>
+	<li>
+		去掉运行时间中的所有加法常数。（例如 n<sup>2</sup>+n+1，直接变为 n<sup>2</sup>+n）</li>
+	<li>
+		只保留最高项。（n<sup>2</sup>+n 变成 n<sup>2</sup>）</li>
+	<li>
+		如果最高项存在但是系数不是1，去掉系数。（n<sup>2&nbsp;</sup>系数为 1）</li>
+</ul>
+<br />
+所以，最终a、b和c合并而成的代码的时间复杂度为<code>O(n<sup>2</sup>)</code>。
+<h2>
+	常用的时间复杂度的排序</h2>
+列举了几种常见的算法时间复杂度的比较（又小到大）：
+<div class="info-box">
+	<code>O(1)常数阶</code> &lt; <code>O(logn)对数阶</code> &lt; <code>O(n)线性阶</code> &lt; <code>O(n<sup>2</sup>)平方阶</code> &lt; <code>O(n<sup>3</sup>)(立方阶)</code> &lt; <code>O(2<sup>n</sup>) (指数阶)</code></div>
+<h2>
+	拿时间换空间，用空间换时间</h2>
+算法的时间复杂度和空间复杂度是可以相互转化的。<br />
+<br />
+谷歌浏览器相比于其他的浏览器，运行速度要快。是因为它占用了更多的内存空间，以空间换取了时间。<br />
+<br />
+算法中，例如判断某个年份是否为闰年时，如果想以时间换取空间，算法思路就是：当给定一个年份时，判断该年份是否能被4或者400整除，如果可以，就是闰年。<br />
+<br />
+如果想以空间换时间的话，判断闰年的思路就是：把所有的年份先判断出来，存储在数组中（年份和数组下标对应），如果是闰年，数组值是1，否则是0；当需要判断某年是否为闰年时，直接看对应的数组值是1还是0，不用计算就可以马上知道。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 2;
+window.arcId = "25d8n7BKFpPeTsWQGG6NwNDGoKjokjN+vTLPmcG7RYvM+c4Lwfn0QTQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

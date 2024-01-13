@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>KMP算法（快速模式匹配算法）C语言详解</title>
+<meta name="keywords" content="KMP,算法,快速,模式,匹配,语言,详解,快速,模式," />
+<meta name="description" content="快速模式匹配算法 ，简称 KMP 算法 ，是在 BF 算法基础上改进的算法。 通过学习 BF 算法我们知道，该算法的实现过程仅是 傻瓜式 地拿模式串（假定为子串的串）同主串中的字符一一匹" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>KMP算法（快速模式匹配算法）C语言详解</h1>
+			<div id="arc-body"><span style="color:#008000;">快速模式匹配算法</span>，简称&nbsp;<span style="color:#008000;">KMP 算法</span>，是在 <u><a href='/view/179.html' target='_blank'>BF 算法</a></u>基础上改进得到的算法。学习 BF 算法我们知道，该算法的实现过程就是 &quot;傻瓜式&quot; 地用模式<u><a href='/view/175.html' target='_blank'>串</a></u>（假定为子串的串）与主串中的字符一一匹配，算法执行效率不高。<br />
+<br />
+KMP 算法不同，它的实现过程接近人为进行模式匹配的过程。例如，对主串 A（&quot;ABCABCE&quot;）和模式串 B（&quot;ABCE&quot;）进行模式匹配，如果人为去判断，仅需匹配两次。
+<div style="text-align: center;">
+	<br />
+	<img alt="第一次人为模式匹配" src="/uploads/allimg/181212/2-1Q21222355T12.gif" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 第一次人为模式匹配</div>
+<br />
+第一次如图 1 所示，最终匹配失败。但在本次匹配过程中，我们可以获得一些信息，模式串中 &quot;ABC&quot; 都和主串对应的字符相同，但模式串中字符 &#39;A&#39; 与 &#39;B&#39; 和 &#39;C&#39; 不同。<br />
+<br />
+因此进行下次模式匹配时，没有必要让串 B 中的 &#39;A&#39; 与主串中的字符 &#39;B&#39; 和 &#39;C&#39; 一一匹配（它们绝不可能相同），而是直接去匹配失败位置处的字符 &#39;A&#39; ，如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="第二次人为模式匹配" src="/uploads/allimg/181212/2-1Q212223632502.gif" /><br />
+	图 2 第二次人为模式匹配</div>
+<br />
+至此，匹配成功。若使用 BF 算法，则此模式匹配过程需要进行 4 次。<br />
+<br />
+<span style="color:#b22222;">由此可以看出，每次匹配失败后模式串移动的距离不一定是 1，某些情况下一次</span><span style="color: rgb(178, 34, 34);">可</span><span style="color:#b22222;">移动多个位置，这就是 KMP 模式匹配算法。</span><br />
+<br />
+那么，如何判断匹配失败后模式串向后移动的距离呢？<br />
+<h2>
+	模式串移动距离的判断</h2>
+每次模式匹配失败后，计算模式串向后移动的距离是 KMP 算法中的核心部分。<br />
+<br />
+其实，<span style="color:#b22222;">匹配失败后模式串移动的距离和主串没有关系，只与模式串本身有关系。</span><br />
+<br />
+例如，我们将前面的模式串 B 改为 &quot;ABCAE&quot;，则在第一次模式匹配失败，由于匹配失败位置模式串中字符 &#39;E&#39; 前面有两个字符 &#39;A&#39;，因此，第二次模式匹配应改为如图 3 所示的位置：
+<div style="text-align: center;">
+	<br />
+	<img alt="模式匹配过程示意图" src="/uploads/allimg/181212/2-1Q212223G1958.gif" /><br />
+	图 3 模式匹配过程示意图</div>
+<br />
+结合图 1、图 2 和图 3 不难看出，模式串移动的距离只和自身有关系，和主串无关。换句话说，不论主串如何变换，只要给定模式串，则匹配失败后移动的距离就已经确定了。<br />
+<br />
+不仅如此，模式串中任何一个字符都可能导致匹配失败，因此串中每个字符都应该对应一个数字，用来表示匹配失败后模式串移动的距离。<br />
+<br />
+注意，这里要转换一下思想，<span style="color:#b22222;">模式串向后移动等价于指针 j 前移</span>，如图 4 中的 a) 和 b)。换句话说，模式串后移相当于对指针 j 重定位。
+<div style="text-align: center;">
+	<br />
+	<img alt="模式串后移等价于 j 前移" src="/uploads/allimg/181212/2-1Q212223I41Z.gif" /><br />
+	图 4 模式串后移等价于 j 前移</div>
+<br />
+因此，我们可以给每个模式串配备一个<u><a href='/view/181.html' target='_blank'>数组</a></u>（例如 next[]），用于存储模式串中每个字符对应指针 j 重定向的位置（也就是存储模式串的数组下标），比如 j=3，则该字符匹配失败后指针 j 指向模式串中第 3 个字符。<br />
+<br />
+模式串中各字符对应 next 值的计算方式是，取该字符前面的字符串（不包含自己），其前缀字符串和后缀字符串相同字符的最大个数再 +1 就是该字符对应的 next 值。<br />
+<p class="info-box">
+	<span style="color:#008000;">前缀字符串</span>指的是位于模式串起始位置的字符串，例如模式串 &quot;ABCD&quot;，则 &quot;A&quot;、&quot;AB&quot;、&quot;ABC&quot; 以及 &quot;ABCD&quot; 都属于前缀字符串；<span style="color:#008000;">后缀字符串</span>指的是位于串结尾处的字符串，还拿模式串 &quot;ABCD&quot; 来说，&quot;D&quot;、&quot;CD&quot;、&quot;BCD&quot; 和 &quot;ABCD&quot; 为后缀字符串。</p>
+<span style="color:#b22222;">注意，模式串中第一个字符对应的值为 0，第二个字符对应 1 ，这是固定不变的。</span>因此，图 3 的模式串 &quot;ABCAE&quot; 中，各字符对应的 next 值如图 5 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="模式串对应的 next 数组" src="/uploads/allimg/181212/2-1Q212223QVS.gif" /><br />
+	图 5 模式串对应的 next 数组</div>
+<br />
+从图 5 中的数据可以看出，当字符 &#39;E&#39; 匹配失败时，指针 j 指向模式串数组中第 2 个字符，即 &#39;B&#39;，同之前讲解的图 3 不谋而合。<br />
+<br />
+以上所讲 next 数组的实现方式是为了让大家对此数组的功能有一个初步的认识。接下来学习如何用编程的思想实现 next 数组。编程实现 next 数组要解决的主要问题依然是 &quot;如何计算每个字符前面前缀字符串和后缀字符串相同的个数&quot;。<br />
+<br />
+仔细观察图 5，为什么字符 &#39;C&#39; 对应的 next 值为 1？因为字符串 &quot;AB&quot; 前缀字符串和后缀字符串相等个数为 0，0 + 1 = 1。那么，为什么字符 &#39;E&#39; 的 next 值为 2？因为紧挨着该字符之前的 &#39;A&#39; 与模式串开头字符 &#39;A&#39; 相等，1 + 1 = 2。<br />
+<br />
+如果图 5 中模式串为 &quot;ABCABE&quot;，则对应 next 数组应为 [0,1,1,1,2,3]，为什么字符 &#39;E&#39; 的 next 值是 3 ？因为紧挨着该字符前面的 &quot;AB&quot; 与开头的 &quot;AB&quot; 相等，2 + 1 =3。<br />
+<br />
+因此，我们可以设计这样一个算法，刚开始时令 j 指向模式串中第 1 个字符，i 指向第 2 个字符。接下来，对每个字符做如下操作：<br />
+<br />
+如果 i 和 j 指向的字符相等，则 i 后面第一个字符的 next 值为 j+1，同时 i 和 j 做自加 1 操作，为求下一个字符的 next 值做准备，如图 6 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="i和j指向字符相等" src="/uploads/allimg/181213/2-1Q2131ZAI94.gif" /><br />
+	图 6 i 和 j 指向字符相等</div>
+<br />
+上图中可以看到，字符 &#39;a&#39; 的 next 值为 j +1 = 2，同时 i 和 j 都做了加 1 操作。当计算字符 &#39;C&#39; 的 next 值时，还是判断 i 和 j 指向的字符是否相等，显然相等，因此令该字符串的 next 值为 j + 1 = 3，同时 i 和 j 自加 1（此次 next 值的计算使用了上一次 j 的值）。如图 7 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="i和j指向字符仍相等" src="/uploads/allimg/181213/2-1Q2131ZK45H.gif" /><br />
+	图 7 i 和 j 指向字符仍相等</div>
+<br />
+如上图所示，计算字符 &#39;d&#39; 的 next 时，i 和 j 指向的字符不相等，这表明最长的前缀字符串 &quot;aaa&quot; 和后缀字符串 &quot;aac&quot; 不相等，接下来要判断次长的前缀字符串 &quot;aa&quot; 和后缀字符串 &quot;ac&quot; 是否相等，这一步的实现可以用 j = next[j] 来实现，如图 8 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="执行 j=next[j] 操作" src="/uploads/allimg/181213/2-1Q2131ZS2W3.gif" /><br />
+	图 8 执行 j=next[j] 操作</div>
+<br />
+从上图可以看到，i 和 j 指向的字符又不相同，因此继续做 j = next[j] 的操作，如图 9 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="继续执行 j=next[j] 的操作" src="/uploads/allimg/181213/2-1Q2131Z920511.gif" /><br />
+	图 9 继续执行 j=next[j] 的操作</div>
+<br />
+可以看到，j = 0 表明字符 &#39;d&#39; 前的前缀字符串和后缀字符串相同个数为 0，因此如果字符 &#39;d&#39; 导致了模式匹配失败，则模式串移动的距离只能是 1。<br />
+<br />
+这里给出使用上述思想实现 next 数组的 C 语言代码：
+<pre class="cpp">
+void Next(char*T,int *next){
+    next[1]=0;
+    next[2]=1;
+    int i=2;
+    int j=1;
+    while (i&lt;strlen(T)) {
+        if (j==0||T[i-1]==T[j-1]) {
+            i++;
+            j++;
+            next[i]=j;
+        }else{
+            j=next[j];
+        }
+    }
+}</pre>
+<p class="info-box">
+	代码中 j=next[j] 的运用可以这样理解，每个字符对应的next值都可以表示该字符前 &quot;同后缀字符串相同的前缀字符串最后一个字符所在的位置&quot;，因此在每次匹配失败后，都可以轻松找到次长前缀字符串的最后一个字符与该字符进行比较。</p>
+<h2>
+	Next函数的缺陷</h2>
+<div style="text-align: center;">
+	<img alt="Next函数的缺陷" src="/uploads/allimg/181212/2-1Q212224002945.gif" /><br />
+	图 10 Next 函数的缺陷</div>
+<br />
+例如，在图 10a) 中，当匹配失败时，Next 函数会由图 10b) 开始继续进行模式匹配，但是从图中可以看到，这样做是没有必要的，纯属浪费时间。<br />
+<br />
+出现这种多余的操作，问题在当 T[i-1]==T[j-1] 成立时，没有继续对 i++ 和 j++ 后的 T[i-1] 和 T[j-1] 的值做判断。改进后的 Next 函数如下所示：<br />
+<pre class="cpp">
+void Next(char*T,int *next){ 
+    next[1]=0;
+    next[2]=1;
+    int i=2;
+    int j=1;
+    while (i&lt;strlen(T)) {
+        if (j==0||T[i-1]==T[j-1]) {
+            i++;
+            j++;
+            if (T[i-1]!=T[j-1]) {
+               next[i]=j;
+            }
+            else{
+                next[i]=next[j];
+            }
+        }else{
+            j=next[j];
+        }
+    }
+}</pre>
+使用精简过后的 next 数组在解决例如模式串为 &quot;aaaaaaab&quot; 这类的问题上，会大大提高效率，如图 11 所示，精简前为 next1，精简后为 next2：
+<div style="text-align: center;">
+	<br />
+	<img alt="改进后的 Next 函数" src="/uploads/allimg/181212/2-1Q2122241012L.gif" /><br />
+	图 11&nbsp; 改进后的 Next 函数</div>
+<h2>
+	KMP 算法的实现</h2>
+假设主串 A 为 &quot;ababcabcacbab&quot;，模式串 B 为 &quot;abcac&quot;，则 KMP 算法执行过程为：<br />
+<br />
+<ul>
+	<li>
+		第一次匹配如图 12 所示，匹配结果失败，指针 j 移动至 next[j] 的位置；
+		<div style="text-align: center;">
+			<br />
+			<img alt="第一次匹配示意图" src="/uploads/allimg/181212/2-1Q212224316325.gif" /><br />
+			图 12 第一次匹配示意图<br />
+			&nbsp;</div>
+	</li>
+	<li>
+		第二次匹配如图 13 所示，匹配结果失败，依旧执行 j=next[j] 操作：
+		<div style="text-align: center;">
+			<br />
+			<img alt="第二次匹配示意图" src="/uploads/allimg/181212/2-1Q212224336236.gif" /><br />
+			图 13 第二次匹配示意图<br />
+			&nbsp;</div>
+	</li>
+	<li>
+		第三次匹配成功，如图 14 所示：
+		<div style="text-align: center;">
+			<br />
+			<img alt="第三次匹配示意图" src="/uploads/allimg/181212/2-1Q2122243512Q.gif" /><br />
+			图 14 第三次匹配示意图</div>
+	</li>
+</ul>
+<br />
+很明显，使用 KMP 算法只需匹配 3 次，而同样的问题使用 BF 算法则需匹配 6 次才能完成。<br />
+<br />
+KMP 算法的完整 C 语言实现代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+void Next(char*T,int *next){
+    int i=1;
+    next[1]=0;
+    int j=0;
+    while (i&lt;strlen(T)) {
+        if (j==0||T[i-1]==T[j-1]) {
+            i++;
+            j++;
+            next[i]=j;
+        }else{
+            j=next[j];
+        }
+    }
+}
+int KMP(char * S,char * T){
+    int next[10];
+    Next(T,next);//根据模式串T,初始化next数组
+    int i=1;
+    int j=1;
+    while (i&lt;=strlen(S)&amp;&amp;j&lt;=strlen(T)) {
+        //j==0:代表模式串的第一个字符就和当前测试的字符不相等；S[i-1]==T[j-1],如果对应位置字符相等，两种情况下，指向当前测试的两个指针下标i和j都向后移
+        if (j==0 || S[i-1]==T[j-1]) {
+            i++;
+            j++;
+        }
+        else{
+            j=next[j];//如果测试的两个字符不相等，i不动，j变为当前测试字符串的next值
+        }
+    }
+    if (j&gt;strlen(T)) {//如果条件为真，说明匹配成功
+        return i-(int)strlen(T);
+    }
+    return -1;
+}
+int main() {
+    int i=KMP(&quot;ababcabcacbab&quot;,&quot;abcac&quot;);
+    printf(&quot;%d&quot;,i);
+    return 0;
+}</pre>
+运行结果为：
+<p class="info-box">
+	6</p>
+<br />
+KMP 算法优秀文章推荐：<br />
+<table>
+	<caption>
+		KMP算法推荐表</caption>
+	<tbody>
+		<tr>
+			<th>
+				软文推荐</th>
+			<th>
+				软文特点</th>
+		</tr>
+		<tr>
+			<td>
+				<a href="https://www.cnblogs.com/yjiyjige/p/3263858.html" target="_blank">KMP算法详解</a></td>
+			<td>
+				此教程对KMP算法中 next 数组的实现做了详细地讲解，其实现代码与本文中有些出路，但两种实现都正确，只是出发点不同。</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="http://www.cnblogs.com/zhangtianq/p/5839909.html" target="_blank">彻底理解KMP算法</a></td>
+			<td>
+				此教程详细介绍了 <u><a href='/view/179.html' target='_blank'>BF算法</a></u>和 KMP 算法，如果你能耐下心来读完，那么模式匹配算法肯定能彻底学会。</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="https://www.zhihu.com/question/21923021" target="_blank">知乎KMP算法</a></td>
+			<td>
+				此页面中存在对 KMP 算法形象地描述，只不过是用 Java 语言实现，但是其理论知识的讲解堪称精彩。</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="https://blog.csdn.net/lee18254290736/article/details/77278769" target="_blank">KMP算法入门</a></td>
+			<td>
+				这篇软文对 KMP 算法的实现过程进行了最详细地描述，有图有真相，如果你阅读完本文，对 KMP 还是一知半解，可以看这篇文章。</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="https://www.cnblogs.com/ZuoAndFutureGirl/p/9028287.html" target="_blank">KMP算法</a></td>
+			<td>
+				这也是一篇详细介绍 KMP算法的文章，推荐给大家。</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 180;
+window.arcId = "9e01xT3WrmsZf1O24A1HGE/q+HptDtqvSpRIE85BDfbXMQ6YErQWb1pFPA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

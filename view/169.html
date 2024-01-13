@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>什么是栈，栈及其特点和应用详解</title>
+<meta name="keywords" content="什么,是,栈,及其,应用,详解,什么,是,栈,及其," />
+<meta name="description" content="同顺序表和链表一样， 栈 也用来存储逻辑关系为 一对一 的数据，因此也属于线性存储结构，如图 1 所示。 图 1 栈存储结构示意图 不过，栈与其它线性存储结构不同，它对数据 存 和" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/github/stack_queue/">栈和队列</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/github/view/169.html">什么是栈</a></dd><dd>3.2 <a href="/github/view/170.html">顺序栈的基本操作</a></dd><dd>3.3 <a href="/github/view/171.html">链栈的基本操作</a></dd><dd>3.4 <a href="/github/view/vip_221.html">[项目实践]进制转换器</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.5 <a href="/github/view/vip_222.html">[项目实践]括号匹配</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.6 <a href="/github/view/172.html">什么是队列</a></dd><dd>3.7 <a href="/github/view/173.html">顺序队列及其实现</a></dd><dd>3.8 <a href="/github/view/174.html">链式队列及基本操作</a></dd><dd>3.9 <a href="/github/view/vip_220.html">[项目实践]变态的停车场管理系统</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/github/view/vip_223.html">[项目实践]扑克牌小游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>什么是栈，栈及其特点和应用详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/stack_queue/">栈和队列</a></span>
+                    <span class="next right"><a href="/view/170.html">顺序栈的基本操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/stack_queue/";window.nextPageURL = "/view/170.html";</script>
+			<div id="arc-body">同<u><a href='/view/158.html' target='_blank'>顺序表</a></u>和<u><a href='/view/160.html' target='_blank'>链表</a></u>一样，<span style="color:#008000;"><u><a href='/view/169.html' target='_blank'>栈</a></u></span><span style="color:#b22222;">也是用来存储逻辑关系为 &quot;一对一&quot; 数据的线性存储结构，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。</span>
+<div style="text-align: center;">
+	<br />
+	<img alt="栈存储结构示意图" src="/uploads/allimg/181201/2-1Q201203Q5110.gif" /><br />
+	图 1 栈存储结构示意图</div>
+<br />
+从图 1 我们看到，栈存储结构与之前所学的线性存储结构有所差异，这缘于栈对数据 &quot;存&quot; 和 &quot;取&quot; 的过程有特殊的要求：
+<ol>
+	<li>
+		栈只能从表的一端存取数据，另一端是封闭的，如图 1 所示；</li>
+	<li>
+		在栈中，无论是存数据还是取数据，都必须遵循&quot;先进后出&quot;的原则，即最先进栈的元素最后出栈。拿图 1 的栈来说，从图中数据的存储状态可判断出，元素 1 是最先进的栈。因此，当需要从栈中取出元素 1 时，根据&quot;先进后出&quot;的原则，需提前将元素 3 和元素 2 从栈中取出，然后才能成功取出元素 1。</li>
+</ol>
+<br />
+因此，我们可以给栈下一个定义，即<span style="color:#b22222;">栈是一种只能从表的一端存取数据且遵循 &quot;先进后出&quot; 原则的线性存储结构。</span><br />
+<br />
+通常，栈的开口端被称为<span style="color:#008000;">栈顶</span>；相应地，封口端被称为<span style="color:#008000;">栈底</span>。因此，栈顶元素指的就是距离栈顶最近的元素，拿图 2 来说，栈顶元素为元素 4；同理，栈底元素指的是位于栈最底部的元素，图 2 中的栈底元素为元素 1。
+<div style="text-align: center;">
+	<br />
+	<img alt="栈顶和栈底" src="/uploads/allimg/181201/2-1Q201204153P8.gif" /><br />
+	图 2 栈顶和栈底</div>
+<h2>
+	进栈和出栈</h2>
+基于栈结构的特点，在实际应用中，通常只会对栈执行以下两种操作：
+<ul>
+	<li>
+		向栈中添加元素，此过程被称为&quot;<span style="color:#008000;">进栈</span>&quot;（<span style="color:#008000;">入栈</span>或<span style="color:#008000;">压栈</span>）；</li>
+	<li>
+		从栈中提取出指定元素，此过程被称为&quot;<span style="color:#008000;">出栈</span>&quot;（或<span style="color:#008000;">弹栈</span>）；</li>
+</ul>
+<h2>
+	栈的具体实现</h2>
+栈是一种 &quot;特殊&quot; 的线性存储结构，因此栈的具体实现有以下两种方式：
+<ol>
+	<li>
+		<span style="color:#008000;"><u><a href='/view/170.html' target='_blank'>顺序栈</a></u></span>：采用顺序存储结构可以模拟栈存储数据的特点，从而实现栈存储结构；</li>
+	<li>
+		<span style="color:#008000;"><u><a href='/view/171.html' target='_blank'>链栈</a></u></span>：采用链式存储结构实现栈结构；</li>
+</ol>
+<p class="info-box">
+	两种实现方式的区别，仅限于数据元素在实际物理空间上存放的相对位置，顺序栈底层采用的是<u><a href='/view/181.html' target='_blank'>数组</a></u>，链栈底层采用的是链表。有关顺序栈和链栈的具体实现会在后续章节中作详细讲解。</p>
+<h2>
+	栈的应用</h2>
+基于栈结构对数据存取采用 &quot;先进后出&quot; 原则的特点，它可以用于实现很多功能。<br />
+<br />
+例如，我们经常使用浏览器在各种网站上查找信息。假设先浏览的页面 A，然后关闭了页面 A 跳转到页面 B，随后又关闭页面 B 跳转到了页面 C。而此时，我们如果想重新回到页面 A，有两个选择：
+<ul>
+	<li>
+		重新搜索找到页面 A；</li>
+	<li>
+		使用浏览器的&quot;回退&quot;功能。浏览器会先回退到页面 B，而后再回退到页面 A。</li>
+</ul>
+<br />
+浏览器 &quot;回退&quot; 功能的实现，底层使用的就是栈存储结构。当你关闭页面 A 时，浏览器会将页面 A 入栈；同样，当你关闭页面 B 时，浏览器也会将 B入栈。因此，当你执行回退操作时，才会首先看到的是页面 B，然后是页面 A，这是栈中数据依次出栈的效果。<br />
+<br />
+不仅如此，栈存储结构还可以帮我们检测代码中的<a href="/view/87.html" target="_blank">括号匹配</a>问题。多数编程语言都会用到括号（小括号、中括号和大括号），括号的错误使用（通常是丢右括号）会导致程序编译错误，而很多开发工具中都有检测代码是否有编辑错误的功能，其中就包含检测代码中的括号匹配问题，此功能的底层实现使用的就是栈结构。<br />
+<br />
+同时，栈结构还可以实现数值的<a href="/view/86.html" target="_blank">进制转换</a>功能。例如，编写程序实现从十进制数自动转换成二进制数，就可以使用栈存储结构来实现。<br />
+<br />
+以上也仅是栈应用领域的冰山一角，这里不再过多举例。在后续章节的学习中，我们会大量使用到栈结构。<br />
+<br />
+接下来，我们学习如何实现顺序栈和链栈，以及对栈中元素进行入栈和出栈的操作。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/stack_queue/">栈和队列</a></span>
+                    <span class="next right"><a href="/view/170.html">顺序栈的基本操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/stack_queue/";window.nextPageURL = "/view/170.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 169;
+window.arcId = "99f4IxOT0jUQPS75pjZ3BfAdcAnbSwv7JUbALrl31gVNQ9rx6vdCWlthkA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

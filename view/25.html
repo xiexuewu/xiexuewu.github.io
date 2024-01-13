@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>二叉树前序遍历、中序遍历和后序遍历及C语言递归实现</title>
+<meta name="keywords" content="二叉,树,的,前序,遍历,、,中序,和,后序,及其," />
+<meta name="description" content="链式存储结构存储的二叉树，对树中结点进行逐个遍历时，由于是非线性结构，需要找到一种合适的方式遍历树中的每个结点。 递归思想遍历二叉树 之前讲过，树是由根结点和子树部分" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>二叉树前序遍历、中序遍历和后序遍历及C语言递归实现</h1>
+			<div id="arc-body">链式存储结构存储的<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，对<u><a href='/view/23.html' target='_blank'>树</a></u>中结点进行逐个遍历时，由于是非线性结构，需要找到一种合适的方式遍历树中的每个结点。
+<h2>
+	递归思想遍历二叉树</h2>
+之前讲过，树是由根结点和子树部分构建的，对于每一棵树来说，都可以分为 3 部分：左子树、根结点和右子树。所以，可以采用递归的思想依次遍历每个结点。<br />
+<br />
+根据访问结点时机的不同，分为三种遍历方式：
+<ul>
+	<li>
+		先访问根结点，再遍历左右子树，称为<span style="color:#b22222;">&ldquo;先序遍历&rdquo;</span>；</li>
+	<li>
+		遍历左子树，之后访问根结点，然后遍历右子树，称为<span style="color:#b22222;">&ldquo;中序遍历&rdquo;</span>；</li>
+	<li>
+		遍历完左右子树，再访问根结点，称为<span style="color:#b22222;">&ldquo;后序遍历&rdquo;</span>。</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS01325394F.png" style="width: 274px; height: 186px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u>1 二叉树</div>
+<br />
+三种方式唯一的不同就是访问结点时机的不同，给出一个二叉树，首先需要搞清楚三种遍历方式下访问结点的顺序。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170830/2-1FS0132GaJ.png" style="width: 300px; height: 204px;" /><br />
+	图2 二叉树遍历示意图</div>
+<br />
+图2 中，箭头线条的走势为遍历结点的过程：<br />
+<br />
+先序遍历是只要线条走到该结点的左方位置时，就操作该结点。所以操作结点的顺序为：
+<div class="info-box">
+	1 2 4 5 3 6 7</div>
+<br />
+中序遍历是当线条越过结点的左子树，到达该结点的正下方时，才操作该结点。所以操作结点的顺序为：
+<div class="info-box">
+	4 2 5 1 6 3 7</div>
+<br />
+后序遍历是线条完全走过结点的左右子树，到达该结点的右方范围时，就开始操作该结点。所以操作结点的顺序为：
+<div class="info-box">
+	4 5 2 6 7 3 1</div>
+<h2>
+	三种遍历方式的完整代码实现</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#define TElemType int
+//构造结点的结构体
+typedef struct BiTNode{
+    TElemType data;//数据域
+    struct BiTNode *lchild,*rchild;//左右孩子指针
+}BiTNode,*BiTree;
+//初始化树的函数
+void CreateBiTree(BiTree *T){
+    *T=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;data=1;
+    (*T)-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+  
+    (*T)-&gt;lchild-&gt;data=2;
+    (*T)-&gt;lchild-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;lchild-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;lchild-&gt;rchild-&gt;data=5;
+    (*T)-&gt;lchild-&gt;rchild-&gt;lchild=NULL;
+    (*T)-&gt;lchild-&gt;rchild-&gt;rchild=NULL;
+    (*T)-&gt;rchild-&gt;data=3;
+    (*T)-&gt;rchild-&gt;lchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild-&gt;lchild-&gt;data=6;
+    (*T)-&gt;rchild-&gt;lchild-&gt;lchild=NULL;
+    (*T)-&gt;rchild-&gt;lchild-&gt;rchild=NULL;
+    (*T)-&gt;rchild-&gt;rchild=(BiTNode*)malloc(sizeof(BiTNode));
+    (*T)-&gt;rchild-&gt;rchild-&gt;data=7;
+    (*T)-&gt;rchild-&gt;rchild-&gt;lchild=NULL;
+    (*T)-&gt;rchild-&gt;rchild-&gt;rchild=NULL;
+    (*T)-&gt;lchild-&gt;lchild-&gt;data=4;
+    (*T)-&gt;lchild-&gt;lchild-&gt;lchild=NULL;
+    (*T)-&gt;lchild-&gt;lchild-&gt;rchild=NULL;
+}
+
+//模拟操作结点元素的函数，输出结点本身的数值
+void displayElem(BiTNode* elem){
+    printf(&quot;%d &quot;,elem-&gt;data);
+}
+//先序遍历
+void PreOrderTraverse(BiTree T){
+    if (T) {
+        displayElem(T);//调用操作结点数据的函数方法
+        PreOrderTraverse(T-&gt;lchild);//访问该结点的左孩子
+        PreOrderTraverse(T-&gt;rchild);//访问该结点的右孩子
+    }
+    //如果结点为空，返回上一层
+    return;
+}
+//中序遍历
+void INOrderTraverse(BiTree T){
+    if (T) {
+        INOrderTraverse(T-&gt;lchild);//遍历左孩子
+        displayElem(T);//调用操作结点数据的函数方法
+        INOrderTraverse(T-&gt;rchild);//遍历右孩子
+    }
+    //如果结点为空，返回上一层
+    return;
+}
+//后序遍历
+void PostOrderTraverse(BiTree T){
+    if (T) {
+        PostOrderTraverse(T-&gt;lchild);//遍历左孩子
+        PostOrderTraverse(T-&gt;rchild);//遍历右孩子
+        displayElem(T);//调用操作结点数据的函数方法
+    }
+    //如果结点为空，返回上一层
+    return;
+}
+int main() {
+    BiTree Tree;
+    CreateBiTree(&amp;Tree);
+    printf(&quot;前序遍历: \n&quot;);
+    PreOrderTraverse(Tree);
+    printf(&quot;\n中序遍历算法: \n&quot;);
+    INOrderTraverse(Tree);
+    printf(&quot;\n后序遍历: \n&quot;);
+    PostOrderTraverse(Tree);
+}</pre>
+运行结果：
+<div class="info-box">
+	前序遍历:<br />
+	1 2 4 5 3 6 7<br />
+	中序遍历算法:<br />
+	4 2 5 1 6 3 7<br />
+	后序遍历:<br />
+	4 5 2 6 7 3 1</div>
+<h2>
+	总结</h2>
+由于二叉树就是由根结点和左右子树构成的，所以很容易想到使用递归的思想。而递归算法的低层实现实际上使用的是<u><a href='/view/169.html' target='_blank'>栈</a></u>的数据结构，所以二叉树的先序、中序和后序遍历同样可以使用非递归的算法实现。
+<blockquote>
+	<p>
+		非递归算法的具体实现可以查看下一节的内容。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 25;
+window.arcId = "3a8eJFNU1f2Dmy1fgyZ16IlnDLV8ELncHHbiMzaLQCei1PfuSLMbFv6p";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

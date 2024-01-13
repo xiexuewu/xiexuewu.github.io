@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序查找算法及C语言实现</title>
+<meta name="keywords" content="静态,查找,表之,顺序,静态,查找,表之,顺序," />
+<meta name="description" content="通过前面对静态查找表的介绍，静态查找表即为只做查找操作的查找表。 静态查找表既可以使用顺序表表示，也可以使用链表结构表示 。虽然一个是数组、一个链表，但两者在做查找操" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/github/search/">查找算法</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/github/view/53.html">什么是查找表</a></dd><dd>9.2 <a href="/github/view/54.html">顺序查找算法</a></dd><dd>9.3 <a href="/github/view/55.html">折半查找（二分查找）</a></dd><dd>9.4 <a href="/github/view/vip_252.html">分块查找算法（索引顺序查找）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.5 <a href="/github/view/vip_253.html">静态树表查找算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.6 <a href="/github/view/58.html">二叉排序树（二叉查找树）</a></dd><dd>9.7 <a href="/github/view/59.html">平衡二叉树（AVL树）</a></dd><dd>9.8 <a href="/github/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.9 <a href="/github/view/vip_255.html">B-树及其基本操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.10 <a href="/github/view/vip_256.html">B+树及插入和删除操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.11 <a href="/github/view/vip_257.html">键树查找法（双链树和字典树）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.12 <a href="/github/view/63.html">什么是哈希表（散列表）</a></dd><dd>9.13 <a href="/github/view/vip_258.html">哈希查找算法</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>顺序查找算法及C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/53.html">什么是查找表</a></span>
+                    <span class="next right"><a href="/view/55.html">折半查找（二分查找）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/53.html";window.nextPageURL = "/view/55.html";</script>
+			<div id="arc-body">通过前面对静态查找表的介绍，静态查找表即为只做查找操作的查找表。<br />
+<br />
+<span style="color:#b22222;">静态查找表既可以使用<u><a href='/view/158.html' target='_blank'>顺序表</a></u>表示，也可以使用<u><a href='/view/160.html' target='_blank'>链表</a></u>结构表示</span>。虽然一个是<u><a href='/view/181.html' target='_blank'>数组</a></u>、一个链表，但两者在做查找操作时，基本上大同小异。
+<blockquote>
+	<p>
+		本节以静态查找表的顺序存储结构为例做详细的介绍。</p>
+</blockquote>
+<h2>
+	<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>的实现</h2>
+静态查找表用顺序存储结构表示时，顺序查找的查找过程为：从表中的最后一个数据元素开始，逐个同记录的关键字做比较，如果匹配成功，则查找成功；反之，如果直到表中第一个关键字查找完也没有成功匹配，则查找失败。<br />
+<br />
+顺序查找的具体实现代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define keyType int
+typedef struct {
+    keyType key;//查找表中每个数据元素的值
+    //如果需要，还可以添加其他属性
+}ElemType;
+
+typedef struct{
+    ElemType *elem;//存放查找表中数据元素的数组
+    int length;//记录查找表中数据的总数量
+}SSTable;
+//创建查找表
+void Create(SSTable **st,int length){
+    (*st)=(SSTable*)malloc(sizeof(SSTable));
+    (*st)-&gt;length=length;
+    (*st)-&gt;elem =(ElemType*)malloc((length+1)*sizeof(ElemType));
+    printf(&quot;输入表中的数据元素：\n&quot;);
+    //根据查找表中数据元素的总长度，在存储时，从数组下标为 1 的空间开始存储数据
+    for (int i=1; i&lt;=length; i++) {
+        scanf(&quot;%d&quot;,&amp;((*st)-&gt;elem[i].key));
+    }
+}
+//查找表查找的功能函数，其中key为关键字
+int Search_seq(SSTable *st,keyType key){
+    st-&gt;elem[0].key=key;//将关键字作为一个数据元素存放到查找表的第一个位置，起监视哨的作用
+    int i=st-&gt;length;
+    //从查找表的最后一个数据元素依次遍历，一直遍历到数组下标为0
+    while (st-&gt;elem[i].key!=key) {
+        i--;
+    }
+    //如果 i=0，说明查找失败；反之，返回的是含有关键字key的数据元素在查找表中的位置
+    return i;
+}
+int main(int argc, const char * argv[]) {
+    SSTable *st;
+    Create(&amp;st, 6);
+    getchar();
+    printf(&quot;请输入查找数据的关键字：\n&quot;);
+    int key;
+    scanf(&quot;%d&quot;,&amp;key);
+    int location=Search_seq(st, key);
+    if (location==0) {
+        printf(&quot;查找失败&quot;);
+    }else{
+        printf(&quot;数据在查找表中的位置为：%d&quot;,location);
+    }
+    return 0;
+}</pre>
+可运行代码中设置了一个固定长度为 6 的顺序表，例如在查找表为<code>{1,2,3,4,5,6}</code>找到关键字为 1 的数据元素的位置，则运行效果为：<br />
+<div class="info-box">
+	输入表中的数据元素：<br />
+	1 2 3 4 5 6<br />
+	请输入查找数据的关键字：<br />
+	2<br />
+	数据在查找表中的位置为：2</div>
+同时，在程序中初始化创建查找表时，由于是顺序存储，所以将所有的数据元素存储在数组中，但是把第一个位置留给了用户用于查找的关键字。例如，在顺序表<code>{1,2,3,4,5,6}</code>中查找数据元素值为 7 的元素，则添加后的顺序表为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G016094604629.png" style="width: 316px; height: 172px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 顺序表中的监视哨</div>
+<br />
+<span style="color:#b22222;">顺序表的一端添加用户用于搜索的关键字，称作</span><span style="color:#008000;">&ldquo;监视哨&rdquo;</span>。
+<div class="info-box">
+	图 1 中监视哨的位置也可放在数据元素 6 的后面（这种情况下，整个查找的顺序应有逆向查找改为顺序查找）。</div>
+放置好监视哨之后，顺序表遍历从没有监视哨的一端依次进行，如果查找表中有用户需要的数据，则程序输出该位置；反之，程序会运行至监视哨，此时匹配成功，程序停止运行，但是结果是查找失败。
+<h2>
+	顺序查找的性能分析</h2>
+查找操作的性能分析主要考虑其<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>，而整个查找过程其实大部分时间花费在关键字和查找表中的数据进行比较上。<br />
+<br />
+<span style="color:#b22222;">所以查找算法衡量好坏的依据为：查找成功时，查找的关键字和查找表中的数据元素中进行过比较的个数的平均值，称为</span><span style="color:#008000;">平均查找长度（Average Search Length，用 ASL 表示）</span>。<br />
+<br />
+例如，对于具有 n 个数据元素的查找表，查找成功的平均查找长度的计算公式为：
+<p>
+	<img alt="" src="/uploads/allimg/171016/2-1G016094QG24.png" style="width: 150px; height: 41px;" /></p>
+<div class="info-box">
+	P<sub>i</sub> 为第 i 个数据元素被查找的概率，所有元素被查找的概率的和为 1；C<sub>i</sub> 表示在查找到第 i 个数据元素之前已进行过比较的次数。若表中有 n 个数据元素，查找第一个元素时需要比较 n 次；查找最后一个元素时需要比较 1 次，所以有 <code>C<sub>i</sub> = n &ndash; i + 1</code> 。</div>
+一般情况，表中各数据元素被查找的概率是未知的。假设含有 n 个数据元素的查找表中，各数据被查找的概率是相同的，则：<br />
+<img alt="" src="/uploads/allimg/171016/2-1G01609502DK.png" style="width: 200px; height: 44px;" /><br />
+换算后，得：<br />
+<img alt="" src="/uploads/allimg/171016/2-1G016095114a4.png" style="width: 100px; height: 45px;" />
+<blockquote>
+	<p>
+		如果对于查找表中各个数据元素有可能被查找的概率提前已知，就应该根据其查找概率的大小对查找表中的数据元素进行适当的调整：被查找概率越大，离查找出发点 i 越近；反之，越远。这样可以适当的减少查找操作中的比较次数。</p>
+</blockquote>
+上边的平均查找长度是在假设查找算法每次都成功的前提下得出的。而对于查找算法来说，查找成功和查找失败的概率是相同的。所以，查找算法的平均查找长度应该为查找成功时的平均查找长度加上查找失败时的平均查找长度。<br />
+<br />
+对于含有 n 个数据的表来说，每次查找失败，比较的次数都是 n+1。所以查找算法的平均查找长度的计算公式为：<br />
+<img alt="" src="/uploads/allimg/171016/2-1G016095150306.png" style="width: 400px; height: 40px;" />
+<h2>
+	总结</h2>
+本节主要介绍了静态查找表的顺序存储的表示和查找算法的实现，其中使用监视哨对普通的顺序表的遍历算法做了改进，在数据量大的情况下，能够有效提高算法的运行效率。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/53.html">什么是查找表</a></span>
+                    <span class="next right"><a href="/view/55.html">折半查找（二分查找）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/53.html";window.nextPageURL = "/view/55.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 54;
+window.arcId = "d6bfHdq9Hf00wLOSQP08bnjgfBUdzmkz6anwQ6yOoAA5D3Y1kPORFxxG";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

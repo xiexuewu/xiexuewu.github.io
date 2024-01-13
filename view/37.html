@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>图的顺序存储结构及C语言实现</title>
+<meta name="keywords" content="图,的,顺序,存储,结构,数组,表,示法,及其,图," />
+<meta name="description" content="使用图结构表示的数据元素之间虽然具有多对多的关系，但是同样可以采用顺序存储，也就是使用数组有效地存储图。 数组表示法 使用数组存储图时，需要使用两个数组，一个数组存放" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/github/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/github/view/200.html">什么是图存储结构</a></dd><dd>7.2 <a href="/github/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/github/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/github/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/github/view/203.html">图的邻接表存储法</a></dd><dd>7.6 <a href="/github/view/204.html">图的十字链表存储法</a></dd><dd>7.7 <a href="/github/view/205.html">图的邻接多重表存储法</a></dd><dd>7.8 <a href="/github/view/39.html">深度优先搜索和广度优先搜索</a></dd><dd>7.9 <a href="/github/view/45.html">深度优先生成树和广度优先生成树</a></dd><dd>7.10 <a href="/github/view/vip_245.html">普里姆算法(Prim算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.11 <a href="/github/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/github/view/42.html">重连通图</a></dd><dd>7.13 <a href="/github/view/vip_247.html">拓扑排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/github/view/44.html">关键路径</a></dd><dd>7.15 <a href="/github/view/vip_248.html">迪杰斯特拉算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.16 <a href="/github/view/vip_249.html">弗洛伊德算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/github/view/vip_250.html">[项目实践]移动迷宫小游戏(升级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>图的顺序存储结构及C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/202.html">什么是生成树</a></span>
+                    <span class="next right"><a href="/view/203.html">图的邻接表存储法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/202.html";window.nextPageURL = "/view/203.html";</script>
+			<div id="arc-body">使用<u><a href='/view/200.html' target='_blank'>图</a></u>结构表示的数据元素之间虽然具有&ldquo;多对多&rdquo;的关系，但是同样可以采用顺序存储，也就是使用<u><a href='/view/181.html' target='_blank'>数组</a></u>有效地存储图。<br />
+<br />
+使用数组存储图时，需要使用两个数组，一个数组存放图中顶点本身的数据（一维数组），另外一个数组用于存储各顶点之间的关系（二维数组）。<br />
+<div class="info-box">
+	存储图中各顶点本身数据，使用一维数组就足够了；存储顶点之间的关系时，要记录每个顶点和其它所有顶点之间的关系，所以需要使用二维数组。</div>
+<span style="color:#b22222;">不同类型的图，存储的方式略有不同，根据图有无权，可以将图划分为两大类：</span><span style="color:#008000;">图</span><span style="color:#b22222;">和</span><span style="color:#008000;">网</span><span style="color:#b22222;"> 。</span><br />
+<blockquote>
+	<p>
+		图，包括无向图和有向图；网，是指带权的图，包括无向网和有向网。存储方式的不同，指的是：在使用二维数组存储图中顶点之间的关系时，如果顶点之间存在边或弧，在相应位置用 1 表示，反之用 0 表示；如果使用二维数组存储网中顶点之间的关系，顶点之间如果有边或者弧的存在，在数组的相应位置存储其权值；反之用 0 表示。</p>
+</blockquote>
+结构代码表示：
+<pre class="cpp">
+#define MAX_VERtEX_NUM 20                   //顶点的最大个数
+#define VRType int                          //表示顶点之间的关系的变量类型
+#define InfoType char                       //存储弧或者边额外信息的指针变量类型
+#define VertexType int                      //图中顶点的数据类型
+typedef enum{DG,DN,UDG,UDN}GraphKind;       //枚举图的 4 种类型
+typedef struct {
+    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。
+    InfoType * info;                        //弧或边额外含有的信息指针
+}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+
+typedef struct {
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据
+    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系
+    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数
+    GraphKind kind;                         //记录图的种类
+}MGraph;</pre>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5154Q5263.png" style="width: 420px; height: 186px;" /><br />
+	图1 有向图和无向图</div>
+<br />
+例如，存储图 1 中的无向图（B）时，除了存储图中各顶点本身具有的数据外，还需要使用二维数组存储任意两个顶点之间的关系。<br />
+<br />
+由于 （B） 为无向图，各顶点没有权值，所以如果两顶点之间有关联，相应位置记为 1 ；反之记为 0 。构建的二维数组如图 2 所示。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5154911329.png" style="width: 200px; height: 185px;" /><br />
+	图2 无向图对应的二维数组arcs</div>
+<br />
+在此二维数组中，每一行代表一个顶点，依次从 V1 到 V5 ，每一列也是如此。比如 arcs[0][1] = 1 ，表示 V1 和 V2 之间有边存在；而 arcs[0][2] = 0，说明 V1 和 V3 之间没有边。<br />
+<br />
+对于无向图来说，二维数组构建的二阶矩阵，实际上是对称矩阵，在存储时就可以采用压缩存储的方式存储下三角或者上三角。<br />
+<br />
+通过二阶矩阵，可以直观地判断出各个顶点的度，为该行（或该列）非 0 值的和。例如，第一行有两个 1，说明 V1 有两个边，所以度为 2。<br />
+<br />
+存储图 1 中的有向图（A）时，对应的二维数组如图 3 所示：<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ515503K28.png" style="width: 150px; height: 166px;" /><br />
+	图 3 有向图对应的二维数组arcs</div>
+<br />
+例如，arcs[0][1] = 1 ，证明从 V1 到 V2 有弧存在。且通过二阶矩阵，可以很轻松得知各顶点的出度和入度，出度为该行非 0 值的和，入度为该列非 0 值的和。例如，V1 的出度为第一行两个 1 的和，为 2 ； V1 的入度为第一列中 1 的和，为 1 。所以 V1 的出度为 2 ，入度为 1 ，度为两者的和 3 。
+<h2>
+	具体实现代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAX_VERtEX_NUM 20                   //顶点的最大个数
+#define VRType int                          //表示顶点之间的关系的变量类型
+#define InfoType char                       //存储弧或者边额外信息的指针变量类型
+#define VertexType int                      //图中顶点的数据类型
+typedef enum{DG,DN,UDG,UDN}GraphKind;       //枚举图的 4 种类型
+typedef struct {
+    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。
+    InfoType * info;                        //弧或边额外含有的信息指针
+}ArcCell,AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+
+typedef struct {
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中顶点数据
+    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系
+    int vexnum,arcnum;                      //记录图的顶点数和弧（边）数
+    GraphKind kind;                         //记录图的种类
+}MGraph;
+//根据顶点本身数据，判断出顶点在二维数组中的位置
+int LocateVex(MGraph * G,VertexType v){
+    int i=0;
+    //遍历一维数组，找到变量v
+    for (; i&lt;G-&gt;vexnum; i++) {
+        if (G-&gt;vexs[i]==v) {
+            break;
+        }
+    }
+    //如果找不到，输出提示语句，返回-1
+    if (i&gt;G-&gt;vexnum) {
+        printf(&quot;no such vertex.\n&quot;);
+        return -1;
+    }
+    return i;
+}
+//构造有向图
+void CreateDG(MGraph *G){
+    //输入图含有的顶点数和弧的个数
+    scanf(&quot;%d,%d&quot;,&amp;(G-&gt;vexnum),&amp;(G-&gt;arcnum));
+    //依次输入顶点本身的数据
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;,&amp;(G-&gt;vexs[i]));
+    }
+    //初始化二维矩阵，全部归0，指针指向NULL
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        for (int j=0; j&lt;G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j].adj=0;
+            G-&gt;arcs[i][j].info=NULL;
+        }
+    }
+    //在二维数组中添加弧的数据
+    for (int i=0; i&lt;G-&gt;arcnum; i++) {
+        int v1,v2;
+        //输入弧头和弧尾
+        scanf(&quot;%d,%d&quot;,&amp;v1,&amp;v2);
+        //确定顶点位置
+        int n=LocateVex(G, v1);
+        int m=LocateVex(G, v2);
+        //排除错误数据
+        if (m==-1 ||n==-1) {
+            printf(&quot;no this vertex\n&quot;);
+            return;
+        }
+        //将正确的弧的数据加入二维数组
+        G-&gt;arcs[n][m].adj=1;
+    }
+}
+//构造无向图
+void CreateDN(MGraph *G){
+    scanf(&quot;%d,%d&quot;,&amp;(G-&gt;vexnum),&amp;(G-&gt;arcnum));
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;,&amp;(G-&gt;vexs[i]));
+    }
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        for (int j=0; j&lt;G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j].adj=0;
+            G-&gt;arcs[i][j].info=NULL;
+        }
+    }
+    for (int i=0; i&lt;G-&gt;arcnum; i++) {
+        int v1,v2;
+        scanf(&quot;%d,%d&quot;,&amp;v1,&amp;v2);
+        int n=LocateVex(G, v1);
+        int m=LocateVex(G, v2);
+        if (m==-1 ||n==-1) {
+            printf(&quot;no this vertex\n&quot;);
+            return;
+        }
+        G-&gt;arcs[n][m].adj=1;
+        G-&gt;arcs[m][n].adj=1;//无向图的二阶矩阵沿主对角线对称
+    }
+}
+//构造有向网，和有向图不同的是二阶矩阵中存储的是权值。
+void CreateUDG(MGraph *G){
+    scanf(&quot;%d,%d&quot;,&amp;(G-&gt;vexnum),&amp;(G-&gt;arcnum));
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;,&amp;(G-&gt;vexs[i]));
+    }
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        for (int j=0; j&lt;G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j].adj=0;
+            G-&gt;arcs[i][j].info=NULL;
+        }
+    }
+    for (int i=0; i&lt;G-&gt;arcnum; i++) {
+        int v1,v2,w;
+        scanf(&quot;%d,%d,%d&quot;,&amp;v1,&amp;v2,&amp;w);
+        int n=LocateVex(G, v1);
+        int m=LocateVex(G, v2);
+        if (m==-1 ||n==-1) {
+            printf(&quot;no this vertex\n&quot;);
+            return;
+        }
+        G-&gt;arcs[n][m].adj=w;
+    }
+}
+//构造无向网。和无向图唯一的区别就是二阶矩阵中存储的是权值
+void CreateUDN(MGraph* G){
+    scanf(&quot;%d,%d&quot;,&amp;(G-&gt;vexnum),&amp;(G-&gt;arcnum));
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;,&amp;(G-&gt;vexs[i]));
+    }
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        for (int j=0; j&lt;G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j].adj=0;
+            G-&gt;arcs[i][j].info=NULL;
+        }
+    }
+    for (int i=0; i&lt;G-&gt;arcnum; i++) {
+        int v1,v2,w;
+        scanf(&quot;%d,%d,%d&quot;,&amp;v1,&amp;v2,&amp;w);
+        int m=LocateVex(G, v1);
+        int n=LocateVex(G, v2);
+        if (m==-1 ||n==-1) {
+            printf(&quot;no this vertex\n&quot;);
+            return;
+        }
+        G-&gt;arcs[n][m].adj=w;
+        G-&gt;arcs[m][n].adj=w;//矩阵对称
+    }
+}
+void CreateGraph(MGraph *G){
+    //选择图的类型
+    scanf(&quot;%d&quot;,&amp;(G-&gt;kind));
+    //根据所选类型，调用不同的函数实现构造图的功能
+    switch (G-&gt;kind) {
+        case DG:
+            return CreateDG(G);
+            break;
+        case DN:
+            return CreateDN(G);
+            break;
+        case UDG:
+            return CreateUDG(G);
+            break;
+        case UDN:
+            return CreateUDN(G);
+            break;
+        default:
+            break;
+    }
+}
+//输出函数
+void PrintGrapth(MGraph G)
+{
+    for (int i = 0; i &lt; G.vexnum; i++)
+    {
+        for (int j = 0; j &lt; G.vexnum; j++)
+        {
+            printf(&quot;%d &quot;, G.arcs[i][j].adj);
+        }
+        printf(&quot;\n&quot;);
+    }
+}
+int main() {
+    MGraph G;//建立一个图的变量
+    CreateGraph(&amp;G);//调用创建函数，传入地址参数
+    PrintGrapth(G);//输出图的二阶矩阵
+    return 0;
+}</pre>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>在此程序中，构建无向网和有向网时，对于之间没有边或弧的顶点，相应的二阶矩阵中存放的是 0。目的只是为了方便查看运行结果，<span style="color:#b22222;">而实际上如果顶点之间没有关联，它们之间的距离应该是无穷大（&infin;）。</span></p>
+</blockquote>
+<br />
+例如，使用上述程序存储图 4（a）的有向网时，存储的两个数组如图 4（b）所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5155246103.png" style="width: 565px; height: 322px;" /><br />
+	图 4 有向网</div>
+<br />
+相应地运行结果为：
+<div class="info-box">
+	2<br />
+	6,10<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	6<br />
+	1,2,5<br />
+	2,3,4<br />
+	3,1,8<br />
+	1,4,7<br />
+	4,3,5<br />
+	3,6,9<br />
+	6,1,3<br />
+	4,6,6<br />
+	6,5,1<br />
+	5,4,5<br />
+	0 5 0 7 0 0<br />
+	0 0 4 0 0 0<br />
+	8 0 0 0 0 9<br />
+	0 0 5 0 0 6<br />
+	0 0 0 5 0 0<br />
+	3 0 0 0 1 0</div>
+<h2>
+	总结</h2>
+本节主要详细介绍了使用数组存储图的方法，在实际操作中使用更多的是链式存储结构，例如<u><a href='/view/203.html' target='_blank'>邻接表</a></u>、<u><a href='/view/186.html' target='_blank'>十字链表</a></u>和邻接多重表，这三种存储图的方式放在下一节重点去讲。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/202.html">什么是生成树</a></span>
+                    <span class="next right"><a href="/view/203.html">图的邻接表存储法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/202.html";window.nextPageURL = "/view/203.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 37;
+window.arcId = "a6d3+FrGsSU5hQ0EeSXrsHrODBlwtQH+nlWf8msNh8S9XJF47Am59j9z";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

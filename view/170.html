@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序栈基本操作（入栈和出栈）C语言详解</title>
+<meta name="keywords" content="顺序,栈,基本操作,入栈,和,出栈,语言,详解," />
+<meta name="description" content="顺序栈 ，即用顺序表实现栈存储结构。通过前面的学习我们知道，使用栈存储结构操作数据元素必须遵守 先进后出 的原则，本节就 如何使用顺序表模拟栈以及实现对栈中数据的基本操" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/github/stack_queue/">栈和队列</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/github/view/169.html">什么是栈</a></dd><dd>3.2 <a href="/github/view/170.html">顺序栈的基本操作</a></dd><dd>3.3 <a href="/github/view/171.html">链栈的基本操作</a></dd><dd>3.4 <a href="/github/view/vip_221.html">[项目实践]进制转换器</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.5 <a href="/github/view/vip_222.html">[项目实践]括号匹配</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.6 <a href="/github/view/172.html">什么是队列</a></dd><dd>3.7 <a href="/github/view/173.html">顺序队列及其实现</a></dd><dd>3.8 <a href="/github/view/174.html">链式队列及基本操作</a></dd><dd>3.9 <a href="/github/view/vip_220.html">[项目实践]变态的停车场管理系统</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/github/view/vip_223.html">[项目实践]扑克牌小游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>顺序栈基本操作（入栈和出栈）C语言详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/169.html">什么是栈</a></span>
+                    <span class="next right"><a href="/view/171.html">链栈的基本操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/169.html";window.nextPageURL = "/view/171.html";</script>
+			<div id="arc-body"><span style="color:#008000;"><u><a href='/view/170.html' target='_blank'>顺序栈</a></u></span>，即用<u><a href='/view/158.html' target='_blank'>顺序表</a></u>实现<u><a href='/view/169.html' target='_blank'>栈</a></u>存储结构。通过前面的学习我们知道，使用栈存储结构操作数据元素必须遵守 &quot;先进后出&quot; 的原则，本节就 &quot;如何使用顺序表模拟栈以及实现对栈中数据的基本操作（出栈和入栈）&quot; 给大家做详细介绍。<br />
+<br />
+如果你仔细观察顺序表（底层实现是<u><a href='/view/181.html' target='_blank'>数组</a></u>）和栈结构就会发现，它们存储数据的方式高度相似，只不过栈对数据的存取过程有特殊的限制，而顺序表没有。<br />
+<br />
+例如，我们先使用顺序表（a 数组）存储 <code>{1,2,3,4}</code>，存储状态如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="顺序表存储 {1,2,3,4}" src="/uploads/allimg/181202/2-1Q202131155H8.gif" /><br />
+	图 1 顺序表存储 {1,2,3,4}</div>
+<br />
+同样，使用栈存储结构存储 <code>{1,2,3,4}</code>，其存储状态如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="栈结构存储 {1,2,3,4}" src="/uploads/allimg/181202/2-1Q202131233249.gif" /><br />
+	图 2 栈结构存储 {1,2,3,4}</div>
+<br />
+通过图 1 和图 2 的对比不难看出，使用顺序表模拟栈结构很简单，只需要将数据从 a 数组下标为 0 的位置依次存储即可。<br />
+<p class="info-box">
+	从数组下标为 0 的模拟栈存储数据是常用的方法，从其他数组下标处存储数据也完全可以，这里只是为了方便初学者理解。</p>
+了解了顺序表模拟栈存储数据后，接下来看如何模拟栈中元素出栈的操作。由于栈对存储元素出栈的次序有&quot;先进后出&quot;的要求，如果想将图 1 中存储的元素 1 从栈中取出，需先将元素 4、元素 3 和元素 2 依次从栈中取出。<br />
+<br />
+这里给出使用顺序表模拟栈存储结构常用的实现思路，即在顺序表中设定一个实时指向栈顶元素的变量（一般命名为 top），top 初始值为 -1，表示栈中没有存储任何数据元素，及栈是&quot;空栈&quot;。一旦有数据元素进栈，则 top 就做 +1 操作；反之，如果数据元素出栈，top 就做 -1 操作。<br />
+<h2>
+	顺序栈元素&quot;入栈&quot;</h2>
+比如，还是模拟栈存储 <code>{1,2,3,4}</code> 的过程。最初，栈是&quot;空栈&quot;，即数组是空的，top 值为初始值 -1，如图 3 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="空栈示意图" src="/uploads/allimg/181202/2-1Q202131603419.gif" /><br />
+	图 3 空栈示意图</div>
+<br />
+首先向栈中添加元素 1，我们默认数组下标为 0 一端表示栈底，因此，元素 1 被存储在数组 a[1] 处，同时 top 值 +1，如图 4 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="模拟栈存储元素 1" src="/uploads/allimg/181202/2-1Q2021316322O.gif" /><br />
+	图 4 模拟栈存储元素 1</div>
+<br />
+采用以上的方式，依次存储元素 2、3 和 4，最终，top 值变为 3，如图 5 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="模拟栈存储{1,2,3,4}" src="/uploads/allimg/181202/2-1Q202131649636.gif" /><br />
+	图 5 模拟栈存储{1,2,3,4}</div>
+<br />
+因此，C 语言实现代码为：<br />
+<pre class="cpp">
+//元素elem进栈，a为数组，top值为当前栈的栈顶位置
+int push(int* a,int top,int elem){
+    a[++top]=elem;
+    return top;
+}</pre>
+代码中的 a[++top]=elem，等价于先执行 ++top，再执行 a[top]=elem。<br />
+<h2>
+	顺序栈元素&quot;出栈&quot;</h2>
+其实，top 变量的设置对模拟数据的 &quot;入栈&quot; 操作没有实际的帮助，它是为实现数据的 &quot;出栈&quot; 操作做准备的。<br />
+<br />
+比如，将图 5 中的元素 2 出栈，则需要先将元素 4 和元素 3 依次出栈。需要注意的是，当有数据出栈时，要将 top 做 -1 操作。因此，元素 4 和元素 3 出栈的过程分别如图 6a) 和 6b) 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="数据元素出栈" src="/uploads/allimg/181225/2-1Q225200HMC.gif" /><br />
+	图 6 数据元素出栈</div>
+<p class="info-box">
+	注意，图 6 数组中元素的消失仅是为了方便初学者学习，其实，这里只需要对 top 值做 -1 操作即可，因为 top 值本身就表示栈的栈顶位置，因此 top-1 就等同于栈顶元素出栈。并且后期向栈中添加元素时，新元素会存储在类似元素 4 这样的旧元素位置上，将旧元素覆盖。</p>
+元素 4 和元素 3 全部出栈后，元素 2 才能出栈。因此，使用顺序表模拟数据出栈操作的 C 语言实现代码为：
+<pre class="cpp">
+//数据元素出栈
+int pop(int * a,int top){
+    if (top==-1) {
+        printf(&quot;空栈&quot;);
+        return -1;
+    }
+    printf(&quot;弹栈元素：%d\n&quot;,a[top]);
+    top--;
+    return top;
+}</pre>
+代码中的 if 语句是为了防止用户做 &quot;栈中已无数据却还要数据出栈&quot; 的错误操作。代码中，关于对栈中元素出栈操作的实现，只需要 top 值 -1 即可。<br />
+<h2>
+	总结</h2>
+通过学习顺序表模拟栈中数据入栈和出栈的操作，初学者完成了对顺序栈的学习，这里给出顺序栈及对数据基本操作的 C 语言完整代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+//元素elem进栈
+int push(int* a,int top,int elem){
+    a[++top]=elem;
+    return top;
+}
+//数据元素出栈
+int pop(int * a,int top){
+    if (top==-1) {
+        printf(&quot;空栈&quot;);
+        return -1;
+    }
+    printf(&quot;弹栈元素：%d\n&quot;,a[top]);
+    top--;
+    return top;
+}
+int main() {
+    int a[100];
+    int top=-1;
+    top=push(a, top, 1);
+    top=push(a, top, 2);
+    top=push(a, top, 3);
+    top=push(a, top, 4);
+    top=pop(a, top);
+    top=pop(a, top);
+    top=pop(a, top);
+    top=pop(a, top);
+    top=pop(a, top);
+    return 0;
+}</pre>
+程序输出结果为：
+<p class="info-box">
+	弹栈元素：4<br />
+	弹栈元素：3<br />
+	弹栈元素：2<br />
+	弹栈元素：1<br />
+	空栈</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/169.html">什么是栈</a></span>
+                    <span class="next right"><a href="/view/171.html">链栈的基本操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/169.html";window.nextPageURL = "/view/171.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 170;
+window.arcId = "9d69KfVDvT5acrCthmEq413bVWPaxkIO6Vv0d0HjTyQCCG80YTFt+EDY0w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

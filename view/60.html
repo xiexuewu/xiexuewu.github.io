@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>B-树及其基本操作（插入和删除）详解</title>
+<meta name="keywords" content="树,树," />
+<meta name="description" content="前面介绍了二叉排序树和平衡二叉树，本节开始介绍两种用于查找功能的树数据结构 B-树 和 B+树 。 什么是B-树？ B-树 ，有时又写为 B_树 （其中的-或者_只是连字符，并不读作B减树）" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>B-树及其基本操作（插入和删除）详解</h1>
+			<div id="arc-body">前面介绍了<u><a href='/view/58.html' target='_blank'>二叉排序树</a></u>和<u><a href='/view/59.html' target='_blank'>平衡二叉树</a></u>，本节开始介绍两种用于查找功能的<u><a href='/view/23.html' target='_blank'>树</a></u>数据结构&mdash;&mdash;<span style="color:#b22222;">B-树</span>和<span style="color:#b22222;">B+树</span>。
+<h2>
+	什么是B-树？</h2>
+<span style="color:#008000;">B-树</span>，有时又写为<span style="color:#008000;">B_树</span><span style="color:#b22222;">（其中的&ldquo;-&rdquo;或者&ldquo;_&rdquo;只是连字符，并不读作&ldquo;B减树&rdquo;）</span>，一颗 m 阶的 B-树，或者本身是空树，否则必须满足以下特性：
+<ul>
+	<li>
+		树中每个结点至多有 m 棵子树；</li>
+	<li>
+		若根结点不是叶子结点，则至少有两棵子树；</li>
+	<li>
+		除根之外的所有非终端结点至少有棵子树；</li>
+	<li>
+		所有的非终端结点中包含下列信息数据：（n，A<sub>0</sub>，K<sub>1</sub>，A<sub>1</sub>，K<sub>2</sub>，A<sub>2</sub>，&hellip;，K<sub>n</sub>，A<sub>n</sub>）；</li>
+</ul>
+<div class="info-box" style="margin-left: 40px;">
+	n 表示结点中包含的关键字的个数，取值范围是：<code>&lceil;m/2&rceil;-1&le; n &le;m-1</code>。K<sub>i</sub> （i 从 1 到 n）为关键字，且 K<sub>i&nbsp;</sub> &lt; K<sub>i+1</sub> ；A<sub>i</sub> 代表指向子树根结点的指针，且指针 A<sub>i-1</sub> 所指的子树中所有结点的关键字都小于 K<sub>i</sub>，A<sub>n</sub> 所指子树中所有的结点的关键字都大于 K<sub>n。</sub></div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024101134928.png" style="width: 335px; height: 89px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 结点结构</div>
+<div style="margin-left: 40px;">
+	如图 1 所示，当前结点中有 4 个关键字，之间的关系为：K<sub>1</sub>&lt;K<sub>2</sub>&lt;k<sub>3</sub>&lt;K<sub>4</sub>。同时对于 A<sub>0</sub> 指针指向的子树中的所有关键字来说，其值都要比 K<sub>1</sub> 小；而 A<sub>1</sub> 指向的子树中的所有的关键字的值，都比 K<sub>1</sub> 大，但是都要比 K<sub>2</sub> 小。</div>
+<ul>
+	<li>
+		所有的叶子结点都出现在同一层次，实际上这些结点都不存在，指向这些结点的指针都为 NULL；</li>
+</ul>
+<div style="margin-left: 40px;">
+	<br />
+	例如图 2 所示就是一棵 4 阶的 B-树，这棵树的深度为 4 ：<br />
+	&nbsp;</div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024101S02K.png" style="width: 600px; height: 154px;" /><br />
+	图 2 深度为 4 的B-树<br />
+	&nbsp;</div>
+在使用 B-树进行查找操作时，例如在如图 2 所示的 B-树中查找关键字 47 的过程为：
+<ol>
+	<li>
+		从整棵树的根结点开始，由于根结点只有一个关键字 35，且 35 &lt; 47 ，所以如果 47 存在于这棵树中，肯定位于 A<sub>1</sub> 指针指向的右子树中；</li>
+	<li>
+		然后顺着指针找到存有关键字 43 和 78 的结点，由于 43 &lt; 47 &lt; 78，所以如果 47 存在，肯定位于 A<sub>1</sub> 所指的子树中；</li>
+	<li>
+		然后找到存有 47、53 和 64 三个关键字的结点，最终找到 47 ，查找操作结束；</li>
+</ol>
+<blockquote>
+	<p>
+		以图 2 中的 B-树为例，若查找到深度为 3 的结点还没结束，则会进入叶子结点，但是由于叶子结点本身不存储任何信息，全部为 NULL，所以查找失败。</p>
+</blockquote>
+<h2>
+	B-树中插入关键字（构建B-树）</h2>
+B-树也是从空树开始，通过不断地插入新的数据元素构建的。但是 B-树构建的过程同前面章节的二叉排序树和平衡<u><a href='/view/192.html' target='_blank'>二叉树</a></u>不同，B-树在插入新的数据元素时并不是每次都向树中插入新的结点。<br />
+<br />
+因为对于 m 阶的 B-树来说，在定义中规定所有的非终端结点（<span style="color:#b22222;">终端结点即叶子结点，其关键字个数为 0</span>）中包含关键字的个数的范围是<code>[&lceil;m/2&rceil;-1,m-1]</code>，所以在插入新的数据元素时，首先向最底层的某个非终端结点中添加，如果该结点中的关键字个数没有超过 m-1，则直接插入成功，否则还需要继续对该结点进行处理。<br />
+<br />
+假设现在图 3 的基础上插入 4 个关键字 30、26、85 和 7：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024102U1241.png" style="width: 550px; height: 253px;" /><br />
+	图 3 3阶B-树（深度为4，省略了叶子结点）<br />
+	&nbsp;</div>
+<span style="color:#b22222;">插入关键字 30 ：</span>从根结点开始，由于 30 &lt; 45，所以要插入到以 b 结点为根结点的子树中，再由于 24 &lt; 30，插入到以 d 结点为根结点的子树中，由于 d 结点中的关键字个数小于 m-1=2，所以可以将关键字 30 直接插入到 d 结点中。结果如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024102942E3.png" style="width: 555px; height: 253px;" /><br />
+	图 4 插入关键字30后的B-树<br />
+	&nbsp;</div>
+<span style="color:#b22222;">插入关键字 26：</span>从根结点开始，经过逐个比较，最终判定 26 还是插入到 d 结点中，但是由于 d 结点中关键字的个数超过了 2，所以需要做如下操作：
+<ul>
+	<li>
+		关键字 37 及其左右两个指针存储到新的结点中，假设为 d&rsquo; 结点；</li>
+	<li>
+		关键字 30 存储到其双亲结点 b 中，同时设置关键字 30 右侧的指针指向 d&rsquo;；</li>
+</ul>
+经过以上操作后，插入 26 后的B-树为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024103030D2.png" style="width: 555px; height: 253px;" /><br />
+	图 5 插入关键字26后的B-树</div>
+<span style="color:#b22222;">插入关键字 85：</span>从根结点开始，经过逐个比较，最终判定插入到 g 结点中，同样需要对 g 做分裂操作：
+<ul>
+	<li>
+		关键字 85 及其左右两个指针存储到新的结点中，假设为 g&rsquo; 结点；</li>
+	<li>
+		关键字 70 存储到其双亲结点 e 中，同时设置 70 的右侧指针指向 g&rsquo; ；</li>
+</ul>
+经过以上操作后，插入 85 后的结果图为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G0241032113I.png" style="width: 583px; height: 254px;" /><br />
+	图 6 插入 85 的效果图</div>
+图 6 中，由于关键字 70 调整到其双亲结点中，使得其 e 结点中的关键字个数超过了 2，所以还需进一步调整：
+<ul>
+	<li>
+		将 90 及其左右指针存储到一个新的结点中，假设为 e&rsquo; 结点；</li>
+	<li>
+		关键字 70 存储到其双亲结点 a 中，同时其右侧指针指向 e&rsquo; ;</li>
+</ul>
+<span style="color:#b22222;">最终插入关键字 85 后的 B-树为：</span>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024103245462.png" style="width: 583px; height: 254px;" /><br />
+	图 7 插关键字85后的B-树</div>
+<span style="color:#b22222;">插入关键字 7：</span>从根结点开始依次做判断，最终判定在 c 结点中添加，添加后发现 c 结点需要分裂，分裂规则同上面的方式一样，结果导致关键字 7 存储到其双亲结点 b 中；后 b 结点分裂，关键字 24 存储到结点 a 中；结点 a 同样需要做分裂操作，最终 B-树为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G02410330V11.png" style="width: 600px; height: 231px;" /><br />
+	图 8 插入关键字7后的B-树</div>
+通过上边的例子，可以总结出一下结论：在构建 B-树的过程中，假设 p 结点中已经有 m-1 个关键字，当再插入一个关键字之后，此结点分裂为两个结点，如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024103344O4.png" style="width: 650px; height: 130px;" /><br />
+	图 9 B-树构成过程中的&ldquo;分裂&rdquo;</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>如图 9所示，结点分裂为两个结点的同时，还分裂出来一个关键字 K<sub>&lceil;m/2&rceil;</sub>，存储到其双亲结点中。</p>
+</blockquote>
+<h2>
+	B-树中删除关键字</h2>
+在 B-树种删除关键字时，首先前提是找到该关键字所在结点，在做删除操作的时候分为两种情况，一种情况是删除结点为 B-树的非终端结点（不处在最后一层）；另一种情况是删除结点为 B-树最后一层的非终端结点。
+<div class="info-box" style="margin-left: 40px;">
+	例如图 3 来说，关键字 24、45、53、90属于不处在最后一层的非终端结点，关键字 3、12、37等同属于最后一层的非终端结点。</div>
+如果该结点为非终端结点且不处在最后一层，假设用 K<sub>i</sub> 表示，则只需要找到指针 A<sub>i</sub> 所指子树中最小的一个关键字代替 K<sub>i</sub>，同时将该最小的关键字删除即可。<br />
+<div class="info-box" style="margin-left: 40px;">
+	例如图 3 中，如果要删除关键字 45 ，只需要使用关键字 50 代替 45 ，同时删除 f 结点中的 50 即可。</div>
+如果该结点为最后一层的非终端结点，有下列 3 种可能：
+<ul>
+	<li>
+		被删关键字所在结点中的关键字数目不小于<code>&lceil;m/2&rceil;</code>，则只需从该结点删除该关键字 K<sub>i</sub> 以及相应的指针 A<sub>i</sub> 。</li>
+</ul>
+<div class="info-box" style="margin-left: 40px;">
+	例如，在图 3 中，删除关键字 12 ，只需要删除该关键字 12以及右侧指向 NULL 指针即可。</div>
+<ul>
+	<li>
+		被删关键字所在结点中的关键字数目等于<code>&lceil;m/2&rceil;-1</code>，而与该结点相邻的右兄弟结点（或者左兄弟）结点中的关键字数目大于<code>&lceil;m/2&rceil;-1</code>，只需将该兄弟结点中的最小（或者最大）的关键字上移到双亲结点中，然后将双亲结点中小于（或者大于）且紧靠该上移关键字的关键字移动到被删关键字所在的结点中。</li>
+</ul>
+<div class="info-box" style="margin-left: 40px;">
+	例如在图 3 中删除关键字 50，其右兄弟结点 g 中的关键字大于2，所以需要将结点 g 中最小的关键字 61 上移到其双亲结点 e 中（由此 e 中结点有：53，61，90），然后将小于 61 且紧靠 61 的关键字 53 下移到结点 f 中，最终删除后的 B-树如图 10 所示。</div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024103KEQ.png" style="width: 550px; height: 253px;" /><br />
+	图 10 删除结点50后的B-树</div>
+<ul>
+	<li>
+		被删除关键字所在的结点如果和其相邻的兄弟结点中的关键字数目都正好等于&lceil;m/2&rceil;-1，假设其有右兄弟结点，且其右兄弟结点是由双亲结点中的指针 A<sub>i</sub> 所指，则需要在删除该关键字的同时，将剩余的关键字和指针连同双亲结点中的 K<sub>i</sub> 一起合并到右兄弟结点中。</li>
+</ul>
+<div style="margin-left: 40px;">
+	例如，在图 10 中 B-树中删除关键字 53，由于其有右兄弟，且右兄弟结点中只有 1 个关键字。在删除关键字 53 后，结点 f 中只剩指向叶子结点的空指针，连同双亲结点中的 61（因为 61 右侧指针指向的兄弟结点 g）一同合并到结点 g 中，最终删除 53 后的 B-树为：</div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024103S12H.png" style="width: 551px; height: 253px;" /><br />
+	图 11 删除结点53后的B-树</div>
+<div style="margin-left: 40px;">
+	在合并的同时，由于从双亲结点中删除一个关键字，若导致双亲结点中关键字数目小于<code>&lceil;m/2&rceil;-1</code>，则继续按照该规律进行合并。例如在图 11 中 B-树的情况下删除关键字 12 时，结点 c 中只有一个关键字，然后做删除关键字 37 的操作。此时在删除关键字 37 的同时，结点 d 中的剩余信息（空指针）同双亲结点中的关键字 24 一同合并到结点 c 中，效果图为：</div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024103ZJ52.png" style="width: 551px; height: 253px;" /><br />
+	图 12 删除结点 37后的效果图</div>
+<div style="margin-left: 40px;">
+	由于结点 b 中一个关键字也没有，所以破坏了B-树的结构，继续整合。在删除结点 b 的同时，由于 b 中仅剩指向结点 c 的指针，所以连同其双亲结点中的 45 一同合并到其兄弟结点 e 中，最终的B-树为：</div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024103931C5.png" style="width: 298px; height: 154px;" /><br />
+	图 13 删除37后的B-树</div>
+<h2>
+	总结</h2>
+由于 B-树具有分支多层数少的特点，使得它更多的是应用在数据库系统中。除了 B-树，还有专门为文件系统而生的 B+树，在本章的下一节会详细介绍。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 60;
+window.arcId = "dc9eMA8pyow4WoSIaxKcvNNmwcGIM9UJBDvJuKGAooHvyPtS70HpeGxQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

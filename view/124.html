@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序表的创建和初始化过程详解（C语言实现）</title>
+<meta name="keywords" content="顺序,表,的,创,建和,初始化,过程,详解,语言," />
+<meta name="description" content="顺序表存放数据的特点和数组这种数据类型完全吻合，因此顺序表的实现使用的是数组。需要注意的是，使用数组实现顺序表时，一定要注意预先申请足够大的内存空间，避免因存储空" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>顺序表的创建和初始化过程详解（C语言实现）</h1>
+			<div id="arc-body"><u><a href='/view/158.html' target='_blank'>顺序表</a></u>存放数据的特点和<u><a href='/view/181.html' target='_blank'>数组</a></u>这种数据类型完全吻合，因此顺序表的实现使用的是数组。需要注意的是，使用数组实现顺序表时，一定要预先申请足够大的内存空间，避免因存储空间不足，造成数据溢出，导致不必要的程序错误甚至崩溃。<br />
+<br />
+<div class="cpp">
+	在建立顺序表时，除了预先申请内存空间，还需要实时记录顺序表的长度和顺序表本身申请的内存大小，便于后期对顺序表中的数据元素进行调取。因此在建立顺序表之前，要自定义顺序表中单个结点的结构，实现代码如下：</div>
+<pre class="cpp">
+typedef struct Table{
+    int * head;//声明了一个名为head的长度不确定的数组，也叫&ldquo;动态数组&rdquo;
+    int length;//记录当前顺序表的长度
+    int size;//记录顺序表分配的存储容量
+}table;</pre>
+<p class="cpp">
+	<br />
+	建立顺序表的过程，也就是在预先申请内存空间的同时，给变量 size 和 length 赋初值的过程，其实现代码为：</p>
+<pre class="cpp">
+table initTable(){
+    table t;
+    t.head=(int*)malloc(Size*sizeof(int));//构造一个空的顺序表，动态申请存储空间
+    if (!t.head) //如果申请失败，作出提示并直接退出程序
+    {
+        printf(&quot;初始化失败&quot;);
+        exit(0);
+    }
+    t.length=0;//空表的长度初始化为0
+    t.size=Size;//空表的初始存储空间为Size
+    return t;
+}</pre>
+<p>
+	<br />
+	顺序表建立完成后，即可使用顺序表存储数据，也就是对顺序表进行初始化的过程，若使用刚建立的顺序表存储 {1,2,3,4}，其完整实现代码为：</p>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define Size 4
+typedef struct Table{
+    int * head;
+    int length;
+    int size;
+}table;
+
+table initTable(){
+    table t;
+    t.head=(int*)malloc(Size*sizeof(int));
+    if (!t.head)
+    {
+        printf(&quot;初始化失败&quot;);
+        exit(0);
+    }
+    t.length=0;
+    t.size=Size;
+    return t;
+}
+
+void displayTable(table t){
+    for (int i=0;i&lt;t.length;i++) {
+        printf(&quot;%d&quot;,t.head[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+int main(){
+    table t1=initTable();
+    for (int i=1; i&lt;=Size; i++) {
+        t1.head[i-1]=i;
+        t1.length++;
+    }
+    printf(&quot;顺序表为：\n&quot;);
+    displayTable(t1);
+    return 0;
+}</pre>
+输出结果：<br />
+<pre class="info-box">
+顺序表为：
+1234</pre>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 124;
+window.arcId = "be17b8VWAndJoD/E+pbfgHC/ElNHSK/xrnXcCeWZ4XXqtXLa5vXaa0Bm0g";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

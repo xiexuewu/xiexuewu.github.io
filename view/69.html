@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>希尔排序算法（缩小增量排序）及C语言实现</title>
+<meta name="keywords" content="希尔,排序,希尔,排序," />
+<meta name="description" content="希尔排序 ，又称 缩小增量排序 ，也是插入排序的一种，但是同前面几种排序算法比较来看，希尔排序在时间效率上有很大的改进。 在使用直接插入排序算法时，如果表中的记录只有个" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>希尔排序算法（缩小增量排序）及C语言实现</h1>
+			<div id="arc-body"><span style="color:#008000;">希尔排序</span>，又称<span style="color:#008000;">&ldquo;缩小增量排序&rdquo;</span>，也是插入排序的一种，但是同前面几种排序算法比较来看，希尔排序在时间效率上有很大的改进。<br />
+<br />
+在使用直接<u><a href='/view/65.html' target='_blank'>插入排序算法</a></u>时，如果表中的记录只有个别的是无序的，多数保持有序，这种情况下算法的效率也会比较高；除此之外，如果需要排序的记录总量很少，该算法的效率同样会很高。希尔排序就是从这两点出发对算法进行改进得到的排序算法。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">希尔排序的具体实现思路是：先将整个记录表分割成若干部分，分别进行直接插入排序，然后再对整个记录表进行一次直接插入排序。</span></p>
+</blockquote>
+例如无序表<code>{49，38，65，97，76，13，27，49，55，4}</code>进行希尔排序的过程为：<br />
+<ul>
+	<li>
+		首先对 {49，13}，{38，27}，{65，49}，{97，55}，{76，4} 分别进行直接插入排序（<span style="color:#b22222;">如果需要调换位置也只是互换存储位置</span>），如下<u><a href='/view/200.html' target='_blank'>图</a></u>所示：</li>
+</ul>
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G031111300510.png" style="width: 514px; height: 188px;" /></div>
+<div style="margin-left: 40px;">
+	上图中两两进行比较，例如 49 和 13 进行比较，13&lt;49，所以交换存储位置。<br />
+	&nbsp;</div>
+<ul>
+	<li>
+		通过一次排序，无序表中的记录已基本有序，此时还可以再进行一次分割，如下图所示：</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171031/2-1G031111325V0.png" style="width: 514px; height: 170px;" /></div>
+<ul>
+	<li>
+		经过两次分割，无序表中已基本有序，此时对整张表进行一次直接插入排序（只需要做少量的比较和插入操作即可），最终希尔排序的结果为：</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171031/2-1G031111351218.png" style="width: 530px; height: 43px;" /><br />
+	&nbsp;</div>
+希尔排序的过程中，对于分割的每个子表，其各自包含的记录在原表中并不是相互挨着的，而是相互之间相隔着某个固定的常数。例如上例中第一次排序时子表中的记录分割的常量为 5，第二次排序时为 3。<br />
+<br />
+通过此种方式，对于关键字的值较小的记录，其前移的过程不是一步一步的，而是跳跃性的前移，并且在最后一次对整表进行插入排序时减少了比较和排序的次数。
+<blockquote>
+	<p>
+		<span style="color:#b22222;">一般在记录的数量多的情况下，希尔排序的排序效率较直接插入排序高。</span></p>
+</blockquote>
+希尔排序的具体代码实现：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define SIZE 15
+typedef struct {
+    int key;   //关键字的值
+}SLNode;
+typedef struct {
+    SLNode r[SIZE];//存储记录的<u><a href='/view/181.html' target='_blank'>数组</a></u>
+    int length;//记录数组中记录的数量
+}SqList;
+//希尔排序的实现函数，其中 dk 表示增值量
+void ShellInsert(SqList * L,int dk){
+    //从 dk+1 个记录起，每间隔 dk 个记录就调取一个进行直接插入排序算法
+    for (int i=dk+1; i&lt;=L-&gt;length; i++) {
+        //如果新调取的关键字的值，比子表中最后一个记录的关键字小，说明需要将该值调换位置
+        if (L-&gt;r[i].key&lt;L-&gt;r[i-dk].key) {
+            int j;
+            //记录表中，使用位置下标为 0 的空间存储需要调换位置的记录的值
+            L-&gt;r[0]=L-&gt;r[i];
+            //做直接插入排序，如果下标为 0 的关键字比下标为 j 的关键字小，则向后一行下标为 j 的值，为新插入的记录腾出空间。
+            for (j=i-dk; j&gt;0 &amp;&amp; (L-&gt;r[0].key&lt;L-&gt;r[j].key); j-=dk){
+                L-&gt;r[j+dk]=L-&gt;r[j];
+            }
+            //跳出循环后，将新的记录值插入到腾出的空间中，即完成了一次直接插入排序
+            L-&gt;r[j+dk]=L-&gt;r[0];
+        }
+    }
+}
+//希尔排序，通过调用不同的增量值（记录），实现对多个子表分别进行直接插入排序
+void ShellSort(SqList * L,int dlta[],int t){
+    for (int k=0; k&lt;t; k++) {
+        ShellInsert(L, dlta[k]);
+    }
+}
+int main(int argc, const char * argv[]) {
+    int dlta[3]={5,3,1};//用数组来存储增量值，例如 5 代表每间隔5个记录组成一个子表，1表示每间隔一个，也就是最后一次对整张表的直接插入排序
+    SqList *L=(SqList*)malloc(sizeof(SqList));
+    L-&gt;r[1].key=49;
+    L-&gt;r[2].key=38;
+    L-&gt;r[3].key=64;
+    L-&gt;r[4].key=97;
+    L-&gt;r[5].key=76;
+    L-&gt;r[6].key=13;
+    L-&gt;r[7].key=27;
+    L-&gt;r[8].key=49;
+    L-&gt;r[9].key=55;
+    L-&gt;r[10].key=4;
+    L-&gt;length=10;
+    //调用希尔排序算法
+    ShellSort(L, dlta, 3);
+    //输出语句
+    for (int i=1; i&lt;=10; i++) {
+        printf(&quot;%d &quot;,L-&gt;r[i].key);
+    }
+    return 0;
+}</pre>
+运行结果：
+<div class="info-box">
+	4 13 27 38 49 49 55 64 76 97</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>经过大量的研究表明，所选取的增量值最好是没有除 1 之外的公因子，同时整个增量数组中最后一个增量值必须等于 1 ，因为最后必须对整张表做一次直接插入排序算法。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 69;
+window.arcId = "c60768unT45fDPE+cICmIUcUWjIa9dNNZCGvSgq+GMFxjRaQvCYd1ksk";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

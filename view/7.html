@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>循环链表(约瑟夫环)的建立及C语言实现</title>
+<meta name="keywords" content="循,环链,表,循,环链,表," />
+<meta name="description" content="链表的使用，还可以把链表的两头连接，形成了一个环状链表，称为 循环链表 。 和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，就形成了一个环。 图1 循环链表" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">2</span> <a href="/github/linear_list/">线性表</a> </dd><dl class="dl-sub"><dd>2.1 <a href="/github/view/157.html">什么是线性表</a></dd><dd>2.2 <a href="/github/view/158.html">顺序表是什么</a></dd><dd>2.3 <a href="/github/view/159.html">顺序表的基本操作</a></dd><dd>2.4 <a href="/github/view/160.html">链表是什么</a></dd><dd>2.5 <a href="/github/view/161.html">链表的基本操作</a></dd><dd>2.6 <a href="/github/view/vip_216.html">顺序表和链表有哪些不同？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.7 <a href="/github/view/279.html">存储结构和存取结构，完全不是一码事！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.8 <a href="/github/view/277.html">4种算法，实现单链表的反转！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.9 <a href="/github/view/163.html">静态链表：更高级的线性表</a></dd><dd>2.10 <a href="/github/view/164.html">静态链表基本操作</a></dd><dd>2.11 <a href="/github/view/vip_218.html">静态链表和动态链表区别</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.12 <a href="/github/view/7.html">循环链表实现约瑟夫环</a></dd><dd>2.13 <a href="/github/view/166.html">双向链表是什么</a></dd><dd>2.14 <a href="/github/view/167.html">双向链表的基本操作</a></dd><dd>2.15 <a href="/github/view/281.html">双向链表实现贪吃蛇游戏（含源码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.16 <a href="/github/view/vip_263.html">双向循环链表（C语言）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.17 <a href="/github/view/vip_233.html">[项目实践]俄罗斯轮盘赌小游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>循环链表(约瑟夫环)的建立及C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_218.html">静态链表和动态链表区别</a></span>
+                    <span class="next right"><a href="/view/166.html">双向链表是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_218.html";window.nextPageURL = "/view/166.html";</script>
+			<div id="arc-body">无论是<u><a href='/view/163.html' target='_blank'>静态链表</a></u>还是动态<u><a href='/view/160.html' target='_blank'>链表</a></u>，有时在解决具体问题时，需要我们对其结构进行稍微地调整。比如，可以把链表的两头连接，使其成为了一个环状链表，通常称为<span style="color:#008000;">循环链表</span><span style="color:#b22222;">。</span><br />
+<br />
+和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，链表就能成环儿，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170718/2-1FGQ54T3422.png" /></div>
+<div style="text-align: center;">
+	图1 循环链表</div>
+<div>
+	&nbsp;</div>
+<p class="info-box">
+	需要注意的是，虽然循环链表成环状，但本质上还是链表，因此在循环链表中，依然能够找到头指针和首元节点等。循环链表和普通链表相比，唯一的不同就是循环链表首尾相连，其他都完全一样。</p>
+<h2>
+	循环链表实现约瑟夫环</h2>
+约瑟夫环问题，是一个经典的循环链表问题，题意是：已知 n 个人（分别用编号 1，2，3，&hellip;，n 表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的下一个人又从 1 开始，还是顺时针开始报数，数到 m 的那个人又出列；依次重复下去，直到圆桌上剩余一个人。<br />
+<br />
+如图 2 所示，假设此时圆周周围有 5 个人，要求从编号为 3 的人开始顺时针数数，数到 2 的那个人出列：
+<div style="text-align: center;">
+	<br />
+	<img alt="循环链表实现约瑟夫环" src="/uploads/allimg/170718/2-1FGQ54403413.png" /><br />
+	图 2 循环链表实现约瑟夫环</div>
+<br />
+出列顺序依次为：<br />
+<ul>
+	<li>
+		编号为 3 的人开始数 1，然后 4 数 2，所以 4 先出列；</li>
+	<li>
+		4 出列后，从 5 开始数 1，1 数 2，所以 1 出列；</li>
+	<li>
+		1 出列后，从 2 开始数 1，3 数 2，所以 3 出列；</li>
+	<li>
+		3 出列后，从 5 开始数 1，2 数 2，所以 2 出列；</li>
+	<li>
+		最后只剩下 5 自己，所以 5 胜出。</li>
+</ul>
+<p class="info-box">
+	约瑟夫环问题有多种变形，比如顺时针转改为逆时针等，虽然问题的细节有多种变数，但解决问题的中心思想是一样的，即使用循环链表。</p>
+通过以上的分析，我们可以尝试编写 C 语言代码，完整代码如下所示：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct node {
+    int number;
+    struct node * next;
+}person;
+person * initLink(int n) {
+    int i = 0;
+    person * head = NULL, *cyclic = NULL;
+    head = (person*)malloc(sizeof(person));
+    head-&gt;number = 1;
+    head-&gt;next = NULL;
+    cyclic = head;
+    for (i = 2; i &lt;= n; i++) {
+        person * body = (person*)malloc(sizeof(person));
+        body-&gt;number = i;
+        body-&gt;next = NULL;
+        cyclic-&gt;next = body;
+        cyclic = cyclic-&gt;next;
+    }
+    cyclic-&gt;next = head;//首尾相连
+    return head;
+}
+
+void findAndKillK(person * head, int k, int m) {
+    person * p = NULL;
+    person * tail = head;
+    //找到链表第一个结点的上一个结点，为删除操作做准备
+    while (tail-&gt;next != head) {
+        tail = tail-&gt;next;
+    }
+    p = head;
+    //找到编号为k的人
+    while (p-&gt;number != k) {
+        tail = p;
+        p = p-&gt;next;
+    }
+    //从编号为k的人开始，只有符合p-&gt;next==p时，说明链表中除了p结点，所有编号都出列了，
+    while (p-&gt;next != p) {
+        int i = 0;
+        //找到从p报数1开始，报m的人，并且还要知道数m-1de人的位置tail，方便做删除操作。
+        for (i = 1; i &lt; m; i++) {
+            tail = p;
+            p = p-&gt;next;
+        }
+        tail-&gt;next = p-&gt;next;//从链表上将p结点摘下来
+        printf(&quot;出列人的编号为:%d\n&quot;, p-&gt;number);
+        free(p);
+        p = tail-&gt;next;//继续使用p指针指向出列编号的下一个编号，游戏继续
+    }
+    printf(&quot;出列人的编号为:%d\n&quot;, p-&gt;number);
+    free(p);
+}
+
+int main() {
+    int n = 0, k = 0, m = 0;
+    person * head = NULL;
+    printf(&quot;输入圆桌上的人数:&quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+    head = initLink(n);
+    printf(&quot;从第几个人开始报数(k&gt;1且k&lt;%d)：&quot;, n);
+    scanf(&quot;%d&quot;, &amp;k);
+    printf(&quot;数到几的人出列：&quot;);
+    scanf(&quot;%d&quot;, &amp;m);
+    findAndKillK(head, k, m);
+    return 0;
+}</pre>
+输出结果：
+<p class="info-box">
+	输入圆桌上的人数:5<br />
+	从第几个人开始报数(k&gt;1且k&lt;5)：3<br />
+	数到几的人出列：2<br />
+	出列人的编号为:4<br />
+	出列人的编号为:1<br />
+	出列人的编号为:3<br />
+	出列人的编号为:2<br />
+	出列人的编号为:5</p>
+最后出列的人，即为胜利者。当然，你也可以改进程序，令查找出最后一个人时，输出此人胜利的信息。
+<h2>
+	总结</h2>
+循环链表和动态链表唯一不同在于它的首尾连接，这也注定了在使用循环链表时，附带最多的操作就是遍历链表。<br />
+<br />
+在遍历的过程中，尤其要注意循环链表虽然首尾相连，但并不表示该链表没有第一个节点和最后一个结点。所以，不要随意改变头指针的指向。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_218.html">静态链表和动态链表区别</a></span>
+                    <span class="next right"><a href="/view/166.html">双向链表是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_218.html";window.nextPageURL = "/view/166.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 7;
+window.arcId = "e176C8sJX0hUsI0ejzIfc/U7KsLOew5QEucPC+vbPa2K2NBiqpxjrmc";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

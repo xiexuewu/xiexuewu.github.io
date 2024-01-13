@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>链表逆置，链表反转，链表翻转（带源码和解析）</title>
+<meta name="keywords" content="链表,逆置,反转,带,完整,源码,和,解析,链表," />
+<meta name="description" content="链表翻转，简单地理解，就是将链表的头部结点变为链表的尾部结点，与此同时将原链表的尾部结点变成头部结点。如下图所示：" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>链表逆置，链表反转，链表翻转（带源码和解析）</h1>
+			<div id="arc-body"><u><a href='/view/160.html' target='_blank'>链表</a></u>翻转，简单地理解，就是将链表的头部结点变为链表的尾部结点，与此同时将原链表的尾部结点变成头部结点。如下<u><a href='/view/200.html' target='_blank'>图</a></u>所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180424/2-1P424140P0930.png" style="width: 400px; height: 174px;" /></div>
+<div style="text-align: center;">
+	图 1 链表翻转示意图</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>H 为头指针，图示中的链表无头结点，头指针直接指向首元结点。</p>
+</blockquote>
+将链表进行翻转的方法有多种，本节给大家介绍两种实现方法。
+<h2>
+	方法一</h2>
+<span style="color:#008000;">实现链表翻转最直接的方法就是：</span><span style="color:#b22222;">从链表的头部开始遍历每个结点，改变每个结点的指向，即将原本指向下一个结点的指针改为指向上一个结点。</span><br />
+<br />
+唯一比较特殊的是，链表中的首元结点（第一个结点）前面没有结点，所以在改变其指针指向的时候，要将其指针指向 NULL。
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>原链表中的首元结点经过翻转后，会变为新链表的最后一个结点，所以其指针自然要指向 NULL。</p>
+</blockquote>
+<span style="color:#008000;">具体实现过程为：</span><br />
+<br />
+首先设置一个新的链表，用于接收旧链表上的结点，该新链表初始状态为一个空链表，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180424/2-1P424140T5a2.png" style="width: 400px; height: 144px;" /><br />
+	图 2 链表翻转过程一</div>
+<br />
+遍历原链表，将结点依次插入到新链表的头部。要完成这一步操作，<span style="color:#b22222;">我们需要新添加两个指针（分别命名为 </span><span style="color:#008000;">P</span><span style="color:#b22222;"> 和</span><span style="color:#008000;"> temp</span><span style="color:#b22222;">）</span>：
+<ul>
+	<li>
+		P 指针用于遍历链表，并将遍历到的结点插入到新链表中；</li>
+	<li>
+		temp 指针永远指向指针 P 所在结点的下一个结点，充当原链表在每次移除头部结点后的新头指针；</li>
+</ul>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>使用头指针 H 遍历也可行（因为翻转完成后，旧链表旧不存在了），但是不建议大家这么做，对头指针的使用，大家要养成良好的习惯，避免头指针的滥用。</p>
+</blockquote>
+新添加指针 P 和 temp 后的链表，如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/180424/2-1P42414095Da.png" style="width: 400px; height: 182px;" /><br />
+	图 3 链表翻转过程二</div>
+<br />
+以上的准备工作完成，链表的翻转就可以开始了。在遍历原链表的过程中，对每个结点都做如下操作：
+<ul>
+	<li>
+		将temp 移动至指针 p 所指结点的下一个结点，即 temp = P-&gt;next；</li>
+	<li>
+		将该结点插入到新链表的头部，即 p-&gt;next=NEWH；</li>
+	<li>
+		令指针 NEWH 指向该结点（即指针 p 指向的结点），即令 NEWH = p；</li>
+	<li>
+		令指针 P 指向 temp 指针指向的位置，即 P= temp；</li>
+</ul>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>第一步必须要在第四步的前面，否则会导致最终temp指向 NULL 的next，发生错误。</p>
+</blockquote>
+遍历每个结点的过程示意图如下：<br />
+<div style="margin-left: 40px;">
+	翻转结点 1 ，则图 3 经过以上 4 步调整后，变为：</div>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180424/2-1P42414200I10.png" style="width: 400px; height: 168px;" /><br />
+	图 4 翻转结点 1</div>
+<div style="margin-left: 40px;">
+	<br />
+	翻转结点 2，则上图经过 4 步调整后，变为下图：</div>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180424/2-1P42414202C23.png" style="width: 400px; height: 239px;" /><br />
+	图 5 翻转结点 2</div>
+<div style="margin-left: 40px;">
+	<br />
+	翻转结点 3 时，则上图经过 4 步调整后，变为下图：</div>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180424/2-1P424141245C6.png" style="width: 400px; height: 223px;" /><br />
+	图 6 翻转结点 3</div>
+<div style="margin-left: 40px;">
+	<br />
+	当翻转完最后一个结点 3 之后，由于指针 P 指向的为 NULL ，说明没有结点可以翻转，即遍历结束。<span style="color:#b22222;">（指针 P 为NULL ，为遍历结束的判断条件）</span>。</div>
+<br />
+<span style="color:#b22222;">通过对各个结点做如上的操作，当遍历结束，以 NEWH 指针作为头指针的链接即为翻转后的链表</span>。<br />
+<br />
+方法一的实现函数代码为：
+<pre class="cpp">
+link *reverselink(link * H){
+    //判断链表 H 是否存在
+    if(H == NULL || H-&gt;next == NULL){
+        return H;
+    }
+    //创建指针 P 作为遍历链表的指针
+    link * p = H;
+    //创建一个新的链表，用于存储翻转链表，只不过该链表初始状态为NULL
+    link * newH = NULL;
+    //遍历指针 P 为 NULL 作为遍历结束的标志
+    while(p != NULL){
+        //第 1 步实现的代码
+        link *temp = p-&gt;next;
+        //第 2 步
+        p-&gt;next = newH;
+        //第 3 步
+        newH = p;
+        //第 4 步
+        p = temp;
+    }
+    return newH;
+}</pre>
+<h2>
+	方法二</h2>
+另一种方法较前一种比较复杂，需要使用到<span style="color:#008000;">递归</span>的思想。<br />
+<br />
+方法一是依次遍历链表，更改每个结点的指向，最后一个结点为翻转链表的头部结点。<span style="color:#b22222;">而方法二则完全倒过来，其实现过程为：先通过递归的思维找到链表的头部，然后再改变每个结点的指向，最终到达链表翻转的目的。</span><br />
+<br />
+方法二的代码实现函数为：
+<pre class="cpp">
+//链表翻转的函数
+link *reverseList(link * H){
+    //如果指针 H 是否存在
+    if(H == NULL || H-&gt;next == NULL){
+        return H;
+    }
+    //递归查找新链表的头，找到用赋值给 newH
+    link * newH=reverseList(H-&gt;next);
+    //递归完成后，H 初始状态为 NewH 的上一个结点。
+    //在一步步弹<u><a href='/view/169.html' target='_blank'>栈</a></u>的过程中，始终另 H 指向的结点作为新链表的最后一个结点
+    H-&gt;next-&gt;next=H;
+    //在链接到新链表之后，要割去 H 所指结点与下一结点的联系，否则会使新链表产生环
+    H-&gt;next=NULL;
+    //返回新链表所指头部的指针。
+    return newH;
+}</pre>
+<span style="color:#008000;">代码运行过程分析：</span><br />
+<br />
+<span style="color:#b22222;">4-6行：</span>对于给定的指针 H ，首先判断指针 H 是否存在，如果指针 H 不存在，或者指针 H 只含有一个结点，则直接返回，即指针 H 不需要翻转；<br />
+<br />
+<span style="color:#b22222;">第 8 行：</span>函数体内调用自身，是典型的递归。通过不断查找指针 H 所指结点的下一个结点，最终会找到链表的最后一个结点作为函数的返回值，而此结点恰恰就是翻转后链表的首元结点（第一个结点），所以我们用一个新指针 newH 来充当新链表的头指针。<br />
+<br />
+当通过递归找到对应的 newH 结点时，相应地，参数指针 H 也被递归至 newH 所指结点的上一结点处，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180424/2-1P424141611Q3.png" style="width: 400px; height: 78px;" /><br />
+	图 7 递归结束时的示意图</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>头指针 H 和参数指针 H 完全不是一码事，作用域不同：参数 H 只在函数体内有效，而头指针 H 为主函数中声明。</p>
+</blockquote>
+<span style="color:#b22222;">第 11行到最后：</span>此部分代码为指针 H 逐层返回时才会运行的代码，在逐层返回的过程中，通过不断地将H所指结点赋值给 H-&gt;next-&gt;next，并且每次赋值结束后，都取消 H 所指结点的指向，最终达到翻转链表的目的。<br />
+<br />
+自图 7 开始，在指针 H 第一次返回时，此部分的代码运行示意图为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/180424/2-1P424141A9432.png" style="width: 400px; height: 116px;" /></div>
+指针 H 再次返回时，此部分的代码运行示意图为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/180424/2-1P424141GYQ.png" style="width: 400px; height: 116px;" /></div>
+最终完成了链表的翻转，函数返回新链表的头指针 newH 。
+<h2>
+	本节完整代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct Link{
+    //数据域
+    int count;
+    //指针域
+    struct Link * next;
+}link;
+
+link * initLink(){
+    //存储的数据，根据数据的特点，创建适当的<u><a href='/view/181.html' target='_blank'>数组</a></u>
+    int element[3]={1,2,3};
+    //创建首元结点
+    link * head=(link*)malloc(sizeof(link));
+    head-&gt;count=element[0];
+    //for循环中需要一个指针temp，从头结点开始依次链接新创建的结点
+    link * temp=head;
+    //for循环逐个创建链表，并用temp两两链接
+    for (int i=1; i&lt;3; i++) {
+        //循环创建结点
+        link *a=(link*)malloc(sizeof(link));
+        //初始化结点
+        a-&gt;count = element[i];
+        a-&gt;next=NULL;
+        //另指针 temp 每次循环都链接新的结点，并随后指向该结点
+        temp-&gt;next=a;
+        temp=temp-&gt;next;
+    }
+    return head;
+}
+//方法一实现链表翻转
+link *reverselink(link * H){
+    //判断链表 H 是否存在
+    if(H == NULL || H-&gt;next == NULL){
+        return H;
+    }
+    //创建指针 P 作为遍历链表的指针
+    link * p = H;
+    //创建一个新的链表，用于存储翻转链表，只不过该链表初始状态为NULL
+    link * newH = NULL;
+    //遍历指针 P 为 NULL 作为遍历结束的标志
+    while(p != NULL){
+        //第 1 步实现的代码
+        link *temp = p-&gt;next;
+        //第 2 步
+        p-&gt;next = newH;
+        //第 3 步
+        newH = p;
+        //第 4 步
+        p = temp;
+    }
+    return newH;
+}
+
+//方法二实现链表翻转
+link *reverseList(link * H){
+    //如果指针 H 是否存在
+    if(H == NULL || H-&gt;next == NULL){
+        return H;
+    }
+    //递归查找新链表的头，找到用赋值给 newH
+    link * newH=reverseList(H-&gt;next);
+    //递归完成后，H 初始状态为 NewH 的上一个结点。
+    //在一步步弹栈的过程中，始终另 H 指向的结点作为新链表的最后一个结点
+    H-&gt;next-&gt;next=H;
+    //在链接到新链表之后，要割去 H 所指结点与下一结点的联系，否则会使新链表产生环
+    H-&gt;next=NULL;
+    //返回新链表所指头部的指针。
+    return newH;
+}
+//遍历链表的输出函数
+void display(link * H){
+    while(H){
+        printf(&quot;%d&quot;,H-&gt;count);
+        H=H-&gt;next;
+    }
+    printf(&quot;\n&quot;);
+}
+int main ()
+{
+    //初始化链表
+    link * H = initLink();
+    display(H);
+    //使用方法一对链表 H 进行翻转
+    link * dnewH = reverselink(H);
+    display(dnewH);
+    //使用方法二对链表 dnewH 进行再次翻转
+    link * newH = reverseList(dnewH);
+    display(newH);
+    return 0;
+}</pre>
+<span style="color:#008000;">运行结果：</span>
+<div class="info-box">
+	123<br />
+	321<br />
+	123</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 89;
+window.arcId = "f04a2fnv/ABqDFnRQoDXj+CYS7Nkc5JhxYEz8+aFWYBrB2VbZTY4jf3S";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

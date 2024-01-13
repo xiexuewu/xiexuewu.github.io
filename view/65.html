@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>插入排序算法及C语言实现</title>
+<meta name="keywords" content="插入,排序,算法,插入,排序,算法," />
+<meta name="description" content="插入排序算法 是所有排序方法中最简单的一种算法，其主要的实现思想是将数据按照一定的顺序一个一个的插入到有序的表中，最终得到的序列就是已经排序好的数据。 直接插入排序" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/github/sort/">排序算法</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/github/view/65.html">插入排序算法</a></dd><dd>10.2 <a href="/github/view/66.html">折半插入排序算法</a></dd><dd>10.3 <a href="/github/view/67.html">2-路插入排序算法</a></dd><dd>10.4 <a href="/github/view/68.html">表插入排序算法</a></dd><dd>10.5 <a href="/github/view/vip_259.html">希尔排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.6 <a href="/github/view/70.html">冒泡排序算法</a></dd><dd>10.7 <a href="/github/view/vip_260.html">快速排序算法（QSort，快排）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="/github/view/72.html">选择排序算法</a></dd><dd>10.9 <a href="/github/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.10 <a href="/github/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.11 <a href="/github/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>插入排序算法及C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/sort/">排序算法</a></span>
+                    <span class="next right"><a href="/view/66.html">折半插入排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/sort/";window.nextPageURL = "/view/66.html";</script>
+			<div id="arc-body"><span style="color:#008000;"><u><a href='/view/65.html' target='_blank'>插入排序算法</a></u></span>是所有排序方法中最简单的一种算法，其主要的实现思想是将数据按照一定的顺序一个一个的插入到有序的表中，最终得到的序列就是已经排序好的数据。<br />
+<br />
+<span style="color:#008000;">直接插入排序</span>是插入排序算法中的一种，<span style="color:#b22222;">采用的方法是：在添加新的记录时，使用<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>的方式找到其要插入的位置，然后将新记录插入。</span><br />
+<blockquote>
+	<p>
+		很多初学者所说的插入排序，实际上指的就是<span style="color:#008000;">直接插入排序算法</span>，插入排序算法还包括<span style="color:#008000;">折半插入排序</span>、<span style="color:#008000;">2-路插入排序</span>，<span style="color:#008000;">表插入排序</span>和<span style="color:#008000;">希尔排序</span>等，后序文章都会一一讲到。</p>
+</blockquote>
+例如采用直接插入排序算法将无序表<code>{3,1,7,5,2,4,9,6}</code>进行升序排序的过程为：
+<ul>
+	<li>
+		首先考虑记录 3 ，由于插入排序刚开始，有序表中没有任何记录，所以 3 可以直接添加到有序表中，则有序表和无序表可以如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G031100936450.png" style="width: 320px; height: 74px;" /><br />
+	图 1 直接插入排序（1）<br />
+	&nbsp;</div>
+<ul>
+	<li>
+		向有序表中插入记录 1 时，同有序表中记录 3 进行比较，1&lt;3，所以插入到记录 3 的左侧，如图 2 所示：</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171031/2-1G0311010064T.png" style="width: 322px; height: 73px;" /><br />
+	图 2 直接插入排序（2）<br />
+	&nbsp;</div>
+<ul>
+	<li>
+		向有序表插入记录 7 时，同有序表中记录 3 进行比较，3&lt;7，所以插入到记录 3 的右侧，如图 3 所示：</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171031/2-1G031101030I8.png" style="width: 322px; height: 73px;" /><br />
+	图 3 直接插入排序（3）<br />
+	&nbsp;</div>
+<ul>
+	<li>
+		向有序表中插入记录 5 时，同有序表中记录 7 进行比较，5&lt;7，同时 5&gt;3，所以插入到 3 和 7 中间，如图 4 所示：</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171031/2-1G03110110b64.png" style="width: 322px; height: 73px;" /><br />
+	图 4 直接插入排序（4）<br />
+	&nbsp;</div>
+<ul>
+	<li>
+		向有序表插入记录 2 时，同有序表中记录 7进行比较，2&lt;7，再同 5，3，1分别进行比较，最终确定 2 位于 1 和 3 中间，如图 5 所示：</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171031/2-1G03110112H34.png" style="width: 322px; height: 73px;" /><br />
+	图 5 直接插入排序（5）<br />
+	&nbsp;</div>
+<ul>
+	<li>
+		照此规律，依次将无序表中的记录 4，9 和 6插入到有序表中，如图 6 所示：</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171031/2-1G031101156448.png" style="width: 324px; height: 336px;" /><br />
+	图 6 依次插入记录4，9和6</div>
+<br />
+直接插入排序的具体代码实现为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+//自定义的输出函数
+void print(int a[], int n ,int i){
+    printf(&quot;%d:&quot;,i);
+    for(int j=0; j&lt;8; j++){
+        printf(&quot;%d&quot;,a[j]);
+    }
+    printf(&quot;\n&quot;);
+}
+//直接插入排序函数
+void InsertSort(int a[], int n)
+{
+    for(int i= 1; i&lt;n; i++){
+        if(a[i] &lt; a[i-1]){//若第 i 个元素大于 i-1 元素则直接插入；反之，需要找到适当的插入位置后在插入。
+            int j= i-1;
+            int x = a[i];
+            while(j&gt;-1 &amp;&amp; x &lt; a[j]){  //采用顺序查找方式找到插入的位置，在查找的同时，将<u><a href='/view/181.html' target='_blank'>数组</a></u>中的元素进行后移操作，给插入元素腾出空间
+                a[j+1] = a[j];
+                j--;
+            }
+            a[j+1] = x;      //插入到正确位置
+        }
+        print(a,n,i);//打印每次排序后的结果
+    }
+}
+
+int main(){
+    int a[8] = {3,1,7,5,2,4,9,6};
+    InsertSort(a,8);
+    return 0;
+}</pre>
+运行结果为：
+<div class="info-box">
+	1:13752496<br />
+	2:13752496<br />
+	3:13572496<br />
+	4:12357496<br />
+	5:12345796<br />
+	6:12345796<br />
+	7:12345679</div>
+<br />
+直接插入排序算法本身比较简洁，容易实现，该算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(n<sup>2</sup>)</code>。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">插入排序的其它 4 种排序方法，在后序章节中有详细介绍。</span></p>
+</blockquote>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/sort/">排序算法</a></span>
+                    <span class="next right"><a href="/view/66.html">折半插入排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/sort/";window.nextPageURL = "/view/66.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 65;
+window.arcId = "1de7w4rjp1OXHaOWuprGmJJa3hAr1jWCq+uumEf9WRNRdbzx1M1YNpdi";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

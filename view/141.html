@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>二叉树的顺序存储原理及实现过程</title>
+<meta name="keywords" content="二叉,树,的,顺序,存储,原理,及,实现,过程," />
+<meta name="description" content="二叉树的顺序存储，实际上就是使用数组存储二叉树。 使用数组存储二叉树的实现思想是将二叉树从根节点按照层次顺序依次存储在数组中，但需要注意的是，此方式只适用于完全二叉" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>二叉树的顺序存储原理及实现过程</h1>
+			<div id="arc-body"><span style="color:#b22222;"><strong><u><a href='/view/192.html' target='_blank'>二叉树</a></u>的顺序存储，实际上就是使用<u><a href='/view/181.html' target='_blank'>数组</a></u>存储二叉<u><a href='/view/23.html' target='_blank'>树</a></u>。</strong></span><br />
+<br />
+使用数组存储二叉树的实现思想是将二叉树从根节点按照层次顺序依次存储在数组中，但需要注意的是，此方式只适用于完全二叉树，如果要使用数组存储普通二叉树，需要提前将该二叉树转化为完全二叉树。<br />
+<br />
+<span style="color:#008000;">完全二叉树</span>，即二叉树除了最后一层节点外，其余各节点都既有左节点和右节点，最后一层的节点满足从左到右依次分布，则此二叉树为完全二叉树。普通二叉树转化为完全二叉树的方法是将不满足条件的节点添加左孩子或右孩子（节点存储的数据为一个特殊值，例如 0），令其整体结构上表现为一个完全二叉树。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170830/2-1FS0104150W3.png" style="text-align: center; width: 530px; height: 186px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 完全二叉树</div>
+<br />
+例如，图 1(A) 和 (B) 都是二叉树，但图 1(A) 是完全二叉树，(B) 由于最后一层不符合从左往右依次分布的要求，所以不是完全二叉树，只是一个普通的二叉树。<br />
+<br />
+因此，存储图 1(A) 时，数组中存储为：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170830/2-1FS0105529235.png" style="width: 233px; height: 54px;" /></div>
+<br />
+如果图 1(B) 也采取顺序存储的方式，就需要将其转化成完全二叉树，其转化过程如下：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170830/2-1FS01056261L.png" style="text-align: center; width: 304px; height: 156px;" /><br />
+	图 2 普通二叉树转完全二叉树</div>
+<br />
+图 2 中，转化后的二叉树中，数据元素 0 表示此位置没有数据。将转化后的完全二叉树按照层次并从左到右的次序存储到数组中：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170830/2-1FS0105A9146.png" style="width: 248px; height: 54px;" /></div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 141;
+window.arcId = "d02buAKJnNlsLviTPIYETj9CGHXrXcf1iBCGBiCaQMmonaXtUZj+20Xz8A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>森林转化为二叉树（详解版）</title>
+<meta name="keywords" content="森林,转,化为,二叉,树,详解,版,森林,转,化为," />
+<meta name="description" content="前面介绍了普通树转化为二叉树的孩子兄弟表示法，本节来学习如何将森林转化为一整棵二叉树。 森林，指的是由 n（n=2）棵互不相交的树组成的集合，如图 1 所示。 图 1 森林示意图" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>森林转化为二叉树（详解版）</h1>
+			<div id="arc-body">前面介绍了普通<u><a href='/view/23.html' target='_blank'>树</a></u>转化为<u><a href='/view/192.html' target='_blank'>二叉树</a></u>的<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>，本节来学习如何将森林转化为一整棵二叉树。<br />
+<br />
+森林，指的是由 n（n&gt;=2）棵互不相交的树组成的集合，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。
+<div style="text-align: center;">
+	<br />
+	<img alt="森林示意图" src="/uploads/allimg/190101/2-1Z10113315T93.gif" /><br />
+	图 1 森林示意图</div>
+<br />
+在某些实际场景中，为了便于操作具有森林结构的数据，往往需要将森林转化为一整棵二叉树。<br />
+<br />
+我们知道，任意一棵普通树都可以转化为二叉树，而森林是由多棵普通树构成的，因此自然也可以转化为二叉树，其转化方法是：
+<ol>
+	<li>
+		首先将森林中所有的普通树各自转化为二叉树；</li>
+	<li>
+		将森林中第一棵树的树根作为整个森林的树根，其他树的根节点看作是第一棵树根节点的兄弟节点，采用孩子兄弟表示法将所有树进行连接；</li>
+</ol>
+<br />
+例如，将图 2a) 中的森林转化为二叉树，则以上两个转化过程分别对应图 2 中的 b) 和 c) ：
+<div style="text-align: center;">
+	<br />
+	<img alt="森林转化为二叉树的过程示意图" src="/uploads/allimg/190101/2-1Z1011332301D.gif" /><br />
+	图 2 森林转化为二叉树的过程示意图</div>
+<br />
+如图 2 所示，先将森林包含的所有普通树各自转化为二叉树，然后将其他树的根节点看作为第一棵二叉树的兄弟节点，采用孩子兄弟表示法进行连接。<br />
+<br />
+森林转化为二叉树，更多的是为了对森林中的节点做遍历操作。前面讲过，遍历二叉树有 4 种方法，分别是层次遍历、先序遍历、中序遍历和后序遍历。转化前的森林与转化后的二叉树相比，其层次遍历和后序遍历的访问节点顺序不同，而前序遍历和中序遍历访问节点的顺序是相同的。<br />
+<br />
+以图 1 中的森林为例，其转化后的二叉树为图 2c)，两者比较，其先序遍历访问节点的顺序都是 <code>A B C D E F G H I J</code>；同样，中序遍历访问节点的顺序也相同，都是 <code>B C D A F E H J I G</code>。而后序遍历和层次遍历访问节点的顺序是不同的。<br />
+<br />
+提示，由二叉树转化为森林的过程也就是森林转化二叉树的逆过程，也就是图 2 中由 c) 到 b) 再到 a) 的过程。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 199;
+window.arcId = "d8e0hROYvNekpa0rkC1ul5Bj6Kdqgz3lO8F8Gwm44CpOPrJMLCEKlA65UQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>红黑树算法和应用(更高级的二叉查找树)</title>
+<meta name="keywords" content="动态,查找,表之,红黑,树,动态,查找,表之,红黑," />
+<meta name="description" content="红黑树 （R-B TREE，全称：Red-Black Tree），本身是一棵二叉查找树，在其基础上附加了两个要求： 树中的每个结点增加了一个用于存储颜色的标志域； 树中没有一条路径比其他任何路径长" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>红黑树算法和应用(更高级的二叉查找树)</h1>
+			<div id="arc-body"><span style="color:#b22222;">红黑<u><a href='/view/23.html' target='_blank'>树</a></u></span>（R-B TREE，全称：Red-Black Tree），本身是一棵<u><a href='/view/58.html' target='_blank'>二叉查找树</a></u>，在其基础上附加了两个要求：
+<ol>
+	<li>
+		树中的每个结点增加了一个用于存储颜色的标志域；</li>
+	<li>
+		树中没有一条路径比其他任何路径长出两倍，整棵树要接近于&ldquo;平衡&rdquo;的状态。</li>
+</ol>
+<blockquote>
+	<p>
+		这里所指的<span style="color:#b22222;">路径</span>，指的是从任何一个结点开始，一直到其子孙的叶子结点的长度；<span style="color:#b22222;">接近于平衡：</span>红黑树并不是<u><a href='/view/59.html' target='_blank'>平衡二叉树</a></u>，只是由于对各路径的长度之差有限制，所以近似于平衡的状态。</p>
+</blockquote>
+<span style="color:#b22222;">红黑树对于结点的颜色设置不是任意的，需满足以下性质的二叉查找树才是红黑树：</span>
+<ul>
+	<li>
+		树中的每个结点颜色不是红的，就是黑的；</li>
+	<li>
+		根结点的颜色是黑的；</li>
+	<li>
+		所有为 nil 的叶子结点的颜色是黑的；（注意：叶子结点说的只是为空（nil 或 NULL）的叶子结点！）</li>
+	<li>
+		如果此结点是红的，那么它的两个孩子结点全部都是黑的；</li>
+	<li>
+		对于每个结点，从该结点到到该结点的所有子孙结点的所有路径上包含有相同数目的黑结点；</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171206/2-1G2061610041F.png" style="width: 600px; height: 219px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 红黑树</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>图中每个结点附带一个整形数值，表示的是此结点的<span style="color:#008000;">黑高度（</span>从该结点到其子孙结点中包含的黑结点数，用 bh(x) 表示（x 表示此结点）），nil 的黑高度为 0，颜色为黑色（在编程时为节省空间，所有的 nil 共用一个存储空间）。在计算黑高度时，也看做是一个黑结点。</p>
+</blockquote>
+<span style="color:#b22222;">红黑树中每个结点都有各自的黑高度，整棵树也有自己的黑高度，即为根结点的黑高度，例如图 1 中的红黑树的黑高度为 3。</span><br />
+<br />
+<span style="color:#b22222;">对于一棵具有 n 个结点的红黑树，树的高度至多为：2lg(n+1)。</span>
+<blockquote>
+	<p>
+		由此可推出红黑树进行查找操作时的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(lgn)</code>，因为对于高度为 h 的二叉查找树的运行时间为<code>O(h)</code>，而包含有 n 个结点的红黑树本身就是最高为&nbsp;lgn（简化之后）的查找树（h=lgn），所以红黑树的时间复杂度为<code>O(lgn)</code>。</p>
+</blockquote>
+红黑树本身作为一棵二叉查找树，所以其任务就是用于动态表中数据的插入和删除的操作。在进行该操作时，避免不了会破坏红黑树的结构，此时就需要进行适当的调整，使其重新成为一棵红黑树，可以从两个方面着手对树进行调整：
+<ul>
+	<li>
+		调整树中某些结点的指针结构；</li>
+	<li>
+		调整树中某些结点的颜色；</li>
+</ul>
+<h2>
+	红黑树的旋转</h2>
+当使用红黑树进行插入或者删除结点的操作时，可能会破坏红黑树的 5 条性质，从而变成了一棵普通树，此时就可以通过对树中的某些子树进行旋转，从而使整棵树重新变为一棵红黑树。<br />
+<br />
+<span style="color:#b22222;">旋转操作</span>分为<span style="color:#008000;">左旋</span>和<span style="color:#008000;">右旋</span>，同<u><a href='/view/58.html' target='_blank'>二叉排序树</a></u>转平衡<u><a href='/view/192.html' target='_blank'>二叉树</a></u>的旋转原理完全相同。例如图 2 表示的是对一棵二叉查找树中局部子树进行左旋和右旋操作：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171206/2-1G2061613253H.png" style="width: 323px; height: 152px;" /><br />
+	图 2 旋转操作</div>
+<br />
+<span style="color:#b22222;">左旋：</span>如图 2 所示，左旋时 y 结点变为该部分子树的根结点，同时 x 结点（连同其左子树 a）移动至 y 结点的左孩子。若 y 结点有左孩子 b，由于 x 结点需占用其位置，所以调整至 x 结点的右孩子处。<br />
+<br />
+<span style="color:#b22222;">左旋操作的具体实现函数：</span>
+<pre class="cpp">
+//T表示为树根，x 表示需要进行左旋的子树的根结点
+void rbTree_left_rotate( RBT_Root* T, RB_TREE* x){
+    RB_TREE* y = x-&gt;right;//找到根结点的右子树
+   
+    x-&gt;right = y-&gt;left;//将右子树的左孩子移动至结点 x 的右孩子处
+    if(x-&gt;right != T-&gt;nil){//如果 x 的右子树不是nil，需重新连接 右子树的双亲结点为 x
+        x-&gt;right-&gt;p = x;
+    }
+    y-&gt;p = x-&gt;p;//设置 y 的双亲结点为 x 的双亲结点
+    //重新设置 y 的双亲结点同 y 的连接，分为 2 种情况：1、原 x 结点本身就是整棵树的数根结点，此时只需要将 T 指针指向 y；2、根据 y 中关键字同其父结点关键字的值的大小，判断 y 是父结点的左孩子还是右孩子
+    if(y-&gt;p == T-&gt;nil){
+        T-&gt;root = y;
+    }else if(y-&gt;key &lt; y-&gt;p-&gt;key){
+        y-&gt;p-&gt;left = y;
+    }else{
+        y-&gt;p-&gt;right = y;
+    }
+    y-&gt;left = x;//将 x 连接给 y 结点的左孩子处
+    x-&gt;p = y;//设置 x 的双亲结点为 y。
+}</pre>
+<span style="color:#b22222;">右旋：</span>如图 2 所示，同左旋是同样的道理，x 结点变为根结点，同时 y 结点连同其右子树 c 作为 x 结点的右子树，原 x 结点的右子树 b 变为 y 结点的左子树。<br />
+<br />
+<span style="color:#b22222;">右旋的具体代码实现：</span>
+<pre class="cpp">
+void rbTree_right_rotate( RBT_Root* T, RB_TREE* x){
+    RB_TREE * y = x-&gt;left;
+    x-&gt;left = y-&gt;right;
+    if(T-&gt;nil != x-&gt;left){
+        x-&gt;left-&gt;p = x;
+    }
+    y-&gt;p = x-&gt;p;
+    if(y-&gt;p == T-&gt;nil){
+        T-&gt;root = y;
+    }else if(y-&gt;key &lt; y-&gt;p-&gt;key){
+        y-&gt;p-&gt;left= y;
+    }else{
+        y-&gt;p-&gt;right = y;
+    }
+    y-&gt;right = x;
+    x-&gt;p = y;
+}</pre>
+<h2>
+	红黑树中插入新结点</h2>
+当创建一个红黑树或者向已有红黑树中插入新的数据时，只需要按部就班地执行以下 3 步：
+<ul>
+	<li>
+		由于红黑树本身是一棵二叉查找树，所以在插入新的结点时，完全按照二叉查找树插入结点的方法，找到新结点插入的位置；</li>
+	<li>
+		将新插入的结点结点初始化，颜色设置为红色后插入到指定位置；（将新结点初始化为红色插入后，不会破坏红黑树第 5 条的性质）</li>
+	<li>
+		由于插入新的结点，可能会破坏红黑树第 4 条的性质（若其父结点颜色为红色，就破坏了红黑树的性质），此时需要调整二叉查找树，想办法通过旋转以及修改树中结点的颜色，使其重新成为红黑树！</li>
+</ul>
+<br />
+插入结点的第 1 步和第 2 步都非常简单，关键在于最后一步对树的调整！在红黑树中插入结点时，根据插入位置的不同可分为以下 3 种情况：
+<ol>
+	<li>
+		插入位置为整棵树的树根。处理办法：只需要将插入结点的颜色改为黑色即可。</li>
+	<li>
+		插入位置的双亲结点的颜色为黑色。处理方法：此种情况不需要做任何工作，新插入的颜色为红色的结点不会破坏红黑树的性质。</li>
+	<li>
+		插入位置的双亲结点的颜色为红色。处理方法：由于插入结点颜色为红色，其双亲结点也为红色，破坏了红黑树第 4 条性质，此时需要结合其祖父结点和祖父结点的另一个孩子结点（父结点的兄弟结点，此处称为&ldquo;叔叔结点&rdquo;）的状态，分为 3 种情况讨论:</li>
+</ol>
+<br />
+<ul style="margin-left: 40px;">
+	<li>
+		当前结点的父节点是红色，且&ldquo;叔叔结点&rdquo;也是红色：破坏了红黑树的第 4 条性质，解决方案为：将父结点颜色改为黑色；将叔叔结点颜色改为黑色；将祖父结点颜色改为红色；下一步将祖父结点认做当前结点，继续判断，处理结果如下图所示：</li>
+</ul>
+<div style="margin-left: 40px; text-align: center;">
+	<span style="color:#b22222;"><img alt="" src="/uploads/allimg/171206/2-1G206161H4545.png" style="width: 400px; height: 146px;" /></span><br />
+	&nbsp;</div>
+<div style="margin-left: 80px;">
+	<span style="color:#b22222;">分析：</span>此种情况下，由于父结点和当前结点颜色都是红色，所以为了不产生冲突，将父结点的颜色改为黑色。但是虽避免了破坏第 4 条，但是却导致该条路径上的黑高度增加了 1 ，破坏了第 5 条性质。但是在将祖父结点颜色改为红色、叔叔结点颜色改为黑色后，该部分子树没有破坏第 5 条性质。但是由于将祖父结点的颜色改变，还需判断是否破坏了上层树的结构，所以需要将祖父结点看做当前结点，继续判断。<br />
+	&nbsp;</div>
+<ul style="margin-left: 40px;">
+	<li>
+		当前结点的父结点颜色为红色，叔叔结点颜色为黑色，且当前结点是父结点的右孩子。解决方案：将父结点作为当前结点做左旋操作。</li>
+</ul>
+<div style="margin-left: 40px; text-align: center;">
+	<span style="color:#b22222;"><img alt="" src="/uploads/allimg/171206/2-1G206161K4648.png" style="width: 400px; height: 143px;" /></span><br />
+	&nbsp;</div>
+<div style="margin-left: 80px;">
+	<span style="color:#b22222;">提示：</span>在进行以父结点为当前结点的左旋操作后，此种情况就转变成了第 3 种情况，处理过程跟第 3 种情况同步进行。<br />
+	&nbsp;</div>
+<ul style="margin-left: 40px;">
+	<li>
+		当前结点的父结点颜色为红色，叔叔结点颜色为黑色，且当前结点是父结点的左孩子。解决方案：将父结点颜色改为黑色，祖父结点颜色改为红色，从祖父结点处进行右旋处理。如下图所示：</li>
+</ul>
+<div style="margin-left: 40px; text-align: center;">
+	<span style="color:#b22222;">&nbsp;<img alt="" src="/uploads/allimg/171206/2-1G206161Q4636.png" style="width: 400px; height: 134px;" /></span><br />
+	&nbsp;</div>
+<div style="margin-left: 80px;">
+	<span style="color:#b22222;">分析：</span>在此种情况下，由于当前结点 F 和父结点 S 颜色都为红色，违背了红黑树的性质 4，此时可以将 S 颜色改为黑色，有违反了性质 5，因为所有通过 S 的路径其黑高度都增加了 1 ，所以需要将其祖父结点颜色设为红色后紧接一个右旋，这样这部分子树有成为了红黑树。（上图中的有图虽看似不是红黑树，但是只是整棵树的一部分，以 S 为根结点的子树一定是一棵红黑树）</div>
+<br />
+<span style="color:#b22222;">红黑树中插入结点的具体实现代码：</span>
+<pre class="cpp">
+void RB_Insert_Fixup(RBT_Root* T, RB_TREE* x){
+    //首先判断其父结点颜色为红色时才需要调整；为黑色时直接插入即可，不需要调整
+    while (x-&gt;p-&gt;color == RED) {
+        //由于还涉及到其叔叔结点，所以此处需分开讨论，确定父结点是祖父结点的左孩子还是右孩子
+        if (x-&gt;p == x-&gt;p-&gt;p-&gt;left) {
+            RB_TREE * y = x-&gt;p-&gt;p-&gt;right;//找到其叔叔结点
+            //如果叔叔结点颜色为红色，此为第 1 种情况，处理方法为：父结点颜色改为黑色；叔叔结点颜色改为黑色；祖父结点颜色改为红色，将祖父结点赋值为当前结点，继续判断；
+            if (y-&gt;color == RED) {
+                x-&gt;p-&gt;color = BLACK;
+                y-&gt;color = BLACK;
+                x-&gt;p-&gt;p-&gt;color = RED;
+                x = x-&gt;p-&gt;p;
+            }else{
+                //反之，如果叔叔结点颜色为黑色，此处需分为两种情况：1、当前结点时父结点的右孩子；2、当前结点是父结点的左孩子
+                if (x == x-&gt;p-&gt;right) {
+                    //第 2 种情况：当前结点时父结点的右孩子。解决方案：将父结点作为当前结点做左旋操作。
+                    x = x-&gt;p;
+                    rbTree_left_rotate(T, x);
+                }else{
+                    //第 3 种情况：当前结点是父结点的左孩子。解决方案：将父结点颜色改为黑色，祖父结点颜色改为红色，从祖父结点处进行右旋处理。
+                    x-&gt;p-&gt;color = BLACK;
+                    x-&gt;p-&gt;p-&gt;color = RED;
+                    rbTree_right_rotate(T, x-&gt;p-&gt;p);
+                }
+            }
+        }else{//如果父结点时祖父结点的右孩子，换汤不换药，只需将以上代码部分中的left改为right即可，道理是一样的。
+            RB_TREE * y = x-&gt;p-&gt;p-&gt;left;
+            if (y-&gt;color == RED) {
+                x-&gt;p-&gt;color = BLACK;
+                y-&gt;color = BLACK;
+                x-&gt;p-&gt;p-&gt;color = RED;
+                x = x-&gt;p-&gt;p;
+            }else{
+                if (x == x-&gt;p-&gt;left) {
+                    x = x-&gt;p;
+                    rbTree_right_rotate(T, x);
+                }else{
+                    x-&gt;p-&gt;color = BLACK;
+                    x-&gt;p-&gt;p-&gt;color = RED;
+                    rbTree_left_rotate(T, x-&gt;p-&gt;p);
+                }
+            }
+        }
+    }
+    T-&gt;root-&gt;color = BLACK;
+}
+//插入操作分为 3 步：1、将红黑树当二叉查找树，找到其插入位置；2、初始化插入结点，将新结点的颜色设为红色；3、通过调用调整函数，将二叉查找树重新改为红黑树
+void rbTree_insert(RBT_Root**T, int k){
+    //1、找到其要插入的位置。解决思路为：从树的根结点开始，通过不断的同新结点的值进行比较，最终找到插入位置
+    RB_TREE * x, *p;
+    x = (*T)-&gt;root;
+    p = x;
+   
+    while(x != (*T)-&gt;nil){
+        p = x;
+        if(k&lt;x-&gt;key){
+            x = x-&gt;left;
+        }else if(k&gt;x-&gt;key){
+            x = x-&gt;right;
+        }else{
+            printf(&quot;\n%d已存在\n&quot;,k);
+            return;
+        }
+    }
+    //初始化结点，将新结点的颜色设为红色
+    x = (RB_TREE *)malloc(sizeof(RB_TREE));
+    x-&gt;key = k;
+    x-&gt;color = RED;
+    x-&gt;left = x-&gt;right =(*T)-&gt;nil;
+    x-&gt;p = p;
+   
+    //对新插入的结点，建立与其父结点之间的联系
+    if((*T)-&gt;root == (*T)-&gt;nil){
+        (*T)-&gt;root = x;
+    }else if(k &lt; p-&gt;key){
+        p-&gt;left = x;
+    }else{
+        p-&gt;right = x;
+    }
+    //3、对二叉查找树进行调整
+    RB_Insert_Fixup((*T),x);
+}</pre>
+<h2>
+	红黑树中删除结点</h2>
+在红黑树中删除结点，思路更简单，只需要完成 2 步操作：
+<ol>
+	<li>
+		将红黑树按照二叉查找树删除结点的方法删除指定结点；</li>
+	<li>
+		重新调整删除结点后的树，使之重新成为红黑树；（还是通过旋转和重新着色的方式进行调整）</li>
+</ol>
+<br />
+在二叉查找树删除结点时，分为 3 种情况：
+<ul>
+	<li>
+		若该删除结点本身是叶子结点，则可以直接删除；</li>
+	<li>
+		若只有一个孩子结点（左孩子或者右孩子），则直接让其孩子结点顶替该删除结点；</li>
+	<li>
+		若有两个孩子结点，则找到该结点的右子树中值最小的叶子结点来顶替该结点，然后删除这个值最小的叶子结点。</li>
+</ul>
+<br />
+以上三种情况最终都需要删除某个结点，此时需要判断删除该结点是否会破坏红黑树的性质。判断的依据是：
+<ol>
+	<li>
+		如果删除结点的颜色为红色，则不会破坏；</li>
+	<li>
+		如果删除结点的颜色为黑色，则肯定会破坏红黑树的第 5 条性质，此时就需要对树进行调整，调整方案分 4 种情况讨论：</li>
+</ol>
+<br />
+<ul>
+	<li style="margin-left: 40px;">
+		删除结点的兄弟结点颜色是红色，调整措施为：将兄弟结点颜色改为黑色，父亲结点改为红色，以父亲结点来进行左旋操作，同时更新删除结点的兄弟结点（左旋后兄弟结点发生了变化），如下图所示：</li>
+</ul>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171206/2-1G206162042Y4.png" style="width: 400px; height: 146px;" /><br />
+	&nbsp;</div>
+<ul>
+	<li style="margin-left: 40px;">
+		删除结点的兄弟结点及其孩子全部都是黑色的，调整措施为：将删除结点的兄弟结点设为红色，同时设置删除结点的父结点标记为新的结点，继续判断；</li>
+	<li style="margin-left: 40px;">
+		删除结点的兄弟结点是黑色，其左孩子是红色，右孩子是黑色。调整措施为：将兄弟结点设为红色，兄弟结点的左孩子结点设为黑色，以兄弟结点为准进行右旋操作，最终更新删除结点的兄弟结点；</li>
+	<li style="margin-left: 40px;">
+		删除结点的兄弟结点是黑色，其右孩子是红色（左孩子不管是什么颜色），调整措施为：将删除结点的父结点的颜色赋值给其兄弟结点，然后再设置父结点颜色为黑色，兄弟结点的右孩子结点为黑色，根据其父结点做左旋操作，最后设置替换删除结点的结点为根结点；</li>
+</ul>
+<br />
+<span style="color:#b22222;">红黑树删除结点具体实现代码为：</span>
+<pre class="cpp">
+void rbTree_transplant(RBT_Root* T, RB_TREE* u, RB_TREE* v){
+    if(u-&gt;p == T-&gt;nil){
+        T-&gt;root = v;
+    }else if(u == u-&gt;p-&gt;left){
+        u-&gt;p-&gt;left=v;
+    }else{
+        u-&gt;p-&gt;right=v;
+    }
+    v-&gt;p = u-&gt;p;
+}
+void RB_Delete_Fixup(RBT_Root**T,RB_TREE*x){
+    while(x != (*T)-&gt;root &amp;&amp; x-&gt;color == BLACK){
+        if(x == x-&gt;p-&gt;left){
+            RB_TREE* w = x-&gt;p-&gt;right;
+            //第 1 种情况：兄弟结点是红色的
+            if(RED == w-&gt;color){
+                w-&gt;color = BLACK;
+                w-&gt;p-&gt;color = RED;
+                rbTree_left_rotate((*T),x-&gt;p);
+                w = x-&gt;p-&gt;right;
+            }
+            //第2种情况：兄弟是黑色的，并且兄弟的两个儿子都是黑色的。
+            if(w-&gt;left-&gt;color == BLACK &amp;&amp; w-&gt;right-&gt;color == BLACK){
+                w-&gt;color = RED;
+                x = x-&gt;p;
+            }
+            //第3种情况
+            if(w-&gt;left-&gt;color == RED &amp;&amp; w-&gt;right-&gt;color == BLACK){
+                w-&gt;left-&gt;color = BLACK;
+                w-&gt;color = RED;
+                rbTree_right_rotate((*T),w);
+                w = x-&gt;p-&gt;right;
+            }
+            //第4种情况
+            if (w-&gt;right-&gt;color == RED) {
+                w-&gt;color = x-&gt;p-&gt;color;
+                x-&gt;p-&gt;color = BLACK;
+                w-&gt;right-&gt;color = BLACK;
+                rbTree_left_rotate((*T),x-&gt;p);
+                x = (*T)-&gt;root;
+            }
+        }else{
+            RB_TREE* w = x-&gt;p-&gt;left;
+            //第 1 种情况
+            if(w-&gt;color == RED){
+                w-&gt;color = BLACK;
+                x-&gt;p-&gt;color = RED;
+                rbTree_right_rotate((*T),x-&gt;p);
+                w = x-&gt;p-&gt;left;
+            }
+            //第 2 种情况
+            if(w-&gt;left-&gt;color == BLACK &amp;&amp; w-&gt;right-&gt;color == BLACK){
+                w-&gt;color = RED;
+                x = x-&gt;p;
+            }
+            //第 3 种情况
+            if(w-&gt;left-&gt;color == BLACK &amp;&amp; w-&gt;right-&gt;color == RED){
+                w-&gt;color = RED;
+                w-&gt;right-&gt;color = BLACK;
+                w = x-&gt;p-&gt;left;
+            }
+            //第 4 种情况
+            if (w-&gt;right-&gt;color == BLACK){
+                w-&gt;color=w-&gt;p-&gt;color;
+                x-&gt;p-&gt;color = BLACK;
+                w-&gt;left-&gt;color = BLACK;
+                rbTree_right_rotate((*T),x-&gt;p);
+                x = (*T)-&gt;root;
+            }
+        }
+    }
+    x-&gt;color = BLACK;//最终将根结点的颜色设为黑色
+}
+void rbTree_delete(RBT_Root* *T, int k){
+    if(NULL == (*T)-&gt;root){
+        return ;
+    }
+    //找到要被删除的结点
+    RB_TREE * toDelete = (*T)-&gt;root;
+    RB_TREE * x = NULL;
+    //找到值为k的结点
+    while(toDelete != (*T)-&gt;nil &amp;&amp; toDelete-&gt;key != k){
+        if(k&lt;toDelete-&gt;key){
+            toDelete = toDelete-&gt;left;
+        }else if(k&gt;toDelete-&gt;key){
+            toDelete = toDelete-&gt;right;
+        }
+    }
+    if(toDelete == (*T)-&gt;nil){
+        printf(&quot;\n%d 不存在\n&quot;,k);
+        return;
+    }
+    //如果两个孩子，就找到右子树中最小的结点，将之代替，然后直接删除该结点即可
+    if(toDelete-&gt;left != (*T)-&gt;nil &amp;&amp; toDelete-&gt;right != (*T)-&gt;nil){
+        RB_TREE* alternative = rbt_findMin((*T), toDelete-&gt;right);
+        k = toDelete-&gt;key = alternative-&gt;key;//这里只对值进行复制，并不复制颜色，以免破坏红黑树的性质
+        toDelete = alternative;
+    }
+    //如果只有一个孩子结点（只有左孩子或只有右孩子），直接用孩子结点顶替该结点位置即可（没有孩子结点的也走此判断语句）。
+    if(toDelete-&gt;left == (*T)-&gt;nil){
+        x = toDelete-&gt;right;
+        rbTree_transplant((*T),toDelete,toDelete-&gt;right);
+    }else if(toDelete-&gt;right == (*T)-&gt;nil){
+        x = toDelete-&gt;left;
+        rbTree_transplant((*T),toDelete,toDelete-&gt;left);
+    }
+    //在删除该结点之前，需判断此结点的颜色：如果是红色，直接删除，不会破坏红黑树；若是黑色，删除后会破坏红黑树的第 5 条性质，需要对树做调整。
+    if(toDelete-&gt;color == BLACK){
+        RB_Delete_Fixup(T,x);
+    }
+    //最终可以彻底删除要删除的结点，释放其占用的空间
+    free(toDelete);
+}</pre>
+<h2>
+	本节完整实现代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef enum {RED, BLACK} ColorType;
+typedef struct RB_TREE{
+    int key;
+    struct  RB_TREE * left;
+    struct  RB_TREE * right;
+    struct  RB_TREE * p;
+    ColorType color;
+}RB_TREE;
+
+typedef struct RBT_Root{
+    RB_TREE* root;
+    RB_TREE* nil;
+}RBT_Root;
+
+RBT_Root* rbTree_init(void);
+void rbTree_insert(RBT_Root* *T, int k);
+void rbTree_delete(RBT_Root* *T, int k);
+
+void rbTree_transplant(RBT_Root* T, RB_TREE* u, RB_TREE* v);
+
+void rbTree_left_rotate( RBT_Root* T, RB_TREE* x);
+void rbTree_right_rotate( RBT_Root* T, RB_TREE* x);
+
+void rbTree_inPrint(RBT_Root* T, RB_TREE* t);
+void rbTree_prePrint(RBT_Root * T, RB_TREE* t);
+void rbTree_print(RBT_Root* T);
+
+RB_TREE* rbt_findMin(RBT_Root * T, RB_TREE* t);
+RB_TREE* rbt_findMin(RBT_Root * T, RB_TREE* t){
+    if(t == T-&gt;nil){
+        return T-&gt;nil;
+    }
+    while(t-&gt;left != T-&gt;nil){
+        t = t-&gt;left;
+    }
+    return t;
+}
+RBT_Root* rbTree_init(void){
+    RBT_Root* T;
+    T = (RBT_Root*)malloc(sizeof(RBT_Root));
+    T-&gt;nil = (RB_TREE*)malloc(sizeof(RB_TREE));
+    T-&gt;nil-&gt;color = BLACK;
+    T-&gt;nil-&gt;left = T-&gt;nil-&gt;right = NULL;
+    T-&gt;nil-&gt;p = NULL;
+    T-&gt;root = T-&gt;nil;
+    return T;
+}
+
+void RB_Insert_Fixup(RBT_Root* T, RB_TREE* x){
+    //首先判断其父结点颜色为红色时才需要调整；为黑色时直接插入即可，不需要调整
+    while (x-&gt;p-&gt;color == RED) {
+        //由于还涉及到其叔叔结点，所以此处需分开讨论，确定父结点是祖父结点的左孩子还是右孩子
+        if (x-&gt;p == x-&gt;p-&gt;p-&gt;left) {
+            RB_TREE * y = x-&gt;p-&gt;p-&gt;right;//找到其叔叔结点
+            //如果叔叔结点颜色为红色，此为第 1 种情况，处理方法为：父结点颜色改为黑色；叔叔结点颜色改为黑色；祖父结点颜色改为红色，将祖父结点赋值为当前结点，继续判断；
+            if (y-&gt;color == RED) {
+                x-&gt;p-&gt;color = BLACK;
+                y-&gt;color = BLACK;
+                x-&gt;p-&gt;p-&gt;color = RED;
+                x = x-&gt;p-&gt;p;
+            }else{
+                //反之，如果叔叔结点颜色为黑色，此处需分为两种情况：1、当前结点时父结点的右孩子；2、当前结点是父结点的左孩子
+                if (x == x-&gt;p-&gt;right) {
+                    //第 2 种情况：当前结点时父结点的右孩子。解决方案：将父结点作为当前结点做左旋操作。
+                    x = x-&gt;p;
+                    rbTree_left_rotate(T, x);
+                }else{
+                    //第 3 种情况：当前结点是父结点的左孩子。解决方案：将父结点颜色改为黑色，祖父结点颜色改为红色，从祖父结点处进行右旋处理。
+                    x-&gt;p-&gt;color = BLACK;
+                    x-&gt;p-&gt;p-&gt;color = RED;
+                    rbTree_right_rotate(T, x-&gt;p-&gt;p);
+                }
+            }
+        }else{//如果父结点时祖父结点的右孩子，换汤不换药，只需将以上代码部分中的left改为right即可，道理是一样的。
+            RB_TREE * y = x-&gt;p-&gt;p-&gt;left;
+            if (y-&gt;color == RED) {
+                x-&gt;p-&gt;color = BLACK;
+                y-&gt;color = BLACK;
+                x-&gt;p-&gt;p-&gt;color = RED;
+                x = x-&gt;p-&gt;p;
+            }else{
+                if (x == x-&gt;p-&gt;left) {
+                    x = x-&gt;p;
+                    rbTree_right_rotate(T, x);
+                }else{
+                    x-&gt;p-&gt;color = BLACK;
+                    x-&gt;p-&gt;p-&gt;color = RED;
+                    rbTree_left_rotate(T, x-&gt;p-&gt;p);
+                }
+            }
+        }
+    }
+    T-&gt;root-&gt;color = BLACK;
+}
+//插入操作分为 3 步：1、将红黑树当二叉查找树，找到其插入位置；2、初始化插入结点，将新结点的颜色设为红色；3、通过调用调整函数，将二叉查找树重新改为红黑树
+void rbTree_insert(RBT_Root**T, int k){
+    //1、找到其要插入的位置。解决思路为：从树的根结点开始，通过不断的同新结点的值进行比较，最终找到插入位置
+    RB_TREE * x, *p;
+    x = (*T)-&gt;root;
+    p = x;
+   
+    while(x != (*T)-&gt;nil){
+        p = x;
+        if(k&lt;x-&gt;key){
+            x = x-&gt;left;
+        }else if(k&gt;x-&gt;key){
+            x = x-&gt;right;
+        }else{
+            printf(&quot;\n%d已存在\n&quot;,k);
+            return;
+        }
+    }
+    //初始化结点，将新结点的颜色设为红色
+    x = (RB_TREE *)malloc(sizeof(RB_TREE));
+    x-&gt;key = k;
+    x-&gt;color = RED;
+    x-&gt;left = x-&gt;right =(*T)-&gt;nil;
+    x-&gt;p = p;
+    //对新插入的结点，建立与其父结点之间的联系
+    if((*T)-&gt;root == (*T)-&gt;nil){
+        (*T)-&gt;root = x;
+    }else if(k &lt; p-&gt;key){
+        p-&gt;left = x;
+    }else{
+        p-&gt;right = x;
+    }
+    //3、对二叉查找树进行调整
+    RB_Insert_Fixup((*T),x);
+}
+void rbTree_transplant(RBT_Root* T, RB_TREE* u, RB_TREE* v){
+    if(u-&gt;p == T-&gt;nil){
+        T-&gt;root = v;
+    }else if(u == u-&gt;p-&gt;left){
+        u-&gt;p-&gt;left=v;
+    }else{
+        u-&gt;p-&gt;right=v;
+    }
+    v-&gt;p = u-&gt;p;
+}
+void RB_Delete_Fixup(RBT_Root**T,RB_TREE*x){
+    while(x != (*T)-&gt;root &amp;&amp; x-&gt;color == BLACK){
+        if(x == x-&gt;p-&gt;left){
+            RB_TREE* w = x-&gt;p-&gt;right;
+            //第 1 种情况：兄弟结点是红色的
+            if(RED == w-&gt;color){
+                w-&gt;color = BLACK;
+                w-&gt;p-&gt;color = RED;
+                rbTree_left_rotate((*T),x-&gt;p);
+                w = x-&gt;p-&gt;right;
+            }
+            //第2种情况：兄弟是黑色的，并且兄弟的两个儿子都是黑色的。
+            if(w-&gt;left-&gt;color == BLACK &amp;&amp; w-&gt;right-&gt;color == BLACK){
+                w-&gt;color = RED;
+                x = x-&gt;p;
+            }
+            //第3种情况
+            if(w-&gt;left-&gt;color == RED &amp;&amp; w-&gt;right-&gt;color == BLACK){
+                w-&gt;left-&gt;color = BLACK;
+                w-&gt;color = RED;
+                rbTree_right_rotate((*T),w);
+                w = x-&gt;p-&gt;right;
+            }
+            //第4种情况
+            if (w-&gt;right-&gt;color == RED) {
+                w-&gt;color = x-&gt;p-&gt;color;
+                x-&gt;p-&gt;color = BLACK;
+                w-&gt;right-&gt;color = BLACK;
+                rbTree_left_rotate((*T),x-&gt;p);
+                x = (*T)-&gt;root;
+            }
+        }else{
+            RB_TREE* w = x-&gt;p-&gt;left;
+            //第 1 种情况
+            if(w-&gt;color == RED){
+                w-&gt;color = BLACK;
+                x-&gt;p-&gt;color = RED;
+                rbTree_right_rotate((*T),x-&gt;p);
+                w = x-&gt;p-&gt;left;
+            }
+            //第 2 种情况
+            if(w-&gt;left-&gt;color == BLACK &amp;&amp; w-&gt;right-&gt;color == BLACK){
+                w-&gt;color = RED;
+                x = x-&gt;p;
+            }
+            //第 3 种情况
+            if(w-&gt;left-&gt;color == BLACK &amp;&amp; w-&gt;right-&gt;color == RED){
+                w-&gt;color = RED;
+                w-&gt;right-&gt;color = BLACK;
+                w = x-&gt;p-&gt;left;
+            }
+            //第 4 种情况
+            if (w-&gt;right-&gt;color == BLACK){
+                w-&gt;color=w-&gt;p-&gt;color;
+                x-&gt;p-&gt;color = BLACK;
+                w-&gt;left-&gt;color = BLACK;
+                rbTree_right_rotate((*T),x-&gt;p);
+                x = (*T)-&gt;root;
+            }
+        }
+    }
+    x-&gt;color = BLACK;//最终将根结点的颜色设为黑色
+}
+void rbTree_delete(RBT_Root* *T, int k){
+    if(NULL == (*T)-&gt;root){
+        return ;
+    }
+    //找到要被删除的结点
+    RB_TREE * toDelete = (*T)-&gt;root;
+    RB_TREE * x = NULL;
+    //找到值为k的结点
+    while(toDelete != (*T)-&gt;nil &amp;&amp; toDelete-&gt;key != k){
+        if(k&lt;toDelete-&gt;key){
+            toDelete = toDelete-&gt;left;
+        }else if(k&gt;toDelete-&gt;key){
+            toDelete = toDelete-&gt;right;
+        }
+    }
+    if(toDelete == (*T)-&gt;nil){
+        printf(&quot;\n%d 不存在\n&quot;,k);
+        return;
+    }
+    //如果两个孩子，就找到右子树中最小的结点，将之代替，然后直接删除该结点即可
+    if(toDelete-&gt;left != (*T)-&gt;nil &amp;&amp; toDelete-&gt;right != (*T)-&gt;nil){
+        RB_TREE* alternative = rbt_findMin((*T), toDelete-&gt;right);
+        k = toDelete-&gt;key = alternative-&gt;key;//这里只对值进行复制，并不复制颜色，以免破坏红黑树的性质
+        toDelete = alternative;
+    }
+    //如果只有一个孩子结点（只有左孩子或只有右孩子），直接用孩子结点顶替该结点位置即可（没有孩子结点的也走此判断语句）。
+    if(toDelete-&gt;left == (*T)-&gt;nil){
+        x = toDelete-&gt;right;
+        rbTree_transplant((*T),toDelete,toDelete-&gt;right);
+    }else if(toDelete-&gt;right == (*T)-&gt;nil){
+        x = toDelete-&gt;left;
+        rbTree_transplant((*T),toDelete,toDelete-&gt;left);
+    }
+    //在删除该结点之前，需判断此结点的颜色：如果是红色，直接删除，不会破坏红黑树；若是黑色，删除后会破坏红黑树的第 5 条性质，需要对树做调整。
+    if(toDelete-&gt;color == BLACK){
+        RB_Delete_Fixup(T,x);
+    }
+    //最终可以彻底删除要删除的结点，释放其占用的空间
+    free(toDelete);
+}
+
+//T表示为树根，x 表示需要进行左旋的子树的根结点
+void rbTree_left_rotate( RBT_Root* T, RB_TREE* x){
+    RB_TREE* y = x-&gt;right;//找到根结点的右子树
+   
+    x-&gt;right = y-&gt;left;//将右子树的左孩子移动至结点 x 的右孩子处
+    if(x-&gt;right != T-&gt;nil){//如果 x 的右子树不是nil，需重新连接 右子树的双亲结点为 x
+        x-&gt;right-&gt;p = x;
+    }
+    y-&gt;p = x-&gt;p;//设置 y 的双亲结点为 x 的双亲结点
+    //重新设置 y 的双亲结点同 y 的连接，分为 2 种情况：1、原 x 结点本身就是整棵树的数根结点，此时只需要将 T 指针指向 y；2、根据 y 中关键字同其父结点关键字的值的大小，判断 y 是父结点的左孩子还是右孩子
+    if(y-&gt;p == T-&gt;nil){
+        T-&gt;root = y;
+    }else if(y-&gt;key &lt; y-&gt;p-&gt;key){
+        y-&gt;p-&gt;left = y;
+    }else{
+        y-&gt;p-&gt;right = y;
+    }
+    y-&gt;left = x;//将 x 连接给 y 结点的左孩子处
+    x-&gt;p = y;//设置 x 的双亲结点为 y。
+}
+
+void rbTree_right_rotate( RBT_Root* T, RB_TREE* x){
+    RB_TREE * y = x-&gt;left;
+    x-&gt;left = y-&gt;right;
+    if(T-&gt;nil != x-&gt;left){
+        x-&gt;left-&gt;p = x;
+    }
+    y-&gt;p = x-&gt;p;
+    if(y-&gt;p == T-&gt;nil){
+        T-&gt;root = y;
+    }else if(y-&gt;key &lt; y-&gt;p-&gt;key){
+        y-&gt;p-&gt;left= y;
+    }else{
+        y-&gt;p-&gt;right = y;
+    }
+    y-&gt;right = x;
+    x-&gt;p = y;
+}
+void rbTree_prePrint(RBT_Root* T, RB_TREE* t){
+    if(T-&gt;nil == t){
+        return;
+    }
+    if(t-&gt;color == RED){
+        printf(&quot;%dR &quot;,t-&gt;key);
+    }else{
+        printf(&quot;%dB &quot;,t-&gt;key);
+    }
+    rbTree_prePrint(T,t-&gt;left);
+    rbTree_prePrint(T,t-&gt;right);
+}
+void rbTree_inPrint(RBT_Root* T, RB_TREE* t){
+    if(T-&gt;nil == t){
+        return ;
+    }
+    rbTree_inPrint(T,t-&gt;left);
+    if(t-&gt;color == RED){
+        printf(&quot;%dR &quot;,t-&gt;key);
+    }else{
+        printf(&quot;%dB &quot;,t-&gt;key);
+    }
+    rbTree_inPrint(T,t-&gt;right);
+}
+
+//输出红黑树的前序遍历和中序遍历的结果
+void rbTree_print(RBT_Root* T){
+    printf(&quot;前序遍历 ：&quot;);
+    rbTree_prePrint(T,T-&gt;root);
+    printf(&quot;\n&quot;);
+    printf(&quot;中序遍历 ：&quot;);
+    rbTree_inPrint(T,T-&gt;root);
+    printf(&quot;\n&quot;);
+}
+
+int main(){
+    RBT_Root* T = rbTree_init();
+   
+    rbTree_insert(&amp;T,3);
+    rbTree_insert(&amp;T,5);
+    rbTree_insert(&amp;T,1);
+    rbTree_insert(&amp;T,2);
+    rbTree_insert(&amp;T,4);
+    rbTree_print(T);
+    printf(&quot;\n&quot;);
+    rbTree_delete(&amp;T,3);
+    rbTree_print(T);
+
+    return 0;
+}</pre>
+运行结果：
+<div class="info-box">
+	前序遍历 ：3B 1B 2R 5B 4R<br />
+	中序遍历 ：1B 2R 3B 4R 5B<br />
+	<br />
+	前序遍历 ：4B 1B 2R 5B<br />
+	中序遍历 ：1B 2R 4B 5B</div>
+<h2>
+	总结</h2>
+本节介绍的红黑树，虽隶属于二叉查找树，但是二叉查找树的时间复杂度会受到其树深度的影响，而红黑树可以保证在最坏情况下的时间复杂度仍为<code>O(lgn)</code>。当数据量多到一定程度时，使用红黑树比二叉查找树的效率要高。<br />
+<br />
+同平衡二叉树相比较，红黑树没有像平衡二叉树对平衡性要求的那么苛刻，虽然两者的时间复杂度相同，但是红黑树在实际测算中的速度要更胜一筹！<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>平衡二叉树的时间复杂度是<code>O(logn)</code>，红黑树的时间复杂度为<code>O(lgn)</code>，两者都表示的都是时间复杂度为对数关系（lg 函数为底是 10 的对数，用于表示时间复杂度时可以忽略）。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 85;
+window.arcId = "0fae0AZeVTH0u4TylFVKTZuncZrtKNPeGw3t+GfTjF0eSAakdglpH+C9";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

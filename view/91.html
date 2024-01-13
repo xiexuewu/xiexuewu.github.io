@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序表的就地逆置（带源码+解析）</title>
+<meta name="keywords" content="顺序,表,的,就地,逆置,带,源码,解析,问题," />
+<meta name="description" content="问题说明 顺序表的就地逆置，即利用原表的存储空间将线性表 (a1,a2,a3,,an)逆置为(an,,a3,a2,a1)，实现过程中要求只能使用一个元素的辅助空间。 实现思路 根据顺序表的长度不同，分为两种" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>顺序表的就地逆置（带源码+解析）</h1>
+			<div id="arc-body"><h2>
+	问题说明</h2>
+<span style="color:#b22222;"><u><a href='/view/158.html' target='_blank'>顺序表</a></u>的就地逆置</span>，即利用原表的存储空间将<u><a href='/view/157.html' target='_blank'>线性表</a></u> (a<sub>1</sub>,a<sub>2</sub>,a<sub>3</sub>,&hellip;,a<sub>n</sub>) 逆置为 (a<sub>n</sub>,&hellip;,a<sub>3</sub>,a<sub>2</sub>,a<sub>1</sub>)，<span style="color:#008000;">实现过程中要求只能使用一个元素的辅助空间。</span><br />
+<h2>
+	实现思路</h2>
+根据顺序表的长度不同，分为两种处理方式：
+<ol>
+	<li>
+		若顺序表为空表，或者长度仅为 1 ，根据常识判断，该顺序表即使进行逆置操作，最终结果还是其自身，所以为了提高效率，对于此类顺序表不做任何处理。</li>
+	<li>
+		若顺序表的长度超过1 ，则需对顺序表进行就地逆置，实现过程为：设置两个变量 i 和 j ，分别初始化为顺序表的首元素和尾元素所在<u><a href='/view/181.html' target='_blank'>数组</a></u>的下标：若 i &lt; j，则将 a[i] 和 a[j] 的值进行交换，交换后执行 i++ 和 j-- 操作，即分别令 i 和 j 指向顺序表的第 2 个元素和倒数第 2 个元素，再进行交换，依次类推，直到&nbsp; i 的值大于或等于 j 为止。</li>
+</ol>
+<h2>
+	代码实现</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAXSIZE 100 //定义顺序表的最大长度
+typedef int ElemType;//宏定义顺序表的数据类型
+//定义顺序表
+typedef struct{
+    ElemType data[MAXSIZE];
+    int length;//记录顺序表的长度
+}SqList;
+//创建顺序表的函数，其中 L 为外界声明的顺序表，n 为顺序表的长度
+void Creat_SqList(SqList *L,int n){
+    int i;
+    L-&gt;length = n;
+    i = 0;
+    printf(&quot;input %d data:&quot;,n);
+    //往顺序表中输入 n 个数据
+    while(i &lt; n){
+        scanf(&quot;%d&quot;,&amp;L-&gt;data[i]);
+        i++;
+    }
+}
+//顺序表的就地逆置的实现函数，其中形参 L 为需要逆置的顺序表
+void Reverse_SqList(SqList *L){
+    int i,j,n,t;
+    n = L-&gt;length;
+    //如果顺序表的长度为 0 或 1 ，由于逆置后还是自身，所以不需要进行逆置
+    if (n == 0 || n == 1){
+        return ;
+    }
+    //如果顺序表的长度大于2，则需要进行逆置，设置 i和 j 分别指向顺序表中第一个和最后一个数据
+    i = 0;
+    j = n-1;
+    //不断地交换 i 和 j 所指向的数据，直到 i&gt;j 为止
+    while(i&lt;j){
+        //此时就用到的唯一一个辅助空间，用于数据之间的交换
+        t = L-&gt;data[i];
+        L-&gt;data[i] = L-&gt;data[j];
+        L-&gt;data[j] = t;
+        i++;
+        j--;
+    }
+}
+//顺序表的输出函数
+void Print_SqList(SqList *L){
+    int i,n;
+    n = L-&gt;length;
+    i = 0;
+    printf(&quot;output %d data:&quot;,n);
+    while(i &lt; n){
+        printf(&quot;%d &quot;,L-&gt;data[i]);
+        i++;
+    }
+}
+int main(){
+    SqList L;//声明一个顺序表
+    int n;
+    printf(&quot;intput n: &quot;);
+    scanf(&quot;%d&quot;,&amp;n);
+    //根据 n 的值，对顺序表进行初始化，n值不能超过MAXSIZE的值
+    Creat_SqList(&amp;L,n);
+    //将顺序表进行就地逆置
+    Reverse_SqList(&amp;L);
+    //输出逆置后的顺序表
+    Print_SqList(&amp;L);
+    return 0;
+}</pre>
+<span style="color:#008000;">运行结果：</span>
+<div class="info-box">
+	intput n: 4<br />
+	input 4 data:3 2 1 4<br />
+	output 4 data:4 1 2 3</div>
+<span style="color:#b22222;">代码分析：</span>
+<ul>
+	<li>
+		<span style="color:#008000;">5-8行：</span>定义顺序表的结构体，获取数组长度，还可以使用 C 语言库中的函数。</li>
+	<li>
+		<span style="color:#008000;">10-20行：</span>对声明的顺序表进行初始化</li>
+	<li>
+		<span style="color:#008000;">22-41行：</span>实现顺序表的就地逆置函数</li>
+	<li>
+		<span style="color:#008000;">43-52行：</span>顺序表的输出函数</li>
+	<li>
+		<span style="color:#008000;">53-65行：</span>主函数，通过声明顺序表，然后调用顺序表的初始化函数、就地逆置函数以及输出函数，即可完整顺序表的就地逆置的功能。</li>
+</ul>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>可根据实现需要，适当更改代码。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 91;
+window.arcId = "884dt2/XXq7D6uAZZ+tuYyxIOjTWKt5N/r5zfJSdkzCkTvc5+iq4oBVk";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

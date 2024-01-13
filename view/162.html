@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序表和链表的优缺点（区别、特点）详解</title>
+<meta name="keywords" content="顺序,表,和,链表,的,优缺点,区别,、,特点," />
+<meta name="description" content="顺序表和链表存储结构的不同，导致它们具有不同的特点，适用于不同的场景。本节就来分析它们的特点，让读者明白 在什么样的场景中使用哪种存储结构 更能有效解决问题。 通过系" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>顺序表和链表的优缺点（区别、特点）详解</h1>
+			<div id="arc-body"><u><a href='/view/158.html' target='_blank'>顺序表</a></u>和<u><a href='/view/160.html' target='_blank'>链表</a></u>由于存储结构上的差异，导致它们具有不同的特点，适用于不同的场景。本节就来分析它们的特点，让读者明白 &quot;在什么样的场景中使用哪种存储结构&quot; 更能有效解决问题。<br />
+<br />
+通过系统地学习顺序表和链表我们知道，虽然它们同属于<u><a href='/view/157.html' target='_blank'>线性表</a></u>，但数据的存储结构有本质的不同：
+<ul>
+	<li>
+		顺序表存储数据，需预先申请一整块足够大的存储空间，然后将数据按照次序逐一存储，数据之间紧密贴合，不留一丝空隙，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1a) 所示；</li>
+	<li>
+		链表的存储方式与顺序表截然相反，什么时候存储数据，什么时候才申请存储空间，数据之间的逻辑关系依靠每个数据元素携带的指针维持，如图 1b) 所示；</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="顺序表和链表的存储结构对比" src="/uploads/allimg/181125/2-1Q12512244c10.gif" /><br />
+	图 1 顺序表和链表的存储结构对比</div>
+<br />
+基于不同的存储结构，顺序表和链表有以下几种不同。<br />
+<h2>
+	开辟空间的方式</h2>
+顺序表存储数据实行的是 &quot;一次开辟，永久使用&quot;，即存储数据之前先开辟好足够的存储空间，空间一旦开辟后期无法改变大小（使用动态<u><a href='/view/181.html' target='_blank'>数组</a></u>的情况除外）。<br />
+<br />
+而链表则不同，链表存储数据时一次只开辟存储一个节点的物理空间，如果后期需要还可以再申请。<br />
+<br />
+因此，若只从开辟空间方式的角度去考虑，当存储数据的个数无法提前确定，又或是物理空间使用紧张以致无法一次性申请到足够大小的空间时，使用链表更有助于问题的解决。<br />
+<h2>
+	空间利用率</h2>
+从空间利用率的角度上看，顺序表的空间利用率显然要比链表高。<br />
+<br />
+这是因为，链表在存储数据时，每次只申请一个节点的空间，且空间的位置是随机的，如图 2 所示：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="链表结构易产生碎片" src="/uploads/allimg/181125/2-1Q12512255D10.gif" /><br />
+	图 2 链表结构易产生碎片</div>
+<br />
+这种申请存储空间的方式会产生很多空间碎片，一定程序上造成了空间浪费。不仅如此，由于链表中每个数据元素都必须携带至少一个指针，因此，链表对所申请空间的利用率也没有顺序表高。<br />
+<p class="info-box">
+	<span style="color:#008000;">空间碎片</span>，指的是某些容量很小（1KB 甚至更小）以致无法得到有效利用的物理空间。</p>
+<h2>
+	<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u></h2>
+解决不同类型的问题，顺序表和链表对应的时间复杂度也不同。<br />
+<br />
+根据顺序表和链表在存储结构上的差异，问题类型主要分为以下 2 类：<br />
+<ol>
+	<li>
+		问题中主要涉及访问元素的操作，元素的插入、删除和移动操作极少；</li>
+	<li>
+		问题中主要涉及元素的插入、删除和移动，访问元素的需求很少；</li>
+</ol>
+<br />
+第 1 类问题适合使用顺序表。这是因为，顺序表中存储的元素可以使用数组下标直接访问，无需遍历整个表，因此使用顺序表访问元素的时间复杂度为 <code>O(1)</code>；而在链表中访问数据元素，需要从表头依次遍历，直到找到指定节点，花费的时间复杂度为 <code>O(n)</code>;<br />
+<br />
+第 2 类问题则适合使用链表。链表中数据元素之间的逻辑关系靠的是节点之间的指针，当需要在链表中某处插入或删除节点时，只需改变相应节点的指针指向即可，无需大量移动元素，因此链表中插入、删除或移动数据所耗费的时间复杂度为 <code>O(1)</code>；而顺序表中，插入、删除和移动数据可能会牵涉到大量元素的整体移动，因此时间复杂度至少为 <code>O(n)</code>;<br />
+<br />
+综上所述，不同类型的场景，选择合适的存储结构会使解决问题效率成倍数地提高。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 162;
+window.arcId = "d4e8cvc1swEiTf05sK2ZFKDijEnw3IdN95v4ZxnoRaBmNDDl6jfFLzjDnA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

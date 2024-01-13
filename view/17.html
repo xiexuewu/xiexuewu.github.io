@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>矩阵乘法（行逻辑链接的顺序表）及代码实现</title>
+<meta name="keywords" content="用行,逻辑,链表,结构,解决,矩阵,相乘,用行," />
+<meta name="description" content="矩阵相乘的前提条件是：乘号前的矩阵的列数要和乘号后的矩阵的行数想等。且矩阵的乘法运算没有交换律，即A*B和B*A是不一样的。 例如，矩阵A： 矩阵B： 由于矩阵A的列数和矩阵B的行" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>矩阵乘法（行逻辑链接的顺序表）及代码实现</h1>
+			<div id="arc-body"><span style="color:#b22222;">矩阵相乘的前提条件是：乘号前的矩阵的列数要和乘号后的矩阵的行数相等。且矩阵的乘法运算没有交换律，即 A*B 和 B*A 是不一样的。</span><br />
+<br />
+例如，矩阵A：<br />
+<img alt="" src="/uploads/allimg/170720/2-1FH0133039319.png" style="width: 200px; height: 115px;" /><br />
+<br />
+矩阵B：<br />
+<img alt="" src="/uploads/allimg/170720/2-1FH0133110422.png" style="width: 148px; height: 200px;" /><br />
+<br />
+由于矩阵 A 的列数和矩阵 B 的行数相等，可以进行 A*B 运算（不能进行 B*A 运算）。计算方法是：用矩阵A的第 i 行和矩阵B中的每一列 j 对应的数值做乘法运算，乘积一一相加，所得结果即为矩阵 C 中第 i 行第 j 列的值。<br />
+<br />
+得到的乘积矩阵C为：<br />
+<img alt="" src="/uploads/allimg/170720/2-1FH0141420S0.png" style="width: 156px; height: 200px;" />
+<div class="info-box">
+	例如：C<sub>12&nbsp;</sub>= 6 是因为：A<sub>11</sub>*B<sub>12&nbsp;</sub>+ A<sub>12</sub>*B<sub>22&nbsp;</sub>+ A<sub>13</sub>*B<sub>32&nbsp;</sub>+ A<sub>14</sub>*B<sub>42</sub>，即 3*2 + 0*0 + 0*4 + 5*0 = 6 ，因为这是 A 的第 1 行和 B 的第 2 列的乘积和，所以结果放在 C 的第 1 行第 2 列的位置。</div>
+<br />
+例如，A是 m1*n1 矩阵，B是 m2*n2 矩阵(前提必须是 n1 == m2 )：
+<pre class="cpp">
+int C[MAX][MAX];
+for (int i=0; i&lt;m1;i++) {
+    for (int j=0; j&lt;n2; j++) {
+        C[i][j]=0;
+        for (int k=0; k&lt;n1; k++) {
+            C[i][j]+=A[i][k]*B[k][j];
+        }
+    }
+}</pre>
+普通算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(m1*n2*n1)</code>。<br />
+<br />
+在稀疏矩阵做乘法运算时，由于本身矩阵中含有的非 0 元素少，普通算法会出现很多 0*0 或者 k*0 或者 0*k （ k 代表非 0 元素值）的情况。下面介绍使用<u><a href='/view/185.html' target='_blank'>行逻辑链接的顺序表</a></u>计算矩阵乘积的方法。
+<h2>
+	行逻辑链接的<u><a href='/view/158.html' target='_blank'>顺序表</a></u>解决矩阵乘积算法</h2>
+对矩阵的乘积进行深度剖析，矩阵 A 和矩阵 B 相乘的运算过程是这样的：<br />
+<br />
+<ol>
+	<li>
+		首先，找到矩阵 A 中第一行的非 0 元素，分别是 A<sub>11</sub> = 3和 A<sub>14</sub> = 5；（由于行逻辑链接的顺序表中存储的都是非 0 元素，查找的过程就需要使用记录每行第一个非 0 元素的首地址的<u><a href='/view/181.html' target='_blank'>数组</a></u>来完成）</li>
+	<li>
+		用 3 去和 B 中对应的第一行中的非 0 元素相乘，矩阵 B 中第一行非 0 元素是 B<sub>12</sub> = 2，所以 3*2 = 6 ，因为 6 是 A<sub>11&nbsp;</sub>和 B<sub>12&nbsp;</sub>相乘的结果，所以暂时存放在 C<sub>12&nbsp;</sub>中；用 5 去和 B 中对应的第 4 行的非 0 元素相乘，由于矩阵 B 中第 4 行没有非 0 元素，所以，第一行的计算结束；</li>
+	<li>
+		以此类推。</li>
+</ol>
+<h2>
+	攻克问题难点</h2>
+现在，解决问题的关键在于，如何知道顺序表中存放的非0元素是哪一行的呢？<br />
+<br />
+解决方案：由于使用的是行逻辑链接的顺序表，所以，已经知道了每一个矩阵中的每一行有多少个非0元素，而且第一行的第一个非0元素的位置一定是1。<br />
+<br />
+所以，第 n 行的非0元素的位置范围是：大于或等于第 n 行第一个元素的位置， 小于第 n+1 行第一个元素的位置（如果是矩阵的最后一行， 小于矩阵中非 0 元素的个数 + 1）。
+<h2>
+	具体实现代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAXSIZE 12500
+#define MAXRC 100
+#define      ElemType int
+typedef struct
+{
+    int i,j;//行，列
+    ElemType e;//元素值
+}Triple;
+
+typedef struct
+{
+    Triple  data[MAXSIZE+1];
+    int rpos[MAXRC+1];//每行第一个非零元素在data数组中的位置
+    int mu,nu,tu;//行数，列数，元素个数
+}RLSMatrix;
+
+RLSMatrix MultSMatrix(RLSMatrix A, RLSMatrix B, RLSMatrix C)
+{
+    //如果矩阵A的列数与矩阵B的行数不等，则不能做矩阵乘运算
+    if(A.nu != B.mu)
+        return C;
+    C.mu = A.mu;
+    C.nu = B.nu;
+    C.tu = 0;
+    //如果其中任意矩阵的元素个数为零，做乘法元素没有意义，全是0
+    if(A.tu * B.tu == 0)
+        return C;
+    else
+    {
+        int arow;
+        int ccol;
+        //遍历矩阵A的每一行
+        for(arow=1; arow&lt;=A.mu; arow++)
+        {
+            //创建一个临时存储乘积结果的数组，且初始化为0，遍历每次都需要清空
+            int ctemp[MAXRC+1] ={};
+            C.rpos[arow] = C.tu + 1;
+            //根据行数，在三元组表中找到该行所有的非0元素的位置
+            int tp;
+            if(arow &lt; A.mu)
+                tp = A.rpos[arow+1];//获取矩阵A的下一行第一个非零元素在data数组中位置
+            else
+                tp = A.tu+1;//若当前行是最后一行，则取最后一个元素+1
+           
+            int p;
+            int brow;
+            //遍历当前行的所有的非0元素
+            for(p=A.rpos[arow]; p&lt;tp; p++)
+            {
+                brow = A.data[p].j;//取该非0元素的列数，便于去B中找对应的做乘积的非0元素
+                int t;
+                // 判断如果对于A中非0元素，找到矩阵B中做乘法的那一行中的所有的非0元素
+                if(brow &lt; B.mu)
+                    t = B.rpos[brow+1];
+                else
+                    t = B.tu+1;
+                int q;
+                //遍历找到的对应的非0元素，开始做乘积运算
+                for(q=B.rpos[brow]; q&lt;t; q++)
+                {
+                    //得到的乘积结果，每次和ctemp数组中相应位置的数值做加和运算
+                    ccol = B.data[q].j;
+                    ctemp[ccol] += A.data[p].e * B.data[q].e;
+                }
+            }
+            //矩阵C的行数等于矩阵A的行数，列数等于矩阵B的列数，所以，得到的ctemp存储的结果，也会在C的列数的范围内
+            for(ccol=1; ccol&lt;=C.nu; ccol++)
+            {
+                //由于结果可以是0，而0不需要存储，所以在这里需要判断
+                if(ctemp[ccol])
+                {
+                    //不为0，则记录矩阵中非0元素的个数的变量tu要+1；且该值不能超过存放三元素数组的空间大小
+                    if(++C.tu &gt; MAXSIZE)
+                        return C;
+                    else{
+                        C.data[C.tu].e = ctemp[ccol];
+                        C.data[C.tu].i = arow;
+                        C.data[C.tu].j = ccol;
+                    }
+                }
+            }
+        }
+        return C;
+    }
+}
+
+int main(int argc, char* argv[])
+{
+    RLSMatrix M,N,T;
+   
+    M.tu = 4;
+    M.mu = 3;
+    M.nu = 4;
+   
+    M.rpos[1] = 1;
+    M.rpos[2] = 3;
+    M.rpos[3] = 4;
+   
+    M.data[1].e = 3;
+    M.data[1].i = 1;
+    M.data[1].j = 1;
+   
+    M.data[2].e = 5;
+    M.data[2].i = 1;
+    M.data[2].j = 4;
+   
+    M.data[3].e = -1;
+    M.data[3].i = 2;
+    M.data[3].j = 2;
+   
+    M.data[4].e = 2;
+    M.data[4].i = 3;
+    M.data[4].j = 1;
+
+    N.tu = 4;
+    N.mu = 4;
+    N.nu = 2;
+   
+    N.rpos[1] = 1;
+    N.rpos[2] = 2;
+    N.rpos[3] = 3;
+    N.rpos[4] = 5;
+   
+    N.data[1].e = 2;
+    N.data[1].i = 1;
+    N.data[1].j = 2;
+   
+    N.data[2].e = 1;
+    N.data[2].i = 2;
+    N.data[2].j = 1;
+   
+    N.data[3].e = -2;
+    N.data[3].i = 3;
+    N.data[3].j = 1;
+   
+    N.data[4].e = 4;
+    N.data[4].i = 3;
+    N.data[4].j = 2;
+   
+   T= MultSMatrix(M,N,T);
+    for (int i=1; i&lt;=T.tu; i++) {
+        printf(&quot;(%d,%d,%d)\n&quot;,T.data[i].i,T.data[i].j,T.data[i].e);
+    }
+    return 0;
+   
+}</pre>
+<br />
+输出结果：
+<div class="info-box">
+	(1,2,6)<br />
+	(2,1,-1)<br />
+	(3,2,4)</div>
+<h2>
+	总结</h2>
+当稀疏矩阵 A<sub>mn&nbsp;</sub>和稀疏矩阵 B<sub>np&nbsp;</sub>采用行逻辑链接的顺序表做乘法运算时，在矩阵 A 的列数（矩阵 B 的行数） n 不是很大的情况下，算法的时间复杂度相当于<code>O(m*p)</code>，比普通算法要快很多。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 17;
+window.arcId = "4149E3k6RRLl3AgZaenHujekNrqbo/O1y5kjeDiOTebK0HDxKDBaDUjm";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

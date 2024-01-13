@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>哈希表（散列表）及哈希表处理冲突的方法</title>
+<meta name="keywords" content="哈希,表,的,构建,及其,处理,冲突,方法,哈希," />
+<meta name="description" content="前面介绍了静态查找表以及动态查找表中的一些查找方法，其查找的过程都无法避免同查找表中的数据进行比较，查找算法的效率很大程度取决于同表中数据的查找次数。 而本节所介绍" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/github/search/">查找算法</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/github/view/53.html">什么是查找表</a></dd><dd>9.2 <a href="/github/view/54.html">顺序查找算法</a></dd><dd>9.3 <a href="/github/view/55.html">折半查找（二分查找）</a></dd><dd>9.4 <a href="/github/view/vip_252.html">分块查找算法（索引顺序查找）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.5 <a href="/github/view/vip_253.html">静态树表查找算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.6 <a href="/github/view/58.html">二叉排序树（二叉查找树）</a></dd><dd>9.7 <a href="/github/view/59.html">平衡二叉树（AVL树）</a></dd><dd>9.8 <a href="/github/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.9 <a href="/github/view/vip_255.html">B-树及其基本操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.10 <a href="/github/view/vip_256.html">B+树及插入和删除操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.11 <a href="/github/view/vip_257.html">键树查找法（双链树和字典树）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.12 <a href="/github/view/63.html">什么是哈希表（散列表）</a></dd><dd>9.13 <a href="/github/view/vip_258.html">哈希查找算法</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>哈希表（散列表）及哈希表处理冲突的方法</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_257.html">键树查找法（双链树和字典树）</a></span>
+                    <span class="next right"><a href="/view/vip_258.html">哈希查找算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_257.html";window.nextPageURL = "/view/vip_258.html";</script>
+			<div id="arc-body">前面介绍了静态查找表以及动态查找表中的一些查找方法，其查找的过程都无法避免同查找表中的数据进行比较，查找算法的效率很大程度取决于同表中数据的查找次数。<br />
+<br />
+而本节所介绍的<span style="color:#b22222;"><u><a href='/view/63.html' target='_blank'>哈希表</a></u></span>可以通过关键字直接找到数据的存储位置，不需要进行任何的比较，其查找的效率相较于前面所介绍的查找算法是更高的。
+<h2>
+	哈希表的构建</h2>
+在初中的数学课本中学习过函数的相关知识，给定一个 x，通过一个数学公式，只需要将 x 的值带入公式就可以求出一个新的值 y。<br />
+<br />
+哈希表的建立同函数类似，把函数中的 x 用查找记录时使用的关键字来代替，然后将关键字的值带入一个精心设计的公式中，就可以求出一个值，用这个值来表示记录存储的<span style="color:#008000;">哈希地址</span>。即：<br />
+<div class="info-box">
+	数据的哈希地址=f（关键字的值）</div>
+<blockquote>
+	<p>
+		<span style="color:#008000;">哈希地址</span><span style="color:#b22222;">只是表示在查找表中的存储位置，而不是实际的物理存储位置。f（）是一个函数，通过这个函数可以快速求出该关键字对应的的数据的哈希地址，称之为</span><span style="color:#008000;">&ldquo;哈希函数&rdquo;</span>。</p>
+</blockquote>
+例如，这里有一个电话簿（查找表），电话簿中有 4 个人的联系方式：
+<div class="info-box">
+	张三 13912345678<br />
+	李四 15823457890<br />
+	王五 13409872338<br />
+	赵六 13805834722</div>
+假如想查找李四的电话号码，对于一般的查找方式最先想到的是从头遍历，一一比较。而如果将电话簿构建成一张哈希表，可以直接通过名字&ldquo;李四&rdquo;直接找到电话号码在表中的位置。<br />
+<br />
+<span style="color:#b22222;">在构建哈希表时，最重要的是哈希函数的设计。</span>例如设计电话簿案例中的哈希函数为：每个名字的姓的首字母的 ASCII 值即为对应的电话号码的存储位置。这时会发现，张三和赵六两个关键字的姓的首字母都是 Z ，最终求出的电话号码的存储位置相同，这种现象称为<span style="color:#008000;">冲突</span>。在设计哈希函数时，要尽量地避免冲突现象的发生。
+<blockquote>
+	<p>
+		<span style="color:#b22222;">对于哈希表而言，冲突只能尽可能地少，无法完全避免。</span></p>
+</blockquote>
+<h2>
+	哈希函数的构造</h2>
+<span style="color:#b22222;">常用的哈希函数的构造方法有 6 种：</span><span style="color:#008000;">直接定址法</span><span style="color:#b22222;">、</span><span style="color:#008000;">数字分析法</span><span style="color:#b22222;">、</span><span style="color:#008000;">平方取中法</span><span style="color:#b22222;">、</span><span style="color:#008000;">折叠法</span><span style="color:#b22222;">、</span><span style="color:#008000;">除留余数法</span><span style="color:#b22222;">和</span><span style="color:#008000;">随机数法</span>。<br />
+<br />
+<span style="color:#008000;">直接定址法</span>：其哈希函数为一次函数，即以下两种形式：
+<div class="info-box">
+	H（key）= key 或者 H（key）=a * key + b</div>
+其中 H（key）表示关键字为 key 对应的哈希地址，a 和 b 都为常数。<br />
+<br />
+例如有一个从 1 岁到 100 岁的人口数字统计表，如表 1 所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024153J2E8.png" style="width: 397px; height: 105px;" /><br />
+	表 1 人口统计表</div>
+假设其哈希函数为第一种形式，其关键字的值表示最终的存储位置。若需要查找年龄为 25 岁的人口数量，将年龄 25 带入哈希函数中，直接求得其对应的哈希地址为 25（求得的哈希地址表示该记录的位置在查找表的第 25 位）。<br />
+<br />
+<span style="color:#008000;">数字分析法:</span>如果关键字由多位字符或者数字组成，就可以考虑抽取其中的 2 位或者多位作为该关键字对应的哈希地址，在取法上尽量选择变化较多的位，避免冲突发生。<br />
+<br />
+例如表 2 中列举的是一部分关键字，每个关键字都是有 8 位十进制<u><a href='/view/181.html' target='_blank'>数组</a></u>成：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024153U04I.png" style="width: 163px; height: 196px;" /><br />
+	表 2</div>
+通过分析关键字的构成，很明显可以看到关键字的第 1 位和第 2 位都是固定不变的，而第 3 位不是数字 3 就是 4，最后一位只可能取 2、7 和 5，只有中间的 4 位其取值近似随机，所以为了避免冲突，可以从 4 位中任意选取 2 位作为其哈希地址。<br />
+<br />
+<span style="color:#008000;">平方取中法</span>是对关键字做平方操作，取中间得几位作为哈希地址。此方法也是比较常用的构造哈希函数的方法。<br />
+<br />
+例如关键字序列为<code>{421，423，436}</code>，对各个关键字进行平方后的结果为<code>{177241，178929，190096}</code>，则可以取中间的两位<code>{72，89，00}</code>作为其哈希地址。<br />
+<br />
+<span style="color:#008000;">折叠法</span>是将关键字分割成位数相同的几部分（最后一部分的位数可以不同），然后取这几部分的叠加和（舍去进位）作为哈希地址。此方法适合关键字位数较多的情况。<br />
+<br />
+例如，在<u><a href='/view/200.html' target='_blank'>图</a></u>书馆中图书都是以一个 10 位的十进制数字为关键字进行编号的，若对其查找表建立哈希表时，就可以使用折叠法。<br />
+<br />
+若某书的编号为：0-442-20586-4，分割方式如图 1 中所示，在对其进行折叠时有两种方式：一种是<span style="color:#008000;">移位折叠</span>，另一种是<span style="color:#008000;">间界折叠</span>：
+<ul>
+	<li>
+		移位折叠是将分割后的每一小部分，按照其最低位进行对齐，然后相加，如图 1（a）；</li>
+	<li>
+		间界折叠是从一端向另一端沿分割线来回折叠，如图 1（b）。</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G024155921910.png" style="width: 372px; height: 266px;" /><br />
+	图 1 移位折叠和间界折叠</div>
+<span style="color:#008000;">除留余数法：</span>若已知整个哈希表的最大长度 m，可以取一个不大于 m 的数 p，然后对该关键字 key 做取余运算，即：<code>H（key）= key % p</code>。<br />
+<blockquote>
+	<p>
+		在此方法中，对于 p 的取值非常重要，由经验得知 p 可以为不大于 m 的质数或者不包含小于 20 的质因数的合数。</p>
+</blockquote>
+<span style="color:#008000;">随机数法：</span>是取关键字的一个随机函数值作为它的哈希地址，即：<code>H（key）=random（key）</code>，<span style="color:#b22222;">此方法适用于关键字长度不等的情况。</span><br />
+<div class="info-box">
+	<span style="color:#b22222;">注意：</span>这里的随机函数其实是伪随机函数，随机函数是即使每次给定的 key 相同，但是 H（key）都是不同；而伪随机函数正好相反，每个 key 都对应的是固定的 H（key）。</div>
+如此多的构建哈希函数的方法，在选择的时候，需要根据实际的查找表的情况采取适当的方法。通常考虑的因素有以下几方面：
+<ul>
+	<li>
+		关键字的长度。如果长度不等，就选用随机数法。如果关键字位数较多，就选用折叠法或者数字分析法；反之如果位数较短，可以考虑平方取中法；</li>
+	<li>
+		哈希表的大小。如果大小已知，可以选用除留余数法；</li>
+	<li>
+		关键字的分布情况；</li>
+	<li>
+		查找表的查找频率；</li>
+	<li>
+		计算哈希函数所需的时间（包括硬件指令的因素）</li>
+</ul>
+<h2>
+	处理冲突的方法</h2>
+对于哈希表的建立，需要选取合适的哈希函数，但是对于无法避免的冲突，需要采取适当的措施去处理。<br />
+<br />
+通常用的处理冲突的方法有以下几种：<br />
+<br />
+<ul>
+	<li>
+		开放定址法</li>
+</ul>
+<div class="info-box" style="margin-left: 40px;">
+	H（key）=（H（key）+ d）MOD m（其中 m 为哈希表的表长，d 为一个增量）</div>
+<div style="margin-left: 40px;">
+	当得出的哈希地址产生冲突时，选取以下 3 种方法中的一种获取 d 的值，然后继续计算，直到计算出的哈希地址不在冲突为止，这 3 种方法为：</div>
+<ul>
+	<li style="margin-left: 40px;">
+		线性探测法：d=1，2，3，&hellip;，m-1</li>
+	<li style="margin-left: 40px;">
+		二次探测法：d=12，-12，22，-22，32，&hellip;</li>
+	<li style="margin-left: 40px;">
+		伪随机数探测法：d=伪随机数</li>
+</ul>
+<div style="margin-left: 40px;">
+	例如，在长度为 11 的哈希表中已填写好 17、60 和 29 这 3 个数据（如图 2（a） 所示），其中采用的哈希函数为：H（key）=key MOD 11，现有第 4 个数据 38 ，当通过哈希函数求得的哈希地址为 5，与 60 冲突，则分别采用以上 3 种方式求得插入位置如图 2（b）所示：</div>
+<div style="text-align: center; margin-left: 40px;">
+	<img alt="" src="/uploads/allimg/171024/2-1G02415435M53.png" style="width: 331px; height: 422px;" /></div>
+<div style="text-align: center;">
+	图 2 开放定址法</div>
+<div class="info-box" style="margin-left: 40px;">
+	<span style="color:#b22222;">注释：</span>在线性探测法中，当遇到冲突时，从发生冲突位置起，每次 +1，向右探测，直到有空闲的位置为止；二次探测法中，从发生冲突的位置起，按照 +12，-12，+22，&hellip;如此探测，直到有空闲的位置；伪随机探测，每次加上一个随机数，直到探测到空闲位置结束。</div>
+<ul>
+	<li>
+		再哈希法</li>
+</ul>
+<div style="margin-left: 40px;">
+	当通过哈希函数求得的哈希地址同其他关键字产生冲突时，使用另一个哈希函数计算，直到冲突不再发生。</div>
+<ul>
+	<li>
+		链地址法</li>
+</ul>
+<div style="margin-left: 40px;">
+	将所有产生冲突的关键字所对应的数据全部存储在同一个线性<u><a href='/view/160.html' target='_blank'>链表</a></u>中。例如有一组关键字为<code>{19,14,23,01,68,20,84,27,55,11,10,79}</code>，其哈希函数为：<code>H(key)=key MOD 13</code>，使用链地址法所构建的哈希表如图 3 所示：</div>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171024/2-1G02415452NG.png" style="width: 360px; height: 364px;" /><br />
+	图 3 链地址法构建的哈希表</div>
+<ul>
+	<li>
+		建立一个公共溢出区</li>
+</ul>
+<div style="margin-left: 40px;">
+	建立两张表，一张为基本表，另一张为溢出表。基本表存储没有发生冲突的数据，当关键字由哈希函数生成的哈希地址产生冲突时，就将数据填入溢出表。</div>
+<h2>
+	总结</h2>
+本节主要介绍了哈希表的构造及其在构造过程中对产生的冲突进行处理的方法。在选择具体使用哪种方法时，要根据查找表的实际情况具体问题具体分析。<br />
+<blockquote>
+	<p>
+		哈希表实现查找操作的具体实现下节有详细介绍。</p>
+</blockquote>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_257.html">键树查找法（双链树和字典树）</a></span>
+                    <span class="next right"><a href="/view/vip_258.html">哈希查找算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_257.html";window.nextPageURL = "/view/vip_258.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 63;
+window.arcId = "7823Aibeiyp2EsqcgyTJSYoWVEVhBTqaeoT92QMdaYzHSUoFy9/cbCKB";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>静态链表及C语言实现</title>
+<meta name="keywords" content="静态,链表,静态,链表," />
+<meta name="description" content="本节继续介绍线性表的另外一种链式表示静态链表。（前面介绍的链表称为动态链表）。 逻辑结构相邻的数据元素，存储在指定的一块内存空间中，数据元素只允许在申请的内存空间中" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>静态链表及C语言实现</h1>
+			<div id="arc-body">本节继续介绍<u><a href='/view/157.html' target='_blank'>线性表</a></u>的另外一种链式表示&mdash;&mdash;<span style="color:#008000;"><u><a href='/view/163.html' target='_blank'>静态链表</a></u></span>。（前面介绍的<a href="/view/5.html" target="_blank">链表</a>称为&nbsp;<span style="color:#008000;">动态<u><a href='/view/160.html' target='_blank'>链表</a></u>&nbsp;</span>）。<br />
+<br />
+<span style="color:#b22222;">逻辑结构上相邻的数据元素，存储在指定的一块内存空间中，数据元素只允许在这块内存空间中随机存放，这样的存储结构生成的链表称为</span><span style="color:#008000;">静态链表</span><span style="color:#b22222;">。</span><br />
+<div class="info-box">
+	静态链表和动态链表的区别：静态链表限制了数据元素存放的位置范围；动态链表是整个内存空间。</div>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170718/2-1FGQ11A3X3.png" /></div>
+<div style="text-align: center;">
+	<u><a href='/view/200.html' target='_blank'>图</a></u>1 静态链表的存储结构</div>
+<h2>
+	静态链表的构建方法</h2>
+静态链表使用<u><a href='/view/181.html' target='_blank'>数组</a></u>这一数据类型预先申请足够大的内存空间。<br />
+<br />
+由于各数据元素在数组申请的内存空间内随机存放，为了体现逻辑上的相邻，为每一个数据元素配备一个具有指针作用的整形变量，用于记录下一元素在数组中的位置。<br />
+<br />
+<span style="color:#b22222;">在数组申请的存储空间中，各数据元素虽随机存储，每一个元素都记录着下一元素在数组中的位置，通过前一个元素，可以找到下一个元素，构成了一条链表，这条被局限在特定内存空间的链表就是静态链表。</span>
+<h2>
+	静态链表中结点的构成</h2>
+静态链表中每个结点既有自己的数据部分，还需要存储下一个结点的位置，所以静态链表的存储实现使用的是结构体数组，包含两部分：&nbsp;<span style="color:#008000;">数据域&nbsp;</span>和&nbsp;<span style="color:#008000;">游标</span>（存放的是下一个结点在数组中的位置下标）。<br />
+<br />
+实现代码：
+<pre class="cpp">
+typedef struct {
+    int data;//数据域
+    int cur;//游标
+}component;</pre>
+例如：使用静态链表存储（1，2，3，4，5）,创建数组a[7]：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170724/2-1FH4155J5206.png" /></div>
+<div style="text-align: center;">
+	图2 静态链表</div>
+<blockquote>
+	<p>
+		图2 中，链表头指针指向 a[0] ，表示为第一个结点，数据域存放的是 1，通过游标确定，下一个结点的位置在 a[3] ，数据域存放的是 2 ，依次类推。若游标为 0，表示此结点为链表的最后一个结点。</p>
+</blockquote>
+<h2>
+	静态链表的空间重复利用</h2>
+由于静态链表提前申请了有限的内存空间，在使用的过程中，极有可能会出现申请的内存空间不足，需要使用之前被遗弃的内存空间。
+<div class="info-box">
+	被遗弃的意思是：之前已经使用，但是后期对该结点做了摘除操作，该内存空间中存放的是已经不用的垃圾数据。</div>
+所以，在整个过程中，需要自己动手把两者区分开，也就是需要自己实现 malloc 和 free 两个函数的作用。<br />
+<br />
+解决的办法是：提前将所有未被使用的结点链成一个备用链表。需要对链表做插入操作时，从备用链表上摘下一个结点使用；删除链表中的结点时，删除的同时链接到备用链表上，以备下次使用。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170727/2-1FHG5443K55.png" /><br />
+	图3 备用链表和数据链表</div>
+图3 分析：<br />
+<blockquote>
+	<p>
+		第一步：备用链表：（0，1）（1，2）（2，3）（3，4）（4，5）（5，6）（6，0）<br />
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 数据链表中还没有数据</p>
+</blockquote>
+<blockquote>
+	<p>
+		第二步：向数据链表中插入一个数据，将备用链表上的（1，2）摘下下，提供给数据元素使用，备用链表的（0，1）游标直接变成2就可以了：<br />
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 备用链表：（0，2）（2，3）（3，4）（4，5）（5，6）（6，0）<br />
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 数据链表：（1，0）</p>
+</blockquote>
+<blockquote>
+	<p>
+		第三步：继续向数据链表中插入一个数据，备用链表把（2，3）摘下来，备用链表中的（0，1）直接变成3就可以了：<br />
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 备用链表：（0，3）（3，4）（4，5）（5，6）（6，0）<br />
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 数据链表：（1，2）（2，0）</p>
+</blockquote>
+以此类推。以上为插入结点的过程，在删除结点的反方向操作过程中，只需要将被删除结点从数据链表上摘除，并添加到备用链表中即可（也就是只改变相关结点的游标的值）。
+<h2>
+	创建并初始化链表</h2>
+建立静态链表 S，存储线性表（a，b，c，d）：
+<ol>
+	<li>
+		创建结构体数组，例如名为 array，存储空间足够大；</li>
+	<li>
+		先将 array 数组中的分量全部链接到备用链表上；（使用 reserveArr 函数实现）</li>
+	<li>
+		从备用链表上申请一个分量作为链表 S 的头结点，每次从备用链表上申请分量链接到 S 链表中，依次类推；（ mallocArr 函数用于每次向备用链表申请一个结点的空间，initArr 函数用于初始化静态链表）</li>
+	<li>
+		当存储到最后一个结点时，游标设置为 0。</li>
+</ol>
+<br />
+代码实现：
+<pre class="cpp">
+//创建备用链表
+void reserveArr(component *array){
+    for (int i=0; i&lt;maxSize; i++) {
+        array[i].cur=i+1;//将每个数组分量链接到一起
+    }
+    array[maxSize-1].cur=0;//链表最后一个结点的游标值为0
+}
+//提取分配空间
+int mallocArr(component * array){
+    //若备用链表非空，则返回分配的结点下标，否则返回0（当分配最后一个结点时，该结点的游标值为0）
+    int i=array[0].cur;
+    if (array[0].cur) {
+        array[0].cur=array[i].cur;
+    }
+    return i;
+}
+//初始化静态链表
+int initArr(component *array){
+    reserveArr(array);//链接备用链表
+    //从备用链表中拿出一个分量作为链表的头结点，返回的是这个分量的下标
+    int body=mallocArr(array);
+    //声明一个变量，把它当指针使，指向链表的最后的一个结点，因为链表为空，所以和头结点重合
+    int tempBody=body;
+    for (int i=1; i&lt;5; i++) {
+        int j=mallocArr(array);//从备用链表中拿出空闲的分量
+        array[tempBody].cur=j;//将申请的空线分量链接在链表的最后一个结点后面
+        array[j].data=&#39;a&#39;+i-1;//给新申请的分量的数据域初始化
+        tempBody=j;//将指向链表最后一个结点的指针后移
+    }
+    array[tempBody].cur=0;//新的链表最后一个结点的指针设置为0
+    return body;
+}</pre>
+程序最终效果图：<br />
+<br />
+<div>
+	<img alt="" src="/uploads/allimg/170718/2-1FGQ44F4D6.png" /></div>
+<span style="color:#b22222;">注：array[0]用作备用链表的头结点，array[1]用作存放数据的链表的头结点，所以array[0]和array[6]为备用链表上的结点</span>。
+<h2>
+	静态链表中查找数据</h2>
+一般情况下，访问静态链表只能通过头结点（头结点在数组中的位置下标是知道的），所以查找数据通过遍历链表的方式实现。<br />
+<br />
+实现代码：
+<pre class="cpp">
+//在以body作为头结点的链表中查找数据域为elem的结点在数组中的位置
+int selectElem(component * array,int body,char elem){
+    int tempBody=body;
+    //当游标值为0时，表示链表结束
+    while (array[tempBody].cur!=0) {
+        if (array[tempBody].data==elem) {
+            return tempBody;
+        }
+        tempBody=array[tempBody].cur;
+    }
+    return -1;//返回-1，表示在链表中没有找到该元素
+}</pre>
+<h2>
+	静态链表中更改数据</h2>
+更改链表中某结点的数据，只需要通过查找算法找到要更改结点的位置，然后直接更改该结点的数据域即可。<br />
+<br />
+实现代码：
+<pre class="cpp">
+//在以body作为头结点的链表中将数据域为oldElem的结点，数据域改为newElem
+void amendElem(component * array,int body,char oldElem,char newElem){
+    int add=selectElem(array, body, oldElem);
+    if (add==-1) {
+        printf(&quot;无更改元素&quot;);
+        return;
+    }
+    array[add].data=newElem;
+}</pre>
+<h2>
+	静态链表中插入结点</h2>
+继续上边的例子，插入一个结点，例如该结点的数据域为 e，插入到第 3 的位置：<br />
+<ol>
+	<li>
+		首先从备用链表中申请空间存储数据元素 e；</li>
+	<li>
+		由于要将 e 结点插入到第 3 的位置上，所以要找到 b 结点，将 b 结点的游标赋值给 e 结点；</li>
+	<li>
+		最后将 e 结点所在位置的下标给 b 结点的游标；</li>
+</ol>
+<br />
+实现代码（在理解静态链表的存储结构的基础上）：<br />
+<pre class="cpp">
+//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，a表示要插入的数据
+void insertArr(component * array,int body,int add,char a){
+    int tempBody=body;//tempBody做遍历结构体数组使用
+    //找到要插入位置的上一个结点在数组中的位置
+    for (int i=1; i&lt;add; i++) {
+        tempBody=array[tempBody].cur;
+    }
+    int insert=mallocArr(array);//申请空间，准备插入
+    array[insert].cur=array[tempBody].cur;//首先要插入结点的游标等于要插入位置的上一个结点的游标
+    array[insert].data=a;
+    array[tempBody].cur=insert;//然后让上一结点的游标等于插入结点所在数组中的位置的下标
+}</pre>
+代码运行效果：<br />
+<br />
+<img alt="" src="/uploads/allimg/170718/2-1FGQ4512N96.png" />
+<h2>
+	静态链表做删除操作</h2>
+静态链表中删除结点，要实现两步操作：从链表上摘下结点后，将该结点链接到备用链表上，以备下次使用。
+<div class="info-box">
+	<span style="color:#b22222;">注：</span>被摘除结点中的数据不需要手动删除，待下次使用时，会被新的数据域将旧数据覆盖点。</div>
+例如，在（a,b,c,d,e）链表中，删除数据域为 &lsquo;a&rsquo; 的结点：<br />
+<br />
+实现代码：
+<pre class="cpp">
+//删除结点函数，a 表示被删除结点中数据域存放的数据
+void deletArr(component * array,int body,char a){ 
+    int tempBody=body;
+    //找到被删除结点的位置
+    while (array[tempBody].data!=a) {
+        tempBody=array[tempBody].cur;
+        //当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点
+        if (tempBody==0) {
+            printf(&quot;链表中没有此数据&quot;);
+            return;
+        }
+    }
+    //运行到此，证明有该结点
+    int del=tempBody;
+    tempBody=body;
+    //找到该结点的上一个结点，做删除操作
+    while (array[tempBody].cur!=del) {
+        tempBody=array[tempBody].cur;
+    }
+    //将被删除结点的游标直接给被删除结点的上一个结点
+    array[tempBody].cur=array[del].cur;
+   
+    freeArr(array, del);
+}</pre>
+在该函数中，调用了一个freeArr函数，它的作用是回收被删除结点所占用的空间，将此空间链接到备用链表中，以备下次分配使用。（自己实现的free函数）<br />
+<br />
+freeArr函数实现代码：
+<pre class="cpp">
+void freeArr(component * array,int k){
+    array[k].cur=array[0].cur;
+    array[0].cur=k;
+}</pre>
+<br />
+删除数据域为 &#39;a&#39; 结点的运行效果图：<br />
+<br />
+<img alt="" src="/uploads/allimg/170718/2-1FGQ4525La.png" />
+<h2>
+	完整实现代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define maxSize 7
+typedef struct {
+    char data;
+    int cur;
+}component;
+//将结构体数组中所有分量链接到备用链表中
+void reserveArr(component *array);
+//初始化静态链表
+int initArr(component *array);
+//向链表中插入数据，body表示链表的头结点在数组中的位置，add表示插入元素的位置，a表示要插入的数据
+void insertArr(component * array,int body,int add,char a);
+//删除链表中含有字符a的结点
+void deletArr(component * array,int body,char a);
+//查找存储有字符elem的结点在数组的位置
+int selectElem(component * array,int body,char elem);
+//将链表中的字符oldElem改为newElem
+void amendElem(component * array,int body,char oldElem,char newElem);
+//输出函数
+void displayArr(component * array,int body);
+//自己需要实现的malloc和free函数
+int mallocArr(component * array);
+void freeArr(component * array,int k);
+
+int main() {
+    component array[maxSize];
+    int body=initArr(array);
+    printf(&quot;静态链表为：\n&quot;);
+    displayArr(array, body);
+   
+    printf(&quot;在第3的位置上插入结点&lsquo;e&rsquo;:\n&quot;);
+    insertArr(array, body, 3,&#39;e&#39;);
+    displayArr(array, body);
+   
+    printf(&quot;删除数据域为&lsquo;a&rsquo;的结点:\n&quot;);
+    deletArr(array, body, &#39;a&#39;);
+    displayArr(array, body);
+   
+    printf(&quot;查找数据域为&lsquo;e&rsquo;的结点的位置:\n&quot;);
+    int selectAdd=selectElem(array,body ,&#39;e&#39;);
+    printf(&quot;%d\n&quot;,selectAdd);
+    printf(&quot;将结点数据域为&lsquo;e&rsquo;改为&lsquo;h&rsquo;:\n&quot;);
+    amendElem(array, body, &#39;e&#39;, &#39;h&#39;);
+    displayArr(array, body);
+    return 0;
+}
+//创建备用链表
+void reserveArr(component *array){
+    for (int i=0; i&lt;maxSize; i++) {
+        array[i].cur=i+1;//将每个数组分量链接到一起
+    }
+    array[maxSize-1].cur=0;//链表最后一个结点的游标值为0
+}
+//提取分配空间
+int mallocArr(component * array){
+    //若备用链表非空，则返回分配的结点下标，否则返回0（当分配最后一个结点时，该结点的游标值为0）
+    int i=array[0].cur;
+    if (array[0].cur) {
+        array[0].cur=array[i].cur;
+    }
+    return i;
+}
+//初始化静态链表
+int initArr(component *array){
+    reserveArr(array);
+    int body=mallocArr(array);
+    //声明一个变量，把它当指针使，指向链表的最后的一个结点，因为链表为空，所以和头结点重合
+    int tempBody=body;
+    for (int i=1; i&lt;5; i++) {
+        int j=mallocArr(array);//从备用链表中拿出空闲的分量
+        array[tempBody].cur=j;//将申请的空线分量链接在链表的最后一个结点后面
+        array[j].data=&#39;a&#39;+i-1;//给新申请的分量的数据域初始化
+        tempBody=j;//将指向链表最后一个结点的指针后移
+    }
+    array[tempBody].cur=0;//新的链表最后一个结点的指针设置为0
+    return body;
+}
+
+void insertArr(component * array,int body,int add,char a){
+    int tempBody=body;
+    for (int i=1; i&lt;add; i++) {
+        tempBody=array[tempBody].cur;
+    }
+    int insert=mallocArr(array);
+    array[insert].cur=array[tempBody].cur;
+    array[insert].data=a;
+    array[tempBody].cur=insert;
+   
+}
+
+void deletArr(component * array,int body,char a){
+    int tempBody=body;
+    //找到被删除结点的位置
+    while (array[tempBody].data!=a) {
+        tempBody=array[tempBody].cur;
+        //当tempBody为0时，表示链表遍历结束，说明链表中没有存储该数据的结点
+        if (tempBody==0) {
+            printf(&quot;链表中没有此数据&quot;);
+            return;
+        }
+    }
+    //运行到此，证明有该结点
+    int del=tempBody;
+    tempBody=body;
+    //找到该结点的上一个结点，做删除操作
+    while (array[tempBody].cur!=del) {
+        tempBody=array[tempBody].cur;
+    }
+    //将被删除结点的游标直接给被删除结点的上一个结点
+    array[tempBody].cur=array[del].cur;
+   
+    freeArr(array, del);
+}
+
+int selectElem(component * array,int body,char elem){
+    int tempBody=body;
+    //当游标值为0时，表示链表结束
+    while (array[tempBody].cur!=0) {
+        if (array[tempBody].data==elem) {
+            return tempBody;
+        }
+        tempBody=array[tempBody].cur;
+    }
+    return -1;//返回-1，表示在链表中没有找到该元素
+}
+
+void amendElem(component * array,int body,char oldElem,char newElem){
+    int add=selectElem(array, body, oldElem);
+    if (add==-1) {
+        printf(&quot;无更改元素&quot;);
+        return;
+    }
+    array[add].data=newElem;
+}
+
+void displayArr(component * array,int body){
+    int tempBody=body;//tempBody准备做遍历使用
+    while (array[tempBody].cur) {
+        printf(&quot;%c,%d &quot;,array[tempBody].data,array[tempBody].cur);
+        tempBody=array[tempBody].cur;
+    }
+    printf(&quot;%c,%d\n&quot;,array[tempBody].data,array[tempBody].cur);
+
+}
+
+void freeArr(component * array,int k){
+    array[k].cur=array[0].cur;
+    array[0].cur=k;
+}</pre>
+输出结果：
+<div class="info-box">
+	静态链表为：<br />
+	,2 a,3 b,4 c,5 d,0<br />
+	在第3的位置上插入结点&lsquo;e&rsquo;:<br />
+	,2 a,3 b,6 e,4 c,5 d,0<br />
+	删除数据域为&lsquo;a&rsquo;的结点:<br />
+	,3 b,6 e,4&nbsp;c,5 d,0<br />
+	查找数据域为&lsquo;e&rsquo;的结点的位置:<br />
+	6<br />
+	将结点数据域为&lsquo;e&rsquo;改为&lsquo;h&rsquo;:<br />
+	,3 b,6 h,4 c,5 d,0</div>
+<h2>
+	总结</h2>
+静态链表综合了<u><a href='/view/158.html' target='_blank'>顺序表</a></u>和动态链表的优点：使用数组存储数据元素，便于做查找遍历操作；同时，在数组中借鉴了动态链表的特点，在链表中插入或者删除结点时只需更改相关结点的游标，不需要移动大量元素。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 6;
+window.arcId = "ba45VjN9HCn7GCkECUglrQ4a0X3R9InkTKtk2nWaNWCXQM8vwzPX3oU";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

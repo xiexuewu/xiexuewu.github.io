@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>简单选择排序算法原理及java实现（超详细）</title>
+<meta name="keywords" content="简单,选择,排序,算法,原理,及,java,实现,超," />
+<meta name="description" content="选择排序是一种非常简单的排序算法，就是在序列中依次选择最大（或者最小）的数，并将其放到待排序的数列的起始位置。 简单选择排序的原理 简单选择排序的原理非常简单，即在待" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>简单选择排序算法原理及java实现（超详细）</h1>
+			<div id="arc-body"><u><a href='/view/72.html' target='_blank'>选择排序</a></u>是一种非常简单的排序算法，就是在序列中依次选择最大（或者最小）的数，并将其放到待排序的数列的起始位置。<br />
+<h2>
+	简单选择排序的原理</h2>
+简单选择排序的原理非常简单，即在待排序的数列中寻找最大（或者最小）的一个数，与第 1 个元素进行交换，接着在剩余的待排序的数列中继续找最大（最小）的一个数，与第 2 个元素交换。以此类推，一直到待排序的数列中只有一个元素时为止。<br />
+<br />
+也就是说，简单选择排序可分为两部分，一部分是选择待排序的数列中最小的一个数，另一部分是让这个数与待排序的数列部分的第1个数进行交换，直到待排序的数列只有一个元素，至此整个数列有序。<br />
+<br />
+这个算法非常简单，其排序过程如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/181004/2-1Q00411262c44.jpg" /><br />
+	图 1 简单选择排序的排序过程</div>
+<br />
+其中的方框部分为待排序的数列部分，双下画线的元素为待排序的数列中最小的元素，单下画线的元素为待排序的数列的首元素，每一趟让它们进行交换，最终得到有序数列。<br />
+<h2>
+	简单选择排序的实现</h2>
+简单选择排序的实现代码如下：<br />
+<pre class="java">
+public class SelectSort {
+    private int[] array;
+    public SelectSort(int[] array) {
+        this.array = array;
+    }
+   
+    public void sort() {
+        int length = array.length;
+        for (int i = 0; i &lt; length; i++) {
+            int minIndex = i;
+           
+            for (int j = i + 1; j &lt; array.length; j++) {
+                if (array[j] &lt; array[minIndex]) {
+                    minIndex = j;
+                }
+            }
+           
+            if (minIndex != i) {
+                int temp = array[minIndex];
+                array[minIndex] = array[i];
+                array[i] = temp;
+            }
+        }
+    }
+   
+    public void print() {
+        for (int i = 0; i &lt; array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
+}</pre>
+通过代码，我们发现这个算法其实挺烂的，而且应该有可以优化的方法，这里先卖个关子。测试代码如下：
+<pre class="java">
+public class SortTest {
+    public static void main(String[] args) {
+        testSelectSort();
+    }
+    /**
+     * 简单选择排序
+     */
+    private static void testSelectSort() {
+        int[] array = {5, 9, 1, 9, 5, 3, 7, 6, 1};
+        SelectSort selectSort = new SelectSort(array);
+        selectSort.sort();
+        selectSort.print();
+    }
+}</pre>
+<h2>
+	选择排序的特点及性能</h2>
+由于在简单选择排序中，我们一般在原本的待排序的<u><a href='/view/181.html' target='_blank'>数组</a></u>上排序并交换，基本上使用的都是常量级的额外空间，所以其<u><a href='/view/2.html' target='_blank'>空间复杂度</a></u>是 <code>O(1)</code>。<br />
+<br />
+在最好的情况下，每次要找的最大（或者最小）的元素就是待排序的数列的第1个元素，也就是说数列本身有序，这样我们只需要一次遍历且不需要交换，即可实现一趟排序；而在最坏的情况下，每次在数列中要找的元素都不是第 1 个元素，每次需要交换。比较的次数只与数列的长度有关，而在外部要遍历整个数列，也与长度有关，所以这样的双重循环不管在什么情况下，<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>都是 <code>O(n<sup>2</sup>)</code>。<br />
+<br />
+但由于选择排序不需要一个一个地向前移动，而是直接交换，而比较所消耗的 CPU 要比交换所消耗的 CPU 小一些，所以选择排序的时间复杂度相对于<u><a href='/view/70.html' target='_blank'>冒泡排序</a></u>会好一些。<br />
+<br />
+在稳定性方面，对于数列 6、6、1 来说，首先需要找到最小的一个元素与第 1 个元素进行交换，这时数列变为 1、6、6，我们发现两个 6 的顺序已经变了，所以选择排序是一个不稳定的排序算法。<br />
+<h2>
+	简单选择排序的优化</h2>
+通过选择排序的思想，我们知道选择排序的一个重要步骤是在待排序的数列中寻找最大（或者最小）的一个元素，那么如何寻找这个元素就成为一个可以优化的点。<br />
+<br />
+另外，我们每次都要寻找两个值中一个是最大值，一个是最小值。这时如果需要将数列从小到大排列，就要把最小值与待排序的数列的第1个元素进行交换，把最大值与待排序的数列的最后一个元素进行交换。这样我们一次就能寻找两个元素，使外层循环的时间缩短了一半，性能也提高了很多。而且通过一次遍历就可以直接找出两个最值，并没有其他性能损耗。这种一次找两个值的选择排序的算法实现，留给读者自己去尝试。<br />
+<h2>
+	选择排序的适用场景</h2>
+简单选择排序并不很常用，它只是选择排序的一个思想基础，选择排序还有其他方案可以实现。在理解了简单选择排序之后，我们就更容易理解和学习其他方案了。选择排序的用途非常广泛，之后我们继续讲解如何使用它们。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 120;
+window.arcId = "6223hinFDHiy7gcFk15ddMt8qbeoJSeJkfaw936tzjYxT6SAADYjEUisJA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

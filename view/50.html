@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>伙伴系统管理动态内存</title>
+<meta name="keywords" content="动态,存储,管理,之,伙伴,系统,动态,存储,管理," />
+<meta name="description" content="前面介绍了系统在分配与回收存储空间时采取的边界标识法。本节再介绍一种管理存储空间的方法 伙伴系统 。 伙伴系统本身是一种动态管理内存的方法，和边界标识法的区别是： 使用" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/github/memory/">动态内存管理</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/github/view/48.html">动态内存管理</a></dd><dd>8.2 <a href="/github/view/49.html">边界标识法</a></dd><dd>8.3 <a href="/github/view/50.html">伙伴系统</a></dd><dd>8.4 <a href="/github/view/51.html">系统垃圾回收机制</a></dd><dd>8.5 <a href="/github/view/52.html">内存紧缩（内存碎片化处理）</a></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>伙伴系统管理动态内存</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/49.html">边界标识法</a></span>
+                    <span class="next right"><a href="/view/51.html">系统垃圾回收机制</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/49.html";window.nextPageURL = "/view/51.html";</script>
+			<div id="arc-body">前面介绍了系统在分配与回收存储空间时采取的<u><a href='/view/49.html' target='_blank'>边界标识法</a></u>。本节再介绍一种管理存储空间的方法&mdash;&mdash;<span style="color:#b22222;"><u><a href='/view/50.html' target='_blank'>伙伴系统</a></u></span>。<br />
+<br />
+伙伴系统本身是一种动态管理内存的方法，和边界标识法的区别是：<span style="color:#b22222;">使用伙伴系统管理的存储空间，无论是空闲块还是占用块，大小都是 2 的 n 次幂（n 为正整数）。</span><br />
+<br />
+例如，系统中整个存储空间为 2<sup>m</sup> 个字。那么在进行若干次分配与回收后，可利用空间表中只可能包含空间大小为：2<sup>0</sup>、2<sup>1</sup>、2<sup>2</sup>、&hellip;、2<sup>m</sup> 的空闲块。<br />
+<blockquote>
+	<p>
+		字是一种计量单位，由若干个字节构成，不同位数的机器，字所包含的字节数不同。例如，8 位机中一个字由 1 个字节组成；16 位机器一个字由 2 个字节组成。</p>
+</blockquote>
+<h2>
+	可利用空间表中结点构成</h2>
+伙伴系统中可利用空间表中的结点构成如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170928/2-1F92Q03525355.png" style="width: 338px; height: 147px;" /><br />
+	图 1 结点构成</div>
+<br />
+<span style="color:#b22222;">header 域表示为头部结点</span>，由 4 部分构成：
+<ul>
+	<li>
+		llink 和 rlink 为结点类型的指针域，分别用于指向直接前驱和直接后继结点。</li>
+	<li>
+		tag 值：用于标记内存块的状态，是占用块（用 1 表示）还是空闲块（用 0 表示）</li>
+	<li>
+		kval ：记录该存储块的容量。由于系统中各存储块都是 2 的 m 幂次方，所以 kval 记录 m 的值。</li>
+</ul>
+<br />
+代码表示为：
+<pre class="cpp">
+typedef struct WORD_b{
+    struct WORD_b *llink;//指向直接前驱
+    int tag;//记录该块是占用块还是空闲块
+    int kval;//记录该存储块容量大小为2的多少次幂
+    struct WORD_b *rlink;//指向直接后继
+    OtherType other;//记录结点的其它信息
+}WORD_b,head;</pre>
+<br />
+在伙伴系统中，由于系统会不断地接受用户的内存申请的请求，所以会产生很多大小不同但是都是容量为 2<sup>m</sup> 的内存块，所以为了在分配的时候查找方便，系统采用将大小相同的各自建立一个<u><a href='/view/160.html' target='_blank'>链表</a></u>。对于初始容量为 2<sup>m&nbsp;</sup>的一整块存储空间来说，形成的链表就有可能有 m+1 个，为了更好的对这些链表进行管理，系统将这 m+1 个链表的表头存储在<u><a href='/view/181.html' target='_blank'>数组</a></u>中，就类似于<u><a href='/view/203.html' target='_blank'>邻接表</a></u>的结构，如图 2。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170928/2-1F92Q04021135.png" style="width: 235px; height: 267px;" /><br />
+	图 2 伙伴系统的初始状态</div>
+<br />
+可利用空间表的代码表示为：
+<pre class="cpp">
+#define m 16//设定m的初始值
+typedef struct HeadNode {
+    int nodesize;//记录该链表中存储的空闲块的大小
+    WORD_b * first;//相当于链表中的next指针的作用
+}FreeList[m+1];//一维数组</pre>
+<h2>
+	分配算法</h2>
+伙伴系统的分配算法很简单。假设用户向系统申请大小为 n 的存储空间，若 2<sup>k-1</sup> &lt; n &lt;= 2<sup>k</sup>，此时就需要查看可利用空间表中大小为 2<sup>k</sup> 的链表中有没有可利用的空间结点：
+<ul>
+	<li>
+		如果该链表不为 NULL，可以直接采用头插法从头部取出一个结点，提供给用户使用；</li>
+	<li>
+		如果大小为 2<sup>k</sup> 的链表为 NULL，就需要依次查看比 2<sup>k</sup> 大的链表，找到后从链表中删除，截取相应大小的空间给用户使用，剩余的空间，根据大小插入到相应的链表中。</li>
+</ul>
+<br />
+例如，用户向系统申请一块大小为 7 个字的空间，而系统总的内存为 2<sup>4</sup> 个字，则此时按照伙伴系统的分配算法得出：2<sup>2</sup> &lt; 7 &lt; 2<sup>3</sup>，所以此时应查看可利用空间表中大小为 2<sup>3</sup> 的链表中是否有空闲结点：
+<ul>
+	<li>
+		如果有，则从该链表中摘除一个结点，直接分配给用户使用；</li>
+	<li>
+		如果没有，则需依次查看比 2<sup>3</sup> 大的各个链表中是否有空闲结点。假设，在大小 2<sup>4</sup> 的链表中有空闲块，则摘除该空闲块，分配给用户 2<sup>3</sup> 个字的空间，剩余 2<sup>3</sup> 个字，该剩余的空闲块添加到大小为 2<sup>3</sup> 的链表中。</li>
+</ul>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170928/2-1F92Q043552O.png" style="width: 424px; height: 202px;" /><br />
+	（A）分配前&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; （B）分配后<br />
+	图 3 伙伴系统分配过程</div>
+<h2>
+	回收算法</h2>
+无论使用什么内存管理机制，在内存回收的问题上都会面临一个共同的问题：<span style="color:#b22222;">如何把回收的内存进行有效地整合，伙伴系统也不例外</span>。<br />
+<br />
+当用户申请的内存块不再使用时，系统需要将这部分存储块回收，回收时需要判断是否可以和其它的空闲块进行合并。<br />
+<br />
+在寻找合并对象时，伙伴系统和边界标识法不同，在伙伴系统中每一个存储块都有各自的<span style="color:#008000;">&ldquo;伙伴&rdquo;</span>，当用户释放存储块时只需要判断该内存块的伙伴是否为空闲块，如果是则将其合并，然后合并的新的空闲块还需要同其伙伴进行判断整合。反之直接将存储块根据大小插入到可利用空间表中即可。<br />
+<br />
+判断一个存储块的伙伴的位置时，采用的方法为：如果该存储块的起始地址为 p，大小为 2<sup>k</sup>，则其伙伴所在的起始地址为：<br />
+<img alt="" src="/uploads/allimg/170928/2-1F92Q0444M94.png" style="width: 224px; height: 88px;" /><br />
+例如，当大小为 2<sup>8</sup> ，起始地址为 512 的伙伴块的起始地址的计算方式为：<br />
+由于 512 MOD 2<sup>9</sup>=0，所以，512+2<sup>8</sup>=768，及如果该存储块回收时，只需要查看起始地址为 768 的存储块的状态，如果是空闲块则两者合并，反之直接将回收的释放块链接到大小为 2<sup>8</sup> 的链表中。
+<h2>
+	总结</h2>
+使用伙伴系统进行存储空间的管理过程中，在用户申请空间时，由于大小不同的空闲块处于不同的链表中，所以分配完成的速度会更快，算法相对简单。<br />
+<br />
+回收存储空间时，对于空闲块的合并，不是取决于该空闲块的相邻位置的块的状态；而是完全取决于其伙伴块。所以即使其相邻位置的存储块时空闲块，但是由于两者不是伙伴的关系，所以也不会合并。这也就是该系统的缺点之一：由于在合并时只考虑伙伴，所以容易产生存储的碎片。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/49.html">边界标识法</a></span>
+                    <span class="next right"><a href="/view/51.html">系统垃圾回收机制</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/49.html";window.nextPageURL = "/view/51.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 50;
+window.arcId = "a5abdAPw+/qeEjrbuOGS98UKepHtmrWsfw6Zp7SGJ3L5JECjxQkjWPk0";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

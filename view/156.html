@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构和算法的关系和区别</title>
+<meta name="keywords" content="数据结构,和,算法,的,关系,区别,由于,大量," />
+<meta name="description" content="由于大量数据结构教程中都将数据结构的知识和算法掺杂起来讲，使很多初学者认为数据结构就是在讲算法，这样理解是不准确的。 数据结构和算法之间完全是两个相互独立的学科，如" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构和算法的关系和区别</h1>
+			<div id="arc-body">由于大量数据结构教程中都将数据结构的知识和算法掺杂起来讲，使很多初学者认为数据结构就是在讲算法，这样理解是不准确的。<br />
+<br />
+<span style="color:#b22222;">数据结构和算法之间完全是两个相互独立的学科，如果非说它们有关系，那也只是互利共赢、&ldquo;1+1&gt;2&rdquo;的关系。</span><br />
+<br />
+最明显的例子，如果你认为数据结构是在讲算法，那么大学我们还学《算法导论》，后者几乎囊括了前者使用的全部算法，有什么必要同时开设这两门课程呢？<br />
+<br />
+我们还可以从分析问题的角度去理清数据结构和算法之间的关系。通常，每个问题的解决都经过以下两个步骤：
+<ol>
+	<li>
+		分析问题，从问题中提取出有价值的数据，将其存储；</li>
+	<li>
+		对存储的数据进行处理，最终得出问题的答案；</li>
+</ol>
+<br />
+数据结构负责解决第一个问题，即数据的存储问题。通过前面的学习我们知道，针对数据不同的逻辑结构和物理结构，可以选出最优的数据存储结构来存储数据。<br />
+<br />
+而剩下的第二个问题，属于算法的职责范围。算法，从表面意思来理解，即解决问题的方法。我们知道，评价一个算法的好坏，取决于在解决相同问题的前提下，哪种算法的效率最高，而这里的效率指的就是处理数据、分析数据的能力。<br />
+<br />
+<span style="color:#b22222;">因此我们得出这样的结论，数据结构用于解决数据存储问题，而算法用于处理和分析数据，它们是完全不同的两类学科。</span><br />
+<br />
+也正因为如此，你可以认为数据结构和算法存在&ldquo;互利共赢、1+1&gt;2&rdquo;的关系。在解决问题的过程中，数据结构要配合算法选择最优的存储结构来存储数据，而算法也要结合数据存储的特点，用最优的策略来分析并处理数据，由此可以最高效地解决问题。
+<div style="text-align: center;">
+	<br />
+	<img alt="顺序表存储数据示意图" src="/uploads/allimg/181120/2-1Q1200R14U30.gif" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 <u><a href='/view/158.html' target='_blank'>顺序表</a></u>存储数据示意图</div>
+<br />
+例如，有这样一个问题，计算&ldquo;1+2+3+4+5&rdquo;的值。这个问题我们可以这样来分析：
+<ul>
+	<li>
+		计算 1、2、3、4 和 5 的和，首先要选择一种数据存储方式将它们存储起来，通过前面的学习我们知道，数据之间具有&ldquo;一对一&rdquo;的逻辑关系，最适合用<u><a href='/view/157.html' target='_blank'>线性表</a></u>来存储。结合算法的实现，我们选择顺序表来存储数据（而不是<u><a href='/view/160.html' target='_blank'>链表</a></u>），如图 1 所示；</li>
+	<li>
+		接下来，我们选择算法。由于数据集中存放，因此我们可以设计这样一个算法，使用一个初始值为 0 的变量 num 依次同存储的数据做&ldquo;加&rdquo;运算，最后得到的新 num 值就是最终结果。</li>
+</ul>
+<p class="info-box">
+	选择顺序表而不是链表的原因，是顺序表遍历数据比链表更高效。后续讲顺序表时会做详细介绍。</p>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 156;
+window.arcId = "1b76+KHL2T9uASUgnYwVUFO6M5Qt9abtLUD4B/8W9vRBgxJpgr/1WZkJng";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

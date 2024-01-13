@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>什么是线性表（超详细）</title>
+<meta name="keywords" content="什么,是,线性,表,超,详细,通过,前,面的,学习," />
+<meta name="description" content="通过前面的学习我们知道，对于具有一对一关系的数据，最佳的存储方式是使用线性表结构。那么，什么是线性表存储结构呢？ 线性表存储结构 ，可以理解为用一根线儿将所有数据依次" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">2</span> <a href="/github/linear_list/">线性表</a> </dd><dl class="dl-sub"><dd>2.1 <a href="/github/view/157.html">什么是线性表</a></dd><dd>2.2 <a href="/github/view/158.html">顺序表是什么</a></dd><dd>2.3 <a href="/github/view/159.html">顺序表的基本操作</a></dd><dd>2.4 <a href="/github/view/160.html">链表是什么</a></dd><dd>2.5 <a href="/github/view/161.html">链表的基本操作</a></dd><dd>2.6 <a href="/github/view/vip_216.html">顺序表和链表有哪些不同？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.7 <a href="/github/view/279.html">存储结构和存取结构，完全不是一码事！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.8 <a href="/github/view/277.html">4种算法，实现单链表的反转！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.9 <a href="/github/view/163.html">静态链表：更高级的线性表</a></dd><dd>2.10 <a href="/github/view/164.html">静态链表基本操作</a></dd><dd>2.11 <a href="/github/view/vip_218.html">静态链表和动态链表区别</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.12 <a href="/github/view/7.html">循环链表实现约瑟夫环</a></dd><dd>2.13 <a href="/github/view/166.html">双向链表是什么</a></dd><dd>2.14 <a href="/github/view/167.html">双向链表的基本操作</a></dd><dd>2.15 <a href="/github/view/281.html">双向链表实现贪吃蛇游戏（含源码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.16 <a href="/github/view/vip_263.html">双向循环链表（C语言）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.17 <a href="/github/view/vip_233.html">[项目实践]俄罗斯轮盘赌小游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>什么是线性表（超详细）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/linear_list/">线性表</a></span>
+                    <span class="next right"><a href="/view/158.html">顺序表是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/linear_list/";window.nextPageURL = "/view/158.html";</script>
+			<div id="arc-body">通过前面的学习我们知道，具有&ldquo;一对一&rdquo;逻辑关系的数据，最佳的存储方式是使用<u><a href='/view/157.html' target='_blank'>线性表</a></u>。那么，什么是线性表呢？<br />
+<br />
+<font color="#008000">线性表，</font>全名为<font color="#008000">线性存储结构</font>。使用线性表存储数据的方式可以这样理解，即<span style="color:#b22222;">&ldquo;把所有数据</span><span style="color: rgb(178, 34, 34);">用一根线儿</span><span style="color:#b22222;"><u><a href='/view/175.html' target='_blank'>串</a></u>起来，再存储到物理空间中&rdquo;。</span>
+<div style="text-align: center;">
+	<br />
+	<img alt="&quot;一对一&quot;逻辑关系的数据" src="/uploads/allimg/181120/1-1Q120214QJ63.gif" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 &quot;一对一&quot;逻辑关系的数据</div>
+<br />
+如图 1 所示，这是一组具有&ldquo;一对一&rdquo;关系的数据，我们接下来采用线性表将其储存到物理空间中。<br />
+<br />
+首先，用&ldquo;一根线儿&rdquo;把它们按照顺序&ldquo;串&rdquo;起来，如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/181120/1-1Q12021551W22.gif" /><br />
+	图 2 数据的&quot;线性&quot;结构</div>
+<br />
+图 2 中，左侧是&ldquo;串&rdquo;起来的数据，右侧是空闲的物理空间。把这&ldquo;一串儿&rdquo;数据放置到物理空间，我们可以选择以下两种方式，如图 3 所示。
+<div style="text-align: center;">
+	<br />
+	<img alt="两种线性存储结构" src="/uploads/allimg/181120/1-1Q120215009361.gif" /><br />
+	图 3 两种线性存储结构</div>
+<br />
+图 3a) 是多数人想到的存储方式，而图 3b) 却少有人想到。我们知道，数据存储的成功与否，取决于是否能将数据完整地复原成它本来的样子。如果把图 3a) 和图 3b) 线的一头扯起，你会发现数据的位置依旧没有发生改变（和图 1 一样）。因此可以认定，这两种存储方式都是正确的。<br />
+<br />
+<span style="color:#b22222;">将具有&ldquo;一对一&rdquo;关系的数据&ldquo;线性&rdquo;地存储到物理空间中，这种存储结构就称为</span><span style="color:#008000;">线性存储结构（简称线性表）</span><span style="color:#b22222;">。</span><br />
+<br />
+使用线性表存储的数据，如同向<u><a href='/view/181.html' target='_blank'>数组</a></u>中存储数据那样，要求数据类型必须一致，也就是说，线性表存储的数据，要么全不都是整形，要么全部都是字符串。一半是整形，另一半是字符串的一组数据无法使用线性表存储。<br />
+<h2>
+	顺序存储结构和链式存储结构</h2>
+图 3 中我们可以看出，线性表存储数据可细分为以下 2 种：
+<ol>
+	<li>
+		如图 3a) 所示，将数据依次存储在连续的整块物理空间中，这种存储结构称为<span style="color:#008000;">顺序存储结构</span>（简称<span style="color:#008000;"><u><a href='/view/158.html' target='_blank'>顺序表</a></u></span>）；</li>
+	<li>
+		如图 3b) 所示，数据分散的存储在物理空间中，通过一根线保存着它们之间的逻辑关系，这种存储结构称为<span style="color:#008000;">链式存储结构</span>（简称<span style="color:#008000;"><u><a href='/view/160.html' target='_blank'>链表</a></u></span>）；</li>
+</ol>
+<br />
+也就是说，<span style="color:#b22222;">线性表存储结构可细分为顺序存储结构和链式存储结构。</span><br />
+<h2>
+	线性表常用术语</h2>
+数据结构中，一组数据中的每个个体被称为&ldquo;<span style="color:#008000;">数据元素</span>&rdquo;（简称&ldquo;<span style="color:#008000;">元素</span>&rdquo;）。例如，图 1 显示的这组数据，其中 1、2、3、4 和 5 都是这组数据钟的一个元素。<br />
+<br />
+另外，对于具有&ldquo;一对一&rdquo;逻辑关系的数据，我们一直在用&ldquo;某一元素的左侧（前边）或右侧（后边）&rdquo;这样不专业的词，其实线性表中有更准确的术语：
+<ul>
+	<li>
+		某一元素的左侧相邻元素称为&ldquo;<span style="color:#008000;">直接前驱</span>&rdquo;，位于此元素左侧的所有元素都统称为&ldquo;<span style="color:#008000;">前驱元素</span>&rdquo;；</li>
+	<li>
+		某一元素的右侧相邻元素称为&ldquo;<span style="color:#008000;">直接后继</span>&rdquo;，位于此元素右侧的所有元素都统称为&ldquo;<span style="color:#008000;">后继元素</span>&rdquo;；</li>
+</ul>
+<br />
+以图 1 数据中的元素 3 来说，它的直接前驱是 2 ，此元素的前驱元素有 2 个，分别是 1 和 2；同理，此元素的直接后继是 4 ，后继元素也有 2 个，分别是 4 和 5。如图 4 所示：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="前驱和后继" src="/uploads/allimg/181120/1-1Q1202152464R.gif" /><br />
+	图 4 前驱和后继</div>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/linear_list/">线性表</a></span>
+                    <span class="next right"><a href="/view/158.html">顺序表是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/linear_list/";window.nextPageURL = "/view/158.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 157;
+window.arcId = "229bMIkuBjXJhsFlWB9W2VUQagrUOGBQe0fncxW23H+rtHp92aEih1KUPg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

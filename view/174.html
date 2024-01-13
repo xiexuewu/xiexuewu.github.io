@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>链式队列及基本操作（C语言）完全攻略</title>
+<meta name="keywords" content="链式,队列,及其,基本操作,语言,详解,链式," />
+<meta name="description" content="链式队列 ，简称 链队列 ， 即使用链表实现的队列存储结构。 链式队列的实现思想同顺序队列类似，只需创建两个指针（命名为 top 和 rear）分别指向链表中队列的对头元素和队尾元素" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/github/stack_queue/">栈和队列</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/github/view/169.html">什么是栈</a></dd><dd>3.2 <a href="/github/view/170.html">顺序栈的基本操作</a></dd><dd>3.3 <a href="/github/view/171.html">链栈的基本操作</a></dd><dd>3.4 <a href="/github/view/vip_221.html">[项目实践]进制转换器</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.5 <a href="/github/view/vip_222.html">[项目实践]括号匹配</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.6 <a href="/github/view/172.html">什么是队列</a></dd><dd>3.7 <a href="/github/view/173.html">顺序队列及其实现</a></dd><dd>3.8 <a href="/github/view/174.html">链式队列及基本操作</a></dd><dd>3.9 <a href="/github/view/vip_220.html">[项目实践]变态的停车场管理系统</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/github/view/vip_223.html">[项目实践]扑克牌小游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>链式队列及基本操作（C语言）完全攻略</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/173.html">顺序队列及其实现</a></span>
+                    <span class="next right"><a href="/view/vip_220.html">[项目实践]变态的停车场管理系统</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/173.html";window.nextPageURL = "/view/vip_220.html";</script>
+			<div id="arc-body"><span style="color:#008000;">链式<u><a href='/view/172.html' target='_blank'>队列</a></u></span>，简称&quot;<span style="color:#008000;"><u><a href='/view/174.html' target='_blank'>链队列</a></u></span>&quot;，<span style="color:#b22222;">即使用<u><a href='/view/160.html' target='_blank'>链表</a></u>实现的队列存储结构。</span><br />
+<br />
+链式队列的实现思想同<u><a href='/view/173.html' target='_blank'>顺序队列</a></u>类似，只需创建两个指针（命名为 top 和 rear）分别指向链表中队列的队头元素和队尾元素，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示:
+<div style="text-align: center;">
+	<br />
+	<img alt="链式队列的初始状态" src="/uploads/allimg/181205/2-1Q205211052O7.gif" /><br />
+	图 1 链式队列的初始状态</div>
+<br />
+图 1 所示为链式队列的初始状态，此时队列中没有存储任何数据元素，因此 top 和 rear 指针都同时指向头节点。<br />
+<p class="info-box">
+	在创建链式队列时，强烈建议初学者创建一个带有头节点的链表，这样实现链式队列会更简单。</p>
+由此，我们可以编写出创建链式队列的 C 语言实现代码为:
+<pre class="cpp">
+//链表中的节点结构
+typedef struct QNode{
+    int data;
+    struct QNode * next;
+}QNode;
+//创建链式队列的函数
+QNode * initQueue(){
+    //创建一个头节点
+    QNode * queue=(QNode*)malloc(sizeof(QNode));
+    //对头节点进行初始化
+    queue-&gt;next=NULL;
+    return queue;
+}</pre>
+<h2>
+	链式队列数据入队</h2>
+链队队列中，当有新的数据元素入队，只需进行以下 3 步操作：
+<ol>
+	<li>
+		将该数据元素用节点包裹，例如新节点名称为 elem；</li>
+	<li>
+		与 rear 指针指向的节点建立逻辑关系，即执行 rear-&gt;next=elem；</li>
+	<li>
+		最后移动 rear 指针指向该新节点，即 rear=elem；</li>
+</ol>
+<br />
+由此，新节点就入队成功了。<br />
+<br />
+例如，在图 1 的基础上，我们依次将 <code>{1,2,3}</code> 依次入队，各个数据元素入队的过程如图 2 所示:
+<div style="text-align: center;">
+	<br />
+	<img alt="{1,2,3} 入链式队列" src="/uploads/allimg/181205/2-1Q2052111543C.gif" /><br />
+	图 2 {1,2,3} 入链式队列</div>
+<br />
+数据元素入链式队列的 C 语言实现代码为：<br />
+<pre class="cpp">
+QNode* enQueue(QNode * rear,int data){
+    //1、用节点包裹入队元素
+    QNode * enElem=(QNode*)malloc(sizeof(QNode));
+    enElem-&gt;data=data;
+    enElem-&gt;next=NULL;
+    //2、新节点与rear节点建立逻辑关系
+    rear-&gt;next=enElem;
+    //3、rear指向新节点
+    rear=enElem;
+    //返回新的rear，为后续新元素入队做准备
+    return rear;
+}</pre>
+<h2>
+	链式队列数据出队</h2>
+当链式队列中，有数据元素需要出队时，按照 &quot;先进先出&quot; 的原则，只需将存储该数据的节点以及它之前入队的元素节点按照原则依次出队即可。这里，我们先学习如何将队头元素出队。<br />
+<br />
+链式队列中队头元素出队，需要做以下 3 步操作：
+<ol>
+	<li>
+		通过 top 指针直接找到队头节点，创建一个新指针 p 指向此即将出队的节点；</li>
+	<li>
+		将 p 节点（即要出队的队头节点）从链表中摘除；</li>
+	<li>
+		释放节点 p，回收其所占的内存空间；</li>
+</ol>
+<br />
+例如，在图 2b) 的基础上，我们将元素 1 和 2 出队，则操作过程如图 3 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="链式队列中数据元素出队" src="/uploads/allimg/181205/2-1Q205211240637.gif" /><br />
+	图 3 链式队列中数据元素出队</div>
+<br />
+链式队列中队头元素出队的 C 语言实现代码为：
+<pre class="cpp">
+void DeQueue(QNode * top,QNode * rear){
+    if (top-&gt;next==NULL) {
+        printf(&quot;队列为空&quot;);
+        return ;
+    }
+    // 1、
+    QNode * p=top-&gt;next;
+    printf(&quot;%d&quot;,p-&gt;data);
+    top-&gt;next=p-&gt;next;
+    if (rear==p) {
+        rear=top;
+    }
+    free(p);
+}</pre>
+注意，将队头元素做出队操作时，需提前判断队列中是否还有元素，如果没有，要提示用户无法做出队操作，保证程序的健壮性。<br />
+<h2>
+	总结</h2>
+通过学习链式队列最基本的数据入队和出队操作，我们可以就实际问题，对以上代码做适当的修改。<br />
+<br />
+前面在学习顺序队列时，由于<u><a href='/view/158.html' target='_blank'>顺序表</a></u>的局限性，我们在顺序队列中实现数据入队和出队的基础上，又对实现代码做了改进，令其能够充分利用<u><a href='/view/181.html' target='_blank'>数组</a></u>中的空间。链式队列就不需要考虑空间利用的问题，因为链式队列本身就是实时申请空间。因此，这可以算作是链式队列相比顺序队列的一个优势。<br />
+<br />
+这里给出链式队列入队和出队的完整 C 语言代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct QNode{
+&nbsp;&nbsp;&nbsp; int data;
+&nbsp;&nbsp;&nbsp; struct QNode * next;
+}QNode;
+QNode * initQueue(){
+&nbsp;&nbsp;&nbsp; QNode * queue=(QNode*)malloc(sizeof(QNode));
+&nbsp;&nbsp;&nbsp; queue-&gt;next=NULL;
+&nbsp;&nbsp;&nbsp; return queue;
+}
+QNode* enQueue(QNode * rear,int data){
+&nbsp;&nbsp;&nbsp; QNode * enElem=(QNode*)malloc(sizeof(QNode));
+&nbsp;&nbsp;&nbsp; enElem-&gt;data=data;
+&nbsp;&nbsp;&nbsp; enElem-&gt;next=NULL;
+&nbsp;&nbsp;&nbsp; //使用尾插法向链队列中添加数据元素
+&nbsp;&nbsp;&nbsp; rear-&gt;next=enElem;
+&nbsp;&nbsp;&nbsp; rear=enElem;
+&nbsp;&nbsp;&nbsp; return rear;
+}
+QNode* DeQueue(QNode * top,QNode * rear){
+&nbsp;&nbsp;&nbsp; if (top-&gt;next==NULL) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf(&quot;\n队列为空&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return rear;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; QNode * p=top-&gt;next;
+&nbsp;&nbsp;&nbsp; printf(&quot;%d &quot;,p-&gt;data);
+&nbsp;&nbsp;&nbsp; top-&gt;next=p-&gt;next;
+&nbsp;&nbsp;&nbsp; if (rear==p) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rear=top;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; free(p);
+&nbsp;&nbsp;&nbsp; return rear;
+}
+int main() {
+&nbsp;&nbsp;&nbsp; QNode * queue,*top,*rear;
+&nbsp;&nbsp;&nbsp; queue=top=rear=initQueue();//创建头结点
+&nbsp;&nbsp;&nbsp; //向链队列中添加结点，使用尾插法添加的同时，队尾指针需要指向链表的最后一个元素
+&nbsp;&nbsp;&nbsp; rear=enQueue(rear, 1);
+&nbsp;&nbsp;&nbsp; rear=enQueue(rear, 2);
+&nbsp;&nbsp;&nbsp; rear=enQueue(rear, 3);
+&nbsp;&nbsp;&nbsp; rear=enQueue(rear, 4);
+&nbsp;&nbsp;&nbsp; //入队完成，所有数据元素开始出队列
+&nbsp;&nbsp;&nbsp; rear=DeQueue(top, rear);
+&nbsp;&nbsp;&nbsp; rear=DeQueue(top, rear);
+&nbsp;&nbsp;&nbsp; rear=DeQueue(top, rear);
+&nbsp;&nbsp;&nbsp; rear=DeQueue(top, rear);
+&nbsp;&nbsp;&nbsp; rear=DeQueue(top, rear);
+&nbsp;&nbsp;&nbsp; return 0;
+}
+</pre>
+程序运行结果为：
+<p class="info-box">
+	1 2 3 4<br />
+	队列为空</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/173.html">顺序队列及其实现</a></span>
+                    <span class="next right"><a href="/view/vip_220.html">[项目实践]变态的停车场管理系统</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/173.html";window.nextPageURL = "/view/vip_220.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 174;
+window.arcId = "6022SwwIabTkvb61wLSrMUSqXXEFT10PZ90m2lNc7Qi8iG5haBJuDlpjHg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

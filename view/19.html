@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>广义表及M元多项式的C语言代码实现</title>
+<meta name="keywords" content="大话,数据结构,中的,广义,表,广义,表,又," />
+<meta name="description" content="广义表，又被称为 列表 。 记作： LS=（a1,a2,,an）（LS为广义表的名称，an表示广义表中的数据）。 广义表可以看作是线性表的推广。两者区别是：线性表中的数据元素只能表示单个数据" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>广义表及M元多项式的C语言代码实现</h1>
+			<div id="arc-body"><span style="color:#b22222;"><u><a href='/view/189.html' target='_blank'>广义表</a></u>，又称为</span><span style="color:#008000;">列表</span><span style="color:#b22222;">。</span>记作：
+<div class="info-box">
+	LS = （a<sub>1</sub>,a<sub>2</sub>,&hellip;,a<sub>n</sub>） ;（ LS 为广义表的名称， a<sub>n</sub> 表示广义表中的数据）。</div>
+广义表可以看作是<u><a href='/view/157.html' target='_blank'>线性表</a></u>的推广。两者区别是：线性表中的数据元素只能表示单个数据元素；广义表中的单个数据元素 a<sub>i </sub>，既可以是单个元素，也可以是广义表。
+<h2>
+	原子和子表</h2>
+<span style="color:#b22222;">在广义表中，单个元素被称为 </span><span style="color:#008000;">&ldquo;原子&rdquo;</span><span style="color:#b22222;">；包含的广义表被称为 </span><span style="color:#008000;">&ldquo;子表&rdquo;</span><span style="color:#b22222;">。</span><br />
+<br />
+例如：
+<ol>
+	<li>
+		A = ()&nbsp; ：A&nbsp;表示一个广义表，只不过表是空的，广义表 A 的长度为 0。</li>
+	<li>
+		B = (e)&nbsp; ：广义表 B 中只有一个原子 e ，长度为 1。</li>
+	<li>
+		C = (a,(b,c,d)) ：广义表 C 中有两个元素，原子 a 和子表 (b,c,d) ，广义表C的长度为 2。&nbsp;</li>
+	<li>
+		D = (A,B,C) ：广义表 D 中有三个元素：子表 A、B、C，长度为 3 ，这种表示方式等同于： D = ((),(e),(b,c,d)) 。</li>
+	<li>
+		E = (a,E)&nbsp; ：广义表 E 中有两个元素，原子 a 和它本身，长度为 2 。这是一个递归的表，等同于：E = (a,(a,(a,&hellip;)))。</li>
+</ol>
+<div class="info-box">
+	A = () 和 A = (()) 是不一样的：前者是空表，长度为 0 ；后者表的长度为 1 ，包含的元素是一个子表，只不过这个子表是空表。</div>
+<h2>
+	表头和表尾</h2>
+当广义表不为空时，称表中的第一个元素为表的&nbsp;<span style="color:#008000;">&ldquo;表头&rdquo;&nbsp;</span>；剩余所有元素组成的表为&nbsp;<span style="color:#008000;">&ldquo;表尾&rdquo;&nbsp;</span>。
+<div class="info-box">
+	任何一个非空广义表，表尾肯定是广义表。</div>
+例如：上边例子中的 D = (A,B,C) ，子表 A 为广义表 D 的表头；而 (B,C) 组成的表为 D 的表尾。<br />
+<br />
+<span style="color:#b22222;">非空广义表是由表头和表尾构成，反过来说也对：给定一个表头和表尾，可以唯一确定一个广义表。</span>
+<h2>
+	广义表中结点结构</h2>
+由于广义表中的数据元素类型分为原子和子表，难以使用顺序存储结构表示，所以通常采用<span style="color:#008000;">链式存储结构</span>。<br />
+<br />
+根据原子和子表的不同，链式存储中的结点需要用两种不同的结构表示。对于原子来说，需要由两部分组成：标志位 + 值域（如<u><a href='/view/200.html' target='_blank'>图</a></u>1（A））；子表需要由三部分组成：标志位 + 指向表头的指针域 + 指向表尾的指针域（如图1（B））。<br />
+<div class="info-box">
+	两者都有一个相同的标志位，作用是为了能够区分出原子和字表，一般标志位为1，表示子表；标志位为0，表示原子。</div>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170720/2-1FH0161229619.png" style="width: 250px; height: 150px;" /><br />
+	图1 广义表的<u><a href='/view/160.html' target='_blank'>链表</a></u>结点结构</div>
+代码表示：
+<pre class="cpp">
+typedef struct GLNode{
+    int tag;//标志域
+    union{
+        char atom;//原子结点的值域
+        struct{
+            struct GLNode * hp,*tp;
+        }ptr;//子表结点的指针域，hp指向表头；tp指向表尾
+    };
+}*Glist;</pre>
+例如，使用图1的链表结构表示广义表 C = (a,(b,c,d))，效果图为：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0161302422.png" style="width: 400px; height: 111px;" /><br />
+	图2 广义表C的结构示意图</div>
+实现代码为：
+<pre class="cpp">
+Glist creatGlist(Glist C){
+    //广义表C
+    C=(Glist)malloc(sizeof(Glist));
+    C-&gt;tag=1;
+    //表头原子&lsquo;a&rsquo;
+    C-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
+    C-&gt;ptr.hp-&gt;tag=0;
+    C-&gt;ptr.hp-&gt;atom=&#39;a&#39;;
+    //表尾子表（b,c,d）,是一个整体
+    C-&gt;ptr.tp=(Glist)malloc(sizeof(Glist));
+    C-&gt;ptr.tp-&gt;tag=1;
+    C-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
+    C-&gt;ptr.tp-&gt;ptr.tp=NULL;
+    //开始存放下一个数据元素（b,c,d）,表头为&lsquo;b&rsquo;，表尾为（c,d）
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=1;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp-&gt;tag=0;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp-&gt;atom=&#39;b&#39;;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp=(Glist)malloc(sizeof(Glist));
+    //存放子表(c,d)，表头为c，表尾为d
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;tag=1;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=0;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp-&gt;atom=&#39;c&#39;;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp=(Glist)malloc(sizeof(Glist));
+    //存放表尾d
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;tag=1;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=0;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp-&gt;atom=&#39;d&#39;;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.tp=NULL;
+    return C;
+}</pre>
+<h2>
+	结点结构的另一种表示方式</h2>
+除了上边的那种表示结点的方式，还可以采用另外一种表示形式，不同在于：表结点和原子结点都添加了一个指向下一个数据元素的指针；而子表结点中只保留了指向表头结点的指针，删除了指向表尾的指针。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH016140E27.png" style="width: 250px; height: 115px;" /><br />
+	图3 广义表的另一种结点结构</div>
+代码表示为：
+<pre class="cpp">
+typedef struct GLNode{
+    int tag;//标志域
+    union{
+        int atom;//原子结点的值域
+        struct GLNode *hp;//子表结点的指针域，hp指向表头
+    };
+    struct GLNode * tp;//这里的tp相当于链表的next指针，用于指向下一个数据元素
+}*Glist;</pre>
+例如，用这种结构结构表示C = (a,(b,c,d))，效果图为：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0161433951.png" style="width: 467px; height: 140px;" /><br />
+	图4 广义表C的结构示意图</div>
+实现代码：
+<pre class="cpp">
+Glist creatGlist(Glist C){
+    C=(Glist)malloc(sizeof(Glist));
+    C-&gt;tag=1;
+    C-&gt;hp=(Glist)malloc(sizeof(Glist));
+    C-&gt;tp=NULL;
+    //表头原子a
+    C-&gt;hp-&gt;tag=0;
+    C-&gt;atom=&#39;a&#39;;
+    C-&gt;hp-&gt;tp=(Glist)malloc(sizeof(Glist));
+    C-&gt;hp-&gt;tp-&gt;tag=1;
+    C-&gt;hp-&gt;tp-&gt;hp=(Glist)malloc(sizeof(Glist));
+    C-&gt;hp-&gt;tp-&gt;tp=NULL;
+    //原子b
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;tag=0;
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;atom=&#39;b&#39;;
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp=(Glist)malloc(sizeof(Glist));
+    //原子c
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tag=0;
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;atom=&#39;c&#39;;
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tp=(Glist)malloc(sizeof(Glist));
+    //原子d
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tp-&gt;tag=0;
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tp-&gt;atom=&#39;d&#39;;
+    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tp-&gt;tp=NULL;
+    return C;
+}</pre>
+<h2>
+	总结</h2>
+在编写代码时，一定要注意不要破坏广义表中数据元素之间的关系，例如：C1 = (a,b,c,d)和 C2 = (a,(b,c),d)，两个广义表中数据元素是一样的，但是数据元素之间的关系不同，在 C1 中，各原子之间是并列的，而 C2 中，原子 a 和子表 (b,c) 和 d 是并列的。
+<h2>
+	补：M元多项式的表示</h2>
+例如:
+<div class="info-box">
+	P(x,y,z) = x<sup>10</sup>y<sup>3</sup>z<sup>2</sup> + 2x<sup>6</sup>y<sup>3</sup>z<sup>2</sup> + 3x<sup>5</sup>y<sup>2</sup>z<sup>2</sup> + x<sup>4</sup>y<sup>4</sup>z + 6x<sup>3</sup>y<sup>4</sup>z + 2yz + 15</div>
+这是一个3元多项式(有3个变量：x,y,z)，使用广义表表示M元多项式，首先需要对多项式做一下变形:
+<div class="info-box">
+	P(x,y,z)=((x<sup>10</sup>+2x<sup>6</sup>)y<sup>3</sup>+3x<sup>5</sup>y<sup>2</sup>)z<sup>2</sup>+((x<sup>4</sup>+6x<sup>3</sup>)y<sup>4</sup>+2y)z+15</div>
+经过变形后，P(x,y,z)可以这样表示：
+<div class="info-box">
+	P(x,y,z)=Az<sup>2</sup>+Bz+15，其中：A=Cy<sup>3</sup>+Dy<sup>2</sup>，B=Ey<sup>4</sup>+Fy，C=x<sup>10</sup>+2x<sup>6</sup>，D=3x<sup>5</sup>，E=x<sup>4</sup>+6x<sup>3</sup>，F=2</div>
+<br />
+经过两轮转化后，P这个 3 元多项式分解成了由 A 多项式和 B 多项式组成的一元多项式（只有一个变元 z ），而 A 也变成了由 C 多项式和 D 多项式组成的一元多项式，&hellip;。<br />
+<br />
+当全部转化成能用一元多项式表示时，每一个一元多项式只需要存储各项的指数和系数就可以了。<br />
+<br />
+广义表中每个结点的构成如图5所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0162003913.png" style="width: 250px; height: 140px;" /><br />
+	图5 多项式结点构成</div>
+代码表示：
+<pre class="cpp">
+typedef struct MPNode{
+    int tag;//区分原子结点和子表结点（0代表原子；1代表子表）
+    int exp;//存放指数域
+    union{
+        int coef;//存放多项式的系数
+        struct MPNode * hp;//当多项式系数为子表时，用它
+    };
+    struct MPNode * tp;//相当于线性链表的next，指向下一个数据元素
+}*MPList;</pre>
+<div>
+	注意：在表示多项式的时候，每一个一元多项式，都要额外添加一个表头结点，用于记录此一元多项式中的变元（是x，y还是z），而所有的变元可以预先存储在<u><a href='/view/181.html' target='_blank'>数组</a></u>中，这样就可以利用每一个表头结点中的 exp 变量表示变元所在数组中的位置下标。</div>
+<br />
+实现代码：
+<pre class="cpp">
+MPList initP(MPList P){
+    char a[]=&quot;xyz&quot;;
+    MPList F=(MPList)malloc(sizeof(MPList));
+    F-&gt;tag=1;
+    F-&gt;exp=0;//表示F这个一员多项式中的变元位a[0]，也就是x
+    F-&gt;hp=NULL;
+   
+    F-&gt;tp=(MPList)malloc(sizeof(MPList));
+    F-&gt;tp-&gt;tag=0;
+    F-&gt;tp-&gt;exp=0;//x的指数为0
+    F-&gt;tp-&gt;coef=2;//系数为2
+    F-&gt;tp-&gt;tp=NULL;//tp截止，说明F=2;
+   
+    MPList E=(MPList)malloc(sizeof(MPList));
+    E-&gt;tag=1;
+    E-&gt;exp=0;//E中变元位a[0]，即x
+    E-&gt;hp=NULL;
+   
+    E-&gt;tp=(MPList)malloc(sizeof(MPList));
+    E-&gt;tp-&gt;tag=0;
+    E-&gt;tp-&gt;exp=4;
+    E-&gt;tp-&gt;coef=1;
+    E-&gt;tp-&gt;tp=(MPList)malloc(sizeof(MPList));
+    E-&gt;tp-&gt;tp-&gt;tag=0;
+    E-&gt;tp-&gt;tp-&gt;exp=3;
+    E-&gt;tp-&gt;tp-&gt;coef=6;
+    E-&gt;tp-&gt;tp-&gt;tp=NULL;//截止，E=1*x4+6*x3（x后为它的指数）
+   
+    MPList D=(MPList)malloc(sizeof(MPList));
+    D-&gt;tag=1;
+    D-&gt;exp=0;//D中变元为a[0],即x
+    D-&gt;hp=NULL;
+   
+    D-&gt;tp=(MPList)malloc(sizeof(MPList));
+    D-&gt;tp-&gt;tag=0;
+    D-&gt;tp-&gt;exp=5;
+    D-&gt;tp-&gt;coef=3;
+    D-&gt;tp-&gt;tp=NULL;//截止，D=3*x5(5是x的指数)；
+   
+    MPList C=(MPList)malloc(sizeof(MPList));
+    C-&gt;tag=1;
+    C-&gt;exp=0;//C中变元为a[0]=x；
+    C-&gt;hp=NULL;
+   
+    C-&gt;tp=(MPList)malloc(sizeof(MPList));
+    C-&gt;tp-&gt;tag=0;
+    C-&gt;tp-&gt;exp=10;
+    C-&gt;tp-&gt;coef=1;
+    C-&gt;tp-&gt;tp=(MPList)malloc(sizeof(MPList));
+    C-&gt;tp-&gt;tp-&gt;tag=0;
+    C-&gt;tp-&gt;tp-&gt;exp=6;
+    C-&gt;tp-&gt;tp-&gt;coef=2;
+    C-&gt;tp-&gt;tp-&gt;tp=NULL;//C=1*x10+2*x6
+   
+    MPList B=(MPList)malloc(sizeof(MPList));
+    B-&gt;tag=1;
+    B-&gt;exp=1;//B中变元为a[1]=y
+    B-&gt;hp=NULL;
+    B-&gt;tp=(MPList)malloc(sizeof(MPList));
+    B-&gt;tp-&gt;tag=1;
+    B-&gt;tp-&gt;exp=4;
+    B-&gt;tp-&gt;hp=E;
+    B-&gt;tp-&gt;tp=(MPList)malloc(sizeof(MPList));
+    B-&gt;tp-&gt;tp-&gt;tag=1;
+    B-&gt;tp-&gt;tp-&gt;exp=1;
+    B-&gt;tp-&gt;tp-&gt;hp=F;
+    B-&gt;tp-&gt;tp-&gt;tp=NULL;//B=E*y4+F*x1;
+   
+    MPList A=(MPList)malloc(sizeof(MPList));
+    A-&gt;tag=1;
+    A-&gt;exp=1;//A中变元为a[1]=y;
+    A-&gt;hp=NULL;
+    A-&gt;tp=(MPList)malloc(sizeof(MPList));
+    A-&gt;tp-&gt;tag=1;
+    A-&gt;tp-&gt;exp=3;
+    A-&gt;tp-&gt;hp=C;
+    A-&gt;tp-&gt;tp=(MPList)malloc(sizeof(MPList));
+    A-&gt;tp-&gt;tp-&gt;tag=1;
+    A-&gt;tp-&gt;tp-&gt;exp=2;
+    A-&gt;tp-&gt;tp-&gt;hp=D;
+    A-&gt;tp-&gt;tp-&gt;tp=NULL;//A=C*y3+D*y2;
+   
+    P=(MPList)malloc(sizeof(MPList));
+    P-&gt;tag=1;
+    P-&gt;exp=3;//表示表元的数量
+    P-&gt;hp=(MPList)malloc(sizeof(MPList));
+    P-&gt;tp=NULL;
+   
+    P-&gt;hp-&gt;tag=1;
+    P-&gt;hp-&gt;exp=2;//P中变元为a[2]=z;
+    P-&gt;hp-&gt;hp=NULL;
+    P-&gt;hp-&gt;tp=(MPList)malloc(sizeof(MPList));
+    P-&gt;hp-&gt;tp-&gt;tag=1;
+    P-&gt;hp-&gt;tp-&gt;exp=2;
+    P-&gt;hp-&gt;tp-&gt;hp=A;
+    P-&gt;hp-&gt;tp-&gt;tp=(MPList)malloc(sizeof(MPList));
+    P-&gt;hp-&gt;tp-&gt;tp-&gt;tag=1;
+    P-&gt;hp-&gt;tp-&gt;tp-&gt;exp=1;
+    P-&gt;hp-&gt;tp-&gt;tp-&gt;hp=B;
+    P-&gt;hp-&gt;tp-&gt;tp-&gt;tp=(MPList)malloc(sizeof(MPList));
+    P-&gt;hp-&gt;tp-&gt;tp-&gt;tp-&gt;tag=0;
+    P-&gt;hp-&gt;tp-&gt;tp-&gt;tp-&gt;exp=0;
+    P-&gt;hp-&gt;tp-&gt;tp-&gt;tp-&gt;coef=15;
+    P-&gt;hp-&gt;tp-&gt;tp-&gt;tp-&gt;tp=NULL;//P=A*z2+B*z1+15
+    return P;
+}</pre>
+<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 19;
+window.arcId = "a917qjjYM0CHkUBRUw1iYcbKkDCFqqaGLgvVzyjhp/xF5epGPNHAnYiL";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>关键路径算法详解</title>
+<meta name="keywords" content="关键,路径,算法,详解,对于,工程管理,人们,最," />
+<meta name="description" content="对于工程管理，人们最关注的两个问题分别是工程是否能顺利进行，以及估算整个工程完成所需要的最短时间和影响工程时间的关键活动。前一个问题可用拓扑排序解决，后一个问题则" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>关键路径算法详解</h1>
+			<div id="arc-body">对于工程管理，人们最关注的两个问题分别是工程是否能顺利进行，以及估算整个工程完成所需要的最短时间和影响工程时间的关键活动。前一个问题可用拓扑排序解决，后一个问题则需要找出工程进行的<u><a href='/view/44.html' target='_blank'>关键路径</a></u>，关键路径上的活动完成所需要的时间就是工程完成所需要的最短时间。<br />
+<p class="info-box">
+	关键路径通常是所有工程活动中最长的路径，关键路径上的活动如果延期将直接导致工程延期。</p>
+利用 AOV 网表示有向<u><a href='/view/200.html' target='_blank'>图</a></u>，可以对活动进行拓扑排序，根据排序结果对工程中活动的先后顺序做出安排。但是寻找关键路径，估算工程活动的结束时间，则需要使用 AOE 网表示有向图。<br />
+<br />
+AOE 网中用顶点表示事件，有向边表示活动，边上的权值表示活动持续的时间。只有在某顶点所代表的事件发生后，从该顶点出发的各有向边所代表的活动才能开始，反之亦然，只有在指向某一顶点的各有向边所代表的活动都己经结束后，该顶点所代表的事件才能发生。<br />
+<br />
+AOE 网只有一个入度为0的顶点（源点）和一个出度为 0 的顶点（汇点），分别代表开始事件和结束事件，其他的顶点则表示两个意义，其一是此点之前的所有活动都己经结束，其二是此点之后的活动可以开始了。<br />
+<br />
+计算关键路径的算法需要根据AOE网的特征调整图的数据结构定义，本节介绍的算法仍然使用<u><a href='/view/203.html' target='_blank'>邻接表</a></u>来表示图，但是需要重新定义顶点和边的数据结构。因为 AOE 网的边代表具体的活动，需要在数据结构中明确体现&ldquo;边&rdquo;的定义，调整后的边和顶点的定义如下所示：<br />
+<pre class="cpp">
+typedef struct tagEdgeNode {
+    int vertexlndex; //活动边终点顶点索引 std::string name; //活动边的名称
+    int duty;   //活动边的时间（权重）
+}EDGE_NODE;
+
+typedef struct tagVertexNode {
+    int sTime; //事件最早开始时间
+    int eTime; //事件最晚开始时间
+    int inCount; //活动的前驱节点个数
+    std::vector&lt;EDGE_NODE&gt; edges; //相邻边表
+}VERTEX_NODE;</pre>
+算法开始之前，每个顶点的 sTime 被初始化为 0，eTime 被初始化为一个有效范围之外的最大值（0x7FFFFFFF），算法结束之后，sTime 和 eTime 会被计算为实际的时间值。<br />
+<h2>
+	什么是关键路径</h2>
+开始讨论关键路径之前，先来介绍一下活动的最早开始时间和最晚开始时间。<br />
+<br />
+工程中一个活动何时开始依赖于其前驱活动何时结束，只有所有的前驱活动都结束后这个活动才可以开始，前驱活动都结束的时间就是这个活动的最早开始时间。与此同时，在不影响工程完工时间的前提下，有些活动的开始时间存在一些余量，在时间余量允许的范围之内推迟一段时间开始活动也不会影响工程的最终完成时间，活动的最早开始时间加上这个时间余量就是活动的最晚开始时间。活动不能在最早开始时间之前开始，当然，也不能在最晚开始时间之后开始，否则会导致工期延误。<br />
+<br />
+如果一个活动的时间余量为 0，即该活动的最早开始时间和最晚开始时间相同，则这个活动就是关键活动，由这些关键活动<u><a href='/view/175.html' target='_blank'>串</a></u>起来的一个工程活动路径就是关键路径。根据关键路径的定义，一个工程中的关键路径可能不止一个，我们常说的关键路径指的是工程时间最长的那条路径，也就是从源点到汇点之间最长的那条活动路径。<br />
+<h2>
+	计算关键路径的算法</h2>
+计算关键路径的基础是先找出工程中的所有关键活动，确定一个活动是否是关键活动的依据就是活动的最早开始时间和最晚开始时间，因此需要先介绍如何计算活动的最早开始时间和最晚开始时间。<br />
+<br />
+在 AOE 网中，事件 e<sub>i</sub> 必须在指向 e<sub>i</sub> 的所有活动都结束后才能发生，只有 e<sub>i</sub> 发生之后，从 e<sub>i</sub> 发出的活动才能开始，因此 e<sub>i</sub> 的最早发生时间就是 e<sub>i</sub> 发出的所有活动的最早开始时间。<br />
+<br />
+如果用 est[i] 表示事件 e<sub>i</sub> 的最早开始时间，用 duty[i,y] 表示连接事件 e<sub>i</sub> 和事件 e<sub>j</sub> 的活动需要持续的时间，则事件 e<sub>i</sub> 的最早开始时间可以用以下关系推算：<br />
+<p class="info-box">
+	est[0] = 0<br />
+	est[n] = max{est[i]+duty[i,n], est[j]+duty[j,n],...., est[k]+duty[k,n]}（其中i,j,...k是事件n的前驱事件）</p>
+这个推算关系是建立在合法的拓扑序列的基础上的，因此，推算事件的最早开始时间需要对图中的事件节点进行拓扑排序。本节我们只关注最早开始时间的计算方法。<br />
+<br />
+假设 sortedNode 参数中存放的图的拓扑排序结果，CalcESTime() 函数从拓扑序列的第一个顶点开始（变量 u 代表的顶点），遍历这个顶点发出的有向边指向的相邻顶点（变量 v 代表的顶点），如果该顶点的最早开始时间与有向边代表的活动持续时间的和（这个结果存放在临时变量 uvst 中）大于有向边指向的相邻顶点的最早开始时间，则更新这个相邻顶点的最早开始时间。<br />
+<br />
+需要注意的是，算法并没有直接利用推算关系中的 max 选择处理，而是按照 sortedNode 序列中的顶点先后关系，只在处理到相邻顶点时才更新最早开始时间（这正是所有顶点的 sTime 被初始化成 0 的原因），当 sortedNode 序列中的所有顶点都处理完之后，就相当于变相地实现了max 选择的处理。<br />
+<pre class="cpp">
+void CalcESTime(GRAPH *g, const std::vector&lt;int&gt;&amp; sortedNode)
+{
+    g-&gt;vertexs[0].sTime = 0; //est[0] = 0
+    std::vector&lt;int&gt;::const_iterator nit = sortedNode.begin();
+    for(; nit != sortedNode.end(); ++nit)
+    {
+        int u = *nit;
+        //遍历u出发的所有有向边
+        std::vector&lt;EDGE_NODE&gt;::iterator eit = g-&gt;vertexs[u].edges.begin();
+        for(; eit != g-&gt;vertexs[u].edges.end(); ++eit)
+        {
+            int v = eit-&gt;vertexlndex;
+            int uvst = g-&gt;vertexs[u].sTime + eit-&gt;duty;
+            if(uvst &gt; g-&gt;vertexs[v].sTime)
+            {
+                g-&gt;vertexs[v].sTime = uvst;
+            }
+        }
+    }
+}</pre>
+事件 e<sub>i</sub> 的最晚开始时间定义为：e<sub>i</sub> 的后继事件 e<sub>j</sub> 的最晚开始时间减去 e<sub>i</sub> 和 e<sub>j</sub> 之间的活动的持续时间的差，当 e<sub>i</sub> 有多个后继事件时，则取这些差值中最小的一个作为 e<sub>i</sub> 的最晚开始时间。如果用 lst[j] 表示事件 e<sub>j</sub> 的最晚开始时间，用 dutyt[i,j] 表示事件 e<sub>i</sub> 和后继事件 e<sub>j</sub> 之间的活动需要持续的时间，则事件 e<sub>i</sub> 最晚开始时间可以用以下关系推算：
+<p class="info-box">
+	lst[n] = est[n]<br />
+	est[i] = min{lst[j]-duty[i,j], est[k]-duty[i,k]，...，est[m]-duty[i,w]}<br />
+	(其中j,k...，m是事件i的后继事件）</p>
+这个最晚开始时间的推算关系是建立在合法的拓扑序列的逆序基础上的，CalcLSTime() 函数对 sortedNode 序列的处理顺序和 CalcESTime() 函数刚好相反，从拓扑序列的最后一个顶点（变量 u 代表的顶点）开始向前遍历。如果该顶点的后继顶点（变量 v 代表的顶点）的最晚开始时间与连接这两个顶点的活动的持续时间的差小于该顶点（u 顶点）的最晚开始时间，则更新该顶点的最晚开始时间。<br />
+<br />
+和 CalcESTime() 函数一样，CalcLSTime() 函数也没有直接利用 min 选择处理，但是通过逆序遍历 sortedNode 序列中的所有顶点，变相地实现了 min 选择的处理。<br />
+<pre class="cpp">
+void CalcLSTime(GRAPH *g, const std::vectors&lt;int&gt;&amp; sortedNode)
+{
+    //最后一个节点的最晚开始时间等于最早开始时间
+    g-&gt;vertexs[g-&gt;count - 1].eTime = g-&gt;vertexs[g-&gt;count - 1].sTime;
+    std::vector&lt;int&gt;::const_reverse_iterator cit = sortedNode.rbegin();
+    for(; cit != sortedNode.rend(); ++cit)
+    {
+        int u = *cit;
+        //遍历u出发的所有有向边
+        std::vector&lt;EDGE_NODE&gt;::iterator eit = g-&gt;vertexs[u].edges.begin();
+        for(; eit != g-&gt;vertexs[u].edges.end(); ++eit)
+        {
+            int v = eit-&gt;vertexlndex;
+            int uvet = g-&gt;vertexs[v].eTime - eit-&gt;duty;
+            if(uvet &lt; g-&gt;vertexs[u].eTime)
+            {
+                g-&gt;vertexs[u].eTime = uvet;
+            }
+        }
+    }
+}</pre>
+在 AOE 网中计算好每个顶点代表的事件的最早开始时间和最晚开始时间之后，就可以很容易计算出每条边代表的活动的最早开始时间和最晚幵始时间。<br />
+<br />
+假如某个活动两端的事件分别是 e<sub>i</sub> 和 e<sub>j</sub>，则该活动的最早开始时间就是事件 e<sub>i</sub> 的最早开始时间，该活动的最晚开始时间就是事件 e<sub>j</sub> 的最晚开始时间减去该活动的持续时间。用这个关系计算出所有活动的最早开始时间和最晚开始时间，只要最早开始时间和最晚开始时间相同的活动都是关键活动，按照事件顶点的拓扑序列的先后关系，顺序输出这些事件顶点相关的关键活动，得到的关键活动序列就是关键路径。<br />
+<br />
+综合前面的分析，计算关键路径的需要以下四个步骤。<br />
+<ol>
+	<li>
+		对事件顶点进行拓扑排序，得到事件的拓扑序列；</li>
+	<li>
+		计算事件顶点的最早开始时间；</li>
+	<li>
+		计算事件顶点的最晚开始时间；</li>
+	<li>
+		计算活动的最早幵始时间和最晚开始时间，并按照事件的拓扑顺序逐次输出关键活动，得到关键路径。</li>
+</ol>
+<br />
+这四个步骤非常清晰地体现在 CriticalPath() 函数中，重点是第四个步骤输出关键路径。判断活动是否是关键活动是通过这行 if 语句实现的：
+<p class="info-box">
+	if(g-&gt;vertexs[u].sTime == g-&gt;vertexs[v].eTime - eit-&gt;duty)</p>
+但是要实现按照活动顺序输出关键活动路径的功能，还需要按照事件顶点拓扑排序的结果逐个判断每个事件发出的活动（就是事件顶点发出的有向边），按照活动的开始次序逐个输出关键活动。<br />
+<br />
+CriticalPath() 函数中的第一个 for 循环就是按照拓扑排序的结果逐个处理事件顶点，第二个 for 循环就是搜索一个顶点的所有有向边，查找关键活动。
+<pre class="cpp">
+bool CriticalPath(GRAPH *g)
+{
+    std::vector&lt;int&gt; sortedNode;
+    if(!TopologicalSorting(g, sortedNode)) //步骤 1
+    {
+        return false;
+    }
+    CalcESTime(g, sortedNode); //步骤2
+    CalcLSTime(g, sortedNode); //步骤3
+    //步骤4:输出关键路径上的活动名称
+    std::vector&lt;int&gt;::iterator nit = sortedNode.begin();
+    for(; nit != sortedNode.end(); ++nit)
+    {
+        int u = *nit;
+        std::vector&lt;EDGE_NODE&gt;::iterator eit = g-&gt;vertexs[u].edges.begin();
+        for(; eit != g-&gt;vertexs[u].edges.end(); ++eit)
+        {
+            int v = eit-&gt;vertexlndex;
+            if(g-&gt;vertexs[u].sTime == g-&gt;vertexs[v].eTime - eit-&gt;duty)
+            {
+                std::cout &lt;&lt; eit-&gt;name &lt;&lt; std::endl;
+            }
+        }
+    }
+    return true;
+}</pre>
+<table>
+	<caption>
+		表 1 活动数据</caption>
+	<tbody>
+		<tr>
+			<th>
+				活动名称</th>
+			<th>
+				时间（天）</th>
+			<th>
+				依赖</th>
+		</tr>
+		<tr>
+			<td>
+				P<sub>1</sub></td>
+			<td>
+				8</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				P<sub>2</sub></td>
+			<td>
+				5</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				P<sub>3</sub></td>
+			<td>
+				6</td>
+			<td>
+				P<sub>1</sub>，P<sub>2</sub></td>
+		</tr>
+		<tr>
+			<td>
+				P<sub>4</sub></td>
+			<td>
+				4</td>
+			<td>
+				P<sub>3</sub></td>
+		</tr>
+		<tr>
+			<td>
+				P<sub>5</sub></td>
+			<td>
+				7</td>
+			<td>
+				P<sub>2</sub></td>
+		</tr>
+		<tr>
+			<td>
+				P<sub>6</sub></td>
+			<td>
+				7</td>
+			<td>
+				P<sub>4</sub>，P<sub>5</sub></td>
+		</tr>
+		<tr>
+			<td>
+				P<sub>7</sub></td>
+			<td>
+				4</td>
+			<td>
+				P<sub>1</sub></td>
+		</tr>
+		<tr>
+			<td>
+				P<sub>8</sub></td>
+			<td>
+				3</td>
+			<td>
+				P<sub>7</sub></td>
+		</tr>
+		<tr>
+			<td>
+				P<sub>9</sub></td>
+			<td>
+				4</td>
+			<td>
+				P<sub>4</sub>，P<sub>8</sub></td>
+		</tr>
+	</tbody>
+</table>
+<br />
+对于表 1 的活动关系数据，转化成 AOE 网形式的有向图之后，用 CriticalPath() 函数计算出的关键路径是 P<sub>1</sub>-P<sub>3</sub>-P<sub>4</sub>-P<sub>6</sub>。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 151;
+window.arcId = "968bv9kSRR6cibH+7cqtRgUEAWOZV2MpyM8A6PtLxUijZzBB5pY29SCQrw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

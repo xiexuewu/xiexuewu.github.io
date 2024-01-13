@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>普里姆算法(Prim算法)求最小生成树</title>
+<meta name="keywords" content="普里,姆,算法,Prim,求,最小,生成,树,普里,姆," />
+<meta name="description" content="" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/github/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/github/view/200.html">什么是图存储结构</a></dd><dd>7.2 <a href="/github/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/github/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/github/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/github/view/203.html">图的邻接表存储法</a></dd><dd>7.6 <a href="/github/view/204.html">图的十字链表存储法</a></dd><dd>7.7 <a href="/github/view/205.html">图的邻接多重表存储法</a></dd><dd>7.8 <a href="/github/view/39.html">深度优先搜索和广度优先搜索</a></dd><dd>7.9 <a href="/github/view/45.html">深度优先生成树和广度优先生成树</a></dd><dd>7.10 <a href="/github/view/vip_245.html">普里姆算法(Prim算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.11 <a href="/github/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/github/view/42.html">重连通图</a></dd><dd>7.13 <a href="/github/view/vip_247.html">拓扑排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/github/view/44.html">关键路径</a></dd><dd>7.15 <a href="/github/view/vip_248.html">迪杰斯特拉算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.16 <a href="/github/view/vip_249.html">弗洛伊德算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/github/view/vip_250.html">[项目实践]移动迷宫小游戏(升级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>普里姆算法(Prim算法)求最小生成树</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/45.html">深度优先生成树和广度优先生成树</a></span>
+                    <span class="next right"><a href="/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/45.html";window.nextPageURL = "/view/vip_246.html";</script>
+			<div id="arc-body"><div id="buy-course-tip" aid="245"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/45.html">深度优先生成树和广度优先生成树</a></span>
+                    <span class="next right"><a href="/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/45.html";window.nextPageURL = "/view/vip_246.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 245;
+window.arcId = "2702kvyaD7ffqWvRbNjYu2eOAu4YQwByIvuCzjxTo3c+EtTJNnNlGRQpSg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

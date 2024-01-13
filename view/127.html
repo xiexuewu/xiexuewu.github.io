@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序表的基本操作及C语言完整实现</title>
+<meta name="keywords" content="顺序,表,的,基本操作,及,语言,完整,实现,顺序," />
+<meta name="description" content="对顺序表进行操作，大致可分为以下几类： 表的创建； 表中新增（添加）数据元素； 表中删除数据元素； 表中查找指定数据元素； 表中更改某数据元素； 以上操作各自的原理及实现" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>顺序表的基本操作及C语言完整实现</h1>
+			<div id="arc-body">对<u><a href='/view/158.html' target='_blank'>顺序表</a></u>进行操作，大致可分为以下几类：
+<ol>
+	<li>
+		表的创建；</li>
+	<li>
+		表中新增（添加）数据元素；</li>
+	<li>
+		表中删除数据元素；</li>
+	<li>
+		表中查找指定数据元素；</li>
+	<li>
+		表中更改某数据元素；</li>
+</ol>
+<br />
+以上操作各自的原理及实现如下所示。<br />
+<h2>
+	顺序表的创建</h2>
+<p class="cpp">
+	顺序表的建立，也就是顺序表进行初始化，在预先申请内存空间的同时，给变量 size 和 length 赋初值：</p>
+<pre class="cpp">
+table initTable(){
+    table t;
+    t.head=(int*)malloc(Size*sizeof(int));//构造一个空的顺序表，动态申请存储空间
+    if (!t.head) //如果申请失败，作出提示并直接退出程序
+    {
+        printf(&quot;初始化失败&quot;);
+        exit(0);
+    }
+    t.length=0;//空表的长度初始化为0
+    t.size=Size;//空表的初始存储空间为Size
+    return t;
+}</pre>
+<h2>
+	顺序表查找元素</h2>
+<p>
+	在<u><a href='/view/181.html' target='_blank'>数组</a></u>中查找某个数据元素时，可以采取多种查找算法，例如<u><a href='/view/55.html' target='_blank'>二分查找</a></u>、插值查找、斐波那契查找算法等。</p>
+<div class="info-box">
+	具体的查找算法以及各自的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>后续章节会介绍。</div>
+<p>
+	根据顺序表中存储的数据的特点，选择合适的算法。这里，采用<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>算法（普通的遍历算法）。</p>
+<p>
+	实现代码：</p>
+<pre class="cpp">
+//查找函数，其中，elem表示要查找的数据元素的值
+int selectTable(table t,int elem){
+    for (int i=0; i&lt;t.length; i++) {
+        if (t.head[i]==elem) {
+            return i+1;
+        }
+    }
+    return -1;//如果查找失败，返回-1
+}</pre>
+<h2>
+	顺序表中更改元素</h2>
+顺序表中更改数据元素，最简单直接的方式就是：调用查找算法找到该数据元素的位置，直接在该位置上更改。<br />
+<br />
+实现代码：
+<pre class="cpp">
+//更改函数，其中，elem为要更改的元素，newElem为新的数据元素
+table amendTable(table t,int elem,int newElem){
+    int add=selectTable(t, elem);
+    t.head[add-1]=newElem;//由于返回的是元素在顺序表中的位置，所以-1就是该元素在数组中的下标
+    return t;
+}</pre>
+<h2>
+	顺序表插入元素</h2>
+插入数据元素，无非三种情况：<br />
+<ol>
+	<li>
+		在表头插入</li>
+	<li>
+		在表的中间某个位置插入</li>
+	<li>
+		直接尾随顺序表，作为表的最后一个元素</li>
+</ol>
+<br />
+无论在顺序表的什么位置插入数据元素，解决办法都是：找到要插入的位置，将后续数据元素整体向后移动一个位置，最后直接在腾出来的位置上插入数据元素。<br />
+<br />
+实现代码：
+<pre class="cpp">
+<span style="font-family: Arial, Verdana, sans-serif;">//插入函数，其中，elem为插入的元素，add为插入到顺序表的位置
+</span>table addTable(table t,int elem,int add)
+{
+    //判断插入本身是否存在问题（如果插入元素位置比整张表的长度+1还大（如果相等，是尾随的情况），
+    //或者插入的位置本身不存在，程序作为提示并自动退出）
+    if (add&gt;t.length+1||add&lt;1) {
+        printf(&quot;插入位置有问题&quot;);
+        return t;
+    }
+    //做插入操作时，首先需要看顺序表是否有多余的存储空间提供给插入的元素，如果没有，需要申请
+    if (t.length==t.size) {
+        t.head=(int *)realloc(t.head, (t.size+1)*sizeof(int));
+        if (!t.head) {
+            printf(&quot;存储分配失败&quot;);
+            return t;
+        }
+        t.size+=1;
+    }  
+    //插入操作，需要将从插入位置开始的后续元素，逐个后移
+    for (int i=t.length-1; i&gt;=add-1; i--) {
+        t.head[i+1]=t.head[i];
+    }
+    //后移完成后，直接将所需插入元素，添加到顺序表的相应位置
+    t.head[add-1]=elem;
+    //由于添加了元素，所以长度+1
+    t.length++;
+    return t;
+}</pre>
+<blockquote>
+	<p>
+		<span style="color: rgb(178, 34, 34);">注意：</span>在此程序中，当数组存储空间不足时，使用realloc函数每次额外多申请 1 个int型的存储空间，这么做还不是最优。最好的办法就是每次发现空间不够时，多申请几个内存空间，这么做的好处是：在后续做插入操作过程中不需要每次都运行realloc函数，提高了程序的运行效率。</p>
+</blockquote>
+<h2>
+	顺序表删除元素</h2>
+在数组中删除元素时，只需将该元素所在位置后的所有数据元素整体前移 1 个位置即可。<br />
+<div class="info-box">
+	前移的过程中被删除元素被后一个元素覆盖掉，间接实现了删除操作。</div>
+实现代码：
+<pre class="cpp">
+table delTable(table t,int add){
+    if (add&gt;t.length || add&lt;1) {
+        printf(&quot;被删除元素的位置有误&quot;);
+        exit(0);
+    }
+    //删除操作
+    for (int i=add; i&lt;t.length; i++) {
+        t.head[i-1]=t.head[i];
+    }
+    t.length--;
+    return t;
+}</pre>
+<h2>
+	完整的程序</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define Size 4
+typedef struct Table{
+    int * head;
+    int length;
+    int size;
+}table;
+
+table initTable(){
+    table t;
+    t.head=(int*)malloc(Size*sizeof(int));
+    if (!t.head)
+    {
+        printf(&quot;初始化失败&quot;);
+        exit(0);
+    }
+    t.length=0;
+    t.size=Size;
+    return t;
+}
+
+table addTable(table t,int elem,int add)
+{
+    if (add&gt;t.length+1||add&lt;1) {
+        printf(&quot;插入位置有问题&quot;);
+        return t;
+    }
+    if (t.length&gt;=t.size) {
+        t.head=(int *)realloc(t.head, (t.size+1)*sizeof(int));
+        if (!t.head) {
+            printf(&quot;存储分配失败&quot;);
+        }
+        t.size+=1;
+    }
+    for (int i=t.length-1; i&gt;=add-1; i--) {
+        t.head[i+1]=t.head[i];
+    }
+    t.head[add-1]=elem;
+    t.length++;
+    return t;
+}
+table delTable(table t,int add){
+    if (add&gt;t.length || add&lt;1) {
+        printf(&quot;被删除元素的位置有误&quot;);
+        exit(0);
+    }
+    for (int i=add; i&lt;t.length; i++) {
+        t.head[i-1]=t.head[i];
+    }
+    t.length--;
+    return t;
+}
+int selectTable(table t,int elem){
+    for (int i=0; i&lt;t.length; i++) {
+        if (t.head[i]==elem) {
+            return i+1;
+        }
+    }
+    return -1;
+}
+table amendTable(table t,int elem,int newElem){
+    int add=selectTable(t, elem);
+    t.head[add-1]=newElem;
+    return t;
+}
+void displayTable(table t){
+    for (int i=0;i&lt;t.length;i++) {
+        printf(&quot;%d&quot;,t.head[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+int main(){
+    table t1=initTable();
+    for (int i=1; i&lt;=Size; i++) {
+        t1.head[i-1]=i;
+        t1.length++;
+    }
+    printf(&quot;原顺序表：\n&quot;);
+    displayTable(t1);
+   
+    printf(&quot;删除元素1:\n&quot;);
+    t1=delTable(t1, 1);
+    displayTable(t1);
+   
+    printf(&quot;在第2的位置插入元素5:\n&quot;);
+    t1=addTable(t1, 5, 2);
+    displayTable(t1);
+   
+    printf(&quot;查找元素3的位置:\n&quot;);
+    int add=selectTable(t1, 3);
+    printf(&quot;%d\n&quot;,add);
+   
+    printf(&quot;将元素3改为6:\n&quot;);
+    t1=amendTable(t1, 3, 6);
+    displayTable(t1);
+    return 0;
+}</pre>
+输出结果：<br />
+<pre class="info-box">
+原顺序表：
+1234
+删除元素1:
+234
+在第2的位置插入元素5:
+2534
+查找元素3的位置:
+3
+将元素3改为6:
+2564</pre>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 127;
+window.arcId = "1f50VFhsRAo3v7/STfZvPDDY3fEUoQ52PmJMAniRNjH93k/9REGfVfpLwA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

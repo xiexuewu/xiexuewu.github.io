@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>链表节点的插入，链表插入节点</title>
+<meta name="keywords" content="链表,节点,的,插入,链表,节点,的,插入," />
+<meta name="description" content="向现有链表中插入结点， 根据插入位置的不同 ，可分为以下 3 种情况： 插入到链表的头部，作为新的链表中第一个存有数据的结点（又称为首元结点）； 插入到链表中某两个结点之间" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>链表节点的插入，链表插入节点</h1>
+			<div id="arc-body">向现有<u><a href='/view/160.html' target='_blank'>链表</a></u>中插入结点，<span style="color:#008000;">根据插入位置的不同</span>，可分为以下 3 种情况：
+<ol>
+	<li>
+		插入到链表的头部，作为新的链表中第一个存有数据的结点（又称为&rdquo;首元结点&rdquo;）；</li>
+	<li>
+		插入到链表中某两个结点之间的位置；</li>
+	<li>
+		插入到链表的最末端的位置；</li>
+</ol>
+使用头插法和尾插法可分别解决第 1 和第 3 种情况，但是无法解决第 2 种情况，所以本节给大家一段<span style="color:#008000;">通用代码</span>，可有效解决所有链表结点插入的问题。<br />
+<br />
+无论插入结点位于链表的哪一位置，都可分为两步处理：
+<ol>
+	<li>
+		将新结点的 next 指针指向插入位置后的结点；</li>
+	<li>
+		将插入位置前的结点的 next 指针指向该插入结点；</li>
+</ol>
+<span style="color:#b22222;">所以，实现结点插入的关键是：在链表中找到新结点要插入的位置，即找到插入位置的上一个结点和下一个结点。找到后，按照以上 2 步即可实现链表的插入。</span><br />
+<blockquote>
+	<p>
+		使用通用代码实现结点插入的前提是：<span style="color:#008000;">链表中要含有头结点</span>，否则在链表头部插入结点时会出错。</p>
+</blockquote>
+<h2>
+	链表插入结点的通用代码（带有详细解析）</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct Link{
+    int  elem;
+    struct Link *next;
+}link;
+link * initLink();
+//链表插入的函数，p是链表，elem是插入的结点的数据域，add是插入的位置
+link * insertElem(link * p,int elem,int add);
+void display(link *p);
+int main() {
+    //初始化链表（1，2，3，4）
+    printf(&quot;初始化链表为：\n&quot;);
+    link *p=initLink();
+    display(p);
+
+    printf(&quot;在第4的位置插入元素5：\n&quot;);
+    p=insertElem(p, 5, 4);
+    display(p);
+    return 0;
+}
+link * initLink(){
+    link * p=(link*)malloc(sizeof(link));//创建一个头结点
+    link * temp=p;//声明一个指针指向头结点，用于遍历链表
+    //生成链表
+    for (int i=1; i&lt;5; i++) {
+        link *a=(link*)malloc(sizeof(link));
+        a-&gt;elem=i;
+        a-&gt;next=NULL;
+        temp-&gt;next=a;
+        temp=temp-&gt;next;
+    }
+    return p;
+}
+link * insertElem(link * p,int elem,int add){
+    link * temp=p;//创建临时结点temp
+    //首先找到要插入位置的上一个结点
+    for (int i=1; i&lt;add; i++) {
+        if (temp==NULL) {
+            printf(&quot;插入位置无效\n&quot;);
+            return p;
+        }
+        temp=temp-&gt;next;
+    }
+    //创建插入结点c
+    link * c=(link*)malloc(sizeof(link));
+    c-&gt;elem=elem;
+    //向链表中插入结点
+    c-&gt;next=temp-&gt;next;
+    temp-&gt;next=c;
+    return  p;
+}
+void display(link *p){
+    link* temp=p;//将temp指针重新指向头结点
+    //只要temp指针指向的结点的next不是Null，就执行输出语句。
+    while (temp-&gt;next) {
+        temp=temp-&gt;next;
+        printf(&quot;%d&quot;,temp-&gt;elem);
+    }
+    printf(&quot;\n&quot;);
+}</pre>
+<span style="color:#008000;">运行结果：</span>
+<div class="info-box">
+	初始化链表为：<br />
+	1234<br />
+	在第4的位置插入元素5：<br />
+	12354</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 102;
+window.arcId = "fcc6KohtfVrtN/ZheGpZ0mp9cYq8b7dVT8q6TK3EAYv7B/0/Ffg2XLQGpg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>最佳归并树</title>
+<meta name="keywords" content="最佳,归并,树,最佳,归并,树," />
+<meta name="description" content="通过上一节对置换选择排序算法的学习了解到，通过对初始文件进行置换选择排序能够获得多个长度不等的初始归并段，相比于按照内存容量大小对初始文件进行等分，大大减少了初始" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/github/out_sort/">外部排序算法</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/github/view/76.html">什么是外部排序算法</a></dd><dd>11.2 <a href="/github/view/77.html">多路平衡归并排序算法</a></dd><dd>11.3 <a href="/github/view/78.html">置换选择排序算法</a></dd><dd>11.4 <a href="/github/view/79.html">最佳归并树</a></dd></dl>
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>最佳归并树</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/78.html">置换选择排序算法</a></span>
+                    <span class="next right"><a href="/video/">数据结构与算法视频教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/78.html";window.nextPageURL = "/video/";</script>
+			<div id="arc-body">通过上一节对置换-<u><a href='/view/72.html' target='_blank'>选择排序</a></u>算法的学习了解到，通过对初始文件进行置换选择排序能够获得多个长度不等的初始归并段，相比于按照内存容量大小对初始文件进行等分，大大减少了初始归并段的数量，从而提高了外部排序的整体效率。<br />
+<br />
+<span style="color:#b22222;">本节带领大家思考一个问题：无论是通过等分还是置换-选择排序得到的归并段，如何设置它们的归并顺序，可以使得对外存的访问次数降到最低？</span><br />
+<br />
+例如，现有通过<u><a href='/view/78.html' target='_blank'>置换选择排序算法</a></u>所得到的 9 个初始归并段，其长度分别为：<code>9，30，12，18，3，17，2，6，24</code>。在对其采用 3-路平衡归并的方式时可能出现如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示的情况：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171117/2-1G11G0512O04.png" style="width: 441px; height: 184px;" /><br />
+	图 1 3-路平衡归并</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>图 1 中的叶子结点表示初始归并段，各自包含记录的长度用结点的权重来表示；非终端结点表示归并后的临时文件。</p>
+</blockquote>
+假设在进行平衡归并时，操作每个记录都需要单独进行一次对外存的读写，那么图 1 中的归并过程需要对外存进行读或者写的次数为：
+<div class="info-box">
+	（9+30+12+18+3+17+2+6+24）*2*2=484（图 1 中涉及到了两次归并，对外存的读和写各进行 2 次）</div>
+从计算结果上看，对于图 1 中的 3 叉<u><a href='/view/23.html' target='_blank'>树</a></u>来讲，其操作外存的次数恰好是树的带权路径长度的 2 倍。所以，对于如何减少访问外存的次数的问题，就等同于考虑如何使 k-路归并所构成的 k 叉树的带权路径长度最短。<br />
+<br />
+<span style="color:#b22222;">若想使树的带权路径长度最短，就是构造</span><span style="color:#008000;">赫夫曼树</span><span style="color:#b22222;">。</span>
+<blockquote>
+	<p>
+		在学习赫夫曼树时，只是涉及到了带权路径长度最短的<u><a href='/view/192.html' target='_blank'>二叉树</a></u>为赫夫曼树，其实扩展到一般情况，对于 k 叉树，只要其带权路径长度最短，亦可以称为赫夫曼树。</p>
+</blockquote>
+若对上述 9 个初始归并段构造一棵赫夫曼树作为归并树，如图 2 所示：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171117/2-1G11G0552O61.png" style="width: 368px; height: 235px;" /></div>
+<div style="text-align: center;">
+	图 2 赫夫曼树作为3-路归并树</div>
+<br />
+依照图 2 所示，其对外存的读写次数为：
+<div class="info-box">
+	(2*3+3*3+6*3+9*2+12*2+17*2+18*2+24*2+30)*2=446</div>
+通过以构建赫夫曼树的方式构建归并树，使其对读写外存的次数降至最低（k-路平衡归并，需要选取合适的 k 值，构建赫夫曼树作为归并树）。所以称此归并树为<span style="color:#008000;"><u><a href='/view/79.html' target='_blank'>最佳归并树</a></u></span>。
+<h2>
+	附加&ldquo;虚段&rdquo;的归并树</h2>
+上述图 2 中所构建的为一颗真正的 3叉树（树中各结点的度不是 3 就是 0），而若 9 个初始归并段改为 8 个，在做 3-路平衡归并的时候就需要有一个结点的度为 2。<br />
+<br />
+对于具体设置哪个结点的度为 2，为了使总的带权路径长度最短，正确的选择方法是：<span style="color:#b22222;">附加一个权值为 0 的结点（称为</span><span style="color:#008000;">&ldquo;虚段&rdquo;</span><span style="color:#b22222;">），然后再构建赫夫曼树</span>。例如图 2 中若去掉权值为 30 的结点，其附加虚段的最佳归并树如图 3 所示：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171117/2-1G11G05F4111.png" style="width: 372px; height: 217px;" /></div>
+<div style="text-align: center;">
+	图 3 附加虚段的最佳归并树</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>虚段的设置只是为了方便构建赫夫曼树，在构建完成后虚段自动去掉即可。</p>
+</blockquote>
+对于如何判断是否需要增加虚段，以及增加多少虚段的问题，有以下结论直接套用即可：<br />
+<br />
+<span style="color:#b22222;">在一般情况下，对于 k&ndash;路平衡归并来说，若 (m-1)MOD(k-1)=0，则不需要增加虚段；否则需附加 k-(m-1)MOD(k-1)-1 个虚段。</span>
+<h2>
+	<span style="color:#b22222;">（注）</span>本章小结</h2>
+本章用了 4 节的内容介绍了实现外部排序的两个过程：<br />
+<br />
+<ul>
+	<li>
+		将整个初始文件分为多个初始归并段;</li>
+	<li>
+		将初始归并段进行归并，直至得到一个有序的完整文件；</li>
+</ul>
+<br />
+为了提高整个外部排序的效率，本章分别从以上两个方面对外部排序进行了优化：<br />
+<br />
+<ol>
+	<li>
+		在实现将初始文件分为 m 个初始归并段时，为了尽量减小 m 的值，采用<span style="color:#008000;">置换-选择排序算法</span>，可实现将整个初始文件分为数量较少的长度不等的初始归并段。</li>
+	<li>
+		同时在将初始归并段归并为有序完整文件的过程中，为了尽量减少读写外存的次数，采用构建<span style="color:#008000;">最佳归并树</span>的方式，对初始归并段进行归并，而归并的具体实现方法是采用<span style="color:#008000;">败者树</span>的方式。</li>
+</ol>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/78.html">置换选择排序算法</a></span>
+                    <span class="next right"><a href="/video/">数据结构与算法视频教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/78.html";window.nextPageURL = "/video/";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 79;
+window.arcId = "8b5fy1GyqhaSV3F8QBwunayCaMtgPlJ6cls3Shb7Nq0f5UXsBZ9eS8EE";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

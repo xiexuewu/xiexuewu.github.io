@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>稀疏矩阵的存储方法（3种）及C语言代码实现</title>
+<meta name="keywords" content="稀疏,矩阵,的,存储,方法,3种,及,语言,代码," />
+<meta name="description" content="稀疏矩阵，即含有少量非 0 元素的矩阵，如图 1 所示： 图 3 稀疏矩阵 该矩阵中非 0 元素的数量比较少，与其使用普通方式将矩阵中的所有数据元素一一存储，不如只存储非 0 元素更节" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>稀疏矩阵的存储方法（3种）及C语言代码实现</h1>
+			<div id="arc-body"><p>
+	稀疏矩阵，即含有少量非 0 元素的矩阵，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：<br />
+	&nbsp;</p>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170726/2-1FH6163022E2.png" style="width: 195px; height: 167px;" /><br />
+	图 1 稀疏矩阵&nbsp;<br />
+	&nbsp;</div>
+<div>
+	该矩阵中非 0 元素的数量比较少，与其使用普通方式将矩阵中的所有数据元素一一存储，不如只存储非 0 元素更节省内存空间，拿图 1 中矩阵来说，只需存储元素 3、4、5 即可（此类存储方式被称为<span style="color:#008000;">稀疏矩阵的压缩存储</span>）。<br />
+	&nbsp;</div>
+稀疏矩阵（压缩）存储的方式有 3 种，分别为：<span style="color: rgb(0, 128, 0);"><u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u></span>、<span style="color: rgb(0, 128, 0);"><u><a href='/view/185.html' target='_blank'>行逻辑链接的顺序表</a></u></span>和<span style="color: rgb(0, 128, 0);"><u><a href='/view/186.html' target='_blank'>十字链表</a></u></span>。
+<h2>
+	三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u></h2>
+存储稀疏矩阵，需记录矩阵中每个非 0 元素的 3 个要素：非 0 元素的值、所在行标（用 i 表示）以及所在列标（用 j 表示），每个非 0 元素的 3 要素都可以用一个三元组（行标、列标、元素值）来表示，矩阵中所有非 0 元素的三元组可以通过顺序表来存储。此方法也被称为<span style="color:#008000;">稀疏矩阵的三元组表示法</span>。<br />
+<br />
+因此，每个非 0 元素的三元组需要使用结构体进行自定义：
+<pre class="cpp">
+//三元组结构体
+typedef struct {
+    int i,j;//行标i，列标j
+    int data;//元素值
+}triple;</pre>
+稀疏矩阵的存储，一方面要存储矩阵中所有非 0 元素的三元组，同时还要记录该稀疏矩阵的行数、列数以及矩阵中非 0 元素的个数，因此表示矩阵的结构也需要使用结构体实现：
+<pre class="cpp">
+#define number 100
+//矩阵的结构表示
+typedef struct {
+    triple data[number];//存储该矩阵中所有非0元素的三元组
+    int n,m,num;//n和m分别记录矩阵的行数和列数，num记录矩阵中所有的非0元素的个数
+}TSMatrix;</pre>
+例如，对于图 3 的稀疏矩阵来说，即将（2，2，3）、（2，3，4）、（3，2，5）存储进 data <u><a href='/view/181.html' target='_blank'>数组</a></u>，并且存储稀疏矩阵的行数 3 和列数 3 ，该稀疏矩阵中非 0 元素有 3 个。<br />
+<h2>
+	行逻辑链接的顺序表</h2>
+使用三元组顺序表存储的稀疏矩阵，当需要提取矩阵某一行的非 0 元素时，只能遍历整个顺序表，效率很低。<br />
+<br />
+<span style="color: rgb(178, 34, 34);">为了提高查找的效率，可在三元组顺序表的基础上，增加一个数组用于记录每一行第一个非 0 元素的存储位置，这样的存储结构被称为：行逻辑链接的顺序表。</span><br />
+<br />
+结构代码：
+<pre class="cpp">
+#define number 100
+typedef struct {
+    int i,j;
+    int data;
+}triple;
+typedef struct {
+    triple data[number];
+    int rpos[number];//存储各行第一个非0元素在三元组表中的位置
+    int n,m,num;
+}TSMatrix;</pre>
+<h2>
+	十字<u><a href='/view/160.html' target='_blank'>链表</a></u></h2>
+以上两种存储稀疏矩阵的方法，说到底，还是操作数组，在进行矩阵运算过程中，如果有插入非 0 元素或者删除某一个元素的操作，可能需要大量的移动数组中的三元组。这时，就要考虑使用链表的存储结构。<br />
+<br />
+例如在进行&ldquo;将矩阵 B 加到矩阵 A 上&rdquo;的操作时，矩阵 A 中的数据元素会发生很大的变化，之前的 0 元素可能变成非 0 元素，非 0 元素也可能变成 0 （正负数相加为 0）。<span style="color: rgb(178, 34, 34);">在这种情况下，就需要使用链表的存储结构来存储矩阵，这种存储方式称为：十字链表法。</span><br />
+<br />
+例如，将下列矩阵以十字链表的方式存储起来：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH010305Y06.png" style="width: 469px; height: 150px;" /><br />
+	图4 十字链表</div>
+采用十字链表法存储矩阵的非 0 元素时，链表中的结点由 5 部分组成：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0101K6448.png" style="width: 250px; height: 89px;" /></div>
+<div style="text-align: center;">
+	图5 十字链表中的结点</div>
+<div class="info-box">
+	两个指针域：一个指向所在列的下一个元素，一个指向所在行的下一个元素。</div>
+<br />
+结构代码：
+<pre class="cpp">
+typedef struct OLNode{
+    int i,j;
+    int data;
+    struct OLNode * right,*down;
+}OLNode;
+//此结构体表示一个矩阵，其中包含矩阵的行数，列数，非0元素的个数以及用于存储各行以及各列元素头指针的动态数组rhead和chead。
+typedef struct {
+    OLNode * rhead,*chead;
+    int n,m,num;
+}CrossList;</pre>
+<h2>
+	总结</h2>
+稀疏矩阵的三种不同的存储方法，采用哪种方法要看程序具体要实现的功能：<br />
+<br />
+<ol>
+	<li>
+		如果想完成例如矩阵的转置这样的操作，宜采用三元组顺序表；</li>
+	<li>
+		如果想实现矩阵的乘法这样的功能，宜采用行逻辑链接的顺序表；</li>
+	<li>
+		如果矩阵运算过程中（例如矩阵的加法），需要不断地插入非 0 元素或删除变为 0 的元素，宜采用十字链表法。</li>
+</ol>
+<br />
+<div class="info-box">
+	有关三种存储方法的实例：矩阵转置、矩阵的乘法和矩阵的加法各自利用一节来详细介绍。</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 136;
+window.arcId = "d0d1GflSYAL0x4YLrC29dO0+NLhrj51lfDx1deEvDt6qUzUOBm6RzqsmaA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

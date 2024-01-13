@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>RLE压缩算法详解</title>
+<meta name="keywords" content="RLE,压缩,算法,详解,RLE,压缩,算法,下,简称,的," />
+<meta name="description" content="RLE压缩算法 （下简称RLE算法）的基本思路是把数据按照线性序列分成两种情况：一种是连续的重复数据块，另一种是连续的不重复数据块。 RLE算法的原理就是用一个表示块数的属性加" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>RLE压缩算法详解</h1>
+			<div id="arc-body"><span style="color:#008000;">RLE压缩算法</span>（下简称RLE算法）的基本思路是把数据按照线性序列分成两种情况：一种是连续的重复数据块，另一种是连续的不重复数据块。<br />
+<br />
+RLE算法的原理就是用一个表示块数的属性加上一个数据块代表原来连续的若干块数据，从而达到节省存储空间的目的。一般RLE算法都选择数据块的长度为 1 字节，表示块数的诚性也用1字节表示，对于颜色数小于 256 色的<u><a href='/view/200.html' target='_blank'>图</a></u>像文件或文本文件，块长度选择 1 字节是比较合适的。<br />
+<h2>
+	连续重复数据的处理</h2>
+RLE 算法有很多优化和改进的变种算法，这些算法对连续重复数据的处理方式基本上都是一样的。对于连续重复出现的数据，RLE算法一般用两字节表示原来连续的多字节重复数据。我们用一个例子更直观地说明 RLE 算法对这种情况的处理，假如原始数据有 5 字节的连续数据：<br />
+<p class="info-box">
+	[data] [data] [data] [data] [data]</p>
+则压缩后的数据就包含块数和 [data] 两字节，其中 [data] 只存储了一次，节省了存储空间：<br />
+<p class="info-box">
+	[5] [data]</p>
+需要注意的是，一般 RLE 算法都采用插入一个长度属性字节存储连续数据的重复次数，因此能够表达的扱大值就是 255 字节，如果连续的相同数据超过 255 字节时，就从第 255 字节处断开，将第 256 字节以及 256 字节后面的数裾当成新的数椐处理。<br />
+<br />
+随着 RLE 算法采用的优化方式不同，这个长度属性字节所表达的意义也不同，对于本节给出的这种优化算法，长度属性字节的最高位被用来做一个标志位，只有 7 位用来表示长度。<br />
+<h2>
+	连续非重复数据的处理</h2>
+对于连续的非重复数据，RLE 算法有两种处理方法：
+<ul>
+	<li>
+		一种处理方法是将每个不重复的数据当作只重复一次的连续重复数据处理，在算法实现上就和处理连续重复数据一样；</li>
+	<li>
+		另一种处理方法是不对数据进行任何处理，直接将原始数据作为压缩后的数据存储。</li>
+</ul>
+<br />
+假如有以下 5 字节的连续非重复数据：<br />
+<p class="info-box">
+	[datal] [data2] [data3] [data4] [data5]</p>
+按照第一种处理方法，最后的压缩数据就如下所示：<br />
+<p class="info-box">
+	[1][datal] [1][data2] [1][data3] [1][data4] [1][data5]</p>
+如果按照第二种处理方法，最后的数据和原始数据一样：<br />
+<p class="info-box">
+	[data1] [data2] [data3] [data4] [data5]</p>
+如果采用第一种方式处理连续非重复数据，则存在一个致命的问题，对连续出现的不重复数据，会因为插入太多块数属性字节而膨胀一倍，如果原始数据主要是随机的非重复数据，则采用这种方式不仅不能起到压缩数据的目的，反而起到恶化的作用。多数经过优化的 RLE 算法都会选择使用第二种方式处理连续非重复数据，但是这就引入了新问题，在 RLE 算法解码的时候，如何区分连续重复和非重复数据？<br />
+<br />
+前面己经提到，如果把非重复数据当作独立的单次重复数据处理，反而会造成数据膨胀，但是如果把连续非重复数据也当成一组数据整理考虑呢？这是一个优化的思路，首先，给连续重复数据和连续非重复数据都附加一个表示长度的属性字节，并利用这个长度属性字 节的最高位来区分两种情况。<br />
+<br />
+长度属性字节的最高位如果是 1，则表示后面紧跟的是个重复数据，需要重复的次数由长度属性字节的低 7 位（最大值是 127）表示。长度属性字节的最高位如果是 0，则表示后面紧跟的是非重复数据，长度也由长度属性字节的低 7 位表示。<br />
+<br />
+采用这种优化方式，压缩后的数据非常有规律，两种类型的数据都从长度属性字节开始，除了标志位的不同，后跟的数据也不同。第一种情况后跟一个字节的重复数据，第二种情况后跟的是若干个字节的连续非重复数据。<br />
+<h2>
+	算法实现</h2>
+首先介绍一下数据压缩的编码过程如何实现。釆用前面给出的优化方式，编码算法不仅要能够识别连续重复数据和连续非重复数据两种情况，还要能够统计出两种情况下数据块的长度。<br />
+<br />
+编码算法从数据的起始位置开始向后搜索，如果发现后面是重复数据且重复次数超过 2，则设置连续重复数据的标志并继续向后查找，直到找到第一个与之不相同的数据为止，将这个位置记为下次搜索的起始位置，根据位置差计算重复次数，最后长度属性字节以及一个字节的原始重复数据一起写入压缩数据；如果后面数据不是连续重复数据，则继续向后搜索查找连续重复数据，直到发现连续重复的数据且重复次数大于 2 为止，然后设置不重复数据标志，将新位置记为下次搜索的起始位置，最后将长度属性字节写入压缩数据并将原始数据逐字节复制到压缩数据。然后从上一步标记的新的搜索起始位开始，一直重复上面的过程，直到原始数据结束。<br />
+<pre class="cpp">
+int Rle_Encode(unsigned char *inbuf, int inSize, unsigned char *outbuf, int onuBufSize)
+{
+    unsigned char *src = inbuf;
+    int i;
+    int encSize = 0;
+    int srcLeft = inSize;
+    while(srcLeft &gt; 0)
+    {
+        int count = 0;
+        if(IsRepetitionStart(src, srcLeft)) /*是否连续三个字节数据相同？ */
+        {
+            if ((encSize + 2) &gt; onuBufSize) /* 输出缓冲区空间不够了 */
+            {
+                return -1;
+            }
+            count = GetRepetitionCount(src, srcLeft);
+            outbuf[encSize++] = count | 0x80;
+            outbuf[encSize++] = *src;
+            src += count;
+            srcLeft -= count;
+        }
+        else
+        {
+            count = GetNonRepetitionCount(src, srcLeft);
+            if ((encSize + count + 1) &gt; onuBufSize) /* 输出缓冲区空间不够了 */
+            {
+                return -1;
+            }
+            outbuf[encSize++] = count;
+            for(i = 0; i &lt; count; i++) /*逐个复制这些数据*/
+            {
+                outbuf[encSize++] = *src++;;
+            }
+            srcLeft -= count;
+        }
+    }
+    return encSize;
+}</pre>
+Rle_Encode() 函数是 RLE 算法的实现，它通过调用 IsRepetitionStart() 函数判断从 src 开始的数据是否是连续重复数据：
+<ul>
+	<li>
+		如果是连续重复数据，则调用 GetRepetitionCount() 函数计算出连续重复数据的长度，将长度属性字节的最高位罝 1 并向输出缓冲区写入一个字节的重复数据。</li>
+	<li>
+		如果不是连续重复数据，则调用 GetNonRepetitionCount() 函数计算连续非重复数据的长度，将长度属性字节的极高位罝 0 并向输出缓冲区复制连续的多个非重兌数据。</li>
+</ul>
+<p class="info-box">
+	GetRepetitionCount() 函数和 GetNonRepetitionCount() 函数都比较简单，此处就不列出代码了。</p>
+根据算法要求，只有数裾重复出现两次以上才算作连续重复数据，因此 IsRepetitionStart() 函数检査连续的3字节是否是相同的数据，如果是则判定为出现连续重复数据。之所以要求至少要 3 字节的重复数据才判定为连续重复数据，是为了尽量优化对短重复数据间隔出现时的压缩效率。<br />
+<br />
+举个例子，对于这样的数据&ldquo;AABCCD&rdquo;，如果不采用这个策略，最终的压缩数据应该是 [0x82][A][0x01][B][0x82][C][0x01][D]，压缩后数据长度是 8 字节。如果采用这个策略，则上述数据就被认定为连续非重复数据局，最终被压缩为 [0x06][A][A][B][C][C][D]，压缩后数据长度是 7 字节，这样的数据越长，效果越明显。<br />
+<br />
+解压缩算法相对比较简单，因为两种情况下的压缩数据首部都是 1 字节的长度属性标识，只要根据这个标识判断如何处理就可以了。首先从压缩数据中取出 1 字节的长度属性标识，然后判断是连续重复数据的标识还是连续非重复数据的标识：
+<ul>
+	<li>
+		如果是连续重复数据，则将标识字节后面的数据重复复制 n 份写入输出缓冲区；</li>
+	<li>
+		如果是连续非重复数据，则将标识字节后面的 n 个数据复制到输出缓冲区。n 的值是标识字节与 0x3F 做与操作后得到，因为标识字节低 7 位就是数据长度属性。</li>
+</ul>
+<pre class="cpp">
+int Rle_Decode(unsigned char *inbuf, int inSize, unsigned char *outbuf, int onuBufSize) {
+    unsigned char *src = inbuf;
+    int i;
+    int decSize = 0;
+    int count = 0;
+    while(src &lt; (inbuf + inSize))
+    {
+        unsigned char sign = *src++;
+        int count = sign &amp; 0x3F;
+        if ((decSize + count) &gt; onuBufSize) /* 输出缓冲区空间不够了 */
+        {
+            return -1;
+        }
+        if ((sign &amp; 0x80) == 0x80) /* 连续重复数据标志 */
+        {
+            for(i = 0; i &lt; count; i++)
+            {
+                outbuf[decSize++] = *src;
+            }
+            src++；
+        }
+        else
+        {
+            for(i = 0; i &lt; count; i++)
+            {
+                outbuf[decSize++] = *src++;
+            }
+        }
+    }
+    return decSize;
+}</pre>
+Rle_Decode() 函数是解压缩算法的实现代码，每组数据的第一字节是长度标识字节，其最高位是标识位，低 7 位是数据长度属性，根据标识位分别进行处理即可。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 152;
+window.arcId = "871eXwoW+L19bKqZ1YxbEPaaTeypXqx1sjz8zPwI4L6RQlYagbp1I45RAA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

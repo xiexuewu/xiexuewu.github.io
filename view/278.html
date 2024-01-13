@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>存储结构和存取结构区别详解</title>
+<meta name="keywords" content="存储,结构,和,存取,的,区别,正如,题目,所说," />
+<meta name="description" content="正如题目所说，本节带大家讲清楚这样一个知识点，即存 储 结构和存 取 结构，虽一字之差，却天差地别！ 举个例子，线性表的顺序存储结构是随机存取结构，而不是顺序存取结构。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>存储结构和存取结构区别详解</h1>
+			<div id="arc-body">正如题目所说，本节带大家理清这样一个知识点，即存<span style="color:#b22222;">储</span>结构和存<span style="color:#b22222;">取</span>结构，虽一字之差，却天差地别！<br />
+<br />
+所谓存储结构，指的是数据在内存中真实的存储状态，具体可分为 2 类，即顺序存储结构和链式存储结构。而存取结构，指的是存取数据的方式，具体也可以分为 2 类，分别为顺序存取结构和随机存取结构。<br />
+<br />
+<span style="color: rgb(178, 34, 34);">举个例子，<u><a href='/view/157.html' target='_blank'>线性表</a></u>的顺序存储结构是随机存取结构，而不是顺序存取结构；线性表的链式存储结构，又可以称为顺序存取结构，而不是随机存取结构。</span><br />
+<br />
+我们知道，线性表的顺序存储结构，本质就是采用一块连续的存储空间将所有数据集中存储起来。不仅仅是 C 语言，很多种编程语言中，都在使用<u><a href='/view/181.html' target='_blank'>数组</a></u>这种数据类型来表示顺序存储结构。<br />
+<br />
+顺序存储结构最大的特点是，我们可以随机存或者取数据。例如，现有一个数组 a，其初始存储状态为：
+<div style="text-align: center;">
+	<br />
+	<img alt="int a[4]={0,1,2,3};" src="/uploads/allimg/200713/2-200G3212225B6.gif" /></div>
+<div style="text-align: center;">
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 int a[4]={0,1,2,3};</div>
+<br />
+在此基础上，如果想取出元素 1，由于其位于数组下标为 1 的位置（数组下标通常由 0 开始计数），因此借助 a[1]，就可以轻松实现目的；反之，如果想将元素 2 改存为元素 5，可以这样实现：
+<pre class="cpp">
+a[2] = 5;</pre>
+显然借助顺序存储结构的特点，我们可以随机存或者取存储的各个元素。这也就解释了&ldquo;线性表的顺序存储结构，又可以称为随机存取结构&rdquo;。<br />
+<br />
+和随机存取结构相对的，是顺序存取结构。通过前面的学习我们知道，采用<u><a href='/view/160.html' target='_blank'>链表</a></u>存储的数据，它们所在的物理空间并不紧挨着，而是分散在内存中的各个位置。仍以存储 0、1、2、和 3 这 4 个元素为例，如果采用链式存储结构，则各个元素的存储状态可能为：
+<div style="text-align: center;">
+	<br />
+	<img alt="链式存储 0、1、2 和 3" src="/uploads/allimg/200713/2-200G3212400554.gif" /><br />
+	图 2 链式存储 0、1、2 和 3</div>
+<br />
+如图 2 所示，如果我们想在链表中存或者取数据，就只能从链表头 H 开始，逐个遍历链表中的每个元素，直至找到目标元素。也就是说，从链表中存和取数据，必须从遵循各个元素在链表中存储的逻辑顺序，无法随机存取。<br />
+<br />
+总之，线性表的顺序存储结构，又可以称为随机存取结构；而线性表的链式存储结构（<u><a href='/view/169.html' target='_blank'>栈</a></u>和<u><a href='/view/172.html' target='_blank'>队列</a></u>），又可以称为顺序存取结构。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 278;
+window.arcId = "bbd23KPmRMyClWctnJ3WuIBL43qu6ma+fKFuU1EMCdNAGDpdFPp04ZW0zw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>邻接表、邻接多重表、十字链表及C语言实现</title>
+<meta name="keywords" content="图,的,链式,存储,邻接,表,、,多重,十字,链表," />
+<meta name="description" content="上一节介绍了如何使用顺序存储结构存储图，而在实际应用中最常用的是本节所介绍的链式存储结构：图中每个顶点作为链表中的结点，结点的构成分为数据域和指针域，数据域存储图" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>邻接表、邻接多重表、十字链表及C语言实现</h1>
+			<div id="arc-body">上一节介绍了如何使用顺序存储结构存储<u><a href='/view/200.html' target='_blank'>图</a></u>，而在实际应用中最常用的是本节所介绍的链式存储结构：图中每个顶点作为<u><a href='/view/160.html' target='_blank'>链表</a></u>中的结点，结点的构成分为数据域和指针域，数据域存储图中各顶点中存储的数据，而指针域负责表示顶点之间的关联。<br />
+<br />
+使用链式存储结构表示图的常用方法有 3 种：<span style="color:#008000;"><u><a href='/view/203.html' target='_blank'>邻接表</a></u></span>、<span style="color:#008000;">邻接多重表</span>和<span style="color:#008000;"><u><a href='/view/186.html' target='_blank'>十字链表</a></u></span>。<br />
+<div class="info-box">
+	邻接的意思是顶点之间有边或者弧存在，通过当前顶点，可以直接找到下一个顶点。</div>
+<h2>
+	邻接表</h2>
+使用邻接表存储图时，对于图中的每一个顶点和它相关的邻接点，都存储到一个链表中。每个链表都配有头结点，头结点的数据域不为NULL，而是用于存储顶点本身的数据；后续链表中的各个结点存储的是当前顶点的所有邻接点。<br />
+<br />
+所以，采用邻接表存储图时，有多少顶点就会构建多少个链表，为了便于管理这些链表，常用的方法是将所有链表的链表头按照一定的顺序存储在一个<u><a href='/view/181.html' target='_blank'>数组</a></u>中（也可以用链表<u><a href='/view/175.html' target='_blank'>串</a></u>起来）。<br />
+<br />
+在邻接表中，每个链表的头结点和其它结点的组成成分有略微的不同。头结点需要存储每个顶点的数据和指向下一个结点的指针，由两部分构成：而在存储邻接点时，由于各个顶点的数据都存储在数组中，所以每个邻接点只需要存储自己在数组中的位置下标即可。另外还需要一个指向下一个结点的指针。除此之外，如果存储的是网，还需要一个记录权值的信息域。所以表头结点和其它结点的构造分别为：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5163519517.png" style="width: 428px; height: 95px;" /><br />
+	图 1 表结点结构</div>
+<blockquote>
+	<p>
+		info 域对于无向图来说，本身不具备权值和其它相关信息，就可以根据需要将之删除。</p>
+</blockquote>
+<br />
+例如，当存储图 2（A）所示的有向图时，构建的邻接表如图 2（B）所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ516355D43.png" style="width: 550px; height: 192px;" /><br />
+	图 2 有向图和对应的邻接表</div>
+<br />
+邻接表存储图的存储结构为：
+<pre class="cpp">
+#define  MAX_VERTEX_NUM 20//最大顶点个数
+#define  VertexType int//顶点数据的类型
+#define  InfoType int//图中弧或者边包含的信息的类型
+typedef struct ArcNode{
+    int adjvex;//邻接点在数组中的位置下标
+    struct ArcNode * nextarc;//指向下一个邻接点的指针
+    InfoType * info;//信息域
+}ArcNode;
+
+typedef struct VNode{
+    VertexType data;//顶点的数据域
+    ArcNode * firstarc;//指向邻接点的指针
+}VNode,AdjList[MAX_VERTEX_NUM];//存储各链表头结点的数组
+
+typedef struct {
+    AdjList vertices;//图中顶点及各邻接点数组
+    int vexnum,arcnum;//记录图中顶点数和边或弧数
+    int kind;//记录图的种类
+}ALGraph;</pre>
+<h2>
+	邻接表计算顶点的度</h2>
+使用邻接表存储无向图时，各顶点的度为各自链表中包含的结点数；存储有向图时，各自链表中具备的结点数为该顶点的出度。求入度时，需要遍历整个邻接表中的结点，统计数据域和该顶点数据域相同的结点的个数，即为顶点的入度。<br />
+<br />
+对于求有向图中某结点的入度，还有一种方法就是再建立一个逆邻接表，此表只用于存储图中每个指向该顶点的所有的顶点在数组中的位置下标。例如，构建图 2（A）的逆邻接表，结果为：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ5163K0514.png" style="width: 205px; height: 125px;" /><br />
+	图 3 逆邻接表</div>
+<br />
+对于具有 n 个顶点和 e 条边的无向图，邻接表中需要存储 n 个头结点和 2e 个表结点。在图中边或者弧稀疏的时候，使用邻接表要比前一节介绍的邻接矩阵更加节省空间。
+<h2>
+	十字链表</h2>
+<span style="color:#b22222;">十字链表存储的对象是有向图或者有向网。</span>同邻接表相同的是，图（网）中每个顶点各自构成一个链表，为链表的首元结点。同时，对于有向图（网）中的弧来说，有弧头和弧尾。一个顶点所有的弧头的数量即为该顶点的入度，弧尾的数量即为该顶点的出度。每个顶点构成的链表中，以该顶点作为弧头的弧单独构成一个链表，以该顶点作为弧尾的弧也单独构成一个链表，两个链表的表头都为该顶点构成的头结点。<br />
+<br />
+这样，由每个顶点构建的链表按照一定的顺序存储在数组中，就构成了十字链表。<br />
+<br />
+所以，十字链表中由两种结点构成：顶点结点和弧结点。各自的结构构成如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ51A02Q40.png" style="width: 338px; height: 161px;" /><br />
+	图 4 十字链表的结点构成</div>
+<br />
+弧结点中， tailvex 和 headvex 分别存储的是弧尾和弧头对应的顶点在数组中的位置下标； hlink 和 tlink 为指针域，分别指向弧头相同的下一个弧和弧尾相同的下一个弧； info 为指针域，存储的是该弧具有的相关信息，例如权值等。<br />
+<br />
+顶点结点中，data 域存储该顶点含有的数据； firstin 和 firstout 为两个指针域，分别指向以该顶点为弧头和弧尾的首个弧结点。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ51A135458.png" style="width: 600px; height: 169px;" /><br />
+	图 5 有向图及其十字链表</div>
+<br />
+例如，使用十字链表存储有向图 5（A） ，构建的十字链表如图 （B） 所示,构建代码实现为：
+<pre class="cpp">
+#define  MAX_VERTEX_NUM 20
+#define  InfoType int//图中弧包含信息的数据类型
+#define  VertexType int
+typedef struct ArcBox{
+    int tailvex,headvex;//弧尾、弧头对应顶点在数组中的位置下标
+    struct ArcBox *hlik,*tlink;//分别指向弧头相同和弧尾相同的下一个弧
+    InfoType *info;//存储弧相关信息的指针
+}ArcBox;
+typedef struct VexNode{
+    VertexType data;//顶点的数据域
+    ArcBox *firstin,*firstout;//指向以该顶点为弧头和弧尾的链表首个结点
+}VexNode;
+typedef struct {
+    VexNode xlist[MAX_VERTEX_NUM];//存储顶点的一维数组
+    int vexnum,arcnum;//记录图的顶点数和弧数
+}OLGraph;
+int LocateVex(OLGraph * G,VertexType v){
+    int i=0;
+    //遍历一维数组，找到变量v
+    for (; i&lt;G-&gt;vexnum; i++) {
+        if (G-&gt;xlist[i].data==v) {
+            break;
+        }
+    }
+    //如果找不到，输出提示语句，返回 -1
+    if (i&gt;G-&gt;vexnum) {
+        printf(&quot;no such vertex.\n&quot;);
+        return -1;
+    }
+    return i;
+}
+//构建十字链表函数
+void CreateDG(OLGraph *G){
+    //输入有向图的顶点数和弧数
+    scanf(&quot;%d,%d&quot;,&amp;(G-&gt;vexnum),&amp;(G-&gt;arcnum));
+    //使用一维数组存储顶点数据，初始化指针域为NULL
+    for (int i=0; i&lt;G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;,&amp;(G-&gt;xlist[i].data));
+        G-&gt;xlist[i].firstin=NULL;
+        G-&gt;xlist[i].firstout=NULL;
+    }
+    //构建十字链表
+    for (int k=0;k&lt;G-&gt;arcnum; k++) {
+        int v1,v2;
+        scanf(&quot;%d,%d&quot;,&amp;v1,&amp;v2);
+        //确定v1、v2在数组中的位置下标
+        int i=LocateVex(G, v1);
+        int j=LocateVex(G, v2);
+        //建立弧的结点
+        ArcBox * p=(ArcBox*)malloc(sizeof(ArcBox));
+        p-&gt;tailvex=i;
+        p-&gt;headvex=j;
+        //采用头插法插入新的p结点
+        p-&gt;hlik=G-&gt;xlist[j].firstin;
+        p-&gt;tlink=G-&gt;xlist[i].firstout;
+        G-&gt;xlist[j].firstin=G-&gt;xlist[i].firstout=p;
+    }
+}</pre>
+对于链表中的各个结点来说，由于表示的都是该顶点的出度或者入度，所以结点之间没有先后次序之分，<span style="color:#b22222;">程序中构建链表对于每个新初始化的结点采用头插法进行插入</span>。
+<h2>
+	十字链表计算顶点的度</h2>
+采用十字链表表示的有向图，在计算某顶点的出度时，为 firstout 域链表中结点的个数；入度为 firstin 域链表中结点的个数。
+<h2>
+	邻接多重表</h2>
+使用邻接表解决在无向图中删除某两个结点之间的边的操作时，由于表示边的结点分别处在两个顶点为头结点的链表中，所以需要都找到并删除，操作比较麻烦。处理类似这种操作，使用邻接多重表会更合适。<br />
+<br />
+邻接多重表可以看做是邻接表和十字链表的结合体。和十字链表唯一不同的是顶点结点和表结点的结构组成不同；同邻接表相比，不同的地方在于邻接表表示无向图中每个边都用两个结点，分别在两个不同链表中；而邻接多重表表示无向图中的每个边只用一个结点。<br />
+<br />
+邻接多重表的顶点结点和表结点的构成如图 6 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ51F600322.png" style="width: 321px; height: 163px;" /><br />
+	图 6 邻接多重表</div>
+<br />
+表结点构成：
+<ul>
+	<li>
+		mark 为标志域，作用是标记某结点是否已经被操作过，例如在遍历各结点时， mark 域为 0 表示还未遍历；mark 域为 1 表示该结点遍历过；</li>
+	<li>
+		ivex 和 jvex 分别表示该结点表示的边两端的顶点在数组中的位置下标； ilink 指向下一条与 ivex 相关的边；</li>
+	<li>
+		jlink 指向下一条与 jvex 相关的边；</li>
+	<li>
+		info 指向与该边相关的信息。</li>
+</ul>
+<br />
+顶点结点构成：
+<ul>
+	<li>
+		data 为该顶点的数据域；</li>
+	<li>
+		firstedge 为指向第一条跟该顶点有关系的边。</li>
+</ul>
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170905/2-1FZ51F644591.png" style="width: 600px; height: 198px;" /><br />
+	图 7 无向图及对应的邻接多重表</div>
+<br />
+例如，使用邻接多重表表示图 7中左边的无向图时，与之相对应的邻接多重表如图右侧所示。<br />
+<br />
+邻接多重表的存储结构用代码表示为：
+<pre class="cpp">
+#define MAX_VERTEX_NUM 20                   //图中顶点的最大个数
+#define InfoType int                        //边含有的信息域的数据类型
+#define VertexType int                      //图顶点的数据类型
+typedef enum {unvisited,visited}VisitIf;    //边标志域
+typedef struct EBox{
+    VisitIf mark;                           //标志域
+    int ivex,jvex;                          //边两边顶点在数组中的位置下标
+    struct EBox * ilink,*jlink;             //分别指向与ivex、jvex相关的下一个边
+    InfoType *info;                         //边包含的其它的信息域的指针
+}EBox;
+typedef struct VexBox{
+    VertexType data;                        //顶点数据域
+    EBox * firstedge;                       //顶点相关的第一条边的指针域
+}VexBox;
+typedef struct {
+    VexBox adjmulist[MAX_VERTEX_NUM];//存储图中顶点的数组
+    int vexnum,degenum;//记录途中顶点个数和边个数的变量
+}AMLGraph;</pre>
+<h2>
+	总结</h2>
+本节介绍了有关图的三种链式存储结构：邻接表、十字链表和邻接多重表。<br />
+<br />
+邻接表适用于所有的图结构，无论是有向图（网）还是无向图（网），存储结构较为简单，但是在存储一些问题时，例如计算某顶点的度，需要通过遍历的方式自己求得。<br />
+<br />
+十字链表适用于有向图（网）的存储，使用该方式存储的有向图，可以很容易计算出顶点的出度和入度，只需要知道对应链表中的结点个数即可。<br />
+<br />
+邻接多重表适用于无向图（网）的存储，该方式避免了使用邻接表存储无向图时出现的存储空间浪费的现象，同时相比邻接表存储无向图，更方便了某些边操作（遍历、删除等）的实现。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 38;
+window.arcId = "f7f4Br23kPrSTtaAN+bQ877EtI6mrPc0/p5avoj/BxOZpTSw08lmkrY7";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

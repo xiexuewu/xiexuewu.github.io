@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>栈实现队列，用两个栈实现队列方法详解（含实现代码）</title>
+<meta name="keywords" content="栈,实现,队列,用,两个,方法,详解,含,代码,栈," />
+<meta name="description" content="栈怎样才能实现和队列一样从栈的底层抽出元素呢？一般会用两个栈来实现队列。 首先，我们将两个栈分别定义为 stack1 与 stack2。 1) 实现方案 1 我们让入队操作在 stack1 中执行，而出队" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>栈实现队列，用两个栈实现队列方法详解（含实现代码）</h1>
+			<div id="arc-body"><u><a href='/view/169.html' target='_blank'>栈</a></u>怎样才能实现和<u><a href='/view/172.html' target='_blank'>队列</a></u>一样从栈的底层抽出元素呢？一般会用两个栈来实现队列。<br />
+<br />
+首先，我们将两个栈分别定义为 stack1 与 stack2。<br />
+<h2>
+	实现方案 1</h2>
+我们让入队操作在 stack1 中执行，而出队操作在 stack2 中执行。执行方式如下。<br />
+<ul>
+	<li>
+		入队：直接向 stack1 中入栈。</li>
+	<li>
+		出队：将 stack1 中的所有元素出栈，依次入栈到 stack2 中，然后弹出 stack2 中的栈顶元素，接着把 stack2 中的所有元素出栈，依次压入 stack1 中。</li>
+</ul>
+<br />
+为了便于理解，我们借助<u><a href='/view/200.html' target='_blank'>图</a></u> 1 解释上述入队操作。<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180923/1-1P923100G1940.jpg" /><br />
+	图 1 入队操作</div>
+<br />
+出队操作如图 2 所示。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/180923/1-1P923100I6429.jpg" /><br />
+	图 2 出队操作</div>
+<br />
+来回入队、出队比较烦琐，尤其是出队比较麻烦，需要先将元素从 stack1 倒入 stack2 里，然后在 stack2 弹出元素之后又倒回到 stack1 里。有没有更好的办法呢？当然有，方案 2 就是改进之后的思路。<br />
+<h2>
+	实现方案 2</h2>
+入队都在 stack1 中进行，stack2 用于出队，同时保证所有元素都在一个栈里，且遵守以下规则。<br />
+<ul>
+	<li>
+		入队：不管 stack1 是否为空栈，都将 stack2 中的所有元素压入 stack1 中。</li>
+	<li>
+		出队：若 stack2 不为空栈，则直接从 stack2 中弹出元素；若 stack2 为空栈，则把 stack1 中的元素倒入 stack2 中，再从 stack2 中弹出元素；若两个栈都是空的，则说明队列为空队，不能出队。这与方案 1 的思路一样，只不过把倒回去的这个操作放到了入队时执行，却使连续入队、出队的效率提高了。</li>
+</ul>
+<br />
+还有更好的办法吗？当然有。方案 3 就是一种更优的解决办法。<br />
+<h2>
+	实现方案 3</h2>
+入队都在 stack1 中进行，出队在 stack2 中进行，同时遵守以下规则。<br />
+<ul>
+	<li>
+		入队：直接把元素压入 stack1 中。</li>
+	<li>
+		出队：如果 stack2 不为空，则直接弹出 stack2 中的元素；如果 stack2 为空，则将 stack1 中的所有元素倒入 stack2 中，然后弹出 stack2 中的栈顶元素。同样，若两个栈都为空栈，则队列为空队，无法出队。</li>
+</ul>
+<br />
+这个方案在入队时非常简单，而在出队时，多数情况下可以直接通过出队 stack2 实现，若需要把 stack1 中的元素倒入 stack2 中，则一般不用每次都进行这样操作。最坏的情况就是出队一个元素、入队一个元素这样的循环操作，导致每次出队都要转移元素。<br />
+<br />
+其实这三种方案的操作是一样的。总体来说，方案 3 是非常好的方案。<br />
+<br />
+下面为方案 3 的代码实现。
+<pre class="java">
+package me.irfen.algorithm.ch02.extend;
+import me.irfen.algorithm.ch02.Stack;
+public class Stack2Queue {
+    private Stack stack1;
+    private Stack stack2;
+    private int maxLength;
+
+    public Stack2Queue(int capacity) {
+        maxLength = capacity;
+        stack1 = new Stack(capacity);
+        stack2 = new Stack(capacity);
+    }
+
+    public boolean put(int item) {
+        if (stack1.isFull() || maxLength == size()) {
+            // 满了
+            return false;
+        }
+        stack1.push(item);
+        return true;
+    }
+
+    public int poll() {
+        if (!stack2.isEmpty()) {
+            return stack2.pop();
+        } else {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+            return stack2.pop();
+        }
+    }
+
+    public int size() {
+        return stack1.size() + stack2.size();
+    }
+}
+</pre>
+下面是测试代码：
+<pre class="java">
+package me.irfen.algorithm.ch02.extend;
+public class Stack2QueueTest {
+    public static void main(String[] args) {
+        Stack2Queue queue = new Stack2Queue(5);
+    queue.put(1);
+    queue.put(2);
+    System.out.println(queue.poll()); // 1
+    queue.put(3);
+    queue.put(4);
+    System.out.println(queue.poll()); // 2
+    System.out.println(queue.poll()); // 3，本次会把3、4两个元素从stack1倒入stack2
+}
+}</pre>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 110;
+window.arcId = "cb96qpzWj3Z1JII5IrtD47w7zGQjn9NEkKmDiAxyuOUvAMIta5psu3nouw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

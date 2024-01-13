@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>散列表（哈希表）及其存储结构和特点详解</title>
+<meta name="keywords" content="散,列表,哈希,表,及其,存储,结构,和,特点,散," />
+<meta name="description" content="顺序存储的结构类型需要一个一个地按顺序访问元素，当这个总量很大且我们所要访问的元素比较靠后时，性能就会很低。 散列表 是一种空间换时间的存储结构，是在算法中提升效率的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>散列表（哈希表）及其存储结构和特点详解</h1>
+			<div id="arc-body">顺序存储的结构类型需要一个一个地按顺序访问元素，当这个总量很大且我们所要访问的元素比较靠后时，性能就会很低。<span style="color:#008000;"><u><a href='/view/63.html' target='_blank'>散列表</a></u></span>是一种空间换时间的存储结构，是在算法中提升效率的一种比较常用的方式，但是所需空间太大也会让人头疼，所以通常需要在二者之间权衡。我们会在之后的具体算法章节中得到更多的领悟。<br />
+<h2>
+	什么是散列表</h2>
+让我们想一下，若在手机通信录中查找一个人，那我们应该不会从第 1 个人一直找下去，因为这样实在是太慢了。我们其实是这样做的：首先看这个人的名字的首字母是什么，比如姓张，那么我们一定会滑到最后，因为&ldquo;Z&rdquo;姓的名字都在最后。<br />
+<br />
+还有在查字典时，要查找一个单词，肯定不会从头翻到尾，而是首先通过这个单词的首字母，找到对应的那一页；再找第 2 个字母、第 3 个字母&hellip;&hellip;这样可以快速跳到那个单词所在的页。<br />
+<br />
+其实这里就用到了散列表的思想。<br />
+<br />
+<span style="color:#008000;">散列表</span><span style="color:#b22222;">，又叫</span><span style="color:#008000;"><u><a href='/view/63.html' target='_blank'>哈希表</a></u>（Hash Table）</span><span style="color:#b22222;">，是能够通过给定的关键字的值直接访问到具体对应的值的一个数据结构。</span>也就是说，把关键字映射到一个表中的位置来直接访问记录，以加快访问速度。<br />
+<br />
+通常，我们把这个关键字称为<span style="color:#008000;"> Key</span>，把对应的记录称为<span style="color:#008000;"> Value</span>，所以也可以说是通过 Key 访问一个映射表来得到 Value 的地址。而这个映射表，也叫作散列函数或者哈希函数，存放记录的<u><a href='/view/181.html' target='_blank'>数组</a></u>叫作散列表。<br />
+<br />
+其中有个特殊情况，就是通过不同的 Key，可能访问到同一个地址，这种现象叫作<span style="color:#008000;">碰撞（Collision）</span>。而通过某个 Key 一定会得到唯一的 Value 地址。<br />
+<br />
+目前，这个哈希函数比较常用的实现方法比较多，通常需要考虑几个因素：关键字的长度、哈希表的大小、关键字的分布情况、记录的查找频率，等等。<br />
+<br />
+下面简单介绍几种哈希函数。<br />
+<ul>
+	<li>
+		<span style="color:#008000;">直接寻址法：</span>取关键字或关键字的某个线性函数值为散列地址。</li>
+	<li>
+		<span style="color:#008000;">数字分析法：</span>通过对数据的分析，发现数据中冲突较少的部分，并构造散列地址。例如同学们的学号，通常同一届学生的学号，其中前面的部分差别不太大，所以用后面的部分来构造散列地址。</li>
+	<li>
+		<span style="color:#008000;">平方取中法：</span>当无法确定关键字里哪几位的分布相对比较均匀时，可以先求出关键字的平方值，然后按需要取平方值的中间几位作为散列地址。这是因为：计算平方之后的中间几位和关键字中的每一位都相关，所以不同的关键字会以较高的概率产生不同的散列地址。</li>
+	<li>
+		<span style="color:#008000;">取随机数法：</span>使用一个随机函数，取关键字的随机值作为散列地址，这种方式通常用于关键字长度不同的场合。</li>
+	<li>
+		<span style="color:#008000;">除留取余法：</span>取关键字被某个不大于散列表的表长 n 的数 m 除后所得的余数 p 为散列地址。这种方式也可以在用过其他方法后再使用。该函数对 m 的选择很重要，一般取素数或者直接用 n。</li>
+</ul>
+<h2>
+	对散列表函数产生冲突的解决办法</h2>
+散列表为什么会产生冲突呢？前面提到过，有时不同的 Key 通过哈希函数可能会得到相同的地址，这在我们操作时可能会对数据造成覆盖、丢失。之所以产生冲突是由于哈希函数有时对不同的 Key 计算之后获得了相同的地址。<br />
+<br />
+冲突的处理方式也有很多，下面介绍几种。<br />
+<ul>
+	<li>
+		<span style="color:#008000;">开放地址法（也叫开放寻址法）：</span>实际上就是当需要存储值时，对Key哈希之后，发现这个地址已经有值了，这时该怎么办？不能放在这个地址，不然之前的映射会被覆盖。这时对计算出来的地址进行一个探测再哈希，比如往后移动一个地址，如果没人占用，就用这个地址。如果超过最大长度，则可以对总长度取余。这里移动的地址是产生冲突时的增列序量。</li>
+	<li>
+		<span style="color:#008000;">再哈希法：</span>在产生冲突之后，使用关键字的其他部分继续计算地址，如果还是有冲突，则继续使用其他部分再计算地址。这种方式的缺点是时间增加了。</li>
+	<li>
+		<span style="color:#008000;">链地址法：</span>链地址法其实就是对Key通过哈希之后落在同一个地址上的值，做一个<u><a href='/view/160.html' target='_blank'>链表</a></u>。其实在很多高级语言的实现当中，也是使用这种方式处理冲突的，我们会在后面着重学习这种方式。</li>
+	<li>
+		<span style="color:#008000;">建立一个公共溢出区：</span>这种方式是建立一个公共溢出区，当地址存在冲突时，把新的地址放在公共溢出区里。</li>
+</ul>
+<h2>
+	散列表的存储结构</h2>
+一个好的散列表设计，除了需要选择一个性能较好的哈希函数，否则冲突是无法避免的，所以通常还需要有一个好的冲突处理方式。这里我们选择除留取余法作为哈希函数，选择链地址法作为冲突处理方式。<br />
+<br />
+具体存储结构如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180922/1-1P922161R9555.jpg" /><br />
+	图 1 散列表的存储结构</div>
+<h2>
+	散列表的特点</h2>
+散列表有两种用法：一种是 Key 的值与 Value 的值一样，一般我们称这种情况的结构为 Set（集合）；而如果 Key 和 Value 所对应的内容不一样时，那么我们称这种情况为 Map，也就是人们俗称的键值对集合。<br />
+<br />
+根据散列表的存储结构，我们可以得出散列表的以下特点。<br />
+<h4>
+	1) 访问速度很快</h4>
+由于散列表有散列函数，可以将指定的 Key 都映射到一个地址上，所以在访问一个 Key（键）对应的 Value（值）时，根本不需要一个一个地进行查找，可以直接跳到那个地址。所以我们在对散列表进行添加、删除、修改、查找等任何操作时，速度都很快。
+<h4>
+	2) 需要额外的空间</h4>
+首先，散列表实际上是存不满的，如果一个散列表刚好能够存满，那么肯定是个巧合。而且当散列表中元素的使用率越来越高时，性能会下降，所以一般会选择扩容来解决这个问题。另外，如果有冲突的话，则也是需要额外的空间去存储的，比如链地址法，不但需要额外的空间，甚至需要使用其他数据结构。<br />
+<br />
+这个特点有个很常用的词可以表达，叫作&ldquo;空间换时间&rdquo;，在大多数时候，对于算法的实现，为了能够有更好的性能，往往会考虑牺牲些空间，让算法能够更快些。
+<h4>
+	3) 无序</h4>
+散列表还有一个非常明显的特点，那就是无序。为了能够更快地访问元素，散列表是根据散列函数直接找到存储地址的，这样我们的访问速度就能够更快，但是对于有序访问却没有办法应对。
+<h4>
+	4) 可能会产生碰撞</h4>
+没有完美的散列函数，无论如何总会产生冲突，这时就需要采用冲突解决方案，这也使散列表更加复杂。通常在不同的高级语言的实现中，对于冲突的解决方案不一定一样。<br />
+<h2>
+	散列表的适用场景</h2>
+根据散列表的特点可以想到，散列表比较适合无序、需要快速访问的情况。<br />
+<h4>
+	缓存</h4>
+通常我们开发程序时，对一些常用的信息会做缓存，用的就是散列表，比如我们要缓存用户的信息，一般用户的信息都会有唯一标识的字段，比如 ID。这时做缓存，可以把 ID 作为 Key，而 Value 用来存储用户的详细信息，这里的 Value 通常是一个对象（高级语言中的术语，前面提到过），包含用户的一些关键字段，比如名字、年龄等。<br />
+<br />
+在我们每次需要获取一个用户的信息时，就不用与数据库这类的本地磁盘存储交互了（其实在大多数时候，数据库可能与我们的服务不在一台机器上，还会有相应的网络性能损耗），可以直接从内存中得到结果。这样不仅能够快速获取数据，也能够减轻数据库的压力。<br />
+<br />
+有时我们要查询一些数据，这些数据与其他数据是有关联的，如果我们进行数据库的关联查询，那么效率会非常低，这时可以分为两部分进行查询：将被关联的部分放入散列表中，只需要遍历一遍；对于另一部分数据，则通过程序手动关联，速度会很快，并且由于我们是通过散列表的 Key、Value 的对应关系对应数据的，所以性能也会比较好。<br />
+<br />
+我之前所在的一家公司曾要做一个大查询，查询和数据组装的时间达到了 40 秒，当然，数据量本身也比较大。但是，40 秒实在让人无法忍受，于是我优化了这段代码，发现可以通过散列表处理来减少很多重复的查询，最终做到了4秒左右的查询耗时，速度快了很多。<br />
+<h4>
+	快速查找</h4>
+这里说的查找，不是排序，而是在集合中找出是否存在指定的元素。<br />
+<br />
+这样的场景很多，比如我们要在指定的用户列表中查找是否存在指定的用户，这时就可以使用散列表了。在这个场景下使用的散列表其实是在上面提到的 Set 类型，实际上不需要 Value 这个值。<br />
+<br />
+还有一个场景，我们一般对网站的操作会有个IP地址黑名单，我们认为某些 IP 有大量的非法操作，于是封锁了这些 IP 对我们网站的访问。这个 IP 是如何存储的呢？就是用的散列表。当一个访问行为发送过来时，我们会获取其 IP，判断其是否存在于黑名单中，如果存在，则禁止其访问。这种情况也是使用的 Set。<br />
+<br />
+当然，对于上面说的两个例子，用列表也是可以实现的，但是访问速度会受到很大的影响，尤其是列表越来越长时，查找速度会很慢。散列表则不会。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 107;
+window.arcId = "1fb5jDLO5e3m7eYLyI9EDkXqiX4VkOlgMOTxbTKbSzdVr8l4s7oWVi89VA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

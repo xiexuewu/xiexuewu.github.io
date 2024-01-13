@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>栈（stack）及其存储结构和特点详解</title>
+<meta name="keywords" content="栈,及其,存储,结构,和,特点,详解,栈,及其," />
+<meta name="description" content="栈是一个有着特殊规则的数据结构。我们熟悉汉诺塔游戏，如图 1 所示，这里有一个明确的规则，即每次只能移动顶端的一个圆盘。 图 1 汉诺塔游戏 栈也有这个特点。我们可以将栈视为" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>栈（stack）及其存储结构和特点详解</h1>
+			<div id="arc-body"><u><a href='/view/169.html' target='_blank'>栈</a></u>是一个有着特殊规则的数据结构。我们熟悉汉诺塔游戏（如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示），这里有一个明确的规则，即每次只能移动顶端的一个圆盘。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180923/1-1P92309254a13.jpg" /><br />
+	图 1 汉诺塔游戏</div>
+<br />
+栈也有这个特点。我们可以将栈视为汉诺塔中的一个柱子，我们往这个柱子上放置圆盘，先放下去的一定是最后才能拿出来的，而最后放下去的一定是最先拿出来的。这也是栈的最重要一个特点&mdash;&mdash;<span style="color:#008000;">后进先出（LIFO，Last In First Out）</span>，也可以说是先进后出（FILO，First In Last Out），我们无论如何只能从一端去操作元素。<br />
+<br />
+栈又叫作<span style="color:#008000;">堆栈（Stack）</span>，这里说明一下不要将它和堆混淆。实际上堆和栈是两个不同的概念，栈是一种只能在一端进行插入和删除的线性数据结构。<br />
+<br />
+<span style="color:#b22222;">一般来说，栈主要有两个操作：一个是进栈（PUSH），又叫作入栈、压栈；另一个是出栈（POP），或者叫作退栈。</span><br />
+<br />
+其实栈是一种比较简单的数据结构，但是由于其特性，又衍生了不少的相关算法。<br />
+<h2>
+	栈的存储结构</h2>
+栈一般使用一段连续的空间进行存储，通常预先分配一个长度，可以简单地使用<u><a href='/view/181.html' target='_blank'>数组</a></u>去实现，具体的存储结构如图 2 所示。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/180923/1-1P923092AK95.jpg" /><br />
+	图 2 栈的存储结构</div>
+<br />
+通过图 2 可以清晰地看到，只有一个方向可以对栈内的元素进行操作，而栈中最下面的一个元素成为栈底，一般是数组的第 0 个元素，而栈顶是栈内最后放入的元素。<br />
+<br />
+一般而言，定义一个栈需要有一个初始的大小，这就是栈的初始容量。当需要放入的元素大于这个容量时，就需要进行扩容。<br />
+<br />
+栈出入元素的操作如下。例如我们初始化一个长度为 10 的数组，并向其中放入元素，根据栈的定义，只能从数组的一端放入元素，我们设定这一端为数组中较大下标的方向。我们放入第 1 个元素，由于栈内没有元素，于是第 1 个元素就落到了数组的第 0 个下标的位置上；接着放入第 2 个元素，第 2 个元素该放入下标为 1 的位置上；以此类推，当放入了 5 个元素时，第 5 个入栈的元素应该在数组的第 4 个下标的位置上。<br />
+<br />
+现在我们要进行出栈操作，出栈只能从一端操作，我们之前设定只能从数组下标较大的方向操作，因此需要确定数组中下标最大的一个方向中存在栈元素的位置下标是多少。我们一般会在栈中做个计数器来记录这个值。现在栈中有 5 个元素，所以将数组中的第 5 个位置也就是下标为 4 的元素出栈。此时数组中只剩下 4 个元素了。<br />
+<br />
+下面是栈的实现代码，这里以整型元素为例，在 Java 类的高级语言中，数据类型可以换成对象。
+<pre class="java">
+package me.irfen.algorithm.ch02;
+import java.util.Arrays;
+public class Stack {
+    private int size = 0;
+    private int[] array;
+    public Stack() {
+        this(10);
+    }
+
+    public Stack(int init) {
+        if (init &lt;= 0) {
+            init = 10;
+        }
+        array = new int[init];
+    }
+
+    /**
+      * 入栈
+      * @param item 入栈元素的值
+    */
+    public void push(int item) {
+        if (size == array.length) {
+            array = Arrays.copyOf(array, size * 2);
+        }
+        array[size++] = item;
+    }
+
+    /**
+      * 获取栈顶元素，但是没有出栈
+      * @return
+      */
+    public int peek() {
+        if (size == 0) {
+            throw new IndexOutOfBoundsException(&quot;栈里已经空啦&quot;);
+        }
+        return array[size - 1];
+    }
+
+    /**
+      * 出栈，同时获取栈顶元素
+      * @return
+      */
+    public int pop() {
+        int item = peek();
+        size --; // 直接使元素个数减1，不需要真的清除元素，下次入栈会覆盖旧元素值
+        return item;
+    }
+
+    /**
+      * 栈是否满了
+      * @return
+      */
+    public boolean isFull() {
+        return size == array.length;
+    }
+
+    /**
+      * 栈是否为空栈
+      * @return
+      */
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int size() {
+        return size;
+    }
+}</pre>
+下面是测试代码：<br />
+<pre class="java">
+package me.irfen.algorithm.ch02;
+public class StackTest {
+public static void main(String[] args) {
+    Stack stack = new Stack(1); // 为了方便看出效果，设定初始数组长度为1
+    stack.push(1);
+    stack.push(2);
+    System.out.println(stack.size()); // 栈内元素个数为2，当前数组长度也为2
+    stack.push(3);
+    System.out.println(stack.size()); // 栈内元素个数为3，当前数组长度为4
+    System.out.println(stack.peek()); // 获取栈顶元素，为3，但是没有出栈
+    System.out.println(stack.size()); // 由于上面一行没有出栈，所以元素个数还是3
+    System.out.println(stack.pop()); // 栈顶元素出栈，返回3
+    System.out.println(stack.pop()); // 栈顶元素出站，返回2
+    System.out.println(stack.size()); // 出了两次栈，当前元素个数为1
+}
+}</pre>
+<h2>
+	栈的特点</h2>
+栈的特点是显而易见的，只能在一端进行操作，遵循先进后出或者后进先出的原则。<br />
+<h2>
+	栈的适用场景</h2>
+什么时使用栈？根据栈先进先出且只能在一端操作的特点，一般有下面几个应用。<br />
+<h4>
+	1) 逆序输出</h4>
+由于栈具有先进后出的特点，所以逆序输出是其中一个非常简单的应用。首先把所有元素按顺序入栈，然后把所有元素出栈并输出，轻松实现逆序输出。<br />
+<h4>
+	2) 语法检查，符号成对出现</h4>
+在编程语言中，一般括号都是成对出现的，比如&ldquo;［&rdquo;和&ldquo;］&rdquo;&ldquo;｛&rdquo;和&ldquo;｝&rdquo;&ldquo;（&rdquo;和&ldquo;）&rdquo;&ldquo;＜&rdquo;和&ldquo;＞&rdquo;（这里的&ldquo;＜&rdquo;和&ldquo;＞&rdquo;排除了作为大于小于号的情况）。<br />
+<br />
+凡是遇到括号的前半部分，即为入栈符号（PUSH）；凡是遇到括号的后半部分，就比对是否与栈顶元素相匹配（PEEK），如果相匹配，则出栈（POP），否则就是匹配出错。<br />
+<h4>
+	3) 数制转换（将十进制的数转换为2～9的任意进制的数）</h4>
+另一个应用就是用于实现十进制与其他进制的转换规则。<br />
+<br />
+通过求余法，可以将十进制数转换为其他进制，比如要转为八进制，则将原十进制数除以 8，记录余数，然后继续将商除以 8，一直到商等于 0 为止，最后将余数倒着写出来就行了。<br />
+<br />
+依照这个原理，当我们要将 100 转为八进制数时，先将 100 除以 8，商 12 余 4，第 1 个余数 4 入栈；之后继续用 12 除以 8，商 1 余 4，第 2 个余数 4 入栈；接着用 1 除以 8，商 0 余 1，第 3 个余数 1 入栈。最后将三个余数全部出栈，就得到了 100 的八进制数 144。当然，栈的应用不仅有这些，其他应用还有很多。比如常听到的编程语言调用中的&ldquo;函数栈&rdquo;，就是我们在调用方法时计算机会执行 PUSH 方法，记录调用，在 return 也就是方法结束之后，执行 POP 方法，完成前后对应。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 108;
+window.arcId = "607dtlNdr7NQPn99QRSV1WglbvV1fQryCuShwaNOVUMipsrAgnP8vMnF0w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

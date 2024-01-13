@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构文学研究助手 C语言代码实现（带源码+解析）</title>
+<meta name="keywords" content="数据结构,文学研究,助手,语言,代码,实现,带," />
+<meta name="description" content="文学研究人员需要统计某篇英文小说中某些形容词的出现次数和位置。一个实现这一目标的文字统计系统，称为 文学研究助手 。 假设英文小说存放在一个文本文件中，每个单词不包含" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构文学研究助手 C语言代码实现（带源码+解析）</h1>
+			<div id="arc-body">文学研究人员需要统计某篇英文小说中某些形容词的出现次数和位置。一个实现这一目标的文字统计系统，称为<span style="color:#008000;">&ldquo;文学研究助手&rdquo;</span>。<br />
+<br />
+假设英文小说存放在一个文本文件中，每个单词不包含空格且不跨行，单词由字符序列构成且区分大小写。设计一个文学研究助手，实现以下功能：
+<ol>
+	<li>
+		统计给定单词在文本文件中出现的总次数。</li>
+	<li>
+		检索输出某个单词出现在文本中的行号、在该行中出现的位置以及次数。</li>
+</ol>
+<h2>
+	实现思路</h2>
+实现此功能的文学研究助手的基本思路为：
+<ul>
+	<li>
+		建立文本文件；</li>
+	<li>
+		统计文本文件中给定的单词数量；</li>
+	<li>
+		检索给定单词所在的行号、该行中出现的次数以及在该行中的位置（以该单词首字母所在位置为准）；</li>
+</ul>
+<br />
+首先，建立一个文本文件的过程是非常容易的，这里不再具体描述。<br />
+<br />
+第 2 步实现统计单词数量时，<span style="color:#008000;">实现思路是：</span><span style="color:#b22222;">遍历文本文件中的所有单词，同要查找的单词进行比较，若相等，则证明此单词是要找的单词；反之，进行下一单词的比对，直至文件结束。</span><br />
+<br />
+第 3 步的实现过程同第 2 步类似，即也是遍历文本文件，取每个单词与给定单词进行比较，找出同给定单词相同的单词，同时记录其所在的位置。<br />
+<br />
+<span style="color:#b22222;">完整实现代码为（附有详细注释）：</span>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+//存储文件名的<u><a href='/view/181.html' target='_blank'>数组</a></u>
+char filename[20];
+//创建文本文件的函数
+void creattext(){
+    FILE * fp;
+    char ch;
+    printf(&quot;请输入文件名：&quot;);
+    gets(filename);
+    //尝试打开文件，若无此文件，该函数会自动创建一个新的文件
+    if((fp = fopen(filename,&quot;w&quot;)) == NULL){
+        printf(&quot;cannot open file\n&quot;);
+        return;
+    }
+    //向文件中输入内容
+    printf(&quot;请输入文件内容，以&lsquo;#&rsquo;作为结束标志：\n&quot;);
+    ch = getchar();
+    while(ch!=&#39;#&#39;){
+        fputc(ch,fp);
+        ch = getchar();
+    }
+    //创建文件完成后，关闭文件
+    fclose(fp);
+}
+//统计文本文件中给定单词的数量
+int count(char * word){
+    FILE * fp;
+    char ch,w[20];
+    int j = 0,num = 0;
+    //打开文件
+    if((fp = fopen(filename,&quot;r&quot;)) == NULL){
+        printf(&quot;cannot open file\n&quot;);
+        return 0;
+    }
+    //只要文件不结束，就一直判断
+    while(!feof(fp)){
+        //取文件中的每个单词
+        ch = fgetc(fp);
+        j = 0;
+        //只要不是空格或转行，其所遇到的字母都隶属于一个单词
+        while(ch != &#39; &#39; &amp;&amp; ch != &#39;\n&#39; &amp;&amp; !feof(fp)){
+            w[j++] = ch;
+            ch = fgetc(fp);
+        }
+        //给单词的最后添加结束符，防止各个单词的长度不同，导致从数组读取单词时多读的现象发生
+        w[j] = &#39;\0&#39;;
+        //判断每个单词是否与给定单词相同，若相同，则计数变量num +1
+        if(strcmp(w,word) == 0){
+            num++;
+        }
+    }
+    //最终返回计数变量 num 的值
+    return num;
+}
+//检索并输出给定单词所在行号、在该行中出现的次数以及各自的具体位置
+void search(char * word){
+    FILE * fp;
+    char ch,w[20];
+    int j = 0,num = 0,row = 1,col[20],i = 0,k;
+    //尝试打开文本文件
+    if((fp = fopen(filename,&quot;r&quot;)) == NULL){
+        printf(&quot;cannot open file\n&quot;);
+        return;
+    }
+    //遍历文本文件中的每个单词
+    while(!feof(fp)){
+        ch = fgetc(fp);
+        j = 0, i++;
+        while(ch != &#39; &#39; &amp;&amp; ch != &#39;\n&#39; &amp;&amp; !feof(fp)){
+            w[j++] = ch;
+            ch = fgetc(fp);
+            i++;
+        }
+        w[j]=&#39;\0&#39;;
+        //判断每个单词与给定单词是否相等
+        if(strcmp(w,word) == 0){
+            //如果相同，记录该单词在该行中的位置，同时计数变量 num+1
+            col[num] = i-j,
+            num++;
+        }
+        //如果遇到转行或者文件结束，则输出该行中单词的数量以及相应位置
+        if(ch == &#39;\n&#39; || feof(fp)){
+            if(num){
+                printf(&quot;the number of %d row is %d\n&quot;,row,num);
+                printf(&quot;the col is :&quot;);
+                for(k = 0 ; k &lt; num; k++){
+                    printf(&quot;%5d&quot;,col[k]);
+                }
+                printf(&quot;\n&quot;);
+            }
+            //转行，row +1，同时 i 和 num 都清零
+            row ++;
+            i = 0;
+            num = 0;
+        }
+    }
+}
+int main(){
+    creattext();
+    //输入要检索的单词
+    printf(&quot;word is : &quot;);
+    char word[20];
+    scanf(&quot;%s&quot;,word);
+    //统计 word 的个数
+    printf(&quot;count of %s is :%d\n&quot;,word,count(word));
+    //检索 word 在文本中的相对位置
+    search(word);
+    return 0;
+}</pre>
+<span style="color:#008000;">运行结果为：</span>
+<div class="info-box">
+	请输入文件名：demo<br />
+	请输入文件内容，以&lsquo;#&rsquo;作为结束标志：<br />
+	hello c.biancheng.net !<br />
+	c.biancheng.net hello !<br />
+	#<br />
+	word is : hello<br />
+	count of hello is :2<br />
+	the number of 1 row is 1<br />
+	the col is :&nbsp;&nbsp;&nbsp; 1<br />
+	the number of 2 row is 1<br />
+	the col is :&nbsp;&nbsp; 17</div>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">提示：</span>输出显示：此文本文件中 hello 这个单词出现 2 次，其中第 1 行出现 1 次，位置为 1 ，第 2 行出现 1 次，位置为 17。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 99;
+window.arcId = "ebfeHtt8EBsCySF2xAwYYrgr+yoKo4Rd3S8a1iC1uIqZypAJ9mGkKpld";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>汉诺塔的递归实现算法详解</title>
+<meta name="keywords" content="汉诺塔,的,递归,实现,算法,详解,汉诺塔,的," />
+<meta name="description" content="这里我们再详细地介绍一下汉诺塔的移动原理，假设三根柱子分别是 A、B、C，一开始 A 上有 N 个圆盘，从小到大、从上到下分别是 1、2N-1、N，我们要把 A 上的 N 个圆盘全部移动到 C 上面" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>汉诺塔的递归实现算法详解</h1>
+			<div id="arc-body">这里我们再详细地介绍一下汉诺塔的移动原理，假设三根柱子分别是 A、B、C，一开始 A 上有 N 个圆盘，从小到大、从上到下分别是 1、2&hellip;&hellip;N-1、N，我们要把 A 上的 N 个圆盘全部移动到 C 上面，且每次只能移动每根柱子最上面的一个圆盘。<br />
+<br />
+我们可以反过来考虑一下，若要把 A 上的圆盘全部移动到 C 上，那么需要把前 N-1 个圆盘按顺序落在 B 上了，最后的第 N 个圆盘才可以直接从 A 移动到 C 上，从而完成第 N 个圆盘的移动。之后把 B 上的 N-2 个圆盘移动到 A 上，再把 B 上剩下的最后一个圆盘，也就是第 N-1 个圆盘直接移动到 C 上，这时就已经完成了最下面两个圆盘的移动。继续这样的移动，直到完成游戏。<br />
+<br />
+经过上述对汉诺塔移动的详细分析，大家可以先思考和尝试一下如何写这个算法的实现代码。<br />
+<h2>
+	汉诺塔的递归实现</h2>
+上面的步骤在代码上使用递归是最好实现的。要使用递归，就要考虑到需要进行递归的是哪部分。我们先看一下代码，然后结合代码具体分析这样写的原因。<br />
+<pre class="java">
+package me.irfen.algorithm.ch02.extend;
+public class HanoiTest {
+    public static void hanoi(int n, char A, char B, char C) {
+        if (n == 1) {
+            // 只有一个圆盘需要移动的时候移动完结束
+            move(A, C);
+            return;
+        }
+        // 先把A上的n-1个圆盘移动到B上
+        hanoi(n - 1, A, C, B);
+        // 把A上最后一个圆盘移动到C上
+        move(A, C);
+        // 接下来递归，把B上的n-1个圆盘移动到C上
+        hanoi(n - 1, B, A, C);
+    }
+
+    /**
+     * 把A最上面的圆盘移动到C上去
+     * @param A
+     * @param C
+     */
+    private static void move(char A, char C) {
+        System.out.println(A + &quot;--&gt;&quot; + C);
+    }
+
+    public static void main(String[] args) {
+        hanoi(3, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;);
+    }
+}</pre>
+现在有了汉诺塔递归实现的具体代码，我们来分析一下。<br />
+<br />
+hanoi 函数的第 1 个参数是柱子上需要移动的圆盘的个数，后三个参数分别为三根柱子的标识。首先当 n 为 1 时，需要移动的圆盘只有一个，直接把 A 上的圆盘移动到 C 上就可以了，同时代码结束，因为已经没有需要移动的圆盘了。<br />
+<br />
+接下来是汉诺塔实现的关键，即把 A 上所有的圆盘移动到 C 上，需要先把 A 最上面的 n-1 个圆盘移动到 B 上，于是有了&ldquo;hanoi(n-1,A,C,B);&rdquo;这样一行递归调用，接下来只需要把 A 上最后剩下的最大的圆盘移动到 C 上。<br />
+<br />
+现在 B 上有 n-1 个圆盘，C 上有一个最大的圆盘，接下来把 B 上这 n-1 个圆盘也移动到 C 上。此时把 B 想象成之前的 A，有一堆待移动的圆盘；把 A 想象成之前的 B，是空的柱子，这时我们只需要把调用方式变为&ldquo;hanoi(n-1,B,A,C);&rdquo;，就可以完成移动，这就是递归调用的思想所在了。<br />
+<br />
+在递归调用中会继续执行该方法，改变参数的值，继续打印，这样每次调用会减少 n 的值，直到 n 最后变为 1 之后，结束递归调用，最终完成汉诺塔移动。<br />
+<br />
+转变一下思想，就能够理解从 B 上移动 n-1 个圆盘到 C 上其实和从 A 上移动圆盘到 C 上一样，我们会发现汉诺塔的递归调用非常简单。</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 113;
+window.arcId = "c5f5vXeF9WbnzapvzYHr2tZYq4xs+5VqJ56sKZfokpQEUC5acLDVqt8bkg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

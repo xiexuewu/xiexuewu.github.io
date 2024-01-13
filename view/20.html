@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>广义表的长度和深度</title>
+<meta name="keywords" content="求,广义,表,的,长度,和,深度,广义,表,的,长度," />
+<meta name="description" content="广义表的长度 通过前一节对广义表的介绍，例子中给出了几个广义表的长度。例如：空表的长度为0，只含有一个原子的广义表长度为1，等等。 广义表的长度指的是广义表中数据元素的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>广义表的长度和深度</h1>
+			<div id="arc-body"><h2>
+	<u><a href='/view/189.html' target='_blank'>广义表</a></u>的长度</h2>
+通过前一节对广义表的介绍，例子中给出了几个广义表的长度。例如：空表的长度为 0，只含有一个原子的广义表长度为 1，等等。<br />
+<br />
+<span style="color:#b22222;">广义表的长度指的是广义表中数据元素的数量。</span>这里需要指明的是，一个广义表中，一个原子算做是一个元素，一个子表也只算做一个元素。<br />
+<br />
+在 LS = (a<sub>1</sub>,a<sub>2</sub>,&hellip;,a<sub>n</sub>) 中，a<sub>i</sub>表示原子或者子表， LS 的长度为 n。
+<h2>
+	广义表的深度</h2>
+<span style="color:#b22222;">广义表的深度，指的是广义表中括号的重数。</span><br />
+例如：C=(a,(b,c,d))：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH0164015500.png" style="width: 250px; height: 111px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u>1 广义表C的深度</div>
+<br />
+图1中，从前往后数左括号的数量就是广义表C的深度，为2；也可以从右往左数右括号的数量（红色）。
+<h2>
+	求解广义表的深度</h2>
+求广义表的深度之前，首先要将广义表用某个数据结构表示出来，在前边学习广义表时，介绍了两种表示广义表的方法。这里采用的方法是第一种。<br />
+<br />
+表示结构为：（拿广义表C为例）
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170720/2-1FH016413cc.png" style="width: 400px; height: 111px;" /></div>
+<div class="info-box">
+	广义表第一节中有具体实现的代码，实现函数为：creatGlist(Glist C)。这里不再过多介绍。</div>
+求广义表深度的算法用到的是递归的思想，解题思路是：<br />
+<br />
+<ol>
+	<li>
+		从广义表 C 的开头位置，一次遍历表中每个数据元素：当遍历对象为原子时，返回原子的深度为 0 ；遍历对象为表 C 的子表时，继续遍历子表中的数据元素。</li>
+	<li>
+		递归的出口有两个：当遍历对象为原子时，返回 0 ；遍历对象为空表时，返回 1 （空表的深度为 1 ）；</li>
+	<li>
+		设置一个初始值为 0 的整形变量 max ，用 max 和遍历过程中返回的整形数值进行比较，取大的那一个，知道程序结束，max + 1就是广义表的深度。</li>
+</ol>
+<br />
+实现代码为：
+<pre class="cpp">
+int GlistDepth(Glist C){
+    //如果表C为空表时，直接返回长度1；
+    if (!C) {
+        return 1;
+    }
+    //如果表C为原子时，直接返回0；
+    if (C-&gt;tag==0) {
+        return 0;
+    }
+    int max=0;//设置表C的初始长度为0；
+    for (Glist pp=C; pp; pp=pp-&gt;ptr.tp) {
+        int dep=GlistDepth(pp-&gt;ptr.hp);
+        if (dep&gt;max) {
+            max=dep;//每次找到表中遍历到深度最大的表，并用max记录
+        }
+    }
+    //程序运行至此处，表明广义表不是空表，由于原子返回的是0，而实际长度是1，所以，此处要+1；
+    return max+1;
+}</pre>
+完整代码演示
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct GLNode{
+    int tag;//标志域
+    union{
+        char atom;//原子结点的值域
+        struct{
+            struct GLNode * hp,*tp;
+        }ptr;//子表结点的指针域，hp指向表头；tp指向表尾
+    };
+}*Glist,GNode;
+
+Glist creatGlist(Glist C){
+    //广义表C
+    C=(Glist)malloc(sizeof(GNode));
+    C-&gt;tag=1;
+    //表头原子&lsquo;a&rsquo;
+    C-&gt;ptr.hp=(Glist)malloc(sizeof(GNode));
+    C-&gt;ptr.hp-&gt;tag=0;
+    C-&gt;ptr.hp-&gt;atom=&#39;a&#39;;
+    //表尾子表（b,c,d）,是一个整体
+    C-&gt;ptr.tp=(Glist)malloc(sizeof(GNode));
+    C-&gt;ptr.tp-&gt;tag=1;
+    C-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(GNode));
+    C-&gt;ptr.tp-&gt;ptr.tp=NULL;
+    //开始存放下一个数据元素（b,c,d）,表头为&lsquo;b&rsquo;，表尾为（c,d）
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=1;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp=(Glist)malloc(sizeof(GNode));
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp-&gt;tag=0;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp-&gt;atom=&#39;b&#39;;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp=(Glist)malloc(sizeof(GNode));
+    //存放子表(c,d)，表头为c，表尾为d
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;tag=1;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(GNode));
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=0;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp-&gt;atom=&#39;c&#39;;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp=(Glist)malloc(sizeof(GNode));
+    //存放表尾d
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;tag=1;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(GNode));
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=0;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp-&gt;atom=&#39;d&#39;;
+    C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.tp=NULL;
+    return C;
+}
+//求广义表的深度，递归调用
+int GlistDepth(Glist C){
+    if (!C) {
+        return 1;
+    }
+    if (C-&gt;tag==0) {
+        return 0;
+    }
+    int max=0;
+    for (Glist pp=C; pp; pp=pp-&gt;ptr.tp) {
+        int dep=GlistDepth(pp-&gt;ptr.hp);
+        if (dep&gt;max) {
+            max=dep;
+        }
+    }
+    return max+1;
+}
+int main(int argc, const char * argv[]) {
+    Glist C=creatGlist(C);
+    printf(&quot;%d&quot;,GlistDepth(C));
+    return 0;
+}</pre>
+运行结果：
+<div class="info-box">
+	2</div>
+<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 20;
+window.arcId = "19e38dhDFKfhuDxJetl/t/OfN38i1m/54G143Byhi3kRkQalth0mqNbS";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>一元多项式相加，多项式相加（带源码和解析）</title>
+<meta name="keywords" content="一元,多项式,相加,带,源码,和,解析,问题,说明," />
+<meta name="description" content="问题说明 求两个一元多项式 A(x) = a0 + a1x + a2x2 + + anxn 和 B(x) = b0 + b1x + b2x2 + + bmxm 的和。 要求：分别输入两个多项式的各个系数和指数。要求程序输出多项式的和。 实现思路 求此问题，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>一元多项式相加，多项式相加（带源码和解析）</h1>
+			<div id="arc-body"><h2>
+	问题说明</h2>
+求两个一元多项式 A(x) = a<sub>0</sub> + a<sub>1</sub>x + a<sub>2</sub>x<sup>2</sup> + &hellip; + a<sub>n</sub>x<sup>n</sup> 和 B(x) = b<sub>0</sub> + b<sub>1</sub>x + b<sub>2</sub>x<sup>2</sup> + &hellip; + b<sub>m</sub>x<sup>m</sup> 的和。<br />
+<span style="color:#b22222;">要求：分别输入两个多项式的各个系数和指数。要求程序输出多项式的和。</span>
+<h2>
+	实现思路</h2>
+<span style="color:#008000;">求此问题，用单<u><a href='/view/160.html' target='_blank'>链表</a></u>实现更加简单直观。</span>其链表中的每个结点表示多项式中的每一项。<br />
+<br />
+多项式每一项都是由：<span style="color:#008000;">数据域（包含系数和指数）</span>和<span style="color:#008000;">指针域</span>构成。所以在定义表示结点的结构体时，可如下所示进行定义：
+<pre class="cpp">
+typedef struct PLnode{
+    //数据域，coef 表示系数，expn 表示指数
+    float coef;
+    int expn;
+    //指针域
+    struct PLnode *next;
+}PLnode,*PLinkList;</pre>
+如下<u><a href='/view/200.html' target='_blank'>图</a></u>所示，为一元多项式 A(x)=7+3x+9x<sup>8</sup>+5x<sup>17</sup> 和 B(x)=8x+22x<sup>7</sup>-9x<sup>8</sup> 的链表表示图：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180424/2-1P424143344125.png" style="width: 500px; height: 82px;" /></div>
+<br />
+当两个一元多项式相加时，需遵循如下的运算规则。<span style="color:#008000;">假设指针 qa 和qb 分别指向多项式 A 和多项式 B 中当前进行比较的某个结点</span>，则比较两个结点的指数项，有以下 3 种情况：
+<ul>
+	<li>
+		指针 qa 所指结点的指数值小于指针 qb 所指结点的指数值，则应摘除 qa 所指结点插入到&ldquo;和多项式&rdquo;链表中去；</li>
+	<li>
+		指针 qa 所指结点的指数值大于指针 qb 所指结点的指数值，则应摘除 qb 所指结点插入到&ldquo;和多项式&rdquo;链表中去；</li>
+	<li>
+		指针 qa 所指结点的指数值等于指针 qb 所指结点的指数值，则将两个结点的系数相加：若和不为 0 ，则修改 qa 所指结点的系数值，同时释放qb所指结点；若和为 0，则应从多项式 A 的链表中删除相应结点，并释放指针 qa 和 qb 所指结点。</li>
+</ul>
+<h2>
+	代码实现</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct PLnode{
+    //数据域，coef 表示系数，expn 表示指数
+    float coef;
+    int expn;
+    //指针域
+    struct PLnode *next;
+}PLnode,*PLinkList;
+
+//一元多项式的链表表示创建函数，输入 m 项的系数和指数，建立表示一元多项式的有序链表L
+void creatpolyn(PLinkList L, int m){
+    int i;
+    float coef;
+    int expn;
+    PLinkList tail,new;
+    //初始化头结点L，其中系数域记录 链表的长度
+    L-&gt;coef = m;
+    L-&gt;expn = -1;
+    //另 tail 作为遍历链表的指针
+    tail = L;
+    //创建 m 个新结点并对其初始化，而后链接到 L 上
+    for(i=1 ; i&lt;=m ; i++){
+         new = (PLinkList)malloc(sizeof(PLnode));
+         printf(&quot;intput coef &amp; expn:&quot;);
+         scanf(&quot;%f&quot;,&amp;coef);
+         scanf(&quot;%d&quot;,&amp;expn);
+         new-&gt;coef = coef;
+         new-&gt;expn = expn;
+         new-&gt;next = NULL;
+         //将新结点链接到 L 上
+         tail-&gt;next = new;
+         tail = new;
+    }
+}
+//完成多项式相加运算，即 Lc = La + Lb，并销毁一元多项式 Lb
+PLinkList addpolyn(PLinkList La , PLinkList Lb){
+    int x,len;
+    float y;
+    PLinkList Lc,pa,pb,pc,u;
+    Lc = La;
+    len = 0;
+    pc = Lc;
+    //另pa，pb 指向La 、Lb 的首元结点
+    pa = La-&gt;next;
+    pb = Lb-&gt;next;
+    //通过 pa，pb 遍历链表 La、Lb，只有两指针同时存在时，才需要讨论
+    while(pa &amp;&amp; pb){
+        x = pa-&gt;expn-pb-&gt;expn;
+        //判断pa 所指结点的指数与pb 所指结点指数的大小关系
+        if(x&lt;0){
+            //如果小，则找去 qa 结点到Lc 上
+            pc = pa;
+            len++;
+            pa = pa-&gt;next;
+        }
+        //如果相等，则判断两结点的系数和是否为0
+        else if(x == 0){
+            y = pa-&gt;coef + pb-&gt;coef;
+            if(y!=0.0){
+                //如果不为 0，修改 pa 结点的系数值，同时链接到 LC 上
+                pa-&gt;coef = y;
+                pc = pa;
+                len++;
+            }
+            //如果 y 值为0，则从 pc 的链表中摘除该结点，并释放该结点
+            else{
+                pc-&gt;next=pa-&gt;next;
+                free(pa);
+            }
+            //无论是否相等，都执行下列操作
+            pa = pc-&gt;next;
+            u = pb;
+            pb = pb -&gt;next;
+            free(u);
+        }
+        //如果pb 所指结点指数值小，则摘取pb所指结点到 LC链表上
+        else{
+            u = pb-&gt;next;
+            pb-&gt;next= pa;
+            pc-&gt;next=pb;
+            pc = pb;
+            len++;
+            pb = u;
+        }
+    }
+    //由于是在 La 上进行一元多项式的加和，所以如果运行过程 pa 不再有结点，而pb 上有，则需要将pb剩余结点链接到 Lc 上
+    if(pb){
+        pc-&gt;next = pb;
+    }
+    //计算 Lc 的长度
+    while(pc){
+        pc = pc-&gt;next;
+        if(pc){
+            len++;
+        }
+    }
+    //Lc 的头结点中记录Lc 链表的长度
+    Lc-&gt;coef = len;
+    //加和完成的同时，释放Lb 结点
+    free(Lb);
+    return Lc;
+}
+//根据链表存储信息。输出结点 q
+void printpoly(PLinkList q){
+    if(q-&gt;expn == 0){
+        printf(&quot;%.0f&quot;,q-&gt;coef);
+    }
+    else if(q-&gt;expn == 1){
+        if(q-&gt;coef == 1){
+            printf(&quot;x&quot;);
+        }
+        else if (q-&gt;coef == -1){
+            printf(&quot;-x&quot;);
+        }
+        else{
+            printf(&quot;%.0f&quot;,q-&gt;coef);
+            printf(&quot;x&quot;);
+        }
+    }
+    else if (q-&gt;coef == 1){
+        printf(&quot;x^%d&quot;,q-&gt;expn);
+    }
+    else if(q-&gt;coef == -1){
+        printf(&quot;-x^%d&quot;,q-&gt;expn);
+    }
+    else{
+        printf(&quot;%.0fx^%d&quot;,q-&gt;coef,q-&gt;expn);
+    }
+}
+//输出一元多项式L
+void printpolyn(PLinkList L){
+    int n;
+    PLinkList p;
+    p = L-&gt;next;
+    n = 0;
+    while(p){
+        n++;
+        if(n == 1){
+            printpoly(p);
+        }else if(p-&gt;coef&gt;0){
+            printf(&quot;+&quot;);
+            printpoly(p);
+        }else{
+            printpoly(p);
+        }
+        p = p-&gt;next;
+    }
+}
+int main(){
+    PLinkList La,Lb,Lc;
+    int m,n;
+    //根据 n 的值，创建链表La
+    printf(&quot;input n of La:&quot;);
+    scanf(&quot;%d&quot;,&amp;n);
+    La = (PLinkList)malloc(sizeof(PLnode));
+    creatpolyn(La,n);
+    //根据 m 的值，创建 Lb
+    printf(&quot;input m of Lb:&quot;);
+    scanf(&quot;%d&quot;,&amp;m);
+    Lb = (PLinkList)malloc(sizeof(PLnode));
+    creatpolyn(Lb,m);
+    //输出La和Lb
+    printf(&quot;\nLa=&quot;);
+    printpolyn(La);
+    printf(&quot;\nLb=&quot;);
+    printpolyn(Lb);
+    //计算La+Lb，结果保存在 Lc中
+    Lc = addpolyn(La,Lb);
+    printf(&quot;\nLc=&quot;);
+    printpolyn(Lc);
+    return 0;
+}</pre>
+<span style="color:#008000;">运行结果：</span>
+<div class="info-box">
+	input n of La:4<br />
+	intput coef &amp; expn:7 0<br />
+	intput coef &amp; expn:3 1<br />
+	intput coef &amp; expn:9 8<br />
+	intput coef &amp; expn:5 17<br />
+	input m of Lb:3<br />
+	intput coef &amp; expn:8 1<br />
+	intput coef &amp; expn:22 7<br />
+	intput coef &amp; expn:-9 8<br />
+	<br />
+	La=7+3x+9x^8+5x^17<br />
+	Lb=8x+22x^7-9x^8<br />
+	Lc=7+11x+22x^7+5x^17</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 90;
+window.arcId = "a219PxNwAhDkdyvLZVmDJ86JEf3krmmypoe6MyiH7H6eEgqeQkxNhwpx";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>冒泡排序算法（起泡排序）及其C语言实现</title>
+<meta name="keywords" content="起泡,排序,冒泡,起泡,排序,冒泡," />
+<meta name="description" content="起泡排序 ，别名 冒泡排序 ，该算法的核心思想是将无序表中的所有记录，通过两两比较关键字，得出升序序列或者降序序列。 例如，对无序表 {49，38，65，97，76，13，27，49} 进行升序" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/github/sort/">排序算法</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/github/view/65.html">插入排序算法</a></dd><dd>10.2 <a href="/github/view/66.html">折半插入排序算法</a></dd><dd>10.3 <a href="/github/view/67.html">2-路插入排序算法</a></dd><dd>10.4 <a href="/github/view/68.html">表插入排序算法</a></dd><dd>10.5 <a href="/github/view/vip_259.html">希尔排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.6 <a href="/github/view/70.html">冒泡排序算法</a></dd><dd>10.7 <a href="/github/view/vip_260.html">快速排序算法（QSort，快排）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="/github/view/72.html">选择排序算法</a></dd><dd>10.9 <a href="/github/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.10 <a href="/github/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.11 <a href="/github/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>冒泡排序算法（起泡排序）及其C语言实现</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_259.html">希尔排序算法</a></span>
+                    <span class="next right"><a href="/view/vip_260.html">快速排序算法（QSort，快排）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_259.html";window.nextPageURL = "/view/vip_260.html";</script>
+			<div id="arc-body"><span style="color:#008000;">起泡排序</span>，别名<span style="color:#b22222;">&ldquo;<u><a href='/view/70.html' target='_blank'>冒泡排序</a></u>&rdquo;</span>，该算法的核心思想是将无序表中的所有记录，通过两两比较关键字，得出升序序列或者降序序列。<br />
+<br />
+例如，对无序表<code>{49，38，65，97，76，13，27，49}</code>进行升序排序的具体实现过程如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G0305Jb.png" style="width: 374px; height: 507px;" /></div>
+<div style="text-align: center;">
+	图 1 第一次起泡</div>
+<br />
+如图 1 所示是对无序表的第一次起泡排序，最终将无序表中的最大值 97 找到并存储在表的最后一个位置。具体实现过程为：
+<ol>
+	<li>
+		首先 49 和 38 比较，由于 38&lt;49，所以两者交换位置，即从（1）到（2）的转变；</li>
+	<li>
+		然后继续下标为 1 的同下标为 2 的进行比较，由于 49&lt;65，所以不移动位置，（3）中 65 同 97 比较得知，两者也不需要移动位置；</li>
+	<li>
+		直至（4），97 同 76 进行比较，76&lt;97，两者交换位置，如（5）所示；</li>
+	<li>
+		同样 97&gt;13（5）、97&gt;27（6）、97&gt;49（7），所以经过一次冒泡排序，最终在无序表中找到一个最大值 97，第一次冒泡结束；</li>
+</ol>
+<br />
+由于 97 已经判断为最大值，所以第二次冒泡排序时就需要找出除 97 之外的无序表中的最大值，比较过程和第一次完全相同。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171107/2-1G10G0321L94.png" style="width: 374px; height: 451px;" /></div>
+<br />
+经过第二次冒泡，最终找到了除 97 之外的又一个最大值 76，比较过程完全一样，这里不再描述。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">通过一趟趟的比较，一个个的&ldquo;最大值&rdquo;被找到并移动到相应位置，直到检测到表中数据已经有序，或者比较次数等同于表中含有记录的个数，排序结束，这就是</span><span style="color:#008000;">起泡排序</span><span style="color:#b22222;">。</span></p>
+</blockquote>
+起泡排序的具体实现代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+//交换 a 和 b 的位置的函数
+void swap(int *a, int *b);
+int main()
+{
+    int array[8] = {49,38,65,97,76,13,27,49};
+    int i, j;
+    int key;
+    //有多少记录，就需要多少次冒泡，当比较过程，所有记录都按照升序排列时，排序结束
+    for (i = 0; i &lt; 8; i++){
+        key=0;//每次开始冒泡前，初始化 key 值为 0
+        //每次起泡从下标为 0 开始，到 8-i 结束
+        for (j = 0; j+1&lt;8-i; j++){
+            if (array[j] &gt; array[j+1]){
+                key=1;
+                swap(&amp;array[j], &amp;array[j+1]);
+            }
+        }
+        //如果 key 值为 0，表明表中记录排序完成
+        if (key==0) {
+            break;
+        }
+    }
+    for (i = 0; i &lt; 8; i++){
+        printf(&quot;%d &quot;, array[i]);
+    }
+    return 0;
+}
+void swap(int *a, int *b){
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}</pre>
+运行结果为：
+<div class="info-box">
+	13 27 38 49 49 65 76 97</div>
+<h2>
+	总结</h2>
+使用起泡排序算法，其<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>同实际表中数据的无序程度有关。若表中记录本身为正序存放，则整个排序过程只需进行 n-1（n 为表中记录的个数）次比较，且不需要移动记录；若表中记录为逆序存放（最坏的情况），则需要 n-1趟排序，进行 n(n-1)/2 次比较和数据的移动。所以该算法的时间复杂度为<code>O(n<sup>2</sup>)</code>。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_259.html">希尔排序算法</a></span>
+                    <span class="next right"><a href="/view/vip_260.html">快速排序算法（QSort，快排）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_259.html";window.nextPageURL = "/view/vip_260.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 70;
+window.arcId = "dbbddCmfDxLJrTUwd3rI8Pt/gOYAHg4MVdBix4HlD0e1K55ExnYa6P3c";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

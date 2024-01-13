@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>克鲁斯卡尔算法(Kruskal算法)求最小生成树</title>
+<meta name="keywords" content="求,最小,生成,树之,克鲁斯,卡尔,算法,Kruskal," />
+<meta name="description" content="上一节介绍了求最小生成树之普里姆算法。该算法从顶点的角度为出发点，时间复杂度为O(n2)，更适合与解决边的绸密度更高的连通网。 本节所介绍的克鲁斯卡尔算法，从边的角度求网" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>克鲁斯卡尔算法(Kruskal算法)求最小生成树</h1>
+			<div id="arc-body">上一节介绍了求最小<u><a href='/view/202.html' target='_blank'>生成树</a></u>之普里姆算法。该算法从顶点的角度为出发点，<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(n<sup>2</sup>)</code>，更适合与解决边的绸密度更高的连通网。<br />
+<br />
+本节所介绍的克鲁斯卡尔算法，从边的角度求网的最小生成<u><a href='/view/23.html' target='_blank'>树</a></u>，时间复杂度为<code>O(eloge)</code>。和普里姆算法恰恰相反，<span style="color:#b22222;">更适合于求边稀疏的网的最小生成树</span>。<br />
+<br />
+对于任意一个连通网的最小生成树来说，在要求总的权值最小的情况下，最直接的想法就是将连通网中的所有边按照权值大小进行升序排序，从小到大依次选择。<br />
+<br />
+由于最小生成树本身是一棵生成树，所以需要时刻满足以下两点：
+<ul>
+	<li>
+		生成树中任意顶点之间有且仅有一条通路，也就是说，生成树中不能存在回路；</li>
+	<li>
+		对于具有 n 个顶点的连通网，其生成树中只能有 n-1 条边，这 n-1 条边连通着 n 个顶点。</li>
+</ul>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">连接 n 个顶点在不产生回路的情况下，只需要 n-1 条边。</span></p>
+</blockquote>
+所以克鲁斯卡尔算法的具体思路是：将所有边按照权值的大小进行升序排序，然后从小到大一一判断，条件为：如果这个边不会与之前选择的所有边组成回路，就可以作为最小生成树的一部分；反之，舍去。直到具有 n 个顶点的连通网筛选出来 n-1 条边为止。筛选出来的边和所有的顶点构成此连通网的最小生成树。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">判断是否会产生回路的方法为</span>：在初始状态下给每个顶点赋予不同的标记，对于遍历过程的每条边，其都有两个顶点，判断这两个顶点的标记是否一致，如果一致，说明它们本身就处在一棵树中，如果继续连接就会产生回路；如果不一致，说明它们之间还没有任何关系，可以连接。</p>
+</blockquote>
+假设遍历到一条由顶点 A 和 B 构成的边，而顶点 A 和顶点 B 标记不同，此时不仅需要将顶点 A 的标记更新为顶点 B 的标记，还需要更改所有和顶点 A 标记相同的顶点的标记，全部改为顶点 B 的标记。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F911163R01W.png" style="width: 231px; height: 188px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 连通网</div>
+例如，使用克鲁斯卡尔算法找图 1 的最小生成树的过程为：<br />
+<br />
+首先，在初始状态下，对各顶点赋予不同的标记（用颜色区别），如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F91116422K37.png" style="width: 231px; height: 187px;" /><br />
+	（1）</div>
+对所有边按照权值的大小进行排序，按照从小到大的顺序进行判断，首先是（1，3），由于顶点 1 和顶点 3 标记不同，所以可以构成生成树的一部分，遍历所有顶点，将与顶点 3 标记相同的全部更改为顶点 1 的标记，如（2）所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F911163922M6.png" style="width: 231px; height: 188px;" /><br />
+	（2）</div>
+其次是（4，6）边，两顶点标记不同，所以可以构成生成树的一部分，更新所有顶点的标记为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F91116431A11.png" style="width: 231px; height: 188px;" /><br />
+	（3）</div>
+其次是（2，5）边，两顶点标记不同，可以构成生成树的一部分，更新所有顶点的标记为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F911164335108.png" style="width: 231px; height: 188px;" /><br />
+	（4）</div>
+<br />
+然后最小的是（3，6）边，两者标记不同，可以连接，遍历所有顶点，将与顶点 6 标记相同的所有顶点的标记更改为顶点 1 的标记：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F91116435D40.png" style="width: 231px; height: 188px;" /><br />
+	（5）</div>
+继续选择权值最小的边，此时会发现，权值为 5 的边有 3 个，其中（1，4）和（3，4）各自两顶点的标记一样，如果连接会产生回路，所以舍去，而（2，3）标记不一样，可以选择，将所有与顶点 2 标记相同的顶点的标记全部改为同顶点 3 相同的标记：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F91116442R29.png" style="width: 231px; height: 188px;" /><br />
+	（6）</div>
+<br />
+当选取的边的数量相比与顶点的数量小 1 时，说明最小生成树已经生成。所以最终采用克鲁斯卡尔算法得到的最小生成树为（6）所示。<br />
+<br />
+实现代码：
+<pre class="cpp">
+#include &quot;stdio.h&quot;
+#include &quot;stdlib.h&quot;
+#define MAX_VERtEX_NUM 20
+#define VertexType int
+typedef struct edge{
+    VertexType initial;
+    VertexType end;
+    VertexType weight;
+}edge[MAX_VERtEX_NUM];
+//定义辅助<u><a href='/view/181.html' target='_blank'>数组</a></u>
+typedef struct {
+    VertexType value;//顶点数据
+    int sign;//每个顶点所属的集合
+}assist[MAX_VERtEX_NUM];
+
+assist assists;
+
+//qsort排序函数中使用，使edges结构体中的边按照权值大小升序排序
+int cmp(const void *a,const void*b){
+    return  ((struct edge*)a)-&gt;weight-((struct edge*)b)-&gt;weight;
+}
+//初始化连通网
+void CreateUDN(edge *edges,int *vexnum,int *arcnum){
+    printf(&quot;输入连通网的边数：\n&quot;);
+    scanf(&quot;%d %d&quot;,&amp;(*vexnum),&amp;(*arcnum));
+    printf(&quot;输入连通网的顶点：\n&quot;);
+    for (int i=0; i&lt;(*vexnum); i++) {
+        scanf(&quot;%d&quot;,&amp;(assists[i].value));
+        assists[i].sign=i;
+    }
+    printf(&quot;输入各边的起始点和终点及权重：\n&quot;);
+    for (int i=0 ; i&lt;(*arcnum); i++) {
+        scanf(&quot;%d,%d,%d&quot;,&amp;(*edges)[i].initial,&amp;(*edges)[i].end,&amp;(*edges)[i].weight);
+    }
+}
+//在assists数组中找到顶点point对应的位置下标
+int Locatevex(int vexnum,int point){
+    for (int i=0; i&lt;vexnum; i++) {
+        if (assists[i].value==point) {
+            return i;
+        }
+    }
+    return -1;
+}
+int main(){
+   
+    int arcnum,vexnum;
+    edge edges;
+    CreateUDN(&amp;edges,&amp;vexnum,&amp;arcnum);
+    //对连通网中的所有边进行升序排序，结果仍保存在edges数组中
+    qsort(edges, arcnum, sizeof(edges[0]), cmp);
+    //创建一个空的结构体数组，用于存放最小生成树
+    edge minTree;
+    //设置一个用于记录最小生成树中边的数量的常量
+    int num=0;
+    //遍历所有的边
+    for (int i=0; i&lt;arcnum; i++) {
+        //找到边的起始顶点和结束顶点在数组assists中的位置
+        int initial=Locatevex(vexnum, edges[i].initial);
+        int end=Locatevex(vexnum, edges[i].end);
+        //如果顶点位置存在且顶点的标记不同，说明不在一个集合中，不会产生回路
+        if (initial!=-1&amp;&amp; end!=-1&amp;&amp;assists[initial].sign!=assists[end].sign) {
+            //记录该边，作为最小生成树的组成部分
+            minTree[num]=edges[i];
+            //计数+1
+            num++;
+            //将新加入生成树的顶点标记全不更改为一样的
+            for (int k=0; k&lt;vexnum; k++) {
+                if (assists[k].sign==assists[end].sign) {
+                    assists[k].sign=assists[initial].sign;
+                }
+            }
+            //如果选择的边的数量和顶点数相差1，证明最小生成树已经形成，退出循环
+            if (num==vexnum-1) {
+                break;
+            }
+        }
+    }
+    //输出语句
+    for (int i=0; i&lt;vexnum-1; i++) {
+        printf(&quot;%d,%d\n&quot;,minTree[i].initial,minTree[i].end);
+    }
+    return 0;
+}</pre>
+测试数据：<br />
+<div class="info-box">
+	输入连通网的边数：<br />
+	6 10<br />
+	输入连通网的顶点：<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	6<br />
+	输入各边的起始点和终点及权重：<br />
+	1,2,6<br />
+	1,3,1<br />
+	1,4,5<br />
+	2,3,5<br />
+	2,5,3<br />
+	3,4,5<br />
+	3,5,6<br />
+	3,6,4<br />
+	4,6,2<br />
+	5,6,6<br />
+	<span style="color:#008000;">1,3<br />
+	4,6<br />
+	2,5<br />
+	3,6<br />
+	2,3</span></div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 41;
+window.arcId = "6571/h+L9sL4vbW6hFc3zjyIK1BLlgXvin25e7fyPI1rx6gRA8F2EkA4";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构与算法C语言版分析概述</title>
+<meta name="keywords" content="数据结构,概述,什么,是,数据结构,可以,分开," />
+<meta name="description" content="什么是数据结构？ 数据结构，可以分开来看。 首先来理解什么是数据。作为一个程序员，最基本的能力就是能够从实际生活中的问题中提取出有用的数据，转化成数据问题。（例如，小" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构与算法C语言版分析概述</h1>
+			<div id="arc-body">本节开始将带领大家系统地学习<span style="color:#008000;">数据结构</span>，作为一门计算机专业大二学生的必修课程，该课程面对的目标人群为初步具备基本编程能力和编程思想的程序员（大一接触了 C 语言或者 C++）。通过系统地学习数据结构，可以提高程序员分析问题和解决问题的能力。<br />
+<br />
+首先，先来揭开数据结构的神秘面纱，看看什么是数据结构。
+<h2>
+	数据结构是什么？</h2>
+数据结构，可以将之分为&ldquo;数据&rdquo;和&ldquo;结构&rdquo;两个方面去理解。<br />
+<br />
+数据，很好理解。都说人离不开空气，<span style="color:#b22222;">感觉剥夺实验</span>告诉我们，人也离不开信息，而<span style="color:#b22222;">信息实际上就是对数据进行加工后得到的产物</span>。信息的形式多样化，所以数据的形态也多种多样：文字、数字、字母、符号、<u><a href='/view/200.html' target='_blank'>图</a></u>形图像、音频视频等都可以是数据。<br />
+<blockquote>
+	<p>
+		感觉剥夺实验，就是剥夺人的所有接受信息的权利，包括触觉、听觉、感觉等，这样的剥夺，任何人都是受不了的，详情可以去网上搜索。</p>
+</blockquote>
+2017 年的双 11，全球的&ldquo;剁手族&rdquo;为天猫贡献了 1682 亿，其中&ldquo;剁手族&rdquo;分布最多的城市为广东，等等这些都是通过天猫后台对一笔笔交易数据进行统计得出的结论。<br />
+<br />
+<span style="color:#b22222;">结构，可以理解为各部分之间的关系。</span>对于一篇文章的文章结构来说，有总分式，有并列式等，而判断一篇文件结构的过程实际上就是搞清楚文章中各个自然段落之间的关系。<br />
+<br />
+<span style="color:#008000;">数据结构</span><span style="color:#b22222;">，实际上是一门研究数据以及数据之间存在的关系的一门课程。</span>通过理清数据及其之间存在的关系，就可以将数据有效存储到计算机中，让计算机来处理数据。<br />
+<br />
+例如，在编写程序实现计算 7-2=？ 的问题中，首先搞清楚的是：
+<ol>
+	<li>
+		问题中只涉及到两个数据：整数 7 和整数 2；</li>
+	<li>
+		数据之间的关系是被减数与减数的关系；</li>
+</ol>
+<br />
+全部搞清楚了之后，就可以编写程序解决此问题：定义两个整形变量，一个表示被减数，一个表示减数（确定之间的关系），将 7 和 2 赋给各自相应的变量（将数据存储到计算机中），最终输出相减的结果。<br />
+<br />
+数据结构的体现不止于此，如图 1 所示，为一个家庭现有成员的<u><a href='/view/23.html' target='_blank'>树</a></u>形图，现需要让计算机解决：找到孙子张磊的爷爷是谁？
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/171121/2-1G12114514Y03.png" /><br />
+	图 1 家庭成员树形图</div>
+<br />
+通过看这张家谱树形图，可以一眼看出，张磊的爷爷是张亮。但是如果把这个问题交给计算机来实现，就需要帮助计算机理清数据之间的关系。
+<h2>
+	数据的逻辑结构和物理结构</h2>
+<span style="color:#b22222;">数据之间的关系（即数据结构）又可细分为</span>：<span style="color:#b22222;">逻辑关系</span>（<span style="color:#008000;">逻辑结构</span>）和<span style="color:#b22222;">物理关系</span>（<span style="color:#008000;">物理结构</span>）。逻辑关系就是例如张晶的父亲是张平、张群是张平的兄弟等等这样的关系，是人为赋予给数据的。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">数据之间的逻辑关系分为三种：</span>&ldquo;<span style="color:#008000;">一对一</span>&rdquo;、&ldquo;<span style="color:#008000;">一对多</span>&rdquo;、&ldquo;<span style="color:#008000;">多对多</span>&rdquo;。图 1 中，每个孩子对应着唯一的父亲，这是&ldquo;一对一&rdquo;的关系；拿张平来说，他有两个孩子，为&ldquo;一对多&rdquo;的关系；在共享单车中，每个用户都可以选择多辆不同的单车；而每辆单车会被多个人使用，此为&ldquo;多对多&rdquo;的关系。</p>
+</blockquote>
+但是由于最终解决问题的主体是计算机，解决问题时需要将数据全部存储到计算机中，而后计算机去处理。数据在计算机中的实际存储表现出的是数据之间的物理结构，例如张晶距离张磊在实际的物理存储中有 5 比特的距离。<br />
+<br />
+学习数据结构的作用就是在理清数据的逻辑关系的前提下，设计出合理的物理存储结构，使用这种结构，既能有效的存储数据，又能表示数据之间的关系。当计算机明白了这两个因素，问题自然而然就解决了。
+<h2>
+	数据结构 PK 算法</h2>
+<span style="color:#b22222;">数据结构和算法两者为互利共赢的关系，两者并不冲突。</span>使用计算机编程解决某个具体问题时，正确的做法是：
+<ol>
+	<li>
+		思考如何将要用到的数据存储到计算机中；</li>
+	<li>
+		使用什么方法解决这个问题；</li>
+</ol>
+<br />
+<span style="color:#b22222;">数据结构解决的是第一个问题，算法解决的的第二个问题。</span>光有数据结构没有算法，相当于只把数据存储到计算机中而没有有效的方法去处理，没有任何意义；而若光有算法，没有数据结构，就相当于一个军师有锦囊妙计，但是没有士兵。
+<h2>
+	本教程的具体内容</h2>
+本教程参照严蔚敏教授的《数据结构》一书，课程内容同该书同步，根据数据之间不同的逻辑关系，分为以下章节:<br />
+<br />
+<ul>
+	<li>
+		<span style="color:#008000;"><u><a href='/view/157.html' target='_blank'>线性表</a></u>、<u><a href='/view/169.html' target='_blank'>栈</a></u>和<u><a href='/view/172.html' target='_blank'>队列</a></u></span>：解决的是具有&ldquo;一对一&rdquo;关系的数据的存储问题；</li>
+	<li>
+		<span style="color:#008000;">树</span>：解决的是具有&ldquo;一对多&rdquo;（也可以包含&ldquo;一对一&rdquo;）关系的数据存储问题；</li>
+	<li>
+		<span style="color:#008000;">图</span>：解决的是具有&ldquo;多对多&rdquo;（也包含&ldquo;一对一&rdquo;和&ldquo;一对多&rdquo;）关系的数据存储问题；</li>
+</ul>
+<br />
+以上在介绍的同时，还会涉及到具体问题的解决，例如查找某个数据等。除以上内容外，也包含了有关<span style="color:#008000;">字符<u><a href='/view/175.html' target='_blank'>串</a></u></span>、<span style="color:#008000;"><u><a href='/view/181.html' target='_blank'>数组</a></u>和<u><a href='/view/189.html' target='_blank'>广义表</a></u></span>的相关内容。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">除以上内容外，本教程对于各个知识点，还会配有专门的项目进行练习，同时还会不断地更新内容，给大家搜集介绍一些实用的算法。</span></p>
+</blockquote>
+<h2>
+	学习数据结构的优势</h2>
+<ul>
+	<li>
+		<span style="color:#b22222;">适用于所有编程语言</span></li>
+</ul>
+<div style="margin-left: 40px;">
+	<br />
+	数据结构解决的是数据的有效存储问题，而不涉及到具体编程语言，是编程的基础课程。</div>
+<div class="info-box" style="margin-left: 40px;">
+	<span style="color:#b22222;">误区：</span>随着计算机技术日新月异的发展，越多的技术涌现，很多人花大精力和时间去追求新技术新热点，而将数据结构等基础抛之脑后，实属南辕北辙。因为软件开发不论如何改变，其最核心的底层知识不会改变。学习数据结构等一些基础课程才能真正的做到以不变应万变。</div>
+<ul>
+	<li>
+		<span style="color:#b22222;">扩宽解决问题的思路</span></li>
+</ul>
+<p style="margin-left: 40px;">
+	<br />
+	对于面临的一些复杂的问题，其复杂性往往不是解决该问题的算法，更多的是思考如何存储具有复杂关系的数据。对于解决此类问题，数据结构无疑是一把利器。</p>
+<div class="info-box" style="margin-left: 40px;">
+	数据结构中还会涉及有一些具体问题的解决算法<span style="color:#b22222;">（本教程会持续更新）</span>，例如没有接触数据结构之前，对于数据的排序，可能只想到冒泡（<u><a href='/view/70.html' target='_blank'>冒泡排序</a></u>），其实你不知道，还有插入排序，快速排序等效率更高的排序算法，这些在本教程中都会以图文并茂的方式给大家讲解。</div>
+<h2>
+	本教程 PK 其他数据结构教程</h2>
+<span style="color:#b22222;">本教程依照于严蔚敏的《数据结构》一书，致力于打造一套适用与初学者，最浅显易懂的数据结构教程。</span><br />
+<br />
+由于《数据结构》一书在对知识点的讲解上，跳跃性较强，对读者的编程思维要求较高。<span style="color:#b22222;">针对这个情况，本教程在该书的基础上对其知识点进行了更浅显易懂的讲解，在讲解过程中配有大量的样例和图示。</span><br />
+<br />
+更重要的是，<span style="color:#b22222;">本教程对该书中所有的伪代码进行了基于 C 语言的完整实现</span>，对实现过程进行了大量的铺垫，并附带了大量易于理解的注释和图示。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>本书中所有涉及到的代码都是基于 C 语言实现的，且遵循较新的 C99 标准，读者在尝试运行网站中的代码时请尽量使用较新版本的编译器。</p>
+</blockquote>
+<h2>
+	总结</h2>
+在武侠小说中，高手往往注重内功的修养，而招式则为其次，有了深厚的内力，即使不会招式，也能见招拆招；如果一味地崇拜花拳绣腿，没有内功，只是花架子，没什么卵用。<br />
+<br />
+<span style="color:#b22222;">程序猿的路也是如此，要内外兼修。</span>很多人认为大学所学的内容没用，其实不然，大学的学习就是在不断地提升自己的内功修为；毕业步入社会后，在深厚内力的基础上学习招式。<br />
+<br />
+数据结构作为计算机专业的必修课程，就像&ldquo;北冥神功&rdquo;&ldquo;易筋经&rdquo;一样，是提升内功修为的绝世功法，怎么可以不学？<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">当你选择了本教程，你已然超越了 99% 的程序员。</span></p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 22;
+window.arcId = "d28aiqd48i6vb1yx75HqVtz1Pp+DbZfmJpzNqWNS6SrIzEYzVBSA4+YJ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

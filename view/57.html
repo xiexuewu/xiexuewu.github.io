@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>静态树表查找算法及C语言实现</title>
+<meta name="keywords" content="静态,查找,表之,树表,本章,前面,章节,所,介绍," />
+<meta name="description" content="本章前面章节所介绍的有关在静态查找表中对特定关键字进行顺序查找、折半查找或者分块查找，都是在查找表中各关键字被查找概率是相同的前提下进行的。 例如查找表中有 n 个关键" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>静态树表查找算法及C语言实现</h1>
+			<div id="arc-body">前面章节所介绍的有关在静态查找表中对特定关键字进行<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>、<u><a href='/view/55.html' target='_blank'>折半查找</a></u>或者分块查找，都是在查找表中各关键字被查找概率相同的前提下进行的。
+<blockquote>
+	<p>
+		例如查找表中有 n 个关键字，表中每个关键字被查找的概率都是 1/n。在等概率的情况，使用折半查找算法的性能最优。</p>
+</blockquote>
+而在某些情况下，查找表中各关键字被查找的概率是不同的。例如水果商店中有很多种水果，对于不同的顾客来说，由于口味不同，各种水果可能被选择的概率是不同的。假设该顾客喜吃酸，那么相对于苹果和橘子，选择橘子的概率肯定要更高一些。<br />
+<br />
+在查找表中各关键字查找概率不相同的情况下，对于使用折半查找算法，按照之前的方式进行，其查找的效率并不一定是最优的。例如，某查找表中有 5 个关键字，各关键字被查找到的概率分别为：0.1，0.2，0.1，0.4，0.2<span style="color:#b22222;">（全部关键字被查找概率和为 1 ）</span>，则根据之前介绍的折半查找算法，建立相应的判定<u><a href='/view/23.html' target='_blank'>树</a></u>为（树中各关键字用概率表示）：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G016144040541.png" style="width: 175px; height: 207px;" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 折半查找对应的判定树</div>
+<br />
+折半查找查找成功时的平均查找长度的计算方式为：<br />
+<div class="info-box">
+	ASL = 判定树中各结点的查找概率*所在层次</div>
+所以该平均查找长度为：<br />
+<div class="info-box">
+	ASL=0.1*1 + 0.1*2 + 0.4*2 + 0.2*3 + 0.2*3 = 2.3</div>
+<br />
+由于各关键字被查找的概率是不相同的，所以若在查找时遵循被查找关键字先和查找概率大的关键字进行比对，建立的判定树为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G016144155337.png" style="width: 175px; height: 207px;" /><br />
+	图 2 折半查找对应的新判定树</div>
+<br />
+相应的平均查找长度为：
+<div class="info-box">
+	ASL=0.4*1 + 0.2*2 + 0.2*2 + 0.1*3 + 0.1*3=1.8</div>
+后者折半查找的效率要比前者高，所以在查找表中各关键字查找概率不同时，要考虑建立一棵查找性能最佳的判定树。<span style="color:#b22222;">若在只考虑查找成功的情况下，描述查找过程的判定树其带权路径长度之和（用 PH 表示）最小时，查找性能最优，称该<u><a href='/view/192.html' target='_blank'>二叉树</a></u>为</span><span style="color:#008000;">静态最优查找树</span>。<br />
+<blockquote>
+	<p>
+		带权路径之和的计算公式为：PH = 所有结点所在的层次数 * 每个结点对应的概率值。</p>
+</blockquote>
+但是由于构造最优查找树花费的时间代价较高，而且有一种构造方式创建的判定树的查找性能同最优查找树仅差 1% - 2%，<span style="color:#b22222;">称这种极度接近于最优查找树的二叉树为</span><span style="color:#008000;">次优查找树</span>。
+<h2>
+	次优查找树的构建方法</h2>
+首先取出查找表中每个关键字及其对应的权值，采用如下公式计算出每个关键字对应的一个值：<br />
+<img alt="" src="/uploads/allimg/171016/2-1G016144450610.png" style="width: 200px; height: 74px;" />
+<div class="info-box">
+	其中 w<sub>j</sub> 表示每个关键字的权值（被查找到的概率），h 表示关键字的个数。</div>
+表中有多少关键字，就会有多少个 △P<sub>i</sub> ，取其中最小的做为次优查找树的根结点，然后将表中关键字从第 i 个关键字的位置分成两部分，分别作为该根结点的左子树和右子树。同理，左子树和右子树也这么处理，直到最后构成次优查找树完成。<br />
+<br />
+代码实现为：
+<pre class="cpp">
+typedef int KeyType;//定义关键字类型
+typedef struct{
+    KeyType key;
+}ElemType;//定义元素类型
+typedef struct BiTNode{
+    ElemType data;
+    struct BiTNode *lchild, *rchild;
+}BiTNode, *BiTree;
+
+//定义变量
+int i;
+int min;
+int dw;
+//创建次优查找树，R<u><a href='/view/181.html' target='_blank'>数组</a></u>为查找表，sw数组为存储的各关键字的概率（权值），low和high表示的sw数组中的权值的范围
+void SecondOptimal(BiTree T, ElemType R[], float sw[], int low, int high){
+    //由有序表R[low...high]及其累计权值表sw（其中sw[0]==0）递归构造次优查找树
+    i = low;
+    min = abs(sw[high] - sw[low]);
+    dw = sw[high] + sw[low - 1];
+    //选择最小的△Pi值
+    for (int j = low+1; j &lt;=high; j++){
+        if (abs(dw-sw[j]-sw[j-1])&lt;min){
+            i = j;
+            min = abs(dw - sw[j] - sw[j - 1]);
+        }
+    }
+   
+    T = (BiTree)malloc(sizeof(BiTNode));
+    T-&gt;data = R[i];//生成结点（第一次生成根）
+    if (i == low) T-&gt;lchild = NULL;//左子树空
+    else SecondOptimal(T-&gt;lchild, R, sw, low, i - 1);//构造左子树
+    if (i == high) T-&gt;rchild = NULL;//右子树空
+    else SecondOptimal(T-&gt;rchild, R, sw, i + 1, high);//构造右子树
+   
+}</pre>
+<h2>
+	完整事例演示</h2>
+例如，一含有 9 个关键字的查找表及其相应权值如下表所示：<br />
+<br />
+<div>
+	<img alt="" src="/uploads/allimg/171016/2-1G0161450042c.png" style="width: 355px; height: 62px;" /></div>
+<br />
+则构建次优查找树的过程如下：<br />
+<br />
+首先求出查找表中所有的 △P 的值，找出整棵查找表的根结点：<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G016145122S9.png" style="width: 582px; height: 151px;" /></div>
+<blockquote>
+	<p>
+		例如，关键字 F 的 △P 的计算方式为：从 G 到 I 的权值和 - 从 A 到 E 的权值和 = 4+3+5-1-1-2-5-3 = 0。&nbsp;</p>
+</blockquote>
+通过上图左侧表格得知，根结点为 F，以 F 为分界线，左侧子表为 F 结点的左子树，右侧子表为 F 结点的右子树（如上图右侧所示），继续查找左右子树的根结点：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G01614534RG.png" style="width: 607px; height: 206px;" /></div>
+通过重新分别计算左右两查找子表的 △P 的值，得知左子树的根结点为 D，右子树的根结点为 H （如上图右侧所示），以两结点为分界线，继续判断两根结点的左右子树：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/171016/2-1G0161455555B.png" style="width: 607px; height: 243px;" /></div>
+通过计算，构建的次优查找树如上图右侧二叉树所示。<br />
+<br />
+后边还有一步，判断关键字 A 和 C 在树中的位置，最后一步两个关键字的权值为 0 ，分别作为结点 B 的左孩子和右孩子，这里不再用图表示。<br />
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>在建立次优查找树的过程中，由于只根据的各关键字的 P 的值进行构建，没有考虑单个关键字的相应权值的大小，有时会出现根结点的权值比孩子结点的权值还小，此时就需要适当调整两者的位置。</p>
+</blockquote>
+<h2>
+	总结</h2>
+由于使用次优查找树和最优查找树的性能差距很小，构造次优查找树的算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为 <code>O(nlogn)</code>，因此可以使用次优查找树表示概率不等的查找表对应的静态查找表（又称为<span style="color:#008000;">静态树表</span>）。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 57;
+window.arcId = "e40bD1FuYFHN1mncP6kosTLq5TmDRZKTjFa+aW/SlMS5+D9vKGbf/FAV";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

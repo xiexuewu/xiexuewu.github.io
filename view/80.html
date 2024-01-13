@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构实践项目之变态的停车场管理系统</title>
+<meta name="keywords" content="变态,的,停车场,变态,的,停车场," />
+<meta name="description" content="实践是检验真理的唯一标准，学习也是如此。本章对栈和队列做了详细的讲解，为了让大家能够学以致用，特推出一个项目供大家练习（包含了本章几乎所有的知识点）。 本项目比较烧" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>数据结构实践项目之变态的停车场管理系统</h1>
+			<div id="arc-body">实践是检验真理的唯一标准，学习也是如此。本章对<a href="/view/9.html" target="_blank">栈</a>和<a href="/view/10.html" target="_blank">队列</a>做了详细的讲解，为了让大家能够学以致用，特推出一个项目供大家练习<span style="color:#b22222;">（包含了本章所有的重要知识点</span>）。<br />
+<blockquote>
+	<p>
+		本项目比较烧脑，要求对<u><a href='/view/169.html' target='_blank'>栈</a></u>和<u><a href='/view/172.html' target='_blank'>队列</a></u>有一定深度的了解，虽有完整代码供大家参考，但是建议先自行完成，然后参照本节给出的完整代码。</p>
+</blockquote>
+<h2>
+	项目简介</h2>
+设停车场是一个可以停放 n 辆汽车的南北方向的狭长通道，且只有一个大门可供汽车进出。汽车在停车场内按车辆到达时间的先后顺序，依次由北向南排列（大门在最南端，最先到达的第一辆车停放在车场的最北端）。<br />
+<br />
+若车场内已停满 n 辆车，那么后来的车只能在门外的便道上等候，一旦有车开走，则排在便道上的第一辆车即可开入；当停车场内某辆车要离开时，在它之后进入的车辆必须先退出车场为它让路，待该辆车开出大门外，其它车辆再按原次序进入车场，每辆停放在车场的车在它离开停车场时必须按它停留的时间长短交纳费用。<br />
+<br />
+<span style="color:#b22222;">项目要求：</span>试为停车场编制按上述要求进行管理的模拟程序。要求程序输出每辆车到达后的停车位置（停车场或便道上），以及某辆车离开停车场时应缴纳的费用和它在停车场内停留的时间。
+<h2>
+	设计思路</h2>
+停车场的管理流程如下：
+<ol>
+	<li>
+		当车辆要进入停车场时，检查停车场是否已满，如果未满则车辆进入停车场；如果停车场已满，则车辆进入便道等候。</li>
+	<li>
+		当车辆要求出栈时，先让在它之后进入停车场的车辆退出停车场为它让路，再让该车退出停车场，让路的所有车辆再按其原来进入停车场的次序进入停车场。之后，再检查在便道上是否有车等候，有车则让最先等待的那辆车进入停车场。</li>
+</ol>
+<h2>
+	项目中设计到的数据结构</h2>
+<ol>
+	<li>
+		由于停车场只有一个大门，当停车场内某辆车要离开时，在它之后进入的车辆必须先退出车场为它让路，先进停车场的后退出，后进车场的先退出，符合栈的&ldquo;后进先出，先进后出&rdquo;的操作特点，因此，可以用一个栈来模拟停车场。</li>
+	<li>
+		而当停车场满后，继续来到的其它车辆只能停在便道上，根据便道停车的特点，先排队的车辆先离开便道进入停车场，符合队列的&ldquo;先进先出，后进后出&rdquo;的操作特点，因此，可以用一个队列来模拟便道。</li>
+	<li>
+		排在停车场中间的车辆可以提出离开停车场，并且停车场内在要离开的车辆之后到达的车辆都必须先离开停车场为它让路，然后这些车辆依原来到达停车场的次序进入停车场，因此在前面已设的一个栈和一个队列的基础上，还需要有一个地方保存为了让路离开停车场的车辆，由于先退出停车场的后进入停车场，所以很显然保存让路车辆的场地也应该用一个栈来模拟。</li>
+</ol>
+<br />
+<span style="color:#b22222;">因此，本题求解过程中需用到两个栈和一个队列。</span>栈和队列都既可以用顺序结构实现，也可以用链式结构实现。
+<h2>
+	程序清单</h2>
+以栈模拟停车场，以队列模拟车场外的便道，按照从终端读入的输入数据序列进行模拟管理。<br />
+<br />
+每一组输入数据包括三个数据项：汽车&ldquo;到达&rdquo;或&ldquo;离去&rdquo;信息、汽车牌照号码以及到达或离去的时刻。对每一组输入数据进行操作后的输出信息为：若是车辆到达，则输出汽车在停车场内或便道上的停车位置；若是车辆离去，则输出汽车在停车场内停留的时间和应交纳的费用（在便道上停留的时间不收费，停车场费用按照 1 小时 1.5元）。
+<h2>
+	实现代码</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAX 3//模拟停车场最多可停的车辆数
+//车的必要信息的结构体
+typedef struct{
+    int number;
+    int arrive_time;
+}zanInode;
+//进入停车场的处理函数
+int push(zanInode * park,int *parktop,zanInode car){
+    //如果停车场已满，该车需进入便道等待（先返回 -1 ，在主程序中处理）
+    if ((*parktop)&gt;=MAX) {
+        printf(&quot;停车场已停满！需停到便道上.\n&quot;);
+        return -1;
+    }else{//否则将该车入栈，同时进行输出
+        park[(*parktop)]=car;
+        printf(&quot;该车在停车场的第 %d 的位置上\n&quot;,(*parktop)+1);
+        (*parktop)++;
+        return 1;
+    }
+}
+//车从停车场中退出的处理函数
+zanInode pop(zanInode *park,int *parktop,int carnumber,zanInode * location,int *locationtop){
+    int i;
+    //由于函数本身的返回值需要返回一辆车，所以需要先初始化一个
+    zanInode thecar;
+    thecar.number=-1;
+    thecar.arrive_time=-1;
+    //在停车场中找到要出去的车
+    for (i=-1; i&lt;(*parktop); i++) {
+        if (park[i].number==carnumber) {
+            break;
+        }
+    }
+    //如果遍历至最后一辆车，还没有找到，证明停车场中没有这辆车
+    if (i==(*parktop)) {
+        printf(&quot;停车场中没有该车\n&quot;);
+    }else{//就将该车移出停车场
+        //首先将在该车后进入停车场的车全部挪至另一个栈中
+        while ((*parktop)&gt;i+1) {
+            (*parktop)--;
+            location[*locationtop]=park[*parktop];
+            (*locationtop)++;
+        }
+        //通过以上的循环，可以上该车后的左右车辆全部移开，但是由于该车也要出栈，所以栈顶指针需要下移一个位置，当车进栈时，就直接覆盖掉了
+        (*parktop)--;
+        thecar=park[*parktop];
+        //该车出栈后，还要将之前出栈的所有车，在全部进栈
+        while ((*locationtop)&gt;0) {
+            (*locationtop)--;
+            park[*parktop]=location[*locationtop];
+            (*parktop)++;
+        }
+    }
+    return thecar;
+}
+
+int main(int argc, const char * argv[]) {
+    //停车场的栈
+    zanInode park[MAX];
+    int parktop=0;//栈顶指针
+   
+    //辅助停车场进行挪车的栈
+    zanInode location[MAX];
+    int locationtop=0;//栈顶指针
+   
+    //模拟便道的队列
+    zanInode accessroad[100];
+    int front,rear;//队头和队尾指针
+    front=rear=0;
+    char order;//进出停车场的输入命令
+    int carNumber;//车牌号
+    int arriveTime;//到停车场的时间
+    int leaveTime;//离开停车场的时间
+    int time;//车在停车场中逗留的时间
+   
+    zanInode car;
+    printf(&quot;有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:\n&quot;);
+    while (scanf(&quot;%c&quot;,&amp;order)) {
+        if (order==&#39;#&#39;) {
+            break;
+        }
+        switch (order) {
+            case &#39;A&#39;:
+                printf(&quot;登记车牌号(车牌号不能为 -1)及车辆到达时间（按小时为准）：\n&quot;);
+                scanf(&quot;%d %d&quot;,&amp;carNumber,&amp;arriveTime);
+                car.number=carNumber;
+                car.arrive_time=arriveTime;
+                //当有车想要进入停车场时，首先试<u><a href='/view/200.html' target='_blank'>图</a></u>将该车进入停车场
+                int result=push(park, &amp;parktop, car);
+                //如果返回值为 -1 ，证明停车场已满，需要停在便道中
+                if (result==-1) {//停在便道上
+                    accessroad[rear]=car;
+                    printf(&quot;该车在便道的第 %d 的位置上\n&quot;,rear+1-front);
+                    rear++;
+                }
+                break;
+            case &#39;D&#39;:
+                printf(&quot;出停车场的车的车牌号以及离开的时间：\n&quot;);
+                scanf(&quot;%d %d&quot;,&amp;carNumber,&amp;leaveTime);
+                //当有车需要出停车场时，调用出栈函数
+                car=pop(park, &amp;parktop, carNumber, location, &amp;locationtop);
+                //如果返回的车的车牌号为-1 ，表明在停车场中没有查找到要查找的车
+                if (car.number!=-1) {
+                    //停留时间，等于进停车场的时间-
+                    time=leaveTime-car.arrive_time;
+                    printf(&quot;该车停留的时间为：%d 小时,应缴费用为：%f 元\n&quot;,time,time*1.5);
+                    //一旦有车离开停车场，则在便道中先等待的车就可以进入，进入时需设定车进入的时间
+                    if (front!=rear) {
+                        car=accessroad[front];
+                        printf(&quot;在便道上第1的位置上，车牌号为：%d 的车进停车场的时间为：\n&quot;,car.number);
+                        scanf(&quot;%d&quot;,&amp;car.arrive_time);
+                        park[parktop]=car;
+                        front++;
+                        parktop++;
+                    }else{
+                        printf(&quot;便道上没有等待车辆，停车场不满！\n&quot;);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        printf(&quot;\n有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:\n&quot;);
+        scanf(&quot;%*[^\n]&quot;); scanf(&quot;%*c&quot;);//清空缓冲区
+    }
+    return 0;
+}</pre>
+<div class="info-box">
+	运行结果:<br />
+	有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:<br />
+	A<br />
+	登记车牌号(车牌号不能为 -1)及车辆到达时间（按小时为准）：<br />
+	633 6<br />
+	该车在停车场的第 1 的位置上<br />
+	<br />
+	有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:<br />
+	A<br />
+	登记车牌号(车牌号不能为 -1)及车辆到达时间（按小时为准）：<br />
+	634 7<br />
+	该车在停车场的第 2 的位置上<br />
+	<br />
+	有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:<br />
+	A<br />
+	登记车牌号(车牌号不能为 -1)及车辆到达时间（按小时为准）：<br />
+	635 8<br />
+	该车在停车场的第 3 的位置上<br />
+	<br />
+	有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:<br />
+	A<br />
+	登记车牌号(车牌号不能为 -1)及车辆到达时间（按小时为准）：<br />
+	636 9<br />
+	停车场已停满！需停到便道上.<br />
+	该车在便道的第 1 的位置上<br />
+	<br />
+	有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:<br />
+	D<br />
+	出停车场的车的车牌号以及离开的时间：<br />
+	633 10<br />
+	该车停留的时间为：4 小时,应缴费用为：6.000000 元<br />
+	在便道上第1的位置上，车牌号为：636 的车进停车场的时间为：<br />
+	10<br />
+	<br />
+	有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:<br />
+	D<br />
+	出停车场的车的车牌号以及离开的时间：<br />
+	634 10<br />
+	该车停留的时间为：3 小时,应缴费用为：4.500000 元<br />
+	便道上没有等待车辆，停车场不满！<br />
+	<br />
+	有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:<br />
+	A<br />
+	登记车牌号(车牌号不能为 -1)及车辆到达时间（按小时为准）：<br />
+	637 11<br />
+	该车在停车场的第 3 的位置上<br />
+	<br />
+	有车辆进入停车场（A）;有车辆出停车场(D);程序停止（#）:<br />
+	#</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 80;
+window.arcId = "26e1rT8/ag2T/outGr8Ah6eOZn7nmq8ure6KxlqzF4YpAGC/WYVL7+5B";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

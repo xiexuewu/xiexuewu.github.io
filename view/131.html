@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>约瑟夫环问题详解（C语言链表实现）</title>
+<meta name="keywords" content="约瑟夫,环,问题,详解,语言,链表,实现,约瑟夫," />
+<meta name="description" content="约瑟夫环问题，是一个经典的循环链表问题，题意是：已知 n 个人（以编号 1，2，3，，n 分别表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>约瑟夫环问题详解（C语言链表实现）</h1>
+			<div id="arc-body">约瑟夫环问题，是一个经典的循环<u><a href='/view/160.html' target='_blank'>链表</a></u>问题，题意是：已知 n 个人（以编号 1，2，3，&hellip;，n 分别表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的下一个人又从 1 还是顺时针开始报数，数到 m 的那个人又出列；依次重复下去，要求找到最后出列的那个人。<br />
+<br />
+例如有 5 个人，要求从编号为 3 的人开始，数到 2 的那个人出列：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170718/2-1FGQ54403413.png" style="width: 400px; height: 329px;" /></div>
+出列顺序依次为：<br />
+编号为 3 的人开始数 1，然后 4 数 2，所以 4 先出列；<br />
+4 出列后，从 5 开始数 1，1 数 2，所以 1 出列；<br />
+1 出列后，从 2 开始数 1，3 数 2，所以 3 出列；<br />
+3 出列后，从 5 开始数 1，2 数 2，所以 2 出列；<br />
+最后只剩下 5 自己，所以 5 出列。<br />
+<br />
+完整代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct node{
+    int number;
+    struct node * next;
+}person;
+person * initLink(int n){
+    person * head=(person*)malloc(sizeof(person));
+    head-&gt;number=1;
+    head-&gt;next=NULL;
+    person * cyclic=head;
+    for (int i=2; i&lt;=n; i++) {
+        person * body=(person*)malloc(sizeof(person));
+        body-&gt;number=i;
+        body-&gt;next=NULL; 
+        cyclic-&gt;next=body;
+        cyclic=cyclic-&gt;next;
+    }
+    cyclic-&gt;next=head;//首尾相连
+    return head;
+}
+
+void findAndKillK(person * head,int k,int m){
+ 
+    person * tail=head;
+    //找到链表第一个结点的上一个结点，为删除操作做准备
+    while (tail-&gt;next!=head) {
+        tail=tail-&gt;next;
+    }
+    person * p=head;
+    //找到编号为k的人
+    while (p-&gt;number!=k) {
+        tail=p;
+        p=p-&gt;next;
+    }
+    //从编号为k的人开始，只有符合p-&gt;next==p时，说明链表中除了p结点，所有编号都出列了，
+    while (p-&gt;next!=p) {
+        //找到从p报数1开始，报m的人，并且还要知道数m-1de人的位置tail，方便做删除操作。
+        for (int i=1; i&lt;m; i++) {
+            tail=p;
+            p=p-&gt;next;
+        }
+        tail-&gt;next=p-&gt;next;//从链表上将p结点摘下来
+        printf(&quot;出列人的编号为:%d\n&quot;,p-&gt;number);
+        free(p);
+        p=tail-&gt;next;//继续使用p指针指向出列编号的下一个编号，游戏继续
+    }
+    printf(&quot;出列人的编号为:%d\n&quot;,p-&gt;number);
+    free(p);
+}
+
+int main() {
+    printf(&quot;输入圆桌上的人数n:&quot;);
+    int n;
+    scanf(&quot;%d&quot;,&amp;n);
+    person * head=initLink(n);
+    printf(&quot;从第k人开始报数(k&gt;1且k&lt;%d)：&quot;,n);
+    int k;
+    scanf(&quot;%d&quot;,&amp;k);
+    printf(&quot;数到m的人出列：&quot;);
+    int m;
+    scanf(&quot;%d&quot;,&amp;m);
+    findAndKillK(head, k, m);
+    return 0;
+}</pre>
+输出结果：<br />
+<div class="info-box">
+	输入圆桌上的人数n:5<br />
+	从第k人开始报数(k&gt;1且k&lt;5)：3<br />
+	数到m的人出列：2<br />
+	出列人的编号为:4<br />
+	出列人的编号为:1<br />
+	出列人的编号为:3<br />
+	出列人的编号为:2<br />
+	出列人的编号为:5</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 131;
+window.arcId = "d881cb9NNkJCeQ4Y4bMJ2b8WusHYM2mfe02FWuY939FBRI2YF8Vq/of+/w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

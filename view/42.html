@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>重连通图及重连通分量</title>
+<meta name="keywords" content="重,连通,图,及,分量,重,连通,图,及,分量," />
+<meta name="description" content="在无向图中，如果任意两个顶点之间含有不止一条通路，这个图就被称为 重连通图 。在重连通图中，在删除某个顶点及该顶点相关的边后，图中各顶点之间的连通性也不会被破坏。 在" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/github/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/github/view/200.html">什么是图存储结构</a></dd><dd>7.2 <a href="/github/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/github/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/github/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/github/view/203.html">图的邻接表存储法</a></dd><dd>7.6 <a href="/github/view/204.html">图的十字链表存储法</a></dd><dd>7.7 <a href="/github/view/205.html">图的邻接多重表存储法</a></dd><dd>7.8 <a href="/github/view/39.html">深度优先搜索和广度优先搜索</a></dd><dd>7.9 <a href="/github/view/45.html">深度优先生成树和广度优先生成树</a></dd><dd>7.10 <a href="/github/view/vip_245.html">普里姆算法(Prim算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.11 <a href="/github/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/github/view/42.html">重连通图</a></dd><dd>7.13 <a href="/github/view/vip_247.html">拓扑排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/github/view/44.html">关键路径</a></dd><dd>7.15 <a href="/github/view/vip_248.html">迪杰斯特拉算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.16 <a href="/github/view/vip_249.html">弗洛伊德算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/github/view/vip_250.html">[项目实践]移动迷宫小游戏(升级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>重连通图及重连通分量</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a></span>
+                    <span class="next right"><a href="/view/vip_247.html">拓扑排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_246.html";window.nextPageURL = "/view/vip_247.html";</script>
+			<div id="arc-body"><span style="color:#b22222;">在无向<u><a href='/view/200.html' target='_blank'>图</a></u>中，如果任意两个顶点之间含有不止一条通路，这个图就被称为</span><span style="color:#008000;"><u><a href='/view/42.html' target='_blank'>重连通图</a></u></span>。在重<u><a href='/view/201.html' target='_blank'>连通图</a></u>中，在删除某个顶点及该顶点相关的边后，图中各顶点之间的连通性也不会被破坏。<br />
+<br />
+在一个无向图中，如果删除某个顶点及其相关联的边后，原来的图被分割为两个及以上的连通分量，则称该顶点为无向图中的一个<span style="color:#008000;">关节点（</span>或者<span style="color:#008000;">&ldquo;割点&rdquo;</span>）。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F9111F216335.png" style="width: 251px; height: 180px;" /><br />
+	图 1 连通图<br />
+	&nbsp;</div>
+图 1 是连通图但不是重连通图，图中有4个关节点，分别是：A、B、D 和 G。比如删除顶点 B 及相关联的边后，原图就变为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F9111F253129.png" style="width: 251px; height: 179px;" /><br />
+	图 2 连通分量<br />
+	&nbsp;</div>
+可以看到，图被分割为各自独立的 3 部分，顶点集合分别为：{A、C、F、L、M、J}、{G、H、I、K} 和 {D、E}。<br />
+<br />
+了解了什么是关节点后，<span style="color:#b22222;">重连通图其实就是没有关节点的连通图</span>。<br />
+<br />
+在重连通图中，只删除一个顶点及其相关联的边，肯定不会破坏其连通性。<span style="color:#b22222;">如果一味地做删除顶点的操作，直到删除 K 个顶点及其关联的边后，图的连通性才遭到破坏，则称此</span><span style="color:#008000;">重连通图的连通度为 K</span> 。
+<h2>
+	重连通图的实际应用</h2>
+如今的通信网络对人们的生活有着重要的影响，如果将通信网络比做一个巨大的连通图的话，它的连通度 K 值越高，证明其稳定性越好，即使某一个站点发生故障无法工作也不会影响整个系统的正常工作。<br />
+<br />
+同样，小到城市之间，大到国家之间的航空网也可以看作是一个连通图，但如果此图建设成为重连通图，当某条航线因为天气等因素关闭时，飞机仍可以从别的航线到达目的地。<br />
+<br />
+在战争中，有&ldquo;兵马未动，粮草先行&rdquo;的说法，可见后勤补给对军队的重要性。如果补给线是一个重连通图，就不用过于担心补给线被破坏的问题，因为即使破坏一条，还有其它的，只要连通度足够大。
+<h2>
+	判断重连通图的方法</h2>
+了解了什么是重连通图之后，如何编写程序直接判断一个图是否是重连通图呢？<br />
+<br />
+对于任意一个连通图来说，都可以通过<u><a href='/view/39.html' target='_blank'>深度优先搜索</a></u>算法获得一棵<u><a href='/view/45.html' target='_blank'>深度优先生成树</a></u>，例如，图 1 通过深度优先搜索获得的深度优先<u><a href='/view/202.html' target='_blank'>生成树</a></u>为：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/170911/2-1F9111F601611.png" style="width: 200px; height: 400px;" /><br />
+	图 3 深度优先生成<u><a href='/view/23.html' target='_blank'>树</a></u></div>
+<br />
+<span style="color:#b22222;">虚线表示遍历生成树时未用到的边，简称</span><span style="color:#008000;">&ldquo;回边&rdquo;</span>。也就是图中有，但是遍历时没有用到，生成树中用虚线表示出来。<br />
+<br />
+在深度优先生成树中，图中的关节点有两种特性：
+<ol>
+	<li>
+		首先判断整棵树的树根结点，如果树根有两条或者两条以上的子树，则该顶点肯定是关节点。因为一旦树根丢失，生成树就会变成森林。</li>
+	<li>
+		然后判断生成树中的每个非叶子结点，以该结点为根结点的每棵子树中如果有结点的回边与此非叶子结点的祖宗结点相关联，那么此非叶子结点就不是关节点；反之，就是关节点。</li>
+</ol>
+<blockquote>
+	<p>
+		<span style="color:#b22222;">注意：</span>必须是和该非叶子结点的祖宗结点（不包括结点本身）相关联，才说明此结点不是关节点。</p>
+</blockquote>
+<br />
+<span style="color:#b22222;">所以，判断一个图是否是重连通图，也可以转变为：判断图中是否有关节点，如果没有关节点，证明此图为重连通图；反之则不是。</span><br />
+<br />
+拿图 3 的生成树来说，利用两个特性判断每个顶点是否为关节点：<br />
+<ul>
+	<li>
+		首先，判断树根结点 A ，由于有两个孩子，也就是有两棵子树，所以 A 是关节点。然后判断树中所有的非叶子结点，也就是： L 、 M 、 B 、 D 、 H 、 K 、 G ；</li>
+	<li>
+		L 结点为根结点的子树中 B 结点有回边直接关联 A ，所以， L 不是关节点；</li>
+	<li>
+		在以 M 结点为树根的子树中，J 结点和 B 结点都有回边关联 M 结点的祖宗结点，所以，M 不是关节点；</li>
+	<li>
+		以 B 结点为根结点的 3 棵子树中，只有一棵子树（只包含结点 C ）与 B 结点的祖宗结点 A 有关联，其他两棵子树没有，所以结点 B 是关节点；</li>
+	<li>
+		以 D 结点为根结点的子树中只有结点 E，且没有回边与祖宗结点关联，所以，D 是关节点；</li>
+	<li>
+		以 H 结点为根结点的子树中， G 结点与 B 结点关联，所以， H 结点不是关节点；</li>
+	<li>
+		K 结点和 H 结点相同，由于 G 结点与祖宗结点 B 关联，所以 K 结点不是关节点；</li>
+	<li>
+		以 G 结点为根结点的子树中只有一个结点 I，没有回边，所以结点 G 是关节点；</li>
+</ul>
+<br />
+综上所述，图 3 中的关节点有 4 个，分别是： A 、 B 、 D 、 G 。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a></span>
+                    <span class="next right"><a href="/view/vip_247.html">拓扑排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_246.html";window.nextPageURL = "/view/vip_247.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 42;
+window.arcId = "9bbbfJGdeFLHoRt1BbbxHGVnIj2n/BCu7ec5EL49ImeUTUEQDccWOa67";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>稀疏矩阵的转置算法详解（带源码+解析）</title>
+<meta name="keywords" content="稀疏,矩阵,的,转置,算法,详解,带,源码,解析," />
+<meta name="description" content="一个 m*n 的矩阵 A，它的转置矩阵 B 是一个 n*m 的矩阵，且满足 aij = b ji。例如，下图所示，矩阵 B 就是矩阵 A 的转置矩阵。 图 1 稀疏矩阵的转置 试编写一个程序，实现稀疏矩阵的转置，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/github/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/github/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/github/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/github/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/github/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/github/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/github/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/github/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/github/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/github/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/github/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/github/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>稀疏矩阵的转置算法详解（带源码+解析）</h1>
+			<div id="arc-body">一个 m*n 的矩阵 A，它的转置矩阵 B 是一个 n*m 的矩阵，且满足 a<sub>ij</sub> = b<sub>ji</sub>。如下<u><a href='/view/200.html' target='_blank'>图</a></u>所示，矩阵 B 就是矩阵 A 的转置矩阵。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180502/2-1P502125604T2.png" style="width: 400px; height: 130px;" /><br />
+	图 1 稀疏矩阵的转置</div>
+<br />
+<span style="color:#b22222;">试编写一个程序，实现稀疏矩阵的转置，题目要求用<u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u>来表示。</span><br />
+<h2>
+	实现思路</h2>
+拿图 1 中的矩阵 A 和 B 来说，其各自用三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u>表示（分别用 a 和b 表示），如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180502/2-1P502125649515.png" style="width: 400px; height: 231px;" /><br />
+	图2 矩阵 A、B的三元组顺序表</div>
+<br />
+在三元组表的存储形式下，求稀疏矩阵 A 的转置矩阵 B ，实际上就是求由 a 得到 b：
+<ul>
+	<li>
+		由 a 的行数、列数以及非 0 元素数可以直接得到 b 的列数、行数和非 0 元素数。</li>
+	<li>
+		由 a 中的数据得到 b 中的数据，可采用两种方法实现：</li>
+</ul>
+<ol>
+	<li style="margin-left: 40px;">
+		对 a 中的数据进行遍历，即依次扫描第 0 列、第 1 列、&hellip;&hellip;、最后一列，扫描过程交换行和列的顺序，并存储到 b 中对应的位置即可。</li>
+	<li style="margin-left: 40px;">
+		要想扫描一次 a 就能得到 b，必须每次扫描到一个三元组就直接将其放到 b 中相应的位置上，因此，需要知道 a 中的元素在 b 中的存储位置，这就要预先确定矩阵 A 的每一列的第一个非 0 元素在 b 中相应的位置。为此，需要附设两个<u><a href='/view/181.html' target='_blank'>数组</a></u>，num 和cpot，分别用于存储矩阵 A 中每一列的非 0 元素个数和矩阵 A 中每一列第 1 个非0 元素在 b 中的存储位置。</li>
+</ol>
+<div style="margin-left: 80px;">
+	<br />
+	显然，有如下的公式成立：</div>
+<ul>
+	<li style="margin-left: 80px;">
+		cpot[0] = 1</li>
+	<li style="margin-left: 80px;">
+		cpot[col] = cpot[col - 1] + num[col -1]，col 取大于等于 1 且小于 n 的数</li>
+</ul>
+<div style="margin-left: 80px;">
+	<br />
+	所以，图 1 中的矩阵 A ，其 num 和 cpot 数组的值为：</div>
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/180502/2-1P502125T32I.png" style="width: 400px; height: 82px;" /></div>
+<h2>
+	方法一的具体实现（附有详细注释）</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAXSIZE 50
+#define MAXRC 10
+//三元组结构体
+typedef struct{
+    //所在行数，列数
+    int i,j;
+    //值
+    int e;
+}triple;
+//存储矩阵的三元组顺序表
+typedef struct{
+    //存储数据
+    triple data[MAXSIZE + 1];
+    //存储矩阵的行数，列数和非 0 元的个数
+    int mu,nu,tu;
+}TSMatrix;
+//初始化三元组顺序表
+TSMatrix tcreate(int m,int n,int t){
+    TSMatrix M;
+    int k;
+    M.mu = m;
+    M.nu = n;
+    M.tu = t;
+    printf(&quot;input %d data&quot;,M.tu);
+    printf(&quot;i j e &quot;);
+    for(k=1;k&lt;=M.tu;k++){
+        scanf(&quot;%d%d%d&quot;,&amp;M.data[k].i,&amp;M.data[k].j,&amp;M.data[k].e);
+    }
+    return M;
+}
+//输出矩阵 M 的函数，以二维的格式呈现
+void printt(TSMatrix M){
+    int i,j,k=1;
+    //输出矩阵的每一行
+    for(i=0;i&lt;M.mu;i++){
+        printf(&quot;\n&quot;);
+        //输出矩阵的每一列
+        for(j=0;j&lt;M.nu;j++){
+            //判断矩阵中是否有非 0 元存在
+            if(k&gt;M.tu){
+                printf(&quot;%3d&quot;,0);
+            }
+            else{
+                //如果对应位置为非 0 元，则输出
+                if((i==M.data[k].i) &amp;&amp; (j == M.data[k].j)){
+                    printf(&quot;%3d&quot;,M.data[k].e);
+                    k++;
+                }else{
+                    //否输出 0
+                    printf(&quot;%3d&quot;,0);
+                }
+            }
+        }
+    }
+    printf(&quot;\n&quot;);
+}
+//矩阵的转置函数
+TSMatrix transpose(TSMatrix a){
+    TSMatrix b;
+    int col,p,q;
+    //将矩阵 a 存储的行数、列数和非0 元个数赋值给转置矩阵 b
+    b.mu=a.nu;
+    b.nu=a.mu;
+    b.tu=a.tu;
+    //如果存在非 0 元，则逐个对其进行转置
+    if(b.tu){
+        q = 1;
+        //从列依次遍历
+        for(col=0;col&lt;a.nu;col++){
+            for(p=1;p&lt;=a.tu;p++){
+                if(a.data[p].j == col){
+                    b.data[q].i=a.data[p].j;
+                    b.data[q].j=a.data[p].i;
+                    b.data[q].e=a.data[p].e;
+                    q++;
+                }
+            }
+        }
+    }
+    return b;
+}
+int main(){
+    int m,n,t;
+    TSMatrix E,F;
+    printf(&quot;input m,n,t:\n&quot;);
+    scanf(&quot;%d%d%d&quot;,&amp;m,&amp;n,&amp;t);
+    E = tcreate(m,n,t);
+    printt(E);
+    F = transpose(E);
+    printt(F);
+}</pre>
+<span style="color:#008000;">运行结果为：</span>
+<div class="info-box">
+	input m,n,t:<br />
+	3 5 6<br />
+	input 6 datai j e<br />
+	0 1 5<br />
+	0 4 7<br />
+	1 0 1<br />
+	1 1 5<br />
+	1 2 3<br />
+	2 1 6<br />
+	<br />
+	&nbsp; 0&nbsp; 5&nbsp; 0&nbsp; 0&nbsp; 7<br />
+	&nbsp; 1&nbsp; 5&nbsp; 3&nbsp; 0&nbsp; 0<br />
+	&nbsp; 0&nbsp; 6&nbsp; 0&nbsp; 0&nbsp; 0<br />
+	<br />
+	&nbsp; 0&nbsp; 1&nbsp; 0<br />
+	&nbsp; 5&nbsp; 5&nbsp; 6<br />
+	&nbsp; 0&nbsp; 3&nbsp; 0<br />
+	&nbsp; 0&nbsp; 0&nbsp; 0<br />
+	&nbsp; 7&nbsp; 0&nbsp; 0</div>
+<h2>
+	方法二的具体实现（附有详细注释）</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAXSIZE 50
+#define MAXRC 10
+//三元组结构体
+typedef struct{
+    //所在行数，列数
+    int i,j;
+    //值
+    int e;
+}triple;
+//存储矩阵的三元组顺序表
+typedef struct{
+    //存储数据
+    triple data[MAXSIZE + 1];
+    //存储矩阵的行数，列数和非 0 元的个数
+    int mu,nu,tu;
+}TSMatrix;
+//初始化三元组顺序表
+TSMatrix tcreate(int m,int n,int t){
+    TSMatrix M;
+    int k;
+    M.mu = m;
+    M.nu = n;
+    M.tu = t;
+    printf(&quot;input %d data&quot;,M.tu);
+    printf(&quot;i j e \n&quot;);
+    for(k=1;k&lt;=M.tu;k++){
+        scanf(&quot;%d%d%d&quot;,&amp;M.data[k].i,&amp;M.data[k].j,&amp;M.data[k].e);
+    }
+    return M;
+}
+//输出矩阵 M 的函数，以二维的格式呈现
+void printt(TSMatrix M){
+    int i,j,k=1;
+    //输出矩阵的每一行
+    for(i=0;i&lt;M.mu;i++){
+        printf(&quot;\n&quot;);
+        //输出矩阵的每一列
+        for(j=0;j&lt;M.nu;j++){
+            //判断矩阵中是否有非 0 元存在
+            if(k&gt;M.tu){
+                printf(&quot;%3d&quot;,0);
+            }
+            else{
+                //如果对应位置为非 0 元，则输出
+                if((i==M.data[k].i) &amp;&amp; (j == M.data[k].j)){
+                    printf(&quot;%3d&quot;,M.data[k].e);
+                    k++;
+                }else{
+                    //否输出 0
+                    printf(&quot;%3d&quot;,0);
+                }
+            }
+        }
+    }
+    printf(&quot;\n&quot;);
+}
+//矩阵的转置函数
+TSMatrix fasttrans(TSMatrix a){
+    TSMatrix b;
+    int col,p,q,t;
+    int num[MAXSIZE];
+    int cpot[MAXSIZE];
+    //转置行数、列数和非 0 元个数
+    b.mu = a.nu;
+    b.nu = a.mu;
+    b.tu = a.tu;
+    //如果存在非 0 元
+    if(b.tu){
+        //num数组全置为 0
+        for(col = 0;col&lt;a.nu;col++){
+            num[col] = 0;
+        }
+        //根据矩阵 a ，对num数组进行初始化
+        for(t=1;t&lt;=a.tu;t++){
+            num[a.data[t].j]++;
+        }
+        //初始化cpot数组
+        cpot[0]=1;
+        for(col=1;col&lt;a.nu;col++){
+            cpot[col] = cpot[col-1]+num[col-1];
+        }
+        //结束num和cpot，对矩阵 a 进行转置
+        for(p=1;p&lt;=a.tu;p++){
+            col =a.data[p].j;
+            q = cpot[col];
+            b.data[q].i = a.data[p].j;
+            b.data[q].j = a.data[p].i;
+            b.data[q].e = a.data[p].e;
+            cpot[col]++;
+        }
+    }
+    return b;
+}
+int main(){
+    int m,n,t;
+    TSMatrix E,F;
+    printf(&quot;input m,n,t:\n&quot;);
+    scanf(&quot;%d%d%d&quot;,&amp;m,&amp;n,&amp;t);
+    E = tcreate(m,n,t);
+    printt(E);
+    F = fasttrans(E);
+    printt(F);
+}</pre>
+<span style="color:#008000;">运行结果：</span>
+<div class="info-box">
+	input m,n,t:<br />
+	3 5 6<br />
+	input 6 datai j e<br />
+	0 1 5<br />
+	0 4 7<br />
+	1 0 1<br />
+	1 1 5<br />
+	1 2 3<br />
+	2 1 6<br />
+	<br />
+	&nbsp; 0&nbsp; 5&nbsp; 0&nbsp; 0&nbsp; 7<br />
+	&nbsp; 1&nbsp; 5&nbsp; 3&nbsp; 0&nbsp; 0<br />
+	&nbsp; 0&nbsp; 6&nbsp; 0&nbsp; 0&nbsp; 0<br />
+	<br />
+	&nbsp; 0&nbsp; 1&nbsp; 0<br />
+	&nbsp; 5&nbsp; 5&nbsp; 6<br />
+	&nbsp; 0&nbsp; 3&nbsp; 0<br />
+	&nbsp; 0&nbsp; 0&nbsp; 0<br />
+	&nbsp; 7&nbsp; 0&nbsp; 0</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 97;
+window.arcId = "2b99D14RQ1/JkMdJNO+27YGPRAR/uMOzzTDxMXhTnREMNelh4nqYTugJ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>
