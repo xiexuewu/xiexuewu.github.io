@@ -34,57 +34,57 @@
 		
 			<dd>
 				<span class="channel-num">1</span>
-				<a href='/github/intro/'>数据结构概述</a>
+				<a href='/intro/'>数据结构概述</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">2</span>
-				<a href='/github/linear_list/'>线性表</a>
+				<a href='/linear_list/'>线性表</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">3</span>
-				<a href='/github/stack_queue/'>栈和队列</a>
+				<a href='/stack_queue/'>栈和队列</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">4</span>
-				<a href='/github/string/'>字符串</a>
+				<a href='/string/'>字符串</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">5</span>
-				<a href='/github/array_list/'>数组和广义表</a>
+				<a href='/array_list/'>数组和广义表</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">6</span>
-				<a href='/github/tree/'>树</a>
+				<a href='/tree/'>树</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">7</span>
-				<a href='/github/graph/'>图</a>
+				<a href='/graph/'>图</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/github/memory/'>动态内存管理</a>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">9</span>
-				<a href='/github/search/'>查找算法</a>
+				<a href='/search/'>查找算法</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">10</span> <a href="/github/sort/">排序算法</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/github/view/65.html">插入排序算法</a></dd><dd>10.2 <a href="/github/view/66.html">折半插入排序算法</a></dd><dd>10.3 <a href="/github/view/67.html">2-路插入排序算法</a></dd><dd>10.4 <a href="/github/view/68.html">表插入排序算法</a></dd><dd>10.5 <a href="/github/view/vip_259.html">希尔排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.6 <a href="/github/view/70.html">冒泡排序算法</a></dd><dd>10.7 <a href="/github/view/vip_260.html">快速排序算法（QSort，快排）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="/github/view/72.html">选择排序算法</a></dd><dd>10.9 <a href="/github/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.10 <a href="/github/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.11 <a href="/github/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/sort/">排序算法</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/65.html">插入排序算法</a></dd><dd>10.2 <a href="/view/66.html">折半插入排序算法</a></dd><dd>10.3 <a href="/view/67.html">2-路插入排序算法</a></dd><dd>10.4 <a href="/view/68.html">表插入排序算法</a></dd><dd>10.5 <a href="/view/vip_259.html">希尔排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.6 <a href="/view/70.html">冒泡排序算法</a></dd><dd>10.7 <a href="/view/vip_260.html">快速排序算法（QSort，快排）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="/view/72.html">选择排序算法</a></dd><dd>10.9 <a href="/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.10 <a href="/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.11 <a href="/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">11</span>
-				<a href='/github/out_sort/'>外部排序算法</a>
+				<a href='/out_sort/'>外部排序算法</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">12</span>
-				<a href='/github/video/'>数据结构与算法视频教程</a>
+				<a href='/video/'>数据结构与算法视频教程</a>
 			</dd>
 		
 	</div>
@@ -92,7 +92,6 @@
 	<div id="article-wrap">
 		<div id="article">
 			<div id="arc-info">
-	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	作者：解学武
 </div>
 			<h1>表插入排序算法</h1>
@@ -166,7 +165,7 @@ typedef struct {
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/171031/2-1G0311055305c.png" style="width: 183px; height: 230px;" /><br />
 	&nbsp;</div>
-从表插入排序的实现过程上分析，与直接插入排序相比只是避免了移动记录的过程（修改各记录结点中的指针域即可），而插入过程中同其它关键字的比较次数并没有改变，所以<u><a href='/view/68.html' target='_blank'>表插入排序算法</a></u>的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>仍是<code>O(n<sup>2</sup>)</code>。
+从表插入排序的实现过程上分析，与直接插入排序相比只是避免了移动记录的过程（修改各记录结点中的指针域即可），而插入过程中同其它关键字的比较次数并没有改变，所以表插入排序算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>仍是<code>O(n<sup>2</sup>)</code>。
 <h2>
 	对链表进行再加工</h2>
 在表插入排序算法求得的有序表是用链表表示的，也就注定其只能进行<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>。而如果想用<u><a href='/view/55.html' target='_blank'>折半查找</a></u>的算法，就需要对链表进行再加工，即对链表中的记录进行重新排列，<span style="color:#b22222;">具体做法为：遍历链表，将链表中第 i 个结点移动至数组的第 i 个下标位置中</span>。<br />
@@ -285,7 +284,7 @@ int main(int argc, const char * argv[]) {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 68;
-window.arcId = "37b52dDfQkxMFpyoXmGueROWa577w/1i67CV7j8MaaM878yTzHNZrEqg";
+window.arcId = "5308nMtYxcIb0zhVhpzWhAfo59HFO/nioR0qCDswcO+kCqLOBhL+Y8+n";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
