@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>栈求表达式的值（超级详细）</title>
+<meta name="keywords" content="栈,计算,表达式,的,值,栈,计算,表达式,的,值," />
+<meta name="description" content="通过前面的学习，读者了解了栈存储结构它的 2 种实现方式，即顺序栈和链栈。在此基础上，本节带领大家用栈结构解决这样一个实际问题，例如有如下一个表达式：" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>栈求表达式的值（超级详细）</h1>
+			<div id="arc-body">通过前面章节的学习，读者已经了解了什么是<u><a href='/view/169.html' target='_blank'>栈</a></u>以及栈存储结构的 2 种实现方式（<u><a href='/view/170.html' target='_blank'>顺序栈</a></u>和<u><a href='/view/171.html' target='_blank'>链栈</a></u>）。在此基础上，本节教读者用栈解决一个实际问题：如何用栈结构求一个表达式的值？<br />
+<br />
+所谓表达式，就是由变量、常量以及运算符组合而成的式子。其中，常用的运算符无非&nbsp;!（阶乘运算符）、^（指数运算符）、+、-、*、/ 、( ) 这几种，比如<code>3!+4*2/(1-5)^2</code>就是一个表达式。<br />
+<br />
+那么，如何用栈结构求一个表达式的值呢？实际上，已经有前辈设计好了一种完美的解决方案。<br />
+<br />
+1929 年，波兰逻辑学家 J・卢卡西维兹提出了一种全新的表示表达式的方法，称为<span style="color:#008000;">后缀表达式</span>或者<span style="color:#008000;">逆波兰表达式</span>。和普通表达式不同，后缀表达式习惯将运算符写在它的运算项之后，且整个表达式中不用括号 () 表明运算的优先级关系。<br />
+<br />
+以 3! 为例，! 为 运算符，3 为运算项，因此 3! 本身就是一个后缀表达式；再以 4*2 为例，* 为运算符，4 和 2 作为它的运算项，其对应的后缀表达式为 4 2+。<br />
+<br />
+在此基础上，我们试着将&nbsp;3!+4*2/(1-5)^2 转换成后缀表达式，其过程也就是将表达式中所有运算符放置在它的运算项之后：
+<ul>
+	<li>
+		! 运算符对应的运算项为 3，转换后得到<code>3 !</code>；</li>
+	<li>
+		+ 运算符对应的运算项是 3! 和 4*2/(1-5)^2，转换之后得到：<code>3! 4*2/(1-5)^2 +</code>；</li>
+	<li>
+		* 运算符对应的运算项是 4 和 2，转换之后得到<code>4 2 *</code>；</li>
+	<li>
+		/ 运算符对应的运算项是 4 2 * 和 (1-5)^2，转换后得到<code>4 2 * (1-5)^2 /</code>；</li>
+	<li>
+		- 运算符对应的运算项是 1 和 5，转换后得到<code>1 5 -</code>；</li>
+	<li>
+		^ 运算符对应的运算项是 1 5 - 和 2 ，转换后得到<code>1 5 - 2 ^</code>。</li>
+</ul>
+整合之后，整个普通表达式就转换成了<code>3 ! 4 2 * 1 5 - 2 ^ / +</code>，这就是其对应的后缀表达式。<br />
+<br />
+不难发现，后缀表达式完全舍弃了表达式本该有的可读性，但有失必有得，相比普通表达式，后缀表达式的值可以轻松借助栈存储结构求得。具体求值的过程是：当用户给定一个后缀表达式时，按照从左到右的顺序依次扫描表达式中的各个运算项和运算符，对它们进行如下处理：
+<ol>
+	<li>
+		遇到运算项时，直接入栈；</li>
+	<li>
+		遇到运算符时，将位于栈顶的运算项出栈，对于 ! 运算符，取栈顶 1 个运算项；其它运算符，取栈顶 2 个运算项，第一个取出的运算项作为该运算符的右运算项，另一个作为左运算项。求此表达式的值并将其入栈。</li>
+</ol>
+经过以上操作，直到栈中仅存在一个运算项为止，此运算项即为整个表达式的值。<br />
+<br />
+以<code>3 ! 4 2 * 1 5 - 2 ^ / +</code>表达式为例，求值的过程为：<br />
+<br />
+1) 从 3 开始，它是运算项，因此直接入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH02626138.gif" /></div>
+<br />
+2) ! 作为运算符，从栈顶取 1 个运算项（也就是 3），求 3! 的值（3! = 3*2*1=6）并将其入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH02935511.gif" /></div>
+<br />
+3) 将 4 和 2 先后入栈：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/200817/2-200QH02953647.gif" /></div>
+<br />
+4) 对于 * 运算符，取栈顶 2 个运算项（ 2 和 4），其中先取出的 2 作为 * 的右操作数，4 作为左操作数。求的 4* 2 的值 8 ，并将其入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH030151V.gif" /></div>
+<br />
+5) 将 1 和 5 先后入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH03031C2.gif" /></div>
+<br />
+6) 对于 - 运算符，取栈顶 2 个运算项（5 和 1），计算出 1-5 的值为 -4，将其入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH03050C8.gif" /></div>
+<br />
+7) 将 2 入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH0310L41.gif" /></div>
+<br />
+8) 对于 ^ 运算符，取栈顶 2 个运算项（2 和 -4），计算出 -4^2 的值 16 ，将其入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH0312U22.gif" /></div>
+<br />
+9) 对于 / 运算符，取栈顶 2 个运算项（16 和 8），计算出 8/16 的值 0.5，将其入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH03144627.gif" /></div>
+<br />
+10) 对于 + 运算符，取栈顶 2 个运算符（0.5 和 6），计算出 6+0.5 的值 6.5，将其入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH0315aI.gif" /></div>
+<br />
+由此，整个求值的过程就结束了，最终表达式的值为 6.5。如下给出了实现此过程的参考代码：<br />
+<pre class="cpp">
+//根据给定的后缀表达式 postexp，计算它的值
+typedef struct
+{
+    double data[MAXSIZE];
+    int top;
+}Stack_num;
+
+void InitStack_num(Stack_num **s)
+{
+    *s = (Stack_num *)malloc(sizeof(Stack_num));
+    (*s)-&gt;top = -1;
+}
+
+bool Push_num(Stack_num **s, double e)
+{
+    if ((*s)-&gt;top == MAXSIZE - 1)
+        return false;
+    (*s)-&gt;top++;
+    (*s)-&gt;data[(*s)-&gt;top] = e;
+    return true;
+}
+
+bool Pop_num(Stack_num **s, double *e)
+{
+    if ((*s)-&gt;top == -1)
+        return false;
+    *e = (*s)-&gt;data[(*s)-&gt;top];
+    (*s)-&gt;top--;
+    return true;
+}
+
+//计算后缀表达式的值
+double compvalue(char *postexp)
+{
+    Stack_num *num;
+    int i = 1;
+    double result;
+    double a, b;
+    double c;
+    double d;
+    InitStack_num(&amp;num);
+    //依次扫描整个表达式
+    while (*postexp != &#39;\0&#39;)
+    {
+        switch (*postexp)
+        {
+            case &#39;+&#39;:
+                Pop_num(&amp;num, &amp;a);
+                Pop_num(&amp;num, &amp;b);
+                //计算 b+a 的值
+                c = b + a;
+                Push_num(&amp;num, c);
+                break;
+            case &#39;-&#39;:
+                //计算 b-a 的值
+                Pop_num(&amp;num, &amp;a);
+                Pop_num(&amp;num, &amp;b);
+                c = b - a;
+                Push_num(&amp;num, c);
+                break;
+            case &#39;*&#39;:
+                Pop_num(&amp;num, &amp;a);
+                Pop_num(&amp;num, &amp;b);
+                //计算 b*a 的值
+                c = b * a;
+                Push_num(&amp;num, c);
+                break;
+            case &#39;/&#39;:
+                Pop_num(&amp;num, &amp;a); // a是除数
+                Pop_num(&amp;num, &amp;b);
+                //计算 b/a 的值
+                if (a != 0)
+                {
+                    c = b / a;
+                    Push_num(&amp;num, c);
+                }
+                else
+                {
+                    printf(&quot;除0错误！\n&quot;);
+                    exit(0);
+                }
+                break;
+            case &#39;^&#39;:
+                Pop_num(&amp;num, &amp;a); // a是指数
+                Pop_num(&amp;num, &amp;b);
+                //计算 b^a 的值
+                if (a != 0)
+                {
+                    i = 1;
+                    c = 1;
+                    while(i &lt;= a) {
+                        c = c * b;
+                        i++;
+                    }
+                }
+                else if(b != 0)
+                {
+                    c = 1;
+                }
+                else {
+                    c = 0;
+                }
+                Push_num(&amp;num, c);
+                break;
+            case &#39;!&#39;:
+                Pop_num(&amp;num, &amp;a);
+                //计算 a! 的值
+                c = 1;
+                i = a;
+                while (i != 0) {
+                    c = c * i;
+                    i--;
+                }
+                Push_num(&amp;num, c);
+                break;
+            default:
+                //如果不是运算符，就只能是字符形式的数字，将其转换成对应的整数
+                d = 0;
+                while (*postexp &gt;= &#39;0&#39; &amp;&amp; *postexp &lt;= &#39;9&#39;)
+                {
+                    d = 10 * d + (*postexp - &#39;0&#39;);
+                    postexp++;
+                }
+                Push_num(&amp;num, d);
+        }
+        postexp++; //继续下一个字符
+    }
+    Pop_num(&amp;num, &amp;result);
+    return result;
+}</pre>
+根据上面的讲解，我们学会了如何求后缀表达式的值。但对于普通用户来讲，另其输入一个正确的后缀表达式显然是不实现的，我们只能要求他们输入一个正确的普通表达式。这就引出了一个问题，即如何将一个普通表达式转换成后缀表达式？
+<h2>
+	后缀表达式的转换</h2>
+幸运的是，针对这个问题，伟人迪杰斯特拉给出了一个完美的解决方案，称为<span style="color:#008000;">调用场算法</span>，该算法可以实现将一个普通表达式转换成后缀表达式。<br />
+<br />
+调用场算法的实现，需要借助一个空栈（假设栈名为 Optr）和一个空<u><a href='/view/181.html' target='_blank'>数组</a></u>（假设数组名为 postexp）。对于给定的一个普通表达式，调用场算法的转换过程是：逐个遍历表达式中的每个字符：
+<ol>
+	<li>
+		如果为 &#39;0&#39;~&#39;9&#39; 的字符，将其添加到 postexp 数组的末尾；</li>
+	<li>
+		如果该字符为除 &lsquo;(&rsquo; 和&nbsp;&#39;)&#39; 以外的运算符，将其与 Optr 栈顶的运算符进行大小比较，如果该运算符大于栈顶运算符，则将其入栈；反之，如果该运算符小于栈顶运算符，则将栈顶运算符出栈并添加到 postexp 数组的尾部，然后继续拿当前运算符同新的栈顶运算符做大小比较，以此类推。</li>
+	<li>
+		如果该字符为 &#39;(&#39; 运算符，直接入栈；如果为 &#39;)&#39; 运算符，依次取 Optr 栈顶运算符并将其添加到 postexp 数组末尾，直到遇到 &#39;(&#39; 字符为止（注意，&#39;(&#39; 字符也从栈顶取出，但不将其添加 postexp 数组中）。</li>
+</ol>
+依照以上处理过程，直到将普通表达式遍历完毕，如果 Optr 栈中仍有运算符，依次将它们出栈并添加到 postexp 数组尾部。最终，postexp 数组内存储的表达式就是转换后的后缀表达式。<br />
+<br />
+值得一提的是，第 2 步中关于运算符的大小比较，迪杰斯塔拉给出了如下所示的表格：<br />
+<br />
+<table>
+	<caption>
+		表 1 运算符大小对照表</caption>
+	<tbody>
+		<tr>
+			<th colspan="2" rowspan="2">
+				&nbsp;</th>
+			<th colspan="6" rowspan="1">
+				当前运算符</th>
+		</tr>
+		<tr>
+			<th>
+				+</th>
+			<th>
+				-</th>
+			<th>
+				*</th>
+			<th>
+				/</th>
+			<th>
+				^</th>
+			<th>
+				!</th>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="7">
+				栈顶运算符</td>
+			<th>
+				+</th>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+		</tr>
+		<tr>
+			<th>
+				-</th>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+		</tr>
+		<tr>
+			<th>
+				*</th>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+		</tr>
+		<tr>
+			<th>
+				/</th>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+		</tr>
+		<tr>
+			<th>
+				^</th>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&lt;</td>
+		</tr>
+		<tr>
+			<th>
+				!</th>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+			<td>
+				&gt;</td>
+		</tr>
+		<tr>
+			<th>
+				(</th>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+			<td>
+				&lt;</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+如表 1 所示，假设栈顶运算符为 *，当前遍历到的运算符为 +，则根据表 1 中第 3 行第 1 列可知，* &gt; +（注意不是 + &gt; * ），即当前运算符小于栈顶运算符。根据调用场算法的处理规则，需将 * 出栈并添加到 postexp 数组的尾部，继续用 + 运算符同新的栈顶运算符做比较，以此类推。<br />
+<br />
+以<code>3!+4*2/(1-5)^2</code>为例，接下来为大家演示调用场算法的整个转换过程。遍历整个表达式：<br />
+1) 对于字符 3，直接将其添加 postexp 数组的尾部：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH0592M12.gif" /></div>
+<br />
+2) 遍历至 !，将其与 Optr 栈顶字符进行比较，由于此时 Optr 为空栈，因此直接将 ! 入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH05954917.gif" /></div>
+<br />
+3) 遍历至 +，Optr 栈顶运算符<code>! &gt; +</code>，将 ! 从 Optr 栈中取出并添加到 postexp 数组末尾。此时，Optr 栈为空，将 + 入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH10009112.gif" /></div>
+<br />
+4) 遍历至 4，直接添加到 postexp 数组末尾：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH10030633.gif" /></div>
+<br />
+5) 遍历至 *，Optr 栈顶运算符<code>+ &lt; *</code>，所以将 * 入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH1004X60.gif" /></div>
+<br />
+6) 遍历至 2，将其添加至 postexp 数组的末尾：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH101064E.gif" /></div>
+<br />
+7) 遍历至 /，Optr 栈顶运算符<code>* &gt; /</code>，将 * 取出并添加到 postexp 数组末尾：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH1014X44.gif" /><br />
+	&nbsp;</div>
+继续用 / 同 Optr 栈顶的 + 运算符比较，<code>+ &lt; /</code>，将 / 入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH1012CL.gif" style="width: 450px; height: 163px;" /><br />
+	&nbsp;</div>
+8) 遍历至 (，直接入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH10212955.gif" /><br />
+	&nbsp;</div>
+9) 遍历至 1 ，将其添加到 postexp 数组末尾：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH10252911.gif" /><br />
+	&nbsp;</div>
+10) 遍历至 -，Optr 栈顶运算符<code>( &lt; -</code>，将 - 入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH10314I4.gif" /><br />
+	&nbsp;</div>
+11) 遍历至 5，添加到 postexp 数组末尾：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH10400211.gif" /><br />
+	&nbsp;</div>
+12) 遍历至 )，对 Optr 栈一直做出栈操作并将出栈元素添加到 postexp 数组末尾，直到将 ( 取出：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH10423441.gif" /><br />
+	&nbsp;</div>
+13) 遍历至 ^，Optr 栈顶运算符<code>/ &lt; ^</code>，将 ^ 入栈：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH1044E52.gif" /><br />
+	&nbsp;</div>
+14) 遍历至 2，将其添加到 postexp 数组末尾：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH105111K.gif" /><br />
+	&nbsp;</div>
+15) 将 Optr 栈做出栈操作，并逐个将出栈元素添加到 postexp 数组末尾，直至 Optr 栈为空：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200817/2-200QH10536355.gif" /><br />
+	&nbsp;</div>
+显然，postexp 数组中存储的就是<code>3!+4*2/(1-5)^2</code>对应的后缀表达式。<br />
+<br />
+如下为调度场算法的实现代码：
+<pre class="cpp">
+// 字符栈
+typedef struct
+{
+    char data[MAXSIZE];
+    int top;
+}Stack;
+
+void InitStack(Stack **s)
+{
+    *s = (Stack*)malloc(sizeof(Stack));
+    (*s)-&gt;top = -1;
+}
+
+bool Push(Stack *s, char e)
+{
+    if (s-&gt;top == MAXSIZE - 1)
+        return false;
+    s-&gt;top++;
+    s-&gt;data[s-&gt;top] = e;
+    return true;
+}
+
+bool Pop(Stack **s, char *e)
+{
+    if ((*s)-&gt;top == -1)
+        return false;
+    *e = (*s)-&gt;data[(*s)-&gt;top];
+    (*s)-&gt;top--;
+    return true;
+}
+
+bool GetTop(Stack **s, char *e)
+{
+    if ((*s)-&gt;top == -1)
+        return false;
+    *e = (*s)-&gt;data[(*s)-&gt;top];
+    return true;
+}
+
+bool StackEmpty(Stack **s)
+{
+    if ((*s)-&gt;top == -1)
+        return true;
+    return false;
+}
+
+// 将中缀表达式转换成后缀表达式
+void trans(char *exp, char postexp[])
+{
+    int i = 0;
+    char e;
+    Stack *Optr;
+    InitStack(&amp;Optr); //初始化操作符栈，为存储后缀表达式做准备
+
+    while (*exp != &#39;\0&#39;) // 对每个字符进行判断处理
+    {
+        switch (*exp)
+        {
+            //单独处理括号
+            //如果是左括号，直接入栈
+            case &#39;(&#39;:
+                Push(Optr, &#39;(&#39;);
+                exp++;
+                break;
+            //如果为右括号，一直出栈操作，直到将 ( 也出栈
+            case &#39;)&#39;:
+                Pop(&amp;Optr, &amp;e);
+                while (e != &#39;(&#39;)
+                {
+                    postexp[i++] = e;
+                    Pop(&amp;Optr, &amp;e);
+                }
+                exp++;
+                break;
+            // + - 优先级相同，当做同一种情况处理
+            case &#39;+&#39;:
+            case &#39;-&#39;:
+                //由于 + - 的优先级只比 ( 大，所有只要栈顶字符不为 ( 就一直出栈；反之，则将 + - 入栈。
+                while (!StackEmpty(&amp;Optr))
+                {
+                    GetTop(&amp;Optr, &amp;e);
+                    if (e == &#39;(&#39;)
+                        break;
+                    else
+                    {
+                        postexp[i++] = e;
+                        Pop(&amp;Optr, &amp;e);
+                    }
+                }
+                //最后将 + - 入栈
+                Push(Optr, *exp);
+                exp++;
+                break;
+            case &#39;*&#39;:
+            case &#39;/&#39;:
+                // * / 优先级比 * / ^ ! 小，所有如果栈顶运算符是它们，就出栈；反之就将 * / 入栈
+                while (!StackEmpty(&amp;Optr))
+                {
+                    GetTop(&amp;Optr, &amp;e);
+                    if (e == &#39;/&#39; || e == &#39;*&#39; ||e==&#39;^&#39; || e==&#39;!&#39;) // * / 的优先级仅仅低于它前面的 * /，高于前面的 + -，所以要将前面的 * / 弹出栈；+ - 保留，因为新的 * / 会放在栈低，优先级高。
+                    {
+                        postexp[i++] = e;
+                        Pop(&amp;Optr, &amp;e);
+                    }
+                    else
+                        break; // 其他情况（ + - 左括号 ）退出，
+                }
+                //最后将 / * 入栈
+                Push(Optr, *exp);
+                exp++;
+                break;
+            case &#39;^&#39;:
+                // ^ 优先级仅比 ^ ! 小，如果栈顶运算符是它们，则出栈；反之将 ^ 入栈
+                while (!StackEmpty(&amp;Optr))
+                {
+                    GetTop(&amp;Optr, &amp;e);
+                    if (e == &#39;^&#39; || e == &#39;!&#39;)
+                    {
+                        postexp[i++] = e;
+                        Pop(&amp;Optr, &amp;e);
+                    }
+                    else
+                        break; // 其他情况（ + - * / ( ）退出，
+                }
+                Push(Optr, *exp); //最后将 ^ 入栈
+                exp++;
+                break;
+            case &#39;!&#39;:
+                // ! 优先级仅比 ! 小，所有如果栈顶运算符为 !,则将其出栈；反之，将 ! 入栈
+                while (!StackEmpty(&amp;Optr))
+                {
+                    GetTop(&amp;Optr, &amp;e);
+                    if (e == &#39;!&#39;)
+                    {
+                        postexp[i++] = e;
+                        Pop(&amp;Optr, &amp;e);
+                    }
+                    else
+                        break; // 其他情况（ + - * / ^ ( ）退出，
+                }
+                //最后将 ! 入栈
+                Push(Optr, *exp);
+                exp++;
+                break;
+            default:
+                while (*exp &gt; &#39;0&#39; &amp;&amp; *exp &lt; &#39;9&#39;) //循环判断是否为数字字符，如果是则保存到postexp，循环判断是因为可能是多位数字
+                {
+                    postexp[i++] = *exp;
+                    exp++;
+                }
+                //以#分隔各个数字字符
+                postexp[i++] = &#39;#&#39;;
+        }
+    }
+    while (!StackEmpty(&amp;Optr)) //扫描完exp后，操作符栈可能还有操作符，将其存到postexp
+    {
+        Pop(&amp;Optr, &amp;e);
+        postexp[i++] = e;
+    }
+    postexp[i] = &#39;\0&#39;; //结束字符<u><a href='/view/175.html' target='_blank'>串</a></u>
+    free(Optr); //销毁栈
+}</pre>
+由此，用栈结构求表达式的值的完整解决方案为：
+<ol>
+	<li>
+		将用户输入的普通表达式，借助调用场算法转换为后缀表达式；</li>
+	<li>
+		由第一步得到的后缀表达式，计算出它的值。</li>
+</ol>
+<blockquote>
+	<p>
+		为了方便读者理解整个用栈求表达式的值的过程，本文给大家提供了可直接编译运行的源码（点击<a href="/uploads/soft/200817/Stack_Expr.zip">栈求表达式的值</a>即可下载）。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 288;
+window.arcId = "a21bwyMtsAWTlasFmuiTCSCj8ceGz4jSIwSvMyno7wDoMncP7up1SUYd+w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

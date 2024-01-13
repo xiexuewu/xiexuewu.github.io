@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>判断两个单链表相交</title>
+<meta name="keywords" content="如何,判断,两个,单链表,相交,如何,判断,两个," />
+<meta name="description" content="判断 2 个单链表是否相交，是一个老生常谈的面试题，本节就在读者已经掌握单链表及其基本操作的基础上，为大家详细讲解解决这个问题的方法。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	作者：解学武
+</div>
+			<h1>判断两个单链表相交</h1>
+			<div id="arc-body">判断 2 个单<u><a href='/view/160.html' target='_blank'>链表</a></u>是否相交，是一个老生常谈但又极具思考性的面试题，本节就在读者已经掌握单链表及其基本操作的基础上，就此问题给大家做深入地讲解。<br />
+<br />
+首先，读者要搞清楚&ldquo;相交&rdquo;的含义。所谓相交，是指有公共的部分，而 2 个单链表相交，则意味着它们有公共的节点，公共节点的数量可以是 1 个或者多个。<br />
+<br />
+通过前面的学习我们知道，单链表是<u><a href='/view/157.html' target='_blank'>线性表</a></u>的一种，如果我们将 2 个单链表看做 2 条线段的话，<u><a href='/view/200.html' target='_blank'>图</a></u> 1 模拟了 2 条线段相交的所有可能情况。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/200730/2-200I0205453D3.gif" /><br />
+	图 1 链表相交</div>
+<br />
+注意，结合&ldquo;单链表中每个节点有且仅有 1 个指针域&rdquo;的特性，如 1 所示的这 3 种情况中，只有第 2 种情况符合单链表的特性，另外 2 种情况则破坏了此特性。经过以上的分析，<span style="color:#b22222;">本节要验证 2 个单链表是否相交，实际上等同于判断 2 个单链表是否和图 1② 所示的存储结构相同</span>。<br />
+<br />
+判断 2 个单链表（下文分别称它们为链表 1 和链表 2 ）是否相交，常用的方法有如下几种。<br />
+<br />
+1) 分别遍历链表 1 和链表 2，对于链表 1 中的每个节点，依次和链表 2 中的各节点进行比对，查看它们的存储地址是否相同，如果相同，则表明它们相交；反之，如果链表 1 中各节点的存储地址，和链表 2 中的各个节点都不相同，则表明它们不相交。<br />
+<blockquote>
+	<p>
+		注意，此方法中比较的是节点的存储地址，而非数据域中存储的元素。原因很简单，数据域中存储元素值相同，并不是 2 个单链表相交的充分条件，因为 2 个不相交的链表中很可能存有相同的元素。</p>
+</blockquote>
+仍以前面章节中构建的单链表为例：
+<pre class="cpp">
+typedef struct Link {
+    char elem; //代表数据域
+    struct Link * next; //代表指针域，指向直接后继元素
+}link; //link为节点名，每个节点都是一个 link 结构体</pre>
+在此基础上，判断 2 个单链表是否相交的实现代码为：
+<pre class="cpp">
+//自定义的 bool 类型
+typedef enum bool
+{
+    False = 0,
+    True = 1
+}bool;
+//L1 和 L2 为 2 个单链表，函数返回 True 表示链表相交，返回 False 表示不相交
+bool LinkIntersect(link * L1, link * L2) {
+    link * p1 = L1;
+    link * p2 = L2;
+    //逐个遍历 L1 链表中的各个节点
+    while (p1)
+    {
+        //遍历 L2 链表，针对每个 p1，依次和 p2 所指节点做比较
+        while (p2) {
+            //p1、p2 中记录的就是各个节点的存储地址，直接比较即可
+            if (p1 == p2) {
+                return True;
+            }
+            p2 = p2-&gt;next;
+        }
+        p1 = p1-&gt;next;
+    }
+    return False;
+}</pre>
+通过分析 LinkIntersect() 函数的实现过程不难得知，无论 2 个链表是否相交，此实现方式的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(n<sup>2</sup>)</code>。
+<blockquote>
+	<p>
+		有关时间复杂度的计算过程，读者可阅读《<a href="/view/272.html" target="_blank">时间复杂度和空间复杂度</a>》一节，这里不再做过多赘述。</p>
+</blockquote>
+<br />
+2) 实际上，第 1 种实现方案还可以进一步优化。结合图 1②，2 个单链表相交有一个必然结果，即这 2 个链表的最后一个节点必定相同；反之，如果 2 个链表不相交，则这 2 个链表的最后一个节点必定不相同。<br />
+<br />
+由此，可以对以上实现代码进行优化：
+<pre class="cpp">
+//L1 和 L2 为 2 个单链表，函数返回 True 表示链表相交，返回 False 表示不相交
+bool LinkIntersect(link * L1, link * L2) {
+    link * p1 = L1;
+    link * p2 = L2;
+    //找到 L1 链表中的最后一个节点
+    while (p1-&gt;next) {
+        p1 = p1-&gt;next;
+    }
+    //找到 L2 链表中的最后一个节点
+    while (p2-&gt;next)
+    {
+        p2 = p2-&gt;next;
+    }
+    //判断 L1 和 L2 链表最后一个节点是否相同
+    if (p1 == p2) {
+        return True;
+    }
+    return False;
+}</pre>
+显然经过优化，该函数的时间复杂度就缩小为<code>O(n)</code>。<br />
+<br />
+3) 针对第 1 种实现方案的优化，除了第 2 种方式，还有一种思想。<br />
+<br />
+假设 L1 和 L 2 相交，则两个链表中相交部分节点的数量一定是相等的。如图 2 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="两个链表相交" src="/uploads/allimg/200801/2-200P1211045237.gif" /><br />
+	图 2 两个链表相交</div>
+<br />
+可以看到，L1 和 L2 相交，绿色部分节点为 L1 和 L2 链表的相交部分。<br />
+<br />
+也就是说，如果 2 个链表相交，那么它们相交部分所包含的节点个数一定相等。在此基础上，我们可以这样优化第 1 种实现方案，以图 2 中的 L1 和 L2 为例，从 L1 尾部选取和 L2 链表等长度的一个子链表（也也就是图 3 中的 temp 子链表），同时遍历 temp 和 L2 链表，依次判断 2 个遍历节点是否相同，如果相同则表明 L1 和 L2 相交；反之则不相交。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="在较长链表中找到和较短链表等长度的子链表" src="/uploads/allimg/200801/2-200P1213206364.gif" /><br />
+	图 3 在较长链表中找到和较短链表等长度的子链表</div>
+此实现方案的实现代码如下：
+<pre class="cpp">
+//L1 和 L2 为 2 个单链表，函数返回 True 表示链表相交，返回 False 表示不相交
+bool LinkIntersect(link * L1, link * L2) {
+    link * plong = L1;
+    link * pshort = L2;
+    link * temp = NULL;
+    int num1 = 0, num2 = 0, step = 0;
+
+    //得到 L1 的长度
+    while (plong) {
+        num1++;
+        plong = plong-&gt;next;
+    }
+    //得到 L2 的长度
+    while (pshort)
+    {
+        num2++;
+        pshort = pshort-&gt;next;
+    }
+    //重置plong和pshort，使plong代表较长的链表，pshort代表较短的链表
+    plong = L1;
+    pshort = L2;
+    step = num1 - num2;
+    if (num1 &lt; num2) {
+        plong = L2;
+        pshort = L1;
+        step = num2 = num1;
+    }
+    //在plong链表中找到和pshort等长度的子链表
+    temp = plong;
+    while (step) {
+        temp = temp-&gt;next;
+        step--;
+    }
+    //逐个比较temp和pshort链表中的节点是否相同
+    while (temp &amp;&amp; pshort) {
+        if (temp == pshort) {
+            return True;
+        }
+        temp = temp-&gt;next;
+        pshort = pshort-&gt;next;
+    }
+    return False;
+}</pre>
+相比第 2 种方案，此方法的实现逻辑虽然复杂，但优点是，该方法可以找到 2 个单链表相交的交点（也就是相交时的第一个节点），也就是使 LinkIntersect() 函数返回 True 时的 temp 指针指向的那个节点。另外，此方案的时间复杂度也为<code>O(n)</code>。
+<h2>
+	总结</h2>
+总的来说，本节讲解了 3 种&ldquo;判断 2 个链表是否相交&rdquo;的方法，其中第 2、3 种方案的时间复杂度都比第 1 种要小。<br />
+<br />
+从另一个角度比较这 3 种方案，第 1 种和 第 3 种在判断&ldquo;2 个链表是否相交&rdquo;的同时，还能找到它们相交的交点，而第 2 种实现方案则不具备这个功能。
+<blockquote>
+	<p>
+		如果读者想实现&ldquo;判断 2 个链表是否相交，如果相加找到交点&rdquo;这样的功能，只需对第 1、3 种方案的实现代码做略微调整即可。由于很简单，读者可自行尝试实现。</p>
+</blockquote>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 282;
+window.arcId = "e64bSU5tC8ce2qvaCvHB/jDK2l0FuyTIH078p0KVnzrtOGOPgkIlg3ojWg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>
