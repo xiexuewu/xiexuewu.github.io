@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>串的定长顺序存储结构</title>
+<meta name="keywords" content="串,的,定长,顺序,存储,结构,串,的,定长,顺序," />
+<meta name="description" content="定长顺序存储是串结构的一种具体实现方式，简单理解就是采用固定长度的顺序表来存储字符串。 我们知道，顺序表通常使用数组来实现，数组的创建方式有两种，分别是静态数组和动" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/312.html">串是什么</a></dd><dd>4.2 <a href="/view/313.html">串的定长顺序存储结构</a></dd><dd>4.3 <a href="/view/314.html">串的堆分配存储结构</a></dd><dd>4.4 <a href="/view/315.html">串的块链存储结构</a></dd><dd>4.5 <a href="/view/316.html">BF算法（串的模式匹配算法）</a></dd><dd>4.6 <a href="/view/vip_227.html">KMP算法（串的快速模式匹配算法）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/317.html">KMP算法还能再优化！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/318.html">死抠：为什么KMP算法的主串指针不用回退？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/vip_228.html">串实现字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>串的定长顺序存储结构</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/312.html">串是什么</a></span>
+                    <span class="next right"><a href="/view/314.html">串的堆分配存储结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/312.html";window.nextPageURL = "/view/314.html";</script>
+			<div id="arc-body">定长顺序存储是<u><a href='/view/175.html' target='_blank'>串</a></u>结构的一种具体实现方式，简单理解就是采用固定长度的<u><a href='/view/158.html' target='_blank'>顺序表</a></u>来存储字符串。<br />
+<br />
+我们知道，顺序表通常使用<u><a href='/view/181.html' target='_blank'>数组</a></u>来实现，数组的创建方式有两种，分别是静态数组和动态数组。以 C 语言为例，静态数组指的就是长度固定的数组，动态数组指的是调用 malloc() 函数创建的数组，例如：
+<pre class="cpp">
+// 静态数组
+char str[30] = &quot;http://data.biancheng.net&quot;；
+// 动态数组
+char* str = (char*)malloc(30 * sizeof(char)); </pre>
+对于定义好的静态数组，它的长度是无法修改的；动态数组则不同，它的长度是可变的，定义后还可以调用 realloc() 函数扩容。<br />
+<br />
+串的定长顺序存储既然用固定长度的顺序表来实现，就限定了只能用静态数组实现，不能用动态数组。
+<h2>
+	定长顺序存储的具体实现</h2>
+通过前面的分析，串的定义顺序存储，其本质就是用静态数组存储字符串。<br />
+<br />
+举个简单的例子：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#define MAX_LEN 30
+typedef char myString[MAX_LEN];
+
+int main() {
+    // 定义一个静态数组
+    myString str = &quot;http://data.biancheng.net&quot;;
+    printf(&quot;%s&quot;, str);
+    return 0;
+}</pre>
+使用定长顺序存储方式实现串结构时，要预先定义足够长的静态数组，C 语言中要保证静态数组的长度至少为「字符串长度+1」，最后一位用于存储字符串的结束标志 &#39;\0&#39;。<br />
+<br />
+注意，如果静态数组的长度比要存储的字符串短，那么超出数组长度的字符将无法正确存储，我们通常将这种情况称为&ldquo;截断&rdquo;，即字符串被截断。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/312.html">串是什么</a></span>
+                    <span class="next right"><a href="/view/314.html">串的堆分配存储结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/312.html";window.nextPageURL = "/view/314.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 313;
+window.arcId = "4569gtCUh60TjQsfW3Em7QG9dpqiw3wp9DogAcB5IEGo08/ONBFvDnpNIQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

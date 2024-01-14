@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>图存储结构，数据结构中的图</title>
+<meta name="keywords" content="图,存储,结构,数据结构,中的,从,本节,开始,我," />
+<meta name="description" content="从本节开始，我将为大家介绍最后一种存储结构，也是数据结构中最复杂、难掌握的存储结构 图 。 图结构常用来存储逻辑关系为多对多的数据。比如说，一个学生可以同时选择多门课" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/338.html">图（图存储结构）是什么</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/339.html">图的邻接表存储结构</a></dd><dd>7.6 <a href="/view/340.html">图的十字链表存储结构</a></dd><dd>7.7 <a href="/view/341.html">图的邻接多重表存储结构</a></dd><dd>7.8 <a href="/view/342.html">深度优先搜索（DFS）算法</a></dd><dd>7.9 <a href="/view/343.html">广度优先搜索（BFS）算法</a></dd><dd>7.10 <a href="/view/344.html">深度优先生成树和森林</a></dd><dd>7.11 <a href="/view/345.html">广度优先生成树和森林</a></dd><dd>7.12 <a href="/view/346.html">最小生成树是什么</a></dd><dd>7.13 <a href="/view/vip_245.html">Prim算法(普里姆算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.15 <a href="/view/347.html">重连通图是什么</a></dd><dd>7.16 <a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_348.html">AOE网求关键路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.18 <a href="/view/349.html">最短路径是什么</a></dd><dd>7.19 <a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.20 <a href="/view/vip_249.html">Floyd算法（弗洛伊德算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.21 <a href="/view/vip_250.html">最短路径算法实现移动迷宫游戏（升级版）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>图存储结构，数据结构中的图</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/graph/">图</a></span>
+                    <span class="next right"><a href="/view/201.html">什么是连通图</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/graph/";window.nextPageURL = "/view/201.html";</script>
+			<div id="arc-body">从本节开始，我将为大家介绍最后一种存储结构，也是数据结构中最复杂、难掌握的存储结构&mdash;&mdash;<span style="color:#b22222;"><u><a href='/view/200.html' target='_blank'>图</a></u></span>。<br />
+<br />
+图结构常用来存储逻辑关系为&ldquo;多对多&rdquo;的数据。比如说，一个学生可以同时选择多门课程，而一门课程可以同时被多名学生选择，学生和课程之间的逻辑关系就是&ldquo;多对多&rdquo;。<br />
+<br />
+再举个例子，{V1, V2, V3, V4} 中各个元素之间具有的逻辑关系如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/14411264U-0.gif" /><br />
+	图 1 &quot;多对多&quot; 的逻辑关系</div>
+<blockquote>
+	<p>
+		A-&gt;B 表示 A 和 B 之间存在单向的联系，由 A 可以找到 B，但由 B 找不到 A。</p>
+</blockquote>
+图 1 中，从 V1 可以找到 V3、V4、V2，从 V3、V4、V2 也可以找到 V1，因此元素之间具有&ldquo;多对多&rdquo;的逻辑关系，存储它们就需要用到图结构。<br />
+<br />
+和<u><a href='/view/160.html' target='_blank'>链表</a></u>不同，图中存储的各个元素被称为顶点（而不是节点）。拿图 1 来说，图中含有 4 个顶点，分别为顶点 V1、V2、V3 和 V4。<br />
+<br />
+通常情况下，我们习惯用 Vi 表示图中的顶点，且所有顶点构成的集合通常用 V 表示。比如说，图 1 中顶点的集合为 V={V1, V2, V3, V4}。<br />
+<br />
+图 1 中各个顶点之间的关系都是双向的，这种情况下我们更习惯用下图来表示各个元素之间的关系：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/14411220W-1.gif" /><br />
+	图 2 图存储结构</div>
+<blockquote>
+	<p>
+		A-B 表示 A 和 B 之间存在双向的联系，由 A 可以找到 B，同样由 B 也可以找到 A。</p>
+</blockquote>
+类似图 2 这样，各个元素之间的联系都是双向的，这样的图结构称为无向图。如果元素之间存在单向的联系，那么这样的图结构称为有向图，例如：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/144112Mc-2.gif" /><br />
+	图 3 有向图</div>
+<h2>
+	图的基本概念</h2>
+在系统地学习图存储结构之前，需要了解掌握术语以及它们各自代表的含义。
+<h4>
+	1、弧头和弧尾</h4>
+有向图中，无箭头一端的顶点通常被称为&quot;初始点&quot;或&quot;弧尾&quot;，箭头一端的顶点被称为&quot;终端点&quot;或&quot;弧头&quot;。
+<h4>
+	2、入度和出度</h4>
+对于有向图中的一个顶点 V 来说，箭头指向 V 的弧的数量为 V 的入度（InDegree，记为 ID(V)）；箭头远离 V 的弧的数量为 V 的出度（OutDegree，记为OD(V)）。拿图 2 中的顶点 V1来说，该顶点的入度为 1，出度为 2，该顶点的度为 3。
+<h4>
+	3、(V1,V2) 和 &lt;V1,V2&gt; 的区别</h4>
+无向图中描述两顶点 V1 和 V2 之间的关系可以用 (V1, V2) 来表示；有向图中描述从 V1 到 V2 的&quot;单向&quot;关系可以用 &lt;V1,V2&gt; 来表示。<br />
+<br />
+由于图存储结构中顶点之间的关系是用线来表示的，因此 (V1,V2) 还可以用来表示无向图中连接 V1 和 V2 的线，又称为边；同样，&lt;V1,V2&gt; 也可用来表示有向图中从 V1 到 V2 带方向的线，又称为弧。
+<h4>
+	4、集合 VR</h4>
+并且，图中习惯用 VR 表示图中所有顶点之间关系的集合。例如，图 1 中无向图的集合 VR={(v1,v2),(v1,v4),(v1,v3),(v3,v4)}，图 2 中有向图的集合 VR={&lt;v1,v2&gt;,&lt;v1,v3&gt;,&lt;v3,v4&gt;,&lt;v4,v1&gt;}。
+<h4>
+	5、路径和回路</h4>
+无论是无向图还是有向图，从一个顶点到另一顶点途经的所有顶点组成的序列（包含这两个顶点），称为一条路径。如果路径中第一个顶点和最后一个顶点相同，则此路径称为&quot;回路&quot;（或&quot;环&quot;）。<br />
+<br />
+在此基础上，若路径中各顶点都不重复，此路径被称为&quot;简单路径&quot;；若回路中的顶点互不重复，此回路被称为&quot;简单回路&quot;（或简单环）。<br />
+<br />
+拿图 1 来说，从 V1 存在一条路径还可以回到 V1，此路径为 {V1,V3,V4,V1}，这是一个回路（环），而且还是一个简单回路（简单环）。
+<blockquote>
+	<p>
+		在有向图中，每条路径或回路都是有方向的。</p>
+</blockquote>
+<h4>
+	6、权和网</h4>
+有些场景中，可能会为图中的每条边赋予一个实数表示一定的含义，这种与边（或弧）相匹配的实数被称为&quot;权&quot;，而带权的图通常称为网。例如，图 4 就是一个网结构：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/14411230B-3.gif" /><br />
+	图 4 网结构（带权的图）</div>
+<h4>
+	7、子图</h4>
+指的是由图中一部分顶点和边构成的图，称为原图的子图。
+<h2>
+	图存储结构的分类</h2>
+根据不同的特征，图又可细分为完全图，<u><a href='/view/201.html' target='_blank'>连通图</a></u>、稀疏图和稠密图：<br />
+<ul>
+	<li>
+		完全图：若图中各个顶点都与除自身外的其他顶点有直接关系，这样的无向图称为<span style="color: rgb(0, 128, 0);">完全图</span>（如图 5a)）。同时，满足此条件的有向图则称为<span style="color: rgb(0, 128, 0);">有向完全图</span>（图 5b)）。
+		<div style="text-align: center;">
+			<br />
+			<img alt="完全图示意图" src="/uploads/allimg/240114/1441121402-4.gif" /><br />
+			图 5&nbsp;完全图</div>
+		<p class="info-box">
+			具有 n 个顶点的完全图，图中边的数量为 n(n-1)/2；而对于具有 n 个顶点的有向完全图，图中弧的数量为 n(n-1)。</p>
+	</li>
+	<li>
+		稀疏图和稠密图：这两种图是相对存在的，即如果图中具有很少的边（或弧），此图就称为&quot;稀疏图&quot;；反之，则称此图为&quot;稠密图&quot;。
+		<p class="info-box">
+			稀疏和稠密的判断条件是：e&lt;nlogn，其中 e 表示图中边（或弧）的数量，n 表示图中顶点的数量。如果式子成立，则为稀疏图；反之为稠密图。</p>
+	</li>
+</ul>
+<br />
+连通图比较复杂，无法用一两句来解释清楚，下一节我会专门讲解是什么连通图。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/graph/">图</a></span>
+                    <span class="next right"><a href="/view/201.html">什么是连通图</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/graph/";window.nextPageURL = "/view/201.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 338;
+window.arcId = "aa50fWpam/sDJUZr2UPOLhwLI4I7qg+e1jFo8h8NLSfs33dyL2HsohVfzQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -31,7 +31,12 @@
 	<div id="sidebar" class="toggle-target">
 	<div id="contents">
 		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
-		<dd class="this"> <span class="channel-num">1</span> <a href="/intro/">数据结构概述</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/153.html">什么是数据结构</a></dd><dd>1.2 <a href="/view/154.html">数据结构到底学什么？</a></dd><dd>1.3 <a href="/view/vip_264.html">数据的逻辑结构和物理结构</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.4 <a href="/view/272.html">如何衡量一个算法的好坏？</a></dd><dd>1.5 <a href="/view/vip_213.html">数据结构和算法的关系和区别</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.6 <a href="/view/273.html">数据结构如何自学，效率更高？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.7 <a href="/view/274.html">数学不好，对学数据结构有影响吗？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/275.html">学好数据结构，你已然超越了99%的程序员！</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
 			<dd>
 				<span class="channel-num">2</span>
 				<a href='/linear_list/'>线性表</a>
@@ -64,22 +69,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -95,15 +100,6 @@
 	作者：解学武
 </div>
 			<h1>什么是数据结构</h1>
-			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/intro/">数据结构概述</a></span>
-                    <span class="next right"><a href="/view/154.html">数据结构到底学什么？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <div class="pre-next-page pre-next-brief clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
-                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <script type="text/javascript">window.prePageURL = "/intro/";window.nextPageURL = "/view/154.html";</script>
 			<div id="arc-body">当你决定看这篇文章，就意味着系统学习数据结构的开始。本节，我们先来讲什么是<span style="color:#008000;">数据结构</span>。
 <div style="text-align: center;">
 	<br />
@@ -111,39 +107,30 @@
 	&nbsp;</div>
 <span style="color:#b22222;">数据结构，直白地理解，就是研究数据的存储方式。</span><br />
 <br />
-我们知道，数据存储只有一个目的，即为了方便后期对数据的再利用，就如同我们使用<u><a href='/view/181.html' target='_blank'>数组</a></u>存储 <code>{1,2,3,4,5}</code> 是为了后期取得它们的加和值，无缘由的数据存储行为是对存储空间的不负责任。<br />
+我们知道，数据存储只有一个目的，即为了方便后期对数据的再利用，就如同我们使用<u><a href="/view/181.html" target="_blank">数组</a></u>存储 <code>{1,2,3,4,5}</code> 是为了后期取得它们的加和值，无缘由的数据存储行为是对存储空间的不负责任。<br />
 <br />
 因此，数据在计算机存储空间的存放，决不是胡乱的，这就要求我们选择一种好的方式来存储数据，而这也是数据结构的核心内容。<br />
 <br />
-例如，一直以来大家面对的数据存储，都是类似存储 1、2、{a,b,c} 这样的问题，解决方式无疑是用变量或者数组对数据进行存储，即：
+例如，一直以来大家面对的数据存储，都是类似存储 1、2、{a,b,c} 这样的问题，解决方式无疑是用变量或者<u><a href='/view/181.html' target='_blank'>数组</a></u>对数据进行存储，即：
 <p class="info-box">
 	int a=1;<br />
 	int b=2;<br />
 	char str[3]={&#39;a&#39;,&#39;b&#39;,&#39;c&#39;};</p>
-但是，如果要存储这样一组数据：{张亮，张平，张华，张群，张晶，张磊}，数据之间具有这样的关系：张亮是张平、张华和张群的父亲，同时张平还是张晶和张磊的父亲，数据之间的关系如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：
+但是，如果要存储这样一组数据：{张亮，张平，张华，张群，张晶，张磊}，数据之间具有这样的关系：张亮是张平、张华和张群的父亲，同时张平还是张晶和张磊的父亲，数据之间的关系如<u><a href="/view/200.html" target="_blank">图</a></u> 1 所示：
 <div style="text-align: center;">
 	<br />
 	<img alt="" src="/uploads/allimg/171121/2-1G12114514Y03.png" style="text-align: center; width: 380px; height: 166px;" /><br />
-	图 1 数据及数据之间的关系</div>
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 数据及数据之间的关系</div>
 <br />
 对于存储之间具有复杂关系的数据，如果还是用变量或数组来存储（比如用数组存储 {&ldquo;张亮&rdquo;,&quot;张平&quot;,&ldquo;张华&rdquo;,&quot;张群&quot;,&quot;张晶&quot;,&quot;张磊&quot;} ），数据存储是没有问题，但是无法体现数据之间的逻辑关系，后期根本无法使用，显然不明智。<br />
 <p class="info-box">
-	针对此类数据，数据结构中提供有专门的<u><a href='/view/23.html' target='_blank'>树</a></u>结构来存储这类数据。</p>
+	针对此类数据，数据结构中提供有专门的<u><a href="/view/23.html" target="_blank">树</a></u>结构来存储这类数据。</p>
 再比如，导航无疑是出游旅行的必备神器，在我们程序员眼中，无论是哪款导航软件，其导航功能的实现都需要大量地图数据的支持。很明显，这些数据绝不是使用变量或数组进行存储的，那样对于数据的使用简直是个悲剧。<br />
 <p class="info-box">
 	针对此类数据，数据结构提供了图存储结构，专门用于存储这类数据。</p>
 通过以上两个示例可以体会出，数据结构教会我们的绝不仅仅是如何存储 1、2、{a,b,c} 这样简单的数据，而是解决具有复杂关系的大量数据的存储问题。<br />
 <br />
 因此，数据结构是什么?<span style="color:#b22222;"> 我认为，数据结构是一门学科，它教会我们&ldquo;如何存储具有复杂关系的数据更有助于后期对数据的再利用&rdquo;。</span></div>
-			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/intro/">数据结构概述</a></span>
-                    <span class="next right"><a href="/view/154.html">数据结构到底学什么？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <div class="pre-next-page pre-next-brief clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
-                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <script type="text/javascript">window.prePageURL = "/intro/";window.nextPageURL = "/view/154.html";</script>
 		</div>
 		
 	</div>
@@ -151,7 +138,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 153;
-window.arcId = "fa4eQDnG1lY2gVsOMQ06ESgRact0v2mmrWNHNZfLokGTvbyZDPg/95oHVQ";
+window.arcId = "421eFPkqh6DPQor+XIR3rGnyv9GNMD+Yyl0iFu5w3dUNMVNn7/Drod4A1A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

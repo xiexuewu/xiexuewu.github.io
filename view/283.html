@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>判断链表中有环</title>
-<meta name="keywords" content="如何,判断,链表,中有,环,如何,判断,链表,中有," />
-<meta name="description" content="《 循环链表 》一节，给大家详细地介绍了循环链表。在此基础上，本节带领大家讨论一个问题：如何判断一个单链表中有环？ 注意，有环链表并不一定就是循环链表。循环链表指的是" />
+<title>数据结构到底学什么</title>
+<meta name="keywords" content="数据结构,到底,学,什么,数据结构,是,一门," />
+<meta name="description" content="数据结构是一门研究数据存储方式的学科，在数据结构看来，数据的存储方式要从以下两个角度来综合分析： 物理结构：在内存中，数据可以选择集中存放，也可以选择分散存放； 逻辑" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -31,12 +31,7 @@
 	<div id="sidebar" class="toggle-target">
 	<div id="contents">
 		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
-		
-			<dd>
-				<span class="channel-num">1</span>
-				<a href='/intro/'>数据结构概述</a>
-			</dd>
-		
+		<dd class="this"> <span class="channel-num">1</span> <a href="/intro/">数据结构概述</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/282.html">什么是数据结构</a></dd><dd>1.2 <a href="/view/283.html">数据结构到底学什么</a></dd><dd>1.3 <a href="/view/vip_264.html">数据的逻辑结构和物理结构</a></dd><dd>1.4 <a href="/view/285.html">数据结构和算法的区别</a></dd><dd>1.5 <a href="/view/vip_284.html">时间复杂度和空间复杂度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.6 <a href="/view/vip_273.html">数据结构如何自学，效率更高？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.7 <a href="/view/vip_274.html">数学不好，对学数据结构有影响吗？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/vip_275.html">学好数据结构，你已然超越了99%的程序员！</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">2</span>
 				<a href='/linear_list/'>线性表</a>
@@ -69,22 +64,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -97,99 +92,50 @@
 	<div id="article-wrap">
 		<div id="article">
 			<div id="arc-info">
-	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	作者：解学武
 </div>
-			<h1>判断链表中有环</h1>
-			<div id="arc-body">《<a href="/view/7.html" target="_blank">循环链表</a>》一节，给大家详细地介绍了循环<u><a href='/view/160.html' target='_blank'>链表</a></u>。在此基础上，本节带领大家讨论一个问题：如何判断一个单链表中有环？<br />
+			<h1>数据结构到底学什么</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/282.html">什么是数据结构</a></span>
+                    <span class="next right"><a href="/view/vip_264.html">数据的逻辑结构和物理结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/282.html";window.nextPageURL = "/view/vip_264.html";</script>
+			<div id="arc-body">数据结构是一门研究数据存储方式的学科，在数据结构看来，数据的存储方式要从以下两个角度来综合分析：
+<ul>
+	<li>
+		物理结构：在内存中，数据可以选择集中存放，也可以选择分散存放；</li>
+	<li>
+		逻辑结构：数据之间的逻辑关系有四种，分别是无关系、&ldquo;一对一&rdquo;关系、&ldquo;一对多&rdquo;关系和&ldquo;多对多&rdquo;关系。</li>
+</ul>
 <br />
-注意，有环链表并不一定就是循环链表。循环链表指的是&ldquo;首尾相连&rdquo;的单链表，而有环链表则指的是单链表中存在一个循环子链表，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。
+数据的物理结构有 2 种，逻辑结构有 4 种，它们可以随意组合。例如，无关系的数据可以选择集中存放，也可以选择分散存放。针对具有不同物理结构和逻辑结构的数据，数据结构都会给出最恰当的存储方案。<span style="color:#b22222;">学习数据结构，实际上就是学习这些存储数据的方案。</span><br />
+<br />
+下面是一张数据结构的知识<u><a href='/view/200.html' target='_blank'>图</a></u>谱，几乎涵盖了数据结构中所有的存储方案：<br />
+<br />
 <div style="text-align: center;">
-	<br />
-	<img alt="" src="/uploads/allimg/200803/2-200P3202321O7.gif" /><br />
-	图 1 有环链表示意图</div>
+	<img alt="" src="/uploads/allimg/240114/093U91540-0.gif" /><br />
+	图 1 数据结构中的各个存储方案</div>
 <br />
-图 1 所示就是一个有环链表，但并不是循环链表。<br />
+注意，想彻底玩转图 1 中罗列的这些存储方案也是不容易的，除了掌握各个存储方案本身，还要学会在各个存储方案中完成对数据的&ldquo;增删改查&rdquo;操作，以及用这些存储方案解决一些常见的实际问题（例如字符<u><a href='/view/175.html' target='_blank'>串</a></u>的模式匹配、矩阵转置、最小<u><a href='/view/202.html' target='_blank'>生成树</a></u>、最短路径等）。庆幸地是，这些知识在数据结构中都会讲到。<br />
 <br />
-那么，如果给定一个单链表，如何判断其是否为有环链表呢？常用的判断方法有如下 2 种。<br />
-<br />
-1) 最直接的实现思想就是：从给定链表的第一个节点开始遍历，每遍历至一个节点，都将其和所有的前驱节点进行比对，如果为同一个节点，则表明当前链表中有环；反之，如果遍历至链表最后一个节点，仍未找到相同的节点，则证明该链表中无环。
-<blockquote>
-	<p>
-		注意，如果一个单链表为有环链表，基于单链表中各节点有且仅有 1 个指针域的特性，则势必该链表是没有尾结点的（如图 1 所示）。换句话说，有环链表的遍历过程是无法自行结束的，需要使用 break 语句手动结束遍历。</p>
-</blockquote>
-基于上面的实现思想，下面设计了一个相应的实现函数：
-<pre class="cpp">
-//自定义 bool 类型
-typedef enum bool
-{
-    False=0,
-    True=1
-}bool;
-// H 为链表的表头
-bool HaveRing(link * H) {
-    link * Htemp = H;
-    //存储所遍历节点所有前驱节点的存储地址，64位环境下地址占 8 个字节，所以这里用 long long 类型
-    long long addr[20] = { 0 };
-    int length = 0, i = 0;
-    //逐个遍历链表中各个节点
-    while (Htemp) {
-        //依次将 Htemp 和 addr <u><a href='/view/181.html' target='_blank'>数组</a></u>中记录的已遍历的地址进行比对
-        for (i = 0; i &lt; length; i++) {
-            //如果比对成功，则证明有环
-            if (Htemp == addr[i]) {
-                return True;
-            }
-        }
-        //比对不成功，则记录 Htemp 节点的存储地址
-        addr[length] = Htemp;
-        length++;
-        Htemp = Htemp-&gt;next;
-    }
-    return False;
-}</pre>
-如上所示，当函数的返回值为 True，表示该链表有环；反之若函数返回值为 False，表明链表中无环。显然，此实现方案的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(n<sup>2</sup>)</code>。<br />
-<br />
-2) 相比上一种实现方案，这里介绍一种时间复杂度为 O(n) 的算法。<br />
-<br />
-该算法的实现思想需要借助一个论点，即在一个链表中，如果 2 个指针（假设为 H1 和 H2）都从表头开始遍历链表，其中 H1 每次移动 2 个节点的长度（H1 = H1-&gt;next-&gt;next）,而 H2 每次移动 1 个节点的长度（H2 = H2-&gt;next），如果该链表为有环链表，则 H1、H2 最终必定会相等；反之，如果该链表中无环，则 H1、H2 永远不会相遇。<br />
-<blockquote>
-	<p>
-		有关在有环链表中 H1 和 H2 必定会相遇的结论，假设有环链表中的环包含 n 个节点，则第一次遍历，H1 和 H2 相差 1 个节点；第二次遍历，H1 和 H2 相差 2 个节点；第三次遍历，H1 和 H2 相差 3 个节点...，最终经过多次遍历，H1 和 H2 会相差 n-1 个节点，此时就会在环中重合，此时 H1 和 H2 相等。</p>
-</blockquote>
-基于以上这个结论，我们可以轻松编写出对应的实现代码：
-<pre class="cpp">
-//H为链表的表头，该函数会返回一个枚举的 bool 类型数据
-bool HaveRing(link * H) {
-    link * H1 = H-&gt;next;
-    link * H2 = H;
-    while (H1)
-    {
-        if (H1 == H2)
-        {
-            //链表中有环
-            return True;
-        }
-        else
-        {
-            H1 = H1-&gt;next;
-            if (!H1)
-            {
-                //链表中无环
-                return False;
-            }
-            else
-            {
-                H1 = H1-&gt;next;
-                H2 = H2-&gt;next;
-            }
-        }
-    }
-    //链表中无环
-    return False;
-}</pre>
-和上一种实现代码一样，当函数返回 False 时，表明当前链表中无环；反之若返回 True，则表明该链表为有环链表。和第一种算法相比，本算法的时间复杂度为 O(n)。<br />
+数据结构和算法是紧密相关的，学习数据结构的过程中，还要掌握一些常用的算法。关于数据结构与算法的关系和区别，读者可以猛击《数据结构与算法的关系和区别》一文。
+<h2>
+	总结</h2>
+学习数据结构，就是学习各种存储数据的方案。玩转数据结构，实际开发中遇到的各类数据存储问题都难不倒你。<br />
 </div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/282.html">什么是数据结构</a></span>
+                    <span class="next right"><a href="/view/vip_264.html">数据的逻辑结构和物理结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/282.html";window.nextPageURL = "/view/vip_264.html";</script>
 		</div>
 		
 	</div>
@@ -197,7 +143,7 @@ bool HaveRing(link * H) {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 283;
-window.arcId = "3d893645sGb+ipG0EbiK7G79EQBSklaKziibGvxHZe+8Hk15U/Pe4kcYZA";
+window.arcId = "6affoxdDXMCZv1AxYfiOlO6oqkVf1vX/BY4cux1iX5QVOhMhTFHW1Un7gQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

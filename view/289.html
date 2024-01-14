@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序表的基本操作（C语言详解）</title>
+<meta name="keywords" content="顺序,表,的,基本操作,语言,详解,我们,学习,了," />
+<meta name="description" content="我们学习了 顺序表 及初始化的过程，本节学习有关顺序表的一些基本操作，以及如何使用 C 语言实现它们。 顺序表插入元素 向已有顺序表中插入数据元素，根据插入位置的不同，可分" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">2</span> <a href="/linear_list/">线性表</a> </dd><dl class="dl-sub"><dd>2.1 <a href="/view/287.html">线性表是什么</a></dd><dd>2.2 <a href="/view/288.html">顺序表是什么</a></dd><dd>2.3 <a href="/view/289.html">顺序表的基本操作</a></dd><dd>2.4 <a href="/view/vip_293.html">顺序表与数组根本不是一码事！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.5 <a href="/view/290.html">链表是什么</a></dd><dd>2.6 <a href="/view/291.html">链表的基本操作</a></dd><dd>2.7 <a href="/view/vip_216.html">顺序表和链表有哪些不同？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.8 <a href="/view/vip_297.html">删除链表倒数第N个结点（3种实现方案）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.9 <a href="/view/vip_277.html">4种算法，实现单链表的反转！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.10 <a href="/view/vip_298.html">如何判断两个单链表相交？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.11 <a href="/view/vip_279.html">存储结构和存取结构，完全不是一码事！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.12 <a href="/view/163.html">静态链表是什么</a></dd><dd>2.13 <a href="/view/292.html">静态链表的基本操作</a></dd><dd>2.14 <a href="/view/vip_218.html">静态链表和动态链表的区别</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.15 <a href="/view/294.html">双向链表是什么</a></dd><dd>2.16 <a href="/view/295.html">双向链表基本操作</a></dd><dd>2.17 <a href="/view/vip_281.html">双向链表实现贪吃蛇游戏（含源码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.18 <a href="/view/7.html">循环链表实现约瑟夫环</a></dd><dd>2.19 <a href="/view/vip_263.html">双向循环链表是什么</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.20 <a href="/view/vip_299.html">如何判断链表中有环？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.21 <a href="/view/vip_233.html">线性表实现俄罗斯轮盘赌游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>顺序表的基本操作（C语言详解）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/288.html">顺序表是什么</a></span>
+                    <span class="next right"><a href="/view/vip_293.html">顺序表与数组根本不是一码事！</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/288.html";window.nextPageURL = "/view/vip_293.html";</script>
+			<div id="arc-body">我们学习了<u><a href='/view/158.html' target='_blank'>顺序表</a></u>及初始化的过程，本节学习有关顺序表的一些基本操作，以及如何使用 C 语言实现它们。<br />
+<h2>
+	顺序表插入元素</h2>
+向已有顺序表中插入数据元素，根据插入位置的不同，可分为以下 3 种情况：
+<ol>
+	<li>
+		插入到顺序表的表头；</li>
+	<li>
+		在表的中间位置插入元素；</li>
+	<li>
+		尾随顺序表中已有元素，作为顺序表中的最后一个元素；</li>
+</ol>
+<br />
+虽然数据元素插入顺序表中的位置有所不同，但是都使用的是同一种方式去解决，即：通过遍历，找到数据元素要插入的位置，然后做如下两步工作：
+<ul>
+	<li>
+		将要插入位置元素以及后续的元素整体向后移动一个位置；</li>
+	<li>
+		将元素放到腾出来的位置上；</li>
+</ul>
+<br />
+例如，在&nbsp;<code>{1,2,3,4,5}</code>&nbsp;的第 3 个位置上插入元素 6，实现过程如下：
+<ul>
+	<li>
+		遍历至顺序表存储第 3 个数据元素的位置，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：
+		<div style="text-align: center;">
+			<br />
+			<img alt="找到目标元素位置" src="/uploads/allimg/240114/101G53910-0.gif" /><br />
+			图 1 找到目标元素位置</div>
+	</li>
+	<li>
+		将元素 3、4 和 5 整体向后移动一个位置，如图 2 所示：
+		<div style="text-align: center;">
+			<br />
+			<img alt="将插入位置腾出" src="/uploads/allimg/240114/101G5NT-1.gif" /><br />
+			图 2 将插入位置腾出</div>
+	</li>
+	<li>
+		将新元素 6 放入腾出的位置，如图 3 所示：
+		<div style="text-align: center;">
+			<br />
+			<img alt="插入目标元素" src="/uploads/allimg/240114/101G53943-2.gif" /><br />
+			图 3 插入目标元素</div>
+	</li>
+</ul>
+<br />
+因此，顺序表插入数据元素的 C 语言实现代码如下：
+<pre class="cpp">
+//插入函数，其中，elem为插入的元素，add为插入到顺序表的位置
+void insertTable(Table* t, int elem, int add)
+{
+    int i;
+    //如果插入元素位置比整张表的长度+1还大（如果相等，是尾随的情况），或者插入的位置本身不存在，程序作为提示并自动退出
+    if (add &gt; t-&gt;length + 1 || add &lt; 1) {
+        printf(&quot;插入位置有问题\n&quot;);
+        return;
+    }
+    //做插入操作时，首先需要看顺序表是否有多余的存储空间提供给插入的元素，如果没有，需要申请
+    if (t-&gt;length == t-&gt;size) {
+        t-&gt;head = (int*)realloc(t-&gt;head, (t-&gt;size + 1) * sizeof(int));
+        if (!t-&gt;head) {
+            printf(&quot;存储分配失败\n&quot;);
+            return;
+        }
+        t-&gt;size += 1;
+    }
+    //插入操作，需要将自插入位置之后的所有元素全部后移一位
+    for (i = t-&gt;length - 1; i &gt;= add - 1; i--) {
+        t-&gt;head[i + 1] = t-&gt;head[i];
+    }
+    //后移完成后，直接插入元素
+    t-&gt;head[add - 1] = elem;
+    t-&gt;length++;
+}</pre>
+注意，动态<u><a href='/view/181.html' target='_blank'>数组</a></u>额外申请更多物理空间使用的是 realloc 函数。此外在实现元素整体后移的过程中，目标位置其实是有数据的，还是 3，只是下一步新插入元素时会把旧元素直接覆盖。<br />
+<h2>
+	顺序表删除元素</h2>
+从顺序表中删除指定元素，实现起来非常简单，只需找到目标元素，并将其后续所有元素整体前移 1 个位置即可。<br />
+<p class="info-box">
+	后续元素整体前移一个位置，会直接将目标元素删除，可间接实现删除元素的目的。</p>
+例如，从&nbsp;<code>{1,2,3,4,5}</code>&nbsp;中删除元素 3 的过程如图 4 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/240114/101G553N-3.gif" /><br />
+	图 4 顺序表删除元素的过程示意图</div>
+<br />
+因此，顺序表删除元素的 C 语言实现代码为：
+<pre class="cpp">
+void delTable(Table* t, int add) {
+    int i;
+    if (add &gt; t-&gt;length || add &lt; 1) {
+        printf(&quot;被删除元素的位置有误\n&quot;);
+        return;
+    }
+    //删除操作
+    for (i = add; i &lt; t-&gt;length; i++) {
+        t-&gt;head[i - 1] = t-&gt;head[i];
+    }
+    t-&gt;length--;
+}</pre>
+<h2>
+	顺序表查找元素</h2>
+顺序表中查找目标元素，可以使用多种查找算法实现，比如说<u><a href='/view/55.html' target='_blank'>二分查找</a></u>算法、插值查找算法等。<br />
+<br />
+这里，我们选择<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>算法，具体实现代码为：
+<pre class="cpp">
+//查找函数，其中，elem表示要查找的数据元素的值
+int selectTable(table t,int elem){
+    for (int i=0; i&lt;t.length; i++) {
+        if (t.head[i]==elem) {
+            return i+1;
+        }
+    }
+    return -1;//如果查找失败，返回-1
+}</pre>
+<h2>
+	顺序表更改元素</h2>
+顺序表更改元素的实现过程是：
+<ol>
+	<li>
+		找到目标元素；</li>
+	<li>
+		直接修改该元素的值；</li>
+</ol>
+<br />
+顺序表更改元素的 C 语言实现代码为：
+<pre class="cpp">
+void amendTable(Table* t, int elem, int newElem) {
+    int add = selectTable(*t, elem);
+    if (add == -1) {
+        printf(&quot;顺序表中没有找到目标元素\n&quot;);
+        return;
+    }
+    t-&gt;head[add - 1] = newElem;
+}</pre>
+<h2>
+	实例演示</h2>
+以上是顺序表使用过程中最常用的基本操作，这里给出完整的实现代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define Size 5
+typedef struct {
+    int* head; //定义一个名为head的长度不确定的数组，也叫&ldquo;动态数组&rdquo;
+    int length; //记录当前顺序表的长度
+    int size; //记录顺序表的存储容量
+}Table;
+//创建顺序表
+void initTable(Table* t) {
+    //构造一个空的顺序表，动态申请存储空间
+    t-&gt;head = (int*)malloc(Size * sizeof(int));
+    //如果申请失败，作出提示并直接退出程序
+    if (!t-&gt;head)
+    {
+        printf(&quot;初始化失败&quot;);
+        exit(0);
+    }
+    //空表的长度初始化为0
+    t-&gt;length = 0;
+    //空表的初始存储空间为Size
+    t-&gt;size = Size;
+}
+//插入函数，其中，elem为插入的元素，add为插入到顺序表的位置
+void insertTable(Table* t, int elem, int add)
+{
+    int i;
+    //如果插入元素位置比整张表的长度+1还大（如果相等，是尾随的情况），或者插入的位置本身不存在，程序作为提示并自动退出
+    if (add &gt; t-&gt;length + 1 || add &lt; 1) {
+        printf(&quot;插入位置有问题\n&quot;);
+        return;
+    }
+    //做插入操作时，首先需要看顺序表是否有多余的存储空间提供给插入的元素，如果没有，需要申请
+    if (t-&gt;length == t-&gt;size) {
+        t-&gt;head = (int*)realloc(t-&gt;head, (t-&gt;size + 1) * sizeof(int));
+        if (!t-&gt;head) {
+            printf(&quot;存储分配失败\n&quot;);
+            return;
+        }
+        t-&gt;size += 1;
+    }
+    //插入操作，需要将自插入位置之后的所有元素全部后移一位
+    for (i = t-&gt;length - 1; i &gt;= add - 1; i--) {
+        t-&gt;head[i + 1] = t-&gt;head[i];
+    }
+    //后移完成后，直接插入元素
+    t-&gt;head[add - 1] = elem;
+    t-&gt;length++;
+}
+//删除函数
+void delTable(Table* t, int add) {
+    int i;
+    if (add &gt; t-&gt;length || add &lt; 1) {
+        printf(&quot;被删除元素的位置有误\n&quot;);
+        return;
+    }
+    //删除操作
+    for (i = add; i &lt; t-&gt;length; i++) {
+        t-&gt;head[i - 1] = t-&gt;head[i];
+    }
+    t-&gt;length--;
+}
+//查找函数
+int selectTable(Table t, int elem) {
+    int i;
+    for (i = 0; i &lt; t.length; i++) {
+        if (t.head[i] == elem) {
+            return i + 1;
+        }
+    }
+    return -1;
+}
+//更改函数
+void amendTable(Table* t, int elem, int newElem) {
+    int add = selectTable(*t, elem);
+    if (add == -1) {
+        printf(&quot;顺序表中没有找到目标元素\n&quot;);
+        return;
+    }
+    t-&gt;head[add - 1] = newElem;
+}
+//输出顺序表中的元素
+void displayTable(Table t) {
+    int i;
+    for (i = 0; i &lt; t.length; i++) {
+        printf(&quot;%d &quot;, t.head[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+int main() {
+    int i,add;
+    Table t = { NULL,0,0 };
+    initTable(&amp;t);
+    for (i = 1; i &lt;= Size; i++) {
+        t.head[i - 1] = i;
+        t.length++;
+    }
+    printf(&quot;原顺序表：\n&quot;);
+    displayTable(t);
+    printf(&quot;删除元素1:\n&quot;);
+    delTable(&amp;t, 1);
+    displayTable(t);
+    printf(&quot;在第2的位置插入元素5:\n&quot;);
+    insertTable(&amp;t, 5, 2);
+    displayTable(t);
+    printf(&quot;查找元素3的位置:\n&quot;);
+    add = selectTable(t, 3);
+    printf(&quot;%d\n&quot;, add);
+    printf(&quot;将元素3改为6:\n&quot;);
+    amendTable(&amp;t, 3, 6);
+    displayTable(t);
+    return 0;
+}</pre>
+程序运行结果为：
+<p class="info-box">
+	原顺序表：<br />
+	1 2 3 4 5<br />
+	删除元素1:<br />
+	2 3 4 5<br />
+	在第2的位置插入元素5:<br />
+	2 5 3 4 5<br />
+	查找元素3的位置:<br />
+	3<br />
+	将元素3改为6:<br />
+	2 5 6 4 5</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/288.html">顺序表是什么</a></span>
+                    <span class="next right"><a href="/view/vip_293.html">顺序表与数组根本不是一码事！</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/288.html";window.nextPageURL = "/view/vip_293.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 289;
+window.arcId = "9e28nPkVSw2X6poZGCC35gbZA9qM0imboA5G5D1wwMm5Kabn32ilA5Vf9w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

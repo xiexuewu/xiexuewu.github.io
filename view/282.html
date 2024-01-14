@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>判断两个单链表相交</title>
-<meta name="keywords" content="如何,判断,两个,单链表,相交,如何,判断,两个," />
-<meta name="description" content="判断 2 个单链表是否相交，是一个老生常谈的面试题，本节就在读者已经掌握单链表及其基本操作的基础上，为大家详细讲解解决这个问题的方法。" />
+<title>什么是数据结构（小白必读）</title>
+<meta name="keywords" content="什么,是,数据结构,小白,必读,从,本节,开始," />
+<meta name="description" content="从本节开始，您将系统地学习数据结构，首先带大家了解一下什么是数据结构。 发展至今，数据结构也没有标准的定义，仁者见仁智者见智。市面上有很多讲解数据结构的书籍和视频，" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -31,12 +31,7 @@
 	<div id="sidebar" class="toggle-target">
 	<div id="contents">
 		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
-		
-			<dd>
-				<span class="channel-num">1</span>
-				<a href='/intro/'>数据结构概述</a>
-			</dd>
-		
+		<dd class="this"> <span class="channel-num">1</span> <a href="/intro/">数据结构概述</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/282.html">什么是数据结构</a></dd><dd>1.2 <a href="/view/283.html">数据结构到底学什么</a></dd><dd>1.3 <a href="/view/vip_264.html">数据的逻辑结构和物理结构</a></dd><dd>1.4 <a href="/view/285.html">数据结构和算法的区别</a></dd><dd>1.5 <a href="/view/vip_284.html">时间复杂度和空间复杂度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.6 <a href="/view/vip_273.html">数据结构如何自学，效率更高？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.7 <a href="/view/vip_274.html">数学不好，对学数据结构有影响吗？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/vip_275.html">学好数据结构，你已然超越了99%的程序员！</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">2</span>
 				<a href='/linear_list/'>线性表</a>
@@ -69,22 +64,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -97,164 +92,75 @@
 	<div id="article-wrap">
 		<div id="article">
 			<div id="arc-info">
-	阅读：<span class="click">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	作者：解学武
 </div>
-			<h1>判断两个单链表相交</h1>
-			<div id="arc-body">判断 2 个单<u><a href='/view/160.html' target='_blank'>链表</a></u>是否相交，是一个老生常谈但又极具思考性的面试题，本节就在读者已经掌握单链表及其基本操作的基础上，就此问题给大家做深入地讲解。<br />
-<br />
-首先，读者要搞清楚&ldquo;相交&rdquo;的含义。所谓相交，是指有公共的部分，而 2 个单链表相交，则意味着它们有公共的节点，公共节点的数量可以是 1 个或者多个。<br />
-<br />
-通过前面的学习我们知道，单链表是<u><a href='/view/157.html' target='_blank'>线性表</a></u>的一种，如果我们将 2 个单链表看做 2 条线段的话，<u><a href='/view/200.html' target='_blank'>图</a></u> 1 模拟了 2 条线段相交的所有可能情况。<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/200730/2-200I0205453D3.gif" /><br />
-	图 1 链表相交</div>
-<br />
-注意，结合&ldquo;单链表中每个节点有且仅有 1 个指针域&rdquo;的特性，如 1 所示的这 3 种情况中，只有第 2 种情况符合单链表的特性，另外 2 种情况则破坏了此特性。经过以上的分析，<span style="color:#b22222;">本节要验证 2 个单链表是否相交，实际上等同于判断 2 个单链表是否和图 1② 所示的存储结构相同</span>。<br />
-<br />
-判断 2 个单链表（下文分别称它们为链表 1 和链表 2 ）是否相交，常用的方法有如下几种。<br />
-<br />
-1) 分别遍历链表 1 和链表 2，对于链表 1 中的每个节点，依次和链表 2 中的各节点进行比对，查看它们的存储地址是否相同，如果相同，则表明它们相交；反之，如果链表 1 中各节点的存储地址，和链表 2 中的各个节点都不相同，则表明它们不相交。<br />
-<blockquote>
-	<p>
-		注意，此方法中比较的是节点的存储地址，而非数据域中存储的元素。原因很简单，数据域中存储元素值相同，并不是 2 个单链表相交的充分条件，因为 2 个不相交的链表中很可能存有相同的元素。</p>
-</blockquote>
-仍以前面章节中构建的单链表为例：
-<pre class="cpp">
-typedef struct Link {
-    char elem; //代表数据域
-    struct Link * next; //代表指针域，指向直接后继元素
-}link; //link为节点名，每个节点都是一个 link 结构体</pre>
-在此基础上，判断 2 个单链表是否相交的实现代码为：
-<pre class="cpp">
-//自定义的 bool 类型
-typedef enum bool
-{
-    False = 0,
-    True = 1
-}bool;
-//L1 和 L2 为 2 个单链表，函数返回 True 表示链表相交，返回 False 表示不相交
-bool LinkIntersect(link * L1, link * L2) {
-    link * p1 = L1;
-    link * p2 = L2;
-    //逐个遍历 L1 链表中的各个节点
-    while (p1)
-    {
-        //遍历 L2 链表，针对每个 p1，依次和 p2 所指节点做比较
-        while (p2) {
-            //p1、p2 中记录的就是各个节点的存储地址，直接比较即可
-            if (p1 == p2) {
-                return True;
-            }
-            p2 = p2-&gt;next;
-        }
-        p1 = p1-&gt;next;
-    }
-    return False;
-}</pre>
-通过分析 LinkIntersect() 函数的实现过程不难得知，无论 2 个链表是否相交，此实现方式的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(n<sup>2</sup>)</code>。
-<blockquote>
-	<p>
-		有关时间复杂度的计算过程，读者可阅读《<a href="/view/272.html" target="_blank">时间复杂度和空间复杂度</a>》一节，这里不再做过多赘述。</p>
-</blockquote>
-<br />
-2) 实际上，第 1 种实现方案还可以进一步优化。结合图 1②，2 个单链表相交有一个必然结果，即这 2 个链表的最后一个节点必定相同；反之，如果 2 个链表不相交，则这 2 个链表的最后一个节点必定不相同。<br />
-<br />
-由此，可以对以上实现代码进行优化：
-<pre class="cpp">
-//L1 和 L2 为 2 个单链表，函数返回 True 表示链表相交，返回 False 表示不相交
-bool LinkIntersect(link * L1, link * L2) {
-    link * p1 = L1;
-    link * p2 = L2;
-    //找到 L1 链表中的最后一个节点
-    while (p1-&gt;next) {
-        p1 = p1-&gt;next;
-    }
-    //找到 L2 链表中的最后一个节点
-    while (p2-&gt;next)
-    {
-        p2 = p2-&gt;next;
-    }
-    //判断 L1 和 L2 链表最后一个节点是否相同
-    if (p1 == p2) {
-        return True;
-    }
-    return False;
-}</pre>
-显然经过优化，该函数的时间复杂度就缩小为<code>O(n)</code>。<br />
-<br />
-3) 针对第 1 种实现方案的优化，除了第 2 种方式，还有一种思想。<br />
-<br />
-假设 L1 和 L 2 相交，则两个链表中相交部分节点的数量一定是相等的。如图 2 所示：<br />
+			<h1>什么是数据结构（小白必读）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/intro/">数据结构概述</a></span>
+                    <span class="next right"><a href="/view/283.html">数据结构到底学什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/intro/";window.nextPageURL = "/view/283.html";</script>
+			<div id="arc-body">从本节开始，您将系统地学习数据结构，首先带大家了解一下什么是数据结构。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="两个链表相交" src="/uploads/allimg/200801/2-200P1211045237.gif" /><br />
-	图 2 两个链表相交</div>
+	<img alt="" src="/uploads/allimg/240114/093501H92-0.gif" /></div>
 <br />
-可以看到，L1 和 L2 相交，绿色部分节点为 L1 和 L2 链表的相交部分。<br />
+发展至今，数据结构也没有标准的定义，仁者见仁智者见智。市面上有很多讲解数据结构的书籍和视频，关于数据结构是什么，一些专家给出的答案是：
+<p class="info-box">
+	1) 数据结构是指带结构的数据元素的集合。<br />
+	2) 数据结构是一门研究非数值计算的程序设计问题中计算机的操作对象以及它们之间的关系和操作等的学科。<br />
+	3) 数据结构是相互之间存在一种或多种特定关系的数据元素的集合。</p>
+每一种回答都试<u><a href='/view/200.html' target='_blank'>图</a></u>从不同的视角诠释对&ldquo;数据结构&rdquo;的理解，但遗憾地是，只有具备一定数据结构功底的人才能领悟这些话的含义。对于从未接触过数据结构的读者来说，根本不知道在说什么，打死也不可能理解。<br />
 <br />
-也就是说，如果 2 个链表相交，那么它们相交部分所包含的节点个数一定相等。在此基础上，我们可以这样优化第 1 种实现方案，以图 2 中的 L1 和 L2 为例，从 L1 尾部选取和 L2 链表等长度的一个子链表（也也就是图 3 中的 temp 子链表），同时遍历 temp 和 L2 链表，依次判断 2 个遍历节点是否相同，如果相同则表明 L1 和 L2 相交；反之则不相交。<br />
+很多人学了长时间的数据结构，仍然一脸问号，不知道学数据结构有什么用，归根结底就是没有搞清楚数据结构是什么。<br />
+<br />
+接下来，我就用通俗易懂的语言回答&ldquo;数据结构是什么&rdquo;这个问题。
+<h2>
+	数据结构是什么</h2>
+数据结构作为一门独立的学科，是从 1968 年才开始的。在这之前，数据结构的内容散布在其他的计算机课程中，比如编译原理、操作系统等。<br />
+<br />
+<span style="color:#b22222;">数据结构没有想象得那么复杂，它就教会你一件事：如何有效地存储数据。</span><br />
+<br />
+在数据结构中，所有能被计算机处理的信息都称为数据，比如数值、字符、图像、音频、视频等。<br />
+<br />
+很多人觉得，存储数据是一件很简单的事情，各个编程语言都提供有存储数据的方法，比如常见的变量、<u><a href='/view/181.html' target='_blank'>数组</a></u>等，甚至还可以将数据存储到文件中。如果只是单纯地存储数据，的确不是很难。真正的难点在于，存储数据的同时还能将数据之间的关系也存储起来。<br />
+<br />
+举个简单的例子，每家每户都有家谱或者族谱，记录着一个家族世系繁衍的信息，比如图 1 这张家谱图：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="在较长链表中找到和较短链表等长度的子链表" src="/uploads/allimg/200801/2-200P1213206364.gif" /><br />
-	图 3 在较长链表中找到和较短链表等长度的子链表</div>
-此实现方案的实现代码如下：
-<pre class="cpp">
-//L1 和 L2 为 2 个单链表，函数返回 True 表示链表相交，返回 False 表示不相交
-bool LinkIntersect(link * L1, link * L2) {
-    link * plong = L1;
-    link * pshort = L2;
-    link * temp = NULL;
-    int num1 = 0, num2 = 0, step = 0;
-
-    //得到 L1 的长度
-    while (plong) {
-        num1++;
-        plong = plong-&gt;next;
-    }
-    //得到 L2 的长度
-    while (pshort)
-    {
-        num2++;
-        pshort = pshort-&gt;next;
-    }
-    //重置plong和pshort，使plong代表较长的链表，pshort代表较短的链表
-    plong = L1;
-    pshort = L2;
-    step = num1 - num2;
-    if (num1 &lt; num2) {
-        plong = L2;
-        pshort = L1;
-        step = num2 = num1;
-    }
-    //在plong链表中找到和pshort等长度的子链表
-    temp = plong;
-    while (step) {
-        temp = temp-&gt;next;
-        step--;
-    }
-    //逐个比较temp和pshort链表中的节点是否相同
-    while (temp &amp;&amp; pshort) {
-        if (temp == pshort) {
-            return True;
-        }
-        temp = temp-&gt;next;
-        pshort = pshort-&gt;next;
-    }
-    return False;
-}</pre>
-相比第 2 种方案，此方法的实现逻辑虽然复杂，但优点是，该方法可以找到 2 个单链表相交的交点（也就是相交时的第一个节点），也就是使 LinkIntersect() 函数返回 True 时的 temp 指针指向的那个节点。另外，此方案的时间复杂度也为<code>O(n)</code>。
+	<img alt="" src="/uploads/allimg/240114/093501D40-1.gif" /><br />
+	图 1 家谱图</div>
+<br />
+存储这张图时，只存储 {张亮 , 张平 , 张晶 , 张磊 , 张华 , 张群} 这些人名是不行的，还要将他们之间的关系也存储起来，比如张亮是张平的父辈、是张磊的祖辈等等。<br />
+<br />
+再比如，大家肯定用过导航软件（比如高德、腾讯地图等），要想实现精确导航，软件必须存储大量的数据，包括各个省、市、区、县的道路、建筑物、红绿灯等位置信息，以及每个地区的天气信息、高速路况信息等等。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/0935011A3-2.gif" /><br />
+	图 2 导航示意图</div>
+<br />
+这些信息都是数据，而且数据之间的关系错综复杂，能否正确存储这些关系，直接决定着软件导航的精准度。<br />
+<br />
+类似家谱图、道路信息这样的场景，存储数据本身并不难，真正的难点在于如何存储数据之间的关系。通过学习数据结构，你将 get 到很多存储数据的方案，实现在存储数据的同时，还能正确存储数据之间的关系。
 <h2>
 	总结</h2>
-总的来说，本节讲解了 3 种&ldquo;判断 2 个链表是否相交&rdquo;的方法，其中第 2、3 种方案的时间复杂度都比第 1 种要小。<br />
+数据结构是什么，在我看来，它是一门学科，教你如何存储那些具有复杂关系的数据。<br />
 <br />
-从另一个角度比较这 3 种方案，第 1 种和 第 3 种在判断&ldquo;2 个链表是否相交&rdquo;的同时，还能找到它们相交的交点，而第 2 种实现方案则不具备这个功能。
-<blockquote>
-	<p>
-		如果读者想实现&ldquo;判断 2 个链表是否相交，如果相加找到交点&rdquo;这样的功能，只需对第 1、3 种方案的实现代码做略微调整即可。由于很简单，读者可自行尝试实现。</p>
-</blockquote>
+数据结构存储数据的思路（思维、思想），可以用任意一种编程语言实现。换句话说，无论你掌握哪种编程语言，也无论你从事什么开发工作，只要你和数据打交道，就一定会用到数据结构。<br />
 </div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/intro/">数据结构概述</a></span>
+                    <span class="next right"><a href="/view/283.html">数据结构到底学什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/intro/";window.nextPageURL = "/view/283.html";</script>
 		</div>
 		
 	</div>
@@ -262,7 +168,7 @@ bool LinkIntersect(link * L1, link * L2) {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 282;
-window.arcId = "e64bSU5tC8ce2qvaCvHB/jDK2l0FuyTIH078p0KVnzrtOGOPgkIlg3ojWg";
+window.arcId = "5974eGbe+qZ1rp0wff/59ls/G5KjKweyytBYfArP1pmuD3ntXzWtg0PfGw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

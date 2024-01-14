@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>广度优先搜索（BFS）算法详解</title>
+<meta name="keywords" content="广度,优先,搜索,BFS,算法,详解,广度,优先,搜索," />
+<meta name="description" content="广度优先搜索（Breadth First Search）简称广搜或者 BFS，是遍历图存储结构的一种算法，既适用于无向图（网），也适用于有向图（网）。 所谓图的遍历，简单理解就是逐个访问图中的顶点" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/338.html">图（图存储结构）是什么</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/339.html">图的邻接表存储结构</a></dd><dd>7.6 <a href="/view/340.html">图的十字链表存储结构</a></dd><dd>7.7 <a href="/view/341.html">图的邻接多重表存储结构</a></dd><dd>7.8 <a href="/view/342.html">深度优先搜索（DFS）算法</a></dd><dd>7.9 <a href="/view/343.html">广度优先搜索（BFS）算法</a></dd><dd>7.10 <a href="/view/344.html">深度优先生成树和森林</a></dd><dd>7.11 <a href="/view/345.html">广度优先生成树和森林</a></dd><dd>7.12 <a href="/view/346.html">最小生成树是什么</a></dd><dd>7.13 <a href="/view/vip_245.html">Prim算法(普里姆算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.15 <a href="/view/347.html">重连通图是什么</a></dd><dd>7.16 <a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_348.html">AOE网求关键路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.18 <a href="/view/349.html">最短路径是什么</a></dd><dd>7.19 <a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.20 <a href="/view/vip_249.html">Floyd算法（弗洛伊德算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.21 <a href="/view/vip_250.html">最短路径算法实现移动迷宫游戏（升级版）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>广度优先搜索（BFS）算法详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/342.html">深度优先搜索（DFS）算法</a></span>
+                    <span class="next right"><a href="/view/344.html">深度优先生成树和森林</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/342.html";window.nextPageURL = "/view/344.html";</script>
+			<div id="arc-body"><u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>（Breadth First Search）简称广搜或者 <u><a href='/view/39.html' target='_blank'>BFS</a></u>，是遍历<u><a href='/view/200.html' target='_blank'>图</a></u>存储结构的一种算法，既适用于无向图（网），也适用于有向图（网）。
+<blockquote>
+	<p>
+		所谓图的遍历，简单理解就是逐个访问图中的顶点，确保每个顶点都只访问一次。</p>
+</blockquote>
+首先通过一个样例，给大家讲解广度优先搜索算法是如何实现图的遍历的。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1454425360-0.gif" /><br />
+	图 1 广度优先搜索算法遍历图</div>
+<br />
+使用广度优先搜索算法，遍历图 1 中无向图的过程是：<br />
+1) 初始状态下，图中所有顶点都是尚未访问的，因此任选一个顶点出发，开始遍历整张图。<br />
+<br />
+比如从 V1 顶点出发，先访问 V1：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145442G23-1.gif" /><br />
+	图 2 访问顶点 V1</div>
+<br />
+2) 从 V1 出发，可以找到 V2 和 V3，它们都没有被访问，所以访问它们：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1454425120-2.gif" /><br />
+	图 3 访问 V2 和 V3</div>
+<blockquote>
+	<p>
+		注意：本图中先访问的是 V2，也可以先访问 V3。当可以访问的顶点有多个时，访问的顺序是不唯一的，可以根据找到各个顶点的先后次序依次访问它们。后续过程也会遇到类似情况，不再重复赘述。</p>
+</blockquote>
+3) 根据图 3 中的顶点访问顺序，紧邻 V1 的顶点已经访问过，接下来访问紧邻 V2 的顶点。<br />
+<br />
+从 V2 顶点出发，可以找到 V1、V4 和 V5，尚未访问的有 V4 和 V5，因此访问它们：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1454422938-3.gif" /><br />
+	图 4 访问 V4 和 V5</div>
+<br />
+4)&nbsp;根据图 4 中的顶点访问顺序，接下来访问紧邻 V3 的顶点。<br />
+<br />
+从 V3 顶点出发，可以找到 V1、V6 和 V7，尚未访问的有 V6 和 V7，因此访问它们：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/14544211G-4.gif" /><br />
+	图 5 访问 V6 和 V7</div>
+<br />
+5) 根据图 5 中的顶点访问顺序，接下来访问紧邻 V4 的顶点。<br />
+<br />
+从 V4 顶点出发，可以找到 V2 和 V8，只有 V8 尚未访问，因此访问它：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1454425620-5.gif" /><br />
+	图 6 访问 V8</div>
+<br />
+6) 根据图 6 的顶点访问顺序，接下来访问紧邻 V5 的顶点。<br />
+<br />
+观察图 6 中的无向图不难发现，与 V5 紧邻的 V2 和 V8 都已经访问过，无法再找到尚未访问的顶点。此时，广度优先搜索算法会直接跳过 V5，继续从其它的顶点出发。<br />
+<br />
+7) 广度优先搜索算法先后从 V6、V7、V8 出发，寻找和它们紧邻、尚未访问的顶点，但寻找的结果都和 V5 一样，找不到符合要求的顶点。<br />
+<br />
+8) 自 V8 之后，访问序列中再无其它顶点，意味着从 V1 顶点出发，无法再找到尚未访问的顶点。这种情况下，广度优先搜索算法会从图的所有顶点中重新选择一个尚未访问的顶点，然后从此顶点出发，以同样的思路继续寻找其它尚未访问的顶点。<br />
+<br />
+本例中的无向图是一个<u><a href='/view/201.html' target='_blank'>连通图</a></u>，从 V1 出发可以找到所有的顶点，因此广度优先搜索算法继 V1 顶点之后无法再找到新的尚未访问的顶点，算法执行结束。
+<blockquote>
+	<p>
+		对于连通图来说，广度优先搜索算法从一个顶点出发就能访问图中所有的顶点。但是对于非连通图来说，广度优先搜索算法必须从各个连通分量中选择一个顶点出发，才能访问到所有的顶点。</p>
+</blockquote>
+<h2>
+	广度优先搜索算法的具体实现</h2>
+所谓广度优先搜索，就是从图中的某个顶点出发，寻找紧邻的、尚未访问的顶点，找到多少就访问多少，然后分别从找到的这些顶点出发，继续寻找紧邻的、尚未访问的顶点。<br />
+<br />
+当从某个顶点出发，所有和它连通的顶点都访问完之后，广度优先搜索算法会重新选择一个尚未访问的顶点（非连通图中就存在这样的顶点），继续以同样的思路寻找未访问的其它顶点。直到图中所有顶点都被访问，广度优先搜索算法才会结束执行。<br />
+<br />
+图的存储结构有很多种，大体上可以分为顺序存储和链式存储（又细分为<u><a href='/view/203.html' target='_blank'>邻接表</a></u>结构、<u><a href='/view/186.html' target='_blank'>十字链表</a></u>结构和邻接多重表结构），各个存储结构有自己的特点。选用不同的存储结构，广度优先搜索算法的具体实现不同，但算法的思想是不变的。<br />
+<br />
+这里以图的顺序存储结构为例，广度优先搜索算法的 C 语言实现代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX_VERtEX_NUM 20                   //顶点的最大数量
+#define VRType int                          //表示顶点之间关系的数据类型
+#define VertexType int                      //顶点的数据类型
+typedef enum { false, true }bool;           //定义bool型常量
+bool visited[MAX_VERtEX_NUM];               //设置全局<u><a href='/view/181.html' target='_blank'>数组</a></u>，记录每个顶点是否被访问过
+
+//<u><a href='/view/172.html' target='_blank'>队列</a></u><u><a href='/view/160.html' target='_blank'>链表</a></u>中的结点类型
+typedef struct Queue {
+    VertexType data;
+    struct Queue* next;
+}Queue;
+
+typedef struct {
+    VRType adj;                             //用 0 表示不相邻，用 1 表示相邻
+}ArcCell, AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+
+typedef struct {
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中的顶点
+    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系
+    int vexnum, arcnum;                     //记录图的顶点数和弧（边）数
+}MGraph;
+
+//判断 v 顶点在二维数组中的位置
+int LocateVex(MGraph* G, VertexType v) {
+    int i;
+    //遍历一维数组，找到变量v
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        if (G-&gt;vexs[i] == v) {
+            break;
+        }
+    }
+    //如果找不到，输出提示语句，返回-1
+    if (i &gt; G-&gt;vexnum) {
+        printf(&quot;no this vertex\n&quot;);
+        return -1;
+    }
+    return i;
+}
+
+//构造无向图
+void CreateDN(MGraph* G) {
+    int i, j, n, m;
+    int v1, v2;
+    scanf(&quot;%d,%d&quot;, &amp;(G-&gt;vexnum), &amp;(G-&gt;arcnum));
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;, &amp;(G-&gt;vexs[i]));
+    }
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        for (j = 0; j &lt; G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j].adj = 0;
+        }
+    }
+    for (i = 0; i &lt; G-&gt;arcnum; i++) {
+        scanf(&quot;%d,%d&quot;, &amp;v1, &amp;v2);
+        n = LocateVex(G, v1);
+        m = LocateVex(G, v2);
+        if (m == -1 || n == -1) {
+            printf(&quot;no this vertex\n&quot;);
+            return;
+        }
+        G-&gt;arcs[n][m].adj = 1;
+        G-&gt;arcs[m][n].adj = 1;
+    }
+}
+
+int FirstAdjVex(MGraph G, int v)
+{
+    int i;
+    //对于数组下标 v 处的顶点，找到第一个和它相邻的顶点，并返回该顶点的数组下标
+    for (i = 0; i &lt; G.vexnum; i++) {
+        if (G.arcs[v][i].adj) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int NextAdjVex(MGraph G, int v, int w)
+{
+    int i;
+    //对于数组下标 v 处的顶点，从 w 位置开始继续查找和它相邻的顶点，并返回该顶点的数组下标
+    for (i = w + 1; i &lt; G.vexnum; i++) {
+        if (G.arcs[v][i].adj) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//初始化队列，这是一个有头结点的队列链表
+void InitQueue(Queue** Q) {
+    (*Q) = (Queue*)malloc(sizeof(Queue));
+    (*Q)-&gt;next = NULL;
+}
+
+//顶点元素v进队列
+void EnQueue(Queue** Q, VertexType v) {
+    Queue* temp = (*Q);
+    //创建一个存储 v 的结点
+    Queue* element = (Queue*)malloc(sizeof(Queue));
+    element-&gt;data = v;
+    element-&gt;next = NULL;
+    //将 v 添加到队列链表的尾部
+    while (temp-&gt;next != NULL) {
+        temp = temp-&gt;next;
+    }
+    temp-&gt;next = element;
+}
+
+//队头元素出队列
+void DeQueue(Queue** Q, int* u) {
+    Queue* del = (*Q)-&gt;next;
+    (*u) = (*Q)-&gt;next-&gt;data;
+    (*Q)-&gt;next = (*Q)-&gt;next-&gt;next;
+    free(del);
+}
+
+//判断队列是否为空
+bool QueueEmpty(Queue* Q) {
+    if (Q-&gt;next == NULL) {
+        return true;
+    }
+    return false;
+}
+
+//释放队列占用的堆空间
+void DelQueue(Queue* Q) {
+    Queue* del = NULL;
+    while (Q-&gt;next) {
+        del = Q-&gt;next;
+        Q-&gt;next = Q-&gt;next-&gt;next;
+        free(del);
+    }
+    free(Q);
+}
+
+//广度优先搜索
+void BFSTraverse(MGraph G) {
+    int v, u, w;
+    Queue* Q = NULL;
+    InitQueue(&amp;Q);
+    //将用做标记的visit数组初始化为false
+    for (v = 0; v &lt; G.vexnum; ++v) {
+        visited[v] = false;
+    }
+    //遍历图中的各个顶点
+    for (v = 0; v &lt; G.vexnum; v++) {
+        //若当前顶点尚未访问，从此顶点出发，找到并访问和它连通的所有顶点
+        if (!visited[v]) {
+            //访问顶点，并更新它的访问状态
+            printf(&quot;%d &quot;, G.vexs[v]);
+            visited[v] = true;
+            //将顶点入队
+            EnQueue(&amp;Q, G.vexs[v]);
+            //遍历队列中的所有顶点
+            while (!QueueEmpty(Q)) {
+                //从队列中的一个顶点出发
+                DeQueue(&amp;Q, &amp;u);
+                //找到顶点对应的数组下标
+                u = LocateVex(&amp;G, u);
+                //遍历紧邻 u 的所有顶点
+                for (w = FirstAdjVex(G, u); w &gt;= 0; w = NextAdjVex(G, u, w)) {
+                    //将紧邻 u 且尚未访问的顶点，访问后入队
+                    if (!visited[w]) {
+                        printf(&quot;%d &quot;, G.vexs[w]);
+                        visited[w] = true;
+                        EnQueue(&amp;Q, G.vexs[w]);
+                    }
+                }
+            }
+        }
+    }
+    DelQueue(Q);
+}
+int main() {
+    MGraph G;
+    //构建图
+    CreateDN(&amp;G);
+    //对图进行广度优先搜索
+    BFSTraverse(G);
+    return 0;
+}</pre>
+程序中，广度优先搜索算法的实现借助了队列存储结构，用来存储访问过的顶点。每次出队一个顶点，从该顶点出发寻找和它紧邻、尚未访问的顶点，然后将找到的顶点全部入队。<br />
+<br />
+用 1~8 分别表示图 1 中的顶点 V1~V8，程序的执行结果为：
+<p class="info-box">
+	8,9<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	6<br />
+	7<br />
+	8<br />
+	1,2<br />
+	2,4<br />
+	2,5<br />
+	4,8<br />
+	5,8<br />
+	1,3<br />
+	3,6<br />
+	6,7<br />
+	7,3<br />
+	1 2 3 4 5 6 7 8</p>
+<blockquote>
+	<p>
+		实现图的遍历，除了使用本节讲解的广度优先搜索算法外，还可以使用<u><a href='/view/39.html' target='_blank'>深度优先搜索</a></u>算法，感兴趣的小伙伴可以猛击《<a href="/view/342.html" target="_blank">深度优先搜索（DFS）算法</a>》详细了解。</p>
+</blockquote>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/342.html">深度优先搜索（DFS）算法</a></span>
+                    <span class="next right"><a href="/view/344.html">深度优先生成树和森林</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/342.html";window.nextPageURL = "/view/344.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 343;
+window.arcId = "8bf0EDZmr2ohAeATNiCCpqJ8v/ZuhwtllKjkhuC3jD2UafxJgjad8TILow";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

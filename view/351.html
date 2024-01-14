@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>顺序查找算法（C语言实现）</title>
+<meta name="keywords" content="顺序,查找,算法,语言,实现,使用,线性,存储," />
+<meta name="description" content="使用线性存储结构表示静态查找表时，可以借助顺序查找算法在表中查找特定的元素。 所谓静态查找表，即只能对表内的元素做查找和读取操作，不允许插入或删除元素。 顺序查找算法" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/search/">查找算法</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/350.html">查找表是什么</a></dd><dd>8.2 <a href="/view/351.html">顺序查找算法</a></dd><dd>8.3 <a href="/view/352.html">二分查找（折半查找）算法</a></dd><dd>8.4 <a href="/view/vip_252.html">分块查找算法（顺序查找算法的升级版）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.5 <a href="/view/vip_253.html">静态树表查找算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.6 <a href="/view/353.html">二叉排序树（二叉查找树）是什么</a></dd><dd>8.7 <a href="/view/354.html">平衡二叉树（AVL树）是什么</a></dd><dd>8.8 <a href="/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.9 <a href="/view/vip_255.html">B-树及其基本操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.10 <a href="/view/vip_256.html">B+树及插入和删除操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.11 <a href="/view/vip_257.html">键树查找法（双链树和字典树）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.12 <a href="/view/63.html">什么是哈希表（散列表）</a></dd><dd>8.13 <a href="/view/vip_258.html">哈希查找算法</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>顺序查找算法（C语言实现）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/350.html">查找表是什么</a></span>
+                    <span class="next right"><a href="/view/352.html">二分查找（折半查找）算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/350.html";window.nextPageURL = "/view/352.html";</script>
+			<div id="arc-body">使用线性存储结构表示静态查找表时，可以借助<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>算法在表中查找特定的元素。
+<blockquote>
+	<p>
+		所谓静态查找表，即只能对表内的元素做查找和读取操作，不允许插入或删除元素。</p>
+</blockquote>
+顺序查找算法（Sequential Search）又称<span style="color:#008000;">顺序搜索算法</span>或者<span style="color:#008000;">线性搜索算法</span>，是所有查找算法中最基础、最简单的。顺序查找算法适用于绝大多数场景，查找表中存放有序序列或者无序序列，都可以使用此算法。<br />
+<h2>
+	顺序查找算法的实现思路</h2>
+顺序查找算法很容易理解，就是从查找表的一端开始，将表中的元素逐一和目标元素做比较，直至找到目标元素。<br />
+<br />
+当然，如果表中的所有元素都和目标元素对比了一遍，最终没有找到目标元素，表明查找表中没有目标元素，查找失败。<br />
+<br />
+举个简单的例子，在 {10, 14, 19, 26, 27, 31, 33, 35, 42, 44} 集合中，借助顺序查找算法查找 33 的过程是：<br />
+<br />
+1) 假设从元素 10 开始向右逐个查找。显然，元素 10 不是要找的目标元素：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1523432B0-0.gif" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 查看 10 是否为目标元素</div>
+<br />
+2) 继续查看表中的下一个元素 14，也不是要找的目标元素：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/15234333A-1.gif" /><br />
+	图 2 查看 14 是否为目标元素</div>
+<br />
+3) 采用同样的方法，逐个查看表中的各个元素是否为目标元素，整个查找过程如下图的动画所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1523435K8-2.gif" /><br />
+	图 3 顺序查找目标元素的过程</div>
+<br />
+成功找到目标元素后，顺序查找随即结束。当表中不包含目标元素时，顺序查找算法会比对至最后一个元素，然后停止执行。<br />
+<br />
+顺序查找算法的常规实现思路是：将表中元素逐一和目标元素进行比对，每次比对失败，判断一下整张表是否查找完毕，如果表中还有未比对的元素，就继续比对，反之算法执行结束。<br />
+<br />
+以常规的思路实现顺序查找算法，每次查找都要进行两次判断，既要判断当前元素是否为目标元素，还要判断整张表是否查找完毕。这里给大家提供一种更高效的解决方案：在查找表中的一端添加目标元素，顺序查找算法从查找表的另一端执行。<br />
+<br />
+仍以&nbsp;&nbsp;{10, 14, 19, 26, 27, 31, 33, 35, 42, 44} 集合为例，在表中查找元素 5。首先将元素 5 放置到表的尾部，顺序查找算法从表的头部开始查找元素 5，整个过程如下图所示：<br />
+&nbsp;
+<p>
+	&nbsp;</p>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/15234331V-3.gif" /><br />
+	图 4 顺序查找目标元素失败</div>
+<br />
+这样做的好处是，查找过程中不必判断整张表是否查找完毕，因为无论查找能否成功，顺序查找算法都能正常执行结束。数据结构中，将在查找表一端添加的目标元素称为<span style="color:#008000;">监视哨</span>。<br />
+<br />
+图 4 中，虽然顺序查找算法最终找到了目标元素，但此元素是我们额外添加到表中的，所以查找失败。
+<blockquote>
+	<p>
+		实践证明，当查找表中的元素个数多于 1000 个时，使用图 4 这种解决方案可以大大缩减查找过程所需的时间。</p>
+</blockquote>
+<h2>
+	顺序查找算法的具体实现</h2>
+线性存储结构具体可以分为两类，分别是<u><a href='/view/158.html' target='_blank'>顺序表</a></u>和单<u><a href='/view/160.html' target='_blank'>链表</a></u>。这里以顺序表为例，实现顺序查找算法的 C 语言程序如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define keyType int
+
+typedef struct {
+    keyType key;//查找表中每个数据元素的值
+    //如果需要，还可以添加其他属性
+}ElemType;
+
+//顺序表表示查找表
+typedef struct {
+    ElemType* elem; //存放查找表中数据元素的<u><a href='/view/181.html' target='_blank'>数组</a></u>
+    int length; //记录查找表中数据的总数量
+}SSTable;
+
+//创建查找表
+void Create(SSTable* st, int length) {
+    int i;
+    st-&gt;elem = (ElemType*)malloc((length + 1) * sizeof(ElemType)); // +1 是为了给监视哨留出位置
+    st-&gt;length = length;
+    printf(&quot;输入表中的数据元素：\n&quot;);
+    //根据查找表中数据元素的总长度，在存储时，从数组下标为 1 的空间开始存储数据
+    for (i = 0; i &lt; length; i++) {
+        scanf(&quot;%d&quot;, &amp;(st-&gt;elem[i].key));
+    }
+}
+
+//查找表查找的功能函数，其中key为关键字
+int Search_seq(SSTable st, keyType key) {
+    int i;
+    st.elem[st.length].key = key;//将目标元素存放在顺序表最后的位置，起监视哨的作用
+    //从查找表第一个元素开始，直至找到目标元素
+    for (i = 0; st.elem[i].key != key; i++);
+    //如果 i=st.length，说明查找失败；反之，返回的是含有关键字key的数据元素在查找表中的位置
+    return i;
+}
+int main() {
+    int key, location, len;
+    SSTable st;
+    printf(&quot;输入查找表中的元素个数：&quot;);
+    scanf(&quot;%d&quot;, &amp;len);
+    Create(&amp;st, len);
+    printf(&quot;请输入查找数据的关键字：&quot;);
+    scanf(&quot;%d&quot;, &amp;key);
+    location = Search_seq(st, key);
+    if (location == st.length) {
+        printf(&quot;查找失败&quot;);
+    }
+    else {
+        printf(&quot;目标元素在查找表中的位置为：%d&quot;, location + 1);
+    }
+    free(st.elem);
+    return 0;
+}</pre>
+以在 {10, 14, 19, 26, 27, 31, 33, 35, 42, 44} 查找元素 33 为例，程序的执行结果为：
+<p class="info-box">
+	输入查找表中的元素个数：10<br />
+	输入表中的数据元素：<br />
+	10 14 19 26 27 31 33 35 42 44<br />
+	请输入查找数据的关键字：33<br />
+	目标元素在查找表中的位置为：7</p>
+<blockquote>
+	<p>
+		用链式结构（单链表）表示静态查找表，顺序查找算法的实现过程和上面程序类似，这里不再给出具体的实现程序。</p>
+</blockquote>
+<h2>
+	顺序查找算法的性能分析</h2>
+衡量顺序查找算法的性能，可以计算它的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>，也可以计算它的平均查找长度（ASL）。<br />
+<br />
+顺序查找算法的时间复杂度可以用<code>O(n)</code>表示（n 为查找表中的元素数量）。查找表中的元素越多，顺序查找算法的执行效率越低。<br />
+<br />
+计算顺序查找算法的平均查找长度，可以借助《<a href="/view/350.html">什么是查找表</a>》一节给出的公式：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/15234331J-4.gif" style="width: 250px; height: 95px;" /></div>
+<br />
+默认情况下，表中各个元素被查找到的概率是相同的，都是 1/n（n 为查找表中元素的数量），所以各个元素对应的 P<sub>i</sub>&nbsp;就是 1/n。<br />
+<br />
+在给定的查找表中，顺序查找算法从表的一端开始查找，第一个元素对应的 C<sub>1</sub>=1，第二个元素对应的 C<sub>2</sub>=2，依次类推，所以表中第 i 个元素对应的 C<sub>i</sub>&nbsp;就是 i。<br />
+<br />
+将 P<sub>i</sub>=1/n 和 C<sub>i</sub>=i 带入公式，求得的 ASL 为：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1523433522-5.gif" /></div>
+<br />
+顺序查找算法对应的 ASL 值为 (n+1)/2，几乎为查找表长度的一半。这也就意味着，查找表中包含的元素越多，顺序查找算法的 ASL 值越大，查找性能越差，执行效率越低。<br />
+<h2>
+	总结</h2>
+顺序查找算法的优点是实现简单、适用于绝大多数场景。<br />
+<br />
+和其它查找算法相比，顺序查找算法的时间复杂度较大，同样平均查找长度也较大，查找表中的元素数量越多，算法的性能越差。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/350.html">查找表是什么</a></span>
+                    <span class="next right"><a href="/view/352.html">二分查找（折半查找）算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/350.html";window.nextPageURL = "/view/352.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 351;
+window.arcId = "d70dpXCi2iMoBLDM3bnrQmw1fzhBaTKTRBfht9gx94V31xU2Suin7wchlw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>矩阵（稀疏矩阵）的转置算法（C语言实现）</title>
+<meta name="keywords" content="矩阵,稀疏,的,转置,算法,语言,实现,所谓,矩阵," />
+<meta name="description" content="所谓矩阵转置，就是将矩阵中每个元素的行标和列标互换，转置后的新矩阵称为转置矩阵。举个简单的例子： 图 1 矩阵转置示意图 实现矩阵转置，C 语言经常使用二维数组，代码如下：" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/array_list/">数组和广义表</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/319.html">数组是什么</a></dd><dd>5.2 <a href="/view/320.html">数组的顺序存储结构</a></dd><dd>5.3 <a href="/view/183.html">矩阵（稀疏矩阵）压缩存储</a></dd><dd>5.4 <a href="/view/321.html">三元组顺序表存储稀疏矩阵</a></dd><dd>5.5 <a href="/view/322.html">行逻辑链接的顺序表存储稀疏矩阵</a></dd><dd>5.6 <a href="/view/323.html">十字链表法存储稀疏矩阵</a></dd><dd>5.7 <a href="/view/324.html">矩阵（稀疏矩阵）的转置算法</a></dd><dd>5.8 <a href="/view/vip_229.html">稀疏矩阵的快速转置算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.9 <a href="/view/vip_230.html">行逻辑链接的顺序表实现矩阵乘法（附带C语言完整代码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.10 <a href="/view/vip_231.html">十字链表实现矩阵加法（附带C语言实现代码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.11 <a href="/view/189.html">广义表是什么</a></dd><dd>5.12 <a href="/view/190.html">广义表的存储结构（2种）</a></dd><dd>5.13 <a href="/view/vip_232.html">广义表的深度和长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.14 <a href="/view/vip_21.html">广义表的复制（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>矩阵（稀疏矩阵）的转置算法（C语言实现）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/323.html">十字链表法存储稀疏矩阵</a></span>
+                    <span class="next right"><a href="/view/vip_229.html">稀疏矩阵的快速转置算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/323.html";window.nextPageURL = "/view/vip_229.html";</script>
+			<div id="arc-body">所谓矩阵转置，就是将矩阵中每个元素的行标和列标互换，转置后的新矩阵称为转置矩阵。举个简单的例子：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1311331410-0.gif" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 矩阵转置示意图</div>
+<br />
+实现矩阵转置，C 语言经常使用二维<u><a href='/view/181.html' target='_blank'>数组</a></u>，代码如下：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#define ROW 3
+#define COL 2
+int main() {
+    //原矩阵
+    int num[ROW][COL] = { {0,1},{0,3},{6,5} };
+    //存储转置矩阵
+    int transNum[COL][ROW] = { 0 };
+    int i, j;
+    //矩阵转置
+    for (i = 0; i &lt; ROW; i++) {
+        for (j = 0; j &lt; COL; j++) {
+            transNum[j][i] = num[i][j];
+        }
+    }
+    //输出转置后的矩阵
+    for (i = 0; i &lt; COL; i++) {
+        for (j = 0; j &lt; ROW; j++) {
+            printf(&quot;%d &quot;, transNum[i][j]);
+        }
+        putchar(&#39;\n&#39;);
+    }
+    return 0;
+}</pre>
+运行结果为：
+<p class="info-box">
+	0 0 6<br />
+	1 3 5</p>
+重点分析一下第 13 行代码，它可以将原矩阵中第 i 行 j 列的元素存放到新矩阵中第 j 行 i 列的位置。原矩阵中的所有元素都会经历这步操作，最终得到的新矩阵就是转置矩阵。<br />
+<br />
+上面这种方法适用于各种矩阵，当然也包括稀疏矩阵。但是，采用此方式转置稀疏矩阵的效率不高，体现在以下两个方面：
+<ol>
+	<li>
+		稀疏矩阵内部只有少量的非 0 元素，用二维数组存储稀疏矩阵，会存储很多个 0，造成内存空间的浪费；</li>
+	<li>
+		稀疏矩阵在转置过程中，会有很多的 0 元素执行第 13 行代码存放到新矩阵中，而新矩阵中原本就都是 0 元素，所以这些赋值操作是没有意义的。</li>
+</ol>
+<br />
+为了避免以上两个问题，可以考虑用<u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u>来存储稀疏矩阵，如下图所示：<br />
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/240114/13113361C-1.gif" /><br />
+	图 2 三元组表的变化</div>
+<p class="info-box">
+	图 2a) 表示的是图 1 中转置之前矩阵的三元组表，2b) 表示的是图 1 中矩阵转置后对应的三元组表。</p>
+注意，除了将每个三元组的行标和列标互换外，还要互换矩阵的行数和列数。
+<h2>
+	稀疏矩阵的转置算法</h2>
+也就是说，稀疏矩阵的转置需要完成以下 3 步：
+<ol>
+	<li>
+		将稀疏矩阵的行数和列数互换；</li>
+	<li>
+		将三元组表（存储矩阵）中的 i 列和 j 列互换，实现矩阵的转置；</li>
+	<li>
+		以 j 列为序，重新排列三元组表中存储各三元组的先后顺序；</li>
+</ol>
+<blockquote>
+	<p>
+		有读者会问，前两步就可以实现稀疏矩阵的转置，为什么还要执行第 3 步呢？通常情况下，存储稀疏矩阵的三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u>中，各个三元组会以行标做升序排序，行标相同的三元组以列标做升序排序。</p>
+</blockquote>
+转置稀疏矩阵的实现思路是：<span style="color:#b22222;">从头</span><span style="color: rgb(178, 34, 34);">遍历三元组顺序表，每次找到表中 j 列最小的三元组，</span><span style="color: rgb(178, 34, 34);">互换行标和列标的值，然后</span><span style="color: rgb(178, 34, 34);">存储到一个新三元组表中。</span><br />
+<br />
+例如，对图 2a) 存储的稀疏矩阵进行转置，实现过程如下：<br />
+<ol>
+	<li>
+		新建一个三元组顺序表（用于存储转置矩阵），新表的行数为原表的列数，新表的列数为原表的行数；</li>
+	<li>
+		遍历原顺序表，找到表中 j 列值最小的三元组 (3, 1, 6)，将其行标和列标互换后添加到新表中，如图 3 所示：
+		<div style="text-align: center;">
+			<br />
+			<img alt="" src="/uploads/allimg/240114/13113340a-2.gif" /><br />
+			图 3 矩阵转置的第一个过程<br />
+			&nbsp;</div>
+	</li>
+	<li>
+		再次遍历三元组表，找到表中 j 列值次小的三元组，依次为 (1, 2, 1)、(2, 2, 3) 和 (3, 2, 5)，根据找到的先后次序将它们的行标和列标互换后添加到新表中，如图 4 所示：
+		<div style="text-align: center;">
+			<br />
+			<img alt="" src="/uploads/allimg/240114/1311333640-3.gif" /><br />
+			图 4 矩阵转置的第二个过程</div>
+	</li>
+</ol>
+<br />
+对比图 4b) 和图 2b) 可以看到，稀疏矩阵被成功地转置，且新表中各三元组的次序也是正确的。<br />
+<br />
+稀疏矩阵转置的 C 语言实现代码为：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#define NUM 10
+//三元组
+typedef struct {
+    int i, j;
+    int data;
+}triple;
+//三元组顺序表
+typedef struct {
+    triple data[NUM];
+    int mu, nu, tu;
+}TSMatrix;
+//稀疏矩阵的转置
+void transposeMatrix(TSMatrix M, TSMatrix* T) {
+    //1.稀疏矩阵的行数和列数互换
+    (*T).mu = M.nu;
+    (*T).nu = M.mu;
+    (*T).tu = M.tu;
+
+    if ((*T).tu) {
+        int col, p;
+        int q = 0;
+        //2.遍历原表中的各个三元组
+        for (col = 1; col &lt;= M.nu; col++) {
+            //重复遍历原表 M.m 次，将所有三元组都存放到新表中
+            for (p = 0; p &lt; M.tu; p++) {
+                //3.每次遍历，找到 j 列值最小的三元组，将它的行、列互换后存储到新表中
+                if (M.data[p].j == col) {
+                    (*T).data[q].i = M.data[p].j;
+                    (*T).data[q].j = M.data[p].i;
+                    (*T).data[q].data = M.data[p].data;
+                    //为存放下一个三元组做准备
+                    q++;
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    int i, k;
+    TSMatrix M, T;
+    M.mu = 3;
+    M.nu = 2;
+    M.tu = 4;
+
+    M.data[0].i = 1;
+    M.data[0].j = 2;
+    M.data[0].data = 1;
+
+    M.data[1].i = 2;
+    M.data[1].j = 2;
+    M.data[1].data = 3;
+
+    M.data[2].i = 3;
+    M.data[2].j = 1;
+    M.data[2].data = 6;
+
+    M.data[3].i = 3;
+    M.data[3].j = 2;
+    M.data[3].data = 5;
+
+    for (k = 0; k &lt; NUM; k++) {
+        T.data[k].i = 0;
+        T.data[k].j = 0;
+        T.data[k].data = 0;
+    }
+    transposeMatrix(M, &amp;T);
+    for (i = 0; i &lt; T.tu; i++) {
+        printf(&quot;(%d,%d,%d)\n&quot;, T.data[i].i, T.data[i].j, T.data[i].data);
+    }
+    return 0;
+}</pre>
+程序运行结果为：
+<p class="info-box">
+	(1,3,6)<br />
+	(2,1,1)<br />
+	(2,2,3)<br />
+	(2,3,5)</p>
+和文章开头的转置算法相比，此算法使用三元组顺序表存储稀疏矩阵，节省了内存空间。<br />
+<br />
+文章开头的转置算法中，嵌套的两个 for 循环的执行次数可以用 mu*nu（行数 * 列数）来表示；稀疏矩阵的转置算法中也嵌套使用了两个 for 循环，执行次数可以用 nu*tu（列数 * 非 0 元素个数）来表示。假设稀疏矩阵中非 0 元素的个数为 mu*nu，则稀疏矩阵转置算法中的嵌套 for 循环要执行 mu*nu<sup>2</sup> 次，执行效率没有文章开头的算法高。<br />
+<br />
+也就是说，和文章开头的矩阵转置算法相比，稀疏矩阵的转置算法更节省内存空间，但执行效率不一定比前者高。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/323.html">十字链表法存储稀疏矩阵</a></span>
+                    <span class="next right"><a href="/view/vip_229.html">稀疏矩阵的快速转置算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/323.html";window.nextPageURL = "/view/vip_229.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 324;
+window.arcId = "5453IRLF8ddBm7BXe13xvwKmEdKBTQmEbwCZUBuviIkF84qGR8RqS+zyDQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -14,7 +14,7 @@
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
 <title>数据的逻辑结构和存储结构（物理结构）详解</title>
 <meta name="keywords" content="数据,的,逻辑,结构,和,存储,物理,详解,数据," />
-<meta name="description" content="" />
+<meta name="description" content="数据结构教我们有效地存储数据，既要存储数据本身，还要存储数据之间的关系。 存储数据本身，也就是将数据存储到内存里。数据在内存中的存储状态，就称为数据的 存储结构 ，也" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -31,7 +31,7 @@
 	<div id="sidebar" class="toggle-target">
 	<div id="contents">
 		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
-		<dd class="this"> <span class="channel-num">1</span> <a href="/intro/">数据结构概述</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/153.html">什么是数据结构</a></dd><dd>1.2 <a href="/view/154.html">数据结构到底学什么？</a></dd><dd>1.3 <a href="/view/vip_264.html">数据的逻辑结构和物理结构</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.4 <a href="/view/272.html">如何衡量一个算法的好坏？</a></dd><dd>1.5 <a href="/view/vip_213.html">数据结构和算法的关系和区别</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.6 <a href="/view/273.html">数据结构如何自学，效率更高？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.7 <a href="/view/274.html">数学不好，对学数据结构有影响吗？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/275.html">学好数据结构，你已然超越了99%的程序员！</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">1</span> <a href="/intro/">数据结构概述</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/282.html">什么是数据结构</a></dd><dd>1.2 <a href="/view/283.html">数据结构到底学什么</a></dd><dd>1.3 <a href="/view/vip_264.html">数据的逻辑结构和物理结构</a></dd><dd>1.4 <a href="/view/285.html">数据结构和算法的区别</a></dd><dd>1.5 <a href="/view/vip_284.html">时间复杂度和空间复杂度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.6 <a href="/view/vip_273.html">数据结构如何自学，效率更高？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.7 <a href="/view/vip_274.html">数学不好，对学数据结构有影响吗？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/vip_275.html">学好数据结构，你已然超越了99%的程序员！</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">2</span>
 				<a href='/linear_list/'>线性表</a>
@@ -64,22 +64,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -96,24 +96,109 @@
 </div>
 			<h1>数据的逻辑结构和存储结构（物理结构）详解</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/154.html">数据结构到底学什么？</a></span>
-                    <span class="next right"><a href="/view/272.html">如何衡量一个算法的好坏？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/283.html">数据结构到底学什么</a></span>
+                    <span class="next right"><a href="/view/285.html">数据结构和算法的区别</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/154.html";window.nextPageURL = "/view/272.html";</script>
-			<div id="arc-body"><div id="buy-course-tip" aid="264"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
+                <script type="text/javascript">window.prePageURL = "/view/283.html";window.nextPageURL = "/view/285.html";</script>
+			<div id="arc-body">数据结构教我们有效地存储数据，既要存储数据本身，还要存储数据之间的关系。<br />
+<br />
+存储数据本身，也就是将数据存储到内存里。数据在内存中的存储状态，就称为数据的<span style="color:#008000;">存储结构</span>，也叫<span style="color:#008000;">物理结构</span>。<br />
+<br />
+数据结构中，将数据之间的关系称为数据的<span style="color:#008000;">逻辑结构</span>。以下<u><a href='/view/200.html' target='_blank'>图</a></u>所示的家谱图为例，数据之间存在很多关系，比如张亮是张平的父辈、是张静的祖辈等，所有这些关系就构成了数据的逻辑结构。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/100140HH-0.gif" /><br />
+	图 1 数据的逻辑结构</div>
+<h2>
+	数据的存储结构</h2>
+在内存中，数据的存储结构无非有以下两种情况：<br />
+1) 集中存储：所有数据存储在一整块内存空间中，数据之间紧挨着存放，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/100140H07-1.gif" /><br />
+	图 2 数据集中存储</div>
+<br />
+2) 分散存储：各个数据随机存储在内存空间中，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1001405037-2.gif" /><br />
+	图 3 数据分散存储</div>
+<br />
+两种存储结构各有优势，将数据集中存储，方便后续查找数据；将数据分散存储，方便后续增加或者删除数据。<br />
+<blockquote>
+	<p>
+		数据结构中，用顺序存储结构（<u><a href='/view/158.html' target='_blank'>顺序表</a></u>）实现数据的集中存储，用链式存储结构（<u><a href='/view/160.html' target='_blank'>链表</a></u>）实现数据的分散存储。有关这两种存储结构，我们会在后续章节中做详细讲解。</p>
+</blockquote>
+<h2>
+	数据的逻辑结构</h2>
+数据之间可能存在的关系，有以下 4 种情况：
+<h4>
+	1) 无关系</h4>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1001403214-3.gif" /><br />
+	图 4&ldquo;无关系&rdquo;的逻辑结构</div>
+<br />
+所谓&ldquo;无关系&rdquo;，即数据之间不存在任何关系。例如上图中，{1,2,3,4} 中各个数据之间就没有任何关系。<br />
+<h4>
+	2) 一对一</h4>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/100140A57-4.gif" /><br />
+	图 5&ldquo;一对一&rdquo;的逻辑结构</div>
+<br />
+上图的数据集中，每个数据的左侧有且仅有一个数据与其相邻（除 1 外）；同样，每个数据的右侧也只有一个数据与其相邻（除 n 外），所有的数据都是如此，数据之间就是&ldquo;一对一&rdquo;的逻辑结构；<br />
+<h4>
+	3) 一对多</h4>
+图 1 所示的&ldquo;家谱图&rdquo;中，数据之间就是&ldquo;一对多&rdquo;的逻辑结构。<br />
+<br />
+以&ldquo;张平&rdquo;为例，他的父辈是&ldquo;张亮&rdquo;；他有两个孩子，分别是&ldquo;张晶&rdquo;和&ldquo;张磊&rdquo;。&ldquo;张平&rdquo;和其它数据之间就是&ldquo;一对多&rdquo;的关系，整个数据集呈现&ldquo;一对多&rdquo;的逻辑结构。<br />
+<h4>
+	4) 多对多</h4>
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/10014022F-5.gif" /><br />
+	图 6&ldquo;多对多&rdquo;的逻辑结构</div>
+<br />
+{V1,V2,V3,V4} 数据之间就具有&ldquo;多对多&rdquo;的逻辑结构。<br />
+<br />
+例如，从 V1 出发可以到达 V2、V3、V4；同样，从 V2、V3、V4 也可以到达 V1。V1 和其它数据之间就是&ldquo;多对多&rdquo;的逻辑关系。<br />
+<br />
+多对多关系和一对多关系的区别在于：一对多关系中不存在环路，而多对多关系中存在环路，比如<code>V1-&gt;V3-&gt;V2-&gt;V1</code>就是一个环路。<br />
+<br />
+针对每一种逻辑结构的数据，数据结构都提供了存储它们的方案：
+<ul>
+	<li>
+		查找表存储结构：专门存储无逻辑结构的数据；</li>
+	<li>
+		线性存储结构：专门存储具有&ldquo;一对一&rdquo;逻辑结构的数据；</li>
+	<li>
+		<u><a href='/view/23.html' target='_blank'>树</a></u>存储结构：专门存储具有&ldquo;一对多&rdquo;逻辑结构的数据；</li>
+	<li>
+		图存储结构：专门用来存储具有&ldquo;多对多&rdquo;关系的数据；</li>
+</ul>
+<br />
+以上这些存储结构，后续会一一做详细地讲解。
+<h2>
+	总结</h2>
+关于数据结构，与其说它是一门研究存储数据以及数据之间关系的学科，还可以这样概括：它是一门研究数据存储结构和逻辑结构的学科。通过研究数据的物理结构，可以掌握存储数据的方法；通过研究数据的逻辑结构，可以掌握存储数据之间关系的方法。<br />
+<br />
+数据的存储结构有 2 种，分别是集中存储和分散存储。如果想集中存储数据，就选择顺序存储结构；如果想分散存储数据，就择链式存储结构。<br />
+<br />
+数据的逻辑结构有 4 种，分别是&ldquo;无关系&rdquo;、&ldquo;一对一&rdquo;、&ldquo;一对多&rdquo;和&ldquo;多对多&rdquo;。无逻辑关系的数据可以选用查找表存储结构；具有&ldquo;一对一&rdquo;关系的数据可以选用线性存储结构；具有&ldquo;一对多&rdquo;关系的数据可以选用树存储结构；具有&ldquo;多对多&rdquo;关系的数据可以选用图存储结构<br />
+<br />
+实际场景中，确定了数据的存储结构和逻辑结构，就可以敲定数据的存储方案。比如，数据呈现&ldquo;一对多&rdquo;关系，想分散存储，那么就选用【树的链式存储结构】。<br />
+</div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/154.html">数据结构到底学什么？</a></span>
-                    <span class="next right"><a href="/view/272.html">如何衡量一个算法的好坏？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/283.html">数据结构到底学什么</a></span>
+                    <span class="next right"><a href="/view/285.html">数据结构和算法的区别</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/154.html";window.nextPageURL = "/view/272.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/283.html";window.nextPageURL = "/view/285.html";</script>
 		</div>
 		
 	</div>
@@ -121,7 +206,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 264;
-window.arcId = "e990Ip57jq/FkLF2E6jI2SvDzfrCDzeLN0x/GvOqJnA2X+feh6ZLfzRCFw";
+window.arcId = "3ecfgJ0CtLUU1HGNxLwZ82gs8ntfkG1i7AE3BTgrp8hxUw0dvT1VSLWH6A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

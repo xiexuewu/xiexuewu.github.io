@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>平衡二叉树（AVL树）详解</title>
+<meta name="keywords" content="平衡,二叉,树,AVL,详解,阅读,《," />
+<meta name="description" content="阅读《二叉排序树（二叉查找树）》一节后，本节再带大家学习一种实现动态查找表的树形存储结构，叫做平衡二叉树。 对于一个动态查找表而言，表中元素的位置不同，最终构建出的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/search/">查找算法</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/350.html">查找表是什么</a></dd><dd>8.2 <a href="/view/351.html">顺序查找算法</a></dd><dd>8.3 <a href="/view/352.html">二分查找（折半查找）算法</a></dd><dd>8.4 <a href="/view/vip_252.html">分块查找算法（顺序查找算法的升级版）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.5 <a href="/view/vip_253.html">静态树表查找算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.6 <a href="/view/353.html">二叉排序树（二叉查找树）是什么</a></dd><dd>8.7 <a href="/view/354.html">平衡二叉树（AVL树）是什么</a></dd><dd>8.8 <a href="/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.9 <a href="/view/vip_255.html">B-树及其基本操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.10 <a href="/view/vip_256.html">B+树及插入和删除操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.11 <a href="/view/vip_257.html">键树查找法（双链树和字典树）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.12 <a href="/view/63.html">什么是哈希表（散列表）</a></dd><dd>8.13 <a href="/view/vip_258.html">哈希查找算法</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>平衡二叉树（AVL树）详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/353.html">二叉排序树（二叉查找树）是什么</a></span>
+                    <span class="next right"><a href="/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/353.html";window.nextPageURL = "/view/vip_254.html";</script>
+			<div id="arc-body">阅读《<a href="/view/353.html" target="_blank">二叉排序树（二叉查找树）</a>》一节后，本节再带大家学习一种实现动态查找表的<u><a href='/view/23.html' target='_blank'>树</a></u>形存储结构，叫做<u><a href='/view/59.html' target='_blank'>平衡二叉树</a></u>。<br />
+<br />
+对于一个动态查找表而言，表中元素的位置不同，最终构建出的<u><a href='/view/58.html' target='_blank'>二叉排序树</a></u>也不一样。换句话说，一个动态查找表可能对应着多棵二叉排序树。例如：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533533226-0.gif" /><br />
+	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 二叉排序树</div>
+<br />
+图 1 中，左侧二叉排序树表示的是 {45，24，53，12，37，93}，右侧二叉排序树表示的是 {12，24，37，45，53，93}。由于查找表中存储的是无关系的数据，所以它们其实是同一个查找表。<br />
+<br />
+二叉排序树的查找性能和整棵树的姿态有关。仍以图 1 为例，假设表中元素被查找的概率是相等的（都为1/6），左侧二叉排序树的查找性能用平均查找长度（ASL）表示：
+<p class="info-box">
+	ASL = 1/6 * (1+2+2+3+3+3) = 14/6</p>
+右侧二叉排序树的查找性能为：
+<p class="info-box">
+	ASL = 1/6 * (1+2+3+4+5+6) = 21/6</p>
+ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树的查找性能更高。<br />
+<br />
+当使用二叉排序树实现动态查找表时，如果希望构建出的总是一棵查找性能最高（ASL 值最小）的树，而不受表中元素位置的影响，可以优先考虑构建一棵平衡<u><a href='/view/192.html' target='_blank'>二叉树</a></u>。
+<h2>
+	平衡二叉树是什么</h2>
+平衡二叉树（Balanced Binary Tree）又称 AVL 树，是一种实现动态查找表的树形存储结构。<br />
+<br />
+首先，平衡二叉树是一棵二叉排序树，它具备二叉排序树所有的特征：
+<ul>
+	<li>
+		对于树中的每个结点，如果它有左子树，那么左子树上所有结点的值都比该结点小；</li>
+	<li>
+		对于树中的每个结点，如果它有右子树，那么右子树上所有结点的值都比该结点大。</li>
+</ul>
+<br />
+平衡二叉树的特别之处在于，<span style="color:#b22222;">树中每个结点左、右子树的深度差（绝对值）都不超过 1。</span><br />
+<br />
+所谓【树的深度】，可以简单理解成【树的高度】。举个简单的例子：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/153353H15-1.gif" /><br />
+	图 1 平衡二叉树</div>
+<br />
+图 1 整棵树的高度是 3，以结点 25 为根结点的子树高度是 2，以结点 12 为根结点的子树高度是 1，以此类推。<br />
+<br />
+在数据结构中，一个结点左子树和右子树的深度差，叫做这个结点的<span style="color: rgb(0, 128, 0);">平衡因子</span>（Balance Factor，简称 BF）。例如，图 1 中各个结点的平衡因子分别是：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533536148-2.gif" style="text-align: center;" /><br />
+	图 2 平衡因子</div>
+<br />
+比如结点 53 左子树的高度为 0，右子树高度为 1，所以平衡因子为 -1（0 - 1 = -1）。再比如，结点 45 左子树的高度为 2，右子树的高度也为 2，所以平衡因子值为 0（2 - 2 = 0）。&nbsp;<br />
+<br />
+搞清楚什么是平衡因子后，如果一棵二叉树是二叉排序树，并且树中所有结点的平衡因子为&nbsp;0、1 或者 -1（绝对值 &le; 1），那么这棵树就是一棵平衡二叉树。<br />
+<br />
+仔细观察图 2 中的二叉树，首先它是一棵二叉排序树，同时所有结点因子的绝对值都不超过 1，所以它还是一棵平衡二叉树。<br />
+<br />
+接下来，给读者列举两个非平衡二叉树的示例：<br />
+1) 下图是一棵二叉树，但结点 37 的右孩子 25 比 37 小，所以它不是二叉排序树，更不是平衡二叉树：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/153353H01-3.gif" /><br />
+	图 2 非二叉排序树，也非平衡二叉树</div>
+<br />
+2) 下图的两棵二叉树都是二叉排序树，但树中存在左、右子树深度差超过 1 的结点，所以它们不是平衡二叉树：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533534250-4.gif" /><br />
+	图 3 是二叉排序树，但非平衡二叉树</div>
+<h2>
+	平衡二叉树的构建</h2>
+构建平衡二叉树的过程，与构建一棵二叉排序树类似，不同之处在于，每次往树中插入一个新结点，都要判断一下整棵树的平衡是否被破坏：<br />
+<ul>
+	<li>
+		如果整棵树的平衡没有被破坏，就继续插入新结点；</li>
+	<li>
+		如果新结点破坏了整棵树的平衡，则调整树中某些结点的位置，使其重新成为一棵平衡二叉树。</li>
+</ul>
+<br />
+例如，对动态查找表 {12，24，37，90，53} 构建一棵平衡二叉树，需要经历以下几个步骤：<br />
+1) 初始状态下，整棵树是一棵空树。将元素 12 和 24 插入到树中，整棵树是一棵平衡二叉树：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533535048-5.gif" /><br />
+	图 4 插入元素 12 和 24</div>
+<br />
+2) 继续插入元素 37，新的二叉排序树如图 5a) 所示，树的平衡性被破坏了，需要调整树的姿态：将结点 24 作为新的根结点，12 作为 24 的左孩子，37 仍作为 24 的右孩子。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533531091-6.gif" /><br />
+	图 5 插入元素 37</div>
+<br />
+当二叉排序树的平衡性被打破时，就如同&ldquo;一边重，另一边轻&rdquo;的扁担（如图 5a)），只需要调整扁担的支撑点（调整根结点），就能重新恢复平衡。实际上，将图 5a) 以结点 24 为支撑点向左逆时针旋转，就能得到图 5b)。<br />
+<br />
+3）在图 5b) 的基础上，继续插入元素 90，它将作为结点 37 的右孩子，整棵树依然是一棵平衡二叉树，如图 6 所示。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533535196-7.gif" /><br />
+	图 6 插入元素 90</div>
+<br />
+4）在图 6 的基础上，继续插入元素 53，它将作为结点 90 的左孩子，此时树的平衡性再次被打破（如图 7a) 所示），需要对树的姿态做出调整，需要做两步操作：
+<ul>
+	<li>
+		在图 7a) 中找到结点 90 为根结点的子树，将它向右顺时针旋转，改为以结点 53 作为根结点，如图 7b) 所示；</li>
+	<li>
+		在图 7b) 中找到结点 37 为根结点的子树，将它向左逆时针旋转，改为以结点 53 作为根结点，如图 7c) 所示。</li>
+</ul>
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533535016-8.gif" /><br />
+	图 7 插入元素 53</div>
+<br />
+由此，我们就得到了图 7c) 这棵平衡二叉树。
+<h2>
+	调整树的姿态</h2>
+如果新结点的加入破坏了整棵二叉排序树的平衡性，就需要及时调整树的姿态，也就是&ldquo;旋转&rdquo;不平衡的子树使整棵树重新平衡。<br />
+<br />
+调整树姿态的具体实现方案是：找到距离新插入结点最近且平衡因子不是 -1、0 和 1 的结点 A，根据新结点的插入位置，旋转 A 这棵子树。新插入结点的位置分为 4 种情况，分别是：
+<h4>
+	1) 单向右旋</h4>
+如图 8 所示，在以 A 的左孩子为根结点的子树 B 中，若插入结点位于 B 的左子树上，导致 A 的平衡因子从 1 变成 2，可以将 A 子树向右顺时针旋转，整棵树就能重新平衡。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/15335312M-9.gif" /><br />
+	图 8 单向右旋</div>
+<blockquote>
+	<p>
+		图中，圆圈表示一个结点，方框表示一棵子树。子树 BL、BR、AR 高度相同。</p>
+</blockquote>
+仔细观察图 8，将 A 子树右旋，实际上做了以下 3 步操作：
+<ul>
+	<li>
+		BR 子树作为 A 的左子树；</li>
+	<li>
+		A 的左孩子作为新的根结点；</li>
+	<li>
+		A 结点作为新根结点的右孩子；</li>
+</ul>
+<h4>
+	2)&nbsp;单向左旋</h4>
+如图 9 所示，在以 A 的右孩子为根结点的子树 B 中，若插入结点位于 B 的右子树上，导致 A 的平衡因子从 -1 变成 -2，可以将 A 子树向左逆时针旋转，整棵树就能重新平衡。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533532550-10.gif" /><br />
+	图 9 单向左旋</div>
+<blockquote>
+	<p>
+		图中，AL、BL 和 BR 高度相同。</p>
+</blockquote>
+将 A 子树左旋，实际上做了以下 3 步操作：
+<ul>
+	<li>
+		BL 子树作为 A 的右子树；</li>
+	<li>
+		A 的右孩子作为新的根结点；</li>
+	<li>
+		A 结点作为新根结点的左孩子；</li>
+</ul>
+<h4>
+	3)&nbsp;&nbsp;双向旋转（先左后右）</h4>
+如图 10 所示，在以 A 的左孩子为根结点的子树 B 中，若插入结点位于 B 的右子树上，导致 A 的平衡因子从 1 变成 2，则需要进行两次旋转操作，整棵树才能重新平衡。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533533541-11.gif" /><br />
+	图 10 先左旋，再右旋</div>
+<blockquote>
+	<p>
+		图中，BL 和 AR 高度相同，CL 和 CR 高度相同，BL（AR）比 CL（CR）高度相差 1。</p>
+</blockquote>
+所谓两次旋转操作，其实就是先对 A 的左子树做左旋操作，然后再对 A 树做右旋操作。整个旋转过程中，只有 A、B 和 C 三个结点的平衡因子会发生变化。<br />
+<br />
+图 10 展示的是插入结点位于 C 左子树上的情况，插入结点还可能位于 C 的右子树上。这种情况下，插入结点最终位于 A 的左子树（CR）中，相应地结点 A 的平衡因子为 0，结点 B 的平衡因子为 1，结点 C 的平衡因子为 0。
+<h4>
+	4)&nbsp; 双向旋转（先右后左）</h4>
+如图 11 所示，在以 A 的右孩子为根结点的子树 B 中，若插入结点位于 B 的左子树上，导致 A 的平衡因子从 -1 变成 -2，则也需要进行两次旋转操作，整棵树才能重新平衡。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1533532643-12.gif" /><br />
+	图 11 先右旋，再左旋</div>
+<br />
+图中，BR 和 AL 高度相同，CL 和 CR 高度相同，BR（AL）比 CL（CR）高度相差 1。<br />
+<br />
+所谓两次旋转操作，其实就是先对 A 的右子树做右旋操作，然后再对 A 树做左旋操作。整个旋转过程中，只有 A、B 和 C 三个结点的平衡因子会发生变化。<br />
+<br />
+图 11 展示的是插入结点位于 C 左子树上的情况，插入结点还可能位于 C 的右子树上。这种情况下，插入结点最终位于 B 的左子树（CR）中，相应地结点 A 的平衡因子为 1，结点 B 的平衡因子为 0，结点 C 的平衡因子为 0。
+<h2>
+	平衡二叉树的具体实现</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+//分别定义平衡因子数
+#define LH +1
+#define EH  0
+#define RH -1
+typedef int ElemType;
+typedef enum { false, true } bool;
+
+//定义二叉排序树
+typedef struct BSTNode {
+    ElemType data;
+    int bf;//balance flag
+    struct BSTNode* lchild, * rchild;
+}*BSTree, BSTNode;
+
+//对以 p 为根结点的二叉树做右旋处理，令 p 指针指向新的树根结点
+void R_Rotate(BSTree* p)
+{
+    //借助文章中的图 8 所示加以理解，其中结点 A 为 p 指针指向的根结点
+    BSTree lc = (*p)-&gt;lchild;
+    (*p)-&gt;lchild = lc-&gt;rchild;
+    lc-&gt;rchild = *p;
+    *p = lc;
+}
+
+//对以 p 为根结点的二叉树做左旋处理，令 p 指针指向新的树根结点
+void L_Rotate(BSTree* p)
+{
+    //借助文章中的图 9 加以理解，其中结点 A 为 p 指针指向的根结点
+    BSTree rc = (*p)-&gt;rchild;
+    (*p)-&gt;rchild = rc-&gt;lchild;
+    rc-&gt;lchild = *p;
+    *p = rc;
+}
+
+//对以指针 T 所指向结点为根结点的二叉树作左子树的平衡处理，令指针 T 指向新的根结点
+void LeftBalance(BSTree* T)
+{
+    BSTree lc, rd;
+    lc = (*T)-&gt;lchild;
+    //查看以 T 的左子树为根结点的子树，失去平衡的原因，如果 bf 值为 1 ，则说明添加在左子树为根结点的左子树中，需要对其进行右旋处理；反之，如果 bf 值为 -1，说明添加在以左子树为根结点的右子树中，需要进行双向先左旋后右旋的处理
+    switch (lc-&gt;bf)
+    {
+    case LH:
+        (*T)-&gt;bf = lc-&gt;bf = EH;
+        R_Rotate(T);
+        break;
+    case RH:
+        rd = lc-&gt;rchild;
+        switch (rd-&gt;bf)
+        {
+        case LH:
+            (*T)-&gt;bf = RH;
+            lc-&gt;bf = EH;
+            break;
+        case EH:
+            (*T)-&gt;bf = lc-&gt;bf = EH;
+            break;
+        case RH:
+            (*T)-&gt;bf = EH;
+            lc-&gt;bf = LH;
+            break;
+        }
+        rd-&gt;bf = EH;
+        L_Rotate(&amp;(*T)-&gt;lchild);
+        R_Rotate(T);
+        break;
+    }
+}
+
+//右子树的平衡处理同左子树的平衡处理完全类似
+void RightBalance(BSTree* T)
+{
+    BSTree lc, rd;
+    lc = (*T)-&gt;rchild;
+    switch (lc-&gt;bf)
+    {
+    case RH:
+        (*T)-&gt;bf = lc-&gt;bf = EH;
+        L_Rotate(T);
+        break;
+    case LH:
+        rd = lc-&gt;lchild;
+        switch (rd-&gt;bf)
+        {
+        case LH:
+            (*T)-&gt;bf = EH;
+            lc-&gt;bf = RH;
+            break;
+        case EH:
+            (*T)-&gt;bf = lc-&gt;bf = EH;
+            break;
+        case RH:
+            (*T)-&gt;bf = EH;
+            lc-&gt;bf = LH;
+            break;
+        }
+        rd-&gt;bf = EH;
+        R_Rotate(&amp;(*T)-&gt;rchild);
+        L_Rotate(T);
+        break;
+    }
+}
+
+int InsertAVL(BSTree* T, ElemType e, bool* taller)
+{
+    //如果本身为空树，则直接添加 e 为根结点
+    if ((*T) == NULL)
+    {
+        (*T) = (BSTree)malloc(sizeof(BSTNode));
+        (*T)-&gt;bf = EH;
+        (*T)-&gt;data = e;
+        (*T)-&gt;lchild = NULL;
+        (*T)-&gt;rchild = NULL;
+        *taller = true;
+    }
+    //如果二叉排序树中已经存在 e ，则不做任何处理
+    else if (e == (*T)-&gt;data)
+    {
+        *taller = false;
+        return 0;
+    }
+    //如果 e 小于结点 T 的数据域，则插入到 T 的左子树中
+    else if (e &lt; (*T)-&gt;data)
+    {
+        //如果插入过程，不会影响树本身的平衡，则直接结束
+        if (!InsertAVL(&amp;(*T)-&gt;lchild, e, taller))
+            return 0;
+        //判断插入过程是否会导致整棵树的深度 +1
+        if (*taller)
+        {
+            //判断根结点 T 的平衡因子是多少，由于是在其左子树添加新结点的过程中导致失去平衡，所以当 T 结点的平衡因子本身为 1 时，需要进行左子树的平衡处理，否则更新树中各结点的平衡因子数
+            switch ((*T)-&gt;bf)
+            {
+            case LH:
+                LeftBalance(T);
+                *taller = false;
+                break;
+            case  EH:
+                (*T)-&gt;bf = LH;
+                *taller = true;
+                break;
+            case RH:
+                (*T)-&gt;bf = EH;
+                *taller = false;
+                break;
+            }
+        }
+    }
+    //同样，当 e&gt;T-&gt;data 时，需要插入到以 T 为根结点的树的右子树中，同样需要做和以上同样的操作
+    else
+    {
+        if (!InsertAVL(&amp;(*T)-&gt;rchild, e, taller))
+            return 0;
+        if (*taller)
+        {
+            switch ((*T)-&gt;bf)
+            {
+            case LH:
+                (*T)-&gt;bf = EH;
+                *taller = false;
+                break;
+            case EH:
+                (*T)-&gt;bf = RH;
+                *taller = true;
+                break;
+            case  RH:
+                RightBalance(T);
+                *taller = false;
+                break;
+            }
+        }
+    }
+    return 1;
+}
+
+//判断现有平衡二叉树中是否已经具有数据域为 e 的结点
+bool FindNode(BSTree root, ElemType e, BSTree* pos)
+{
+    BSTree pt = root;
+    (*pos) = NULL;
+    while (pt)
+    {
+        if (pt-&gt;data == e)
+        {
+            //找到节点，pos指向该节点并返回true
+            (*pos) = pt;
+            return true;
+        }
+        else if (pt-&gt;data &gt; e)
+        {
+            pt = pt-&gt;lchild;
+        }
+        else
+            pt = pt-&gt;rchild;
+    }
+    return false;
+}
+
+//中序遍历平衡二叉树
+void InorderTra(BSTree root)
+{
+    if (root-&gt;lchild)
+        InorderTra(root-&gt;lchild);
+
+    printf(&quot;%d &quot;, root-&gt;data);
+
+    if (root-&gt;rchild)
+        InorderTra(root-&gt;rchild);
+}
+
+//后序遍历二叉树，释放树占用的内存
+void DestroyAVL(BSTree T) {
+    if (T) {
+        DestroyAVL(T-&gt;lchild);//销毁左孩子
+        DestroyAVL(T-&gt;rchild);//销毁右孩子
+        free(T);//释放结点占用的内存
+    }
+}
+
+int main()
+{
+    int i, nArr[] = { 1,23,45,34,98,9,4,35,23 };
+    BSTree root = NULL, pos;
+    bool taller;
+    //用 nArr查找表构建平衡二叉树（不断插入数据的过程）
+    for (i = 0; i &lt; 9; i++)
+    {
+        InsertAVL(&amp;root, nArr[i], &amp;taller);
+    }
+    //中序遍历输出
+    InorderTra(root);
+    //判断平衡二叉树中是否含有数据域为 103 的数据
+    if (FindNode(root, 103, &amp;pos))
+        printf(&quot;\n%d\n&quot;, pos-&gt;data);
+    else
+        printf(&quot;\nNot find this Node\n&quot;);
+    //销毁平衡二叉树
+    DestroyAVL(root);
+    return 0;
+}</pre>
+运行结果为：
+<p class="info-box">
+	1 4 9 23 34 35 45 98<br />
+	Not find this Node</p>
+<h2>
+	总结</h2>
+使用平衡二叉树进行查找操作的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(logn)</code>。在学习本节内容时，紧贴本节图示比较容易理解。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/353.html">二叉排序树（二叉查找树）是什么</a></span>
+                    <span class="next right"><a href="/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/353.html";window.nextPageURL = "/view/vip_254.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 354;
+window.arcId = "5b44bpNa0kkyJgc/9+eljf/nPPZHqirR8Me1hq9U6HB6x+jygYHWCfWB6w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

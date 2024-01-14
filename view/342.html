@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>深度优先搜索（DFS）算法详解</title>
+<meta name="keywords" content="深度,优先,搜索,DFS,算法,详解,深度,优先,搜索," />
+<meta name="description" content="深度优先搜索（Depth First Search）简称深搜或者 DFS，是遍历图存储结构的一种算法，既适用于无向图（网），也适用于有向图（网）。 所谓图的遍历，简单理解就是逐个访问图中的顶点，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/338.html">图（图存储结构）是什么</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/339.html">图的邻接表存储结构</a></dd><dd>7.6 <a href="/view/340.html">图的十字链表存储结构</a></dd><dd>7.7 <a href="/view/341.html">图的邻接多重表存储结构</a></dd><dd>7.8 <a href="/view/342.html">深度优先搜索（DFS）算法</a></dd><dd>7.9 <a href="/view/343.html">广度优先搜索（BFS）算法</a></dd><dd>7.10 <a href="/view/344.html">深度优先生成树和森林</a></dd><dd>7.11 <a href="/view/345.html">广度优先生成树和森林</a></dd><dd>7.12 <a href="/view/346.html">最小生成树是什么</a></dd><dd>7.13 <a href="/view/vip_245.html">Prim算法(普里姆算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.15 <a href="/view/347.html">重连通图是什么</a></dd><dd>7.16 <a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_348.html">AOE网求关键路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.18 <a href="/view/349.html">最短路径是什么</a></dd><dd>7.19 <a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.20 <a href="/view/vip_249.html">Floyd算法（弗洛伊德算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.21 <a href="/view/vip_250.html">最短路径算法实现移动迷宫游戏（升级版）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>深度优先搜索（DFS）算法详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/341.html">图的邻接多重表存储结构</a></span>
+                    <span class="next right"><a href="/view/343.html">广度优先搜索（BFS）算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/341.html";window.nextPageURL = "/view/343.html";</script>
+			<div id="arc-body"><u><a href='/view/39.html' target='_blank'>深度优先搜索</a></u>（Depth First Search）简称深搜或者 <u><a href='/view/39.html' target='_blank'>DFS</a></u>，是遍历<u><a href='/view/200.html' target='_blank'>图</a></u>存储结构的一种算法，既适用于无向图（网），也适用于有向图（网）。<br />
+<blockquote>
+	<p>
+		所谓图的遍历，简单理解就是逐个访问图中的顶点，确保每个顶点都只访问一次。</p>
+</blockquote>
+首先通过一个样例，给大家讲解深度优先搜索算法是如何实现图的遍历的。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1453441531-0.gif" /><br />
+	图 1 深度优先搜索算法遍历无向图</div>
+<br />
+深度优先搜索算法遍历图 1 无向图的整个过程是：<br />
+1) 初始状态下，无向图中的所有顶点都是没有被访问过的，因此可以任选一个顶点出发，遍历整个无向图。<br />
+<br />
+假设从 V1 顶点开始，先访问 V1 顶点，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/14534412J-1.gif" /><br />
+	图 2 访问顶点 1</div>
+<br />
+2) 紧邻 V1 的顶点有两个，分别是 V2 和 V3，它们都没有被访问过，从它们中任选一个，比如访问 V2，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1453442154-2.gif" /><br />
+	图 3 访问顶点 V2</div>
+<br />
+3) 紧邻 V2 的顶点有三个，分别是 V1、V4 和 V5，尚未被访问的有 V4 和 V5，从它们中任选一个，比如访问 V4，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145344I38-3.gif" /><br />
+	图 4 访问顶点 V4</div>
+<br />
+4) 紧邻 V4 的顶点有两个，分别是 V2 和 V8，只有 V8 尚未被访问，因此访问 V8，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1453441D7-4.gif" /><br />
+	图 5 访问顶点 V8</div>
+<br />
+5) 紧邻 V8 的顶点有两个，分别是 V4 和 V5，只有 V5 尚未被访问，因此访问 V5，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145344H34-5.gif" /><br />
+	图 6 访问顶点 V5</div>
+<br />
+6) 和 V5 相邻的顶点有两个，分别是 V2 和 V8，它们都已经访问过了。也就是说，此时从 V5 出发，找不到任何未被访问的顶点了。<br />
+<br />
+这种情况下，深度优先搜索算法会回退到之前的顶点，查看先前有没有漏掉的、尚未访问的顶点：
+<ul>
+	<li>
+		从 V5 回退到 V8，找不到尚未访问的顶点；</li>
+	<li>
+		从 V8 回退到 V4，还是找不到尚未访问的顶点；</li>
+	<li>
+		从 V4 回退到 V2，也还是找不到尚未访问的顶点；</li>
+	<li>
+		从 V2 回退到 V1，发现 V3 还没有被访问。</li>
+</ul>
+<br />
+于是，下一个要访问的顶点就是 V3，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1453442645-6.gif" /><br />
+	图 7 访问顶点 V3</div>
+<br />
+7) 紧邻 V3 的顶点有三个，分别是 V1、V6 和 V7，尚未访问的有 V6 和 V7，因此从它们中任选一个，比如访问 V6，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1453445J6-7.gif" /><br />
+	图 8 访问顶点 V6</div>
+<br />
+8) 紧邻 V6 的顶点有两个，分别是 V3 和 V7，只有 V7 还没有访问，因此访问 V7，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145344L50-8.gif" /><br />
+	图 9 访问顶点 V7</div>
+<br />
+9) 紧邻 V7 顶点有 V6 和 V3，但它们都已经访问过了，此时面临的情况和第 6 步完全一样，深度优先搜索算法的解决方法也是一样的：<br />
+<ul>
+	<li>
+		从 V7 回退到 V6，依然找不到尚未访问的顶点；</li>
+	<li>
+		从 V6 回退到 V3，依然找不到尚未访问的顶点；</li>
+	<li>
+		从 V3 回退到 V1，依然找不到尚未访问的顶点；</li>
+</ul>
+<br />
+V1 是遍历图的起始顶点，回退到 V1 还找不到尚未访问的顶点，意味着以 V1 顶点为突破口，能访问的顶点全部已经访问完了。这种情况下，深度优先搜索算法会从图的所有顶点中重新选择一个尚未访问的顶点，从该顶点出发查找尚未访问的其它顶点。<br />
+<br />
+从图 9 可以看到，图中已经没有尚未访问的顶点了，此时深度优先搜索算法才执行结束。
+<blockquote>
+	<p>
+		对于<u><a href='/view/201.html' target='_blank'>连通图</a></u>来说，深度优先搜索算法从一个顶点出发就能访问图中所有的顶点。但是对于非连通图来说，深度优先搜索算法必须从各个连通分量中选择一个顶点出发，才能访问到所有的顶点。</p>
+</blockquote>
+<h2>
+	深度优先搜索算法的具体实现</h2>
+所谓深度优先搜索，就是从图中的某个顶点出发，不停的寻找相邻的、尚未访问的顶点：
+<ul>
+	<li>
+		如果找到多个，则任选一个顶点，然后继续从该顶点出发；</li>
+	<li>
+		如果一个都没有找到，则回退到之前访问过的顶点，看看是否有漏掉的；</li>
+</ul>
+<br />
+假设从顶点 V 出发，则最终还会回退到顶点 V。此时，深度优先搜索算法会从所有顶点中重新找一个尚未访问的顶点，如果能找到，则以同样的方式继续寻找其它未访问的顶点；如果找不到，则算法执行结束。<br />
+<br />
+通常情况下，深度优先搜索算法访问图中顶点的顺序是不唯一的，即顶点的访问序列可能有多种（&ge;1）。<br />
+<br />
+图的存储结构有很多种，大体上可以分为顺序存储和链式存储（又细分为<u><a href='/view/203.html' target='_blank'>邻接表</a></u>结构、<u><a href='/view/186.html' target='_blank'>十字链表</a></u>结构和邻接多重表结构），各个存储结构有自己的特点。选用不同的存储结构，深度优先搜索算法的具体实现不同，但算法的思想是不变的。<br />
+<br />
+这里以图的顺序存储结构为例，深度优先搜索算法的 C 语言实现代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAX_VERtEX_NUM 20                   //顶点的最大个数
+#define VRType int                          //表示顶点之间关系的类型, 0 表示不相邻，1 表示相邻
+#define VertexType int                      //图中顶点的数据类型
+#define States int
+typedef enum { false, true }bool;           //定义bool型常量
+bool visited[MAX_VERtEX_NUM];               //设置全局<u><a href='/view/181.html' target='_blank'>数组</a></u>，标记图中的各个顶点是否被访问过
+
+typedef struct {
+    VRType adj;                             //用 1 或 0 表示是否相邻；
+}ArcCell, AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+
+typedef struct {
+    VertexType vexs[MAX_VERtEX_NUM];        //存储图中的顶点
+    AdjMatrix arcs;                         //二维数组，记录顶点之间的关系
+    int vexnum, arcnum;                      //记录图的顶点数和弧（边）数
+}MGraph;
+
+//根据顶点数据，返回顶点在二维数组中的位置下标
+int LocateVex(MGraph* G, VertexType v) {
+    int i = 0;
+    //遍历一维数组，找到变量v
+    for (; i &lt; G-&gt;vexnum; i++) {
+        if (G-&gt;vexs[i] == v) {
+            break;
+        }
+    }
+    //如果找不到，输出提示语句，返回-1
+    if (i &gt; G-&gt;vexnum) {
+        printf(&quot;no such vertex.\n&quot;);
+        return -1;
+    }
+    return i;
+}
+
+//构造无向图
+States CreateDN(MGraph* G) {
+    int i, j, n, m;
+    int v1, v2;
+    scanf(&quot;%d,%d&quot;, &amp;(G-&gt;vexnum), &amp;(G-&gt;arcnum));
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;, &amp;(G-&gt;vexs[i]));
+    }
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        for (j = 0; j &lt; G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j].adj = 0;
+        }
+    }
+    for (i = 0; i &lt; G-&gt;arcnum; i++) {
+        scanf(&quot;%d,%d&quot;, &amp;v1, &amp;v2);
+        n = LocateVex(G, v1);
+        m = LocateVex(G, v2);
+        if (m == -1 || n == -1) {
+            printf(&quot;no this vertex\n&quot;);
+            return -1;
+        }
+        G-&gt;arcs[n][m].adj = 1;
+        G-&gt;arcs[m][n].adj = 1;//无向图的二阶矩阵沿主对角线对称
+    }
+    return 1;
+}
+
+int FirstAdjVex(MGraph G, int v)
+{
+    int i;
+    //对于数组下标 v 处的顶点，找到第一个和它相邻的顶点，并返回该顶点的数组下标
+    for (i = 0; i &lt; G.vexnum; i++) {
+        if (G.arcs[v][i].adj) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int NextAdjVex(MGraph G, int v, int w)
+{
+    int i;
+    //对于数组下标 v 处的顶点，从 w 位置开始继续查找和它相邻的顶点，并返回该顶点的数组下标
+    for (i = w + 1; i &lt; G.vexnum; i++) {
+        if (G.arcs[v][i].adj) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void DFS(MGraph G, int v) {
+    int w;
+    printf(&quot;%d &quot;, G.vexs[v]);  //访问第 v 个顶点
+    visited[v] = true;         //将第 v 个顶点的标记设置为true
+    //对于与第 v 个顶点相邻的其它顶点，逐个调用深度优先搜索算法
+    for (w = FirstAdjVex(G, v); w &gt;= 0; w = NextAdjVex(G, v, w)) {
+        //如果该顶点的标记为false，证明尚未被访问，就调用深度优先搜索算法
+        if (!visited[w]) {
+            DFS(G, w);
+        }
+    }
+}
+
+//深度优先搜索
+void DFSTraverse(MGraph G) {
+    int v;
+    //visit数组记录各个顶点是否已经访问过，全部初始化为 false
+    for (v = 0; v &lt; G.vexnum; ++v) {
+        visited[v] = false;
+    }
+    //对于每个标记为false的顶点，都调用一次深度优先搜索算法
+    for (v = 0; v &lt; G.vexnum; v++) {
+        //如果该顶点的标记位为false，就调用深度优先搜索算法
+        if (!visited[v]) {
+            DFS(G, v);
+        }
+    }
+}
+
+int main() {
+    MGraph G;      //建立一个图
+    CreateDN(&amp;G);  //初始化图
+    DFSTraverse(G);//深度优先搜索图
+    return 0;
+}</pre>
+程序中，为了确保每个顶点只访问一次，借助了一个名为&nbsp;visited 的一维数组，专门用来存储各个顶点的访问状态，用 0 表示未被访问，用 1 表示已经访问过。visited 数组中的访问状态和 vexs 数组中存储的顶点是一一对应的，比如 vexs[1] 顶点的访问状态就记录在 visited[1] 的位置。<br />
+<br />
+用 1~8 分别表示图 1 中的顶点 V1~V8，程序的执行结果为：
+<p class="info-box">
+	8,9<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	6<br />
+	7<br />
+	8<br />
+	1,2<br />
+	2,4<br />
+	2,5<br />
+	4,8<br />
+	5,8<br />
+	1,3<br />
+	3,6<br />
+	6,7<br />
+	7,3<br />
+	1 2 4 8 5 3 6 7</p>
+<blockquote>
+	<p>
+		实现图的遍历，除了使用本节讲解的深度优先搜索算法外，还可以使用<u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>算法，感兴趣的小伙伴可以猛击《<a href="/view/343.html" target="_blank">广度优先搜索（BFS）算法</a>》详细了解。</p>
+</blockquote>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/341.html">图的邻接多重表存储结构</a></span>
+                    <span class="next right"><a href="/view/343.html">广度优先搜索（BFS）算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/341.html";window.nextPageURL = "/view/343.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 342;
+window.arcId = "d304eq+OMMwXtawm7Vc3ontXSo2N3S3C/bFaaZwfFkvileGH7OQCxXEbxg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

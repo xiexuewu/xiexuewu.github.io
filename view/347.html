@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>什么是重连通图</title>
+<meta name="keywords" content="什么,是,重,连通,图,连通,图中,如果,任意," />
+<meta name="description" content="连通图中，如果任意两个顶点之间都存在不止一条通路，这样的图就称为 重连通图 。 举个简单的例子： 图 1 重连通图 图 1 不仅是连通图，还是重连通图，因为图中各个顶点之间存在不" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/338.html">图（图存储结构）是什么</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/339.html">图的邻接表存储结构</a></dd><dd>7.6 <a href="/view/340.html">图的十字链表存储结构</a></dd><dd>7.7 <a href="/view/341.html">图的邻接多重表存储结构</a></dd><dd>7.8 <a href="/view/342.html">深度优先搜索（DFS）算法</a></dd><dd>7.9 <a href="/view/343.html">广度优先搜索（BFS）算法</a></dd><dd>7.10 <a href="/view/344.html">深度优先生成树和森林</a></dd><dd>7.11 <a href="/view/345.html">广度优先生成树和森林</a></dd><dd>7.12 <a href="/view/346.html">最小生成树是什么</a></dd><dd>7.13 <a href="/view/vip_245.html">Prim算法(普里姆算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.15 <a href="/view/347.html">重连通图是什么</a></dd><dd>7.16 <a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_348.html">AOE网求关键路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.18 <a href="/view/349.html">最短路径是什么</a></dd><dd>7.19 <a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.20 <a href="/view/vip_249.html">Floyd算法（弗洛伊德算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.21 <a href="/view/vip_250.html">最短路径算法实现移动迷宫游戏（升级版）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>什么是重连通图</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a></span>
+                    <span class="next right"><a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_246.html";window.nextPageURL = "/view/vip_247.html";</script>
+			<div id="arc-body"><u><a href='/view/201.html' target='_blank'>连通图</a></u>中，如果任意两个顶点之间都存在不止一条通路，这样的<u><a href='/view/200.html' target='_blank'>图</a></u>就称为<span style="color: rgb(0, 128, 0);"><u><a href='/view/42.html' target='_blank'>重连通图</a></u></span>。<br />
+<br />
+举个简单的例子：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1506443158-0.gif" /><br />
+	图 1 重连通图</div>
+<br />
+图 1 不仅是连通图，还是重连通图，因为图中各个顶点之间存在不止一条通路，比如顶点 2 和 3 之间的通路有 2-3、2-5-3、2-1-3 等。<br />
+<br />
+在重连通图中，删除某个顶点（包括连接该顶点的边）后并不会破坏整个图的连通性。例如删除图 1 中的顶点 3，图的连通性并不会被破坏。<br />
+<br />
+对于给定的连通图，如果删除某个顶点后，整个图被分割成多个（&ge;2）连通分量，那么称该顶点为连通图的一个<span style="color: rgb(0, 128, 0);">关结点（</span>或者称<span style="color: rgb(0, 128, 0);">&ldquo;割点&rdquo;</span>）。
+<div style="text-align: center;">
+	<br />
+	<img alt="连通图" src="/uploads/allimg/240114/1506441U8-1.gif" /><br />
+	图 2 连通图<br />
+	&nbsp;</div>
+图 2 是一个连通图，但不是重连通图。图中有 4 个关结点，分别是：A、B、D 和 G。比如删除顶点 B 及相关联的边后，原图就变为：
+<div style="text-align: center;">
+	<br />
+	<img alt="连通分量" src="/uploads/allimg/240114/1506446263-2.gif" /><br />
+	图 3 连通分量<br />
+	&nbsp;</div>
+可以看到，图被分割成 3 个连通分量，顶点集合分别是：{A、C、F、L、M、J}、{G、H、I、K} 和 {D、E}。删除一个顶点后，图的连通性被破坏，所以它不是重连通图。<br />
+<br />
+了解了什么是关结点后，<span style="color: rgb(178, 34, 34);">重连通图其实就是没有关结点的连通图</span>。<br />
+<blockquote>
+	<p>
+		在重连通图中，如果一味地做删除操作，直到删除 K 个顶点后图的连通性才遭到破坏，则称此重连通图的连通度为 K&nbsp;。</p>
+</blockquote>
+<h2>
+	重连通图的实际应用</h2>
+现如今，通信网络对人们的生活有着重要的影响，如果将通信网络比做一个巨大的连通图的话，它的连通度 K 值越高，证明其稳定性越好，即使某一个站点发生故障无法工作，也不会影响整个系统的正常工作。<br />
+<br />
+小到城市之间，大到国家之间的航空网也可以看作是一个连通图，如果将它建设成为重连通图，当某条航线因为天气等因素关闭时，飞机仍可以从别的航线到达目的地。<br />
+<br />
+在战争中，有&ldquo;兵马未动，粮草先行&rdquo;的说法，可见后勤补给对军队的重要性。如果补给线是一个重连通图，就不用过于担心补给线被破坏的问题，因为即使破坏一条，还有其它的，只要连通度足够大。
+<h2>
+	重连通图的判断方法</h2>
+了解了什么是重连通图之后，如何判断一个连通图是否为重连通图呢？<br />
+<br />
+对于任意一个连通图来说，都可以通过<u><a href='/view/39.html' target='_blank'>深度优先搜索</a></u>算法获得一棵<u><a href='/view/45.html' target='_blank'>深度优先生成树</a></u>。例如，图 2 通过深度优先搜索获得的深度优先<u><a href='/view/202.html' target='_blank'>生成树</a></u>为：
+<div style="text-align: center;">
+	<br />
+	<img alt="深度优先生成树" src="/uploads/allimg/240114/1506442U7-3.gif" /><br />
+	图 4 深度优先生成<u><a href='/view/23.html' target='_blank'>树</a></u></div>
+<br />
+<span style="color: rgb(178, 34, 34);">虚线表示遍历生成树时没有用到的边，简称</span><span style="color: rgb(0, 128, 0);">&ldquo;回边&rdquo;</span>。<br />
+<br />
+在深度优先生成树中，某个结点的孩子结点是在该结点之后搜索到的结点，某个结点的父结点和通过回边连接的祖先结点都是在该结点之前搜索到的结点。<br />
+<br />
+如果连通图中存在关结点，可能是树根结点，也可能是某个非叶子结点：
+<ul>
+	<li>
+		树根结点：如果树的根结点有多棵（&ge;2）子树，那么它一定是关结点，因为一旦树根被删除，生成树就会变成森林。</li>
+	<li>
+		非叶子结点（用 V 表示）：以 V 为根结点的树中可能有多棵子树，只要存在一颗子树，它的所有结点都没有回边连接着 V 的祖先结点，那么 V 就是一个关结点。因为一旦 V 被删除，那么 V 的子树就会从整棵树上分割出去。</li>
+</ul>
+<br />
+以图 4 的生成树为例，依次判断各个结点是否为关结点：<br />
+<ul>
+	<li>
+		<span style="color:#b22222;">A：是整棵树的根结点，有两棵子树，所以 A 一定是关结点；</span></li>
+	<li>
+		L：只有一棵子树，树中的 B 和 C 结点都有回边连接着 L 的祖先结点（A 结点），所以&nbsp;L 不是关结点；</li>
+	<li>
+		M：有两棵子树，左子树和右子树都有回边连接着&nbsp;M 的祖先结点，所以 M 不是关结点；</li>
+	<li>
+		<span style="color:#b22222;">B：有三棵子树，左子树和中子树都没有回边连接&nbsp;B 的祖先结点，所以&nbsp;B 是关结点；</span></li>
+	<li>
+		<span style="color:#b22222;">D：只有一棵子树，树中没有回边连接 D 的祖先结点，所以 D 是关结点；</span></li>
+</ul>
+<ul>
+	<li>
+		H：只有一棵子树，树中有回边连接着 H 的祖先结点（B 结点），所以&nbsp;H 不是关结点；</li>
+	<li>
+		K： 和 H 相同，K 结点只有一颗子树，树中有回边连接着 K 的祖先结点（B 结点），所以 K 不是关结点；</li>
+	<li>
+		<span style="color:#b22222;">G：只有一棵子树，树中不存在回边，所以&nbsp;G 是关结点。</span></li>
+</ul>
+<br />
+综上所述，图 3 中的关结点有 4 个，分别是： A 、 B 、 D 、 G 。因此图 3 仅仅是一个连通图，不是重连通图。
+<h2>
+	重连通图的具体实现</h2>
+对于给定的连通图，如果在图中找不到关结点，那么此图是重连通图，反之就不是。<br />
+<br />
+编码实现&ldquo;在给定的连通图中查找关结点&rdquo;，可以参考如下给出的完整 C 语言程序。<br />
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#define  MAX_VERTEX_NUM 20  //最大顶点个数
+#define  VertexType char    //图中顶点的类型
+
+typedef enum { false, true }bool;
+
+int visit[MAX_VERTEX_NUM] = { 0 };
+int low[MAX_VERTEX_NUM] = { 0 };
+int count = 1;
+
+typedef struct ArcNode {
+    int adjvex; // 存储弧，即另一端顶点在<u><a href='/view/181.html' target='_blank'>数组</a></u>中的下标
+    struct ArcNode* nextarc; // 指向下一个结点
+}ArcNode;
+
+typedef struct VNode {
+    VertexType data;   //顶点的数据域
+    ArcNode* firstarc; //指向下一个结点
+}VNode, AdjList[MAX_VERTEX_NUM]; //存储各<u><a href='/view/160.html' target='_blank'>链表</a></u>首元结点的数组
+
+typedef struct {
+    AdjList vertices;   //存储图的<u><a href='/view/203.html' target='_blank'>邻接表</a></u>
+    int vexnum, arcnum; //图中顶点数以及弧数
+}ALGraph;
+
+void CreateGraph(ALGraph* graph) {
+    int i, j;
+    char VA, VB;
+    int indexA, indexB;
+    ArcNode* node = NULL;
+    printf(&quot;输入顶点和边的数目：\n&quot;);
+    scanf(&quot;%d %d&quot;, &amp;(graph-&gt;vexnum), &amp;(graph-&gt;arcnum));
+    //清空缓冲区
+    scanf(&quot;%*[^\n]&quot;); scanf(&quot;%*c&quot;);
+    printf(&quot;输入各个顶点的值：\n&quot;);
+    for (i = 0; i &lt; graph-&gt;vexnum; i++) {
+        scanf(&quot;%c&quot;, &amp;(graph-&gt;vertices[i].data));
+        getchar();
+        graph-&gt;vertices[i].firstarc = NULL;
+    }
+    printf(&quot;输入边的信息(a b 表示边 a-b)：\n&quot;);
+    //输入弧的信息，并为弧建立结点，链接到对应的链表上
+    for (i = 0; i &lt; graph-&gt;arcnum; i++) {
+        scanf(&quot;%c %c&quot;, &amp;VA, &amp;VB);
+        getchar();
+        //找到 VA 和 VB 在邻接表中的位置下标
+        for (j = 0; j &lt; graph-&gt;vexnum; j++) {
+            if (graph-&gt;vertices[j].data == VA) {
+                indexA = j;
+            }
+            if (graph-&gt;vertices[j].data == VB) {
+                indexB = j;
+            }
+        }
+        //添加从 A 到 B 的弧
+        node = (ArcNode*)malloc(sizeof(ArcNode));
+        node-&gt;adjvex = indexB;
+        node-&gt;nextarc = graph-&gt;vertices[indexA].firstarc;
+        graph-&gt;vertices[indexA].firstarc = node;
+      
+        //添加从 B 到 A 的弧
+        node = (ArcNode*)malloc(sizeof(ArcNode));
+        node-&gt;adjvex = indexA;
+        node-&gt;nextarc = graph-&gt;vertices[indexB].firstarc;
+        graph-&gt;vertices[indexB].firstarc = node;
+    }
+}
+
+//判断 G.vertices[v].data 是否为关结点
+//函数执行结束时，会找到 v 结点（或其孩子结点）相连的祖先结点的访问次序号，如果有多个祖先结点，找到的是值最小的次序号，并存储在 low[v] 的位置
+void <u><a href='/view/39.html' target='_blank'>DFS</a></u>Articul(ALGraph G, int v) {
+    int min, w;
+    //假设当前结点不是关结点
+    bool isAritcul = false;
+    ArcNode* p = NULL;
+    //记录当前结点被访问的次序号
+    visit[v] = min = ++count;
+    //遍历每个和 v 相连的结点，有些是 v 的孩子结点，有些是祖先结点
+    for(p = G.vertices[v].firstarc; p ; p = p-&gt;nextarc)
+    {
+        w = p-&gt;adjvex;
+        //如果 visit[w] 的值为 0，表示 w 是 v 的孩子结点
+        if (visit[w] == 0)
+        {
+            //深度优先遍历，继续判断 w 是否为关结点，计算出 low[w] 的值
+            DFSArticul(G, w);
+            //如果 w 结点对应的 low 值比 min 值小，表明 w 与 v 的某个祖先结点建立着连接，用 min 变量记录下 low[w] 的值
+            if (low[w] &lt; min) {
+                min = low[w];
+            }
+            // 如果 v 结点的访问次序号 &lt;= 孩子结点记录的祖先结点的访问次序号，表明孩子结点并没有和 v 的祖宗结点建立连接，此时 v 就是关结点 
+            if (visit[v] &lt;= low[w]) {
+                // v 可能有多个孩子结点，visit[v] &lt;= low[w] 条件可能成立多次。v 是关结点的信息只需要输出一次即可。
+                if (isAritcul == false) {
+                    isAritcul = true;
+                    printf(&quot;%c &quot;, G.vertices[v].data);
+                }
+            }
+        }
+        //如果 w 之前访问过，表明 w 是 v 的祖先结点，直接更新 min 记录的次序号
+        else if(visit[w] &lt; min)
+        {
+            min = visit[w];
+        }
+    }
+    //min 变量的值经过多次更新，最终记录的是和 v 结点（或其孩子结点）相连的祖先结点的访问次序号，如果有多个祖先结点，min 记录的是值最小的次序号
+    low[v] = min;
+}
+
+void FindArticul(ALGraph G) {
+    //以 G.vertices[0] 为深度优先生成树的树根
+    ArcNode* p = G.vertices[0].firstarc;
+    visit[0] = 1;
+    printf(&quot;关节点是：\n&quot;);
+    //从树根顶点的第一个孩子结点出发进行深度优先搜索，查找关结点
+    DFSArticul(G, p-&gt;adjvex);
+    //如果从第一个孩子结点点出发，不能遍历完所有的顶点，表明树根不止有一个孩子结点，树根就是关结点
+    if (count &lt; G.vexnum) {
+        printf(&quot;%c &quot;, G.vertices[0].data);
+        //继续判断别的子树，查找关结点
+        while (p-&gt;nextarc) {
+            p = p-&gt;nextarc;
+            if (visit[p-&gt;adjvex] == 0) {
+                DFSArticul(G, p-&gt;adjvex);
+            } 
+        }
+    }
+}
+
+int main() {
+    ALGraph graph;
+    CreateGraph(&amp;graph);
+    FindArticul(graph);
+    return 0;
+}</pre>
+程序中，存储连通图采用的是邻接表结构，查找关结点是在深度优先搜索的过程实现的。
+<blockquote>
+	<p>
+		注意，虽然程序中没有构建深度优先生成树，但深度优先搜索的过程中，顶点之间就具备父子、祖孙等关系。</p>
+</blockquote>
+程序中，FindArticul() 函数对树根结点是否为关结点进行了判断，实现方法是：从根结点的某个孩子结点出发进行深度优先搜索，如果无法搜索到图中的所有顶点，表明根结点有多个孩子结点，那么它就一定是关结点。<br />
+<br />
+DFSArticul() 函数对各个非叶子结点是否为关结点进行了判断，实现过程中需要借助&nbsp;visit 和 low 这两个数组：
+<ul>
+	<li>
+		visit 数组记录了图中每个顶点的访问次序，例如 A 顶点第 1 个访问、B 顶点第 2 个访问等。在深度优先生成树中，如果一个结点是另一个结点的祖先，那么深度优先搜索过程中最先访问的一定是祖先结点，也就是访问序号更小的那个结点。</li>
+	<li>
+		low 数组的功能是：除了树根结点和叶子结点外，在以各个结点为根的子树中，一定存在一条连接父结点的边，可能存在多条回边连接着当前结点的不同祖先结点，比较父结点和祖先结点的访问序号，去最小值（代表辈分最高的祖先结点）存储在 low 数组中。</li>
+</ul>
+<blockquote>
+	<p>
+		借助 visit 数组记录的访问序号，可以快速判断出结点间的辈分（谁的辈分更大）；借助 low 数组，可以快速找到和某个子树连接的、辈分最高的祖先结点的访问序号。</p>
+</blockquote>
+判断某个非叶子结点（用 V 表示）是否为关结点的过程是：通过 visit 数组得到 V 的访问序号，从 low 数组中找到 V 各个孩子结点对应的值，如果 V 的访问序号比每个孩子结点对应的值都大，表明 V 的每棵子树都和 V 的祖先结点建立着连接，删除 V 并不会将它的子树分割出去，那么 V 就不是关结点；反之，只要有一个孩子结点对应的值比 V 的访问序号大，那么 V 一定是关结点。<br />
+<br />
+以图 2 的连通图为例，程序执行完成时，visit 数组和 low 数组中记录的数据如下表所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1506442O3-4.gif" /><br style="text-align: center;" />
+	<span style="text-align: center;">图 5 visit和low数组的功能</span></div>
+<br />
+以 B 结点为例，通过 visit 数组得到它的访问序号是 5。B 有三棵子树，根结点分别是 H、D 和 C：
+<ul>
+	<li>
+		H 在 low 数组中对应的值是&nbsp;5，表明在以 H 为根结点的子树中，连接的辈分最高的祖先结点是访问序号为 5 的 B 结点；</li>
+	<li>
+		D 在 low&nbsp;数组中对应的值也是&nbsp;5，表明在以 D 为跟结点的子树中，连接的辈分最高的祖先结点是访问序号为 5 的 B 结点；</li>
+	<li>
+		C 在 low&nbsp;数组中对应的值是&nbsp;1，表明在以 C 为根结点的子树中，连接的辈分最高的祖先结点是访问序号为 1 的 A 结点。</li>
+</ul>
+<br />
+由于 B 的访问序号并不比所有孩子结点对应的 low 大，删除 B 结点会导致 H 子树和 D 子树分割出去，因此 B 结点是关结点。<br />
+<blockquote>
+	<p>
+		程序中第 93 行代码，只要有一个孩子结点对应的 low 值大于父亲节点的 visit 值，那么父亲节点就是一个关结点。</p>
+</blockquote>
+以图 2 的连通图为例，程序的执行结果为：
+<p class="info-box">
+	输入顶点和边的数目：<br />
+	13 17<br />
+	输入各个顶点的值：<br />
+	A B C D E F G H I J K L M<br />
+	输入边的信息(a b 表示边 a-b)：<br />
+	A B<br />
+	A C<br />
+	A F<br />
+	A L<br />
+	B C<br />
+	B D<br />
+	B G<br />
+	B H<br />
+	B M<br />
+	D E<br />
+	G H<br />
+	G K<br />
+	H K<br />
+	G I<br />
+	L J<br />
+	L M<br />
+	J M<br />
+	关节点是：<br />
+	G B D A</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a></span>
+                    <span class="next right"><a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_246.html";window.nextPageURL = "/view/vip_247.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 347;
+window.arcId = "ed7aIA9b/FDnsAUT4JRbPzTW2xq4OHFMQcp7Q0mHK+NTGorLUn6rIiwLVw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

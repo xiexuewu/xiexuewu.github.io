@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>串是什么，数据结构中的串（小白必读）</title>
+<meta name="keywords" content="串,是什么,数据结构,中的,小白,必读,对于,由," />
+<meta name="description" content="对于由多个字符（ 0）组成的字符串（例如 http://data.biancheng.net），数据结构单独提供了一种存储结构，称为 串结构 。 字符串中的字符之间具有一对一的逻辑关系，所以严格意义上讲，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/312.html">串是什么</a></dd><dd>4.2 <a href="/view/313.html">串的定长顺序存储结构</a></dd><dd>4.3 <a href="/view/314.html">串的堆分配存储结构</a></dd><dd>4.4 <a href="/view/315.html">串的块链存储结构</a></dd><dd>4.5 <a href="/view/316.html">BF算法（串的模式匹配算法）</a></dd><dd>4.6 <a href="/view/vip_227.html">KMP算法（串的快速模式匹配算法）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/317.html">KMP算法还能再优化！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/318.html">死抠：为什么KMP算法的主串指针不用回退？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/vip_228.html">串实现字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>串是什么，数据结构中的串（小白必读）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/string/">字符串</a></span>
+                    <span class="next right"><a href="/view/313.html">串的定长顺序存储结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/string/";window.nextPageURL = "/view/313.html";</script>
+			<div id="arc-body">对于由多个字符（&ge; 0）组成的字符<u><a href='/view/175.html' target='_blank'>串</a></u>（例如 &quot;http://data.biancheng.net&quot;），数据结构单独提供了一种存储结构，称为<span style="color:#008000;">串结构</span>。<br />
+<br />
+字符串中的字符之间具有&ldquo;一对一&rdquo;的逻辑关系，所以严格意义上讲，串存储结构也属于线性存储结构。和<u><a href='/view/158.html' target='_blank'>顺序表</a></u>、<u><a href='/view/160.html' target='_blank'>链表</a></u>、<u><a href='/view/169.html' target='_blank'>栈</a></u>、<u><a href='/view/172.html' target='_blank'>队列</a></u>这些线性存储结构不同的是，串存储结构专门用来存储字符串。
+<h2>
+	特殊的串</h2>
+数据结构中，根据串中存储字符的数量及特点，对一些特殊的串进行了命名。
+<h4>
+	1) 空串</h4>
+空串指的是未存储任何字符的串，整个串的长度为 0。<br />
+<br />
+C语言中，空串可以这样表示：
+<pre class="cpp" shownum="false">
+const char * str = &quot;&quot;;</pre>
+双引号表示的字符串内没有任何字符，str 就是一个空串。
+<h4>
+	2) 空格串</h4>
+空格串指的是由多个（＞0）空格字符组成的串结构，整个串的长度为包含空格字符的个数。<br />
+<br />
+仍以 C 语言为例：
+<pre class="cpp" shownum="false">
+const char * str = &quot;     &quot;;
+</pre>
+str 是一个包含 5 个空格字符的空格串，它的长度为 5。
+<blockquote>
+	<p>
+		注意：空格串和空串不同，空串中不含任何字符，而空格串中含有的是空格字符。</p>
+</blockquote>
+<h4>
+	3) 子串和主串</h4>
+假设有以下两个串 A 和 B：
+<p class="info-box">
+	A：shujujiegou<br />
+	B：shuju</p>
+在串 A 中可以找到几个连续的字符，它们和串 B 相同。我们可以这样描述它们之间的关系：A 是 B 的主串，B 是 A 的子串。<br />
+<br />
+有些实际场景中，给定主串和子串，让我们设计算法找到子串在主串中的位置。<span style="color: rgb(178, 34, 34);">子串在主串中的位置，指的是子串首个字符在主串中的位置。</span>例如，串 A 为 &quot;shujujiegou&quot;，串 B 为 &quot;jiegou&quot;，通过观察可以判断 A、B 是主串和子串的关系，即在主串 A 中可以找到 B，B 的第一个字符 &#39;j&#39; 是串 A 中的第 6 个字符，因此子串 B 在主串 A 中的位置就是 6。<br />
+<p class="info-box">
+	本章，我们会学习两种模式匹配算法专门解决此类问题。</p>
+<h2>
+	串存储结构的具体实现</h2>
+串存储结构的具体实现方式有 3 种，分别是：
+<h4>
+	1) 定长顺序存储结构</h4>
+和顺序存储结构类似，将字符串中的所有字符集中存放在一整块存储空间中，相邻的两个字符之间紧挨着，没有任何空隙。<br />
+<br />
+在 C 语言中，定长顺序存储通常用<u><a href='/view/181.html' target='_blank'>数组</a></u>来实现，例如：<br />
+<pre class="cpp" shownum="false">
+char str[30] = &quot;http://data.biancheng.net&quot;;
+</pre>
+<h4>
+	2) 堆分配存储结构</h4>
+和定长顺序存储结构一样，堆分配存储结构也是将所有字符集中存放在一整块内存空间中，不同之处在于，堆分配存储方式使用堆空间来存储字符串。所谓堆空间，即程序执行过程中动态申请的内存空间。<br />
+<br />
+在 C 语言中，可以调用 malloc() 函数动态申请堆内存，动态申请的堆空间必须调用 free() 函数手动释放。<br />
+<br />
+和定长顺序存储结构相比，堆分配存储结构可以动态调整堆空间的大小，使用起来更加灵活。
+<h4>
+	3) 块链存储结构</h4>
+块链存储是一种用链表存储字符串的方案，这里不再做详细介绍。<br />
+<p class="info-box">
+	以上 3 种存储结构会在后续文章中作详细介绍。</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/string/">字符串</a></span>
+                    <span class="next right"><a href="/view/313.html">串的定长顺序存储结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/string/";window.nextPageURL = "/view/313.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 312;
+window.arcId = "3675eqlOMlD4clSyiwHQI5+5qcCyrMeYJ8voMqaX9ifsme1gtJqMo06gZw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

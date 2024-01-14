@@ -12,7 +12,7 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>广义表的存储结构（2种）详解</title>
+<title>广义表的存储结构详解（包含2种存储方案）</title>
 <meta name="keywords" content="广义,表,的,存储,结构,2种,详解,由于,广义," />
 <meta name="description" content="由于广义表中既可存储原子（不可再分的数据元素），也可以存储子表，因此很难使用顺序存储结构表示，通常情况下广义表结构采用链表实现。 使用顺序表实现广义表结构，不仅需要" />
 </head>
@@ -51,7 +51,7 @@
 				<span class="channel-num">4</span>
 				<a href='/string/'>字符串</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">5</span> <a href="/array_list/">数组和广义表</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/181.html">什么是数组</a></dd><dd>5.2 <a href="/view/182.html">数组的顺序存储</a></dd><dd>5.3 <a href="/view/183.html">矩阵（稀疏矩阵）压缩存储</a></dd><dd>5.4 <a href="/view/184.html">三元组顺序表</a></dd><dd>5.5 <a href="/view/185.html">行逻辑链接的顺序表</a></dd><dd>5.6 <a href="/view/186.html">十字链表法</a></dd><dd>5.7 <a href="/view/187.html">矩阵的转置算法</a></dd><dd>5.8 <a href="/view/vip_229.html">稀疏矩阵的快速转置</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.9 <a href="/view/vip_230.html">矩阵乘法（基于行逻辑链接的顺序表）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.10 <a href="/view/vip_231.html">矩阵加法（基于十字链表）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.11 <a href="/view/189.html">什么是广义表</a></dd><dd>5.12 <a href="/view/190.html">广义表的存储结构</a></dd><dd>5.13 <a href="/view/vip_232.html">广义表的深度和长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.14 <a href="/view/21.html">复制广义表</a></dd></dl>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/array_list/">数组和广义表</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/319.html">数组是什么</a></dd><dd>5.2 <a href="/view/320.html">数组的顺序存储结构</a></dd><dd>5.3 <a href="/view/183.html">矩阵（稀疏矩阵）压缩存储</a></dd><dd>5.4 <a href="/view/321.html">三元组顺序表存储稀疏矩阵</a></dd><dd>5.5 <a href="/view/322.html">行逻辑链接的顺序表存储稀疏矩阵</a></dd><dd>5.6 <a href="/view/323.html">十字链表法存储稀疏矩阵</a></dd><dd>5.7 <a href="/view/324.html">矩阵（稀疏矩阵）的转置算法</a></dd><dd>5.8 <a href="/view/vip_229.html">稀疏矩阵的快速转置算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.9 <a href="/view/vip_230.html">行逻辑链接的顺序表实现矩阵乘法（附带C语言完整代码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.10 <a href="/view/vip_231.html">十字链表实现矩阵加法（附带C语言实现代码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.11 <a href="/view/189.html">广义表是什么</a></dd><dd>5.12 <a href="/view/190.html">广义表的存储结构（2种）</a></dd><dd>5.13 <a href="/view/vip_232.html">广义表的深度和长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.14 <a href="/view/vip_21.html">广义表的复制（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">6</span>
 				<a href='/tree/'>树</a>
@@ -64,22 +64,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -94,9 +94,9 @@
 			<div id="arc-info">
 	作者：解学武
 </div>
-			<h1>广义表的存储结构（2种）详解</h1>
+			<h1>广义表的存储结构详解（包含2种存储方案）</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/189.html">什么是广义表</a></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/189.html">广义表是什么</a></span>
                     <span class="next right"><a href="/view/vip_232.html">广义表的深度和长度</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
@@ -106,130 +106,150 @@
                 <script type="text/javascript">window.prePageURL = "/view/189.html";window.nextPageURL = "/view/vip_232.html";</script>
 			<div id="arc-body">由于<u><a href='/view/189.html' target='_blank'>广义表</a></u>中既可存储原子（不可再分的数据元素），也可以存储子表，因此很难使用顺序存储结构表示，通常情况下广义表结构采用<u><a href='/view/160.html' target='_blank'>链表</a></u>实现。<br />
 <p class="info-box">
-	使用<u><a href='/view/158.html' target='_blank'>顺序表</a></u>实现广义表结构，不仅需要操作 n 维<u><a href='/view/181.html' target='_blank'>数组</a></u>（例如 {1,{2,{3,4}}} 就需要使用三维数组存储），还会造成存储空间的浪费。</p>
+	使用<u><a href='/view/158.html' target='_blank'>顺序表</a></u>实现广义表结构，不仅需要操作 n 维<u><a href='/view/181.html' target='_blank'>数组</a></u>（例如 (1,(2,(3,4))) 就需要使用三维数组存储），还会造成存储空间的浪费。</p>
 使用链表存储广义表，首先需要确定链表中节点的结构。由于广义表中可同时存储原子和子表两种形式的数据，因此链表节点的结构也有两种，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示：
 <div style="text-align: center;">
 	<br />
-	<img alt=" 广义表节点的两种类型" src="/uploads/allimg/170720/2-1FH0161229619.png" /><br />
+	<img alt="广义表节点的两种类型" src="/uploads/allimg/240114/13220HR2-0.gif" /><br />
 	图 1 广义表节点的两种类型</div>
 <br />
 如图 1 所示，表示原子的节点由两部分构成，分别是 tag 标记位和原子的值，表示子表的节点由三部分构成，分别是 tag 标记位、hp 指针和 tp 指针。<br />
 <br />
-tag 标记位用于区分此节点是原子还是子表，通常原子的 tag 值为 0，子表的 tag 值为 1。子表节点中的 hp 指针用于连接本子表中存储的原子或子表，tp 指针用于连接广义表中下一个原子或子表。<br />
+tag 标记位用于区分此节点是原子还是子表，通常原子的 tag 值为 0，子表的 tag 值为 1。子表节点中的 hp 指针用于连接本子表中存储的原子或子表，tp 指针用于连接广义表中下一个子表（也可能是 NULL）。<br />
 <br />
 因此，广义表中两种节点的 C 语言表示代码为：
 <pre class="cpp">
-typedef struct GLNode{
+typedef struct Node {
     int tag;//标志域
-    union{
+    union {
         char atom;//原子结点的值域
-        struct{
-            struct GLNode * hp,*tp;
+        struct {
+            struct Node* hp, * tp;
         }ptr;//子表结点的指针域，hp指向表头；tp指向表尾
-    };
-}*Glist;</pre>
+    }un;
+}GLNode, * Glist;</pre>
 这里用到了 union 共用体，因为同一时间此节点不是原子节点就是子表节点，当表示原子节点时，就使用 atom 变量；反之则使用 ptr 结构体。<br />
 <br />
-例如，广义表 {a,{b,c,d}} 是由一个原子 a 和子表 {b,c,d} 构成，而子表 {b,c,d} 又是由原子 b、c 和 d 构成，用链表存储该广义表如图 2 所示：
+例如，广义表 (a,(b,c,d)) 是由一个原子 a 和子表 (b,c,d) 构成，而子表 (b,c,d) 又是由原子 b、c 和 d 构成，用链表存储该广义表如图 2 所示：
 <div style="text-align: center;">
 	<br />
-	<img alt="广义表 {a,{b,c,d}} 的结构示意图" src="/uploads/allimg/170720/2-1FH0161302422.png" /><br />
-	图 2 广义表 {a,{b,c,d}} 的结构示意图</div>
+	<img alt="广义表 {a,{b,c,d}} 的结构示意图" src="/uploads/allimg/240114/13220G4G-1.gif" /><br />
+	图 2 广义表 (a,(b,c,d)) 的结构示意图</div>
 <br />
-图 2 可以看到，存储原子 a、b、c、d 时都是用子表包裹着表示的，因为原子 a 和子表 {b,c,d} 在广义表中同属一级，而原子 b、c、d 也同属一级。<br />
-<br />
-图 2 中链表存储的广义表用 C&nbsp; 语言代码表示为：<br />
+从图中可以看到，存储原子 a、b、c、d 时都是用子表包裹着表示的，因为原子 a 和子表 (b,c,d) 在广义表中同属一级，而原子 b、c、d 也同属一级。
+<blockquote>
+	<p>
+		除非 C 是一个空表，指针 C 的值为 NULL，否则指针 C 指向的一定是 tag 值为 1 的子表结点。</p>
+</blockquote>
+图 2 中链表存储的广义表用 C&nbsp; 语言代码表示为：
 <pre class="cpp">
-Glist creatGlist(Glist C){
-&nbsp;&nbsp;&nbsp; //广义表C
-&nbsp;&nbsp;&nbsp; C=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; C-&gt;tag=1;
-&nbsp;&nbsp;&nbsp; //表头原子&lsquo;a&rsquo;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.hp-&gt;tag=0;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.hp-&gt;atom=&#39;a&#39;;
-&nbsp;&nbsp;&nbsp; //表尾子表（b,c,d）,是一个整体
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;tag=1;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.tp=NULL;
-&nbsp;&nbsp;&nbsp; //开始存放下一个数据元素（b,c,d）,表头为&lsquo;b&rsquo;，表尾为（c,d）
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=1;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp-&gt;tag=0;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.hp-&gt;atom=&#39;b&#39;;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; //存放子表(c,d)，表头为c，表尾为d
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;tag=1;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=0;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.hp-&gt;atom=&#39;c&#39;;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; //存放表尾d
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;tag=1;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp=(Glist)malloc(sizeof(Glist));
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp-&gt;tag=0;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.hp-&gt;atom=&#39;d&#39;;
-&nbsp;&nbsp;&nbsp; C-&gt;ptr.tp-&gt;ptr.hp-&gt;ptr.tp-&gt;ptr.tp-&gt;ptr.tp=NULL;
-&nbsp;&nbsp;&nbsp; return C;
+Glist creatGlist(Glist C) {
+    //广义表C
+    C = (Glist)malloc(sizeof(GLNode));
+    C-&gt;tag = 1;
+
+    //表头原子&lsquo;a&rsquo;
+    C-&gt;un.ptr.hp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.ptr.hp-&gt;tag = 0;
+    C-&gt;un.ptr.hp-&gt;un.atom = &#39;a&#39;;
+
+    //表尾子表(b,c,d),是一个整体
+    C-&gt;un.ptr.tp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.ptr.tp-&gt;tag = 1;
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.ptr.tp-&gt;un.ptr.tp = NULL;
+
+    //开始存放下一个数据元素(b,c,d),表头为&lsquo;b&rsquo;，表尾为(c,d)
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;tag = 1;
+
+    //存储 &#39;b&#39;
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.hp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.hp-&gt;tag = 0;
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.hp-&gt;un.atom = &#39;b&#39;;
+
+    //存放子表(c,d)，表头为c，表尾为(d)
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;tag = 1;
+   
+    //存储原子 &#39;c&#39;
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.hp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;tag = 0;
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.atom = &#39;c&#39;;
+
+    //存放表尾(d)
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.tp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.tp-&gt;tag = 1;
+    //存储 &#39;d&#39;
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.tp-&gt;un.ptr.hp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;tag = 0;
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.atom = &#39;d&#39;;
+    C-&gt;un.ptr.tp-&gt;un.ptr.hp-&gt;un.ptr.tp-&gt;un.ptr.tp-&gt;un.ptr.tp = NULL;
+    return C;
 }</pre>
 <h2>
-	另一种广义表存储结构</h2>
+	广义表的另一种存储结构</h2>
 如果你觉得图 2 这种存储广义表的方式不合理，可以使用另一套表示广义表中原子和子表结构的节点，如图 3 所示：
 <div style="text-align: center;">
 	<br />
-	<img alt="广义表的另一套节点结构" src="/uploads/allimg/170720/2-1FH016140E27.png" /><br />
+	<img alt="广义表的另一套节点结构" src="/uploads/allimg/240114/13220IR6-2.gif" /><br />
 	图 3 广义表的另一套节点结构</div>
 <br />
 如图 3 所示，表示原子的节点构成由 tag 标记位、原子值和 tp 指针构成，表示子表的节点还是由 tag 标记位、hp 指针和 tp 指针构成。<br />
 <br />
 图 3 的节点结构用 C 语言代码表示为：
 <pre class="cpp">
-typedef struct GLNode{
+typedef struct Node {
     int tag;//标志域
-    union{
+    union {
         int atom;//原子结点的值域
-        struct GLNode *hp;//子表结点的指针域，hp指向表头
-    };
-    struct GLNode * tp;//这里的tp相当于链表的next指针，用于指向下一个数据元素
-}*Glist;</pre>
-采用图 3 中的节点结构存储广义表 {a,{b,c,d}} 的示意图如图 4 所示：
+        struct Node* hp;//子表结点的指针域，hp指向表头
+    }un;
+    struct Node* tp;//这里的tp相当于链表的next指针，用于指向下一个数据元素
+}GLNode, * Glist;</pre>
+采用图 3 中的节点结构存储广义表 (a,(b,c,d)) 的示意图如图 4 所示：
 <div style="text-align: center;">
 	<br />
-	<img alt="广义表 {a,{b,c,d}} 的存储结构示意图" src="/uploads/allimg/181222/2-1Q2221S61K03.gif" /><br />
-	图 4 广义表 {a,{b,c,d}} 的存储结构示意图</div>
-<br />
+	<img alt="广义表 {a,{b,c,d}} 的存储结构示意图" src="/uploads/allimg/240114/13220IF6-3.gif" /><br />
+	图 4 广义表 (a,(b,c,d)) 的存储结构示意图</div>
+<blockquote>
+	<p>
+		无论 C 是否为空表，指针 C 指向的都是一个 tag 值为 1 的子表结点。当 C 为空表时，指针 C 所指结点的 hp 和 tp 指针都为 NULL。</p>
+</blockquote>
 图 4 存储广义表对应的 C 语言代码为：
 <pre class="cpp">
-Glist creatGlist(Glist C){
-    C=(Glist)malloc(sizeof(Glist));
-    C-&gt;tag=1;
-    C-&gt;hp=(Glist)malloc(sizeof(Glist));
-    C-&gt;tp=NULL;
-    //表头原子a
-    C-&gt;hp-&gt;tag=0;
-    C-&gt;atom=&#39;a&#39;;
-    C-&gt;hp-&gt;tp=(Glist)malloc(sizeof(Glist));
-    C-&gt;hp-&gt;tp-&gt;tag=1;
-    C-&gt;hp-&gt;tp-&gt;hp=(Glist)malloc(sizeof(Glist));
-    C-&gt;hp-&gt;tp-&gt;tp=NULL;
-    //原子b
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;tag=0;
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;atom=&#39;b&#39;;
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp=(Glist)malloc(sizeof(Glist));
-    //原子c
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tag=0;
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;atom=&#39;c&#39;;
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tp=(Glist)malloc(sizeof(Glist));
-    //原子d
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tp-&gt;tag=0;
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tp-&gt;atom=&#39;d&#39;;
-    C-&gt;hp-&gt;tp-&gt;hp-&gt;tp-&gt;tp-&gt;tp=NULL;
+Glist creatGlist(Glist C) {
+    C = (Glist)malloc(sizeof(GLNode));
+    C-&gt;tag = 1;
+    C-&gt;un.hp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;tp = NULL;
+
+    //存储 &#39;a&#39;
+    C-&gt;un.hp-&gt;tag = 0;
+    C-&gt;un.hp-&gt;un.atom = &#39;a&#39;;
+
+    //存储(b,c,d)
+    C-&gt;un.hp-&gt;tp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.hp-&gt;tp-&gt;tag = 1;
+
+    C-&gt;un.hp-&gt;tp-&gt;un.hp = (Glist)malloc(sizeof(GLNode));
+    C-&gt;un.hp-&gt;tp-&gt;tp = NULL;
+    //存储&#39;b&#39;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;tag = 0;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;un.atom = &#39;b&#39;;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;tp = (Glist)malloc(sizeof(GLNode));
+    //存储&#39;c&#39;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;tp-&gt;tag = 0;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;tp-&gt;un.atom = &#39;c&#39;;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;tp-&gt;tp = (Glist)malloc(sizeof(GLNode));
+    //存储&#39;d&#39;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;tp-&gt;tp-&gt;tag = 0;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;tp-&gt;tp-&gt;un.atom = &#39;d&#39;;
+    C-&gt;un.hp-&gt;tp-&gt;un.hp-&gt;tp-&gt;tp-&gt;tp = NULL;
     return C;
 }</pre>
-需要初学者注意的是，无论采用以上哪一种节点结构存储广义表，都不要破坏广义表中各数据元素之间的并列关系。拿 {a,{b,c,d}} 来说，原子 a 和子表 {b,c,d} 是并列的，而在子表 {b,c,d} 中原子 b、c、d 是并列的。</div>
+需要初学者注意的是，无论采用以上哪一种节点结构存储广义表，都不要破坏广义表中各数据元素之间的并列关系。拿 (a,(b,c,d)) 来说，原子 a 和子表 (b,c,d) 是并列的，而在子表 (b,c,d) 中原子 b、c、d 是并列的。</div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/189.html">什么是广义表</a></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/189.html">广义表是什么</a></span>
                     <span class="next right"><a href="/view/vip_232.html">广义表的深度和长度</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
@@ -244,7 +264,7 @@ Glist creatGlist(Glist C){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 190;
-window.arcId = "78b39/PkRrkqrYYVrsCpjuKrsnvhOTqBUwAiy5OBtVOZ78Ny8Q3TVK8i0g";
+window.arcId = "330e6WTyotxpSL38mNHOsMKVtaG9d+K7eQ/tZRBo9+10BFDp5f7C6J7mYQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

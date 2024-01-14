@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>二叉排序树（二叉查找树）详解</title>
+<meta name="keywords" content="二叉,排序,树,查找,详解,二叉,排序,树,Binary," />
+<meta name="description" content="二叉排序树（Binary Sort Tree，简称 BST ）又叫二叉查找树和二叉搜索树，是一种实现动态查找表的树形存储结构。 前面章节介绍了几种表示静态查找表的存储结构，包括线性表、索引顺序" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/search/">查找算法</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/350.html">查找表是什么</a></dd><dd>8.2 <a href="/view/351.html">顺序查找算法</a></dd><dd>8.3 <a href="/view/352.html">二分查找（折半查找）算法</a></dd><dd>8.4 <a href="/view/vip_252.html">分块查找算法（顺序查找算法的升级版）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.5 <a href="/view/vip_253.html">静态树表查找算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.6 <a href="/view/353.html">二叉排序树（二叉查找树）是什么</a></dd><dd>8.7 <a href="/view/354.html">平衡二叉树（AVL树）是什么</a></dd><dd>8.8 <a href="/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.9 <a href="/view/vip_255.html">B-树及其基本操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.10 <a href="/view/vip_256.html">B+树及插入和删除操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.11 <a href="/view/vip_257.html">键树查找法（双链树和字典树）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.12 <a href="/view/63.html">什么是哈希表（散列表）</a></dd><dd>8.13 <a href="/view/vip_258.html">哈希查找算法</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>二叉排序树（二叉查找树）详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_253.html">静态树表查找算法</a></span>
+                    <span class="next right"><a href="/view/354.html">平衡二叉树（AVL树）是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_253.html";window.nextPageURL = "/view/354.html";</script>
+			<div id="arc-body"><u><a href='/view/58.html' target='_blank'>二叉排序树</a></u>（Binary Sort Tree，简称 BST ）又叫<u><a href='/view/58.html' target='_blank'>二叉查找树</a></u>和二叉搜索<u><a href='/view/23.html' target='_blank'>树</a></u>，是一种实现动态查找表的树形存储结构。
+<blockquote>
+	<p>
+		前面章节介绍了几种表示静态查找表的存储结构，包括<u><a href='/view/157.html' target='_blank'>线性表</a></u>、索引<u><a href='/view/158.html' target='_blank'>顺序表</a></u>和静态树表。和静态查找表相比，动态查找表不仅可以查找目标元素，还可以执行插入和删除元素的操作。</p>
+</blockquote>
+二叉排序树本质是一棵<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，它的特别之处在于：
+<ul>
+	<li>
+		对于树中的每个结点，如果它有左子树，那么左子树上所有结点的值都比该结点小；</li>
+	<li>
+		对于树中的每个结点，如果它有右子树，那么右子树上所有结点的值都比该结点大。</li>
+</ul>
+<br />
+举个简单的例子，下<u><a href='/view/200.html' target='_blank'>图</a></u>就是一棵二叉排序树：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/15321K604-0.gif" /><br />
+	图 1 二叉排序树</div>
+<br />
+以根节点为例，左子树上所有结点的值都比 41 小，右子树上所有结点的值都比 41 大。不仅是根结点，整棵二叉树上的非叶子结点都是如此，这样的二叉树就是一棵二叉排序树。
+<h2>
+	二叉排序树的具体应用</h2>
+二叉排序树的常见操作有 3 种，分别是：<br />
+<ul>
+	<li>
+		SearchBST(Key)：查找指定的元素 Key；</li>
+	<li>
+		InsertBST(Key)：若二叉排序树中不存在元素&nbsp;Key，将 Key 作为新结点插入到树上的适当位置；</li>
+	<li>
+		DeleteBST(Key)：若二叉排序树中存在元素 Key，将存储 Key 的结点从树中摘除。</li>
+</ul>
+<br />
+接下来一一讲解这 3 种操作的实现思路，并给出可参考的实现代码。
+<h4>
+	1、二叉排序树查找元素</h4>
+在二叉排序树中查找目标元素，就是从树根结点出发，先将树根结点和目标元素做比较：
+<ul>
+	<li>
+		若当前结点不存在，则查找失败；若当前结点的值和目标元素相等，则查找成功；</li>
+	<li>
+		若当前结点的值比目标元素大，目标元素只可能位于当前结点的左子树中，继续进入左子树查找；</li>
+	<li>
+		若当前结点的值比目标元素小，目标元素只可能位于当前结点的右子树中，继续进入右子树查找；</li>
+</ul>
+<br />
+以图 1 中的二叉排序树为例，查找元素 32 的过程是：
+<ul>
+	<li>
+		从树根结点出发，41 比目标元素 32 大，则 32 只可能位于 41 的左子树中，继续进入左子树查找；</li>
+	<li>
+		当前子树的根结点 20 比目标元素 32 小，则 32 只可能位于 20 的右子树中，继续进入右子树查找；</li>
+	<li>
+		当前子树的根结点 29 比目标元素 32 小，则 32 只可能位于 29 的右子树中，继续进入右子树查找；</li>
+	<li>
+		当前子树只有一个根结点 32，和目标元素相等，正是要找的目标元素。</li>
+</ul>
+<br />
+整个查找过程如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/15321J0U-1.gif" /><br />
+	图 2 查找目标元素 32 的过程</div>
+<br />
+编码实现在二叉排序树中查找目标元素，可以参考如下的 C 语言程序：
+<pre class="cpp">
+BiTree SearchBST(BiTree T, KeyType key) {
+    //如果 T 为空，则查找失败，返回NULL；或者查找成功，返回指向存有目标元素结点的指针
+    if (!T || key == T-&gt;data) {
+        return T;
+    }
+    else if (key &lt; T-&gt;data) {
+        //继续去左子树中查找目标元素
+        return SearchBST(T-&gt;lchild, key);
+    }
+    else {
+        //继续去右子树中查找目标元素
+        return SearchBST(T-&gt;rchild, key);
+    }
+}</pre>
+<h4>
+	2、二叉排序树插入元素</h4>
+二叉排序树中各个结点的值都不相等，因此新插入的元素一定是原二叉排序树没有的，否则插入操作会失败。此外插入新元素后，必须保证整棵树还是一棵二叉排序树。<br />
+<br />
+二叉排序树插入新元素的方法是：在树中查找新元素，最终查找失败时找到的位置，就是放置新元素的位置。<br />
+<br />
+例如在图 1 的二叉排序树中插入新元素 30，在树中查找 30，最终查找失败时找到的位置是结点 32 的左孩子，直接将 30 作为 32 的左孩子即可。下图的动画演示了插入的整个过程：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/15321LV0-2.gif" /><br />
+	图 3 二叉排序树插入新结点</div>
+<br />
+编码实现向二叉排序树中插入新元素，可以参考下面的 C 语言程序：
+<pre class="cpp">
+//向二叉排序树 T 中插入目标元素 e
+Status InsertBST(BiTree* T, ElemType e) {
+    //如果本身为空树，则直接添加 e 为根结点
+    if ((*T) == NULL)
+    {
+        (*T) = (BiTree)malloc(sizeof(BiTNode));
+        (*T)-&gt;data = e;
+        (*T)-&gt;lchild = NULL;
+        (*T)-&gt;rchild = NULL;
+        return true;
+    }
+    //如果找到目标元素，插入失败
+    else if (e == (*T)-&gt;data)
+    {
+        return false;
+    }
+    //如果 e 小于当前结点的值，表明应该将 e 插入到该结点的左子树中
+    else if (e &lt; (*T)-&gt;data) {
+        InsertBST(&amp;(*T)-&gt;lchild, e);
+    }
+    //如果 e 大于当前结点的值，表明应该将 e 插入到该结点的右子树中
+    else
+    {
+        InsertBST(&amp;(*T)-&gt;rchild, e);
+    }
+}</pre>
+InsertBST() 函数本意是将指定元素插入到二叉排序树中，当二叉排序树不存在（为 NULL）时，此函数还能完成二叉排序树的构建工作。
+<blockquote>
+	<p>
+		作为实现动态查找表的树形结构，二叉排序树通常不会一次性创建好，而是一边查找一边创建，InsertBST() 就是实现此过程的函数。</p>
+</blockquote>
+<h4>
+	3、二叉排序树删除元素</h4>
+删除二叉排序树中已有的元素，必须确保整棵树还是一棵二叉排序树。<br />
+<br />
+假设被删除的元素是 P，删除的同时需要妥善处理它的左、右子树。根据结点 P 是否有左、右孩子，可以归结为以下 3 种情况：
+<ol>
+	<li>
+		P 是叶子结点：可以直接摘除，整棵树还是二叉排序树。<br />
+		<br />
+		例如，删除图 1 中的结点 32，它就是一个叶子结点，直接删除它并不会破坏二叉排序树的结构。</li>
+	<li>
+		P 只有一个孩子（左孩子或右孩子）：若 P 是双亲结点（用 F 表示）的左孩子，直接将 P 的孩子结点作为 F 的左孩子；反之若 P 是 F 的右孩子，直接将 P 的孩子结点作为 F 的右孩子。<br />
+		<br />
+		例如，删除图 1 中的结点 29，它只有一个孩子结点 32。由于 29 是双亲结点 20 的右孩子，因此直接将 32 作为 20 的右孩子，这样做既删除了结点 29，整棵树还是二叉排序树。</li>
+	<li>
+		P 有两个孩子：中序遍历整棵二叉排序树，在中序序列里找到 P 的直接前驱结点 S，将 P 结点修改成 S 结点，然后再将之前的 S 结点从树中摘除。<br />
+		<blockquote>
+			在二叉排序树中，对于拥有两个孩子的结点，它的直接前驱结点要么是叶子结点，要么是没有右孩子的结点，所以删除直接前驱结点可以套用前面两种情况的实现思路。</blockquote>
+		例如，删除图 1 中的结点 20，它在中序序列里的直接前驱结点是 11，将 P 结点的值修改为 11，然后再根据情况 1 的实现思路，将之前的结点 11 直接从树中摘除。</li>
+</ol>
+<br />
+编码实现在二叉排序树中删除某个元素，可以参考如下的 C 语言程序：
+<pre class="cpp">
+//实现删除 p 结点的函数
+Status Delete(BiTree* p)
+{
+    BiTree q = NULL, s = NULL;
+    //情况 1，结点 p 本身为叶子结点，右孩子也为 NULL，用 NULL 直接替换 p 结点即可
+    //情况 2,结点 p 只有一个孩子
+    if (!(*p)-&gt;lchild) { //左子树为空，只需用结点 p 的右子树根结点代替结点 p 即可；
+        q = *p;
+        *p = (*p)-&gt;rchild;
+        free(q);
+    }
+    else if (!(*p)-&gt;rchild) {//右子树为空，只需用结点 p 的左子树根结点代替结点 p 即可；
+        q = *p;
+        *p = (*p)-&gt;lchild;
+        free(q);
+    }
+    //情况 3，结点 p 有两个孩子
+    else {
+        q = *p;
+        s = (*p)-&gt;lchild;
+        //遍历，找到结点 p 的直接前驱，最终 s 指向的就是前驱结点，q 指向的是 s 的父结点
+        while (s-&gt;rchild)
+        {
+            q = s;
+            s = s-&gt;rchild;
+        }
+        //直接改变结点 p 的值
+        (*p)-&gt;data = s-&gt;data;
+        //删除 s 结点
+        //如果 q 和 p 结点不同，删除 s 后的 q 将没有右子树，因此将 s 的左子树作为 q 的右子树
+        if (q != *p) {
+            q-&gt;rchild = s-&gt;lchild;
+        }
+        //如果 q 和 p 结点相同，删除 s 后的 q（p） 将没有左子树，因此将 s 的左子树作为 q（p）的左子树
+        else {
+            q-&gt;lchild = s-&gt;lchild;
+        }
+        free(s);
+    }
+    return true;
+}
+//删除二叉排序树中已有的元素
+Status DeleteBST(BiTree* T, int key)
+{
+    //如果当前二叉排序树不存在，则找不到 key 结点，删除失败
+    if (!(*T)) {
+        return false;
+    }
+    else
+    {
+        //如果 T 为目标结点，调用 Delete() 删除结点
+        if (key == (*T)-&gt;data) {
+            Delete(T);
+            return true;
+        }
+        else if (key &lt; (*T)-&gt;data) {
+            //进入当前结点的左子树，继续查找目标元素
+            return DeleteBST(&amp;(*T)-&gt;lchild, key);
+        }
+        else {
+            //进入当前结点的右子树，继续查找目标元素
+            return DeleteBST(&amp;(*T)-&gt;rchild, key);
+        }
+    }
+}</pre>
+<h2>
+	二叉排序树的具体实现</h2>
+总的来讲，实现二叉排序树的查找、插入和删除操作，可以参考如下的 C 语言程序：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#define ElemType int
+#define KeyType int
+typedef enum { false, true } Status;
+/* 二叉排序树的节点结构定义 */
+typedef struct BiTNode
+{
+    int data;
+    struct BiTNode* lchild, * rchild;
+} BiTNode, * BiTree;
+
+//在 T 二叉排序树中查找 key
+BiTree SearchBST(BiTree T, KeyType key) {
+    //如果 T 为空，则查找失败，返回NULL；或者查找成功，返回指向存有目标元素结点的指针
+    if (!T || key == T-&gt;data) {
+        return T;
+    }
+    else if (key &lt; T-&gt;data) {
+        //继续去左子树中查找目标元素
+        return SearchBST(T-&gt;lchild, key);
+    }
+    else {
+        //继续去右子树中查找目标元素
+        return SearchBST(T-&gt;rchild, key);
+    }
+}
+
+//向二叉排序树 T 中插入目标元素 e
+Status InsertBST(BiTree* T, ElemType e) {
+    //如果本身为空树，则直接添加 e 为根结点
+    if ((*T) == NULL)
+    {
+        (*T) = (BiTree)malloc(sizeof(BiTNode));
+        (*T)-&gt;data = e;
+        (*T)-&gt;lchild = NULL;
+        (*T)-&gt;rchild = NULL;
+        return true;
+    }
+    //如果找到目标元素，插入失败
+    else if (e == (*T)-&gt;data)
+    {
+        return false;
+    }
+    //如果 e 小于当前结点的值，表明应该将 e 插入到该结点的左子树中
+    else if (e &lt; (*T)-&gt;data) {
+        InsertBST(&amp;(*T)-&gt;lchild, e);
+    }
+    //如果 e 大于当前结点的值，表明应该将 e 插入到该结点的右子树中
+    else
+    {
+        InsertBST(&amp;(*T)-&gt;rchild, e);
+    }
+}
+
+//实现删除 p 结点的函数
+Status Delete(BiTree* p)
+{
+    BiTree q = NULL, s = NULL;
+    //情况 1，结点 p 本身为叶子结点，右孩子也为 NULL，用 NULL 直接替换 p 结点即可
+    //情况 2,结点 p 只有一个孩子
+    if (!(*p)-&gt;lchild) { //左子树为空，只需用结点 p 的右子树根结点代替结点 p 即可；
+        q = *p;
+        *p = (*p)-&gt;rchild;
+        free(q);
+    }
+    else if (!(*p)-&gt;rchild) {//右子树为空，只需用结点 p 的左子树根结点代替结点 p 即可；
+        q = *p;
+        *p = (*p)-&gt;lchild;
+        free(q);
+    }
+    //情况 3，结点 p 有两个孩子
+    else {
+        q = *p;
+        s = (*p)-&gt;lchild;
+        //遍历，找到结点 p 的直接前驱，最终 s 指向的就是前驱结点，q 指向的是 s 的父结点
+        while (s-&gt;rchild)
+        {
+            q = s;
+            s = s-&gt;rchild;
+        }
+        //直接改变结点 p 的值
+        (*p)-&gt;data = s-&gt;data;
+        //删除 s 结点
+        //如果 q 和 p 结点不同，删除 s 后的 q 将没有右子树，因此将 s 的左子树作为 q 的右子树
+        if (q != *p) {
+            q-&gt;rchild = s-&gt;lchild;
+        }
+        //如果 q 和 p 结点相同，删除 s 后的 q（p） 将没有左子树，因此将 s 的左子树作为 q（p）的左子树
+        else {
+            q-&gt;lchild = s-&gt;lchild;
+        }
+        free(s);
+    }
+    return true;
+}
+
+//删除二叉排序树中已有的元素
+Status DeleteBST(BiTree* T, ElemType key)
+{
+    //如果当前二叉排序树不存在，则找不到 key 结点，删除失败
+    if (!(*T)) {
+        return false;
+    }
+    else
+    {
+        //如果 T 为目标结点，调用 Delete() 删除结点
+        if (key == (*T)-&gt;data) {
+            Delete(T);
+            return true;
+        }
+        else if (key &lt; (*T)-&gt;data) {
+            //进入当前结点的左子树，继续查找目标元素
+            return DeleteBST(&amp;(*T)-&gt;lchild, key);
+        }
+        else {
+            //进入当前结点的右子树，继续查找目标元素
+            return DeleteBST(&amp;(*T)-&gt;rchild, key);
+        }
+    }
+}
+
+//中序遍历二叉排序树
+void INOrderTraverse(BiTree T) {
+    if (T) {
+        INOrderTraverse(T-&gt;lchild);//遍历当前结点的左子树
+        printf(&quot;%d &quot;, T-&gt;data);     //访问当前结点
+        INOrderTraverse(T-&gt;rchild);//遍历当前结点的右子树
+    }
+}
+
+//后序遍历，释放二叉排序树占用的堆内存
+void DestroyBiTree(BiTree T) {
+    if (T) {
+        DestroyBiTree(T-&gt;lchild);//销毁左孩子
+        DestroyBiTree(T-&gt;rchild);//销毁右孩子
+        free(T);//释放结点占用的内存
+    }
+}
+
+int main()
+{
+    int i;
+    int a[10] = { 41,20,11,29,32,65,50,91,72,99 };
+    BiTree T = NULL;
+    for (i = 0; i &lt; 10; i++) {
+        InsertBST(&amp;T, a[i]);
+    }
+    printf(&quot;中序遍历二叉排序树：\n&quot;);
+    INOrderTraverse(T);
+    printf(&quot;\n&quot;);
+    if (SearchBST(T, 20)) {
+        printf(&quot;二叉排序树中存有元素 20\n&quot;);
+    }
+    printf(&quot;删除20后，中序遍历二叉排序树：\n&quot;);
+    DeleteBST(&amp;T, 20);
+    INOrderTraverse(T);
+    //后续遍历，销毁整棵二叉排序树
+    DestroyBiTree(T);
+}</pre>
+以图 1 为例，程序执行结果为：
+<p class="info-box">
+	中序遍历二叉排序树：<br />
+	11 20 29 32 41 50 65 72 91 99<br />
+	二叉排序树中存有元素 20<br />
+	删除20后，中序遍历二叉排序树：<br />
+	11 29 32 41 50 65 72 91 99</p>
+<h2>
+	总结</h2>
+二叉排序树是一种实现动态查找表的树形存储结构。同一张查找表中，元素的排序顺序不同，最终构建出的二叉排序树也不一样。<br />
+<br />
+例如，{45，24，53，12，37，93} 和 {12，24，37，45，53，93}&nbsp;是同一张动态查找表，只是元素的排序顺序不同，它们对应的二叉排序树分别为：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/15321K259-3.gif" /><br />
+	图 4 不同形态的二叉排序树</div>
+<br />
+左侧二叉排序树表示的是 {45，24，53，12，37，93}，右侧二叉排序树表示的是 {12，24，37，45，53，93}。<br />
+<br />
+二叉排序树的查找性能和整棵树的形态有关。以图 4 为例，假设查找表中元素被查找的概率是相等的（都为1/6），左侧二叉排序树的查找性能用平均查找长度（ASL）表示：
+<p class="info-box">
+	ASL = 1/6 * (1+2+2+3+3+3) = 14/6</p>
+右侧二叉排序树的查找性能为：
+<p class="info-box">
+	ASL = 1/6 * (1+2+3+4+5+6) = 21/6</p>
+ASL 值越小，查找的性能就越高。显然，图 4 左侧二叉排序树的查找性能更高。<br />
+<br />
+也就是说，一张动态查找表往往对应着多棵二叉排序树，当表中元素的查找概率相同时，二叉排序树的层数越少，查找性能越高。
+<blockquote>
+	<p>
+		除了二叉排序树外，还可以用<u><a href='/view/59.html' target='_blank'>平衡二叉树</a></u>实现动态查找表。有关平衡二叉树，可以猛击《<a href="/view/354.html" target="_blank">平衡二叉树（AVL树）详解</a>》一文做详细了解。</p>
+</blockquote>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_253.html">静态树表查找算法</a></span>
+                    <span class="next right"><a href="/view/354.html">平衡二叉树（AVL树）是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_253.html";window.nextPageURL = "/view/354.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 353;
+window.arcId = "cdd9irKqgGZWbR8Qwaq2dAAGKgAJnGVzseMq9RSqjcX6tBq5wP5qFfi+oQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

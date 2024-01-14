@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>静态树表查找算法及C语言实现</title>
+<title>静态树表查找算法详解（C语言实现）</title>
 <meta name="keywords" content="静态,树表,查找,算法,及,语言,实现,静态,树表," />
-<meta name="description" content="" />
+<meta name="description" content="前面章节讨论的查找表，元素的查找概率都是相同的，实际场景中很可能不同。例如，查找表记录的是某校全体学生的病例档案，那么体弱多病学生档案被查找的概率一定高于健康学生" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -66,20 +66,20 @@
 				<span class="channel-num">7</span>
 				<a href='/graph/'>图</a>
 			</dd>
-		
+		<dd class="this"> <span class="channel-num">8</span> <a href="/search/">查找算法</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/350.html">查找表是什么</a></dd><dd>8.2 <a href="/view/351.html">顺序查找算法</a></dd><dd>8.3 <a href="/view/352.html">二分查找（折半查找）算法</a></dd><dd>8.4 <a href="/view/vip_252.html">分块查找算法（顺序查找算法的升级版）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.5 <a href="/view/vip_253.html">静态树表查找算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.6 <a href="/view/353.html">二叉排序树（二叉查找树）是什么</a></dd><dd>8.7 <a href="/view/354.html">平衡二叉树（AVL树）是什么</a></dd><dd>8.8 <a href="/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.9 <a href="/view/vip_255.html">B-树及其基本操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.10 <a href="/view/vip_256.html">B+树及插入和删除操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.11 <a href="/view/vip_257.html">键树查找法（双链树和字典树）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.12 <a href="/view/63.html">什么是哈希表（散列表）</a></dd><dd>8.13 <a href="/view/vip_258.html">哈希查找算法</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
-				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		<dd class="this"> <span class="channel-num">9</span> <a href="/search/">查找算法</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/53.html">什么是查找表</a></dd><dd>9.2 <a href="/view/54.html">顺序查找算法</a></dd><dd>9.3 <a href="/view/55.html">折半查找（二分查找）</a></dd><dd>9.4 <a href="/view/vip_252.html">分块查找算法（索引顺序查找）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.5 <a href="/view/vip_253.html">静态树表查找算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.6 <a href="/view/58.html">二叉排序树（二叉查找树）</a></dd><dd>9.7 <a href="/view/59.html">平衡二叉树（AVL树）</a></dd><dd>9.8 <a href="/view/vip_254.html">红黑树算法(更高级的二叉查找树)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.9 <a href="/view/vip_255.html">B-树及其基本操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.10 <a href="/view/vip_256.html">B+树及插入和删除操作</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.11 <a href="/view/vip_257.html">键树查找法（双链树和字典树）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.12 <a href="/view/63.html">什么是哈希表（散列表）</a></dd><dd>9.13 <a href="/view/vip_258.html">哈希查找算法</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
-			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -94,26 +94,26 @@
 			<div id="arc-info">
 	作者：解学武
 </div>
-			<h1>静态树表查找算法及C语言实现</h1>
+			<h1>静态树表查找算法详解（C语言实现）</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_252.html">分块查找算法（索引顺序查找）</a></span>
-                    <span class="next right"><a href="/view/58.html">二叉排序树（二叉查找树）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_252.html">分块查找算法（顺序查找算法的升级版）</a></span>
+                    <span class="next right"><a href="/view/353.html">二叉排序树（二叉查找树）是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_252.html";window.nextPageURL = "/view/58.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/vip_252.html";window.nextPageURL = "/view/353.html";</script>
 			<div id="arc-body"><div id="buy-course-tip" aid="253"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_252.html">分块查找算法（索引顺序查找）</a></span>
-                    <span class="next right"><a href="/view/58.html">二叉排序树（二叉查找树）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_252.html">分块查找算法（顺序查找算法的升级版）</a></span>
+                    <span class="next right"><a href="/view/353.html">二叉排序树（二叉查找树）是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_252.html";window.nextPageURL = "/view/58.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/vip_252.html";window.nextPageURL = "/view/353.html";</script>
 		</div>
 		
 	</div>
@@ -121,7 +121,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 253;
-window.arcId = "7028N9HD+BYQRDix9Zw0Aaw7yNiyRJLbWCj58kIFhwTTqFwqMOv118Dryw";
+window.arcId = "8ef1/gSBp1Ss1Nl2Vw2FeWvqnfHo8WrynSsw3OMHrHx80fy1/q79if3ppg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

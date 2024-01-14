@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>什么是最短路径</title>
+<meta name="keywords" content="什么,是,最短,路径,在,图,结构,中,一个,顶," />
+<meta name="description" content="在图结构中，一个顶点到另一个顶点的路径可能有多条，最短路径指的就是顶点之间最短的路径。 在不同的场景中，路径最短的含义也有所差异，比如途径顶点数量最少、总权值最小等" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/338.html">图（图存储结构）是什么</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/339.html">图的邻接表存储结构</a></dd><dd>7.6 <a href="/view/340.html">图的十字链表存储结构</a></dd><dd>7.7 <a href="/view/341.html">图的邻接多重表存储结构</a></dd><dd>7.8 <a href="/view/342.html">深度优先搜索（DFS）算法</a></dd><dd>7.9 <a href="/view/343.html">广度优先搜索（BFS）算法</a></dd><dd>7.10 <a href="/view/344.html">深度优先生成树和森林</a></dd><dd>7.11 <a href="/view/345.html">广度优先生成树和森林</a></dd><dd>7.12 <a href="/view/346.html">最小生成树是什么</a></dd><dd>7.13 <a href="/view/vip_245.html">Prim算法(普里姆算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.15 <a href="/view/347.html">重连通图是什么</a></dd><dd>7.16 <a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_348.html">AOE网求关键路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.18 <a href="/view/349.html">最短路径是什么</a></dd><dd>7.19 <a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.20 <a href="/view/vip_249.html">Floyd算法（弗洛伊德算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.21 <a href="/view/vip_250.html">最短路径算法实现移动迷宫游戏（升级版）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>什么是最短路径</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_348.html">AOE网求关键路径</a></span>
+                    <span class="next right"><a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_348.html";window.nextPageURL = "/view/vip_248.html";</script>
+			<div id="arc-body">在<u><a href='/view/200.html' target='_blank'>图</a></u>结构中，一个顶点到另一个顶点的路径可能有多条，最短路径指的就是顶点之间&ldquo;最短&rdquo;的路径。<br />
+<br />
+在不同的场景中，路径&ldquo;最短&rdquo;的含义也有所差异，比如途径顶点数量最少、总权值最小等。提到最短路径，往往指的是总权值最小的路径，所以常常在网结构（带权的图）中讨论最短路径问题，包括有向网和无向网。<br />
+<br />
+举个简单的例子：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1513324413-0.gif" /><br />
+	图 1 有向网</div>
+<br />
+图 1 是一张有向网，其中从 V0 到 V5 的路径有多条，包括：
+<p class="info-box">
+	V0 -&gt; V5，总权值为 100<br />
+	V0 -&gt; V4 -&gt; V5，总权值为 30+60 = 90<br />
+	<span style="color:#b22222;">V0 -&gt; V4 -&gt; V3 -&gt; V5，总权值为 30+20+10 = 60</span><br />
+	V0 -&gt; V2 -&gt; V3 -&gt; V5，总权值为 10+50+10 = 70</p>
+通过比较这些路径的总权值，最终可以找到一条从 V0 到 V5 的最短路径。<br />
+<br />
+现如今，大家出行再也不用担心找不到路了，车上有车载导航，手机上也可以安装各种导航 App，只要输入目的地，导航会自动帮我们规划一条距离最短的路线，这是最短路径在实际生活中的典型应用之一。
+<h2>
+	最短路径问题的解决方案</h2>
+在指定的一张网中查找最短路径，该如何编码实现呢？<br />
+<br />
+解决最短路径问题，最常用的方案有两种，分别叫做「迪杰斯特拉算法」和「弗洛伊德算法」：
+<ul>
+	<li>
+		迪杰斯特拉算法：查找某个顶点到其它顶点之间的最短路径；</li>
+	<li>
+		弗洛伊德算法：查找任意两个顶点之间的最短路径。</li>
+</ul>
+<br />
+关于这两种算法，接下来我会用两篇文章分别讲解它们。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_348.html">AOE网求关键路径</a></span>
+                    <span class="next right"><a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_348.html";window.nextPageURL = "/view/vip_248.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 349;
+window.arcId = "f6a05SRQdG2gYwRvgfwCqRNgJMJ5Nk0OqAw7/wy7tK/g0+WrocjWoWrq6A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

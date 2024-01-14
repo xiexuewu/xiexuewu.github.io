@@ -45,7 +45,7 @@
 				<span class="channel-num">3</span>
 				<a href='/stack_queue/'>栈和队列</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">4</span> <a href="/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/175.html">什么是串存储结构</a></dd><dd>4.2 <a href="/view/176.html">串的定长顺序存储</a></dd><dd>4.3 <a href="/view/177.html">串的堆分配存储</a></dd><dd>4.4 <a href="/view/178.html">串的块链存储</a></dd><dd>4.5 <a href="/view/179.html">BF算法（串模式匹配算法）</a></dd><dd>4.6 <a href="/view/vip_227.html">KMP算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/vip_228.html">[项目实践]字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/312.html">串是什么</a></dd><dd>4.2 <a href="/view/313.html">串的定长顺序存储结构</a></dd><dd>4.3 <a href="/view/314.html">串的堆分配存储结构</a></dd><dd>4.4 <a href="/view/315.html">串的块链存储结构</a></dd><dd>4.5 <a href="/view/316.html">BF算法（串的模式匹配算法）</a></dd><dd>4.6 <a href="/view/vip_227.html">KMP算法（串的快速模式匹配算法）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/317.html">KMP算法还能再优化！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/318.html">死抠：为什么KMP算法的主串指针不用回退？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/vip_228.html">串实现字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
 				<a href='/array_list/'>数组和广义表</a>
@@ -63,22 +63,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -95,49 +95,55 @@
 </div>
 			<h1>字符串（数据结构中的串）</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_223.html">[项目实践]扑克牌小游戏</a></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/311.html">为什么说栈和队列是线性存储结构？</a></span>
                     <span class="next right"><a href="/view/175.html">什么是串存储结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_223.html";window.nextPageURL = "/view/175.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/311.html";window.nextPageURL = "/view/175.html";</script>
 			<div id="arc-body">&nbsp;本章介绍了字符串的三种存储结构，同时介绍了有关进行串的模式匹配的两种算法&mdash;&mdash;普通模式匹配算法以及快速模式匹配算法。建议读者在掌握普通模式匹配算法的基础上学习快速模式匹配算法，这样会理解地更深刻。</div>
 			<dl id="arc-list">
 				<dt>本章内容：</dt>
 				<dd >
-					<span>1.</span> <a href="/view/175.html">串是什么，串存储结构及其实现（无师自通）</a>
+					<span>1.</span> <a href="/view/312.html">串是什么，数据结构中的串（小白必读）</a>
 				</dd>
 <dd class="bg-f7f7f7">
-					<span>2.</span> <a href="/view/176.html">串的定长顺序存储结构（C语言）详解版</a>
+					<span>2.</span> <a href="/view/313.html">串的定长顺序存储结构</a>
 				</dd>
 <dd >
-					<span>3.</span> <a href="/view/177.html">串的堆分配存储结构（C语言详解版）</a>
+					<span>3.</span> <a href="/view/314.html">串的堆分配存储结构</a>
 				</dd>
 <dd class="bg-f7f7f7">
-					<span>4.</span> <a href="/view/178.html">串的块链存储结构（C语言）详解</a>
+					<span>4.</span> <a href="/view/315.html">串的块链存储结构</a>
 				</dd>
 <dd >
-					<span>5.</span> <a href="/view/179.html">BF算法（串模式匹配算法）C语言详解</a>
+					<span>5.</span> <a href="/view/316.html">BF算法（串的模式匹配算法）</a>
 				</dd>
 <dd class="bg-f7f7f7">
-					<span>6.</span> <a href="/view/vip_227.html">KMP算法（快速模式匹配算法）C语言详解</a><span class="glyphicon glyphicon-usd"></span>
+					<span>6.</span> <a href="/view/vip_227.html">KMP算法（串的快速模式匹配算法）</a><span class="glyphicon glyphicon-usd"></span>
 				</dd>
 <dd >
-					<span>7.</span> <a href="/view/vip_228.html">数据结构实践项目之字符过滤系统</a><span class="glyphicon glyphicon-usd"></span>
+					<span>7.</span> <a href="/view/317.html">KMP算法还能再优化！</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>8.</span> <a href="/view/318.html">为什么KMP算法的主串指针不用回退？</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd >
+					<span>9.</span> <a href="/view/vip_228.html">串实现字符过滤系统（C语言详解）</a><span class="glyphicon glyphicon-usd"></span>
 				</dd>
 
 			</dl>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_223.html">[项目实践]扑克牌小游戏</a></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/311.html">为什么说栈和队列是线性存储结构？</a></span>
                     <span class="next right"><a href="/view/175.html">什么是串存储结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_223.html";window.nextPageURL = "/view/175.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/311.html";window.nextPageURL = "/view/175.html";</script>
 		</div>
 		
 	</div>	
@@ -146,7 +152,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 't_' + 3;
-window.arcId = "fdcaKBeD+JSim1L2UZRsstpAVeqtMPG5c2BSNtmWM5tq0WqfGu3Gr8Y";
+window.arcId = "c637pIwTNUuOTtgnKTDan+u2dFgV6gmgBLtfgJvMcMki6pVtUQTwMAI";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>双向线索二叉树的建立及C语言实现</title>
+<title>双向线索二叉树：更高级的线索二叉树</title>
 <meta name="keywords" content="双向,线索,二叉,树,的,建立,及,语言,实现," />
-<meta name="description" content="" />
+<meta name="description" content="《 线索二叉树 》一节分别介绍了先序、中序和后序线索二叉树，如下图所示： 图 1 线索二叉树 对于任意的一棵中序线索二叉树，线索链表中总包含两个 NULL 空指针，但先序和后序线索" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -56,7 +56,7 @@
 				<span class="channel-num">5</span>
 				<a href='/array_list/'>数组和广义表</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">6</span> <a href="/tree/">树</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/23.html">树的存储结构</a></dd><dd>6.2 <a href="/view/192.html">什么是二叉树</a></dd><dd>6.3 <a href="/view/193.html">二叉树的顺序存储结构</a></dd><dd>6.4 <a href="/view/194.html">二叉树的链式存储结构</a></dd><dd>6.5 <a href="/view/vip_237.html">浅谈二叉树的（4种）遍历算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.6 <a href="/view/143.html">二叉树先序遍历（递归与非递归）</a></dd><dd>6.7 <a href="/view/144.html">二叉树中序遍历（递归和非递归）</a></dd><dd>6.8 <a href="/view/145.html">二叉树后序遍历（递归与非递归）</a></dd><dd>6.9 <a href="/view/27.html">二叉树层次遍历</a></dd><dd>6.10 <a href="/view/vip_265.html">线索二叉树(C语言实现)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.11 <a href="/view/vip_266.html">双向线索二叉树的建立</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.12 <a href="/view/196.html">树的双亲表示法</a></dd><dd>6.13 <a href="/view/197.html">树的孩子表示法</a></dd><dd>6.14 <a href="/view/198.html">树的孩子兄弟表示法</a></dd><dd>6.15 <a href="/view/vip_241.html">森林转化为二叉树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.16 <a href="/view/33.html">哈夫曼树</a></dd><dd>6.17 <a href="/view/34.html">回溯算法</a></dd><dd>6.18 <a href="/view/35.html">n个结点的二叉树种类</a></dd><dd>6.19 <a href="/view/vip_242.html">[项目实践]移动迷宫小游戏(初级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/tree/">树</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/325.html">树存储结构是什么</a></dd><dd>6.2 <a href="/view/326.html">什么是二叉树</a></dd><dd>6.3 <a href="/view/327.html">二叉树的顺序存储结构</a></dd><dd>6.4 <a href="/view/194.html">二叉树的链式存储结构</a></dd><dd>6.5 <a href="/view/vip_237.html">浅谈二叉树的（4种）遍历算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.6 <a href="/view/328.html">二叉树的先序遍历算法（递归和非递归）</a></dd><dd>6.7 <a href="/view/329.html">二叉树的中序遍历算法（递归和非递归）</a></dd><dd>6.8 <a href="/view/330.html">二叉树的后序遍历算法（递归和非递归）</a></dd><dd>6.9 <a href="/view/331.html">二叉树的层次遍历</a></dd><dd>6.10 <a href="/view/vip_265.html">线索二叉树：遍历效率更高的二叉树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.11 <a href="/view/vip_266.html">双向线索二叉树：更高级的线索二叉树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.12 <a href="/view/332.html">树的双亲表示法</a></dd><dd>6.13 <a href="/view/197.html">树的孩子表示法</a></dd><dd>6.14 <a href="/view/198.html">树的孩子兄弟表示法</a></dd><dd>6.15 <a href="/view/vip_241.html">孩子兄弟表示法将森林转变成二叉树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.16 <a href="/view/333.html">哈夫曼树（赫夫曼树、最优树）详解</a></dd><dd>6.17 <a href="/view/vip_334.html">哈夫曼编码（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.18 <a href="/view/335.html">回溯算法详解</a></dd><dd>6.19 <a href="/view/vip_336.html">回溯算法解决八皇后问题</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.20 <a href="/view/vip_242.html">回溯算法实现移动迷宫小游戏(初级版)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.21 <a href="/view/vip_337.html">n个结点最多可以构建多少棵树？</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">7</span>
 				<a href='/graph/'>图</a>
@@ -64,22 +64,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -94,26 +94,26 @@
 			<div id="arc-info">
 	作者：解学武
 </div>
-			<h1>双向线索二叉树的建立及C语言实现</h1>
+			<h1>双向线索二叉树：更高级的线索二叉树</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_265.html">线索二叉树(C语言实现)</a></span>
-                    <span class="next right"><a href="/view/196.html">树的双亲表示法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_265.html">线索二叉树：遍历效率更高的二叉树</a></span>
+                    <span class="next right"><a href="/view/332.html">树的双亲表示法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_265.html";window.nextPageURL = "/view/196.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/vip_265.html";window.nextPageURL = "/view/332.html";</script>
 			<div id="arc-body"><div id="buy-course-tip" aid="266"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_265.html">线索二叉树(C语言实现)</a></span>
-                    <span class="next right"><a href="/view/196.html">树的双亲表示法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_265.html">线索二叉树：遍历效率更高的二叉树</a></span>
+                    <span class="next right"><a href="/view/332.html">树的双亲表示法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_265.html";window.nextPageURL = "/view/196.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/vip_265.html";window.nextPageURL = "/view/332.html";</script>
 		</div>
 		
 	</div>
@@ -121,7 +121,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 266;
-window.arcId = "aa29c/aBkuwMedZWC7oDt03WpH59BOqNeXR6E3jwHPZ6kj63DJSVnj0R6Q";
+window.arcId = "fcc4mXE+fB2F+7Bx5ooTj4UR73uSaVAspg7GBY5XxI/dsLBI1lk8bNm8eA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

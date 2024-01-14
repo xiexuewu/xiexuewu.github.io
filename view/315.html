@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>串的块链存储结构</title>
+<meta name="keywords" content="串,的,块链,存储,结构,串,的,块链,存储,指的," />
+<meta name="description" content="串的块链存储 ，指的是用链表存储字符串。 前面章节中，我们学习了很多种链表结构，比如单链表、双向链表、循环链表等，每种链表可以带头结点，也可以不带头结点，实际场景中" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/312.html">串是什么</a></dd><dd>4.2 <a href="/view/313.html">串的定长顺序存储结构</a></dd><dd>4.3 <a href="/view/314.html">串的堆分配存储结构</a></dd><dd>4.4 <a href="/view/315.html">串的块链存储结构</a></dd><dd>4.5 <a href="/view/316.html">BF算法（串的模式匹配算法）</a></dd><dd>4.6 <a href="/view/vip_227.html">KMP算法（串的快速模式匹配算法）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/317.html">KMP算法还能再优化！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/318.html">死抠：为什么KMP算法的主串指针不用回退？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/vip_228.html">串实现字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>串的块链存储结构</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/314.html">串的堆分配存储结构</a></span>
+                    <span class="next right"><a href="/view/316.html">BF算法（串的模式匹配算法）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/314.html";window.nextPageURL = "/view/316.html";</script>
+			<div id="arc-body"><span style="color: rgb(0, 128, 0);"><u><a href='/view/175.html' target='_blank'>串</a></u>的块链存储</span><span style="color: rgb(178, 34, 34);">，指的是用<u><a href='/view/160.html' target='_blank'>链表</a></u>存储字符串。</span><br />
+<br />
+前面章节中，我们学习了很多种链表结构，比如单链表、<u><a href='/view/166.html' target='_blank'>双向链表</a></u>、循环链表等，每种链表可以带头结点，也可以不带头结点，实际场景中可以根据实际需求选用合适的链表结构。本节讲解块链存储结构选用的是无头结点的单链表。<br />
+<br />
+所谓单链表，指的是链表中的每个结点只包含一个指针，但每个结点的数据域可以存储多个元素。例如，<u><a href='/view/200.html' target='_blank'>图</a></u> 1 是用单链表存储字符串&nbsp;<code style="font-size: 14px;">shujujiegou</code>，该链表的各个结点只存储了 1 个字符：
+<div style="text-align: center;">
+	<br />
+	<img alt="各节点仅存储 1 个数据元素的链表" src="/uploads/allimg/240114/12460Q4c-0.gif" /><br />
+	图 1 各结点仅存储 1 个元素的链表</div>
+<br />
+图 2 所示链表中，各个结点存储了 4 个字符：
+<div style="text-align: center;">
+	<br />
+	<img alt="各节点可存储 4 个数据元素的链表" src="/uploads/allimg/240114/12460V233-1.gif" /><br />
+	图 2 各节点可存储 4 个数据元素的链表</div>
+<br />
+当链表中各个结点存储多个（&ge;2）字符时，最后一个结点的数据域不一定会被占满。这种情况下，通常会用 &#39;#&#39; 或其它的特殊字符（能与字符串区分开就行）将数据域填满。<br />
+<br />
+也就是说，使用块链结构存储字符串，链表中的各个结点可以存储多个字符。那么问题就出现了，怎样确定各个结点存储字符的个数呢？<br />
+<br />
+链表的结点存储多少个字符，会直接影响后续操作字符串的效率。例如，每个结点只存储 1 个字符，好处是方便后续做字符串做插入和删除操作（<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为 O(1) ），但字符串的存储过于分散，存储空间的利用率不高（每多一个节点，就要多申请一个指针域的空间）。<br />
+<br />
+链表中各个结点存储多少个字符，需结合具体情况综合分析，比如：
+<ol>
+	<li>
+		<span style="color: rgb(178, 34, 34);">串的长度和存储空间的大小</span>：如果字符串很长，链表申请的存储空间有限，应尽可能地让各个节点多存储字符，提高空间的利用率；</li>
+	<li>
+		<span style="color: rgb(178, 34, 34);">程序实现的功能</span>：实际场景中，如果需要对存储的字符串做大量的插入或删除操作，应尽可能地减少各个节点存储字符的数量，提高程序的执行效率。</li>
+</ol>
+<br />
+这里给出一个实现串的块链存储的 C 语言程序，以加深初学者对此字符串存储方式的认识：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;string.h&gt;
+#define LINK_NNM 3//链表中各个结点存储字符的个数
+
+typedef struct link {
+    char a[LINK_NNM]; //数据域可存放 LinkNum 个字符
+    struct link* next; //代表指针域，指向直接后继结点
+}Link;
+
+//初始化链表，其中head为头指针，str为存储的字符串
+Link* initLink(Link* head, char* str) {
+    int i, length = strlen(str);
+    Link* temp = NULL;
+    //根据字符串的长度，计算出链表中使用节点的个数
+    int num = length / LINK_NNM;
+    if (length % LINK_NNM) {
+        num++;
+    }
+    //创建并初始化首元节点
+    head = (Link*)malloc(sizeof(Link));
+    head-&gt;next = NULL;
+    temp = head;
+    //初始化链表
+    for (i = 0; i &lt; num; i++)
+    {
+        int j = 0;
+        for (; j &lt; LINK_NNM; j++)
+        {
+            if (i * LINK_NNM + j &lt; length) {
+                temp-&gt;a[j] = str[i * LINK_NNM + j];
+            }
+            else
+                temp-&gt;a[j] = &#39;#&#39;;
+        }
+        if (i * LINK_NNM + j &lt; length)
+        {
+            Link* newLink = (Link*)malloc(sizeof(Link));
+            newLink-&gt;next = NULL;
+            temp-&gt;next = newLink;
+            temp = newLink;
+        }
+    }
+    return head;
+}
+
+//输出链表
+void displayLink(Link* head) {
+    Link* temp = head;
+    while (temp) {
+        int i;
+        for (i = 0; i &lt; LINK_NNM; i++) {
+            printf(&quot;%c&quot;, temp-&gt;a[i]);
+        }
+        temp = temp-&gt;next;
+    }
+}
+
+int main()
+{
+    Link* head = NULL;
+    head = initLink(head, &quot;http://data.biancheng.net&quot;);
+    displayLink(head);
+    return 0;
+}</pre>
+程序输出结果为：
+<p class="info-box">
+	http://data.biancheng.net##</p>
+<h2>
+	总结</h2>
+总的来讲，与串的定长顺序存储结构和堆分配存储结构相比，块链存储结构存储字符串的过程要复杂一些，不如前面两种方案灵活。<br />
+<br />
+在块链存储结构中操作字符串，和在链表中操作数据的实现过程类似，本节不再给大家做详细赘述，感兴趣的读者可自行编码实现。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/314.html">串的堆分配存储结构</a></span>
+                    <span class="next right"><a href="/view/316.html">BF算法（串的模式匹配算法）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/314.html";window.nextPageURL = "/view/316.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 315;
+window.arcId = "a25dB4m/ANeUN0YslnAKgxEFGLgLp0DnGRmBRqwUccMdrIllSEEXACIJdw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

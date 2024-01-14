@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>图的十字链表存储结构（C语言实现）</title>
+<meta name="keywords" content="图,的,十字,链表,存储,结构,语言,实现,图,的," />
+<meta name="description" content="存储有向图（网），可以使用邻接表或者逆邻接表结构，也可以使用本节讲解的十字链表结构。 用邻接表存储有向图（网），可以快速计算出某个顶点的出度，但计算入度的效率不高。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/338.html">图（图存储结构）是什么</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/339.html">图的邻接表存储结构</a></dd><dd>7.6 <a href="/view/340.html">图的十字链表存储结构</a></dd><dd>7.7 <a href="/view/341.html">图的邻接多重表存储结构</a></dd><dd>7.8 <a href="/view/342.html">深度优先搜索（DFS）算法</a></dd><dd>7.9 <a href="/view/343.html">广度优先搜索（BFS）算法</a></dd><dd>7.10 <a href="/view/344.html">深度优先生成树和森林</a></dd><dd>7.11 <a href="/view/345.html">广度优先生成树和森林</a></dd><dd>7.12 <a href="/view/346.html">最小生成树是什么</a></dd><dd>7.13 <a href="/view/vip_245.html">Prim算法(普里姆算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.15 <a href="/view/347.html">重连通图是什么</a></dd><dd>7.16 <a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_348.html">AOE网求关键路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.18 <a href="/view/349.html">最短路径是什么</a></dd><dd>7.19 <a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.20 <a href="/view/vip_249.html">Floyd算法（弗洛伊德算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.21 <a href="/view/vip_250.html">最短路径算法实现移动迷宫游戏（升级版）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>图的十字链表存储结构（C语言实现）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/339.html">图的邻接表存储结构</a></span>
+                    <span class="next right"><a href="/view/341.html">图的邻接多重表存储结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/339.html";window.nextPageURL = "/view/341.html";</script>
+			<div id="arc-body">存储有向<u><a href='/view/200.html' target='_blank'>图</a></u>（网），可以使用<u><a href='/view/203.html' target='_blank'>邻接表</a></u>或者逆邻接表结构，也可以使用本节讲解的<u><a href='/view/186.html' target='_blank'>十字链表</a></u>结构。<br />
+<br />
+用邻接表存储有向图（网），可以快速计算出某个顶点的出度，但计算入度的效率不高。反之，用逆邻接表存储有向图（网），可以快速计算出某个顶点的入度，但计算出度的效率不高。<br />
+<br />
+那么有没有一种存储结构，可以快速计算出有向图（网）中某个顶点的入度和出度呢？答案是肯定的，十字<u><a href='/view/160.html' target='_blank'>链表</a></u>就是这样的一种存储结构。<br />
+<br />
+十字链表（Orthogonal List）是一种专门存储有向图（网）的结构，它的核心思想是：将图中的所有顶点存储到<u><a href='/view/158.html' target='_blank'>顺序表</a></u>（也可以是链表）中，同时为每个顶点配备两个链表，一个链表记录以当前顶点为弧头的弧，另一个链表记录以当前顶点为弧尾的弧。<br />
+<br />
+举个简单的例子，用十字链表结构存储图 1a) 中的有向图，图的存储状态如图 1b) 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1450503300-0.gif" /><br />
+	图 1 十字链表结构存储有向图</div>
+<br />
+观察图 1b)，顺序表中的各个存储空间分为 3 部分，各个链表中的结点空间分为 4 部分。<br />
+<br />
+顺序表中的空间用来存储图中的顶点，结构如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1450503U7-1.gif" /><br />
+	图 2 存储顶点的结构</div>
+<br />
+各部分的含义分别是：
+<ul>
+	<li>
+		data 数据域：用来存储顶点的信息；</li>
+	<li>
+		firstin 指针域：指向一个链表，链表中记录的都是以当前顶点为弧头的弧的信息；</li>
+	<li>
+		firstout 指针域：指向另一个链表，链表中记录的是以当前顶点为弧尾的弧的信息。</li>
+</ul>
+<br />
+链表的结点用来存储图中的弧，结构如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1450504X3-2.gif" /><br />
+	图 3: 存储弧信息的结点结构</div>
+各部分的含义分别是：
+<ul>
+	<li>
+		tailvex数据域：存储弧尾一端顶点在顺序表中的位置下标；</li>
+	<li>
+		headvex 数据域：存储弧头一端顶点在顺序表中的位置下标；</li>
+	<li>
+		hlink 指针域：指向下一个以当前顶点作为弧头的弧；</li>
+	<li>
+		tlink 指针域：指向下一个以当前顶点作为弧尾的弧；</li>
+	<li>
+		info 指针：存储弧的其它信息，例如有向网中弧的权值。如果不需要存储其它信息，可以省略。</li>
+</ul>
+<br />
+在十字链表结构中，如果想计算某个顶点的出度，就统计 firstout 所指链表中的结点数量，每找到一个结点，再根据它的 tlink 指针域寻找下一个结点，直到最后一个结点。同样的道理，如果想计算某个顶点的入度，就统计 firstin 所指链表中的结点数量，每找到一个结点，再根据它的 hlink 指针域寻找下一个结点，直到最后一个结点。<br />
+<br />
+以图 1b) 中的 V1 顶点为例，计算出度的过程是：
+<ul>
+	<li>
+		根据 V1 顶点的 firstout 指针，找到存储 &lt;V1, V2&gt; 弧的结点；</li>
+	<li>
+		根据 &lt;V1, V2&gt; 弧结点中的 tlink 指针，找到存储 &lt;V1, V3&gt; 弧的结点；</li>
+	<li>
+		由于 &lt;V1, V3&gt; 弧结点的 tlink 指针为 NULL，因此只找到了 2 个弧，V1 顶点的出度就为 2。</li>
+</ul>
+<br />
+计算 V1 顶点入度的过程是：
+<ul>
+	<li>
+		根据 V1 顶点的 firstin 指针，找到存储 &lt;V4, V1&gt; 弧的结点；</li>
+	<li>
+		由于 &lt;V4, V1&gt; 弧结点的 hlink 指针为 NULL，因此只找到了 1 个弧，V1 顶点的入度就为 1。</li>
+</ul>
+<blockquote>
+	<p>
+		如果你已经学会了邻接表和逆邻接表，可以将十字链表想象成邻接表和逆邻接表的结合体。</p>
+</blockquote>
+构建图的十字链表结构，对应的 C 语言代码如下：
+<pre class="cpp">
+#define  MAX_VERTEX_NUM 20 //图中顶点的最大数量
+#define  InfoType int*     //表示弧额外信息的数据类型
+#define  VertexType char    //图中顶点的数据类型
+//表示链表中存储弧的结点
+typedef struct ArcBox {
+    int tailvex, headvex;          //弧尾、弧头对应顶点在顺序表中的位置下标
+    struct ArcBox* hlik, * tlink;  //hlik指向下一个以当前顶点为弧头的弧结点；
+                                   //tlink 指向下一个以当前顶点为弧尾的弧结点；
+    //InfoType info;               //存储弧相关信息的指针
+}ArcBox;
+
+//表示顺序表中的各个顶点
+typedef struct VexNode {
+    VertexType data;              //顶点的数据域
+    ArcBox* firstin, * firstout;  //指向以该顶点为弧头和弧尾的链表首个结点
+}VexNode;
+
+//表示十字链表存储结构
+typedef struct {
+    VexNode xlist[MAX_VERTEX_NUM];  //存储顶点的顺序表
+    int vexnum, arcnum;             //记录图的顶点数和弧数
+}OLGraph;</pre>
+<h2>
+	十字链表结构的具体实现</h2>
+以图&nbsp;1a) 为例，十字链表结构存储此图的完整 C 语言程序如下所示：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#define  MAX_VERTEX_NUM 20 //图中顶点的最大数量
+#define  InfoType int*     //表示弧额外信息的数据类型
+#define  VertexType char    //图中顶点的数据类型
+//表示链表中存储弧的结点
+typedef struct ArcBox {
+    int tailvex, headvex;          //弧尾、弧头对应顶点在顺序表中的位置下标
+    struct ArcBox* hlik, * tlink;  //hlik指向下一个以当前顶点为弧头的弧结点；
+                                   //tlink 指向下一个以当前顶点为弧尾的弧结点；
+    //InfoType info;               //存储弧相关信息的指针
+}ArcBox;
+
+//表示顺序表中的各个顶点
+typedef struct VexNode {
+    VertexType data;              //顶点的数据域
+    ArcBox* firstin, * firstout;  //指向以该顶点为弧头和弧尾的链表首个结点
+}VexNode;
+
+//表示十字链表存储结构
+typedef struct {
+    VexNode xlist[MAX_VERTEX_NUM];  //存储顶点的顺序表
+    int vexnum, arcnum;             //记录图的顶点数和弧数
+}OLGraph;
+
+int LocateVex(OLGraph* G, VertexType v) {
+    int i;
+    //遍历一维<u><a href='/view/181.html' target='_blank'>数组</a></u>，找到变量v
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        if (G-&gt;xlist[i].data == v) {
+            break;
+        }
+    }
+    //如果找不到，输出提示语句，返回 -1
+    if (i &gt; G-&gt;vexnum) {
+        printf(&quot;no such vertex.\n&quot;);
+        return -1;
+    }
+    return i;
+}
+
+//构建十字链表存储结构
+void CreateDG(OLGraph* G) {
+    int i, j, k;
+    VertexType v1, v2;
+    ArcBox* p = NULL;
+    //输入有向图的顶点数和弧数
+    scanf(&quot;%d %d&quot;, &amp;(G-&gt;vexnum), &amp;(G-&gt;arcnum));
+    getchar();
+    //使用一维数组存储顶点数据，初始化指针域为NULL
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        scanf(&quot;%c&quot;, &amp;(G-&gt;xlist[i].data));
+        getchar();
+        G-&gt;xlist[i].firstin = NULL;
+        G-&gt;xlist[i].firstout = NULL;
+    }
+    //存储图中的所有弧
+    for (k = 0; k &lt; G-&gt;arcnum; k++) {
+        scanf(&quot;%c %c&quot;, &amp;v1, &amp;v2);
+        getchar();
+        //确定v1、v2在数组中的位置下标
+        i = LocateVex(G, v1);
+        j = LocateVex(G, v2);
+        //建立弧的结点
+        p = (ArcBox*)malloc(sizeof(ArcBox));
+        p-&gt;tailvex = i;
+        p-&gt;headvex = j;
+        //采用头插法插入新的p结点
+        p-&gt;hlik = G-&gt;xlist[j].firstin;
+        p-&gt;tlink = G-&gt;xlist[i].firstout;
+        G-&gt;xlist[j].firstin = G-&gt;xlist[i].firstout = p;
+    }
+}
+
+//计算某顶点的入度
+int indegree(OLGraph* G, VertexType x) {
+    int i;
+    int num = 0;
+    //遍历整个顺序表
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        //找到目标顶点
+        if (x == G-&gt;xlist[i].data) {
+            //从该顶点的 firstin 指针所指的结点开始遍历
+            ArcBox* p = G-&gt;xlist[i].firstin;
+            while (p)
+            {
+                num++;
+                //遍历 hlink 指针指向的下一个结点
+                p = p-&gt;hlik;
+            }
+            break;
+        }
+    }
+    if (i == G-&gt;vexnum) {
+        printf(&quot;图中没有指定顶点\n&quot;);
+        return -1;
+    }
+    return num;
+}
+
+//计算某顶点的出度
+int outdegree(OLGraph* G, VertexType x) {
+    int i;
+    int num = 0;
+    //遍历整个顺序表
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        //找到目标顶点
+        if (x == G-&gt;xlist[i].data) {
+            //从该顶点的 firstout 指针所指的结点开始遍历
+            ArcBox* p = G-&gt;xlist[i].firstout;
+            while (p)
+            {
+                num++;
+                //遍历 tlink 指针指向的下一个结点
+                p = p-&gt;tlink;
+            }
+            break;
+        }
+    }
+    if (i == G-&gt;vexnum) {
+        printf(&quot;图中没有指定顶点\n&quot;);
+        return -1;
+    }
+    return num;
+}
+
+//删除十字链表结构
+//每个顶点配备两个链表，选定一个链表（比如 firstout 所指链表），删除每个顶点中 firstout 所指链表上的结点
+void DeleteDG(OLGraph* G) {
+    int i;
+    ArcBox* p = NULL, * del = NULL;
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        p = G-&gt;xlist[i].firstout;
+        while (p) {
+            del = p;
+            p = p-&gt;tlink;
+            free(del);
+        }
+        //将第 i 个位置的两个指针全部置为 NULL，能有效避免出现野指针
+        G-&gt;xlist[i].firstout = NULL;
+        G-&gt;xlist[i].firstin = NULL;
+    }
+}
+int main() {
+    OLGraph G;
+    CreateDG(&amp;G);
+    printf(&quot;A 顶点的入度为 %d\n&quot;, indegree(&amp;G, &#39;A&#39;));
+    printf(&quot;A 顶点的出度为 %d\n&quot;, outdegree(&amp;G, &#39;A&#39;));
+    DeleteDG(&amp;G);
+    return 0;
+}</pre>
+分别用 A、B、C、D 表示 V1、V2、V3 和 V4，程序的运行结果为：
+<p class="info-box">
+	4 5<br />
+	A B C D<br />
+	A B<br />
+	A C<br />
+	C D<br />
+	D A<br />
+	D B<br />
+	A 顶点的入度为 1<br />
+	A 顶点的出度为 2</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/339.html">图的邻接表存储结构</a></span>
+                    <span class="next right"><a href="/view/341.html">图的邻接多重表存储结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/339.html";window.nextPageURL = "/view/341.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 340;
+window.arcId = "0aeblG00KZp8u7GuGijAnO9CsEKqZ2tBSQiAjuC9cS5ef0U4Ai19HE1cjQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

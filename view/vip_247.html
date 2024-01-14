@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>拓扑排序算法及C语言实现</title>
+<title>拓扑排序算法（C语言实现）</title>
 <meta name="keywords" content="拓扑,排序,算法,及,语言,实现,拓扑,排序,算法," />
-<meta name="description" content="" />
+<meta name="description" content="拓扑排序是一种在有向无环图（Directed Acyclic Graph，又称 DAG 图）中寻找拓扑序列的算法。 所谓拓扑序列，本质上是一种线性序列，它的特殊之处通过一个例子给大家讲解： 图 1 有向无环" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -61,25 +61,25 @@
 				<span class="channel-num">6</span>
 				<a href='/tree/'>树</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/200.html">什么是图存储结构</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/203.html">图的邻接表存储法</a></dd><dd>7.6 <a href="/view/204.html">图的十字链表存储法</a></dd><dd>7.7 <a href="/view/205.html">图的邻接多重表存储法</a></dd><dd>7.8 <a href="/view/39.html">深度优先搜索和广度优先搜索</a></dd><dd>7.9 <a href="/view/45.html">深度优先生成树和广度优先生成树</a></dd><dd>7.10 <a href="/view/vip_245.html">普里姆算法(Prim算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.11 <a href="/view/vip_246.html">克鲁斯卡尔算法(Kruskal算法)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/view/42.html">重连通图</a></dd><dd>7.13 <a href="/view/vip_247.html">拓扑排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/44.html">关键路径</a></dd><dd>7.15 <a href="/view/vip_248.html">迪杰斯特拉算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.16 <a href="/view/vip_249.html">弗洛伊德算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_250.html">[项目实践]移动迷宫小游戏(升级版)</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/338.html">图（图存储结构）是什么</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/339.html">图的邻接表存储结构</a></dd><dd>7.6 <a href="/view/340.html">图的十字链表存储结构</a></dd><dd>7.7 <a href="/view/341.html">图的邻接多重表存储结构</a></dd><dd>7.8 <a href="/view/342.html">深度优先搜索（DFS）算法</a></dd><dd>7.9 <a href="/view/343.html">广度优先搜索（BFS）算法</a></dd><dd>7.10 <a href="/view/344.html">深度优先生成树和森林</a></dd><dd>7.11 <a href="/view/345.html">广度优先生成树和森林</a></dd><dd>7.12 <a href="/view/346.html">最小生成树是什么</a></dd><dd>7.13 <a href="/view/vip_245.html">Prim算法(普里姆算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.15 <a href="/view/347.html">重连通图是什么</a></dd><dd>7.16 <a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_348.html">AOE网求关键路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.18 <a href="/view/349.html">最短路径是什么</a></dd><dd>7.19 <a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.20 <a href="/view/vip_249.html">Floyd算法（弗洛伊德算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.21 <a href="/view/vip_250.html">最短路径算法实现移动迷宫游戏（升级版）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -94,26 +94,26 @@
 			<div id="arc-info">
 	作者：解学武
 </div>
-			<h1>拓扑排序算法及C语言实现</h1>
+			<h1>拓扑排序算法（C语言实现）</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/42.html">重连通图</a></span>
-                    <span class="next right"><a href="/view/44.html">关键路径</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/347.html">重连通图是什么</a></span>
+                    <span class="next right"><a href="/view/vip_348.html">AOE网求关键路径</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/42.html";window.nextPageURL = "/view/44.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/347.html";window.nextPageURL = "/view/vip_348.html";</script>
 			<div id="arc-body"><div id="buy-course-tip" aid="247"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/42.html">重连通图</a></span>
-                    <span class="next right"><a href="/view/44.html">关键路径</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/347.html">重连通图是什么</a></span>
+                    <span class="next right"><a href="/view/vip_348.html">AOE网求关键路径</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/42.html";window.nextPageURL = "/view/44.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/347.html";window.nextPageURL = "/view/vip_348.html";</script>
 		</div>
 		
 	</div>
@@ -121,7 +121,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 247;
-window.arcId = "1936rlWuccwMSv3MeCP6ZqaIc7GtVVbLzkzI7R7+WFesaBxQzTOSNJOLRw";
+window.arcId = "d3f6glsow3YnJRZ1LvWL48MA0uZXtTABCiyLehrKm7E4pNSyH5mdxV1bxw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

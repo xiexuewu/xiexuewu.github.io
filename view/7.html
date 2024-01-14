@@ -12,7 +12,7 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>循环链表(约瑟夫环)的建立及C语言实现</title>
+<title>循环链表实现约瑟夫环</title>
 <meta name="keywords" content="循,环链,表,循,环链,表," />
 <meta name="description" content="链表的使用，还可以把链表的两头连接，形成了一个环状链表，称为 循环链表 。 和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，就形成了一个环。 图1 循环链表" />
 </head>
@@ -36,7 +36,7 @@
 				<span class="channel-num">1</span>
 				<a href='/intro/'>数据结构概述</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">2</span> <a href="/linear_list/">线性表</a> </dd><dl class="dl-sub"><dd>2.1 <a href="/view/157.html">什么是线性表</a></dd><dd>2.2 <a href="/view/158.html">顺序表是什么</a></dd><dd>2.3 <a href="/view/159.html">顺序表的基本操作</a></dd><dd>2.4 <a href="/view/160.html">链表是什么</a></dd><dd>2.5 <a href="/view/161.html">链表的基本操作</a></dd><dd>2.6 <a href="/view/vip_216.html">顺序表和链表有哪些不同？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.7 <a href="/view/279.html">存储结构和存取结构，完全不是一码事！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.8 <a href="/view/277.html">4种算法，实现单链表的反转！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.9 <a href="/view/163.html">静态链表：更高级的线性表</a></dd><dd>2.10 <a href="/view/164.html">静态链表基本操作</a></dd><dd>2.11 <a href="/view/vip_218.html">静态链表和动态链表区别</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.12 <a href="/view/7.html">循环链表实现约瑟夫环</a></dd><dd>2.13 <a href="/view/166.html">双向链表是什么</a></dd><dd>2.14 <a href="/view/167.html">双向链表的基本操作</a></dd><dd>2.15 <a href="/view/281.html">双向链表实现贪吃蛇游戏（含源码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.16 <a href="/view/vip_263.html">双向循环链表（C语言）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.17 <a href="/view/vip_233.html">[项目实践]俄罗斯轮盘赌小游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">2</span> <a href="/linear_list/">线性表</a> </dd><dl class="dl-sub"><dd>2.1 <a href="/view/287.html">线性表是什么</a></dd><dd>2.2 <a href="/view/288.html">顺序表是什么</a></dd><dd>2.3 <a href="/view/289.html">顺序表的基本操作</a></dd><dd>2.4 <a href="/view/vip_293.html">顺序表与数组根本不是一码事！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.5 <a href="/view/290.html">链表是什么</a></dd><dd>2.6 <a href="/view/291.html">链表的基本操作</a></dd><dd>2.7 <a href="/view/vip_216.html">顺序表和链表有哪些不同？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.8 <a href="/view/vip_297.html">删除链表倒数第N个结点（3种实现方案）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.9 <a href="/view/vip_277.html">4种算法，实现单链表的反转！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.10 <a href="/view/vip_298.html">如何判断两个单链表相交？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.11 <a href="/view/vip_279.html">存储结构和存取结构，完全不是一码事！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.12 <a href="/view/163.html">静态链表是什么</a></dd><dd>2.13 <a href="/view/292.html">静态链表的基本操作</a></dd><dd>2.14 <a href="/view/vip_218.html">静态链表和动态链表的区别</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.15 <a href="/view/294.html">双向链表是什么</a></dd><dd>2.16 <a href="/view/295.html">双向链表基本操作</a></dd><dd>2.17 <a href="/view/vip_281.html">双向链表实现贪吃蛇游戏（含源码）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.18 <a href="/view/7.html">循环链表实现约瑟夫环</a></dd><dd>2.19 <a href="/view/vip_263.html">双向循环链表是什么</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.20 <a href="/view/vip_299.html">如何判断链表中有环？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.21 <a href="/view/vip_233.html">线性表实现俄罗斯轮盘赌游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">3</span>
 				<a href='/stack_queue/'>栈和队列</a>
@@ -64,22 +64,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -94,16 +94,16 @@
 			<div id="arc-info">
 	作者：解学武
 </div>
-			<h1>循环链表(约瑟夫环)的建立及C语言实现</h1>
+			<h1>循环链表实现约瑟夫环</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_218.html">静态链表和动态链表区别</a></span>
-                    <span class="next right"><a href="/view/166.html">双向链表是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_281.html">双向链表实现贪吃蛇游戏（含源码）</a></span>
+                    <span class="next right"><a href="/view/vip_263.html">双向循环链表是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_218.html";window.nextPageURL = "/view/166.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/vip_281.html";window.nextPageURL = "/view/vip_263.html";</script>
 			<div id="arc-body">无论是<u><a href='/view/163.html' target='_blank'>静态链表</a></u>还是动态<u><a href='/view/160.html' target='_blank'>链表</a></u>，有时在解决具体问题时，需要我们对其结构进行稍微地调整。比如，可以把链表的两头连接，使其成为了一个环状链表，通常称为<span style="color:#008000;">循环链表</span><span style="color:#b22222;">。</span><br />
 <br />
 和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，链表就能成环儿，如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示。
@@ -228,14 +228,14 @@ int main() {
 在遍历的过程中，尤其要注意循环链表虽然首尾相连，但并不表示该链表没有第一个节点和最后一个结点。所以，不要随意改变头指针的指向。<br />
 </div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_218.html">静态链表和动态链表区别</a></span>
-                    <span class="next right"><a href="/view/166.html">双向链表是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_281.html">双向链表实现贪吃蛇游戏（含源码）</a></span>
+                    <span class="next right"><a href="/view/vip_263.html">双向循环链表是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_218.html";window.nextPageURL = "/view/166.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/vip_281.html";window.nextPageURL = "/view/vip_263.html";</script>
 		</div>
 		
 	</div>
@@ -243,7 +243,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 7;
-window.arcId = "fee5vMcdn2Ut8VgaoRSdEoTIDGgb16WFB2HAb5eXmqPINuzHGm/HDBs";
+window.arcId = "8e0f3KVWNsR2u4RUT9N/XDxsaniP5mn2gYaMO2gWQoitcJJEYkQhtmw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

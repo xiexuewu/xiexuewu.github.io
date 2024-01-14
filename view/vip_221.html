@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>数据结构实践项目之进制转换器</title>
+<title>栈实现进制转换器（C语言完整代码）</title>
 <meta name="keywords" content="数据结构,实践,项目,之,进制,转换器," />
-<meta name="description" content="" />
+<meta name="description" content="进制转换器项目要求： 用户提供需要转换的数据和该数据的进制，以及要转换的进制，进制转换器提供给用户最终的正确转换的结果。 转换器实例 例如，用户提供了一个十进制数：" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -41,7 +41,7 @@
 				<span class="channel-num">2</span>
 				<a href='/linear_list/'>线性表</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">3</span> <a href="/stack_queue/">栈和队列</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/169.html">什么是栈</a></dd><dd>3.2 <a href="/view/170.html">顺序栈的基本操作</a></dd><dd>3.3 <a href="/view/171.html">链栈的基本操作</a></dd><dd>3.4 <a href="/view/vip_221.html">[项目实践]进制转换器</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.5 <a href="/view/vip_222.html">[项目实践]括号匹配</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.6 <a href="/view/172.html">什么是队列</a></dd><dd>3.7 <a href="/view/173.html">顺序队列及其实现</a></dd><dd>3.8 <a href="/view/174.html">链式队列及基本操作</a></dd><dd>3.9 <a href="/view/vip_220.html">[项目实践]变态的停车场管理系统</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/view/vip_223.html">[项目实践]扑克牌小游戏</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/stack_queue/">栈和队列</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/300.html">栈是什么</a></dd><dd>3.2 <a href="/view/301.html">顺序栈的基本操作</a></dd><dd>3.3 <a href="/view/302.html">链栈的基本操作</a></dd><dd>3.4 <a href="/view/vip_303.html">递归实现栈的逆序（两种解决方案）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.5 <a href="/view/vip_221.html">栈实现进制转换器</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.6 <a href="/view/vip_222.html">栈解决括号匹配问题</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.7 <a href="/view/vip_304.html">栈求表达式的值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/305.html">队列是什么</a></dd><dd>3.9 <a href="/view/306.html">顺序队列的基本操作</a></dd><dd>3.10 <a href="/view/307.html">循环队列：更高级的顺序队列</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.11 <a href="/view/308.html">链式队列的基本操作</a></dd><dd>3.12 <a href="/view/vip_220.html">队列实现停车场管理系统</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/vip_223.html">队列实现“推小车”扑克牌游戏</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.14 <a href="/view/vip_309.html">用两个栈实现一个队列</a></dd><dd>3.15 <a href="/view/vip_310.html">用两个队列实现一个栈</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.16 <a href="/view/vip_311.html">为什么说栈和队列是线性存储结构？</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">4</span>
 				<a href='/string/'>字符串</a>
@@ -64,22 +64,22 @@
 		
 			<dd>
 				<span class="channel-num">8</span>
-				<a href='/memory/'>动态内存管理</a>
-			</dd>
-		
-			<dd>
-				<span class="channel-num">9</span>
 				<a href='/search/'>查找算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">10</span>
+				<span class="channel-num">9</span>
 				<a href='/sort/'>排序算法</a>
 			</dd>
 		
 			<dd>
-				<span class="channel-num">11</span>
+				<span class="channel-num">10</span>
 				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
 			</dd>
 		
 			<dd>
@@ -94,26 +94,26 @@
 			<div id="arc-info">
 	作者：解学武
 </div>
-			<h1>数据结构实践项目之进制转换器</h1>
+			<h1>栈实现进制转换器（C语言完整代码）</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/171.html">链栈的基本操作</a></span>
-                    <span class="next right"><a href="/view/vip_222.html">[项目实践]括号匹配</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_303.html">递归实现栈的逆序（两种解决方案）</a></span>
+                    <span class="next right"><a href="/view/vip_222.html">栈解决括号匹配问题</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/171.html";window.nextPageURL = "/view/vip_222.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/vip_303.html";window.nextPageURL = "/view/vip_222.html";</script>
 			<div id="arc-body"><div id="buy-course-tip" aid="221"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/171.html">链栈的基本操作</a></span>
-                    <span class="next right"><a href="/view/vip_222.html">[项目实践]括号匹配</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_303.html">递归实现栈的逆序（两种解决方案）</a></span>
+                    <span class="next right"><a href="/view/vip_222.html">栈解决括号匹配问题</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/171.html";window.nextPageURL = "/view/vip_222.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/vip_303.html";window.nextPageURL = "/view/vip_222.html";</script>
 		</div>
 		
 	</div>
@@ -121,7 +121,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 221;
-window.arcId = "e025nJq4l9T0yvnzjbwfgEbRwpvCvjQR5RczJ/YPmCgdIecJTrcpTcIF9Q";
+window.arcId = "db49VzJFBDpNdtos5ZkiaUvAemhi64N5ERPd5itk1CsaquhOIXLYyFcZKQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

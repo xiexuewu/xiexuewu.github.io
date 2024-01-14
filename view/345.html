@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>广度优先生成树和森林（C语言实现）</title>
+<meta name="keywords" content="广度,优先,生成,树,和,森林,语言,实现,我们," />
+<meta name="description" content="我们知道，遍历连通图可以得到一棵生成树，遍历非连通图可以得到多棵生成树（又称生成森林）。 关于生成树和生成森林，读者可以猛击《生成树（森林）》做系统的了解。 所谓广度" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程（带答疑）</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/graph/">图</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/338.html">图（图存储结构）是什么</a></dd><dd>7.2 <a href="/view/201.html">什么是连通图</a></dd><dd>7.3 <a href="/view/202.html">什么是生成树</a></dd><dd>7.4 <a href="/view/37.html">图的顺序存储结构</a></dd><dd>7.5 <a href="/view/339.html">图的邻接表存储结构</a></dd><dd>7.6 <a href="/view/340.html">图的十字链表存储结构</a></dd><dd>7.7 <a href="/view/341.html">图的邻接多重表存储结构</a></dd><dd>7.8 <a href="/view/342.html">深度优先搜索（DFS）算法</a></dd><dd>7.9 <a href="/view/343.html">广度优先搜索（BFS）算法</a></dd><dd>7.10 <a href="/view/344.html">深度优先生成树和森林</a></dd><dd>7.11 <a href="/view/345.html">广度优先生成树和森林</a></dd><dd>7.12 <a href="/view/346.html">最小生成树是什么</a></dd><dd>7.13 <a href="/view/vip_245.html">Prim算法(普里姆算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/vip_246.html">Kruskal算法(克鲁斯卡尔算法)求最小生成树</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.15 <a href="/view/347.html">重连通图是什么</a></dd><dd>7.16 <a href="/view/vip_247.html">拓扑排序算法（C语言实现）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.17 <a href="/view/vip_348.html">AOE网求关键路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.18 <a href="/view/349.html">最短路径是什么</a></dd><dd>7.19 <a href="/view/vip_248.html">Dijkstra算法（迪杰斯特拉算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.20 <a href="/view/vip_249.html">Floyd算法（弗洛伊德算法）查找最短路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.21 <a href="/view/vip_250.html">最短路径算法实现移动迷宫游戏（升级版）</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>数据结构与算法视频教程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>广度优先生成树和森林（C语言实现）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/344.html">深度优先生成树和森林</a></span>
+                    <span class="next right"><a href="/view/346.html">最小生成树是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/344.html";window.nextPageURL = "/view/346.html";</script>
+			<div id="arc-body">我们知道，遍历<u><a href='/view/201.html' target='_blank'>连通图</a></u>可以得到一棵<u><a href='/view/202.html' target='_blank'>生成树</a></u>，遍历非连通<u><a href='/view/200.html' target='_blank'>图</a></u>可以得到多棵生成<u><a href='/view/23.html' target='_blank'>树</a></u>（又称生成森林）。
+<blockquote>
+	<p>
+		关于生成树和生成森林，读者可以猛击《<a href="/view/202.html" target="_blank">生成树（森林）</a>》做系统的了解。</p>
+</blockquote>
+所谓<u><a href='/view/45.html' target='_blank'>广度优先生成树</a></u>，指的就是用<u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>算法遍历连通图得到的生成树。同样的道理，用广度优先搜索算法遍历非连通图得到的生成森林又称广度优先生成森林。<br />
+<br />
+那么，对于给定的一张（非）连通图，如何获得它对应的广度优先生成树（森林）呢？
+<h2>
+	广度优先生成树</h2>
+图 1a) 是一个连通图，用广度优先搜索算法遍历它，得到的广度优先生成树如图 1b) 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145UBP2-0.gif" /><br />
+	图 1 连通图和它对应的广度优先生成树</div>
+<blockquote>
+	<p>
+		图 1a) 对应的广度优先生成树有很多棵，图 1b) 只是其中的一棵。</p>
+</blockquote>
+注意，对连通图进行广度优先搜索，得到的生成树往往是一棵普通树，而非<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，例如：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145UA310-1.gif" /><br />
+	图 2 广度优先生成树不是二叉树</div>
+<br />
+和普通树相比，二叉树更容易存储，操作起来也更简单，比如二叉树有现成的四种遍历算法。实际场景中，我们通常先借助<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>将普通树转换为二叉树，然后再操作二叉树实现自己想要的功能。<br />
+<br />
+对于给定的一张连通图，如果我们想获得它对应的一棵广度优先生成树，并且还是经过孩子兄弟表示法转换后的二叉树，该如何编码实现呢？这里给大家提供一种实现思路：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX_VERtEX_NUM 20                   //顶点的最大数量
+#define VRType int                          //表示顶点之间关系的数据类型
+#define VertexType int                      //图中顶点的数据类型
+#define States int
+typedef enum { false, true }bool;           //定义bool型常量
+bool visited[MAX_VERtEX_NUM];              //设置全局<u><a href='/view/181.html' target='_blank'>数组</a></u>，记录标记顶点是否被访问过
+
+typedef struct {
+    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。
+}ArcCell, AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+
+typedef struct {
+    VertexType vexs[MAX_VERtEX_NUM];         //存储图中顶点数据
+    AdjMatrix arcs;                          //二维数组，记录顶点之间的关系
+    int vexnum, arcnum;                      //记录图的顶点数和弧（边）数
+}MGraph;
+
+//孩子兄弟表示法的二叉树结构
+typedef struct CSNode {
+    VertexType data;
+    struct CSNode* lchild;//孩子结点
+    struct CSNode* nextsibling;//兄弟结点
+}*CSTree, CSNode;
+
+typedef struct Queue {
+    CSTree data;//<u><a href='/view/172.html' target='_blank'>队列</a></u>中存放的为树结点
+    struct Queue* next;
+}Queue;
+
+//根据顶点数据，返回顶点在二维数组中的位置下标
+int LocateVex(MGraph* G, VertexType v) {
+    int i = 0;
+    //遍历一维数组，找到变量v
+    for (; i &lt; G-&gt;vexnum; i++) {
+        if (G-&gt;vexs[i] == v) {
+            break;
+        }
+    }
+    //如果找不到，输出提示语句，返回-1
+    if (i &gt; G-&gt;vexnum) {
+        printf(&quot;no such vertex.\n&quot;);
+        return -1;
+    }
+    return i;
+}
+
+//构造无向图
+States CreateDN(MGraph* G) {
+    int i, j, n, m;
+    int v1, v2;
+    scanf(&quot;%d,%d&quot;, &amp;(G-&gt;vexnum), &amp;(G-&gt;arcnum));
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;, &amp;(G-&gt;vexs[i]));
+    }
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        for (j = 0; j &lt; G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j].adj = 0;
+        }
+    }
+    for (i = 0; i &lt; G-&gt;arcnum; i++) {
+        scanf(&quot;%d,%d&quot;, &amp;v1, &amp;v2);
+        n = LocateVex(G, v1);
+        m = LocateVex(G, v2);
+        if (m == -1 || n == -1) {
+            printf(&quot;no this vertex\n&quot;);
+            return -1;
+        }
+        G-&gt;arcs[n][m].adj = 1;
+        G-&gt;arcs[m][n].adj = 1;//无向图的二阶矩阵沿主对角线对称
+    }
+    return 1;
+}
+
+int FirstAdjVex(MGraph G, int v)
+{
+    int i;
+    //对于数组下标 v 处的顶点，找到第一个和它相邻的顶点，并返回该顶点的数组下标
+    for (i = 0; i &lt; G.vexnum; i++) {
+        if (G.arcs[v][i].adj) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int NextAdjVex(MGraph G, int v, int w)
+{
+    int i;
+    //对于数组下标 v 处的顶点，从 w 位置开始继续查找和它相邻的顶点，并返回该顶点的数组下标
+    for (i = w + 1; i &lt; G.vexnum; i++) {
+        if (G.arcs[v][i].adj) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//初始化队列
+void InitQueue(Queue** Q) {
+    (*Q) = (Queue*)malloc(sizeof(Queue));
+    (*Q)-&gt;next = NULL;
+}
+
+//结点T进队列
+void EnQueue(Queue** Q, CSTree T) {
+    Queue* temp = (*Q);
+    Queue* element = (Queue*)malloc(sizeof(Queue));
+    element-&gt;data = T;
+    element-&gt;next = NULL;
+    while (temp-&gt;next != NULL) {
+        temp = temp-&gt;next;
+    }
+    temp-&gt;next = element;
+}
+
+//队头元素出队列
+void DeQueue(Queue** Q, CSTree* u) {
+    Queue* del = (*Q)-&gt;next;
+    (*u) = (*Q)-&gt;next-&gt;data;
+    (*Q)-&gt;next = (*Q)-&gt;next-&gt;next;
+    free(del);
+}
+
+//判断队列是否为空
+bool QueueEmpty(Queue* Q) {
+    if (Q-&gt;next == NULL) {
+        return true;
+    }
+    return false;
+}
+
+//释放队列占用的堆空间
+void DelQueue(Queue* Q) {
+    Queue* del = NULL;
+    while (Q-&gt;next) {
+        del = Q-&gt;next;
+        Q-&gt;next = Q-&gt;next-&gt;next;
+        free(del);
+    }
+    free(Q);
+}
+
+//构建广度优先生成树
+void Create<u><a href='/view/39.html' target='_blank'>BFS</a></u>Tree(MGraph G, CSTree* T) {
+    int v, w;
+    CSTree q = NULL;
+    Queue* Q = NULL;
+    InitQueue(&amp;Q);
+    //根结点入队
+    EnQueue(&amp;Q, (*T));
+    //当队列为空时，证明遍历完成
+    while (!QueueEmpty(Q)) {
+        bool first = true;
+        //队列首个结点出队
+        DeQueue(&amp;Q, &amp;q);
+        //判断结点中的数据在数组中的具体位置
+        v = LocateVex(&amp;G, q-&gt;data);
+        //已经访问过的更改其标志位
+        visited[v] = true;
+        //将所有和 v 紧邻的其它结点入队
+        for (w = FirstAdjVex(G, v); w &gt;= 0; w = NextAdjVex(G, v, w)) {
+            //标志位为false，证明未遍历过
+            if (!visited[w]) {
+                //新建一个结点 p，存放当前遍历的顶点
+                CSTree p = (CSTree)malloc(sizeof(CSNode));
+                p-&gt;data = G.vexs[w];
+                p-&gt;lchild = NULL;
+                p-&gt;nextsibling = NULL;
+                //当前结点入队
+                EnQueue(&amp;Q, p);
+                //更改标志位
+                visited[w] = true;
+                //如果是出队顶点的第一个邻接点，设置p结点为其左孩子
+                if (first) {
+                    q-&gt;lchild = p;
+                    first = false;
+                }
+                //否则设置其为兄弟结点
+                else {
+                    q-&gt;nextsibling = p;
+                }
+                q = p;
+            }
+        }
+    }
+    DelQueue(Q);
+}
+
+void BFSTree(MGraph G, CSTree* T) {
+    int v;
+    //每个顶点的标记为初始化为false
+    for (v = 0; v &lt; G.vexnum; v++) {
+        visited[v] = false;
+    }
+    //将下标为 0 的顶点作为树的根结点
+    (*T) = (CSTree)malloc(sizeof(CSNode));
+    (*T)-&gt;data = G.vexs[0];
+    (*T)-&gt;lchild = NULL;
+    (*T)-&gt;nextsibling = NULL;
+    //构建广度优先生成树
+    CreateBFSTree(G, T);
+}
+
+//前序遍历二叉树
+void PreOrderTraverse(CSTree T) {
+    if (T) {
+        printf(&quot;%d &quot;, T-&gt;data);
+        PreOrderTraverse(T-&gt;lchild);
+        PreOrderTraverse(T-&gt;nextsibling);
+    }
+    return;
+}
+
+//后序遍历二叉树，释放树占用的内存
+void DestroyBiTree(CSTree T) {
+    if (T) {
+        DestroyBiTree(T-&gt;lchild);//销毁左孩子
+        DestroyBiTree(T-&gt;nextsibling);//销毁右孩子
+        free(T);//释放结点占用的内存
+    }
+}
+
+int main() {
+    MGraph G;//建立一个图的变量
+    CSTree T = NULL;
+    CreateDN(&amp;G);//初始化图
+    BFSTree(G, &amp;T);
+    PreOrderTraverse(T);
+    DestroyBiTree(T);
+    return 0;
+}</pre>
+程序中，BFSTree() 函数的功能是为构建生成树做准备工作，包括将所有顶点的标志域置为 flase，以及选择一个顶点，从该顶点开始遍历连通图。CreateBFSTree() 函数的功能是构建生成树，构建整棵树的过程采用了孩子兄弟表示法。<br />
+<br />
+以图 1a) 的连通图为例，程序最终构建出的广度优先生成树为：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145U64612-2.gif" /><br />
+	图 3 程序构建的广度优先生成树</div>
+<br />
+程序的执行结果为：
+<p class="info-box">
+	8,9<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	6<br />
+	7<br />
+	8<br />
+	1,2<br />
+	2,4<br />
+	2,5<br />
+	4,8<br />
+	5,8<br />
+	1,3<br />
+	3,6<br />
+	6,7<br />
+	7,3<br />
+	1 2 4 8 5 3 6 7</p>
+<h2>
+	广度优先生成森林</h2>
+图 4a) 是一张非连通图，它可以分为图 4b) 所示的 3 个连通分量：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145U64046-3.gif" /><br />
+	图 4 非连通图和它的连通分量</div>
+<br />
+对图 4a) 进行广度优先搜索，其本质是依次遍历 3 个连通分量，最终得到 3 棵生成树，如下图所示<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145UB135-4.gif" /><br />
+	图 5 广度优先生成森林</div>
+<br />
+借助孩子兄弟表示法，可以将森林中的每一棵生成树都转换为二叉树，然后再将多棵二叉树合并为一整颗二叉树。比如将图 5 的生成森林转换为一整棵二叉树，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/145U61425-5.gif" /><br />
+	图 6 生成森林转换为一整棵二叉树</div>
+<br />
+对于给定的一张非连通图，如果我们想获得它对应的广度优先生成森林，并且是经过孩子兄弟表示法转换后的一整棵二叉树，该如何编码实现呢？这里给大家提供一种实现思路：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX_VERtEX_NUM 20                   //顶点的最大数量
+#define VRType int                          //表示顶点之间关系的数据类型
+#define VertexType int                      //图中顶点的数据类型
+#define States int
+typedef enum { false, true }bool;           //定义bool型常量
+bool visited[MAX_VERtEX_NUM];              //设置全局数组，记录标记顶点是否被访问过
+
+typedef struct {
+    VRType adj;                             //对于无权图，用 1 或 0 表示是否相邻；对于带权图，直接为权值。
+}ArcCell, AdjMatrix[MAX_VERtEX_NUM][MAX_VERtEX_NUM];
+
+typedef struct {
+    VertexType vexs[MAX_VERtEX_NUM];         //存储图中顶点数据
+    AdjMatrix arcs;                          //二维数组，记录顶点之间的关系
+    int vexnum, arcnum;                      //记录图的顶点数和弧（边）数
+}MGraph;
+
+//孩子兄弟表示法的二叉树结构
+typedef struct CSNode {
+    VertexType data;
+    struct CSNode* lchild;//孩子结点
+    struct CSNode* nextsibling;//兄弟结点
+}*CSTree, CSNode;
+
+typedef struct Queue {
+    CSTree data;//队列中存放的为树结点
+    struct Queue* next;
+}Queue;
+
+//根据顶点数据，返回顶点在二维数组中的位置下标
+int LocateVex(MGraph* G, VertexType v) {
+    int i = 0;
+    //遍历一维数组，找到变量v
+    for (; i &lt; G-&gt;vexnum; i++) {
+        if (G-&gt;vexs[i] == v) {
+            break;
+        }
+    }
+    //如果找不到，输出提示语句，返回-1
+    if (i &gt; G-&gt;vexnum) {
+        printf(&quot;no such vertex.\n&quot;);
+        return -1;
+    }
+    return i;
+}
+
+//构造无向图
+States CreateDN(MGraph* G) {
+    int i, j, n, m;
+    int v1, v2;
+    scanf(&quot;%d,%d&quot;, &amp;(G-&gt;vexnum), &amp;(G-&gt;arcnum));
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        scanf(&quot;%d&quot;, &amp;(G-&gt;vexs[i]));
+    }
+    for (i = 0; i &lt; G-&gt;vexnum; i++) {
+        for (j = 0; j &lt; G-&gt;vexnum; j++) {
+            G-&gt;arcs[i][j].adj = 0;
+        }
+    }
+    for (i = 0; i &lt; G-&gt;arcnum; i++) {
+        scanf(&quot;%d,%d&quot;, &amp;v1, &amp;v2);
+        n = LocateVex(G, v1);
+        m = LocateVex(G, v2);
+        if (m == -1 || n == -1) {
+            printf(&quot;no this vertex\n&quot;);
+            return -1;
+        }
+        G-&gt;arcs[n][m].adj = 1;
+        G-&gt;arcs[m][n].adj = 1;//无向图的二阶矩阵沿主对角线对称
+    }
+    return 1;
+}
+
+int FirstAdjVex(MGraph G, int v)
+{
+    int i;
+    //对于数组下标 v 处的顶点，找到第一个和它相邻的顶点，并返回该顶点的数组下标
+    for (i = 0; i &lt; G.vexnum; i++) {
+        if (G.arcs[v][i].adj) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int NextAdjVex(MGraph G, int v, int w)
+{
+    int i;
+    //对于数组下标 v 处的顶点，从 w 位置开始继续查找和它相邻的顶点，并返回该顶点的数组下标
+    for (i = w + 1; i &lt; G.vexnum; i++) {
+        if (G.arcs[v][i].adj) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//初始化队列
+void InitQueue(Queue** Q) {
+    (*Q) = (Queue*)malloc(sizeof(Queue));
+    (*Q)-&gt;next = NULL;
+}
+
+//结点T进队列
+void EnQueue(Queue** Q, CSTree T) {
+    Queue* temp = (*Q);
+    Queue* element = (Queue*)malloc(sizeof(Queue));
+    element-&gt;data = T;
+    element-&gt;next = NULL;
+    while (temp-&gt;next != NULL) {
+        temp = temp-&gt;next;
+    }
+    temp-&gt;next = element;
+}
+
+//队头元素出队列
+void DeQueue(Queue** Q, CSTree* u) {
+    Queue* del = (*Q)-&gt;next;
+    (*u) = (*Q)-&gt;next-&gt;data;
+    (*Q)-&gt;next = (*Q)-&gt;next-&gt;next;
+    free(del);
+}
+
+//判断队列是否为空
+bool QueueEmpty(Queue* Q) {
+    if (Q-&gt;next == NULL) {
+        return true;
+    }
+    return false;
+}
+
+//释放队列占用的堆空间
+void DelQueue(Queue* Q) {
+    Queue* del = NULL;
+    while (Q-&gt;next) {
+        del = Q-&gt;next;
+        Q-&gt;next = Q-&gt;next-&gt;next;
+        free(del);
+    }
+    free(Q);
+}
+
+//构建广度优先生成树
+void BFSTree(MGraph G, CSTree* T) {
+    int v, w;
+    CSTree q = NULL, p = NULL;
+    Queue* Q = NULL;
+    InitQueue(&amp;Q);
+    //根结点入队
+    EnQueue(&amp;Q, (*T));
+    //当队列为空时，证明遍历完成
+    while (!QueueEmpty(Q)) {
+        bool first = true;
+        //队列首个结点出队
+        DeQueue(&amp;Q, &amp;q);
+        //判断结点中的数据在数组中的具体位置
+        v = LocateVex(&amp;G, q-&gt;data);
+        //已经访问过的更改其标志位
+        visited[v] = true;
+        //将紧邻 v 的其它结点全部入队，并以孩子兄弟表示法构建生成树
+        for (w = FirstAdjVex(G, v); w &gt;= 0; w = NextAdjVex(G, v, w)) {
+            //标志位为false，证明未遍历过
+            if (!visited[w]) {
+                //新建一个结点 p，存放当前遍历的顶点
+                p = (CSTree)malloc(sizeof(CSNode));
+                p-&gt;data = G.vexs[w];
+                p-&gt;lchild = NULL;
+                p-&gt;nextsibling = NULL;
+                //当前结点入队
+                EnQueue(&amp;Q, p);
+                //更改标志位
+                visited[w] = true;
+                //出队的第一个顶点，设置为 q 的左孩子
+                if (first) {
+                    q-&gt;lchild = p;
+                    first = false;
+                }
+                //否则设置其为兄弟结点
+                else {
+                    q-&gt;nextsibling = p;
+                }
+                q = p;
+            }
+        }
+    }
+    DelQueue(Q);
+}
+
+//广度优先搜索生成森林并转化为二叉树
+void BFSForest(MGraph G, CSTree* T) {
+    int v;
+    CSTree q = NULL, p = NULL;
+    //每个顶点的标记为初始化为false
+    for (v = 0; v &lt; G.vexnum; v++) {
+        visited[v] = false;
+    }
+    //遍历图中所有的顶点
+    for (v = 0; v &lt; G.vexnum; v++) {
+        //如果该顶点的标记位为false，证明未访问过
+        if (!(visited[v])) {
+            //新建一个结点，表示该顶点
+            p = (CSTree)malloc(sizeof(CSNode));
+            p-&gt;data = G.vexs[v];
+            p-&gt;lchild = NULL;
+            p-&gt;nextsibling = NULL;
+            //如果树未空，则该顶点作为树的树根
+            if (!(*T)) {
+                (*T) = p;
+            }
+            //该顶点作为树根的兄弟结点
+            else {
+                q-&gt;nextsibling = p;
+            }
+            //每次都要把q指针指向新的结点，为下次添加结点做铺垫
+            q = p;
+            //以该结点为起始点，构建广度优先生成树
+            BFSTree(G,&amp;p);
+        }
+    }
+}
+
+//前序遍历二叉树
+void PreOrderTraverse(CSTree T) {
+    if (T) {
+        printf(&quot;%d &quot;, T-&gt;data);
+        PreOrderTraverse(T-&gt;lchild);
+        PreOrderTraverse(T-&gt;nextsibling);
+    }
+    return;
+}
+
+//后序遍历二叉树，释放树占用的内存
+void DestroyBiTree(CSTree T) {
+    if (T) {
+        DestroyBiTree(T-&gt;lchild);//销毁左孩子
+        DestroyBiTree(T-&gt;nextsibling);//销毁右孩子
+        free(T);//释放结点占用的内存
+    }
+}
+
+int main() {
+    MGraph G;//建立一个图的变量
+    CSTree T = NULL;
+    CreateDN(&amp;G);//初始化图
+    BFSForest(G, &amp;T);
+    PreOrderTraverse(T);
+    DestroyBiTree(T);
+    return 0;
+}</pre>
+程序中，BFSTree() 函数负责生成各个连通分量对应的二叉树，BFSForest() 函数负责将多个二叉树整合为一整棵二叉树。<br />
+<br />
+以图 4a) 中的非连通图为例，程序最终构建的广度优先生成树如图 6c) 所示，程序的执行结果为：
+<p class="info-box">
+	13,13<br />
+	1<br />
+	2<br />
+	3<br />
+	4<br />
+	5<br />
+	6<br />
+	7<br />
+	8<br />
+	9<br />
+	10<br />
+	11<br />
+	12<br />
+	13<br />
+	1,2<br />
+	1,3<br />
+	1,6<br />
+	1,12<br />
+	2,13<br />
+	4,5<br />
+	7,8<br />
+	7,10<br />
+	7,9<br />
+	8,10<br />
+	11,12<br />
+	11,13<br />
+	12,13<br />
+	1 2 13 3 6 12 11 4 5 7 8 9 10</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/344.html">深度优先生成树和森林</a></span>
+                    <span class="next right"><a href="/view/346.html">最小生成树是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/344.html";window.nextPageURL = "/view/346.html";</script>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 345;
+window.arcId = "7231COW91h8a8XUwGBZqlEO+XFVwTDznFBcdH/Zwc9Swd+XMSBx070OJsQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>
