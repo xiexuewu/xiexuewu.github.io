@@ -1,0 +1,28 @@
+{dede:include filename="common/doctype.htm"/}
+<title>{dede:field.title/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+</head>
+<body>
+{dede:include filename="common/header.htm"/}
+<div id="main" class="clearfix">
+	{dede:include filename="common/sidebar_sourcecode.htm"/}
+	<div id="article-wrap">
+		<div id="article">
+			{dede:include filename="common/arcinfo.htm"/}
+			<h1>{dede:field.title/}</h1>
+			<div id="arc-body">{dede:field.body/}</div>
+		</div>
+		{dede:include filename="common/feedback.htm"/}
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + {dede:field.id/};
+window.arcId = "{dede:field.id function="authcode('arc', @me)" /}";
+window.siteId = {dede:global.cfg_subsite_id/};
+window.cmsTempletsVer = "{dede:global.cfg_tempversion/}";
+</script>
+{dede:include filename="common/footer.htm"/}
+</body>
+</html>

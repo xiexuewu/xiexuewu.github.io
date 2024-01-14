@@ -1,0 +1,16 @@
+<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		{dede:channel  type='son' currentstyle='
+			<dd class="this">
+				<span class="channel-num">~autoindex~</span>
+				<a href="~typelink~">~typename~</a>
+			</dd>~arcslist~'
+		}
+			<dd>
+				<span class="channel-num">[field:global.autoindex/]</span>
+				<a href='[field:typeurl/]'>[field:typename/]</a>
+			</dd>
+		{/dede:channel}
+	</div>
+</div>
