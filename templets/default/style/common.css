@@ -50,7 +50,11 @@ blockquote{
   font-family: 'Glyphicons Halflings';
 
   src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+  url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), 
+  url('../fonts/glyphicons-halflings-regular.woff') format('woff'), 
+  url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), 
+  url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -91,6 +95,72 @@ blockquote{
 	color: #f9a017;
 }
 
+@font-face {
+	font-family: "iconfont";
+	src: url('../font/iconfont.eot');
+	src: url('../font/iconfont.eot?v=1.0#iefix') format('embedded-opentype'),
+		 url('../font/iconfont.woff2?v=1.0') format('woff2'),
+		 url('../font/iconfont.woff?v=1.0') format('woff'),
+		 url('../font/iconfont.ttf') format('truetype'),
+		 url('../font/iconfont.svg?v=1.0#xxx') format('svg');
+}
+.iconfont{
+	font-family: "iconfont" !important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.iconfont-book:before{
+	content: "\e6c2";
+}
+.iconfont-fudao:before{
+	content: "\e661";
+}
+.iconfont-q2a:before{
+	content: "\e6c0";
+}
+.iconfont-vip:before{
+	content: "\e601";
+}
+.iconfont-vip2:before{
+	content: "\e619";
+	padding-left: 2px;
+}
+.iconfont-home:before{
+	content: "\e61e";
+}
+.iconfont-code:before{
+	content: "\e680";
+}
+.iconfont-recommend:before{
+	content: "\e64b";
+}
+.iconfont-update:before{
+	content: "\e6f2";
+}
+.iconfont-fire:before{
+	content: "\e66c";
+}
+.iconfont-weixin:before{
+	content: "\e621";
+}
+.iconfont-home2:before{
+	content: "\e644";
+}
+.iconfont-user:before{
+	content: "\e602";
+}
+.iconfont-list-vertical:before{
+	content: "\e633";
+}
+.iconfont-arrow-down:before{
+	content: "\e65c";
+}
+.iconfont-close:before{
+	content: "\e604";
+}
+.iconfont-follow:before{
+	content: "\e647";
+}
 /***********头部样式************/
 #header{
 	height: 42px;
@@ -325,6 +395,40 @@ h1{
 	font-size: 12px;
 }
 
+/***********添加微信************/
+#addweixin-widget{
+	position: fixed;
+	right: 10px;
+	top: 30%;
+	text-align: center;
+	background-color: #fff;
+}
+#addweixin-widget p{
+	width:120px;
+	padding:16px 10px 10px 10px;
+	border:1px solid #ccc;
+	border-radius:4px;
+	color: #55ab55;
+}
+#addweixin-widget p img{
+	width: 120px;
+}
+#addweixin-widget p span{
+	line-height: 1.6em;
+	font-size: 14px;
+}
+#addweixin-widget p span.wap-tip{
+	display: none;
+}
+
+#close-addweixin-widget{
+	display:inline-block;
+	margin-top:4px;
+	font-size:24px;
+	color:#666;
+	cursor: pointer;
+}
+
 /*----------------代码高亮 bright Styles-------------------*/
 pre{
 	display: block;
@@ -465,6 +569,61 @@ pre{
 	}
 	#article{
 		width: 90%;
+	}
+
+	/***********添加微信************/
+	#addweixin-widget{
+		width: 100%;
+		right: auto;
+		top: auto;
+		left: 0px;
+		height: 50px;
+		padding:5px 0px 6px 0px;
+		bottom: -1px;
+		background-color: #f6f6f6;
+		border-top: 1px solid #ddd;
+	}
+	#addweixin-widget .box{
+		display: inline-block;
+	}
+	#addweixin-widget p{
+		display: block;
+		float: left;
+		width: auto;
+		height: 50px;
+		padding: 0px;
+		border:none;
+		border-radius:none;
+	}
+	#addweixin-widget p a{
+		display: block;
+		float: left;
+	}
+	#addweixin-widget p img{
+		width: auto;
+		height: 50px;
+	}
+	#addweixin-widget p span.wap-tip{
+		display: block;
+		float: left;
+		height: 36px;
+		padding-top: 7px;
+		padding-left: 8px;
+		line-height: 18px;
+		font-size: 14px;
+		text-align: left;
+	}
+	#addweixin-widget p span.pc-tip{
+		display: none;
+	}
+
+	#close-addweixin-widget{
+		display: block;
+		float: right;
+		margin-top: 9px;
+		margin-left: 12px;
+		font-size: 32px;
+		color: #666;
 	}
 }
 @media all and (max-width: 1100px){

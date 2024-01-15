@@ -80,4 +80,10 @@ $(document).ready(function(){
 			}
 		});
 	})();
+	//微信按钮关闭
+	(function(){
+		$("#close-addweixin-widget").click(function(){
+			$("#addweixin-widget").hide();
+		});
+	})();
 });
