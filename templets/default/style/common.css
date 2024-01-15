@@ -94,72 +94,8 @@ blockquote{
 	font-size: 13px;
 	color: #f9a017;
 }
-
-@font-face {
-	font-family: "iconfont";
-	src: url('../font/iconfont.eot');
-	src: url('../font/iconfont.eot?v=1.0#iefix') format('embedded-opentype'),
-		 url('../font/iconfont.woff2?v=1.0') format('woff2'),
-		 url('../font/iconfont.woff?v=1.0') format('woff'),
-		 url('../font/iconfont.ttf') format('truetype'),
-		 url('../font/iconfont.svg?v=1.0#xxx') format('svg');
-}
-.iconfont{
-	font-family: "iconfont" !important;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-.iconfont-book:before{
-	content: "\e6c2";
-}
-.iconfont-fudao:before{
-	content: "\e661";
-}
-.iconfont-q2a:before{
-	content: "\e6c0";
-}
-.iconfont-vip:before{
-	content: "\e601";
-}
-.iconfont-vip2:before{
-	content: "\e619";
-	padding-left: 2px;
-}
-.iconfont-home:before{
-	content: "\e61e";
-}
-.iconfont-code:before{
-	content: "\e680";
-}
-.iconfont-recommend:before{
-	content: "\e64b";
-}
-.iconfont-update:before{
-	content: "\e6f2";
-}
-.iconfont-fire:before{
-	content: "\e66c";
-}
-.iconfont-weixin:before{
-	content: "\e621";
-}
-.iconfont-home2:before{
-	content: "\e644";
-}
-.iconfont-user:before{
-	content: "\e602";
-}
-.iconfont-list-vertical:before{
-	content: "\e633";
-}
-.iconfont-arrow-down:before{
-	content: "\e65c";
-}
-.iconfont-close:before{
-	content: "\e604";
-}
-.iconfont-follow:before{
-	content: "\e647";
+.glyphicon-remove-circle:before{
+	content: "\e088";
 }
 /***********头部样式************/
 #header{
