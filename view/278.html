@@ -106,35 +106,7 @@
 	作者：解学武
 </div>
 			<h1>存储结构和存取结构区别详解</h1>
-			<div id="arc-body">正如题目所说，本节带大家理清这样一个知识点，即存<span style="color:#b22222;">储</span>结构和存<span style="color:#b22222;">取</span>结构，虽一字之差，却天差地别！<br />
-<br />
-所谓存储结构，指的是数据在内存中真实的存储状态，具体可分为 2 类，即顺序存储结构和链式存储结构。而存取结构，指的是存取数据的方式，具体也可以分为 2 类，分别为顺序存取结构和随机存取结构。<br />
-<br />
-<span style="color: rgb(178, 34, 34);">举个例子，<u><a href='/view/157.html' target='_blank'>线性表</a></u>的顺序存储结构是随机存取结构，而不是顺序存取结构；线性表的链式存储结构，又可以称为顺序存取结构，而不是随机存取结构。</span><br />
-<br />
-我们知道，线性表的顺序存储结构，本质就是采用一块连续的存储空间将所有数据集中存储起来。不仅仅是 C 语言，很多种编程语言中，都在使用<u><a href='/view/181.html' target='_blank'>数组</a></u>这种数据类型来表示顺序存储结构。<br />
-<br />
-顺序存储结构最大的特点是，我们可以随机存或者取数据。例如，现有一个数组 a，其初始存储状态为：
-<div style="text-align: center;">
-	<br />
-	<img alt="int a[4]={0,1,2,3};" src="/uploads/allimg/200713/2-200G3212225B6.gif" /></div>
-<div style="text-align: center;">
-	<u><a href='/view/200.html' target='_blank'>图</a></u> 1 int a[4]={0,1,2,3};</div>
-<br />
-在此基础上，如果想取出元素 1，由于其位于数组下标为 1 的位置（数组下标通常由 0 开始计数），因此借助 a[1]，就可以轻松实现目的；反之，如果想将元素 2 改存为元素 5，可以这样实现：
-<pre class="cpp">
-a[2] = 5;</pre>
-显然借助顺序存储结构的特点，我们可以随机存或者取存储的各个元素。这也就解释了&ldquo;线性表的顺序存储结构，又可以称为随机存取结构&rdquo;。<br />
-<br />
-和随机存取结构相对的，是顺序存取结构。通过前面的学习我们知道，采用<u><a href='/view/160.html' target='_blank'>链表</a></u>存储的数据，它们所在的物理空间并不紧挨着，而是分散在内存中的各个位置。仍以存储 0、1、2、和 3 这 4 个元素为例，如果采用链式存储结构，则各个元素的存储状态可能为：
-<div style="text-align: center;">
-	<br />
-	<img alt="链式存储 0、1、2 和 3" src="/uploads/allimg/200713/2-200G3212400554.gif" /><br />
-	图 2 链式存储 0、1、2 和 3</div>
-<br />
-如图 2 所示，如果我们想在链表中存或者取数据，就只能从链表头 H 开始，逐个遍历链表中的每个元素，直至找到目标元素。也就是说，从链表中存和取数据，必须从遵循各个元素在链表中存储的逻辑顺序，无法随机存取。<br />
-<br />
-总之，线性表的顺序存储结构，又可以称为随机存取结构；而线性表的链式存储结构（<u><a href='/view/169.html' target='_blank'>栈</a></u>和<u><a href='/view/172.html' target='_blank'>队列</a></u>），又可以称为顺序存取结构。</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="278"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 		</div>
 		
 	</div>
@@ -142,7 +114,7 @@ a[2] = 5;</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 278;
-window.arcId = "5addUwcEG/EvQbM74mBsdsFnluqes/BM6ZBQsc6yuu4wTyzx7osrJFsqog";
+window.arcId = "854c2LYDQHmq3H3JZW57OfJVSXMOQMJFfzad5W6ecXd875Zz0RYnGVCg0w";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -150,6 +122,7 @@ window.cmsTempletsVer = "1.2";
 	<ul id="nav-bottom" class="clearfix">
 		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
 		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
 	</ul>
 </div>
 

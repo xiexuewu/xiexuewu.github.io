@@ -1,0 +1,134 @@
+#main{
+	width: 1040px;
+	min-width: auto;
+	margin: auto;
+	padding-bottom:30px;
+}
+.section-title{
+	text-align: center;
+	font-size: 24px;
+	font-weight: normal;
+}
+
+/**************教程列表**************/
+#tutorial-title{
+	margin-top: 25px;
+}
+#tutorial h4.t-type{
+	margin: auto 12px 12px 12px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid #ddd;
+}
+#tutorial ul.t-list>li{
+	float: left;
+	width: 33.3%;
+	height: 72px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+#tutorial ul.t-list>li a{
+	display: table;
+	margin: auto 12px;
+	background-color: #f3f3f3;
+	color: #444;
+	border-radius: 4px;
+}
+#tutorial ul.t-list>li a:hover{
+	text-decoration: none;
+	background-color: #ececec;
+}
+#tutorial ul.t-list>li a .image{
+	display: table-cell;
+	padding: 6px 5px 6px 12px;
+	width: 60px;
+	height: 60px;
+	vertical-align: middle;
+	text-align: center;
+}
+#tutorial ul.t-list>li a .image img{
+	display: inline-block;
+	max-width: 60px;
+	max-height: 60px;
+}
+#tutorial ul.t-list>li a .desc{
+	display: table-cell;
+	padding: 6px 12px 6px 5px;
+}
+#tutorial ul.t-list>li a .desc p{
+	height: 38px;
+	line-height: 19px;
+	font-size: 14px;
+	color: #888;
+	overflow: hidden;
+}
+
+/**************最近更新**************/
+#recent-update-title{
+	margin: 25px auto 15px auto;
+}
+#recent-update{
+	margin: auto 12px;
+	border-top: 1px solid #ddd;
+}
+#recent-update li{
+	display: table;
+	padding: 10px 0px;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+}
+#recent-update li span.table-cell{
+	display: table-cell;
+}
+#recent-update li span.table-cell:first-child{
+	padding-left: 12px;
+	text-align: left;
+}
+#recent-update li span.table-cell:last-child{
+	min-width: 100px;
+	padding-right: 12px;
+	vertical-align: middle;
+	text-align: right;
+}
+#recent-update li a{
+	color: #444;
+}
+#recent-update li span.time{
+	color: #777;
+}
+
+/**************自适应**************/
+@media all and (max-width: 1150px){
+	#main{
+		width: 90%;
+	}
+}
+@media all and (max-width: 1040px){
+	#main{
+		width: 100%;
+	}
+}
+@media all and (max-width: 800px){
+	#tutorial h4.t-type{
+		margin: auto auto 12px auto;
+		padding-left: 12px;
+	}
+	#tutorial ul.t-list>li{
+		width: 49.9%;
+	}
+	#recent-update{
+		margin: auto;
+	}
+}
+@media all and (max-width: 600px){
+	#tutorial ul.t-list>li{
+		float: none;
+		width: auto;
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+	#tutorial ul.t-list>li a{
+		margin: 0px;
+		width: 100%;
+		/*border-radius: 0px;*/
+	}
+}

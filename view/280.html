@@ -106,170 +106,7 @@
 	作者：解学武
 </div>
 			<h1>双向链表实现贪吃蛇游戏</h1>
-			<div id="arc-body">前面章节中，给读者详细介绍了<u><a href='/view/166.html' target='_blank'>双向链表</a></u>及其基本操作。在此基础上，本节教大家：如何利用双向<u><a href='/view/160.html' target='_blank'>链表</a></u>实现一个简易的 C 语言版贪吃蛇游戏（如<u><a href='/view/200.html' target='_blank'>图</a></u> 1 所示）。
-<div style="text-align: center;">
-	<br />
-	<img alt="" src="/uploads/allimg/200719/2-200G919355O10.gif" /><br />
-	图 1 贪吃蛇小游戏的实现效果</div>
-<blockquote>
-	<p>
-		其中，黄色框代表贪吃蛇，红色 <span style="color:#b22222;">★</span> 代表食物！</p>
-</blockquote>
-使用双向链表实现此游戏，有以下几点需要做重点分析。<br />
-<br />
-1) 我们知道，双向链表中各个节点的标准构成是一个数据域和 2 个指针域，但对于实现贪吃蛇游戏来说，由于各个节点的位置是随贪吃蛇的移动而变化的，因此链表中的各节点还需要随时进行定位。<br />
-<br />
-在一个二维画面中，定义一个节点的位置，至少需要所在的行号和列号这 2 个数据。由此，我们可以得出构成贪吃蛇的双向链表中各节点的构成：<br />
-<pre class="cpp">
-//创建表示蛇各个节点的结构体
-typedef struct SnakeNode {
-    int x, y;//记录节点所在的行和列
-    struct SnakeNode *pre;//指向前驱节点的指针
-    struct SnakeNode *next;//指向后续节点的指针
-}Node, *pNode;</pre>
-<br />
-2) 贪吃蛇的移动，本质上就是对链表中各个节点的重新定位。换句话说，除非贪吃蛇吃到食物，否则无论怎样移动，都不会对双向链表的整个结构（节点数）产生影响，唯一受影响的就只是各个节点中 (x，y) 这对定位数据。<br />
-<br />
-由此，我们可以试着设计出实现贪吃蛇移动的功能函数，本节所用的实现思想分为 2 步：<br />
-从蛇尾（双向链表尾节点）开始，移动向前遍历，过程中依次将当前节点的 (x，y) 修改为前驱节点的 (x，y)，由此可实现整个蛇身（出首元节点外的其它所有节点）的向前移动；<br />
-接收用户输入的移动指令，根据用户指示贪吃蛇向左、向右、向上还是向下移动，首元节点中的 (x，y) 分别做 x-1、x+1、y-1 和 y+1 运算。<br />
-<br />
-如下所示，move() 函数就实现了贪吃蛇的移动：
-<pre class="cpp">
-//贪吃蛇移动的过程，即链表中所有节点从尾结点开始逐个向前移动一个位置
-bool Move(pNode pHead, char key) {
-    bool game_over = false;
-    pNode pt = pTail;
-    while (pt != pHead) { // 每个节点依次向前完成蛇的移动
-        pt-&gt;x = pt-&gt;pre-&gt;x;
-        pt-&gt;y = pt-&gt;pre-&gt;y;
-        pt = pt-&gt;pre;
-    }
-    switch (key) {
-        case&#39;d&#39;: {
-            pHead-&gt;x += 1;
-            if (pHead-&gt;x &gt;= ROW)
-                game_over = true;
-            break;
-        }
-        case&#39;a&#39;: {
-            pHead-&gt;x -= 1;
-            if (pHead-&gt;x &lt; 0)
-                game_over = true;
-            break;
-        }
-        case&#39;s&#39;: {
-            pHead-&gt;y += 1;
-            if (pHead-&gt;y &gt;= COL)
-                game_over = true;
-            break;
-        }
-        case&#39;w&#39;: {
-            pHead-&gt;y -= 1;
-            if (pHead-&gt;y &lt; 0)
-                game_over = true;;
-            break;
-        }
-    }
-    if (SnakeDeath(pHead))
-        game_over = true;
-    return game_over;
-}</pre>
-<blockquote>
-	<p>
-		注意，此段代码中还调用了 SnakeDeath() 函数，此函数用于判断贪吃蛇移动时是否撞墙、撞自身，如果是则游戏结束。</p>
-</blockquote>
-<br />
-3) 当贪吃蛇吃到食物时，贪吃蛇需要增加一截，其本质也就是双向链表增加一个节点。前面章节中，已经详细介绍了如何在双向链表中增加一个节点，因此实现这个功能唯一的难点在于：如何为该节点初始化 (x，y)？<br />
-<br />
-本节所设计的贪吃蛇游戏，针对此问题，提供了最简单的解决方案，就是不对新节点 x 和 y 做初始化。要知道，贪吃蛇是时刻移动的，而在上面的 move() 函数中，会时刻修正贪吃蛇每个节点的位置，因此当为双向链表添加新节点后，只要贪吃蛇移动一步，新节点的位置就会自行更正。
-<blockquote>
-	<p>
-		当然，读者也可发散思维，设计其他的解决方案。</p>
-</blockquote>
-也就是说，贪吃蛇吃到食物的实现，就仅是给双向链表添加一个新节点。如下即为实现此功能的代码：
-<pre class="cpp">
-//创建表示食物的结构体，其中只需要记录其所在的行和列
-typedef struct Food {
-    int x;
-    int y;
-}Food, *pFood;
-//吃食物，等同于链表中新增一个节点
-pNode EatFood(pNode pHead, pFood pFood) {
-    pNode p_add = NULL, pt = NULL;
-    if (pFood-&gt;x == pHead-&gt;x&amp;&amp;pFood-&gt;y == pHead-&gt;y) {
-        p_add = (pNode)malloc(sizeof(Node));
-        score++;
-        pTail-&gt;next = p_add;
-        p_add-&gt;pre = pTail;
-        p_add-&gt;next = NULL;
-        pTail = p_add;
-        // 检查食物是否出现在蛇身的位置上
-        do {
-            *pFood = CreateFood();
-        } while (FoodInSnake(pHead, pFood));
-    }
-    return pHead;
-}</pre>
-其中，Food 结构体用来表示食物，其内部仅包含能够定位食物位置的 (x，y) 即可。另外，此段代码中，还调用了 FoodeInSnake() 函数，由于食物的位置是随机的，因此极有可能会和贪吃蛇重合，所以此函数的功能就是：如果重合，就重新生成食物。<br />
-<br />
-FoodInSnake() 函数的实现很简单，这里不再赘述：
-<pre class="cpp">
-//判断食物的出现位置是否和蛇身重合
-bool FoodInSnake(pNode pHead, pFood pFood) {
-    pNode pt = NULL;
-    for (pt = pHead; pt != NULL; pt = pt-&gt;next) {
-        if (pFood-&gt;x == pt-&gt;x&amp;&amp;pFood-&gt;y == pt-&gt;y)
-            return true;
-    }
-    return false;
-}</pre>
-<br />
-4) 贪吃蛇游戏界面的显示，最简单的制作方法就是：贪吃蛇每移动一次，都清除屏幕并重新生成一次。这样实现的问题在于，如果贪吃蛇的移动速度过快，则整个界面在渲染的同时，会掺杂着光标，并且屏幕界面会频繁闪动。<br />
-<br />
-因此，在渲染界面时，有必要将光标隐藏起来，这需要用到<code>&lt;windows.h&gt;</code>头文件，实现代码如下：
-<pre class="cpp">
-// 隐藏光标
-void gotoxy(int x, int y) {
-    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD pos;
-    pos.X = x;
-    pos.Y = y;
-    SetConsoleCursorPosition(handle, pos);
-}
-void HideCursor() {
-    CONSOLE_CURSOR_INFO cursor_info = { 1, 0 };
-    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursor_info);
-}</pre>
-同时，为了给整个界面渲染上颜色，也需要引入<code>&lt;windows.h&gt;</code>头文件，并使用如下函数：
-<pre class="cpp">
-void color(int m) {
-    HANDLE consolehend;
-    consolehend = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(consolehend, m);
-}</pre>
-5) 需要注意的一点是，由此结束后，一定要手动释放双向链表占用的堆空间：
-<pre class="cpp">
-//退出游戏前，手动销毁链表中各个节点
-void ExitGame(pNode *pHead)
-{
-    pNode p_delete = NULL, p_head = NULL;
-    while (*pHead != NULL) {
-        p_head = (*pHead)-&gt;next;
-        if (p_head != NULL)
-            p_head-&gt;pre = NULL;
-        p_delete = *pHead;
-        free(p_delete);
-        p_delete = NULL;
-        *pHead = p_head;
-    }
-}</pre>
-解决以上问题之后，用双向链表实现贪吃蛇，基本上就没有难点了。读者可根据本节提供的实现思想，尝试独立实现。
-<blockquote>
-	<p>
-		本节设计实现的贪吃蛇游戏，源码文件有 3 个，分别为 snake.h、snake.c 和 main.c，读者可直接点击<a href="/uploads/soft/200727/snake.zip">贪吃蛇游戏</a>进行下载。</p>
-</blockquote>
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="280"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 		</div>
 		
 	</div>
@@ -277,7 +114,7 @@ void ExitGame(pNode *pHead)
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 280;
-window.arcId = "5e82Gs/9t9brq9VXWyo32FFKaqg2N+V+/t2bQnqZVxSpxnRZqhmFTU+3DQ";
+window.arcId = "3530uOYYj8TDonhusZ9M1b/Obr10+uYXpcLF5qf99SXJ3m+c2zjfYOzZFQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -285,6 +122,7 @@ window.cmsTempletsVer = "1.2";
 	<ul id="nav-bottom" class="clearfix">
 		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
 		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
 	</ul>
 </div>
 
