@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言非阻塞式键盘监听，用户不输入数据程序也能继续执行</title>
+<meta name="keywords" content="语言,非,阻塞,式,键盘,监听,用户,不,输入," />
+<meta name="description" content="所谓键盘监听，就是用户按下某个键时系统做出相应的处理，本章讲到的输入输出函数也是键盘监听函数的一种，例如 getchar()、getche()、getch() 等。下面的代码演示了 getche() 函数的使用" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言非阻塞式键盘监听，用户不输入数据程序也能继续执行</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></span>
+                    <span class="next right"><a href="/c/branch_loop/">循环结构和选择结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/444.html";window.nextPageURL = "/c/branch_loop/";</script>
+			<div id="arc-body">所谓键盘监听，就是用户按下某个键时系统做出相应的处理，本章讲到的输入输出函数也是键盘监听函数的一种，例如 getchar()、getche()、getch() 等。下面的代码演示了 getche() 函数的使用：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+int main(){
+    char ch;
+    int i = 0;
+    //循环监听，直到按Esc键退出
+    while(ch = getch()){
+        if(ch == 27){
+            break;
+        }else{
+            printf(&quot;Number: %d\n&quot;, ++i);
+        }
+    }
+    return 0;
+}</pre>
+在 Windows 下的运行结果：<br />
+Number: 1 &nbsp;//按下任意键<br />
+Number: 2&nbsp;&nbsp;//按下任意键<br />
+Number: 3&nbsp; //按下任意键<br />
+Number: 4&nbsp; //按下任意键<br />
+Number: 5&nbsp;&nbsp;//按下Esc键退出<br />
+<br />
+这段代码虽然达到了监听键盘的目的，但是每次都必须按下一个键才能执行 getch() 后面的代码，也就是说，getch() 后面的代码被阻塞了。<br />
+<br />
+阻塞式键盘监听用于用户输入时一般没有任何问题，用户输入完数据再执行后面的代码往往也符合逻辑。然而在很多小游戏中，阻塞式键盘监听会带来很大的麻烦，用户要不停按键游戏才能进行，这简直就是灾难，所以在小游戏中一般采用非阻塞式键盘监听：用户输入数据后程序可以捕获，用户不输入数据程序也可以继续执行。<br />
+<br />
+在 Windows 系统中，<code>conio.h</code>头文件中的<code>kbhit()</code>函数就可以用来实现非阻塞式键盘监听。
+<blockquote>
+	conio.h 是 Windows 下特有的头文件，所以 kbhit() 也只适用于 Windows，不适用于 Linux 和 Mac OS。</blockquote>
+用户每按下一个键，都会将对应的字符放到输入缓冲区中，kbhit() 函数会检测缓冲区中是否有数据，如果有的话就返回非 0 值，没有的话就返回 0 值。但是 kbhit() 不会读取数据，数据仍然留在缓冲区，所以一般情况下我们还要结合输入函数将缓冲区种的数据读出。请看下面的例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;windows.h&gt;
+#include &lt;conio.h&gt;
+int main(){
+    char ch;
+    int i = 0;
+    //循环监听，直到按Esc键退出
+    while(1){
+        if(kbhit()){  //检测缓冲区中是否有数据
+            ch = getch();  //将缓冲区中的数据以字符的形式读出
+            if(ch == 27){
+                break;
+            }
+        }
+        printf(&quot;Number: %d\n&quot;, ++i);
+        Sleep(1000);  //暂停1秒
+    }
+    return 0;
+}</pre>
+运行结果：<br />
+Number: 1<br />
+Number: 2<br />
+Number: 3<br />
+Number: 4<br />
+Number: 5 &nbsp;//按下Esc键<br />
+<br />
+每次循环，kbhit() 会检测用户是否按下某个键（也就是检测缓冲区中是否有数据），没有的话继续执行后面的语句，有的话就通过 getch() 读取，并判断是否是 Esc，是的话就退出循环，否则继续循环。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></span>
+                    <span class="next right"><a href="/c/branch_loop/">循环结构和选择结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/444.html";window.nextPageURL = "/c/branch_loop/";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 445;
+window.arcId = "dd64RqvbAWv1i2YfIsbv3vx8aQPIdDkWNUDYK8rGRwgaQ7J5tzpUq5Y6Xw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

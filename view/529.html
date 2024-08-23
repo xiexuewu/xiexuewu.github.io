@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>只需一招，彻底攻克C语言指针，再复杂的指针都不怕</title>
+<meta name="keywords" content="只需,一招,彻底,攻克,语言,指针,再,复杂,的," />
+<meta name="description" content="前面我们讲解了 指针数组 、 二维数组指针 、 函数指针 等几种较为复杂的指针，它们的定义形式分别是： int *p1[6]; //指针数组int *(p2[6]); //指针数组，和上面的形式等价int (*p3)[6]; //二维" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>只需一招，彻底攻克C语言指针，再复杂的指针都不怕</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/528.html">函数指针（指向函数的指针）</a></span>
+                    <span class="next right"><a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/528.html";window.nextPageURL = "/view/530.html";</script>
+			<div id="arc-body">前面我们讲解了<a href="/view/525.html" target="_blank">指针数组</a>、<a href="/view/527.html" target="_blank">二维数组指针</a>、<a href="/view/528.html" target="_blank">函数指针</a>等几种较为复杂的指针，它们的定义形式分别是：
+<pre class="c">
+int *p1[6];  //指针<u><a href='/view/181.html' target='_blank'>数组</a></u>
+int *(p2[6]);  //指针数组，和上面的形式等价
+int (*p3)[6];  //二维数组指针
+int (*p4)(int, int);  //函数指针</pre>
+我相信大部分初学者对上面几种形式的指针都非常迷惑，不知道该从哪里入手去理解，为什么 p1、p2 是数组，而 p3 却是指针呢，它们仅仅是一个括号的区别。<br />
+<br />
+指针是C语言中最强大最灵活的一部分，也是最难以理解的一部分，它是学习C语言的重点，没有学会指针就无从谈学会C语言。如果大家觉得上面几种形式的指针还能勉强接受，那么下面两个指针是不是让人抓狂呢？
+<pre class="c">
+char *(* c[10])(int **p);
+int (*(*(*pfunc)(int *))[5])(int *);</pre>
+只要找到了窍门，再复杂的指针也是可以理解的，这节我们就来戳破这层窗户纸！<br />
+<br />
+<span style="color: #b22222">C语言标准规定，对于一个符号的定义，编译器总是从它的名字开始读取，然后按照优先级顺序依次解析。对，从名字开始，不是从开头也不是从末尾，这是理解复杂指针的关键！</span><br />
+<br />
+对于初学者，有几种运算符的优先级非常容易混淆，它们的优先级从高到低依次是：
+<ul>
+	<li>
+		定义中被括号<code>( )</code>括起来的那部分。</li>
+	<li>
+		后缀操作符：括号<code>( )</code>表示这是一个函数，方括号<code>[ ]</code>表示这是一个数组。</li>
+	<li>
+		前缀操作符：星号<code>*</code>表示&ldquo;指向xxx的指针&rdquo;。</li>
+</ul>
+<br />
+学会了&ldquo;绝杀招式&rdquo;，接下来我们就由浅入深，逐个击破上面的指针定义。
+<h3>
+	1)&nbsp;int *p1[6];</h3>
+从 p1 开始理解，它的左边是 *，右边是 [ ]，[ ] 的优先级高于 *，所以编译器先解析<code>p1[6]</code>，p1 首先是一个拥有 6 个元素的数组，然后再解析<code>int *</code>，它用来说明数组元素的类型。从整体上讲，p1 是一个拥有 6 个 int * 元素的数组，也即指针数组。
+<h3>
+	2)&nbsp;int (*p3)[6];</h3>
+从 p3 开始理解，( ) 的优先级最高，编译器先解析<code>(*p3)</code>，p3 首先是一个指针，剩下的<code>int [6]</code>是 p3 指向的数据的类型，它是一个拥有 6 个元素的一维数组。从整体上讲，p3 是一个指向拥有 6 个 int 元素数组的指针，也即二维数组指针。
+<blockquote>
+	为了能够通过指针来遍历数组元素，在定义数组指针时需要进行降维处理，例如三维数组指针实际指向的数据类型是二维数组，二维数组指针实际指向的数据类型是一维数组，一维数组指针实际指向的是一个基本类型；在表达式中，数组名也会进行同样的转换（下降一维）。</blockquote>
+<h3>
+	3) int (*p4)(int, int);</h3>
+从 p4 开始理解，( ) 的优先级最高，编译器先解析<code>(*p4)</code>，p4 首先是一个指针，它后边的 ( ) 说明 p4 指向的是一个函数，括号中的<code>int, int</code>是参数列表，开头的<code>int</code>用来说明函数的返回值类型。整体来看，p4 是一个指向原型为<code>int func(int, int);</code>的函数的指针。
+<h3>
+	4) char *(* c[10])(int **p);</h3>
+这个定义有两个名字，分别是 c 和 p，乍看起来 p 是指针变量的名字，不过很遗憾这是错误的。如果 p 是指针变量名，<code>c[10]</code>这种写法就又定义了一个新的名字，这让人匪夷所思。<br />
+<br />
+以 c 作为变量的名字，先来看括号内部（绿色粗体）：
+<p class="info-box">
+	char *&nbsp;<strong><span style="color: #008000">(* c[10])&nbsp;</span></strong>(int **p);</p>
+[ ] 的优先级高于 *，编译器先解析<code>c[10]</code>，c 首先是一个数组，它前面的<code>*</code>表明每个数组元素都是一个指针，只是还不知道指向什么类型的数据。整体上来看，<code>(* c[10])</code>说明 c 是一个指针数组，只是指针指向的数据类型尚未确定。<br />
+<br />
+跳出括号，根据优先级规则（() 的优先级高于 *）应该先看右边（红色粗体）：
+<p class="info-box">
+	char *&nbsp;<strong><span style="color: rgb(0,128,0)">(* c[10])&nbsp;</span><span style="color: #b22222">(int **p)</span></strong>;</p>
+<code>( )</code>说明是一个函数，<code>int **p</code>是函数参数。<br />
+<br />
+再看左边（橘黄色粗体）：
+<p class="info-box">
+	<strong><span style="color: #ff8c00">char *</span></strong>&nbsp;<strong><span style="color: rgb(0,128,0)">(* c[10])&nbsp;</span><span style="color: rgb(178,34,34)">(int **p)</span></strong>;</p>
+<code>char *</code>是函数的返回值类型。<br />
+<br />
+从整体上看，我们可以将定义分成两部分：
+<p class="info-box">
+	<strong><span style="color: #b22222">char *</span></strong>&nbsp;<strong><span style="color: rgb(0,128,0)">(* c[10])&nbsp;</span><span style="color: rgb(178,34,34)">(int **p)</span></strong>;</p>
+绿色粗体表明 c 是一个指针数组，红色粗体表明指针指向的数据类型，合起来就是：c 是一个拥有 10 个元素的指针数组，每个指针指向一个原型为<code>char *func(int **p);</code>的函数。
+<h3>
+	5) int (*(*(*pfunc)(int *))[5])(int *);</h3>
+从 pfunc 开始理解，先看括号内部（绿色粗体）：
+<p class="info-box">
+	int (*(*<strong><span style="color: #008000">(*pfunc)</span></strong>(int *))[5])(int *);</p>
+pfunc 是一个指针。<br />
+<br />
+跳出括号，看它的两边（红色粗体）：
+<p class="info-box">
+	int (*(<span style="color: #b22222">*</span><strong><span style="color: #008000">(*pfunc)</span><span style="color: #b22222">(int *)</span></strong>)[5])(int *);</p>
+根据优先级规则应该先看右边的<code>(int *)</code>，它表明这是一个函数，<code>int *</code>是参数列表。再看左边的<code>*</code>，它表明函数的返回值是一个指针，只是指针指向的数据类型尚未确定。<br />
+<br />
+将上面的两部分合成一个整体，如下面的蓝色粗体所示，它表明 pfunc 是一个指向函数的指针，现在函数的参数列表确定了，也知道返回值是一个指针了（只是不知道它指向什么类型的数据）。
+<p class="info-box">
+	int (*&nbsp;<strong><span style="color: #0000ff">(*(*pfunc)(int *))</span></strong>&nbsp;[5])(int *);</p>
+蓝色粗体以外的部分，就用来说明函数返回什么类型的指针。<br />
+<br />
+我们接着分析，再向外跳一层括号（红色粗体）：
+<p class="info-box">
+	int (<strong><span style="color: #b22222">*</span></strong>&nbsp;<strong><span style="color: rgb(0,0,255)">(*(*pfunc)(int *))</span></strong>&nbsp;<strong><span style="color: #b22222">[5]</span></strong>)(int *);</p>
+[ ] 的优先级高于 *，先看右边，[5] 表示这是一个数组，再看左边，* 表示数组的每个元素都是指针。也就是说，* [5] 是一个指针数组，函数返回的指针就指向这样一个数组。<br />
+<br />
+那么，指针数组中的指针又指向什么类型的数据呢？再向外跳一层括号（橘黄色粗体）：
+<p class="info-box">
+	<strong><span style="color: #ff8c00">int</span></strong> <strong><span style="color: #b22222">(*</span></strong>&nbsp;<strong><span style="color: rgb(0,0,255)">(*(*pfunc)(int *))</span></strong>&nbsp;<span style="color: #b22222"><strong>[5])</strong></span> <strong><span style="color: #ff8c00">(int *)</span></strong>;</p>
+先看橘黄色部分的右边，它是一个函数，再看左边，它是函数的返回值类型。也就是说，指针数组中的指针指向原型为<code>int func(int *);</code>的函数。<br />
+<br />
+将上面的三部分合起来就是：pfunc 是一个函数指针（蓝色部分），该函数的返回值是一个指针，它指向一个指针数组（红色部分），指针数组中的指针指向原型为<code>int func(int *);</code>的函数（橘黄色部分）。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/528.html">函数指针（指向函数的指针）</a></span>
+                    <span class="next right"><a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/528.html";window.nextPageURL = "/view/530.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 529;
+window.arcId = "e411TTBB2by3qUeU91mprRZnb0BnAAQfJfW7ChXP1n+AgiDwFkKxCTm8gg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

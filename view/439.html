@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言输入字符和字符串（所有函数大汇总）</title>
+<meta name="keywords" content="语言,输入,字符,和,字符串,所有,函数,大,汇总," />
+<meta name="description" content="C语言有多个函数可以从键盘获得用户输入，它们分别是： scanf()：和 printf() 类似，scanf() 可以输入多种类型的数据。 getchar()、getche()、getch()：这三个函数都用于输入单个字符。 gets()：获" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言输入字符和字符串（所有函数大汇总）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></span>
+                    <span class="next right"><a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/438.html";window.nextPageURL = "/view/440.html";</script>
+			<div id="arc-body">C语言有多个函数可以从键盘获得用户输入，它们分别是：
+<ul>
+	<li>
+		scanf()：和 printf() 类似，scanf() 可以输入多种类型的数据。</li>
+	<li>
+		getchar()、getche()、getch()：这三个函数都用于输入单个字符。</li>
+	<li>
+		gets()：获取一行数据，并作为字符<u><a href='/view/175.html' target='_blank'>串</a></u>处理。</li>
+</ul>
+<br />
+scanf() 是最灵活、最复杂、最常用的输入函数，上节我们已经进行了讲解，本节接着讲解剩下的函数，也就是字符输入函数和字符串输入函数。
+<h2>
+	输入单个字符</h2>
+输入单个字符当然可以使用 scanf() 这个通用的输入函数，对应的格式控制符为<code>%c</code>，上节已经讲到了。本节我们重点讲解的是 getchar()、getche() 和 getch() 这三个专用的字符输入函数，它们具有某些 scanf() 没有的特性，是 scanf() 不能代替的。
+<h4>
+	1) getchar()</h4>
+最容易理解的字符输入函数是 getchar()，它就是<code>scanf(&quot;%c&quot;, c)</code>的替代品，除了更加简洁，没有其它优势了；或者说，getchar() 就是 scanf() 的一个简化版本。<br />
+<br />
+下面的代码演示了 getchar() 的用法：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    char c;
+    c = getchar();
+    printf(&quot;c: %c\n&quot;, c);
+
+    return 0;
+}</pre>
+输入示例：
+<p class="info-box">
+	@↙<br />
+	c: @</p>
+你也可以将第 4、5 行的语句合并为一个，从而写作：
+<p class="info-box">
+	char c = getchar();</p>
+<h4>
+	2) getche()</h4>
+getche() 就比较有意思了，它没有缓冲区，输入一个字符后会立即读取，不用等待用户按下回车键，这是它和 scanf()、getchar() 的最大区别。请看下面的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+int main()
+{
+    char c = getche();
+    printf(&quot;c: %c\n&quot;, c);
+
+    return 0;
+}</pre>
+输入示例：
+<p class="info-box">
+	@c: @</p>
+输入<code>@</code>后，getche() 立即读取完毕，接着继续执行 printf() 将字符输出，所以没有按下回车键程序就运行结束了。<br />
+<br />
+注意，getche() 位于 conio.h 头文件中，而这个头文件是 Windows 特有的，Linux 和 Mac OS 下没有包含该头文件。换句话说，getche() 并不是标准函数，默认只能在 Windows 下使用，不能在 Linux 和 Mac OS 下使用。
+<h4>
+	3) getch()</h4>
+getch() 也没有缓冲区，输入一个字符后会立即读取，不用按下回车键，这一点和 getche() 相同。getch() 的特别之处是它没有回显，看不到输入的字符。所谓回显，就是在控制台上显示出用户输入的字符；没有回显，就不会显示用户输入的字符，就好像根本没有输入一样。<br />
+<br />
+回显在大部分情况下是有必要的，它能够与用户及时交互，让用户清楚地看到自己输入的内容。但在某些特殊情况下，我们却不希望有回显，例如输入密码，有回显是非常危险的，容易被偷窥。<br />
+<br />
+getch() 使用举例：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+int main()
+{
+    char c = getch();
+    printf(&quot;c: %c\n&quot;, c);
+
+    return 0;
+}</pre>
+输入<code>@</code>后，getch() 会立即读取完毕，接着继续执行 printf() 将字符输出。但是由于 getch() 没有回显，看不到输入的<code>@</code>字符，所以控制台上最终显示的内容为<code>c: @</code>。<br />
+<br />
+注意，和 getche() 一样，getch() 也位于 conio.h 头文件中，也不是标准函数，默认只能在 Windows 下使用，不能在 Linux 和 Mac OS 下使用。
+<h4>
+	对三个函数的总结</h4>
+<table>
+	<tbody>
+		<tr>
+			<th>
+				函数</th>
+			<th>
+				缓冲区</th>
+			<th>
+				头文件</th>
+			<th>
+				回显</th>
+			<th>
+				适用平台</th>
+		</tr>
+		<tr>
+			<td>
+				getchar()</td>
+			<td>
+				有</td>
+			<td>
+				stdio.h</td>
+			<td>
+				有</td>
+			<td>
+				Windows、Linux、Mac OS 等所有平台</td>
+		</tr>
+		<tr>
+			<td>
+				getche()</td>
+			<td>
+				无</td>
+			<td>
+				conio.h</td>
+			<td>
+				有</td>
+			<td>
+				Windows</td>
+		</tr>
+		<tr>
+			<td>
+				getch()</td>
+			<td>
+				无</td>
+			<td>
+				conio.h</td>
+			<td>
+				无</td>
+			<td>
+				Windows</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+关于缓冲区，我们将在下节《<a href="/view/440.html" target="_blank">进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</a>》中展开讲解。
+<h2>
+	输入字符串</h2>
+输入字符串当然可以使用 scanf() 这个通用的输入函数，对应的格式控制符为<code>%s</code>，上节已经讲到了；本节我们重点讲解的是 gets() 这个专用的字符串输入函数，它拥有一个 scanf() 不具备的特性。<br />
+<br />
+gets() 的使用也很简单，请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    char author[30], lang[30], url[30];
+    gets(author);
+    printf(&quot;author: %s\n&quot;, author);
+    gets(lang);
+    printf(&quot;lang: %s\n&quot;, lang);
+    gets(url);
+    printf(&quot;url: %s\n&quot;, url);
+   
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	xiexuewu↙<br />
+	author: xiexuewu<br />
+	C语言↙<br />
+	lang: C语言<br />
+	https://xiexuewu.github.io↙<br />
+	url: https://xiexuewu.github.io</p>
+gets() 是有缓冲区的，每次按下回车键，就代表当前输入结束了，gets() 开始从缓冲区中读取内容，这一点和 scanf() 是一样的。gets() 和 scanf() 的主要区别是：
+<ul>
+	<li>
+		scanf() 读取字符串时以空格为分隔，遇到空格就认为当前字符串结束了，所以无法读取含有空格的字符串。</li>
+	<li>
+		gets() 认为空格也是字符串的一部分，只有遇到回车键时才认为字符串输入结束，所以，不管输入了多少个空格，只要不按下回车键，对 gets() 来说就是一个完整的字符串。</li>
+</ul>
+<br />
+也就是说，gets() 能读取含有空格的字符串，而 scanf() 不能。
+<h2>
+	总结</h2>
+C语言中常用的从控制台读取数据的函数有五个，它们分别是 scanf()、getchar()、getche()、getch() 和 gets()。其中 scanf()、getchar()、gets() 是标准函数，适用于所有平台；getche() 和 getch() 不是标准函数，只能用于 Windows。<br />
+<br />
+scanf() 是通用的输入函数，它可以读取多种类型的数据。<br />
+<br />
+getchar()、getche() 和 getch() 是专用的字符输入函数，它们在缓冲区和回显方面与 scanf() 有着不同的特性，是 scanf() 不能替代的。<br />
+<br />
+gets() 是专用的字符串输入函数，与 scanf() 相比，gets() 的主要优势是可以读取含有空格的字符串。<br />
+<br />
+scanf() 可以一次性读取多份类型相同或者不同的数据，getchar()、getche()、getch() 和 gets() 每次只能读取一份特定类型的数据，不能一次性读取多份数据。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></span>
+                    <span class="next right"><a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/438.html";window.nextPageURL = "/view/440.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 439;
+window.arcId = "beacS//VmnPDNmnLGJGQlCrU3EZ0qXygQF00TG5sbugm8eUHp2v62O0X0w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

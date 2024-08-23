@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言求自守数</title>
+<meta name="keywords" content="语言,求自,守数,如果,一,个数,的,平方,尾数," />
+<meta name="description" content="如果一个数的平方的尾数等于它自身，这样的数字统称为自守数。 举几个自守数的例子： 5 2 = 25 25 2 = 625 76 2 = 5776 9376 2 = 87909376 编写程序，求 100000 以内的自守数。 分析 很多读者想到的" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言求自守数</h1>
+			<div id="arc-body">如果一个数的平方的尾数等于它自身，这样的数字统称为自守数。<br />
+<br />
+举几个自守数的例子：
+<p class="info-box">
+	5<sup>2</sup> = 25 &nbsp; &nbsp;25<sup>2</sup> = 625 &nbsp; &nbsp;76<sup>2</sup> = 5776 &nbsp; &nbsp;9376<sup>2</sup> = 87909376</p>
+编写程序，求 100000 以内的自守数。
+<h2>
+	分析</h2>
+很多读者想到的思路是，求出一个数的平方后再截取最后相应位数的尾数，然后判断两个数是否相等，相等就是自守数，不相等则不是。<br />
+<br />
+这种方法是不可取的，原因很简单，一个数平方的结果可能非常大，大到计算机都无法表示。<br />
+<br />
+给大家讲解一种可行的思路。分析手工方式下整数平方（乘法）的计算过程，以 376 为例：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240821/2-240R1103913Z3.gif" style="height: 134px;" /></div>
+<br />
+判断 376 是否为自守数，我们只关心 376 平方后的最后三位。分析产生后三位的过程，在每一次的部分积中，并不是它的每一位都会对积的后三位产生影响。总结规律可以得到：在三位数乘法中，对积的后三位产生影响的部分积分别为：
+<ul>
+	<li>
+		第一个部分积中：被乘数最后三位 &times; 乘数的倒数第一位。</li>
+	<li>
+		第二个部分积中：被乘数最后二位 &times; 乘数的倒数第二位。</li>
+	<li>
+		第三个部分积中：被乘数最后一位 &times; 乘数的倒数第三位。</li>
+</ul>
+<br />
+将以上的部分积的后三位求和后，截取后三位就是三位数乘积的后三位，这样的规律可以推广到同样问题的不同位数乘积中。
+<h4>
+	分离给定数中的最后几位</h4>
+从一个两位数（存在变量 n 中）开始分析，分离最低位个位 n%10；对于三位数 n，分离最后两位 n%100；对于四位数 n，分离最后三位 n%1000；...，由此可见，若分离出最后 x 位，只需要用原数对 10<sup>x</sup> 求余。<br />
+<br />
+上面所举的例子中，对于第二个部分积&ldquo;2632&rdquo;来说其实应是&ldquo;26320&rdquo;， 因为对于乘数中的倒数第二位&ldquo;7&rdquo;来说，因其在十位，对应的权值为 10，第二个部分积实质上为：376X70=26320。故求部分积的程序段为：
+<pre class="cpp">
+int main()
+{
+    //...
+    while(k&gt;0)
+    {
+        mul=( mul + ( number%(k*10) )*( number%b - nxuober%(b/10) ) )%a;
+        /* (部分积+截取被乘数的后N位*截取乘数的第M位），%a再截取部分积*/
+        k /= 10;  /*k为截取被乘数时的系数*/
+        b *= 10;
+    }
+    //...
+    return 0;
+}</pre>
+对于整个循环来说，变量 k 是由 number 的位数确定截取数字进行乘法时的系数。<br />
+<br />
+第 1 次执行循环体时，被乘数的所有位数都影响到平方的尾数，因此第 1 个部分积=被乘数*乘数的最后一位，将部分积累加到变量 mul 上，再对 a 取余截取相应的尾数位数。<br />
+<br />
+第2次执行循环体，影响平方尾数的是被乘数中除了最高位之外的数（所以 k 先除以 10 再参加运算），第 2 个部分积=被乘数*乘数的倒数第二位，( number%b - number%(b/l0) )用来求乘数中影响平方尾数的对应位上的数。<br />
+<br />
+第 3 次、第 4 次执行循环体的过程同上。<br />
+<br />
+程序流程图：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240821/2-240R1103942620.gif" /></div>
+<h2>
+	实现</h2>
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+int main()
+{
+    long mul, number, k, a, b;
+    printf(&quot;100000以内的自守数有:\n&quot;);
+    for (number = 0; number &lt; 100000; number++)
+    {
+        for (mul = number, k = 1; (mul /= 10) &gt; 0; k *= 10);
+        /*由number的位数确定截取数字进行乘法时的系数k*/
+        a = k * 10;  /*a为截取部分积时的系数*/
+        mul = 0;  /*积的最后n位*/
+        b = 10;  /*b为截取乘数相应位时的系数*/
+        while (k &gt; 0)
+        {
+            mul = (mul + (number % (k * 10)) * (number % b - number % (b / 10))) % a;
+            /*(部分积+截取被乘数的后N位*截取乘数的第M位)，%a再截取部分积*/
+            k /= 10;  /*k为截取被乘数时的系数*/
+            b *= 10;
+        }
+        if (number == mul)  /*判定若为自守数则输出*/
+            printf(&quot;%ld &quot;, number);
+    }
+    printf(&quot;\n&quot;);
+
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	100000以内的自守数有:<br />
+	0 1 5 6 25 76 376 625 9376 90625</p>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 467;
+window.arcId = "2e85ul4SNt488ZqunteYcZPy9tg2kQpqpr5PGVck6t+fE6CZaw0wlp4XwA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>对C语言数组的总结</title>
+<meta name="keywords" content="对,语言,数组,的,总结,数组,Array,是,一系列,相," />
+<meta name="description" content="数组（Array）是一系列相同类型的数据的集合，可以是一维的、二维的、多维的；最常用的是一维数组和二维数组，多维数组较少用到。 对数组的总结 1) 数组的定义格式为： type arrayN" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>对C语言数组的总结</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/487.html">对数组元素进行排序</a></span>
+                    <span class="next right"><a href="/c/function/">C语言函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/487.html";window.nextPageURL = "/c/function/";</script>
+			<div id="arc-body"><u><a href='/view/181.html' target='_blank'>数组</a></u>（Array）是一系列相同类型的数据的集合，可以是一维的、二维的、多维的；最常用的是一维数组和二维数组，多维数组较少用到。
+<h2>
+	对数组的总结</h2>
+1) 数组的定义格式为：
+<pre class="info-box">
+type arrayName[length]</pre>
+type 为数据类型，arrayName 为数组名，length 为数组长度。 需要注意的是：
+<ul>
+	<li>
+		数组长度 length&nbsp;最好是常量表达式，例如 10、20*4 等，这样在所有编译器下都能运行通过；如果 length 中包含了变量，例如 n、4*m 等，在某些编译器下就会报错，我们已在《<a href="/view/486.html" target="_blank">C语言变长数组：使用变量指明数组的长度</a>》一节专门讨论了这点。</li>
+	<li>
+		数组是一个整体，它的内存是连续的；也就是说，数组元素之间是相互挨着的，彼此之间没有一点点缝隙。</li>
+	<li>
+		一般情况下，数组名会转换为数组的地址，需要使用地址的地方，直接使用数组名即可。</li>
+</ul>
+<br />
+2) 访问数组元素的格式为：<br />
+<pre class="info-box">
+arrayName[index]</pre>
+index 为数组下标。注意 index 的值必须大于等于零，并且小于数组长度，否则会发生数组越界，出现意想不到的错误，我们已在《<a href="/view/485.html" target="_blank">C语言数组的越界和溢出</a>》一节重点讨论过。<br />
+<br />
+3) 可以对数组中的单个元素赋值，也可以整体赋值，例如：
+<pre class="c">
+// 对单个元素赋值
+int a[3];
+a[0] = 3;
+a[1] = 100;
+a[2] = 34;
+
+// 整体赋值（不指明数组长度）
+float b[] = { 23.3, 100.00, 10, 0.34 };
+// 整体赋值（指明数组长度）
+int m[10] = { 100, 30, 234 };
+
+// 字符数组赋值
+char str1[] = &quot;https://xiexuewu.github.io&quot;;
+
+// 将数组所有元素都初始化为0
+int arr[10] = {0};
+char str2[20] = {0};</pre>
+<br />
+4) 字符<u><a href='/view/175.html' target='_blank'>串</a></u>是本章的重点内容，大家要特别注意字符串结束标志<code>&#39;\0&#39;</code>，各种字符串处理函数在定位字符串时都把<code>&#39;\0&#39;</code>作为结尾，没有<code>&#39;\0&#39;</code>就到达不了字符串的结尾。
+<h2>
+	关于查找和排序</h2>
+学完了数组，有两项内容大家可以深入研究了，分别是查找（Search）和排序（Sort），它们在实际开发中都经常使用，比如：
+<ul>
+	<li>
+		给你 10 个打乱顺序的整数，要能够按照从小到大或者从大到小的顺序输出；</li>
+	<li>
+		给定一个字符串 str1，以及一个子串 str2，要能够判断 str2 是否在 str1 中。</li>
+</ul>
+<br />
+本章我们讲解了最简单的查找和排序算法，分别是<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>（遍历数组查找某个元素）和<u><a href='/view/70.html' target='_blank'>冒泡排序</a></u>，这些都是最基本的，有兴趣的读者也可以猛击《<a href="/sort/">排序算法</a>》深入研究。
+<ul>
+</ul>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/487.html">对数组元素进行排序</a></span>
+                    <span class="next right"><a href="/c/function/">C语言函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/487.html";window.nextPageURL = "/c/function/";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 488;
+window.arcId = "f008Q6i09ADS0c+Vgm6cVPnXSFPjLQiy5/ehpIcugWGroIemhzh3laR7Iw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

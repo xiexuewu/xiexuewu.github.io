@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言fopen函数的用法，C语言打开文件详解</title>
+<meta name="keywords" content="语言,fopen,函数,的,用法,打开,文件,详解,在,语," />
+<meta name="description" content="在C语言中，操作文件之前必须先打开文件；所谓打开文件，就是让程序和文件建立连接的过程。 打开文件之后，程序可以得到文件的相关信息，例如大小、类型、权限、创建者、更新时" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言fopen函数的用法，C语言打开文件详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/544.html">C语言中的文件是什么？</a></span>
+                    <span class="next right"><a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/544.html";window.nextPageURL = "/view/546.html";</script>
+			<div id="arc-body">在C语言中，操作文件之前必须先打开文件；所谓&ldquo;打开文件&rdquo;，就是让程序和文件建立连接的过程。<br />
+<br />
+打开文件之后，程序可以得到文件的相关信息，例如大小、类型、权限、创建者、更新时间等。在后续读写文件的过程中，程序还可以记录当前读写到了哪个位置，下次可以在此基础上继续操作。<br />
+<blockquote>
+	标准输入文件 stdin（表示键盘）、标准输出文件 stdout（表示显示器）、标准错误文件 stderr（表示显示器）是由系统打开的，可直接使用。</blockquote>
+使用 &lt;stdio.h&gt; 头文件中的 fopen() 函数即可打开文件，它的用法为：
+<p class="info-box">
+	FILE *fopen(char *filename, char *mode);</p>
+<code>filename</code>为文件名（包括文件路径），<code>mode</code>为打开方式，它们都是字符<u><a href='/view/175.html' target='_blank'>串</a></u>。
+<h2>
+	fopen() 函数的返回值</h2>
+fopen() 会获取文件信息，包括文件名、文件状态、当前读写位置等，并将这些信息保存到一个 FILE 类型的结构体变量中，然后将该变量的地址返回。<br />
+<br />
+FILE 是 &lt;stdio.h&gt; 头文件中的一个结构体，它专门用来保存文件信息。我们不用关心 FILE 的具体结构，只需要知道它的用法就行。<br />
+<br />
+如果希望接收 fopen() 的返回值，就需要定义一个 FILE 类型的指针。例如：<br />
+<pre class="info-box">
+FILE *fp = fopen(&quot;demo.txt&quot;, &quot;r&quot;);</pre>
+表示以&ldquo;只读&rdquo;方式打开当前目录下的 demo.txt 文件，并使 fp 指向该文件，这样就可以通过 fp 来操作 demo.txt 了。fp 通常被称为<span style="color: #008000">文件指针</span>。<br />
+<br />
+再来看一个例子：
+<pre class="info-box">
+FILE *fp = fopen(&quot;D:\\demo.txt&quot;,&quot;rb+&quot;);</pre>
+表示以二进制方式打开 D 盘下的 demo.txt 文件，允许读和写。
+<h4>
+	判断文件是否打开成功</h4>
+打开文件出错时，fopen() 将返回一个空指针，也就是 NULL，我们可以利用这一点来判断文件是否打开成功，请看下面的代码：
+<pre class="cpp">
+FILE *fp;
+if( (fp=fopen(&quot;D:\\demo.txt&quot;,&quot;rb&quot;)) == NULL ){
+    printf(&quot;Fail to open file!\n&quot;);
+    exit(0);  //退出程序（结束程序）
+}</pre>
+我们通过判断 fopen() 的返回值是否和 NULL 相等来判断是否打开失败：如果 fopen() 的返回值为 NULL，那么 fp 的值也为&nbsp; NULL，此时 if 的判断条件成立，表示文件打开失败。<br />
+<br />
+以上代码是文件操作的规范写法，读者在打开文件时一定要判断文件是否打开成功，因为一旦打开失败，后续操作就都没法进行了，往往以&ldquo;结束程序&rdquo;告终。<br />
+<h2>
+	fopen() 函数的打开方式</h2>
+不同的操作需要不同的文件权限。例如，只想读取文件中的数据的话，&ldquo;只读&rdquo;权限就够了；既想读取又想写入数据的话，&ldquo;读写&rdquo;权限就是必须的了。<br />
+<br />
+另外，文件也有不同的类型，按照数据的存储方式可以分为二进制文件和文本文件，它们的操作细节是不同的。<br />
+<br />
+在调用 fopen() 函数时，这些信息都必须提供，称为&ldquo;文件打开方式&rdquo;。最基本的文件打开方式有以下几种：
+<div>
+	<table>
+		<tbody>
+			<tr>
+				<th colspan="2">
+					控制读写权限的字符串（必须指明）</th>
+			</tr>
+			<tr>
+				<th>
+					打开方式</th>
+				<th>
+					说明</th>
+			</tr>
+			<tr>
+				<td>
+					&quot;r&quot;</td>
+				<td>
+					以&ldquo;只读&rdquo;方式打开文件。只允许读取，不允许写入。文件必须存在，否则打开失败。</td>
+			</tr>
+			<tr>
+				<td>
+					&quot;w&quot;</td>
+				<td>
+					以&ldquo;写入&rdquo;方式打开文件。如果文件不存在，那么创建一个新文件；如果文件存在，那么清空文件内容（相当于删除原文件，再创建一个新文件）。</td>
+			</tr>
+			<tr>
+				<td>
+					&quot;a&quot;</td>
+				<td>
+					以&ldquo;追加&rdquo;方式打开文件。如果文件不存在，那么创建一个新文件；如果文件存在，那么将写入的数据追加到文件的末尾（文件原有的内容保留）。</td>
+			</tr>
+			<tr>
+				<td>
+					&quot;r+&quot;</td>
+				<td>
+					以&ldquo;读写&rdquo;方式打开文件。既可以读取也可以写入，也就是随意更新文件。文件必须存在，否则打开失败。</td>
+			</tr>
+			<tr>
+				<td>
+					&quot;w+&quot;</td>
+				<td>
+					以&ldquo;写入/更新&rdquo;方式打开文件，相当于<code>w</code>和<code>r+</code>叠加的效果。既可以读取也可以写入，也就是随意更新文件。如果文件不存在，那么创建一个新文件；如果文件存在，那么清空文件内容（相当于删除原文件，再创建一个新文件）。</td>
+			</tr>
+			<tr>
+				<td>
+					&quot;a+&quot;</td>
+				<td>
+					以&ldquo;追加/更新&rdquo;方式打开文件，相当于a和r+叠加的效果。既可以读取也可以写入，也就是随意更新文件。如果文件不存在，那么创建一个新文件；如果文件存在，那么将写入的数据追加到文件的末尾（文件原有的内容保留）。</td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					控制读写方式的字符串（可以不写）</th>
+			</tr>
+			<tr>
+				<th>
+					打开方式</th>
+				<th>
+					说明</th>
+			</tr>
+			<tr>
+				<td>
+					&quot;t&quot;</td>
+				<td>
+					文本文件。如果不写，默认为<code>&quot;t&quot;</code>。</td>
+			</tr>
+			<tr>
+				<td>
+					&quot;b&quot;</td>
+				<td>
+					二进制文件。</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br />
+调用 fopen() 函数时必须指明读写权限，但是可以不指明读写方式（此时默认为<code>&quot;t&quot;</code>）。<br />
+<br />
+读写权限和读写方式可以组合使用，但是必须将读写方式放在读写权限的中间或者尾部（换句话说，不能将读写方式放在读写权限的开头）。例如：
+<ul>
+	<li>
+		将读写方式放在读写权限的末尾：&quot;rb&quot;、&quot;wt&quot;、&quot;ab&quot;、&quot;r+b&quot;、&quot;w+t&quot;、&quot;a+t&quot;</li>
+	<li>
+		将读写方式放在读写权限的中间：&quot;rb+&quot;、&quot;wt+&quot;、&quot;ab+&quot;</li>
+</ul>
+<br />
+整体来说，文件打开方式由 r、w、a、t、b、+ 六个字符拼成，各字符的含义是：
+<ul>
+	<li>
+		r(read)：读</li>
+	<li>
+		w(write)：写</li>
+	<li>
+		a(append)：追加</li>
+	<li>
+		t(text)：文本文件</li>
+	<li>
+		b(binary)：二进制文件</li>
+	<li>
+		+：读和写</li>
+</ul>
+<h2>
+	关闭文件</h2>
+文件一旦使用完毕，应该用 fclose() 函数把文件关闭，以释放相关资源，避免数据丢失。fclose() 的用法为：
+<pre class="info-box">
+int fclose(FILE *fp);</pre>
+fp 为文件指针。例如：
+<pre class="info-box">
+fclose(fp);</pre>
+文件正常关闭时，fclose() 的返回值为0，如果返回非零值则表示有错误发生。<br />
+<h2>
+	实例演示</h2>
+最后，我们通过一段完整的代码来演示 fopen 函数的用法，这个例子会一行一行地读取文本文件的所有内容：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define N 100
+
+int main() {
+    FILE *fp;
+    char str[N + 1];
+
+    //判断文件是否打开失败
+    if ( (fp = fopen(&quot;d:\\demo.txt&quot;, &quot;rt&quot;)) == NULL ) {
+        puts(&quot;Fail to open file!&quot;);
+        exit(0);
+    }
+
+    //循环读取文件的每一行数据
+    while( fgets(str, N, fp) != NULL ) {
+        printf(&quot;%s&quot;, str);
+    }
+   
+    //操作结束后关闭文件
+    fclose(fp);
+    return 0;
+}</pre>
+读者只需要关心文件打开部分的代码，暂时不用关心文件读取部分的代码，后续我们会逐一讲解。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/544.html">C语言中的文件是什么？</a></span>
+                    <span class="next right"><a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/544.html";window.nextPageURL = "/view/546.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 545;
+window.arcId = "d62cyhu8w3VGpv96ZoajgGpoiuZgMieIQifCJ0S3agD+oMP6MEOqkgdLQg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

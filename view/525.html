@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言指针数组（数组每个元素都是指针）详解</title>
+<meta name="keywords" content="语言,指针,数组,每个,元素,都是,详解,如果," />
+<meta name="description" content="如果一个数组中的所有元素保存的都是指针，那么我们就称它为 指针数组 。指针数组的定义形式一般为： dataType *arrayName[length]; [ ] 的优先级高于 * ，该定义形式应该理解为： dataType" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言指针数组（数组每个元素都是指针）详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/524.html">数组到底在什么时候会转换为指针</a></span>
+                    <span class="next right"><a href="/view/526.html">一道题目玩转指针数组和二级指针</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/524.html";window.nextPageURL = "/view/526.html";</script>
+			<div id="arc-body">如果一个<u><a href='/view/181.html' target='_blank'>数组</a></u>中的所有元素保存的都是指针，那么我们就称它为<span style="color: #008000">指针数组</span>。指针数组的定义形式一般为：
+<p class="info-box">
+	dataType *arrayName[length];</p>
+<code>[ ]</code>的优先级高于<code>*</code>，该定义形式应该理解为：
+<p class="info-box">
+	dataType *(arrayName[length]);</p>
+括号里面说明<code>arrayName</code>是一个数组，包含了<code>length</code>个元素，括号外面说明每个元素的类型为<code>dataType *</code>。<br />
+<br />
+除了每个元素的数据类型不同，指针数组和普通数组在其他方面都是一样的，下面是一个简单的例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int a = 16, b = 932, c = 100;
+    //定义一个指针数组
+    int *arr[3] = {&amp;a, &amp;b, &amp;c};//也可以不指定长度，直接写作 int *arr[]
+    //定义一个指向指针数组的指针
+    int **parr = arr;
+    printf(&quot;%d, %d, %d\n&quot;, *arr[0], *arr[1], *arr[2]);
+    printf(&quot;%d, %d, %d\n&quot;, **(parr+0), **(parr+1), **(parr+2));
+
+    return 0;
+}</pre>
+运行结果：<br />
+16, 932, 100<br />
+16, 932, 100<br />
+<br />
+arr 是一个指针数组，它包含了 3 个元素，每个元素都是一个指针，在定义 arr 的同时，我们使用变量 a、b、c 的地址对它进行了初始化，这和普通数组是多么地类似。<br />
+<br />
+parr 是指向数组 arr 的指针，确切地说是指向 arr 第 0 个元素的指针，它的定义形式应该理解为<code>int *(*parr)</code>，括号中的<code>*</code>表示 parr 是一个指针，括号外面的<code>int *</code>表示 parr 指向的数据的类型。arr 第 0 个元素的类型为 int *，所以在定义 parr 时要加两个 *。<br />
+<br />
+第一个 printf() 语句中，arr[i] 表示获取第 i 个元素的值，该元素是一个指针，还需要在前面增加一个 * 才能取得它指向的数据，也即 *arr[i] 的形式。<br />
+<br />
+第二个 printf() 语句中，parr+i 表示第 i 个元素的地址，*(parr+i) 表示获取第 i 个元素的值（该元素是一个指针），**(parr+i) 表示获取第 i 个元素指向的数据。<br />
+<br />
+指针数组还可以和字符<u><a href='/view/175.html' target='_blank'>串</a></u>数组结合使用，请看下面的例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    char *str[3] = {
+        &quot;https://xiexuewu.github.io&quot;,
+        &quot;C语言&quot;,
+        &quot;C Language&quot;
+    };
+    printf(&quot;%s\n%s\n%s\n&quot;, str[0], str[1], str[2]);
+    return 0;
+}</pre>
+运行结果：<br />
+https://xiexuewu.github.io<br />
+C语言<br />
+C Language<br />
+<br />
+需要注意的是，字符数组 str 中存放的是字符串的首地址，不是字符串本身，字符串本身位于其他的内存区域，和字符数组是分开的。<br />
+<br />
+也只有当指针数组中每个元素的类型都是<code>char *</code>时，才能像上面那样给指针数组赋值，其他类型不行。<br />
+<br />
+为了便于理解，可以将上面的字符串数组改成下面的形式，它们都是等价的。
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    char *str0 = &quot;https://xiexuewu.github.io&quot;;
+    char *str1 = &quot;C语言&quot;;
+    char *str2 = &quot;C Language&quot;;
+    char *str[3] = {str0, str1, str2};
+    printf(&quot;%s\n%s\n%s\n&quot;, str[0], str[1], str[2]);
+    return 0;
+}</pre>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/524.html">数组到底在什么时候会转换为指针</a></span>
+                    <span class="next right"><a href="/view/526.html">一道题目玩转指针数组和二级指针</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/524.html";window.nextPageURL = "/view/526.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 525;
+window.arcId = "e3b5xc8PixQss2TuWOXHht3GLB6Ro4375GGkdBApEQyuk+8/7NPxe5CwqA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

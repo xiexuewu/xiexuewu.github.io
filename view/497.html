@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言块级变量：在代码块内部定义的变量</title>
+<meta name="keywords" content="语言,块级,变量,在,代码,块,内部,定义,的," />
+<meta name="description" content="所谓 代码块 ，就是由 { } 包围起来的代码。代码块在C语言中随处可见，例如函数体、选择结构、循环结构等。不包含代码块的C语言程序根本不能运行，即使最简单的C语言程序（上节已" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言块级变量：在代码块内部定义的变量</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/496.html">C语言变量的作用域</a></span>
+                    <span class="next right"><a href="/view/498.html">C语言递归函数（带实例演示）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/496.html";window.nextPageURL = "/view/498.html";</script>
+			<div id="arc-body">所谓<span style="color: rgb(0, 128, 0);">代码块</span>，就是由<code>{ }</code>包围起来的代码。代码块在C语言中随处可见，例如函数体、选择结构、循环结构等。不包含代码块的C语言程序根本不能运行，即使最简单的C语言程序（上节已经进行了展示）也要包含代码块。<br />
+<br />
+<span style="color: rgb(178, 34, 34);">C语言允许在代码块内部定义变量，这样的变量具有块级作用域；换句话说，在代码块内部定义的变量只能在代码块内部使用，出了代码块就无效了。</span><br />
+<br />
+上节我们已经讲解了函数，在函数内部定义的变量叫做局部变量，这节我们接着讲解选择结构和循环结构。<br />
+<br />
+【实例1】定义一个函数 gcd()，求两个整数的最大公约数。
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+//函数声明
+int gcd(int a, int b);  //也可以写作 int gcd(int, int);
+
+int main(){
+    printf(&quot;The greatest common divisor is %d\n&quot;, gcd(100, 60));
+    return 0;
+}
+
+//函数定义
+int gcd(int a, int b){
+    //若a&lt;b，那么交换两变量的值
+    if(a &lt; b){
+        int temp1 = a;  //块级变量
+        a = b;
+        b = temp1;
+    }
+   
+    //求最大公约数
+    while(b!=0){
+        int temp2 = b;  //块级变量
+        b = a % b;
+        a = temp2;
+    }
+   
+    return a;
+}</pre>
+运行结果：<br />
+The greatest common divisor is 20<br />
+<br />
+读者暂时不用理解 gcd() 函数的思路，只需要关注 temp1 和 temp2 这两个变量，它们都是在代码块内部定义的块级变量，temp1 的作用域是 if 内部，temp2 的作用域是 while 内部。
+<h2>
+	在 for 循环条件里面定义变量</h2>
+遵循&nbsp;<a href="/view/405.html" target="_blank">C99 标准</a>的编译器允许在 for 循环条件里面定义新变量，这样的变量也是块级变量，它的作用域仅限于 for 循环内部。例如，计算从 m 累加到 n 的和：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int sum(int m, int n);
+
+int main(){
+    printf(&quot;The sum from 1 to 100 is %d\n&quot;, sum(1, 100));
+    return 0;
+}
+
+int sum(int m, int n){
+    int sum = 0;
+    for(int i=m; i&lt;=n; i++){  //i是块级变量
+        sum += i;
+    }
+    return sum;
+}</pre>
+变量 i 定义在循环条件里面，所以是一个块级变量，它的作用域就是当前 for 循环，出了 for 循环就无效了。<br />
+<br />
+如果一个变量只在 for 循环内部使用，就可以将它定义在循环条件里面，这样做可以避免在函数开头定义过多的变量，使得代码结构更加清晰，所以我鼓励大家这样做，当然，前提是你的编译器支持。<br />
+<br />
+【实例2】定义一个函数 strchar()，查看给定的字符是否位于某个字符<u><a href='/view/175.html' target='_blank'>串</a></u>中。
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int strchar(char *str, char c);
+
+int main(){
+    char url[] = &quot;https://xiexuewu.github.io&quot;;
+    char letter = &#39;c&#39;;
+    if(strchar(url, letter) &gt;= 0){
+        printf(&quot;The letter is in the string.\n&quot;);
+    }else{
+        printf(&quot;The letter is not in the string.\n&quot;);
+    }
+    return 0;
+}
+
+int strchar(char *str, char c){
+    for(int i=0,len=strlen(str); i&lt;len; i++){  //i和len都是块级变量
+        if(str[i] == c){
+            return i;
+        }
+    }
+   
+    return -1;
+}</pre>
+循环条件里面可以定义一个或者多个变量，这段代码我们就定义了两个变量，分别是 i 和 len，它们都是块级变量，作用域都是当前 for 循环。
+<h2>
+	单独的代码块</h2>
+C语言还允许出现单独的代码块，它也是一个作用域。请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int n = 22;  //编号①
+    //由{ }包围的代码块
+    {
+        int n = 40;  //编号②
+        printf(&quot;block n: %d\n&quot;, n);
+    }
+    printf(&quot;main n: %d\n&quot;, n);
+   
+    return 0;
+}</pre>
+运行结果：<br />
+block n: 40<br />
+main n: 22<br />
+<br />
+这里有两个 n，它们位于不同的作用域，不会产生命名冲突。{ } 的作用域比 main() 更小，{ } 内部的 printf() 使用的是编号为②的 n，main() 内部的 printf() 使用的是编号为①的 n。
+<h2>
+	再谈作用域</h2>
+每个C语言程序都包含了多个作用域，不同的作用域中可以出现同名的变量，C语言会按照从小到大的顺序、一层一层地去父级作用域中查找变量，如果在最顶层的全局作用域中还未找到这个变量，那么就会报错。<br />
+<br />
+下面我们通过具体的代码来演示：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int m = 13;
+int n = 10;
+
+void func1(){
+    int n = 20;
+    {
+        int n = 822;
+        printf(&quot;block1 n: %d\n&quot;, n);
+    }
+    printf(&quot;func1 n: %d\n&quot;, n);
+}
+
+void func2(int n){
+    for(int i=0; i&lt;10; i++){
+        if(i % 5 == 0){
+            printf(&quot;if m: %d\n&quot;, m);
+        }else{
+            int n = i % 4;
+            if(n&lt;2 &amp;&amp; n&gt;0){
+                printf(&quot;else m: %d\n&quot;, m);
+            }
+        }
+    }
+    printf(&quot;func2 n: %d\n&quot;, n);
+}
+
+void func3(){
+    printf(&quot;func3 n: %d\n&quot;, n);
+}
+
+int main(){
+    int n = 30;
+    func1();
+    func2(n);
+    func3();
+    printf(&quot;main n: %d\n&quot;, n);
+   
+    return 0;
+}</pre>
+下图展示了这段代码的作用域：
+<div style="text-align: center;">
+	<img alt="C语言作用域示意图" src="/uploads/allimg/240821/12512CF5-0.jpg" /></div>
+<br />
+<span style="color:#0000cd;">蓝色</span>表示作用域的名称，<span style="color:#b22222;">红色</span>表示作用域中的变量，<span style="color:#0000ff;">global&nbsp;</span>表示全局作用域。在灰色背景的作用域中，我们使用到了 m 变量，而该变量位于全局作用域中，所以得穿越好几层作用域才能找到 m。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/496.html">C语言变量的作用域</a></span>
+                    <span class="next right"><a href="/view/498.html">C语言递归函数（带实例演示）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/496.html";window.nextPageURL = "/view/498.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 497;
+window.arcId = "3161H2KkTqv7ANKGJdlVaXM8RohL5nVM6Cmwne3ridu3iyffKSDrHskrbQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

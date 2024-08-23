@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>进制转换：二进制、八进制、十六进制、十进制之间的转换</title>
+<meta name="keywords" content="进制,转换,二进制,、,八进制,十六进制,对于," />
+<meta name="description" content="对于基础薄弱的读者，本节的内容可能略显晦涩和枯燥，如果你觉得吃力，可以暂时跳过，基本不会影响后续章节的学习，等用到的时候再来阅读。 上节我们对二进制、八进制和十六进" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd class="this"> <span class="channel-num">1</span> <a href="/c/base/">编程基础</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/356.html">通俗地理解什么是编程语言</a></dd><dd>1.2 <a href="/view/357.html">C语言究竟是一门怎样的语言？</a></dd><dd>1.3 <a href="/view/358.html">C语言是菜鸟和大神的分水岭</a></dd><dd>1.4 <a href="/view/359.html">学编程难吗？多久能入门？</a></dd><dd>1.5 <a href="/view/360.html">英语和数学不好，能学编程吗？</a></dd><dd>1.6 <a href="/view/361.html">高中毕业能学会编程吗？</a></dd><dd>1.7 <a href="/view/362.html">C语言和C++到底有什么关系？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/363.html">学了C语言到底能做什么，能从事什么工作？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.9 <a href="/view/364.html">二进制、八进制和十六进制</a></dd><dd>1.10 <a href="/view/365.html">不同进制之间的转换</a></dd><dd>1.11 <a href="/view/366.html">数据在内存中的存储</a></dd><dd>1.12 <a href="/view/367.html">载入内存，让程序运行起来</a></dd><dd>1.13 <a href="/view/368.html">ASCII编码，将英文存储到计算机</a></dd><dd>1.14 <a href="/view/369.html">GB2312编码和GBK编码，将中文存储到计算机</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.15 <a href="/view/370.html">Unicode字符集，将全世界的文字存储到计算机</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.16 <a href="/view/371.html">程序员的薪水和发展方向大全</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.17 <a href="/view/372.html">不要这样学习C语言，这是一个坑！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.18 <a href="/view/373.html">明白了这点才能学好编程，否则参加什么培训班都没用</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>进制转换：二进制、八进制、十六进制、十进制之间的转换</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/364.html">二进制、八进制和十六进制</a></span>
+                    <span class="next right"><a href="/view/366.html">数据在内存中的存储</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/364.html";window.nextPageURL = "/view/366.html";</script>
+			<div id="arc-body"><blockquote>
+	对于基础薄弱的读者，本节的内容可能略显晦涩和枯燥，如果你觉得吃力，可以暂时跳过，基本不会影响后续章节的学习，等用到的时候再来阅读。</blockquote>
+上节我们对二进制、八进制和十六进制进行了说明，本节重点讲解不同进制之间的转换，这在编程中经常会用到，尤其是 C语言。
+<h2>
+	将二进制、八进制、十六进制转换为十进制</h2>
+<span style="color: rgb(178, 34, 34);">二进制、八进制和十六进制向十进制转换都非常容易，就是&ldquo;按权相加&rdquo;。</span>所谓&ldquo;权&rdquo;，也即&ldquo;位权&rdquo;。<br />
+<br />
+假设当前数字是 N 进制，那么：
+<ul>
+	<li>
+		对于整数部分，从右往左看，第 i 位的位权等于 N<sup>i-1</sup></li>
+	<li>
+		对于小数部分，恰好相反，要从左往右看，第 j 位的位权为 N<sup>-j</sup>。</li>
+</ul>
+<br />
+更加通俗的理解是，假设一个多位数（由多个数字组成的数）某位上的数字是 1，那么它所表示的数值大小就是该位的位权。
+<h4>
+	1) 整数部分</h4>
+例如，将八进制数字&nbsp;53627 转换成十进制：
+<p class="info-box">
+	53627 =&nbsp;5&times;8<sup>4</sup>&nbsp;+ 3&times;8<sup>3</sup>&nbsp;+ 6&times;8<sup>2</sup>&nbsp;+ 2&times;8<sup>1</sup>&nbsp;+ 7&times;8<sup>0</sup>&nbsp;=&nbsp;22423（十进制）</p>
+从右往左看，第 1 位的位权为 8<sup>0</sup>=1，第 2 位的位权为 8<sup>1</sup>=8，第 3 位的位权为 8<sup>2</sup>=64，第 4 位的位权为 8<sup>3</sup>=512，第 5 位的位权为 8<sup>4</sup>=4096 &hellip;&hellip; 第 n 位的位权就为 8<sup>n-1</sup>。将各个位的数字乘以位权，然后再相加，就得到了十进制形式。
+<blockquote>
+	注意，这里我们需要以十进制形式来表示位权。</blockquote>
+再如，将十六进制数字 9FA8C 转换成十进制：
+<p class="info-box">
+	9FA8C =&nbsp;9&times;16<sup>4</sup>&nbsp;+ 15&times;16<sup>3</sup>&nbsp;+ 10&times;16<sup>2</sup>&nbsp;+ 8&times;16<sup>1</sup>&nbsp;+ 12&times;16<sup>0</sup>&nbsp;=&nbsp;653964（十进制）</p>
+从右往左看，第 1 位的位权为 16<sup>0</sup>=1，第 2 位的位权为 16<sup>1</sup>=16，第 3 位的位权为 16<sup>2</sup>=256，第 4 位的位权为 16<sup>3</sup>=4096，第 5 位的位权为 16<sup>4</sup>=65536 &hellip;&hellip; 第 n 位的位权就为 16<sup>n-1</sup>。将各个位的数字乘以位权，然后再相加，就得到了十进制形式。<br />
+<br />
+将二进制数字转换成十进制也是类似的道理：
+<p class="info-box">
+	11010 = 1&times;2<sup>4</sup>&nbsp;+ 1&times;2<sup>3</sup>&nbsp;+ 0&times;2<sup>2</sup>&nbsp;+ 1&times;2<sup>1</sup>&nbsp;+ 0&times;2<sup>0</sup>&nbsp;= 26（十进制）</p>
+从右往左看，第 1 位的位权为 2<sup>0</sup>=1，第 2 位的位权为 2<sup>1</sup>=2，第 3 位的位权为 2<sup>2</sup>=4，第 4 位的位权为 2<sup>3</sup>=8，第 5 位的位权为 2<sup>4</sup>=16 &hellip;&hellip; 第 n 位的位权就为 2<sup>n-1</sup>。将各个位的数字乘以位权，然后再相加，就得到了十进制形式。
+<h4>
+	2) 小数部分</h4>
+例如，将八进制数字 423.5176 转换成十进制：
+<p class="info-box">
+	423.5176&nbsp;=&nbsp;4&times;8<sup>2</sup>&nbsp;+ 2&times;8<sup>1</sup>&nbsp;+ 3&times;8<sup>0</sup>&nbsp;+ 5&times;8<sup>-1</sup>&nbsp;+ 1&times;8<sup>-2</sup>&nbsp;+ 7&times;8<sup>-3</sup>&nbsp;+ 6&times;8<sup>-4</sup>&nbsp;=&nbsp;275.65576171875（十进制）</p>
+小数部分和整数部分相反，要从左往右看，第 1 位的位权为 8<sup>-1</sup>=1/8，第 2 位的位权为 8<sup>-2</sup>=1/64，第 3 位的位权为 8<sup>-3</sup>=1/512，第 4 位的位权为 8<sup>-4</sup>=1/4096&nbsp;&hellip;&hellip; 第 m 位的位权就为 8<sup>-m</sup>。<br />
+<br />
+再如，将二进制数字 1010.1101 转换成十进制：
+<p class="info-box">
+	1010.1101 = 1&times;2<sup>3</sup>&nbsp;+ 0&times;2<sup>2</sup>&nbsp;+ 1&times;2<sup>1</sup>&nbsp;+ 0&times;2<sup>0</sup>&nbsp;+ 1&times;2<sup>-1</sup>&nbsp;+ 1&times;2<sup>-2</sup>&nbsp;+ 0&times;2<sup>-3</sup>&nbsp;+ 1&times;2<sup>-4</sup>&nbsp;=&nbsp;10.8125（十进制）</p>
+小数部分和整数部分相反，要从左往右看，第 1 位的位权为 2<sup>-1</sup>=1/2，第 2 位的位权为 2<sup>-2</sup>=1/4，第 3 位的位权为 2<sup>-3</sup>=1/8，第 4 位的位权为 2<sup>-4</sup>=1/16&nbsp;&hellip;&hellip; 第 m 位的位权就为 2<sup>-m</sup>。<br />
+<br />
+更多转换成十进制的例子：
+<ul>
+	<li>
+		二进制：1001 = 1&times;2<sup>3</sup>&nbsp;+ 0&times;2<sup>2</sup>&nbsp;+ 0&times;2<sup>1</sup>&nbsp;+ 1&times;2<sup>0</sup>&nbsp;= 8 + 0 + 0 + 1 = 9（十进制）</li>
+	<li>
+		二进制：101.1001 = 1&times;2<sup>2</sup>&nbsp;+ 0&times;2<sup>1</sup>&nbsp;+ 1&times;2<sup>0&nbsp;</sup>+&nbsp;1&times;2<sup>-1</sup>&nbsp;+ 0&times;2<sup>-2</sup>&nbsp;+ 0&times;2<sup>-3</sup>&nbsp;+ 1&times;2<sup>-4</sup>&nbsp;= 4 + 0 + 1 + 0.5 + 0 + 0 + 0.0625 = 5.5625（十进制）</li>
+	<li>
+		八进制：302 = 3&times;8<sup>2</sup>&nbsp;+ 0&times;8<sup>1</sup>&nbsp;+ 2&times;8<sup>0</sup>&nbsp;= 192 + 0 + 2 = 194（十进制）</li>
+	<li>
+		八进制：302.46 = 3&times;8<sup>2</sup>&nbsp;+ 0&times;8<sup>1</sup>&nbsp;+ 2&times;8<sup>0</sup>&nbsp;+ 4&times;8<sup>-1</sup>&nbsp;+ 6&times;8<sup>-2</sup>&nbsp;= 192 + 0 + 2 + 0.5 + 0.09375= 194.59375（十进制）</li>
+	<li>
+		十六进制：EA7 = 14&times;16<sup>2</sup>&nbsp;+ 10&times;16<sup>1</sup>&nbsp;+ 7&times;16<sup>0</sup>&nbsp;=&nbsp;3751（十进制）</li>
+</ul>
+<h2>
+	将十进制转换为二进制、八进制、十六进制</h2>
+将十进制转换为其它进制时比较复杂，整数部分和小数部分的算法不一样，下面我们分别讲解。
+<h4>
+	1) 整数部分</h4>
+十进制整数转换为 N 进制整数采用&ldquo;<span style="color: rgb(178, 34, 34);">除 N 取余，逆序排列</span>&rdquo;法。具体做法是：
+<ul>
+	<li>
+		将 N 作为除数，用十进制整数除以 N，可以得到一个商和余数；</li>
+	<li>
+		保留余数，用商继续除以 N，又得到一个新的商和余数；</li>
+	<li>
+		仍然保留余数，用商继续除以 N，还会得到一个新的商和余数；</li>
+	<li>
+		&hellip;&hellip;</li>
+	<li>
+		如此反复进行，每次都保留余数，用商接着除以 N，直到商为 0 时为止。</li>
+</ul>
+<br />
+把先得到的余数作为 N 进制数的低位数字，后得到的余数作为 N 进制数的高位数字，依次排列起来，就得到了 N 进制数字。<br />
+<br />
+下图演示了将十进制数字 36926 转换成八进制的过程：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/1A3452356-0.png" style="width: 550px; height: 335px;" /></div>
+<br />
+从图中得知，十进制数字 36926 转换成八进制的结果为 110076。<br />
+<br />
+下图演示了将十进制数字 42 转换成二进制的过程：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/1A345Ia-1.png" style="width: 550px; height: 335px;" /></div>
+<br />
+从图中得知，十进制数字 42 转换成二进制的结果为 101010。
+<h4>
+	2) 小数部分</h4>
+十进制小数转换成 N 进制小数采用&ldquo;<span style="color: rgb(178, 34, 34);">乘 N 取整，顺序排列</span>&rdquo;法。具体做法是：
+<ul>
+	<li>
+		用 N 乘以十进制小数，可以得到一个积，这个积包含了整数部分和小数部分；</li>
+	<li>
+		将积的整数部分取出，再用 N 乘以余下的小数部分，又得到一个新的积；</li>
+	<li>
+		再将积的整数部分取出，继续用 N 乘以余下的小数部分；</li>
+	<li>
+		&hellip;&hellip;</li>
+	<li>
+		如此反复进行，每次都取出整数部分，用 N 接着乘以小数部分，直到积中的小数部分为 0，或者达到所要求的精度为止。</li>
+</ul>
+<br />
+把取出的整数部分按顺序排列起来，先取出的整数作为 N 进制小数的高位数字，后取出的整数作为低位数字，这样就得到了 N 进制小数。<br />
+<br />
+下图演示了将十进制小数 0.930908203125 转换成八进制小数的过程：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/1A3451a9-2.png" style="width: 540px; height: 511px;" /></div>
+<br />
+从图中得知，十进制小数 0.930908203125 转换成八进制小数的结果为 0.7345。<br />
+<br />
+下图演示了将十进制小数 0.6875 转换成二进制小数的过程：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/1A34560Z-3.png" style="width: 540px; height: 511px;" /></div>
+<br />
+从图中得知，十进制小数 0.6875&nbsp;转换成二进制小数的结果为 0.1011。<br />
+<br />
+如果一个数字既包含了整数部分又包含了小数部分，那么将整数部分和小数部分开，分别按照上面的方法完成转换，然后再合并在一起即可。例如：
+<ul>
+	<li>
+		十进制数字 36926.930908203125 转换成八进制的结果为&nbsp;110076.7345；</li>
+	<li>
+		十进制数字 42.6875 转换成二进制的结果为&nbsp;101010.1011。</li>
+</ul>
+<br />
+下表列出了前 17 个十进制整数与二进制、八进制、十六进制的对应关系：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				十进制</th>
+			<td>
+				0</td>
+			<td>
+				1</td>
+			<td>
+				2</td>
+			<td>
+				3</td>
+			<td>
+				4</td>
+			<td>
+				5</td>
+			<td>
+				6</td>
+			<td>
+				7</td>
+			<td>
+				8</td>
+			<td>
+				9</td>
+			<td>
+				10</td>
+			<td>
+				11</td>
+			<td>
+				12</td>
+			<td>
+				13</td>
+			<td>
+				14</td>
+			<td>
+				15</td>
+			<td>
+				16</td>
+		</tr>
+		<tr>
+			<th>
+				二进制</th>
+			<td>
+				0</td>
+			<td>
+				1</td>
+			<td>
+				10</td>
+			<td>
+				11</td>
+			<td>
+				100</td>
+			<td>
+				101</td>
+			<td>
+				110</td>
+			<td>
+				111</td>
+			<td>
+				1000</td>
+			<td>
+				1001</td>
+			<td>
+				1010</td>
+			<td>
+				1011</td>
+			<td>
+				1100</td>
+			<td>
+				1101</td>
+			<td>
+				1110</td>
+			<td>
+				1111</td>
+			<td>
+				10000</td>
+		</tr>
+		<tr>
+			<th>
+				八进制</th>
+			<td>
+				0</td>
+			<td>
+				1</td>
+			<td>
+				2</td>
+			<td>
+				3</td>
+			<td>
+				4</td>
+			<td>
+				5</td>
+			<td>
+				6</td>
+			<td>
+				7</td>
+			<td>
+				10</td>
+			<td>
+				11</td>
+			<td>
+				12</td>
+			<td>
+				13</td>
+			<td>
+				14</td>
+			<td>
+				15</td>
+			<td>
+				16</td>
+			<td>
+				17</td>
+			<td>
+				20</td>
+		</tr>
+		<tr>
+			<th>
+				十六进制</th>
+			<td>
+				0</td>
+			<td>
+				1</td>
+			<td>
+				2</td>
+			<td>
+				3</td>
+			<td>
+				4</td>
+			<td>
+				5</td>
+			<td>
+				6</td>
+			<td>
+				7</td>
+			<td>
+				8</td>
+			<td>
+				9</td>
+			<td>
+				A</td>
+			<td>
+				B</td>
+			<td>
+				C</td>
+			<td>
+				D</td>
+			<td>
+				E</td>
+			<td>
+				F</td>
+			<td>
+				10</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+注意，十进制小数转换成其他进制小数时，结果有可能是一个无限位的小数。请看下面的例子：
+<ul>
+	<li>
+		十进制 0.51 对应的二进制为&nbsp;0.10<span style="color: rgb(165, 42, 42);">00001010001111010111</span><span style="color: rgb(0, 128, 0);">00001010001111010111</span>...，是一个循环小数；</li>
+	<li>
+		十进制 0.72 对应的二进制为 0.<span style="color: rgb(165, 42, 42);">10111000010100011110</span><span style="color: rgb(0, 128, 0);">10111000010100011110</span>...，是一个循环小数；</li>
+	<li>
+		十进制 0.625 对应的二进制为 0.101，是一个有限小数。</li>
+</ul>
+<h2>
+	二进制和八进制、十六进制的转换</h2>
+其实，任何进制之间的转换都可以使用上面讲到的方法，只不过有时比较麻烦，所以一般针对不同的进制采取不同的方法。将二进制转换为八进制和十六进制时就有非常简洁的方法，反之亦然。
+<h4>
+	1) 二进制整数和八进制整数之间的转换</h4>
+二进制整数转换为八进制整数时，每三位二进制数字转换为一位八进制数字，运算的顺序是从低位向高位依次进行，高位不足三位用零补齐。下图演示了如何将二进制整数 1110111100 转换为八进制：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/1A3455449-4.png" style="width: 420px; height: 126px;" /></div>
+<br />
+从图中可以看出，二进制整数 1110111100 转换为八进制的结果为 1674。<br />
+<br />
+八进制整数转换为二进制整数时，思路是相反的，每一位八进制数字转换为三位二进制数字，运算的顺序也是从低位向高位依次进行。下图演示了如何将八进制整数 2743 转换为二进制：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/1A3453191-5.png" style="width: 420px; height: 105px;" /></div>
+<br />
+从图中可以看出，八进制整数 2743 转换为二进制的结果为 10111100011。<br />
+<h4>
+	2) 二进制整数和十六进制整数之间的转换</h4>
+二进制整数转换为十六进制整数时，每四位二进制数字转换为一位十六进制数字，运算的顺序是从低位向高位依次进行，高位不足四位用零补齐。下图演示了如何将二进制整数 10 1101 0101 1100&nbsp;转换为十六进制：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/1A3455E3-6.png" style="width: 550px; height: 125px;" /></div>
+<br />
+从图中可以看出，二进制整数 10 1101 0101 1100 转换为十六进制的结果为 2D5C。<br />
+<br />
+十六进制整数转换为二进制整数时，思路是相反的，每一位十六进制数字转换为四位二进制数字，运算的顺序也是从低位向高位依次进行。下图演示了如何将十六进制整数 A5D6 转换为二进制：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/1A345G38-7.png" style="width: 550px; height: 102px;" /></div>
+<br />
+从图中可以看出，十六进制整数 A5D6 转换为二进制的结果为 1010 0101 1101 0110。<br />
+<br />
+在C语言编程中，二进制、八进制、十六进制之间几乎不会涉及小数的转换，所以这里我们只讲整数的转换，大家学以致用足以。另外，八进制和十六进制之间也极少直接转换，这里我们也不再讲解了。
+<h2>
+	总结</h2>
+本节前面两部分讲到的转换方法是通用的，任何进制之间的转换都可以采用，只是有时比较麻烦而已。二进制和八进制、十六进制之间的转换有非常简洁的方法，所以没有采用前面的方法。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/364.html">二进制、八进制和十六进制</a></span>
+                    <span class="next right"><a href="/view/366.html">数据在内存中的存储</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/364.html";window.nextPageURL = "/view/366.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 365;
+window.arcId = "9d99TzkU+6ja214dLa0kyuk64k0SVUCCO6Zx8ddRQb0vbIA7O92c9hYx4g";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

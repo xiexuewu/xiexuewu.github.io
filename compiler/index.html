@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言编译器（C语言编程软件）完全攻略</title>
+<meta name="description" content="" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言编译器（C语言编程软件）完全攻略</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/compiler/">编译器汇总</a></span>
+                    <span class="next right"><a href="/view/382.html">什么是编译器？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/compiler/";window.nextPageURL = "/view/382.html";</script>
+			<div id="arc-body"><img align="left" alt="C语言编译器（C语言编程软件）完全攻略" src="/uploads/allimg/240819/2-240Q9200I5362.png" style="width: 64px; height: 64px;" />常用的C语言编译器（编程软件）介绍，同时附带下载地址、详细的安装教程和使用教程。我们还对比了不同C语言编译器（C语言编程软件）的优缺点，让初学者知道该如何选择。<br />
+<br />
+覆盖全平台，包括 Windows、Linux 和 Mac OS，不管你使用什么电脑，都能无障碍地学习 C 语言和数据结构<br />
+<br />
+提示：Windows 下的C语言编译器众多，多如牛毛，有的功能强大，但是安装和使用都比较复杂，有的小巧灵活，但是功能较弱；这里我们收集了八款常用的编译器，供大家下载。</div>
+			<dl id="arc-list">
+				<dt>本章内容：</dt>
+				<dd >
+					<span>1.</span> <a href="/view/382.html">什么是编译器？</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>2.</span> <a href="/view/383.html">与编译器相关的几个知识点</a>
+				</dd>
+<dd >
+					<span>3.</span> <a href="/view/384.html">Windows下的编译器有哪些？如何选择？</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>4.</span> <a href="/view/385.html">VS2022下载和安装教程</a>
+				</dd>
+<dd >
+					<span>5.</span> <a href="/view/386.html">VS2022使用教程（使用VS2022编写C语言程序）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>6.</span> <a href="/view/387.html">VS2019下载地址和安装教程（图解）</a>
+				</dd>
+<dd >
+					<span>7.</span> <a href="/view/388.html">VS2019使用教程（使用VS2019编写C语言程序）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>8.</span> <a href="/view/389.html">VS2017下载地址和安装教程（图解）</a>
+				</dd>
+<dd >
+					<span>9.</span> <a href="/view/390.html">VS2017使用教程（使用VS2017编写C语言程序）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>10.</span> <a href="/view/391.html">VS2015下载地址和安装教程（图解）</a>
+				</dd>
+<dd >
+					<span>11.</span> <a href="/view/392.html">VS2015使用教程（使用VS2015编写C语言程序）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>12.</span> <a href="/view/393.html">Dev C++下载地址和安装教程（图解）</a>
+				</dd>
+<dd >
+					<span>13.</span> <a href="/view/394.html">Dev C++使用教程（使用Dev C++编写C语言程序）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>14.</span> <a href="/view/395.html">VC6.0（VC++6.0）下载地址和安装教程（图解）</a>
+				</dd>
+<dd >
+					<span>15.</span> <a href="/view/403.html">VC6.0（VC++6.0）使用教程（使用VC6.0编写C语言程序）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>16.</span> <a href="/view/396.html">Code::Blocks下载地址和安装教程（图解）</a>
+				</dd>
+<dd >
+					<span>17.</span> <a href="/view/397.html">Code::Blocks汉化教程（附带汉化包）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>18.</span> <a href="/view/398.html">Code::Blocks使用教程（使用Code::Blocks编写C语言程序）</a>
+				</dd>
+<dd >
+					<span>19.</span> <a href="/view/402.html">Xcode简明教程（使用Xcode编写C语言程序）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>20.</span> <a href="/view/401.html">Linux GCC简明教程（使用GCC编写C语言程序）</a>
+				</dd>
+<dd >
+					<span>21.</span> <a href="/view/399.html">VS安全函数问题（C语言安全函数）是怎么回事？如何解决？</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>22.</span> <a href="/view/400.html">VS“无法查找或打开PDB文件”是怎么回事？如何解决</a>
+				</dd>
+
+			</dl>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/compiler/">编译器汇总</a></span>
+                    <span class="next right"><a href="/view/382.html">什么是编译器？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/compiler/";window.nextPageURL = "/view/382.html";</script>
+		</div>
+		
+	</div>	
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 't_' + 24;
+window.arcId = "f257oKuHujmCtFiW63j3UIsKL9A3R0Nwg/7lhLtyzpvZvCgo4thIht8E";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

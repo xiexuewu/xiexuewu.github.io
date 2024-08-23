@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>制作安装包，让用户安装程序</title>
+<meta name="keywords" content="制作,安装,包,让,用户,程序,经,过多,年的发展," />
+<meta name="description" content="经过多年的发展，Windows 安装包的制作技术已经非常成熟，有不少现成的工具，无需我们自己编写代码，例如 Inno Setup、NSIS、Advanced Installer、Setup Factory、Smart Install Maker、Nullsoft、Install" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">2</span> <a href="/c/begin/">C语言初探</a> </dd><dl class="dl-sub"><dd>2.1 <a href="/view/374.html">第一个C语言程序</a></dd><dd>2.2 <a href="/view/375.html">选择正确的输入法，严格区分中英文</a></dd><dd>2.3 <a href="/view/376.html">什么是源文件？</a></dd><dd>2.4 <a href="/view/377.html">什么是编译和链接？</a></dd><dd>2.5 <a href="/view/378.html">主流C语言编译器有哪些？</a></dd><dd>2.6 <a href="/view/379.html">什么是IDE（集成开发环境）？</a></dd><dd>2.7 <a href="/view/380.html">什么是工程/项目？</a></dd><dd>2.8 <a href="/view/381.html">哪款C语言编译器（IDE）适合初学者？</a></dd><dd>2.9 <a href="/view/405.html">C语言的三套标准：C89、C99和C11</a></dd><dd>2.10 <a href="/view/404.html">如何在手机上编写C语言代码？</a></dd><dd>2.11 <a href="/view/406.html">C语言为什么有那么多编译器？</a></dd><dd>2.12 <a href="/view/407.html">程序安装是怎么回事？</a></dd><dd>2.13 <a href="/view/408.html">制作安装包，让用户安装程序</a></dd><dd>2.14 <a href="/view/409.html">C语言程序的错误和警告</a></dd><dd>2.15 <a href="/view/410.html">分析第一个C语言程序</a></dd><dd>2.16 <a href="/view/411.html">C语言代码中的空白符</a></dd><dd>2.17 <a href="/view/413.html">一个真正带界面的C语言程序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.18 <a href="/view/412.html">彩色版的C语言，让文字更漂亮</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>制作安装包，让用户安装程序</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/407.html">程序安装是怎么回事？</a></span>
+                    <span class="next right"><a href="/view/409.html">C语言程序的错误和警告</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/407.html";window.nextPageURL = "/view/409.html";</script>
+			<div id="arc-body">经过多年的发展，Windows 安装包的制作技术已经非常成熟，有不少现成的工具，无需我们自己编写代码，例如 Inno Setup、NSIS、Advanced Installer、Setup Factory、Smart Install Maker、Nullsoft、InstallShield，Advanced Installer 等。<br />
+<br />
+软件安装的过程大部分是文件拷贝的过程，如果不需要写入注册表，不需要向不同的目录拷贝 DLL，那么使用 WinRAR 也可以制作简单的安装包，大家可以自行谷歌或百度。这里我们教大家使用 VS2022 制作安装包。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R014553S51.gif" /><br />
+	图 1 制作安装包的 C 语言项目</div>
+<br />
+以图 1 中的 C 语言项目为例，编译后会生成一个名为&ldquo;Demo.exe&rdquo;的可执行文件，在 Demo 项目的本地文件夹中可以找到它，利用 VS2022 将 Demo.exe 制作成安装包需要经历以下几个步骤。
+<h2>
+	1、安装Installer Projects</h2>
+Installer Projects 是 VS2022 自带的一款制作安装包的插件，借助它，在 VS 中编写的程序可以打包成标准的 Windows 安装包。<br />
+<br />
+安装 Installer Projects 的过程很简单，在 VS2022 菜单栏中依次选择&ldquo;扩展 -&gt; 管理扩展&rdquo;，会弹出如下的窗口：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R01456164c.gif" /><br />
+	图 2 安装 Installer Projects 组件</div>
+<br />
+搜索框中手动输入&ldquo;Visual Studio Installer Projects&rdquo;找到 Installer Projects 组件，点击&ldquo;下载&rdquo;。整个安装的过程非常简单，这里不再给出具体图示。<br />
+<br />
+安装完成后，重启 VS2022，就可以使用 Installer Projects 组件了。
+<h2>
+	2、新建制作安装包的项目</h2>
+在 Demo 项目所在的解决方案中，再新建一个制作安装包的项目（也可以单独创建一个制作安装包的项目）：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0145643238.gif" /><br />
+	图 3 新建制作安装包的项目</div>
+<br />
+在弹出的如下窗口中，选择创建&ldquo;Setup Project&rdquo;项目：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0145F5G4.gif" /><br />
+	图 4 创建 Setup Project 项目</div>
+<blockquote>
+	<p>
+		注意，如果找不到 Setup Project 项目，表明你的 VS2022 尚未安装 Installer Projects，返回第 1 步安装成功后再继续往下进行。</p>
+</blockquote>
+在弹出的如下窗口中，可以自定义项目的名称和存储位置：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0145I1562.gif" /><br />
+	图 5 自定义项目名称和存储位置</div>
+<br />
+创建完成后，当前解决方案中就包含了两个项目，一个是 Demo 项目，另一个是 DemoSetup 项目：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0145K3U9.gif" /><br />
+	图 6 一个解决方案中包含两个项目</div>
+<h2>
+	3、制作安装包</h2>
+鼠标右击图 6 中的 DemoSetup 项目名，依次选择&ldquo;View -&gt; 文件系统&rdquo;，可以看到 3 个文件夹：
+<ul>
+	<li>
+		Application Folder（应用程序文件夹）：放置制作安装包所需的所有文件，包括可执行文件、库文件、icon 图标等；</li>
+	<li>
+		User&#39;s Desktop（用户的桌面）：指定用户安装应用程序完成后，桌面上需要放置的内容，通常是可执行程序的快捷方式；</li>
+	<li>
+		User&#39;s Programs Menu（用户的程序菜单）：指定用户安装应用程序完成后，开始菜单中需要显示的内容，比如可执行程序和卸载程序的快捷方式。</li>
+</ul>
+<h3>
+	1) 应用程序文件夹中添加文件</h3>
+在应用程序文件夹处单击鼠标右键选择&ldquo;添加（Add） -&gt; 文件夹（Floder）&rdquo;，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0145T2407.gif" /><br />
+	图 7 应用程序文件夹中添加文件夹</div>
+<br />
+我们不妨将文件夹命名为 Demo。这个文件夹就是程序安装后所在安装路径下生成的、包含程序相关组件的文件夹。例如，用户选择将程序安装到 D:\Program Files\ 目录，那么安装时会先在该目录创建一个名称为 Demo 的新文件夹，再将程序的所有组件拷贝到 Demo 中，最终程序的所有文件是在 D:\Program Files\Demo\ 目录下。<br />
+<br />
+接下来，向 Demo 文件夹中添加程序要用到的所有文件，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0145U9320.gif" /><br />
+	图 8 应用程序文件夹中添加文件</div>
+<br />
+添加好以后如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0145914148.gif" /><br />
+	图 9 添加好的文件</div>
+<br />
+Demo.exe 是我们编译好的可执行文件，demo.ico 和 uninstall.ico 是图标，用来创建快捷方式。程序图标必须是 .ico 格式，可以通过 jpg、png 等常见图片格式在线转换。文章最后会给出两个图标的下载地址。
+<blockquote>
+	<p>
+		制作安装包之前，可以将程序使用到的所有文件都拷贝到一个目录下，这样就可以一次性添加到 Demo。</p>
+</blockquote>
+<h4>
+	增加卸载功能</h4>
+如果想为安装包增加卸载功能的话，还需要将<code>C:\Windows\System32\msiexec.exe</code>也添加到 CDemo 中。
+<h3>
+	2) 桌面和开发菜单中添加快捷方式</h3>
+快捷方式存在于两个地方，分别是桌面和开始菜单，用户的程序菜单用来存放开始菜单中的快捷方式，用户的桌面用来存放桌面上的快捷方式。<br />
+<br />
+在 &quot;Demo.exe&quot; 上单击鼠标右键选择创建 Demo.exe 的快捷方式，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0150001340.gif" /><br />
+	图 10 添加 Demo.exe 的快捷方式</div>
+<br />
+鼠标右击新生成的快捷方式（Shortcut to Demo.exe），选择&ldquo;属性窗口&rdquo;，下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R015001BX.gif" /><br />
+	图 11 快捷方式的属性</div>
+<br />
+Name 表示快捷方式的名称，一般是程序名，这里重置为 Demo；Description 表示对快捷方式的说明，也就是鼠标悬浮时显示的文本；Target 表示快捷方式指向哪个可执行程序；Icon 表示快捷方式的图标，将其设置为 demo.ico 。<br />
+<br />
+按照同样的方式为 msiexec.exe 也生成快捷方式，并将 Name 设置为&ldquo;卸载Demo&rdquo;，将 Icon 设置为&ldquo;uninstall.ico&rdquo;。<br />
+<br />
+在&ldquo;用户的程序菜单&rdquo;下新建文件夹 Demo，将两个快捷方式移动到此文件夹下。然后再为 demo.exe 创建一个快捷方式，并移动到&ldquo;用户的桌面&rdquo;下。<br />
+<br />
+这样，程序安装后在桌面和开始菜单中都有快捷方式，都可以启动了。
+<h3>
+	3) 实现卸载功能（可选）</h3>
+上面我们虽然添加了系统自带的卸载程序，并为卸载程序创建了快捷方式，但目前依然无法实现卸载功能，因为还不知道要卸载哪个程序。<br />
+<br />
+在图 11 属性面板的基础上，鼠标点击项目名 DemoSetup，可以看到和此项目有关的属性，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0150040913.gif" /><br />
+	图 12 项目属性面板</div>
+<br />
+ProductCode 是产品代码，即产品 ID，我们需要将它告诉卸载程序。每个程序的 ID 都不同，有了它，卸载程序才知道卸载哪一个软件。本例中，程序 ID 为 {FF9566C2-47D6-4B1F-95D4-67C4EDD2F7D6}。<br />
+<br />
+在卸载程序 msiexec.exe 快捷方式的属性面板中，将 Arguments 的值设置为<code>/x{FF9566C2-47D6-4B1F-95D4-67C4EDD2F7D6}</code>，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0150112J8.gif" /><br />
+	图 13 实现卸载功能</div>
+<br />
+这样，卸载程序就知道卸载哪个软件了。
+<h3>
+	4) 选择系统必备</h3>
+在项目名称 DemoSetup 上点击鼠标右键，选择&ldquo;属性&rdquo;，弹出如下的对话框：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R01501335F.gif" /><br />
+	图 14 设置系统必备</div>
+<br />
+点击&ldquo;Prerequisites...&rdquo;（系统必备），弹出如下窗口：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R01501514D.gif" /><br />
+	图 15 自选系统必备的组件</div>
+<br />
+可以在这里选择程序需要的系统组件。我们的程序不需要任何组件，所以将【创建用于安装系统必备组件的安装程序】前的对勾取消，然后点击&ldquo;确定&rdquo;按钮，就设置完成了。<br />
+<br />
+至此，我们的安装包就编辑完成了。
+<h3>
+	5) 生成安装包</h3>
+鼠标右击 DemoSetup 项目名，选择&ldquo;生成&rdquo;或者&ldquo;重新生成&rdquo;：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0150213S2.gif" /><br />
+	图 16 生成安装包</div>
+<br />
+生成项目后，可以在 Debug 目录下看到 CDemoSetup.msi 文件，这就是我们制作好的安装包，双击运行，就可以安装我们的程序了。<br />
+<br />
+安装完成后，就可以在开始菜单和桌面上看到快捷方式了，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2-240R0150230b5.gif" /><br />
+	图 17 安装好的应用程序</div>
+<br />
+点击 Demo，可以看到程序的运行结果；点击&ldquo;卸载 Demo&rdquo;，可以卸载 Demo 应用程序。
+<blockquote>
+	<p>
+		程序图标下载地址：<a href="https://pan.quark.cn/s/2648551512b4">https://pan.quark.cn/s/2648551512b4</a></p>
+</blockquote>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/407.html">程序安装是怎么回事？</a></span>
+                    <span class="next right"><a href="/view/409.html">C语言程序的错误和警告</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/407.html";window.nextPageURL = "/view/409.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 408;
+window.arcId = "b186VgZR3JJ7bfiQ/24+M4gJ2JSEr2IgZkNJjnmEgDWNxmxi863Mjlfwiw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

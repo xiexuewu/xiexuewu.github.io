@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言中的小数（float,double）</title>
+<meta name="keywords" content="语言,中的,小数,float,double,小数,分为,整数" />
+<meta name="description" content="小数分为整数部分和小数部分，它们由点号 . 分隔，例如0.0、75.0、4.023、0.27、-937.198 -0.27 等都是合法的小数，这是最常见的小数形式，我们将它称为 十进制形式 。 此外，小数也可以采" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/c/variable_datatype/">变量和数据类型</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/414.html">大话C语言变量和数据类型</a></dd><dd>3.2 <a href="/view/415.html">在屏幕上输出各种类型的数据</a></dd><dd>3.3 <a href="/view/416.html">C语言中的整数（short,int,long）</a></dd><dd>3.4 <a href="/view/417.html">二进制数、八进制数和十六进制数</a></dd><dd>3.5 <a href="/view/418.html">C语言中的正负数及其输出</a></dd><dd>3.6 <a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a></dd><dd>3.7 <a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/421.html">C语言中的小数（float,double）</a></dd><dd>3.9 <a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/view/423.html">在C语言中使用英文字符</a></dd><dd>3.11 <a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.12 <a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/427.html">C语言转义字符</a></dd><dd>3.14 <a href="/view/428.html">C语言中的几个重要概念</a></dd><dd>3.15 <a href="/view/430.html">C语言加减乘除运算</a></dd><dd>3.16 <a href="/view/431.html">C语言自增(++)和自减(--)</a></dd><dd>3.17 <a href="/view/432.html">变量的定义位置以及初始值</a></dd><dd>3.18 <a href="/view/433.html">运算符的优先级和结合性</a></dd><dd>3.19 <a href="/view/435.html">C语言数据类型转换</a></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言中的小数（float,double）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/420.html">整数的取值范围以及数值溢出</a></span>
+                    <span class="next right"><a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/420.html";window.nextPageURL = "/view/422.html";</script>
+			<div id="arc-body">小数分为整数部分和小数部分，它们由点号<code>.</code>分隔，例如&nbsp;0.0、75.0、4.023、0.27、-937.198 -0.27 等都是合法的小数，这是最常见的小数形式，我们将它称为<span style="color:#008000;">十进制形式</span>。<br />
+<br />
+此外，小数也可以采用<span style="color:#008000;">指数形式</span>，例如 7.25&times;10<sup>2</sup>、0.0368&times;10<sup>5</sup>、100.22&times;10<sup>-2</sup>、-27.36&times;10<sup>-3</sup>&nbsp;等。任何小数都可以用指数形式来表示。<br />
+<br />
+C语言同时支持以上两种形式的小数。但是在书写时，C语言中的指数形式和数学中的指数形式有所差异。<br />
+<br />
+C语言中小数的指数形式为：
+<p class="info-box">
+	aEn 或 aen</p>
+a 为尾数部分，是一个十进制数；n 为指数部分，是一个十进制整数；<code>E</code>或<code>e</code>是固定的字符，用于分割尾数部分和指数部分。整个表达式等价于&nbsp;a&times;10<sup>n</sup>。<br />
+<br />
+指数形式的小数举例：
+<ul>
+	<li>
+		2.1E5 = 2.1&times;10<sup>5</sup>，其中 2.1 是尾数，5 是指数。</li>
+	<li>
+		3.7E-2 = 3.7&times;10<sup>-2</sup>，其中 3.7 是尾数，-2 是指数。</li>
+	<li>
+		0.5E7 =&nbsp;0.5&times;10<sup>7</sup>，其中 0.5 是尾数，7 是指数。</li>
+</ul>
+<br />
+C语言中常用的小数有两种类型，分别是 float 或 double；float 称为<span style="color: #008000">单精度浮点型</span>，double 称为<span style="color: #008000">双精度浮点型</span>。<br />
+<br />
+不像整数，小数没有那么多幺蛾子，小数的长度是固定的，float 始终占用4个字节，double 始终占用8个字节。
+<h2>
+	小数的输出</h2>
+小数也可以使用 printf 函数输出，包括十进制形式和指数形式，它们对应的格式控制符分别是：<br />
+<ul>
+	<li>
+		%f 以十进制形式输出 float 类型；</li>
+	<li>
+		%lf 以十进制形式输出 double 类型；</li>
+	<li>
+		%e 以指数形式输出 float 类型，输出结果中的 e 小写；</li>
+	<li>
+		%E 以指数形式输出 float 类型，输出结果中的 E 大写；</li>
+	<li>
+		%le 以指数形式输出 double 类型，输出结果中的 e 小写；</li>
+	<li>
+		%lE 以指数形式输出 double 类型，输出结果中的 E 大写。</li>
+</ul>
+<br />
+下面的代码演示了小数的表示以及输出：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main()
+{
+    float a = 0.302;
+    float b = 128.101;
+    double c = 123;
+    float d = 112.64E3;
+    double e = 0.7623e-2;
+    float f = 1.23002398;
+    printf(&quot;a=%e \nb=%f \nc=%lf \nd=%lE \ne=%lf \nf=%f\n&quot;, a, b, c, d, e, f);
+   
+    return 0;
+}</pre>
+运行结果：<br />
+a=3.020000e-01<br />
+b=128.100998<br />
+c=123.000000<br />
+d=1.126400E+05<br />
+e=0.007623<br />
+f=1.230024<br />
+<br />
+对代码的说明：<br />
+1) %f 和 %lf 默认保留六位小数，不足六位以 0 补齐，超过六位按四舍五入截断。<br />
+<br />
+2) 将整数赋值给 float 变量时会变成小数。<br />
+<br />
+3) 以指数形式输出小数时，输出结果为科学计数法；也就是说，尾数部分的取值为：0 &le; 尾数 &lt; 10。<br />
+<br />
+4) b 的输出结果让人费解，才三位小数，为什么不能精确输出，而是输出一个近似值呢？这和小数在内存中的存储形式有关，很多简单的小数压根不能精确存储，所以也就不能精确输出，我们将在下节《<a href="/view/vip_1764.html" target="_blank">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计（长篇神文）</a>》中详细讲解。<br />
+<br />
+另外，小数还有一种更加智能的输出方式，就是使用<code>%g</code>。%g 会对比小数的十进制形式和指数形式，以最短的方式来输出小数，让输出结果更加简练。所谓最短，就是输出结果占用最少的字符。<br />
+<br />
+%g 使用示例：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main()
+{
+    float a = 0.00001;
+    float b = 30000000;
+    float c = 12.84;
+    float d = 1.229338455;
+    printf(&quot;a=%g \nb=%g \nc=%g \nd=%g\n&quot;, a, b, c, d);
+   
+    return 0;
+}</pre>
+运行结果：<br />
+a=1e-05<br />
+b=3e+07<br />
+c=12.84<br />
+d=1.22934<br />
+<br />
+对各个小数的分析：
+<ul>
+	<li>
+		a 的十进制形式是 0.00001，占用七个字符的位置，a 的指数形式是 1e-05，占用五个字符的位置，指数形式较短，所以以指数的形式输出。</li>
+	<li>
+		b 的十进制形式是 30000000，占用八个字符的位置，b 的指数形式是 3e+07，占用五个字符的位置，指数形式较短，所以以指数的形式输出。</li>
+	<li>
+		c 的十进制形式是 12.84，占用五个字符的位置，c 的指数形式是 1.284e+01，占用九个字符的位置，十进制形式较短，所以以十进制的形式输出。</li>
+	<li>
+		d 的十进制形式是 1.22934，占用七个字符的位置，d 的指数形式是 1.22934e+00，占用十一个字符的位置，十进制形式较短，所以以十进制的形式输出。</li>
+</ul>
+<br />
+读者需要注意的两点是：
+<ul>
+	<li>
+		%g 默认最多保留六位有效数字，包括整数部分和小数部分；%f 和 %e 默认保留六位小数，只包括小数部分。</li>
+	<li>
+		%g 不会在最后强加 0 来凑够有效数字的位数，而 %f 和 %e 会在最后强加 0 来凑够小数部分的位数。</li>
+</ul>
+<br />
+总之，%g 要以最短的方式来输出小数，并且小数部分表现很自然，不会强加零，比 %f 和 %e 更有弹性，这在大部分情况下是符合用户习惯的。<br />
+<br />
+除了 %g，还有 %lg、%G、%lG：
+<ul>
+	<li>
+		%g 和 %lg 分别用来输出 float 类型和 double 类型，并且当以指数形式输出时，<code>e</code>小写。</li>
+	<li>
+		%G 和 %lG 也分别用来输出 float 类型和 double 类型，只是当以指数形式输出时，<code>E</code>大写。</li>
+</ul>
+<h2>
+	数字的后缀</h2>
+一个数字，是有默认类型的：对于整数，默认是 int 类型；对于小数，默认是 double 类型。<br />
+<br />
+请看下面的例子：
+<pre class="cpp">
+long a = 100;
+int b = 294;
+
+float x = 52.55;
+double y = 18.6;</pre>
+100 和 294 这两个数字默认都是 int 类型的，将 100 赋值给 a，必须先从 int 类型转换为 long 类型，而将 294 赋值给 b 就不用转换了。<br />
+<br />
+52.55 和 18.6 这两个数字默认都是 double 类型的，将 52.55 赋值给 x，必须先从 double 类型转换为 float 类型，而将 18.6 赋值给 y 就不用转换了。<br />
+<br />
+如果不想让数字使用默认的类型，那么可以给数字加上后缀，手动指明类型：
+<ul>
+	<li>
+		在整数后面紧跟 l 或者 L（不区分大小写）表明该数字是 long 类型；</li>
+	<li>
+		在小数后面紧跟 f 或者 F（不区分大小写）表明该数字是 float 类型。</li>
+</ul>
+<br />
+请看下面的代码：
+<pre class="cpp">
+long a = 100l;
+int b = 294;
+short c = 32L;
+   
+float x = 52.55f;
+double y = 18.6F;
+float z = 0.02;</pre>
+加上后缀，虽然数字的类型变了，但这并不意味着该数字只能赋值给指定的类型，它仍然能够赋值给其他的类型，只要进行了一下类型转换就可以了。<br />
+<br />
+对于初学者，很少会用到数字的后缀，加不加往往没有什么区别，也不影响实际编程，但是既然学了C语言，还是要知道这个知识点的，万一看到别人的代码这么用了，而你却不明白怎么回事，那就尴尬了。
+<blockquote>
+	关于数据类型的转换，我们将在《<a href="/view/1775.html" target="_blank">C语言数据类型转换</a>》一节中深入探讨。</blockquote>
+<h2>
+	小数和整数相互赋值</h2>
+在C语言中，整数和小数之间可以相互赋值：
+<ul>
+	<li>
+		将一个整数赋值给小数类型，在小数点后面加 0 就可以，加几个都无所谓。</li>
+	<li>
+		将一个小数赋值给整数类型，就得把小数部分丢掉，只能取整数部分，这会改变数字本来的值。注意是直接丢掉小数部分，而不是按照四舍五入取近似值。</li>
+</ul>
+<br />
+请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    float f = 251;
+    int w = 19.427;
+    int x = 92.78;
+    int y = 0.52;
+    int z = -87.27;
+   
+    printf(&quot;f = %f, w = %d, x = %d, y = %d, z = %d\n&quot;, f, w, x, y, z);
+
+    return 0;
+}</pre>
+运行结果：<br />
+f = 251.000000, w = 19, x = 92, y = 0, z = -87<br />
+<br />
+由于将小数赋值给整数类型时会&ldquo;失真&rdquo;，所以编译器一般会给出警告，让大家引起注意。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/420.html">整数的取值范围以及数值溢出</a></span>
+                    <span class="next right"><a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/420.html";window.nextPageURL = "/view/422.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 421;
+window.arcId = "f81cr3b+pZdftNwbset0SBqWs475hKSj681HI1rXRd0QF1ynrrfwCwj+PQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

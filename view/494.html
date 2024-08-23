@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言函数声明以及函数原型</title>
+<meta name="keywords" content="语言,函数,声明,以及,原型,语言,代码,由上," />
+<meta name="description" content="C语言代码由上到下依次执行，原则上函数定义要出现在函数调用之前，否则就会报错。但在实际开发中，经常会在函数定义之前使用它们，这个时候就需要提前声明。 所谓 声明（Decl" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言函数声明以及函数原型</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></span>
+                    <span class="next right"><a href="/view/495.html">全局变量和局部变量</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/493.html";window.nextPageURL = "/view/495.html";</script>
+			<div id="arc-body">C语言代码由上到下依次执行，原则上函数定义要出现在函数调用之前，否则就会报错。但在实际开发中，经常会在函数定义之前使用它们，这个时候就需要提前声明。<br />
+<br />
+<span style="color: #b22222">所谓</span><strong><span style="color: #008000">声明（Declaration）</span></strong><span style="color: #b22222">，就是告诉编译器我要使用这个函数，你现在没有找到它的定义不要紧，请不要报错，稍后我会把定义补上。</span><br />
+<br />
+函数声明的格式非常简单，相当于去掉函数定义中的函数体，并在最后加上分号<code>;</code>，如下所示：
+<p class="info-box">
+	dataType&nbsp; functionName( dataType1 param1, dataType2 param2 ... );</p>
+也可以不写形参，只写数据类型：
+<p class="info-box">
+	dataType&nbsp; functionName( dataType1, dataType2 ... );</p>
+函数声明给出了函数名、返回值类型、参数列表（重点是参数类型）等与该函数有关的信息，称为<strong><span style="color: rgb(0,128,0)">函数原型（</span><span style="color: rgb(0,128,0)">Function Prototype</span><span style="color: rgb(0,128,0)">）</span></strong>。函数原型的作用是告诉编译器与该函数有关的信息，让编译器知道函数的存在，以及存在的形式，即使函数暂时没有定义，编译器也知道如何使用它。<br />
+<br />
+有了函数声明，函数定义就可以出现在任何地方了，甚至是其他文件、静态链接库、动态链接库等。<br />
+<br />
+【实例1】定义一个函数 sum()，计算从 m 加到 n 的和，并将 sum() 的定义放到 main() 后面。
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+//函数声明
+int sum(int m, int n);  //也可以写作int sum(int, int);
+
+int main(){
+    int begin = 5, end = 86;
+    int result = sum(begin, end);
+    printf(&quot;The sum from %d to %d is %d\n&quot;, begin, end, result);
+    return 0;
+}
+
+//函数定义
+int sum(int m, int n){
+    int i, sum=0;
+    for(i=m; i&lt;=n; i++){
+        sum+=i;
+    }
+    return sum;
+}</pre>
+我们在 main() 函数中调用了 sum() 函数，编译器在它前面虽然没有发现函数定义，但是发现了函数声明，这样编译器就知道函数怎么使用了，至于函数体到底是什么，暂时可以不用操心，后续再把函数体补上就行。<br />
+<br />
+【实例2】定义两个函数，计算<code>1! + 2! + 3! + ... + (n-1)! + n!</code>的和。
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+// 函数声明部分
+long factorial(int n);  //也可以写作 long factorial(int);
+long sum(long n);  //也可以写作 long sum(long);
+
+int main(){
+    printf(&quot;1!+2!+...+9!+10! = %ld\n&quot;, sum(10));
+    return 0;
+}
+
+//函数定义部分
+//求阶乘
+long factorial(int n){
+    int i;
+    long result=1;
+    for(i=1; i&lt;=n; i++){
+        result *= i;
+    }
+    return result;
+}
+
+// 求累加的和
+long sum(long n){
+    int i;
+    long result = 0;
+    for(i=1; i&lt;=n; i++){
+        result += factorial(i);
+    }
+    return result;
+}</pre>
+运行结果：<br />
+1!+2!+...+9!+10! = 4037913<br />
+<br />
+初学者编写的代码都比较简单，顶多几百行，完全可以放在一个源文件中。对于单个源文件的程序，通常是将函数定义放到 main() 的后面，将函数声明放到 main() 的前面，这样就使得代码结构清晰明了，主次分明。<br />
+<br />
+使用者往往只关心函数的功能和函数的调用形式，很少关心函数的实现细节，将函数定义放在最后，就是尽量屏蔽不重要的信息，凸显关键的信息。将函数声明放到 main() 的前面，在定义函数时也不用关注它们的调用顺序了，哪个函数先定义，哪个函数后定义，都无所谓了。<br />
+<br />
+然而在实际开发中，往往都是几千行、上万行、百万行的代码，将这些代码都放在一个源文件中简直是灾难，不但检索麻烦，而且打开文件也很慢，所以必须将这些代码分散到多个文件中。对于多个文件的程序，通常是将函数定义放到源文件（<code>.c</code>文件）中，将函数的声明放到头文件（<code>.h</code>文件）中，使用函数时引入对应的头文件就可以，编译器会在链接阶段找到函数体。<br />
+<br />
+前面我们在使用 printf()、puts()、scanf() 等函数时引入了 stdio.h 头文件，很多初学者认为 stdio.h 中包含了函数定义（也就是函数体），只要有了头文件就能运行，其实不然，头文件中包含的都是函数声明，而不是函数定义，函数定义都放在了其它的源文件中，这些源文件已经提前编译好了，并以动态链接库或者静态链接库的形式存在，只有头文件没有系统库的话，在链接阶段就会报错，程序根本不能运行。<br />
+<br />
+关于编译链接的原理，以及如果将代码分散到多个文件中，我们将在《<a href="/c/module/" target="_blank">C语言多文件编程</a>》专题中详细讲解。<br />
+<br />
+除了函数，变量也有定义和声明之分。实际开发过程中，变量定义需要放在源文件（<code>.c</code>文件）中，变量声明需要放在头文件（<code>.h</code>文件）中，在链接程序时会将它们对应起来，这些我们也将在《<a href="/c/module/" target="_blank">C语言多文件编程</a>》专题中详细讲解。<br />
+<br />
+学完《<a href="/c/module/" target="_blank">C语言多文件编程</a>》，你对C语言的认识将会有质的提升，瞬间豁然开朗，轻松超越 90% 的C语言程序员。<br />
+<h2>
+	函数参考手册</h2>
+<span style="color: #b22222">最后再补充一点，函数原型给出了使用该函数的所有细节，当我们不知道如何使用某个函数时，需要查找的是它的原型，而不是它的定义，我们往往不关心它的实现。</span><br />
+<br />
+<a href="http://www.cplusplus.com/reference/clibrary/" target="_blank">www.cplusplus.com</a> 是一个非常给力的网站，它提供了所有C语言标准函数的原型，并给出了详细的介绍和使用示例，可以作为一部权威的参考手册。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></span>
+                    <span class="next right"><a href="/view/495.html">全局变量和局部变量</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/493.html";window.nextPageURL = "/view/495.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 494;
+window.arcId = "ea5a82Etg9dZs91+yZbVItm/i5gkyHJ70Mtm2MvIzz0Lm978gi4ptNp15w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

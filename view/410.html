@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>分析第一个C语言程序</title>
+<meta name="keywords" content="分析,第一个,语言程序,前面,我们,给,出了," />
+<meta name="description" content="前面我们给出了一段最简单的C语言代码，并演示了如何在不同的平台下进行编译，这节我们来分析一下这段代码，让读者有个整体的认识。代码如下： #include stdio.hint main(){ puts(C语言中" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">2</span> <a href="/c/begin/">C语言初探</a> </dd><dl class="dl-sub"><dd>2.1 <a href="/view/374.html">第一个C语言程序</a></dd><dd>2.2 <a href="/view/375.html">选择正确的输入法，严格区分中英文</a></dd><dd>2.3 <a href="/view/376.html">什么是源文件？</a></dd><dd>2.4 <a href="/view/377.html">什么是编译和链接？</a></dd><dd>2.5 <a href="/view/378.html">主流C语言编译器有哪些？</a></dd><dd>2.6 <a href="/view/379.html">什么是IDE（集成开发环境）？</a></dd><dd>2.7 <a href="/view/380.html">什么是工程/项目？</a></dd><dd>2.8 <a href="/view/381.html">哪款C语言编译器（IDE）适合初学者？</a></dd><dd>2.9 <a href="/view/405.html">C语言的三套标准：C89、C99和C11</a></dd><dd>2.10 <a href="/view/404.html">如何在手机上编写C语言代码？</a></dd><dd>2.11 <a href="/view/406.html">C语言为什么有那么多编译器？</a></dd><dd>2.12 <a href="/view/407.html">程序安装是怎么回事？</a></dd><dd>2.13 <a href="/view/408.html">制作安装包，让用户安装程序</a></dd><dd>2.14 <a href="/view/409.html">C语言程序的错误和警告</a></dd><dd>2.15 <a href="/view/410.html">分析第一个C语言程序</a></dd><dd>2.16 <a href="/view/411.html">C语言代码中的空白符</a></dd><dd>2.17 <a href="/view/413.html">一个真正带界面的C语言程序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.18 <a href="/view/412.html">彩色版的C语言，让文字更漂亮</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>分析第一个C语言程序</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/409.html">C语言程序的错误和警告</a></span>
+                    <span class="next right"><a href="/view/411.html">C语言代码中的空白符</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/409.html";window.nextPageURL = "/view/411.html";</script>
+			<div id="arc-body">前面我们给出了一段最简单的C语言代码，并演示了如何在不同的平台下进行编译，这节我们来分析一下这段代码，让读者有个整体的认识。代码如下：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    puts(&quot;C语言&quot;);
+    return 0;
+}</pre>
+<h2>
+	函数的概念</h2>
+先来看第 4 行代码，这行代码会在显示器上输出&ldquo;C语言&rdquo;。前面我们已经讲过，puts 后面要带<code>( )</code>，字符<u><a href='/view/175.html' target='_blank'>串</a></u>也要放在<code>( )</code>中。<br />
+<br />
+在C语言中，有的语句使用时不能带括号，有的语句必须带括号。带括号的称为<span style="color: #008000">函数（Function）</span>。<br />
+<br />
+C语言提供了很多功能，例如输入输出、获得日期时间、文件操作等，我们只需要一句简单的代码就能够使用。但是这些功能的底层都比较复杂，通常是软件和硬件的结合，还要要考虑很多细节和边界，如果将这些功能都交给程序员去完成，那将极大增加程序员的学习成本，降低编程效率。<br />
+<br />
+好在C语言的开发者们为我们做了一件好事，他们已经编写了大量代码，将常见的基本功能都完成了，我们可以直接拿来使用。但是现在问题来了，那么多代码，如何从中找到自己需要的呢？一股脑将所有代码都拿来显然是非常不明智的。<br />
+<br />
+<span style="color: #b22222">这些代码，早已被分门别类地放在了不同的文件中，并且每一段代码都有唯一的名字。使用代码时，只要在对应的名字后面加上<code>( )</code>就可以。这样的一段代码能够独立地完成某个功能，一次编写完成后可以重复使用，被称为</span><span style="color: #008000">函数（Function）</span><span style="color: #b22222">。读者可以认为，函数就是一段可以重复使用的代码。</span><br />
+<br />
+函数的一个明显特征就是使用时必须带括号<code>( )</code>，必要的话，括号中还可以包含待处理的数据。例如<code>puts(&quot;C语言&quot;)</code>就使用了一段具有输出功能的代码，这段代码的名字是&nbsp;puts，&quot;C语言&quot;&nbsp;是要交给这段代码处理的数据。使用函数在编程中有专业的称呼，叫做<span style="color: #008000">函数调用（Function Call）</span>。<br />
+<br />
+如果函数需要处理多个数据，那么它们之间使用逗号<code>,</code>分隔，例如：
+<p class="info-box">
+	pow(10, 2);</p>
+该函数用来求10的2次方。
+<blockquote>
+	需要注意的是，C语言中的函数和数学中的函数不是同一个概念，不要拿两者对比。函数的英文名称是 Function，它还有&ldquo;功能&rdquo;的意思。大陆将 Function 翻译为&ldquo;函数&rdquo;，而台湾地区翻译为&ldquo;函式&rdquo;，读者要注意区分。</blockquote>
+<h2>
+	自定义函数和main函数</h2>
+C语言自带的函数称为<span style="color: #008000">库函数（Library Function）</span>。<span style="color: #008000">库（Library）</span>是编程中的一个基本概念，可以简单地认为它是一些列函数的集合，在磁盘上往往是一个文件夹。C语言自带的库称为<span style="color: #008000">标准库（Standard Library）</span>，其他公司或个人开发的库称为<span style="color: #008000">第三方库（Third-Party Library）</span>。
+<blockquote>
+	关于库的概念，我们已在《<a href="/view/372.html" target="_blank">不要这样学习C语言，这是一个坑</a>》中进行了详细介绍。</blockquote>
+除了库函数，我们还可以编写自己的函数，拓展程序的功能。自己编写的函数称为<span style="color: #008000">自定义函数</span>。自定义函数和库函数在编写和使用方式上完全相同，只是由不同的机构来编写。<br />
+<br />
+示例中第2~6行代码就是我们自己编写的一个函数。main 是函数的名字，( ) 表明这是函数定义，{ } 之间的代码是函数要实现的功能。<br />
+<br />
+函数可以接收待处理的数据，同样可以将处理结果告诉我们；使用<code>return</code>可以告知处理结果。示例中第5行代码表明，main 函数的处理结果是整数 0。return 可以翻译为&ldquo;返回&rdquo;，所以函数的处理结果被称为<span style="color: #008000">返回值（Return Value）</span>。<br />
+<br />
+第2行代码中，int 是 integer 的简写，意为&ldquo;整数&rdquo;。它告诉我们，函数的返回值是整数。<br />
+<br />
+<span style="color: #b22222">需要注意的是，示例中的自定义函数必须命名为 main。C语言规定，一个程序必须有且只有一个 main 函数。main 被称为</span><span style="color: #008000">主函数</span><span style="color: #b22222">，是程序的入口函数，程序运行时从 main 函数开始，直到 main 函数结束（遇到 return 或者执行到函数末尾时，函数才结束）。</span><br />
+<br />
+也就是说，没有 main 函数程序将不知道从哪里开始执行，运行时会报错。<br />
+<br />
+综上所述：第2~6行代码定义了主函数 main，它的返回值是整数 0，程序将从这里开始执行。main 函数的返回值在程序运行结束时由系统接收。
+<blockquote>
+	关于自定义函数的更多内容，我们将在《<a href="/c/function/" target="_blank">C语言函数</a>》一章中详细讲解，这里不再展开讨论。</blockquote>
+有的教材中将 main 函数写作：
+<pre class="info-box">
+void main()
+{
+    // Some Code...
+}</pre>
+这在 VC6.0 下能够通过编译，但在 C-Free、GCC 中却会报错，因为这不是标准的 main 函数的写法，大家不要被误导，最好按照示例中的格式来写。
+<h2>
+	头文件的概念</h2>
+还有最后一个问题，示例中第1行的<code>#include &lt;stdio.h&gt;</code>是什么意思呢？<br />
+<br />
+C语言开发者们编写了很多常用函数，并分门别类的放在了不同的文件，这些文件就称为<span style="color: #008000">头文件（header file）</span>。每个头文件中都包含了若干个功能类似的函数，调用某个函数时，要引入对应的头文件，否则编译器找不到函数。
+<blockquote>
+	实际上，头文件往往只包含函数的说明，也就是告诉我们函数怎么用，而函数本身保存在其他文件中，在链接时才会找到。对于初学者，可以暂时理解为头文件中包含了若干函数。</blockquote>
+引入头文件使用<code>#include</code>命令，并将文件名放在<code>&lt; &gt;</code>中，#include 和 &lt; &gt; 之间可以有空格，也可以没有。<br />
+<br />
+头文件以<code>.h</code>为后缀，而C语言代码文件以<code>.c</code>为后缀，它们都是文本文件，没有本质上的区别，#include 命令的作用也仅仅是将头文件中的文本复制到当前文件，然后和当前文件一起编译。你可以尝试将头文件中的内容复制到当前文件，那样也可以不引入头文件。<br />
+<br />
+<code>.h</code>中代码的语法规则和<code>.c</code>中是一样的，你也可以#include &lt;xxx.c&gt;，这是完全正确的。不过实际开发中没有人会这样做，这样看起来非常不专业，也不规范。<br />
+<br />
+较早的C语言标准库包含了15个头文件，stdio.h 和 stdlib.h 是最常用的两个：
+<ul>
+	<li>
+		stdio 是 standard input output 的缩写，stdio.h 被称为&ldquo;标准输入输出文件&rdquo;，包含的函数大都和输入输出有关，puts() 就是其中之一。</li>
+	<li>
+		stdlib 是 standard library 的缩写，stdlib.h 被称为&ldquo;标准库文件&rdquo;，包含的函数比较杂乱，多是一些通用工具型函数，system() 就是其中之一。</li>
+</ul>
+<h2>
+	最后的总结</h2>
+初学编程，有很多基本概念需要了解，本节就涉及到很多，建议大家把上面的内容多读几遍，必将有所收获。<br />
+<br />
+本节开头的示例是一个C语言程序的基本结构，我们不妨整理一下思路，从整体上再分析一遍：<br />
+1) 第1行引入头文件 stdio.h，这是编程中最常用的一个头文件。头文件不是必须要引入的，我们用到了 puts 函数，所以才引入 stdio.h。例如下面的代码完全正确：
+<pre class="c">
+int main()
+{
+    return 0;
+}</pre>
+我们没有调用任何函数，所以不必引入头文件。<br />
+<br />
+2) 第2行开始定义主函数 main。main 是程序的入口函数，一个C程序必须有 main 函数，而且只能有一个。<br />
+<br />
+3) 第4行调用 puts 函数向显示器输出字符串。<br />
+<br />
+4) 第5行是 main 函数的返回值。程序运行正确一般返回 0。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/409.html">C语言程序的错误和警告</a></span>
+                    <span class="next right"><a href="/view/411.html">C语言代码中的空白符</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/409.html";window.nextPageURL = "/view/411.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 410;
+window.arcId = "278c8P2LHEjRsVnYlGePBpuk6NzUQqZcg9biBUgzCWql2+UphoP2NI84HA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

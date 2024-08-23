@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>Code::Blocks使用教程（使用Code::Blocks编写C语言程序）</title>
+<meta name="keywords" content="Code,Blocks,使用,教程,编写,语言程序,前面,我" />
+<meta name="description" content="前面我们给出了一段完整的 C 语言代码，就是在显示器上输出 C语言中文网，如下所示： #include stdio.hint main(){ puts(C语言中文网); return 0;} 本节，我们就来看看如何通过 CodeBlocks 来运行这" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>Code::Blocks使用教程（使用Code::Blocks编写C语言程序）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/397.html">Code::Blocks汉化教程</a></span>
+                    <span class="next right"><a href="/view/402.html">Xcode简明教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/397.html";window.nextPageURL = "/view/402.html";</script>
+			<div id="arc-body">前面我们给出了一段完整的 C 语言代码，就是在显示器上输出 &ldquo;Hello,World!&rdquo;，如下所示：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    puts(&quot;Hello,World!&quot;);
+    return 0;
+}</pre>
+本节，我们就来看看如何通过 CodeBlocks 来运行这段代码。<br />
+<div class="info-box">
+	CodeBlocks 完全支持单个源文件的编译，如果你的程序只有一个源文件(初学者基本上都是在单个源文件下编写代码)，那么不用创建项目，直接运行即可；如果有多个源文件，才需要创建项目。</div>
+<h2>
+	1) 新建源文件</h2>
+打开 CodeBlocks ，在上方菜单栏中选择 &ldquo;文件 --&gt; 新建 --&gt; 空白文件&rdquo;，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240820/10260555E-0.png" /><br />
+	&nbsp;</div>
+或者直接按下 <code>Ctrl + Shift + N</code> 组合键，都会新建一个空白的源文件，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240820/1026053357-1.png" /><br />
+	&nbsp;</div>
+在空白源文件中输入本文开头的代码：
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240822/2-240R2123333959.gif" /><br />
+	&nbsp;</div>
+在上方菜单栏中选择 &ldquo;文件 --&gt;保存文件&rdquo;，或者按下 <code>Ctrl + S</code> 组合键，都可以保存源文件，如下图所示。
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240820/1026054P6-3.png" /></div>
+<blockquote>
+	<div>
+		<span style="color: rgb(178, 34, 34);">注意：</span>保存时，将源文件后缀名改为 .c。</div>
+</blockquote>
+<h2>
+	2) 生成可执行程序</h2>
+在上方菜单栏中选择 构建 --&gt; 构建，就可以完成 hello.c 的编译工作。
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240820/1026054536-4.png" /><br />
+	&nbsp;</div>
+或者直接按 <code>Ctrl + F9</code> 组合键，也能够完成编译工作，这样更加便捷。<br />
+<br />
+如果代码没有错误，CodeBlocks 会在下方的&nbsp; &ldquo;构建信息&rdquo; 窗口中看到编译成功的提示，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240820/102605D21-5.png" /><br />
+	&nbsp;</div>
+编译完成后，打开源文件所在的目录（本教程是 D:\Demo\），会看到多了两个文件：
+<ul>
+	<li>
+		hello.o 文件：这是编译过程产生的中间文件，这种中间文件的专业称呼是目标文件（Object File）。</li>
+	<li>
+		hello.exe 文件：是我们最终需要的可执行文件。CodeBlocks 在编译过程就会生成此文件，以便在运行时直接调用此文件。</li>
+</ul>
+<div class="info-box">
+	这说明，CodeBlocks 在编译阶段整合了 &rdquo;编译+链接&rdquo; 的过程。</div>
+双击 hello.exe 运行，并没有看到 &ldquo;Hello,World!&rdquo;几个字，而是会看到一个边框一闪而过。这是因为，程序输出 &ldquo;Hello,World!&rdquo; 后就运行结束了，窗口会自动关闭，时间非常短暂，所以看不到输出结果，只能看到一个 &rdquo;边框&rdquo; 一闪而过。<br />
+<br />
+对上面的代码稍作修改，让程序输出 &ldquo;Hello,World!&rdquo;后暂停下来：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+int main(){
+    puts(&quot;Hello,World!&quot;);
+    system(&quot;pause&quot;);
+    return 0;
+}</pre>
+system(&quot;pause&quot;); 语句的作用就是让程序暂停一下。<span style="color:#b22222;">注意开头部分还添加了 #include&lt;stdlib.h&gt; 语句</span>，否则当你重新编译时，构建信息窗口会提示有关 system函数的警告，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240820/1026052003-6.png" /><br />
+	&nbsp;</div>
+再次编译、运行生成的 hello.exe ，终于如愿以偿，看到输出结果，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240822/2-240R2123345150.gif" /><br />
+	&nbsp;</div>
+按下键盘上的任意一个键，程序就会关闭。
+<h2>
+	更加快捷的方式</h2>
+实际开发中我们一般使用菜单中的&rdquo;构建 --&gt; 构建并运行&rdquo;选项：
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240820/1026053152-8.png" /><br />
+	&nbsp;</div>
+或者直接按下 <code>F9</code> 键，这样能够一键完成 &ldquo;编译 --&gt; 链接 --&gt; 运行&rdquo;的全过程。这样做的好处是，编译器会让程序自动暂停，我们也不用再添加 &ldquo;system(&ldquo;pause&rdquo;)&rdquo; 语句啦。<br />
+<br />
+删除上面代码中的 &ldquo;system(&ldquo;pause&rdquo;)&rdquo; 语句，按下 <code>F9</code> 再次运行程序，结果如下：
+<div style="text-align: center;">
+	<br />
+	<img src="/uploads/allimg/240822/2-240R2123353I8.gif" /></div>
+<h2>
+	3) 总结</h2>
+现在，你就可以将 hello.exe 分享给你的朋友了，告诉他们这是你编写的第一个C语言程序。虽然这个程序非常简单，但是你已经越过了第一道障碍，学会了如何编写代码，如何将代码生成可执行程序，这是一个完整的体验。<br />
+<br />
+在本教程的基础部分，教大家编写的程序都是这样的&ldquo;黑窗口&rdquo;，与我们平时使用的软件不同，它们没有漂亮的界面，没有复杂的功能，只能看到一些文字，这就是<span style="color:#b22222;">控制台程序</span>（Console Application），它与 DOS 非常相似，早期的计算机程序都是这样的。<br />
+<br />
+控制台程序虽然看起来枯燥无趣，但是它非常简单，适合入门，能够让大家学会编程的基本知识；只有夯实基本功，才能开发出健壮的<span style="color:#b22222;">GUI</span>（Graphical User Interface，图形用户界面）程序，也就是带界面的程序。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/397.html">Code::Blocks汉化教程</a></span>
+                    <span class="next right"><a href="/view/402.html">Xcode简明教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/397.html";window.nextPageURL = "/view/402.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 398;
+window.arcId = "acd52CpgwedPZ/OjxCGIrrHt0lGFWjk9InxPmsdwNqDr832zwzkQS4OASg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

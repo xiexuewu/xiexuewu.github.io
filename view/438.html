@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言scanf：读取从键盘输入的数据（含输入格式汇总表）</title>
+<meta name="keywords" content="语言,scanf,读取,从,键盘,输入,的,数据,含,格式," />
+<meta name="description" content="程序是人机交互的媒介，有输出必然也有输入，第三章我们讲解了如何将数据输出到显示器上，本章我们开始讲解如何从键盘输入数据。在C语言中，有多个函数可以从键盘获得用户输入" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言scanf：读取从键盘输入的数据（含输入格式汇总表）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></span>
+                    <span class="next right"><a href="/view/439.html">从键盘输入字符和字符串</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/437.html";window.nextPageURL = "/view/439.html";</script>
+			<div id="arc-body">程序是人机交互的媒介，有输出必然也有输入，第三章我们讲解了如何将数据输出到显示器上，本章我们开始讲解如何从键盘输入数据。在C语言中，有多个函数可以从键盘获得用户输入：
+<ul>
+	<li>
+		<span style="color: rgb(0, 128, 0);">scanf()</span>：和 printf() 类似，scanf() 可以输入多种类型的数据。</li>
+	<li>
+		<span style="color: rgb(0, 128, 0);">getchar()</span>、<span style="color: rgb(0, 128, 0);">getche()</span>、<span style="color: rgb(0, 128, 0);">getch()</span>：这三个函数都用于输入单个字符。</li>
+	<li>
+		<span style="color: rgb(0, 128, 0);">gets()</span>：获取一行数据，并作为字符<u><a href='/view/175.html' target='_blank'>串</a></u>处理。</li>
+</ul>
+<br />
+scanf() 是最灵活、最复杂、最常用的输入函数，但它不能完全取代其他函数，大家都要有所了解。<br />
+<br />
+本节我们只讲解 scanf()，其它的输入函数将在下节讲解。<br />
+<h2>
+	scanf()函数</h2>
+scanf 是 scan format 的缩写，意思是格式化扫描，也就是从键盘获得用户输入，和 printf 的功能正好相反。<br />
+<br />
+我们先来看一个例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a = 0, b = 0, c = 0, d = 0;
+    scanf(&quot;%d&quot;, &amp;a);  //输入整数并赋值给变量a
+    scanf(&quot;%d&quot;, &amp;b);  //输入整数并赋值给变量b
+    printf(&quot;a+b=%d\n&quot;, a+b);  //计算a+b的值并输出
+    scanf(&quot;%d %d&quot;, &amp;c, &amp;d);  //输入两个整数并分别赋值给c、d
+    printf(&quot;c*d=%d\n&quot;, c*d);  //计算c*d的值并输出
+
+    return 0;
+}</pre>
+运行结果：<br />
+12↙<br />
+60↙<br />
+a+b=72<br />
+10 23↙<br />
+c*d=230
+<blockquote>
+	<code>↙</code>表示按下回车键。</blockquote>
+从键盘输入12，按下回车键，scanf() 就会读取输入数据并赋值给变量 a；本次输入结束，接着执行下一个 scanf() 函数，再从键盘输入 60，按下回车键，就会将 60 赋值给变量 b，都是同样的道理。<br />
+<br />
+第 8 行代码中，scanf() 有两个以空格分隔的<code>%d</code>，后面还跟着两个变量，这要求我们一次性输入两个整数，并分别赋值给 c 和 d。注意<code>&quot;%d %d&quot;</code>之间是有空格的，所以输入数据时也要有空格。<span style="color: rgb(178, 34, 34);">对于 scanf()，输入数据的格式要和控制字符串的格式保持一致。</span><br />
+<br />
+其实 scanf 和 printf 非常相似，只是功能相反罢了：
+<pre class="c">
+scanf(&quot;%d %d&quot;, &amp;a, &amp;b);  // 获取用户输入的两个整数，分别赋值给变量 a 和 b
+printf(&quot;%d %d&quot;, a, b);  // 将变量 a 和 b 的值在显示器上输出</pre>
+它们都有格式控制字符串，都有变量列表。不同的是，scanf 的变量前要带一个<code>&amp;</code>符号。<code>&amp;</code>称为<span style="color: rgb(0, 128, 0);">取地址符</span>，也就是获取变量在内存中的地址。<br />
+<br />
+在《<a href="/view/366.html" target="_blank">数据在内存中的存储</a>》一节中讲到，数据是以二进制的形式保存在内存中的，字节（Byte）是最小的可操作单位。为了便于管理，我们给每个字节分配了一个编号，使用该字节时，只要知道编号就可以，就像每个学生都有学号，老师会随机抽取学号来让学生回答问题。字节的编号是有顺序的，从 0 开始，接下来是 1、2、3&hellip;&hellip;<br />
+<br />
+下图是 4G 内存中每个字节的编号（以十六进制表示）：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/200434EC-0.png" style="height: 68px; width: 643px;" /></div>
+<br />
+这个编号，就叫做<span style="color: rgb(0, 128, 0);">地址（Address）</span>。<code>int a;</code>会在内存中分配四个字节的空间，我们将第一个字节的地址称为变量 a 的地址，也就是<code>&amp;a</code>的值。对于前面讲到的整数、浮点数、字符，都要使用 &amp; 获取它们的地址，scanf 会根据地址把读取到的数据写入内存。<br />
+<br />
+我们不妨将变量的地址输出看一下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a=&#39;F&#39;;
+    int b=12;
+    int c=452;
+    printf(&quot;&amp;a=%p, &amp;b=%p, &amp;c=%p\n&quot;, &amp;a, &amp;b, &amp;c);
+   
+    return 0;
+}</pre>
+输出结果：<br />
+&amp;a=0x18ff48, &amp;b=0x18ff44, &amp;c=0x18ff40<br />
+<br />
+<code>%p</code>是一个新的格式控制符，它表示以十六进制的形式（带小写的前缀）输出数据的地址。如果写作<code>%P</code>，那么十六进制的前缀也将变成大写形式。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/2004344409-1.png" style="height: 73px; width: 712px;" /><br />
+	图：a、b、c 的内存地址</div>
+<blockquote>
+	注意：这里看到的地址都是假的，是虚拟地址，并不等于数据在物理内存中的地址。虚拟地址是现代计算机因内存管理的需要才提出的概念，我们将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题中详细讲解。</blockquote>
+再来看一个 scanf 的例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a, b, c;
+
+    scanf(&quot;%d %d&quot;, &amp;a, &amp;b);
+    printf(&quot;a+b=%d\n&quot;, a+b);
+
+    scanf(&quot;%d   %d&quot;, &amp;a, &amp;b);
+    printf(&quot;a+b=%d\n&quot;, a+b);
+
+    scanf(&quot;%d, %d, %d&quot;, &amp;a, &amp;b, &amp;c);
+    printf(&quot;a+b+c=%d\n&quot;, a+b+c);
+   
+    scanf(&quot;%d is bigger than %d&quot;, &amp;a, &amp;b);
+    printf(&quot;a-b=%d\n&quot;, a-b);
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+10    20↙
+a+b=30
+100 200↙
+a+b=300
+56,45,78↙
+a+b+c=179
+25 is bigger than 11↙
+a-b=14</pre>
+<br />
+第一个 scanf() 的格式控制字符串为<code>&quot;%d %d&quot;</code>，中间有一个空格，而我们却输入了<code>10&nbsp;&nbsp;&nbsp; 20</code>，中间有多个空格。第二个 scanf() 的格式控制字符串为<code>&quot;%d&nbsp;&nbsp; %d&quot;</code>，中间有多个空格，而我们却输入了<code>100 200</code>，中间只有一个空格。这说明 scanf() 对输入数据之间的空格的处理比较宽松，并不要求空格数严格对应，多几个少几个无所谓，只要有空格就行。<br />
+<br />
+第三个 scanf() 的控制字符串为<code>&quot;%d, %d, %d&quot;</code>，中间以逗号分隔，所以输入的整数也要以逗号分隔。<br />
+<br />
+第四个 scanf() 要求整数之间以<code>is bigger than</code>分隔。<br />
+<br />
+用户每次按下回车键，程序就会认为完成了一次输入操作，scanf() 开始读取用户输入的内容，并根据格式控制字符串从中提取有效数据，只要用户输入的内容和格式控制字符串匹配，就能够正确提取。<br />
+<br />
+本质上讲，用户输入的内容都是字符串，scanf() 完成的是从字符串中提取有效数据的过程。<br />
+<h2>
+	连续输入</h2>
+在本节第一段示例代码中，我们一个一个地输入变量 a、b、c、d 的值，每输入一个值就按一次回车键。现在我们改变输入方式，将四个变量的值一次性输入，如下所示：
+<p class="info-box">
+	12 60 10 23↙<br />
+	a+b=72<br />
+	c*d=230</p>
+可以发现，两个 scanf() 都能正确读取。合情合理的猜测是，第一个 scanf() 读取完毕后没有抛弃多余的值，而是将它们保存在了某个地方，下次接着使用。<br />
+<br />
+如果我们多输入一个整数，会怎样呢？
+<p class="info-box">
+	12 60 10 23 99↙<br />
+	a+b=72<br />
+	c*d=230</p>
+这次我们多输入了一个 99，发现 scanf() 仍然能够正确读取，只是 99 没用罢了。<br />
+<br />
+如果我们少输入一个整数，又会怎样呢？
+<p class="info-box">
+	12 60 10↙<br />
+	a+b=72<br />
+	23↙<br />
+	c*d=230</p>
+输入三个整数后，前两个 scanf() 把前两个整数给读取了，剩下一个整数 10，而第三个 scanf() 要求输入两个整数，一个单独的 10 并不能满足要求，所以我们还得继续输入，凑够两个整数以后，第三个 scanf() 才能读取完毕。<br />
+<br />
+从本质上讲，我们从键盘输入的数据并没有直接交给 scanf()，而是放入了缓冲区中，直到我们按下回车键，scanf() 才到缓冲区中读取数据。如果缓冲区中的数据符合 scanf() 的要求，那么就读取结束；如果不符合要求，那么就继续等待用户输入，或者干脆读取失败。我们将在本章的《<a href="/view/440.html" target="_blank">进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</a>》《<a href="/view/441.html" target="_blank">结合C语言缓冲区谈scanf函数</a>》两节中详细讲解缓冲区。<br />
+<br />
+注意，如果缓冲区中的数据不符合 scanf() 的要求，要么继续等待用户输入，要么就干脆读取失败，上面我们演示了&ldquo;继续等待用户输入&rdquo;的情形，下面我们对代码稍作修改，演示&ldquo;读取失败&rdquo;的情形。
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a = 1, b = 2, c = 3, d = 4;  //修改处：给变量赋予不同的初始值
+    scanf(&quot;%d&quot;, &amp;a);
+    scanf(&quot;%d&quot;, &amp;b);
+    printf(&quot;a=%d, b=%d\n&quot;, a, b);
+    scanf(&quot;%d %d&quot;, &amp;c, &amp;d);
+    printf(&quot;c=%d, d=%d\n&quot;, c, d);
+   
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	12 60 a10↙<br />
+	a=12, b=60<br />
+	c=3, d=4</p>
+前两个整数被正确读取后，剩下了 a10，而第三个 scanf() 要求输入两个十进制的整数，a10 无论如何也不符合要求，所以只能读取失败。输出结果也证明了这一点，c 和 d 的值并没有被改变。<br />
+<br />
+这说明 scanf() 不会跳过不符合要求的数据，遇到不符合要求的数据会读取失败，而不是再继续等待用户输入。<br />
+<br />
+总而言之，正是由于缓冲区的存在，才使得我们能够多输入一些数据，或者一次性输入所有数据，这可以认为是缓冲区的一点优势。然而，缓冲区也带来了一定的负面影响，甚至会导致很奇怪的行为，请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a = 1, b = 2;
+    scanf(&quot;a=%d&quot;, &amp;a);
+    scanf(&quot;b=%d&quot;, &amp;b);
+    printf(&quot;a=%d, b=%d\n&quot;, a, b);
+
+    return 0;
+}</pre>
+输入示例：
+<p class="info-box">
+	a=99↙<br />
+	a=99, b=2</p>
+输入<code>a=99</code>，按下回车键，程序竟然运行结束了，只有第一个 scanf() 成功读取了数据，第二个 scanf() 仿佛没有执行一样，根本没有给用户任何机会去输入数据。<br />
+<br />
+如果我们换一种输入方式呢？
+<p class="info-box">
+	a=99b=200↙<br />
+	a=99, b=200</p>
+这样 a 和 b 都能够正确读取了。注意，<code>a=99b=200</code>中间是没有任何空格的。<br />
+<br />
+肯定有好奇的小伙伴又问了，如果<code>a=99b=200</code>两个数据之间有空格又会怎么样呢？我们不妨亲试一下：
+<p class="info-box">
+	a=99 b=200↙<br />
+	a=99, b=2</p>
+你看，第二个 scanf() 又读取失败了！在前面的例子中，输入的两份数据之前都是有空格的呀，为什么这里不能带空格呢，真是匪夷所思。好吧，这个其实还是跟缓冲区有关系，我将在《<a href="/view/441.html" target="_blank">结合C语言缓冲区谈scanf()函数</a>》中深入讲解。<br />
+<br />
+要想破解 scanf() 输入的问题，一定要学习缓冲区，它能使你对输入输出的认识上升到一个更高的层次，以后不管遇到什么疑难杂症，都能迎刃而解。可以说，输入输出的&ldquo;命门&rdquo;就在于缓冲区。<br />
+<h2>
+	输入其它数据</h2>
+除了输入整数，scanf() 还可以输入单个字符、字符串、小数等，请看下面的演示：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    char letter;
+    int age;
+    char url[30];
+    float price;
+   
+    scanf(&quot;%c&quot;, &amp;letter);
+    scanf(&quot;%d&quot;, &amp;age);
+    scanf(&quot;%s&quot;, url); //可以加&amp;也可以不加&amp;
+    scanf(&quot;%f&quot;, &amp;price);
+   
+    printf(&quot;26个英文字母的最后一个是 %c。\n&quot;, letter);
+    printf(&quot;网站已经成立%d年了，网址是 %s，开通VIP会员的价格是%g。\n&quot;, age, url, price);
+
+    return 0;
+}</pre>
+运行示例：
+<p class="info-box">
+	z↙<br />
+	6↙<br />
+	https://xiexuewu.github.io↙<br />
+	59.9↙<br />
+	26个英文字母的最后一个是 z。<br />
+	网站已经成立6年了，网址是 https://xiexuewu.github.io，开通会员的价格是59.9。</p>
+scanf() 和 printf() 虽然功能相反，但是格式控制符是一样的，单个字符、整数、小数、字符串对应的格式控制符分别是 %c、%d、%f、%s。
+<h4>
+	对读取字符串的说明</h4>
+在《<a href="/view/423.html" target="_blank">在C语言中使用英文字符</a>》一节中，我们谈到了字符串的两种定义形式，它们分别是：
+<p class="info-box">
+	char str1[] = &quot;https://xiexuewu.github.io&quot;;<br />
+	char *str2 = &quot;C语言&quot;;</p>
+这两种形式其实是有区别的，第一种形式的字符串所在的内存既有读取权限又有写入权限，第二种形式的字符串所在的内存只有读取权限，没有写入权限。printf()、puts() 等字符串输出函数只要求字符串有读取权限，而 scanf()、gets() 等字符串输入函数要求字符串有写入权限，所以，第一种形式的字符串既可以用于输出函数又可以用于输入函数，而第二种形式的字符串只能用于输出函数。<br />
+<br />
+另外，对于第一种形式的字符串，在<code>[ ]</code>里面要指明字符串的最大长度，如果不指明，也可以根据<code>=</code>后面的字符串来自动推算，此处，就是根据<code>&quot;https://xiexuewu.github.io&quot;</code>的长度来推算的。但是在前一个例子中，开始我们只是定义了一个字符串，并没有立即给它赋值，所以没法自动推算，只能手动指明最大长度，这也就是为什么一定要写作<code>char url[40]</code>，而不能写作<code>char url[]</code>的原因。<br />
+<br />
+读者还要注意第 11 行代码，这行代码用来输入字符串。上面我们说过，scanf() 读取数据时需要的是数据的地址，整数、小数、单个字符都要加<code>&amp;</code>取地址符，这很容易理解；但是对于此处的 url 字符串，我们并没有加 &amp;，这是因为，字符串的名字会自动转换为字符串的地址，所以不用再多此一举加 &amp; 了。当然，你也可以加上，这样虽然不会导致错误，但是编译器会产生警告，至于为什么，我们将会在《<a href="/view/523.html" target="_blank">数组和指针绝不等价，数组是另外一种类型</a>》《<a href="/view/524.html" target="_blank">数组到底在什么时候会转换为指针</a>》中讲解。<br />
+<br />
+关于字符串，后续章节我们还会专门讲解，这里只要求大家会模仿，不要彻底理解，也没法彻底理解。<br />
+<br />
+最后需要注意的一点是，scanf() 读取字符串时以空格为分隔，遇到空格就认为当前字符串结束了，所以无法读取含有空格的字符串，请看下面的例子：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    char author[30], lang[30], url[30];
+    scanf(&quot;%s %s&quot;, author, lang);
+    printf(&quot;author:%s \nlang: %s\n&quot;, author, lang);
+    scanf(&quot;%s&quot;, url);
+    printf(&quot;url: %s\n&quot;, url);
+    return 0;
+}</pre>
+运行示例：
+<p class="info-box">
+	xiexuewu C语言<br />
+	author:xiexuewu<br />
+	lang: C语言<br />
+	https://xiexuewu.github.io<br />
+	url: https://xiexuewu.github.io</p>
+对于第一个 scanf()，它将空格前边的字符串赋值给 author，将空格后边的字符串赋值给 lang；很显然，第一个字符串遇到空格就结束了，第二个字符串到了本行的末尾结束了。<br />
+<br />
+或许第二个 scanf() 更能说明问题，我们输入了两个网址，但是 scanf() 只读取了一个，就是因为这两个网址以空格为分隔，scanf() 遇到空格就认为字符串结束了，不再继续读取了。
+<h2>
+	scanf() 格式控制符汇总</h2>
+<table>
+	<tbody>
+		<tr>
+			<th width="120">
+				格式控制符</th>
+			<th>
+				说明</th>
+		</tr>
+		<tr>
+			<td>
+				%c</td>
+			<td>
+				读取一个单一的字符</td>
+		</tr>
+		<tr>
+			<td>
+				%hd、%d、%ld</td>
+			<td>
+				读取一个十进制整数，并分别赋值给 short、int、long 类型</td>
+		</tr>
+		<tr>
+			<td>
+				%ho、%o、%lo</td>
+			<td>
+				读取一个八进制整数（可带前缀也可不带），并分别赋值给 short、int、long 类型</td>
+		</tr>
+		<tr>
+			<td>
+				%hx、%x、%lx</td>
+			<td>
+				读取一个十六进制整数（可带前缀也可不带），并分别赋值给 short、int、long 类型</td>
+		</tr>
+		<tr>
+			<td>
+				%hu、%u、%lu</td>
+			<td>
+				读取一个无符号整数，并分别赋值给 unsigned short、unsigned int、unsigned long 类型</td>
+		</tr>
+		<tr>
+			<td>
+				%f、%lf</td>
+			<td>
+				读取一个十进制形式的小数，并分别赋值给 float、double 类型</td>
+		</tr>
+		<tr>
+			<td>
+				%e、%le</td>
+			<td>
+				读取一个指数形式的小数，并分别赋值给 float、double 类型</td>
+		</tr>
+		<tr>
+			<td>
+				%g、%lg</td>
+			<td>
+				既可以读取一个十进制形式的小数，也可以读取一个指数形式的小数，并分别赋值给 float、double 类型</td>
+		</tr>
+		<tr>
+			<td>
+				%s</td>
+			<td>
+				读取一个字符串（以空白符为结束）</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></span>
+                    <span class="next right"><a href="/view/439.html">从键盘输入字符和字符串</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/437.html";window.nextPageURL = "/view/439.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 438;
+window.arcId = "39b036yNIcbCfabXmLnkupOiMiiBUbnvvLK8H7sBOa9gQrzPFqtL/Sv2cg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

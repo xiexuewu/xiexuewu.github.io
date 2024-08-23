@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言求勾股数</title>
+<meta name="keywords" content="语言,求勾,股数,所谓,勾,股数,是指,能够,构成," />
+<meta name="description" content="所谓勾股数，是指能够构成直角三角形三条边的三个正整数（a，b，c）。 求 100 以内的所有勾股数。 分析 根据勾股数定义，所求三角形三边应满足条件 a 2 + b 2 = c 2 。可以在所求范围内" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言求勾股数</h1>
+			<div id="arc-body">所谓勾股数，是指能够构成直角三角形三条边的三个正整数（a，b，c）。<br />
+<br />
+求 100 以内的所有勾股数。
+<h2>
+	分析</h2>
+根据&ldquo;勾股数&rdquo;定义，所求三角形三边应满足条件 a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>。可以在所求范围内利用穷举法找出满足条件的数。
+<h2>
+	实现</h2>
+采用穷举法求解时，最容易想到的一种方法是利用 3 个循环语句分别控制变最 a、b、c 的取值范围，第 1 层控制变量 a，取值范围是 1〜100。在 a 值确定的情况下再确定 b 值，即第 2 层控制变量 b，为了避免结果有重复现象，b 的取值范围是 a+1〜100。a、b 的值已确定，利用穷举法在 b+1〜100 范围内一个一个的去比较，看当前 c 值是否满足条件 a<sup>2</sup>&nbsp;+ b<sup>2</sup>&nbsp;= c<sup>2</sup>，若满足，则输出当前 a、b、c 的值，否则继续寻找。主要代码如下：
+<pre class="cpp">
+//...
+for(a=l; a&lt;=100; a++)  /*确定a的取值*/
+for(b=a+l; b&lt;=100; b++)  /*确定b的取值*/
+for(c=b+l; c&lt;=100; c++)  /*确定c的取值*/
+if(a*a+b*b==c*c)
+printf (&quot;%d\t%d\t%d\n&quot;, a, b, c)  /*判断三个变量是否满足勾股数条件*/
+//...</pre>
+但是上述算法的效率比较低，根据 a<sup>2</sup>&nbsp;+ b<sup>2</sup>&nbsp;= c<sup>2</sup>&nbsp;这个条件，在 a、b 值确定的情况下，没必要再利用循环一个一个去寻找 c 值。若 a、b、c 是一组勾股数，则 a<sup>2</sup>&nbsp;+ b<sup>2</sup>&nbsp;的平方根一定等于 c，c 的平方应该等于 a、b 的平方和，所以可将的平方根赋给 c，再判断 c 的平方是否等于。根据&ldquo;勾股数&rdquo;定义将变量定义为整型，a<sup>2</sup>&nbsp;+ b<sup>2</sup>&nbsp;的平方根不一定为整数， 但变量 c 的类型为整型，将一个实数赋给一个整型变量时，可将实数强制转换为整型（舍弃小数点之后的部分）然后再赋值，这种情况下得到的 c 的平方与原来的的值肯定不相等，所以可利用这一条件进行判断。<br />
+<br />
+下面是完整的代码：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#include&lt;math.h&gt;
+int main()
+{
+    int a, b, c, count=0;
+    printf(&quot;100以内的勾股数有：\n&quot;);
+    printf(&quot;  a     b    c       a     b    c       a     b    c       a     b    c\n&quot;);
+    /*求100以内勾股数*/
+    for(a=1; a&lt;=100; a++)
+        for(b=a+1; b&lt;=100; b++)
+        {
+            c=(int)sqrt(a*a+b*b);  /*求c值*/
+            if(c*c==a*a+b*b &amp;&amp; a+b&gt;c &amp;&amp; a+c&gt;b &amp;&amp; b+c&gt;a &amp;&amp; c&lt;=100)  /*判断c的平方是否等于a2+b2*/
+            {
+                printf(&quot;%4d %4d %4d     &quot;, a, b, c);
+                count++;
+                if(count%4==0)  /*每输出4组解就换行*/
+                    printf(&quot;\n&quot;);
+            }
+        }
+   
+    printf(&quot;\n&quot;);
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+100以内的勾股数有：
+   a    b    c        a    b    c        a    b    c        a    b    c
+   3    4    5        5   12   13        6    8   10        7   24   25
+   8   15   17        9   12   15        9   40   41       10   24   26
+  11   60   61       12   16   20       12   35   37       13   84   85
+  14   48   50       15   20   25       15   36   39       16   30   34
+  16   63   65       18   24   30       18   80   82       20   21   29
+  20   48   52       21   28   35       21   72   75       24   32   40
+  24   45   51       24   70   74       25   60   65       27   36   45
+  28   45   53       28   96  100       30   40   50       30   72   78
+  32   60   68       33   44   55       33   56   65       35   84   91
+  36   48   60       36   77   85       39   52   65       39   80   89
+  40   42   58       40   75   85       42   56   70       45   60   75
+  48   55   73       48   64   80       51   68   85       54   72   90
+  57   76   95       60   63   87       60   80  100       65   72   97</pre>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 471;
+window.arcId = "d4bebKQHfWPTGYMvacS8G43sGyCWsVJPxBeB1YQd8mzFx1p5crRGpNOcNg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

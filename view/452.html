@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言for循环（for语句）详解</title>
+<meta name="keywords" content="语言,for,循环,语句,详解,除了,while,循环,语," />
+<meta name="description" content="除了while循环，C语言中还有 for 循环，它的使用更加灵活，完全可以取代 while 循环。 上节我们使用 while 循环来计算1加到100的值，代码如下： #include stdio.hint main(){ int i, sum=0; i = 1; //语句" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a></dd></dl>
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言for循环（for语句）详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/451.html">C语言while循环</a></span>
+                    <span class="next right"><a href="/view/453.html">C语言跳出循环</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/451.html";window.nextPageURL = "/view/453.html";</script>
+			<div id="arc-body">除了 while 循环，C语言中还有 <span style="color: #008000">for</span> 循环，它的使用更加灵活，完全可以取代 while 循环。<br />
+<br />
+上节我们使用 while 循环来计算 1 加到 100 的值，代码如下：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int i, sum=0;
+    i = 1;  //语句①
+    while(i&lt;=100 /*语句②*/ ){
+        sum+=i;
+        i++;  //语句③
+    }
+    printf(&quot;%d\n&quot;,sum);
+    return 0;
+}</pre>
+可以看到，语句 ①②③ 被放到了不同的地方，代码结构较为松散。为了让程序更加紧凑，可以使用 for 循环来代替，如下所示：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int i, sum=0;
+    for(i=1/*语句①*/; i&lt;=100/*语句②*/; i++/*语句③*/){
+        sum+=i;
+    }
+    printf(&quot;%d\n&quot;,sum);
+    return 0;
+}</pre>
+在 for 循环中，语句 ①②③ 被集中到了一起，代码结构一目了然。<br />
+<br />
+for 循环的一般形式为：
+<p class="info-box">
+	for(表达式1; 表达式2; 表达式3){<br />
+	&nbsp; &nbsp; 语句块<br />
+	}</p>
+它的运行过程为：<br />
+1) 先执行&ldquo;表达式1&rdquo;。<br />
+<br />
+2) 再执行&ldquo;表达式2&rdquo;，如果它的值为真（非0），则执行循环体，否则结束循环。<br />
+<br />
+3) 执行完循环体后再执行&ldquo;表达式3&rdquo;。<br />
+<br />
+4) 重复执行步骤 2) 和 3)，直到&ldquo;表达式2&rdquo;的值为假，就结束循环。<br />
+<br />
+上面的步骤中，2) 和 3) 是一次循环，会重复执行，for 语句的主要作用就是不断执行步骤 2) 和 3)。<br />
+<br />
+<span style="color: #b22222">&ldquo;表达式1&rdquo;仅在第一次循环时执行，以后都不会再执行，可以认为这是一个初始化语句。&ldquo;表达式2&rdquo;一般是一个关系表达式，决定了是否还要继续下次循环，称为&ldquo;循环条件&rdquo;。&ldquo;表达式3&rdquo;很多情况下是一个带有自增或自减操作的表达式，以使循环条件逐渐变得&ldquo;不成立&rdquo;。</span><br />
+<br />
+for循环的执行过程可用下图表示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240821/101424BD-0.jpg" style="height: 368px; width: 289px" /></div>
+<br />
+我们再来分析一下&ldquo;计算从 1 加到 100 的和&rdquo;的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int i, sum=0;
+    for(i=1; i&lt;=100; i++){
+        sum+=i;
+    }
+    printf(&quot;%d\n&quot;,sum);
+    return 0;
+}</pre>
+运行结果：<br />
+5050<br />
+<br />
+代码分析：<br />
+1) 执行到 for 语句时，先给 i 赋初值1，判断 i&lt;=100 是否成立；因为此时 i=1，i&lt;=100 成立，所以执行循环体。循环体执行结束后（sum的值为1），再计算 i++。<br />
+<br />
+2) 第二次循环时，i 的值为2，i&lt;=100 成立，继续执行循环体。循环体执行结束后（sum的值为3），再计算 i++。<br />
+<br />
+3) 重复执行步骤 2)，直到第101次循环，此时 i 的值为101，i&lt;=100 不成立，所以结束循环。<br />
+<br />
+由此我们可以总结出 for 循环的一般形式：
+<p class="info-box">
+	for(初始化语句; 循环条件; 自增或自减){<br />
+	&nbsp; &nbsp; 语句块<br />
+	}</p>
+<h2>
+	C语言for循环中的三个表达式</h2>
+for 循环中的&ldquo;表达式1（初始化条件）&rdquo;、&ldquo;表达式2(循环条件)&rdquo;和&ldquo;表达式3（自增或自减）&rdquo;都是可选项，都可以省略（但分号<code>;</code>必须保留）。<br />
+<br />
+1) 修改&ldquo;从1加到100的和&rdquo;的代码，省略&ldquo;表达式1（初始化条件）&rdquo;：
+<pre class="c">
+int i = 1, sum = 0;
+for( ; i&lt;=100; i++){
+    sum+=i;
+}
+</pre>
+可以看到，将<code>i=1</code>移到了 for 循环的外面。<br />
+<br />
+2) 省略了&ldquo;表达式2(循环条件)&rdquo;，如果不做其它处理就会成为死循环。例如：
+<pre class="c">
+for(i=1; ; i++) sum=sum+i;</pre>
+相当于：
+<pre class="c">
+i=1;
+while(1){
+    sum=sum+i;
+    i++;
+}</pre>
+所谓<span style="color: #008000">死循环</span>，就是循环条件永远成立，循环会一直进行下去，永不结束。死循环对程序的危害很大，一定要避免。<br />
+<br />
+3) 省略了&ldquo;表达式3(自增或自减)&rdquo;，就不会修改&ldquo;表达式2(循环条件)&rdquo;中的变量，这时可在循环体中加入修改变量的语句。例如：
+<pre class="c">
+for( i=1; i&lt;=100; ){
+    sum=sum+i;
+    i++;
+} </pre>
+<br />
+4) 省略了&ldquo;表达式1(初始化语句)&rdquo;和&ldquo;表达式3(自增或自减)&rdquo;。例如：
+<pre class="c">
+for( ; i&lt;=100 ; ){
+    sum=sum+i;
+    i++;
+}</pre>
+相当于：
+<pre class="c">
+while(i&lt;=100){
+    sum=sum+i;
+    i++;
+}</pre>
+<br />
+5) 3 个表达式可以同时省略。例如：
+<p class="info-box">
+	for( ; ; ) &nbsp;语句</p>
+相当于：
+<p class="info-box">
+	while(1) &nbsp;语句</p>
+<br />
+6) &ldquo;表达式1&rdquo;可以是初始化语句，也可以是其他语句。例如：
+<pre class="c">
+for( sum=0; i&lt;=100; i++ )  sum=sum+i;</pre>
+<br />
+7) &ldquo;表达式1&rdquo;和&ldquo;表达式3&rdquo;可以是一个简单表达式也可以是逗号表达式。
+<pre class="c">
+for( sum=0,i=1; i&lt;=100; i++ )  sum=sum+i;</pre>
+或：
+<pre class="c">
+for( i=0,j=100; i&lt;=100; i++,j-- )  k=i+j;</pre>
+<br />
+8) &ldquo;表达式2&rdquo;一般是关系表达式或逻辑表达式，但也可是数值或字符，只要其值非零，就执行循环体。例如：
+<pre class="c">
+for( i=0; (c=getchar())!=&#39;\n&#39;; i+=c );</pre>
+又如：
+<pre class="c">
+for( ; (c=getchar())!=&#39;\n&#39; ; )
+    printf(&quot;%c&quot;,c);</pre>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/451.html">C语言while循环</a></span>
+                    <span class="next right"><a href="/view/453.html">C语言跳出循环</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/451.html";window.nextPageURL = "/view/453.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 452;
+window.arcId = "34fbSUeFMbMnYG1sXI3UufU+q3emGoddqUo381X/huOfBJ2Em84wGRTVDg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

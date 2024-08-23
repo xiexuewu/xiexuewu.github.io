@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言求某一年的某一月有多少天</title>
+<meta name="keywords" content="语言,求,某一,年的,某,一月,有,多少,天,编写," />
+<meta name="description" content="编写程序，要求从键盘输入年份和月份，输出这一年的这个月份共有多少天。 分析 这个问题需要考虑闰年问题，因为二月份的天数与闰年有关。闰年的判断依据是：若某年能被 4 整除，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言求某一年的某一月有多少天</h1>
+			<div id="arc-body">编写程序，要求从键盘输入年份和月份，输出这一年的这个月份共有多少天。
+<h2>
+	分析</h2>
+这个问题需要考虑闰年问题，因为二月份的天数与闰年有关。闰年的判断依据是：若某年能被 4 整除，但不能被 100 整除，则这一年是闰年；若某年能被 400 整除，则这一年也是闰年。<br />
+<br />
+另外，程序中需要对月份进行判断，C语言常用的分支结构有 if else 和 switch case，任选一种即可。
+<h2>
+	实现</h2>
+给大家提供一种实现思路，仅供参考：<br />
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int year, month, days;
+
+    printf(&quot;输入年份：&quot;);
+    scanf(&quot;%d&quot;, &amp;year);
+    printf(&quot;输入月份：&quot;);
+    scanf(&quot;%d&quot;, &amp;month);
+
+    switch (month) {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        days = 31;
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        days = 30;
+        break;
+    case 2:
+        // 判断闰年
+        if ((year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400 == 0)) {
+            days = 29;
+        }
+        else {
+            days = 28;
+        }
+        break;
+    default:
+        printf(&quot;月份输入错误！\n&quot;);
+        exit(1);
+        break;
+    }
+    printf(&quot;天数：%d\n&quot;, days);
+    return 0;
+}</pre>
+第一次运行结果：
+<p class="info-box">
+	输入年份：2014<br />
+	输入月份：10<br />
+	天数：31</p>
+<br />
+第二次运行结果：
+<p class="info-box">
+	输入年份：2013<br />
+	输入月份：02<br />
+	天数：28</p>
+<br />
+第三次运行结果：
+<p class="info-box">
+	输入年份：2000<br />
+	输入月份：2<br />
+	天数：29</p>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 458;
+window.arcId = "b27fi9+6r7/ExfTcTNmubKg+yyBT+/lf0GASfxDZUq+CQ6+jbUDfVt2ZHw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

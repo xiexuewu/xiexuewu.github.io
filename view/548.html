@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言fgets和fputs函数的用法详解（以字符串的形式读写文件）</title>
+<meta name="keywords" content="语言,fgets,和,fputs,函数,的,用法,详解,以," />
+<meta name="description" content="fgetc() 和 fputc() 函数每次只能读写一个字符，速度较慢；实际开发中往往是每次读写一个字符串或者一个数据块，这样能明显提高效率。 读字符串函数 fgets fgets() 函数用来从指定的文件" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言fgets和fputs函数的用法详解（以字符串的形式读写文件）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/547.html">以字符形式读写文件</a></span>
+                    <span class="next right"><a href="/view/549.html">以数据块的形式读写文件</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/547.html";window.nextPageURL = "/view/549.html";</script>
+			<div id="arc-body">fgetc() 和 fputc() 函数每次只能读写一个字符，速度较慢；实际开发中往往是每次读写一个字符<u><a href='/view/175.html' target='_blank'>串</a></u>或者一个数据块，这样能明显提高效率。
+<h2>
+	读字符串函数 fgets</h2>
+fgets() 函数用来从指定的文件中读取一个字符串，并保存到字符<u><a href='/view/181.html' target='_blank'>数组</a></u>中，它的用法为：
+<pre class="info-box">
+char *fgets ( char *str, int n, FILE *fp );</pre>
+str 为字符数组，n 为要读取的字符数目，fp 为文件指针。<br />
+<br />
+返回值：读取成功时返回字符数组首地址，也即 str；读取失败时返回 NULL；如果开始读取时文件内部指针已经指向了文件末尾，那么将读取不到任何字符，也返回 NULL。<br />
+<br />
+注意，读取到的字符串会在末尾自动添加 &#39;\0&#39;，n 个字符也包括 &#39;\0&#39;。也就是说，实际只读取到了 n-1 个字符，如果希望读取 100 个字符，n 的值应该为 101。例如：<br />
+<pre class="c">
+#define N 101
+char str[N];
+FILE *fp = fopen(&quot;D:\\demo.txt&quot;, &quot;r&quot;);
+fgets(str, N, fp);</pre>
+表示从 D:\\demo.txt 中读取 100 个字符，并保存到字符数组 str 中。<br />
+<br />
+需要重点说明的是，在读取到 n-1 个字符之前如果出现了换行，或者读到了文件末尾，则读取结束。这就意味着，不管 n 的值多大，fgets() 最多只能读取一行数据，不能跨行。在C语言中，没有按行读取文件的函数，我们可以借助 fgets()，将 n 的值设置地足够大，每次就可以读取到一行数据。<br />
+<br />
+【示例】一行一行地读取文件。
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define N 100
+int main(){
+    FILE *fp;
+    char str[N+1];
+    if( (fp=fopen(&quot;d:\\demo.txt&quot;,&quot;rt&quot;)) == NULL ){
+        puts(&quot;Fail to open file!&quot;);
+        exit(0);
+    }
+   
+    while(fgets(str, N, fp) != NULL){
+        printf(&quot;%s&quot;, str);
+    }
+
+    fclose(fp);
+    return 0;
+}</pre>
+将下面的内容复制到 D:\\demo.txt：
+<p class="info-box">
+	C语言<br />
+	https://xiexuewu.github.io<br />
+	一个学习编程的好网站！</p>
+那么运行结果为：
+<pre class="info-box">
+C语言
+https://xiexuewu.github.io
+一个学习编程的好网站！</pre>
+fgets() 遇到换行时，会将换行符一并读取到当前字符串。该示例的输出结果之所以和 demo.txt 保持一致，该换行的地方换行，就是因为 fgets() 能够读取到换行符。而 gets() 不一样，它会忽略换行符。<br />
+<h2>
+	写字符串函数 fputs</h2>
+fputs() 函数用来向指定的文件写入一个字符串，它的用法为：
+<pre class="info-box">
+int fputs( char *str, FILE *fp );</pre>
+str 为要写入的字符串，fp 为文件指针。写入成功返回非负数，失败返回 EOF。例如：
+<pre class="c">
+char *str = &quot;https://xiexuewu.github.io&quot;;
+FILE *fp = fopen(&quot;D:\\demo.txt&quot;, &quot;at+&quot;);
+fputs(str, fp);</pre>
+表示把把字符串 str 写入到 D:\\demo.txt 文件中。<br />
+<br />
+【示例】向上例中建立的 d:\\demo.txt 文件中追加一个字符串。
+<pre class="c">
+#include&lt;stdio.h&gt;
+int main(){
+    FILE *fp;
+    char str[102] = {0}, strTemp[100];
+    if( (fp=fopen(&quot;D:\\demo.txt&quot;, &quot;at+&quot;)) == NULL ){
+        puts(&quot;Fail to open file!&quot;);
+        exit(0);
+    }
+    printf(&quot;Input a string:&quot;);
+    gets(strTemp);
+    strcat(str, &quot;\n&quot;);
+    strcat(str, strTemp);
+    fputs(str, fp);
+    fclose(fp);
+    return 0;
+}</pre>
+运行程序，输入<code>C C++ Java Linux Shell</code>，打开 D:\\demo.txt，文件内容为：
+<pre class="info-box">
+C语言
+https://xiexuewu.github.io
+一个学习编程的好网站！
+C C++ Java Linux Shell</pre>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/547.html">以字符形式读写文件</a></span>
+                    <span class="next right"><a href="/view/549.html">以数据块的形式读写文件</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/547.html";window.nextPageURL = "/view/549.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 548;
+window.arcId = "394ah8m01FsyUbhIHnBoPzR2fgq48DV/cI4MD+A30jP1ytDxS5AeaL0xMQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>什么是函数？C语言函数的概念</title>
+<meta name="keywords" content="什么,是,函数,语言,的,概念,从表面上看,函数," />
+<meta name="description" content="从表面上看，函数在使用时必须带上括号，有必要的话还要传递参数，函数的执行结果也可以赋值给其它变量。例如，strcmp() 是一个用来比较字符串大小的函数，它的用法如下： #inclu" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>什么是函数？C语言函数的概念</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/function/">C语言函数</a></span>
+                    <span class="next right"><a href="/view/490.html">C语言函数定义</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/function/";window.nextPageURL = "/view/490.html";</script>
+			<div id="arc-body">从表面上看，函数在使用时必须带上括号，有必要的话还要传递参数，函数的执行结果也可以赋值给其它变量。例如，strcmp() 是一个用来比较字符<u><a href='/view/175.html' target='_blank'>串</a></u>大小的函数，它的用法如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(){
+    char str1[] = &quot;https://xiexuewu.github.io&quot;;
+    char str2[] = &quot;https://www.baidu.com&quot;;
+    //比较两个字符串大小
+    int result = strcmp(str1, str2);
+    printf(&quot;str1  - str2 = %d\n&quot;, result);
+
+    return 0;
+}</pre>
+str1 和 str2 是传递给 strcmp() 的参数，strcmp() 的处理结果赋值给了变量 result。<br />
+<br />
+我们不妨设想一下，如果没有 strcmp() 函数，要想比较两个字符串的大小该怎么写呢？请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(){
+    char str1[] = &quot;https://xiexuewu.github.io&quot;;
+    char str2[] = &quot;https://www.baidu.com&quot;;
+    int result, i;
+    //比较两个字符串大小
+    for(i=0; (result = str1[i] - str2[i]) == 0; i++){
+        if(str1[i] == &#39;\0&#39; || str2[i] == &#39;\0&#39;){
+            break;
+        }
+    }
+   
+    printf(&quot;str1  - str2 = %d\n&quot;, result);
+    return 0;
+}</pre>
+比较字符串大小是常用的功能，一个程序可能会用到很多次，如果每次都写这样一段重复的代码，不但费时费力、容易出错，而且交给别人时也很麻烦，所以 C语言提供了一个功能，允许我们将常用的代码以固定的格式封装（包装）成一个独立的模块，只要知道这个模块的名字就可以重复使用它，这个模块就叫做<strong><span style="color:#008000;">函数（Function）</span></strong>。<br />
+<br />
+函数的本质是一段可以重复使用的代码，这段代码被提前编写好了，放到了指定的文件中，使用时直接调取即可。下面我们就来演示一下如何封装 strcmp() 这个函数。
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+//将比较字符串大小的代码封装成函数，并命名为strcmp_alias
+int strcmp_alias(char *s1, char *s2){
+    int i, result;
+    for(i=0; (result = s1[i] - s2[i]) == 0; i++){
+        if(s1[i] == &#39;\0&#39; || s2[i] == &#39;\0&#39;){
+            break;
+        }
+    }
+   
+    return result;
+}
+
+int main(){
+    char str1[] = &quot;https://xiexuewu.github.io&quot;;
+    char str2[] = &quot;https://www.baidu.com&quot;;
+    char str3[] = &quot;https://www.zhihu.com/people/data_structure&quot;;
+    //重复使用strcmp_alias()函数
+    int result_1_2 = strcmp_alias(str1, str2);
+    int result_1_3 = strcmp_alias(str1, str3);
+    printf(&quot;str1  - str2 = %d\n&quot;, result_1_2);
+    printf(&quot;str1  - str3 = %d\n&quot;, result_1_3);
+
+    return 0;
+}</pre>
+为了避免与原有的 strcmp 产生命名冲突，我将新函数命名为&nbsp;strcmp_alias。<br />
+<br />
+这是我们自己编写的函数，放在了当前源文件中（函数封装和函数使用在同一个源文件中），所以不需要引入头文件；而 C语言自带的 strcmp() 放在了其它的源文件中（函数封装和函数使用不在同一个源文件中），并在 string.h 头文件中告诉我们如何使用，所以我们必须引入 string.h 头文件。<br />
+<br />
+我们自己编写的&nbsp;strcmp_alias() 和原有的 strcmp() 在功能和格式上都是一样的，只是存放的位置不同，所以一个需要引入头文件，一个不需要引入。<br />
+<br />
+本章我们重点讲解的内容就是如何将一段代码封装成函数，以及封装以后如何使用。
+<h2>
+	C语言中的函数和数学中的函数</h2>
+美国人将函数称为&ldquo;Function&rdquo;。Function 除了有&ldquo;函数&rdquo;的意思，还有&ldquo;功能&rdquo;的意思，中国人将 Function 译为&ldquo;函数&rdquo;而不是&ldquo;功能&rdquo;，是因为C语言中的函数和数学中的函数在使用形式上有些类似，例如：
+<ul>
+	<li>
+		C语言中有 length = strlen(str)</li>
+	<li>
+		数学中有 y = f(x)</li>
+</ul>
+<br />
+你看它们是何其相似，都是通过一定的操作或规则，由一份数据得到另一份数据。<br />
+<br />
+不过从本质上看，将 Function 理解为&ldquo;功能&rdquo;或许更恰当，C语言中的函数往往是独立地实现了某项功能。一个程序由多个函<u><a href='/view/181.html' target='_blank'>数组</a></u>成，可以理解为「一个程序由多个小的功能叠加而成」。<br />
+<br />
+本教程重在实践，不咬文嚼字，不死扣概念，大家理解即可，不必在此深究。<br />
+<h2>
+	库函数和自定义函数</h2>
+C语言在发布时已经为我们封装好了很多函数，它们被分门别类地放到了不同的头文件中（暂时先这样认为），使用函数时引入对应的头文件即可。这些函数都是专家编写的，执行效率极高，并且考虑到了各种边界情况，各位读者请放心使用。<br />
+<br />
+C语言自带的函数称为<span style="color: #008000">库函数（Library Function）</span>。<span style="color: #008000">库（Library）</span>是编程中的一个基本概念，可以简单地认为它是一系列函数的集合，在磁盘上往往是一个文件夹。C语言自带的库称为<span style="color: #008000">标准库（Standard Library）</span>，其他公司或个人开发的库称为<span style="color: #008000">第三方库（Third-Party Library）</span>。
+<blockquote>
+	关于库的概念，我们已在《<a href="/view/372.html" target="_blank">不要这样学习C语言，这是一个坑！</a>》中进行了详细介绍。</blockquote>
+除了库函数，我们还可以编写自己的函数，拓展程序的功能。自己编写的函数称为<span style="color: #008000">自定义函数</span>。自定义函数和库函数在编写和使用方式上完全相同，只是由不同的机构来编写。<br />
+<h2>
+	参数</h2>
+函数的一个明显特征就是使用时带括号<code>( )</code>，有必要的话，括号中还要包含数据或变量，称为<span style="color: #008000">参数（Parameter）</span>。参数是函数需要处理的数据，例如：
+<ul>
+	<li>
+		<code>strlen(str1)</code>用来计算字符串的长度，<code>str1</code>就是参数。</li>
+	<li>
+		<code>puts(&quot;C语言&quot;)</code>用来输出字符串，<code>&quot;C语言&quot;</code>就是参数。</li>
+</ul>
+<h2>
+	返回值</h2>
+既然函数可以处理数据，那就有必要将处理结果告诉我们，所以很多函数都有<span style="color: #008000">返回值（Return Value）</span>。所谓返回值，就是函数的执行结果。例如：
+<pre class="info-box">
+char str1[] = &quot;C Language&quot;;
+int len = strlen(str1);</pre>
+strlen() 的处理结果是字符串 str1 的长度，是一个整数，我们通过 len 变量来接收。<br />
+<br />
+函数返回值有固定的数据类型（int、char、float 等），用来接收返回值的变量类型要一致。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/function/">C语言函数</a></span>
+                    <span class="next right"><a href="/view/490.html">C语言函数定义</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/function/";window.nextPageURL = "/view/490.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 489;
+window.arcId = "7fbfK3erLFqyux5VcZPZWiDXRaSWT89AhbmthFjyl0zS9uPr64n3IneptA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

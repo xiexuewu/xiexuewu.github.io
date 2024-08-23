@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言随机数生成教程，C语言rand和srand用法详解</title>
+<meta name="keywords" content="语言,随机数,生成,教程,rand,和,srand,用法,详" />
+<meta name="description" content="在实际编程中，我们经常需要生成随机数，例如，贪吃蛇游戏中在随机的位置出现食物，扑克牌游戏中随机发牌。 在C语言中，我们一般使用 stdlib.h 头文件中的 rand() 函数来生成随机数，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言随机数生成教程，C语言rand和srand用法详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></span>
+                    <span class="next right"><a href="/view/502.html">忽略语法细节，从整体上理解函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/501.html";window.nextPageURL = "/view/502.html";</script>
+			<div id="arc-body">在实际编程中，我们经常需要生成随机数，例如，贪吃蛇游戏中在随机的位置出现食物，扑克牌游戏中随机发牌。<br />
+<br />
+在C语言中，我们一般使用 &lt;stdlib.h&gt; 头文件中的 rand() 函数来生成随机数，它的用法为：
+<p class="info-box">
+	int rand (void);</p>
+void 表示不需要传递参数。
+<blockquote>
+	C语言中还有一个 random() 函数可以获取随机数，但是 random() 不是标准函数，不能在 VC/VS 等编译器通过，所以比较少用。</blockquote>
+rand() 会随机生成一个位于 0 ~ RAND_MAX 之间的整数。<br />
+<br />
+RAND_MAX 是&nbsp;&lt;stdlib.h&gt; 头文件中的一个宏，它用来指明 rand() 所能返回的随机数的最大值。C语言标准并没有规定 RAND_MAX 的具体数值，只是规定它的值至少为 32767。在实际编程中，我们也不需要知道&nbsp;RAND_MAX 的具体值，把它当做一个很大的数来对待即可。<br />
+<br />
+下面是一个随机数生成的实例：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main(){
+    int a = rand();
+    printf(&quot;%d\n&quot;,a);
+    return 0;
+}</pre>
+运行结果举例：<br />
+193
+<h2>
+	随机数的本质</h2>
+多次运行上面的代码，你会发现每次产生的随机数都一样，这是怎么回事呢？为什么随机数并不随机呢？<br />
+<br />
+实际上，rand() 函数产生的随机数是伪随机数，是根据一个数值按照某个公式推算出来的，这个数值我们称之为&ldquo;种子&rdquo;。种子和随机数之间的关系是一种正态分布，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="C语言随机数和种子之间呈正态分布" src="/uploads/allimg/240821/1634341I6-0.gif" /></div>
+<br />
+种子在每次启动计算机时是随机的，但是一旦计算机启动以后它就不再变化了；也就是说，每次启动计算机以后，种子就是定值了，所以根据公式推算出来的结果（也就是生成的随机数）就是固定的。
+<h2>
+	重新播种</h2>
+我们可以通过 srand() 函数来重新&ldquo;播种&rdquo;，这样种子就会发生改变。srand() 的用法为：
+<pre class="info-box">
+void srand (unsigned int seed);</pre>
+它需要一个 unsigned int 类型的参数。在实际开发中，我们可以用时间作为参数，只要每次播种的时间不同，那么生成的种子就不同，最终的随机数也就不同。<br />
+<br />
+使用 &lt;time.h&gt; 头文件中的 time() 函数即可得到当前的时间（精确到秒），就像下面这样：<br />
+<pre class="info-box">
+srand((unsigned)time(NULL));</pre>
+有兴趣的读者请<a href="http://www.cplusplus.com/reference/ctime/time/" target="_blank">猛击这里</a>自行研究 time() 函数的用法，本节我们不再过多讲解。<br />
+<br />
+对上面的代码进行修改，生成随机数之前先进行播种：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+int main() {
+    int a;
+    srand((unsigned)time(NULL));
+    a = rand();
+    printf(&quot;%d\n&quot;, a);
+    return 0;
+}</pre>
+多次运行程序，会发现每次生成的随机数都不一样了。但是，这些随机数会有逐渐增大或者逐渐减小的趋势，这是因为我们以时间为种子，时间是逐渐增大的，结合上面的正态分布图，很容易推断出随机数也会逐渐增大或者减小。
+<h2>
+	生成一定范围内的随机数</h2>
+在实际开发中，我们往往需要一定范围内的随机数，过大或者过小都不符合要求，那么，如何产生一定范围的随机数呢？我们可以利用取模的方法：
+<pre class="info-box">
+int a = rand() % 10;    //产生0~9的随机数，注意10会被整除</pre>
+如果要规定上下限：
+<pre class="info-box">
+int a = rand() % 51 + 13;    //产生13~63的随机数</pre>
+分析：取模即取余，<code>rand()%51+13</code>我们可以看成两部分：<code>rand()%51</code>是产生 0~50 的随机数，后面<code>+13</code>保证 a 最小只能是 13，最大就是 50+13=63。<br />
+<br />
+最后给出产生 13~63 范围内随机数的完整代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+int main(){
+    int a;
+    srand((unsigned)time(NULL));
+    a = rand() % 51 + 13;
+    printf(&quot;%d\n&quot;,a);
+    return 0;
+}</pre>
+<h2>
+	连续生成随机数</h2>
+有时候我们需要一组随机数（多个随机数），该怎么生成呢？很容易想到的一种解决方案是使用循环，每次循环都重新播种，请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+int main() {
+    int a, i;
+    //使用for循环生成10个随机数
+    for (i = 0; i &lt; 10; i++) {
+        srand((unsigned)time(NULL));
+        a = rand();
+        printf(&quot;%d &quot;, a);
+    }
+
+    return 0;
+}</pre>
+运行结果举例：<br />
+8 8 8 8 8 8 8 8 8 8<br />
+<br />
+运行结果非常奇怪，每次循环我们都重新播种了呀，为什么生成的随机数都一样呢？<br />
+<br />
+这是因为，for 循环运行速度非常快，在一秒之内就运行完成了，而 time() 函数得到的时间只能精确到秒，所以每次循环得到的时间都是一样的，这样一来，种子也就是一样的，随机数也就一样了。<br />
+<br />
+那么，该如何解决呢？很简单，将 srand() 函数放到 for 循环的外部（比如第 6 行），再次运行程序，就能得到 10 个不同的随机数了。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></span>
+                    <span class="next right"><a href="/view/502.html">忽略语法细节，从整体上理解函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/501.html";window.nextPageURL = "/view/502.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 543;
+window.arcId = "cbd95mBJ1Geo9R4bbmfJwrGVGx8fc64ck9Qot1X5msdClrh1M/MVjpQF7A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

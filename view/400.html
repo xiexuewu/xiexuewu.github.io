@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>VS“无法查找或打开PDB文件”是怎么回事？如何解决</title>
+<meta name="keywords" content="“,无法,查找,或,打开,PDB,文件,”,是,有时候," />
+<meta name="description" content="有时候，我们使用 VS（Visual Studio）编译程序时会出现无法查找或打开PDB文件的提示，并且此时程序会生成失败，无法运行，如下图所示： 大家不要惊慌，出现这种提示并不是代码写错了" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>VS“无法查找或打开PDB文件”是怎么回事？如何解决</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/399.html">VS安全函数问题问题</a></span>
+                    <span class="next right"><a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/399.html";window.nextPageURL = "/view/400.html";</script>
+			<div id="arc-body">有时候，我们使用 VS（Visual Studio）编译程序时会出现&ldquo;无法查找或打开PDB文件&rdquo;的提示，并且此时程序会生成失败，无法运行，如下图所示：
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/10320G609-0.png" /></div>
+<br />
+大家不要惊慌，出现这种提示并不是代码写错了，而是编译器设置的问题，改一下设置就 OK 了。
+<h2>
+	先说一下PDB文件是什么</h2>
+当程序在 VS 上编译时，程序所依赖的所有动态链接库（dll 文件）也会被编译，编译过程中每个 dll 都会产生一个pdb文件，又称为&ldquo;符号文件&rdquo;，是一个存储数据的信息文件，其包含 dll 库在编译过程的某些调试信息，例如程序中所用到的全局变量、局部变量、函数名以及他们的入口地址等。<br />
+<br />
+pdb 文件主要用于调试程序，多用于当VS中有多个项目，且项目之间互有依赖关系时，使用pdb文件调试程序，往往会事半功倍，初学者一般不会用到。<br />
+<br />
+当使用VS 调试程序时，会默认加载你的程序以及程序依赖的dll库产生的所有pdb文件，但是结果往往是VS自己找不到依赖库的pdb文件，于是就提示给你&ldquo;无法查找或打开pdb文件&rdquo;。
+<h2>
+	如何修复这个错误</h2>
+我们可以通过对 VS 做适当的设置，使之能够查找到相应的 PDB 文件，具体步骤如下（这里我们以 VS2017 为例进行说明，其它版本的 VS 操作步骤也一样）。<br />
+<br />
+1) 选择菜单栏中的&ldquo;调试&nbsp; --&gt; 选项&rdquo;，如下图所示：
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/10320L050-1.png" /></div>
+<br />
+2) 弹出&ldquo;选项&rdquo;对话框后，选择&ldquo;调试 --&gt; 常规&rdquo;，在右侧选项栏中勾选&ldquo;启用源服务器支持&rdquo;（包含的 3 个子选项不用勾选），此时会弹出一个安全警报框，选择&ldquo;是&rdquo;即可，如下图所示：
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/10320K560-2.png" /></div>
+<br />
+3) 还是在&ldquo;选项&rdquo;对话框中，选择&ldquo;调试 --&gt; 符号&rdquo;，在右侧选项栏中勾选&ldquo;Microsoft符号服务器&rdquo;，此时会弹出一个提示对话框，点击&ldquo;确定&rdquo;即可。同时，对于缓存符号的目录，选择图示中的目录即可：
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/10320L1Y-3.png" /></div>
+<br />
+4) 确定之后，重新运行你的程序，首次运行时，由于编译器会加载所有动态链接库的pdb文件，可能会等到几秒钟。程序运行后，之前输出窗口中的&ldquo;无法查找或打开pdb文件&rdquo;的提示不见了，如下图所示：
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/10320G224-4.png" /></div>
+<br />
+如上图所示，由于pdb文件，又名&ldquo;符号文件&rdquo;，所以&ldquo;已加载符号&rdquo;，也就是成功加载了动态链接库对应的pdb文件。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/399.html">VS安全函数问题问题</a></span>
+                    <span class="next right"><a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/399.html";window.nextPageURL = "/view/400.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 400;
+window.arcId = "8eb3Zu9YnDIgH+8AFMHigQXl4GsDqElkNJT86gUwzEIhTuPLo8OU1tLJFA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

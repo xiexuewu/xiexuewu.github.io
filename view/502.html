@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>忽略语法细节，从整体上理解函数</title>
+<meta name="keywords" content="忽略,语法,细节,从,整体,上,理解,函数,从," />
+<meta name="description" content="从整体上看，C语言代码是由一个一个的函数构成的，除了定义和说明类的语句（例如变量定义、宏定义、类型定义等）可以放在函数外面，所有具有运算或逻辑处理能力的语句（例如加" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>忽略语法细节，从整体上理解函数</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/543.html">C语言随机数</a></span>
+                    <span class="next right"><a href="/c/preprocess/">预处理命令</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/543.html";window.nextPageURL = "/c/preprocess/";</script>
+			<div id="arc-body">从整体上看，C语言代码是由一个一个的函数构成的，除了定义和说明类的语句（例如变量定义、宏定义、类型定义等）可以放在函数外面，所有具有运算或逻辑处理能力的语句（例如加减乘除、if else、for、函数调用等）都要放在函数内部。<br />
+<br />
+例如，下面的代码就是错误的：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int a = 10;
+int b = a + 20;
+
+int main(){
+    return 0;
+}</pre>
+<code>int b = a + 20;</code>是具有运算功能的语句，要放在函数内部。<br />
+<br />
+但是下面的代码就是正确的：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int a = 10;
+int b = 10 + 20;
+
+int main(){
+    return 0;
+}</pre>
+<code>int b = 10 + 20;</code>在编译时会被优化成<code>int b = 30;</code>，消除加法运算。<br />
+<br />
+在所有的函数中，main() 是入口函数，有且只能有一个，C语言程序就是从这里开始运行的。<br />
+<br />
+C语言不但提供了丰富的库函数，还允许用户定义自己的函数。每个函数都是一个可以重复使用的模块，通过模块间的相互调用，有条不紊地实现复杂的功能。<span style="color: #b22222">可以说，C程序的全部工作都是由各式各样的函数完成的，函数就好比一个一个的零件，组合在一起构成一台强大的机器。</span><br />
+<br />
+标准C语言（<a href="/view/405.html" target="_blank">ANSI C</a>）共定义了15 个头文件，称为&ldquo;C标准库&rdquo;，所有的编译器都必须支持，如何正确并熟练的使用这些标准库，可以反映出一个程序员的水平。
+<ul>
+	<li>
+		合格程序员：&lt;stdio.h&gt;、&lt;ctype.h&gt;、&lt;stdlib.h&gt;、&lt;string.h&gt;</li>
+	<li>
+		熟练程序员：&lt;assert.h&gt;、&lt;limits.h&gt;、&lt;stddef.h&gt;、&lt;time.h&gt;</li>
+	<li>
+		优秀程序员：&lt;float.h&gt;、&lt;math.h&gt;、&lt;error.h&gt;、&lt;locale.h&gt;、&lt;setjmp.h&gt;、&lt;signal.h&gt;、&lt;stdarg.h&gt;</li>
+</ul>
+<br />
+以上各类函数不仅数量众多，而且有的还需要硬件知识才能使用，初学者要想全部掌握得需要一个较长的学习过程。我的建议是先掌握一些最基本、最常用的函数，在实践过程中再逐步深入。由于课时关系，本教程只介绍了很少一部分库函数，其余部分读者可根据需要查阅C语言函数手册，网址是 <a href="http://www.cplusplus.com/reference/clibrary/" target="_blank">http://www.cplusplus.com</a>。<br />
+<br />
+还应该指出的是，C语言中所有的函数定义，包括主函数 main() 在内，都是平行的。也就是说，在一个函数的函数体内，不能再定义另一个函数，即不能嵌套定义。但是函数之间允许相互调用，也允许嵌套调用。习惯上把调用者称为主调函数，被调用者称为被调函数。函数还可以自己调用自己，称为递归调用。<br />
+<br />
+<span style="color: #b22222">main() 函数是主函数，它可以调用其它函数，而不允许被其它函数调用。因此，C程序的执行总是从 main() 函数开始，完成对其它函数的调用后再返回到 main() 函数，最后由 main() 函数结束整个程序。</span><br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/543.html">C语言随机数</a></span>
+                    <span class="next right"><a href="/c/preprocess/">预处理命令</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/543.html";window.nextPageURL = "/c/preprocess/";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 502;
+window.arcId = "b02cPer6ywGXJRrLIf7/dQLKhKM9m82GaCr7iKS24WzWIwhVXYxZ/uc2jg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

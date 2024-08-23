@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>从extern关键字开始谈C语言多文件编程</title>
+<meta name="keywords" content="从,extern,关键字,开始,谈,语,言多,文件,编程," />
+<meta name="description" content="在前面的教程中，我们都是将所有的代码写到一个源文件里面，对于小程序，代码不过几百行，这或许无可厚非，但当程序膨胀代码到几千行甚至上万行后，就应该考虑将代码分散到多" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">14</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>14.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>14.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a></dd><dd>14.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a></dd><dd>14.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a></dd><dd>14.5 <a href="/view/590.html">符号——链接的粘合剂</a></dd><dd>14.6 <a href="/view/591.html">强符号和弱符号</a></dd><dd>14.7 <a href="/view/592.html">强引用和弱引用</a></dd><dd>14.8 <a href="/view/593.html">C语言模块化编程中的头文件</a></dd><dd>14.9 <a href="/view/594.html">C语言标准库以及标准头文件</a></dd><dd>14.10 <a href="/view/595.html">细说C语言头文件的路径</a></dd><dd>14.11 <a href="/view/596.html">防止C语言头文件被重复包含</a></dd><dd>14.12 <a href="/view/597.html">C语言static变量和函数</a></dd><dd>14.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a></dd></dl>
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>从extern关键字开始谈C语言多文件编程</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/module/">多文件编程</a></span>
+                    <span class="next right"><a href="/view/587.html">那些被编译器隐藏了的过程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/module/";window.nextPageURL = "/view/587.html";</script>
+			<div id="arc-body">在前面的教程中，我们都是将所有的代码写到一个源文件里面，对于小程序，代码不过几百行，这或许无可厚非，但当程序膨胀代码到几千行甚至上万行后，就应该考虑将代码分散到多个文件中，否则代码的阅读和维护将成为一件痛苦的事情。<br />
+<br />
+本节我们就来演示一下多文件编程。在下面的例子中，我们创建了两个源文件 main.c 和 module.c：
+<ul>
+	<li>
+		module.c 是整个程序的一个模块，我们在其中定义了一个全局变量和一个函数；</li>
+	<li>
+		main.c 是程序的主模块（主文件），它使用到了 module.c 中的变量和函数。</li>
+</ul>
+<br />
+module.c 源码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int m = 100;
+
+void func(){
+    printf(&quot;Multiple file programming!\n&quot;);
+}</pre>
+main.c 源码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+extern void func();
+extern int m;
+
+int n = 200;
+
+int main(){
+    func();
+    printf(&quot;m = %d, n = %d\n&quot;, m, n);
+    return 0;
+}</pre>
+在 Visual Studio 中，将两个源文件都添加到工程中，点击&ldquo;运行（Run）&rdquo;按钮就可以运行程序。<br />
+<br />
+在 Linux GCC 中，可以使用下面的命令来编译和运行程序：
+<p class="info-box">
+	$gcc main.c module.c<br />
+	$./a.out</p>
+程序最终的运行结果为：
+<p class="info-box">
+	Multiple file programming!<br />
+	m = 100, n = 200</p>
+<br />
+m 和 n 是在所有函数之外定义的<span style="color: #008000">全局变量（Global Variable）</span>，它的作用域默认是整个程序，也就是所有的代码文件，包括<code>.c</code>和<code>.h</code>文件。
+<blockquote>
+	如果你一直在编写单个源文件的程序，那么请注意，全局变量的作用范围不是从变量定义处到该文件结束，在其他文件中也有效。</blockquote>
+这里需要重点理解的是 <span style="color: #008000">extern</span> 关键字，它用来声明一个变量或函数。
+<h2>
+	extern 关键字</h2>
+我们知道，C语言代码是由上到下依次执行的，不管是变量还是函数，原则上都要先定义再使用，否则就会报错。但在实际开发中，经常会在函数或变量定义之前就使用它们，这个时候就需要提前声明。<br />
+<br />
+<span style="color: #b22222">所谓声明（Declaration），就是告诉编译器我要使用这个变量或函数，你现在没有找到它的定义不要紧，请不要报错，稍后我会把定义补上。</span><br />
+<br />
+例如，我们知道使用 printf()、puts()、scanf()、getchar() 等函数要引入 stdio.h 这个头文件，很多初学者认为 stdio.h 中包含了函数定义（也就是函数体），只要有了头文件程序就能运行。其实不然，头文件中包含的都是函数声明，而不是函数定义，函数定义都在系统库中，只有头文件没有系统库在链接时就会报错，程序根本不能运行。
+<h4>
+	1) 函数的声明</h4>
+在《<a href="/view/494.html" target="_blank">C语言函数声明以及函数原型</a>》一节中我们讲到了函数声明，那时并没有使用 extern 关键字，这是因为，函数的定义有函数体，函数的声明没有函数体，编译器很容易区分定义和声明，所以对于函数声明来说，有没有 extern 都是一样的。<br />
+<br />
+总结起来，函数声明有四种形式：
+<p class="info-box">
+	//不使用 extern<br />
+	datatype function( datatype1 name1, datatype2 name2, ... );<br />
+	datatype function( datatype1, datatype2, ... );<br />
+	//使用 extern<br />
+	extern datatype function( datatype1 name1, datatype2 name2, ... );<br />
+	extern datatype function( datatype1, datatype2, ... );</p>
+<h4>
+	2) 变量的声明</h4>
+变量和函数不同，编译器只能根据 extern 来区分，有 extern 才是声明，没有 extern 就是定义。<br />
+<br />
+变量的定义有两种形式，你可以在定义的同时初始化，也可以不初始化：
+<p class="info-box">
+	datatype name = value;<br />
+	datatype name;&nbsp;</p>
+而变量的声明只有一种形式，就是使用 extern 关键字：
+<p class="info-box">
+	extern datatype name;</p>
+另外，变量也可以在声明的同时初始化，格式为：
+<p class="info-box">
+	extern datatype name = value;</p>
+这种似是而非的方式是不被推荐的，有的编译器也会给出警告，我们不再深入讨论，也建议各位读者把定义和声明分开，尽量不要这样写。<br />
+<br />
+extern 是&ldquo;外部&rdquo;的意思，很多教材讲到，extern 用来声明一个外部（其他文件中）的变量或函数，也就是说，变量或函数的定义在其他文件中。<br />
+<br />
+不过我认为这样讲不妥，因为除了定义在外部，定义在当前文件中也是正确的。例如，将 module.c 中的<code>int m = 100;</code>移动到 main.c 中的任意位置都是可以的。所以我认为，extern 是用来声明的，不管具体的定义是在当前文件内部还是外部，都是正确的。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/module/">多文件编程</a></span>
+                    <span class="next right"><a href="/view/587.html">那些被编译器隐藏了的过程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/module/";window.nextPageURL = "/view/587.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 586;
+window.arcId = "bcc5uBd6eRgI/QbwMu8xeLr4dPsu2X8R7paocQvbzbpNn7Aas06Hp5F0xA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

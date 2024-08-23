@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言数据输出大汇总以及轻量进阶</title>
+<meta name="keywords" content="语言,数据,输出,大,汇总,以及,轻量,进阶,在," />
+<meta name="description" content="在C语言中，有三个函数可以用来在显示器上输出数据，它们分别是： puts() ：只能输出字符串，并且输出结束后会自动换行，在《 第一个C语言程序 》中已经进行了介绍。 putchar() ：只能" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言数据输出大汇总以及轻量进阶</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/io/">C语言输入输出</a></span>
+                    <span class="next right"><a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/io/";window.nextPageURL = "/view/437.html";</script>
+			<div id="arc-body">在 C语言中，有三个函数可以用来在显示器上输出数据，它们分别是：
+<ul>
+	<li>
+		<span style="color: #008000">puts()</span>：只能输出字符<u><a href='/view/175.html' target='_blank'>串</a></u>，并且输出结束后会自动换行，在《<a href="/view/374.html" target="_blank">第一个C语言程序</a>》中已经进行了介绍。</li>
+	<li>
+		<span style="color: #008000">putchar()</span>：只能输出单个字符，在《<a href="/view/423.html" target="_blank">在C语言中使用英文字符</a>》中已经进行了介绍。</li>
+	<li>
+		<span style="color: #008000">printf()</span>：可以输出各种类型的数据，在前面的很多章节中都进行了介绍。</li>
+</ul>
+<br />
+printf() 是最灵活、最复杂、最常用的输出函数，完全可以替代 puts() 和 putchar()，大家一定要掌握。前面的章节中我们已经介绍了 printf() 的基本用法，本节将重点介绍 printf() 的高级用法。
+<blockquote>
+	对于初学者，这一节的内容可能有些繁杂，如果你希望加快学习进度，尽早写出有趣的代码，也可以跳过这节，后面遇到不懂的 printf() 用法再来回顾。</blockquote>
+首先汇总一下前面学到的格式控制符：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th width="140">
+				格式控制符</th>
+			<th>
+				说明</th>
+		</tr>
+		<tr>
+			<td>
+				%c</td>
+			<td>
+				输出一个单一的字符</td>
+		</tr>
+		<tr>
+			<td>
+				%hd、%d、%ld</td>
+			<td>
+				以十进制、有符号的形式输出 short、int、long 类型的整数</td>
+		</tr>
+		<tr>
+			<td>
+				%hu、%u、%lu</td>
+			<td>
+				以十进制、无符号的形式输出 short、int、long 类型的整数</td>
+		</tr>
+		<tr>
+			<td>
+				%ho、%o、%lo</td>
+			<td>
+				以八进制、不带前缀、无符号的形式输出 short、int、long 类型的整数</td>
+		</tr>
+		<tr>
+			<td>
+				%#ho、%#o、%#lo</td>
+			<td>
+				以八进制、带前缀、无符号的形式输出 short、int、long 类型的整数</td>
+		</tr>
+		<tr>
+			<td>
+				%hx、%x、%lx<br />
+				%hX、%X、%lX</td>
+			<td>
+				以十六进制、不带前缀、无符号的形式输出 short、int、long 类型的整数。如果 x 小写，那么输出的十六进制数字也小写；如果 X 大写，那么输出的十六进制数字也大写。</td>
+		</tr>
+		<tr>
+			<td>
+				%#hx、%#x、%#lx<br />
+				%#hX、%#X、%#lX</td>
+			<td>
+				以十六进制、带前缀、无符号的形式输出 short、int、long 类型的整数。如果 x 小写，那么输出的十六进制数字和前缀都小写；如果 X 大写，那么输出的十六进制数字和前缀都大写。</td>
+		</tr>
+		<tr>
+			<td>
+				%f、%lf</td>
+			<td>
+				以十进制的形式输出 float、double 类型的小数</td>
+		</tr>
+		<tr>
+			<td>
+				%e、%le<br />
+				%E、%lE</td>
+			<td>
+				以指数的形式输出 float、double 类型的小数。如果 e 小写，那么输出结果中的 e 也小写；如果 E 大写，那么输出结果中的 E&nbsp;也大写。</td>
+		</tr>
+		<tr>
+			<td>
+				%g、%lg<br />
+				%G、%lG</td>
+			<td>
+				以十进制和指数中较短的形式输出 float、double 类型的小数，并且小数部分的最后不会添加多余的 0。如果 g 小写，那么当以指数形式输出时 e 也小写；如果 G 大写，那么当以指数形式输出时 E 也大写。</td>
+		</tr>
+		<tr>
+			<td>
+				%s</td>
+			<td>
+				输出一个字符串</td>
+		</tr>
+	</tbody>
+</table>
+<h2>
+	printf() 的高级用法</h2>
+通过前面的学习，相信你已经熟悉了 printf() 的基本用法，但是这还不足以把它发挥到极致，printf() 可以有更加炫酷、更加个性、更加整齐的输出形式。<br />
+<br />
+假如现在老师要我们输出一个 4&times;4 的整数矩阵，为了增强阅读性，数字要对齐，怎么办呢？我们显然可以这样做：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a1=20, a2=345, a3=700, a4=22;
+    int b1=56720, b2=9999, b3=20098, b4=2;
+    int c1=233, c2=205, c3=1, c4=6666;
+    int d1=34, d2=0, d3=23, d4=23006783;
+
+    printf(&quot;%d        %d       %d       %d\n&quot;, a1, a2, a3, a4);
+    printf(&quot;%d     %d      %d     %d\n&quot;, b1, b2, b3, b4);
+    printf(&quot;%d       %d       %d         %d\n&quot;, c1, c2, c3, c4);
+    printf(&quot;%d        %d         %d        %d\n&quot;, d1, d2, d3, d4);
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+20        345       700       22
+56720     9999      20098     2
+233       205       1         6666
+34        0         23        23006783</pre>
+<blockquote>
+	矩阵一般在大学的《高等数学》中会讲到，m&times;n 的数字矩阵可以理解为把 m&times;n 个数字摆放成 m 行 n 列的样子。</blockquote>
+看，这是多么地自虐，要敲那么多空格，还要严格控制空格数，否则输出就会错位。更加恶心的是，如果数字的位数变了，空格的数目也要跟着变。例如，当 a1 的值是 20 时，它后面要敲八个空格；当 a1 的值是 1000 时，它后面就要敲六个空格。每次修改整数的值，都要考虑修改空格的数目，逼死强迫症。<br />
+<br />
+类似的需求随处可见，整齐的格式会更加美观，让人觉得生动有趣。其实，我们大可不必像上面一样，printf() 可以更好的控制输出格式。更改上面的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a1=20, a2=345, a3=700, a4=22;
+    int b1=56720, b2=9999, b3=20098, b4=2;
+    int c1=233, c2=205, c3=1, c4=6666;
+    int d1=34, d2=0, d3=23, d4=23006783;
+
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, a1, a2, a3, a4);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, b1, b2, b3, b4);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, c1, c2, c3, c4);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, d1, d2, d3, d4);
+
+    return 0;
+}</pre>
+输出结果：
+<pre class="info-box">
+20        345       700       22
+56720     9999      20098     2
+233       205       1         6666
+34        0         23        23006783</pre>
+这样写起来更加方便，即使改变某个数字，也无需修改 printf() 语句，增加或者减少空格数目。<br />
+<br />
+<code>%-9d</code>中，<code>d</code>表示以十进制输出，<code>9</code>表示最少占9个字符的宽度，宽度不足以空格补齐，<code>-</code>表示左对齐。综合起来，<code>%-9d</code>表示以十进制输出，左对齐，宽度最小为9个字符。大家可以亲自试试<code>%9d</code>的输出效果。<br />
+<br />
+printf() 格式控制符的完整形式如下：
+<pre class="info-box">
+%[flag][width][.precision]type</pre>
+<blockquote>
+	[ ] 表示此处的内容可有可无，是可以省略的。</blockquote>
+1) type 表示输出类型，比如 %d、%f、%c、%lf，type 就分别对应 d、f、c、lf；再如，<code>%-9d</code>中 type 对应 d。<br />
+<br />
+type 这一项必须有，这意味着输出时必须要知道是什么类型。<br />
+<br />
+2) width 表示最小输出宽度，也就是至少占用几个字符的位置；例如，<code>%-9d</code>中 width 对应 9，表示输出结果最少占用 9 个字符的宽度。<br />
+<br />
+当输出结果的宽度不足 width 时，以空格补齐（如果没有指定对齐方式，默认会在左边补齐空格）；当输出结果的宽度超过 width 时，width 不再起作用，按照数据本身的宽度来输出。<br />
+<br />
+下面的代码演示了 width 的用法：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int n = 234;
+    float f = 9.8;
+    char c = &#39;@&#39;;
+    char *str = &quot;https://xiexuewu.github.io&quot;;
+    printf(&quot;%10d%12f%4c%8s&quot;, n, f, c, str);
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+       234    9.800000   @https://xiexuewu.github.io</pre>
+对输出结果的说明：
+<ul>
+	<li>
+		n 的指定输出宽度为 10，234 的宽度为 3，所以前边要补上 7 个空格。</li>
+	<li>
+		f 的指定输出宽度为 12，9.800000 的宽度为 8，所以前边要补上 4 个空格。</li>
+	<li>
+		str 的指定输出宽度为 8，&quot;http://c.biancheng.net&quot; 的宽度为 22，超过了 8，所以指定输出宽度不再起作用，而是按照 str 的实际宽度输出。</li>
+</ul>
+<br />
+3) .precision 表示输出精度，也就是小数的位数。
+<ul>
+	<li>
+		当小数部分的位数大于&nbsp;precision 时，会按照四舍五入的原则丢掉多余的数字；</li>
+	<li>
+		当小数部分的位数小于&nbsp;precision 时，会在后面补 0。</li>
+</ul>
+<br />
+另外，.precision 也可以用于整数和字符串，但是功能却是相反的：
+<ul>
+	<li>
+		用于整数时，.precision 表示最小输出宽度。与 width 不同的是，整数的宽度不足时会在左边补 0，而不是补空格。</li>
+	<li>
+		用于字符串时，.precision 表示最大输出宽度，或者说截取字符串。当字符串的长度大于&nbsp;precision 时，会截掉多余的字符；当字符串的长度小于&nbsp;precision 时，.precision 就不再起作用。</li>
+</ul>
+<br />
+请看下面的例子：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int n = 123456;
+    double f = 882.923672;
+    char *str = &quot;abcdefghi&quot;;
+    printf(&quot;n: %.9d  %.4d\n&quot;, n, n);
+    printf(&quot;f: %.2lf  %.4lf  %.10lf\n&quot;, f, f, f);
+    printf(&quot;str: %.5s  %.15s\n&quot;, str, str);
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+n: 000123456  123456
+f: 882.92  882.9237  882.9236720000
+str: abcde  abcdefghi</pre>
+对输出结果的说明：
+<ul>
+	<li>
+		对于 n，.precision 表示最小输出宽度。n 本身的宽度为 6，当 precision 为 9 时，大于 6，要在 n 的前面补 3 个 0；当 precision 为 4 时，小于 6，不再起作用。</li>
+	<li>
+		对于 f，.precision 表示输出精度。f 的小数部分有 6 位数字，当 precision 为 2 或者 4 时，都小于 6，要按照四舍五入的原则截断小数；当 precision 为 10 时，大于 6，要在小数的后面补四个 0。</li>
+	<li>
+		对于 str，.precision 表示最大输出宽度。str 本身的宽度为 9，当 precision 为 5 时，小于 9，要截取 str 的前 5 个字符；当 precision 为 15 时，大于 9，不再起作用。</li>
+</ul>
+<br />
+4) flag 是标志字符。例如，<code>%#x</code>中 flag 对应 #，<code>%-9d</code>中 flags 对应<code>-</code>。下表列出了 printf() 可以用的 flag：<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				标志字符</th>
+			<th>
+				含 &nbsp;义</th>
+		</tr>
+		<tr>
+			<td>
+				-</td>
+			<td>
+				<code>-</code>表示左对齐。如果没有，就按照默认的对齐方式，默认一般为右对齐。</td>
+		</tr>
+		<tr>
+			<td>
+				+</td>
+			<td>
+				用于整数或者小数，表示输出符号（正负号）。如果没有，那么只有负数才会输出符号。</td>
+		</tr>
+		<tr>
+			<td>
+				空格</td>
+			<td>
+				用于整数或者小数，输出值为正时冠以空格，为负时冠以负号。</td>
+		</tr>
+		<tr>
+			<td>
+				#</td>
+			<td>
+				<ul>
+					<li>
+						对于八进制（%o）和十六进制（%x / %X）整数，# 表示在输出时添加前缀；八进制的前缀是 0，十六进制的前缀是 0x / 0X。</li>
+					<li>
+						对于小数（%f / %e / %g），# 表示强迫输出小数点。如果没有小数部分，默认是不输出小数点的，加上 # 以后，即使没有小数部分也会带上小数点。</li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+请看下面的例子：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int m = 192, n = -943;
+    float f = 84.342;
+    printf(&quot;m=%10d, m=%-10d\n&quot;, m, m);  //演示 - 的用法
+    printf(&quot;m=%+d, n=%+d\n&quot;, m, n);  //演示 + 的用法
+    printf(&quot;m=% d, n=% d\n&quot;, m, n);  //演示空格的用法
+    printf(&quot;f=%.0f, f=%#.0f\n&quot;, f, f);  //演示#的用法
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+m=       192, m=192      
+m=+192, n=-943
+m= 192, n=-943
+f=84, f=84.</pre>
+对输出结果的说明：
+<ul>
+	<li>
+		当以<code>%10d</code>输出 m 时，是右对齐，所以在 192 前面补七个空格；当以<code>%-10d</code>输出 m 时，是左对齐，所以在 192 后面补七个空格。</li>
+	<li>
+		m 是正数，以<code>%+d</code>输出时要带上正号；n 是负数，以<code>%+d</code>输出时要带上负号。</li>
+	<li>
+		m 是正数，以<code>% d</code>输出时要在前面加空格；n 是负数，以<code>% d</code>输出时要在前面加负号。</li>
+	<li>
+		<code>%.0f</code>表示保留 0 位小数，也就是只输出整数部分，不输出小数部分。默认情况下，这种输出形式是不带小数点的，但是如果有了<code>#</code>标志，那么就要在整数的后面&ldquo;硬加上&rdquo;一个小数点，以和纯整数区分开。</li>
+</ul>
+<h2>
+	printf() 不能立即输出的问题</h2>
+printf() 有一个尴尬的问题，就是有时候不能立即输出，请看下面的代码：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#include&lt;unistd.h&gt;
+int main()
+{
+    printf(&quot;C语言&quot;);
+    sleep(5);  //程序暂停5秒钟
+    printf(&quot;https://xiexuewu.github.io\n&quot;);
+
+    return 0;
+}</pre>
+这段代码使用了两个 printf() 语句，它们之间有一个 sleep() 函数，该函数的作用是让程序暂停 5 秒，然后再继续执行。sleep() 是 Linux 和 Mac OS 下特有的函数，不能用于 Windows。当然，Windows 下也有功能相同的暂停函数，叫做 Sleep()，稍后我们会讲解。<br />
+<br />
+在 Linux 或者 Mac OS 下运行该程序，会发现第一个 printf() 并没有立即输出，而是等待 5 秒以后，和第二个 printf() 一起输出了，请看下面的动图演示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/2-240R2212634F1.gif" /></div>
+<br />
+我们不妨修改一下代码，在第一个 printf() 的最后添加一个换行符，如下所示：
+<p class="info-box">
+	printf(&quot;C语言\n&quot;);</p>
+再次编译并运行程序，发现第一个 printf() 首先输出（程序运行后立即输出），等待 5 秒以后，第二个 printf() 才输出，请看下面的动图演示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/2-240R221325S15.gif" /></div>
+<br />
+为什么一个换行符<code>\n</code>就能让程序的表现有天壤之别呢？按照通常的逻辑，程序运行后第一个 printf() 应该立即输出，而不是等待 5 秒以后再和第二个 printf() 一起输出，也就是说，第二种情形才符合我们的惯性思维。然而，第一种情形该如何理解呢？<br />
+<br />
+其实，这一切都是输出缓冲区（缓存）在作怪！<br />
+<br />
+从本质上讲，printf() 执行结束以后数据并没有直接输出到显示器上，而是放入了缓冲区，直到遇见换行符<code>\n</code>才将缓冲区中的数据输出到显示器上。更加深入的内容，我们将在本章的《<a href="/view/440.html" target="_blank">进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</a>》中详细讲解。<br />
+<br />
+以上测试的是 Linux 和 Mac OS，我们不妨再测试一下 Windows，请看下面的代码：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+#include&lt;Windows.h&gt;
+int main()
+{
+    printf(&quot;C语言&quot;);
+    Sleep(5000);  //程序暂停5秒钟
+    printf(&quot;https://xiexuewu.github.io\n&quot;);
+
+    return 0;
+}</pre>
+在 Windows 下，想让程序暂停可以使用 Windows.h 头文件中的 Sleep() 函数（<code>S</code>要大写），它和 Linux 下的 sleep() 功能相同。不过，sleep() 要求的时间单位是秒，而 Sleep() 要求的时间单位是毫秒，1 秒等于 1000 毫秒。这段代码中，我们要求程序暂停 5000 毫秒，也即 5 秒。<br />
+<br />
+编译并运行程序，会发现第一个 printf() 首先输出（程序运行后立即输出），等待 5 秒以后，第二个 printf() 才输出。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/2-240R2214501D2.gif" /></div>
+<br />
+在第一个 printf() 的最后添加一个换行符，情况也是一样的，第一个 printf() 从来不会和第二个 printf() 一起输出。<br />
+<br />
+你看，Windows 和 Linux、Mac OS 的情况又不一样。这是因为，Windows 和 Linux、Mac OS 的缓存机制不同。更加深入的内容，我们将在本章的《<a href="/view/440.html" target="_blank">进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</a>》中详细讲解。<br />
+<br />
+要想破解 printf() 输出的问题，必须要了解缓存，它能使你对输入输出的认识上升到一个更高的层次，以后不管遇到什么疑难杂症，都能迎刃而解。可以说，输入输出的&ldquo;命门&rdquo;就在于缓存。<br />
+<h2>
+	总结</h2>
+对于初学者来说，上面讲到的 printf() 用法已经比较复杂了，基本满足了实际开发的需求，相信大家也需要一段时间才能熟悉。但是，受到所学知识的限制，本文也未能讲解 printf() 的所有功能，后续我们还会逐步深入。<br />
+<br />
+printf() 的这些格式规范不是&ldquo;小把戏&rdquo;，优美的输出格式随处可见，例如，dos 下的 dir 命令，会整齐地列出当前目录下的文件，这明显使用了右对齐，还指定了宽度。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/1Z9462424-3.png" style="height: 190px; width: 380px" /></div>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/io/">C语言输入输出</a></span>
+                    <span class="next right"><a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/io/";window.nextPageURL = "/view/437.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 436;
+window.arcId = "788eOQlRywQXGJL9GAKVyJzczmCj8f8UNg0EdEGDmY9DS5HPvbM3V+dV2Q";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言求π的值（3种方法）</title>
+<meta name="keywords" content="语言,求,的值,3种,方法,求,的,近似值,一般,有," />
+<meta name="description" content="求 的近似值，一般有两个公式，如下所示： 公式 ①： 公式 ②： 两个公式都可以用来求 的近似值，接下来分别给大家讲解。 公式①求的值 利用公式 ① 求 的近似值，要求累加到最后" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言求π的值（3种方法）</h1>
+			<div id="arc-body">求 &pi; 的近似值，一般有两个公式，如下所示：<br />
+<br />
+公式 ①：<br />
+<br />
+<img alt="" src="/uploads/allimg/240821/2-240R1103341242.gif" /><br />
+<br />
+公式 ②：<br />
+<br />
+<img alt="" src="/uploads/allimg/240821/2-240R1103401D3.gif" /><br />
+<br />
+两个公式都可以用来求 &pi; 的近似值，接下来分别给大家讲解。
+<h2>
+	公式①求&pi;的值</h2>
+利用公式 ① 求 &pi; 的近似值，要求累加到最后一项小于 10^(-6) 为止。实现代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+int main() {
+    float s = 1;
+    float pi = 0;
+    float i = 1.0;
+    float n = 1.0;
+    while (fabs(i) &gt;= 1e-6) {
+        pi += i;
+        n = n + 2;
+        // 这里设计的很巧妙，每次正负号都不一样
+        s = -s;
+        i = s / n;
+    }
+    pi = 4 * pi;
+    printf(&quot;pi的值为：%.6f\n&quot;, pi);
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+pi的值为：3.141594</pre>
+上面的代码，先计算 &pi;/4 的值，然后再乘以 4，<code>s=-s;</code>用的很巧妙，每次循环，取反，结果就是，这次是正号，下次就是负号，以此类推。
+<h2>
+	公式②求&pi;的值</h2>
+根据公式 ②，用前 100 项之积计算 &pi; 的值。解决这个问题有两种方法，请看解析。
+<h4>
+	方法一</h4>
+观察分子数列：<br />
+a1=2&nbsp; a2=2<br />
+a3=4&nbsp; a4=4<br />
+a5=6&nbsp; a6=6<br />
+......<br />
+由此得知，当 n 为偶数时，an=n；当 n 为奇数时，an=a(n+1)=n+1;<br />
+<br />
+同理观察分子数列：<br />
+b1=1 b2=3<br />
+b3=3 b4=5<br />
+b5=5 b6=7<br />
+b7=7 b8=9<br />
+.......<br />
+由此可知，当 n 为奇数时，bn=n，当 n 为偶数时，bn=b（n+1）。<br />
+<br />
+综上可知，当 n 为奇数时，每次应乘以 (n+1)/n。当n为偶数时，每次应乘以 n/(n+1)。<br />
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+int main() {
+    float pi = 1;
+    float n = 1;
+    int j;
+    for (j = 1; j &lt;= 100; j++, n++) {
+        if (j % 2 == 0) {
+            pi *= (n / (n + 1));
+        }
+        else {
+            pi *= ((n + 1) / n);
+        }
+    }
+    pi = 2 * pi;
+    printf(&quot;pi的值为：%.7f\n&quot;, pi);
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+pi的值为：3.1260781</pre>
+<h4>
+	方法二</h4>
+采用累乘积算法，累乘项为 term=n*n/((n-1)*(n+1)); n=2,4,6,...100。步长为 2。
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    float term, result = 1;
+    int n;
+    for (n = 2; n &lt;= 100; n += 2) {
+        term = (float)(n * n) / ((n - 1) * (n + 1));
+        result *= term;
+    }
+    printf(&quot;pi的值为：%f\n&quot;, 2 * result);
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+pi的值为：3.126079</pre>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 463;
+window.arcId = "220diSLH32oCP6Le1R+rDkvgjFLdKYZEzrEgm3PtNhq1E2o7JAMbwHG7AQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>用C语言写一个内存泄露的例子，让计算机内存爆满</title>
+<meta name="keywords" content="用,语言,写,一个,内存,泄露,的,例子,让," />
+<meta name="description" content="操作系统允许程序自己分配内存，并自由使用，使用完了还可以再释放掉，将内存归还给计算机。 所谓分配内存，就是程序向计算机申请一块内存空间，然后自己使用；所谓释放内存，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a></dd></dl>
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>用C语言写一个内存泄露的例子，让计算机内存爆满</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></span>
+                    <span class="next right"><a href="/c/array/">C语言数组</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/457.html";window.nextPageURL = "/c/array/";</script>
+			<div id="arc-body">操作系统允许程序自己分配内存，并自由使用，使用完了还可以再释放掉，将内存归还给计算机。<br />
+<br />
+所谓分配内存，就是程序向计算机申请一块内存空间，然后自己使用；所谓释放内存，就是程序告诉计算机不再使用之前的内存空间了，需要归还给计算机，让其它程序使用。<br />
+<br />
+如果一个程序不停地分配内存，而不释放内存，那么拥有的内存就会越来越多，计算机内存就会被消耗殆尽，其它程序能够使用的内存越来越少，整台计算机就会都变得缓慢，甚至卡死，这就是<span style="color:#008000;">内存泄露（Memory leak）</span>。<br />
+<br />
+下面我们就用 while 循环来写一个内存泄漏的例子：
+<pre class="c">
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+int main(){
+    while(1){  //死循环
+        malloc(1024);  //分配1024个字节的内存
+    }
+
+    return 0;
+}</pre>
+while 循环的条件是 1，始终成立，循环会一直进行下去，永无休止，所以是一个&ldquo;死循环&rdquo;。<br />
+<br />
+每次循环，程序都会向计算机申请 1024 个字节（1KB）的内存，并且不会释放；循环到第 1024 次时，程序就占用了 1024*1024 个字节（1MB）的内存；循环到 1024*1024 次时，程序就占用了 1024*1024*1024 个字节（1GB）的内存。<br />
+<br />
+不要害怕，亲自跑一下试试，打开 Windows 下的任务管理器，可以看到内存的使用率会飙升，稍等片刻后程序会被终止。Windows 的内存管理机制发现我们的程序占用内存太多，会让它崩溃，防止系统卡死（其它的操作系统也有相应的措施）。<br />
+<br />
+内存泄漏是C语言程序很常见的一个问题，当程序规模比较大时，有时候找到这个 Bug 就变得很困难，所以大家一定要养成良好的内存使用习惯，及时释放不再使用的内存。本节仅仅是一个简单的演示，我们还会在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题中深入讲解。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></span>
+                    <span class="next right"><a href="/c/array/">C语言数组</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/457.html";window.nextPageURL = "/c/array/";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 477;
+window.arcId = "8c9c6EajHLVDVj5diciqFYoaYAcduzCJGKyST9eKjBqNhIV3uOQsUavQGg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

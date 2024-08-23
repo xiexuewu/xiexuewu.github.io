@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言字符串的输入和输出</title>
+<meta name="keywords" content="语言,字符串,的,输入,和,输出,其,实在,《," />
+<meta name="description" content="其实在《 C语言输入输出 》一章中我们已经提到了如何输入输出字符串，但是那个时候我们还没有讲解字符串，大家理解的可能不透彻，所以本节我们有必要再深入和细化一下。 字符串" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言字符串的输入和输出</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/481.html">C语言字符数组和字符串</a></span>
+                    <span class="next right"><a href="/view/483.html">C语言字符串处理函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/481.html";window.nextPageURL = "/view/483.html";</script>
+			<div id="arc-body">其实在《<a href="/c/io/" target="_blank">C语言输入输出</a>》一章中我们已经提到了如何输入输出字符<u><a href='/view/175.html' target='_blank'>串</a></u>，但是那个时候我们还没有讲解字符串，大家理解的可能不透彻，所以本节我们有必要再深入和细化一下。
+<h2>
+	字符串的输出</h2>
+在C语言中，有两个函数可以在控制台（显示器）上输出字符串，它们分别是：
+<ul>
+	<li>
+		puts()：输出字符串并自动换行，该函数只能输出字符串。</li>
+	<li>
+		printf()：通过格式控制符<code>%s</code>输出字符串，不能自动换行。除了字符串，printf() 还能输出其他类型的数据。</li>
+</ul>
+<br />
+这两个函数相信大家已经非常熟悉了，这里不妨再演示一下，请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    char str[] = &quot;https://xiexuewu.github.io&quot;;
+    printf(&quot;%s\n&quot;, str);  //通过字符串名字输出
+    printf(&quot;%s\n&quot;, &quot;https://xiexuewu.github.io&quot;);  //直接输出
+    puts(str);  //通过字符串名字输出
+    puts(&quot;https://xiexuewu.github.io&quot;);  //直接输出
+
+    return 0;
+}</pre>
+运行结果：<br />
+https://xiexuewu.github.io<br />
+https://xiexuewu.github.io<br />
+https://xiexuewu.github.io<br />
+https://xiexuewu.github.io<br />
+<br />
+注意，输出字符串时只需要给出名字，不能带后边的<code>[ ]</code>，例如，下面的两种写法都是错误的：
+<p class="info-box">
+	printf(&quot;%s\n&quot;, str[]);<br />
+	puts(str[10]);</p>
+<h2>
+	字符串的输入</h2>
+在 C语言中，有两个函数可以让用户从键盘上输入字符串，它们分别是：
+<ul>
+	<li>
+		scanf()：通过格式控制符<code>%s</code>输入字符串。除了字符串，scanf() 还能输入其他类型的数据。</li>
+	<li>
+		gets()：直接输入字符串，并且只能输入字符串。</li>
+</ul>
+<br />
+但是，scanf() 和 gets() 是有区别的：
+<ul>
+	<li>
+		scanf() 读取字符串时以空格为分隔，遇到空格就认为当前字符串结束了，所以无法读取含有空格的字符串。</li>
+	<li>
+		gets() 认为空格也是字符串的一部分，只有遇到回车键时才认为字符串输入结束，所以，不管输入了多少个空格，只要不按下回车键，对 gets() 来说就是一个完整的字符串。换句话说，gets() 用来读取一整行字符串。</li>
+</ul>
+<br />
+请看下面的例子：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    char str1[30] = {0};
+    char str2[30] = {0};
+    char str3[30] = {0};
+
+    //gets() 用法
+    printf(&quot;Input a string: &quot;);
+    gets(str1);
+
+    //scanf() 用法
+    printf(&quot;Input a string: &quot;);
+    scanf(&quot;%s&quot;, str2);
+    scanf(&quot;%s&quot;, str3);
+   
+    printf(&quot;\nstr1: %s\n&quot;, str1);
+    printf(&quot;str2: %s\n&quot;, str2);
+    printf(&quot;str3: %s\n&quot;, str3);
+
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	Input a string: C C++ Java Python↙<br />
+	Input a string: PHP JavaScript↙<br />
+	<br />
+	str1: C C++ Java Python<br />
+	str2: PHP<br />
+	str3: JavaScript</p>
+第一次输入的字符串被 gets() 全部读取，并存入 str1 中。第二次输入的字符串，前半部分被第一个 scanf() 读取并存入 str2 中，后半部分被第二个 scanf() 读取并存入 str3 中。<br />
+<br />
+注意，scanf() 在读取数据时需要的是数据的地址，这一点是恒定不变的，所以对于 int、char、float 等类型的变量都要在前边添加<code>&amp;</code>以获取它们的地址。但是在本段代码中，我们只给出了字符串的名字，却没有在前边添加<code>&amp;</code>，这是为什么呢？因为字符串名字或者<u><a href='/view/181.html' target='_blank'>数组</a></u>名字在使用的过程中一般都会转换为地址，所以再添加<code>&amp;</code>就是多此一举，甚至会导致错误了。<br />
+<br />
+<span style="color: rgb(178, 34, 34);">就目前学到的知识而言，int、char、float 等类型的变量用于 scanf() 时都要在前面添加<code>&amp;</code>，而数组或者字符串用于 scanf() 时不用添加<code>&amp;</code>，它们本身就会转换为地址。读者一定要谨记这一点。</span><br />
+<br />
+至于数组名字（字符串名字）和地址的转换细节，以及数组名字什么时候会转换为地址，我们将在《<a href="/view/524.html" target="_blank">数组到底在什么时候会转换为指针</a>》一节中详细讲解，大家暂时&ldquo;死记硬背&rdquo;即可。
+<h4>
+	其实 scanf() 也可以读取带空格的字符串</h4>
+以上是 scanf() 和 gets() 的一般用法，很多教材也是这样讲解的，所以大部分初学者都认为 scanf() 不能读取包含空格的字符串，不能替代 gets()。其实不然，scanf() 的用法还可以更加复杂和灵活，它不但可以完全替代 gets() 读取一整行字符串，而且比 gets() 的功能更加强大。比如，以下功能都是 gets() 不具备的：
+<ul>
+	<li>
+		scanf() 可以控制读取字符的数目；</li>
+	<li>
+		scanf() 可以只读取指定的字符；</li>
+	<li>
+		scanf() 可以不读取某些字符；</li>
+	<li>
+		scanf() 可以把读取到的字符丢弃。</li>
+</ul>
+<br />
+这些我们已经在《<a href="/view/443.html" target="_blank">scanf的高级用法，原来scanf还有这么多新技能</a>》讲解过了，本节就不再赘述了。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/481.html">C语言字符数组和字符串</a></span>
+                    <span class="next right"><a href="/view/483.html">C语言字符串处理函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/481.html";window.nextPageURL = "/view/483.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 482;
+window.arcId = "af3bCOE3QxK4AjpWJpvYEcYXAvZknxXvEKhvl456+kdY8J/3eqy232oRgg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

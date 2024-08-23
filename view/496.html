@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言变量的作用域，加深对全局变量和局部变量的理解</title>
+<meta name="keywords" content="语言,变量,的,作用域,加深,对,全局,和,局部," />
+<meta name="description" content="所谓 作用域（Scope） ，就是变量的有效范围，就是变量可以在哪个范围以内使用。有些变量可以在所有代码文件中使用，有些变量只能在当前的文件中使用，有些变量只能在函数内部使" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言变量的作用域，加深对全局变量和局部变量的理解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/495.html">全局变量和局部变量</a></span>
+                    <span class="next right"><a href="/view/497.html">C语言块级变量</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/495.html";window.nextPageURL = "/view/497.html";</script>
+			<div id="arc-body">所谓<strong><span style="color:#008000;">作用域（Scope）</span></strong>，就是变量的有效范围，就是变量可以在哪个范围以内使用。有些变量可以在所有代码文件中使用，有些变量只能在当前的文件中使用，有些变量只能在函数内部使用，有些变量只能在 for 循环内部使用。<br />
+<br />
+<span style="color:#b22222;">变量的作用域由变量的定义位置决定，在不同位置定义的变量，它的作用域是不一样的。</span>本节我们只讲解两种变量，一种是只能在函数内部使用的变量，另一种是可以在所有代码文件中使用的变量。
+<h2>
+	在函数内部定义的变量（局部变量）</h2>
+在函数内部定义的变量，它的作用域也仅限于函数内部，出了函数就不能使用了，我们将这样的变量称为<span style="color:#008000;">局部变量（Local Variable）</span>。函数的形参也是局部变量，也只能在函数内部使用。请看下面的例子：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int sum(int m, int n){
+    int i, sum=0;
+    //m、n、i、sum 都是局部变量，只能在 sum() 内部使用
+    for(i=m; i&lt;=n; i++){
+        sum+=i;
+    }
+    return sum;
+}
+
+int main(){
+    int begin = 5, end = 86;
+    int result = sum(begin, end);
+    //begin、end、result 也都是局部变量，只能在 main() 内部使用
+    printf(&quot;The sum from %d to %d is %d\n&quot;, begin, end, result);
+
+    return 0;
+}</pre>
+m、n、i、sum 是局部变量，只能在 sum() 内部使用；begin、end、result 也是局部变量，只能在 main() 内部使用。<br />
+<br />
+对局部变量的两点说明：
+<ul>
+	<li>
+		main() 也是一个函数，在 main() 内部定义的变量也是局部变量，只能在 main() 函数内部使用。</li>
+	<li>
+		形参也是局部变量，将实参传递给形参的过程，就是用实参给局部变量赋值的过程，它和<code>a=b; sum=m+n;</code>这样的赋值没有什么区别。</li>
+</ul>
+<h2>
+	在所有函数外部定义的变量（全局变量）</h2>
+C语言允许在所有函数的外部定义变量，这样的变量称为<span style="color:#008000;">全局变量（Global Variable）</span>。<br />
+<br />
+全局变量的默认作用域是整个程序，也就是所有的代码文件，包括源文件（<code>.c</code>文件）和头文件（<code>.h</code>文件）。如果给全局变量加上 <strong><span style="color:#008000;">static</span></strong> 关键字，它的作用域就变成了当前文件，在其它文件中就无效了。我们目前编写的代码都是在一个源文件中，所以暂时不用考虑 static 关键字，后续我将会在《<a href="/c/module/" target="_blank">C语言多文件编程</a>》专题中详细讲解。<br />
+<br />
+【实例】定义一个函数，根据长方体的长宽高求它的体积以及三个面的面积。
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+//定义三个全局变量，分别表示三个面的面积
+int s1 = 0, s2 = 0, s3 = 0;
+
+int vs(int length, int width, int height){
+    int v;  //体积
+    v = length * width * height;
+    s1 = length * width;
+    s2 = width * height;
+    s3 = length * height;
+    return v;
+}
+
+int main(){
+    int v = 0;
+    v = vs(15, 20, 30);
+    printf(&quot;v=%d, s1=%d, s2=%d, s3=%d\n&quot;, v, s1, s2, s3);
+    v = vs(5, 17, 8);
+    printf(&quot;v=%d, s1=%d, s2=%d, s3=%d\n&quot;, v, s1, s2, s3);
+
+    return 0;
+}</pre>
+运行结果：<br />
+v=9000, s1=300, s2=600, s3=450<br />
+v=680, s1=85, s2=136, s3=40<br />
+<br />
+根据题意，我们希望借助一个函数得到四份数据：体积 v 以及三个面的面积 s1、s2、s3。遗憾的是，C语言中的函数只能有一个返回值，我们只能将其中的一份数据（也就是体积 v）放到返回值中，其它三份数据（也就是面积 s1、s2、s3）只能保存到全局变量中。<br />
+<br />
+C语言代码从前往后依次执行，变量在使用之前必须定义或者声明，全局变量 s1、s2、s3 定义在程序开头，所以在 vs() 和 main() 中都有效。<br />
+<br />
+在 vs() 中将求得的面积放到 s1、s2、s3 中，在 main() 中能够顺利取得它们的值，这说明：<span style="color: rgb(178, 34, 34);">在一个函数内部修改全局变量的值会影响其它函数，全局变量的值在函数内部被修改后并不会自动恢复，它会一直保留该值，直到下次被修改。</span><br />
+<br />
+全局变量也是变量，变量只能保存一份数据，一旦数据被修改了，原来的数据就被冲刷掉了，再也无法恢复了，所以不管是全局变量还是局部变量，一旦它的值被修改，这种影响都会一直持续下去，直到再次被修改。
+<h2>
+	关于变量的命名</h2>
+每一段可运行的C语言代码都包含了多个作用域，即使最简单的C语言代码也是如此。
+<pre class="cpp">
+int main(){
+    return 0;
+}</pre>
+这就是最简单的、可运行的C语言代码，它包含了两个作用域，一个是 main() 函数内部的局部作用域，一个是 main() 函数外部的全局作用域。<br />
+<br />
+C语言规定，在同一个作用域中不能出现两个名字相同的变量，否则会产生命名冲突；但是在不同的作用域中，允许出现名字相同的变量，它们的作用范围不同，彼此之间不会产生冲突。这句话有两层含义：
+<ul>
+	<li>
+		不同函数内部可以出现同名的变量，不同函数是不同的局部作用域；</li>
+	<li>
+		函数内部和外部可以出现同名的变量，函数内部是局部作用域，函数外部是全局作用域。</li>
+</ul>
+<br />
+1) 不同函数内部的同名变量是两个完全独立的变量，它们之间没有任何关联，也不会相互影响。请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+void func_a(){
+    int n = 100;
+    printf(&quot;func_a: n = %d\n&quot;, n);
+    n = 86;
+    printf(&quot;func_a: n = %d\n&quot;, n);
+}
+
+void func_b(){
+    int n = 29;
+    printf(&quot;func_b: n = %d\n&quot;, n);
+    func_a(); //调用func_a()
+    printf(&quot;func_b: n = %d\n&quot;, n);
+}
+
+int main(){
+    func_b();
+    return 0;
+}</pre>
+运行结果：<br />
+func_b: n = 29<br />
+func_a: n = 100<br />
+func_a: n = 86<br />
+func_b: n = 29<br />
+<br />
+func_a() 和 func_b() 内部都定义了一个变量 n，在 func_b() 中，n 的初始值是 29，调用 func_a() 后，n 值还是 29，这说明 func_b() 内部的 n 并没有影响 func_a() 内部的 n。这两个 n 是完全不同的变量，彼此之间根本&ldquo;不认识&rdquo;，只是起了个相同的名字而已，这就好像明星撞衫，北京和云南都有叫李红的，赶巧了而已。<br />
+<br />
+2) 函数内部的局部变量和函数外部的全局变量同名时，在当前函数这个局部作用域中，全局变量会被&ldquo;屏蔽&rdquo;，不再起作用。也就是说，在函数内部使用的是局部变量，而不是全局变量。<br />
+<br />
+变量的使用遵循就近原则，如果在当前的局部作用域中找到了同名变量，就不会再去更大的全局作用域中查找。另外，只能从小的作用域向大的作用域中去寻找变量，而不能反过来，使用更小的作用域中的变量。<br />
+<br />
+下面我们通过一个具体的例子来说明：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int n = 10;  //全局变量
+
+void func1(){
+    int n = 20;  //局部变量
+    printf(&quot;func1 n: %d\n&quot;, n);
+}
+
+void func2(int n){
+    printf(&quot;func2 n: %d\n&quot;, n);
+}
+
+void func3(){
+    printf(&quot;func3 n: %d\n&quot;, n);
+}
+
+int main(){
+    int n = 30;  //局部变量
+    func1();
+    func2(n);
+    func3();
+    printf(&quot;main n: %d\n&quot;, n);
+   
+    return 0;
+}</pre>
+运行结果：<br />
+func1 n: 20<br />
+func2 n: 30<br />
+func3 n: 10<br />
+main n: 30<br />
+<br />
+代码中虽然定义了多个同名变量 n，但它们的作用域不同，所有不会产生命名冲突。<br />
+<br />
+下面是对输出结果的分析：
+<ul>
+	<li>
+		对于 func1()，输出结果为 20，显然使用的是 func1() 内部的 n，而不是外部的 n。</li>
+	<li>
+		调用 func2() 时，会把 main() 中的实参 n 传递给 func2() 中的形参 n，此时形参 n 的值变为 30。形参 n 也是局部变量，所以就使用它了。</li>
+	<li>
+		func3() 输出 10，使用的是全局变量，因为在 func3() 中不存在局部变量 n，所以编译器只能到函数外部，也就是全局作用域中去寻找变量 n。</li>
+	<li>
+		main() 中 printf() 语句输出 30，说明使用的是 main() 中的 n，而不是外部的 n。</li>
+</ul>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/495.html">全局变量和局部变量</a></span>
+                    <span class="next right"><a href="/view/497.html">C语言块级变量</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/495.html";window.nextPageURL = "/view/497.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 496;
+window.arcId = "7e86rXg+LtqGs74yj555CvIqjze5/h11P//xzcqwkWfIWJhAEwZjmzjdyg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

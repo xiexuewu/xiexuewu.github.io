@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言return的用法详解，C语言函数返回值详解</title>
+<meta name="keywords" content="语言,return,的,用法,详解,函数,返回,值,函数," />
+<meta name="description" content="函数的返回值是指函数被调用之后，执行函数体中的代码所得到的结果，这个结果通过 return 语句返回。 return 语句的一般形式为： return 表达式; 或者： return (表达式); 有没有 ( ) 都是正" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言return的用法详解，C语言函数返回值详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/491.html">C语言函数的形参和实参</a></span>
+                    <span class="next right"><a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/491.html";window.nextPageURL = "/view/493.html";</script>
+			<div id="arc-body">函数的返回值是指函数被调用之后，执行函数体中的代码所得到的结果，这个结果通过 <span style="color:#008000;"><strong>return</strong></span> 语句返回。<br />
+<br />
+return 语句的一般形式为：
+<pre class="info-box">
+return 表达式;</pre>
+或者：
+<pre class="info-box">
+return (表达式);</pre>
+有没有<code>( )</code>都是正确的，为了简明，一般也不写<code>( )</code>。例如：
+<pre class="info-box">
+return max;
+return a+b;
+return (100+200);</pre>
+<h4>
+	对C语言返回值的说明：</h4>
+1) 没有返回值的函数为空类型，用<code>void</code>表示。例如：
+<pre class="c">
+void func(){
+    printf(&quot;https://xiexuewu.github.io\n&quot;);
+}</pre>
+一旦函数的返回值类型被定义为 void，就不能再接收它的值了。例如，下面的语句是错误的：
+<pre class="info-box">
+int a = func();</pre>
+为了使程序有良好的可读性并减少出错， 凡不要求返回值的函数都应定义为 void 类型。<br />
+<br />
+2) return 语句可以有多个，可以出现在函数体的任意位置，但是每次调用函数只能有一个 return 语句被执行，所以只有一个返回值（少数的编程语言支持多个返回值，例如Go语言）。例如：
+<pre class="cpp">
+//返回两个整数中较大的一个
+int max(int a, int b){
+    if(a &gt; b){
+        return a;
+    }else{
+        return b;
+    }
+}</pre>
+如果<code>a&gt;b</code>成立，就执行<code>return a</code>，<code>return b</code>不会执行；如果不成立，就执行<code>return b</code>，<code>return a</code>不会执行。<br />
+<br />
+3) 函数一旦遇到 return 语句就立即返回，后面的所有语句都不会被执行到了。从这个角度看，return 语句还有强制结束函数执行的作用。例如：
+<pre class="cpp">
+//返回两个整数中较大的一个
+int max(int a, int b){
+    return (a&gt;b) ? a : b;
+    printf(&quot;Function is performed\n&quot;);
+}</pre>
+第 4 行代码就是多余的，永远没有执行的机会。<br />
+<br />
+下面我们定义了一个判断素数的函数，这个例子更加实用：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int prime(int n){
+    int is_prime = 1, i;
+
+    //n一旦小于0就不符合条件，就没必要执行后面的代码了，所以提前结束函数
+    if(n &lt; 0){ return -1; }
+
+    for(i=2; i&lt;n; i++){
+        if(n % i == 0){
+            is_prime = 0;
+            break;
+        }
+    }
+
+    return is_prime;
+}
+
+int main(){
+    int num, is_prime;
+    scanf(&quot;%d&quot;, &amp;num);
+
+    is_prime = prime(num);
+    if(is_prime &lt; 0){
+        printf(&quot;%d is a illegal number.\n&quot;, num);
+    }else if(is_prime &gt; 0){
+        printf(&quot;%d is a prime number.\n&quot;, num);
+    }else{
+        printf(&quot;%d is not a prime number.\n&quot;, num);
+    }
+
+    return 0;
+}</pre>
+prime() 是一个用来求素数的函数。素数是自然数，它的值大于等于零，一旦传递给 prime() 的值小于零就没有意义了，就无法判断是否是素数了，所以一旦检测到参数 n 的值小于 0，就使用 return 语句提前结束函数。<br />
+<br />
+<span style="color:#b22222;">return 语句是提前结束函数的唯一办法。</span>return 后面可以跟一份数据，表示将这份数据返回到函数外面；return 后面也可以不跟任何数据，表示什么也不返回，仅仅用来结束函数。<br />
+<br />
+更改上面的代码，使得 return 后面不跟任何数据：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+void prime(int n){
+    int is_prime = 1, i;
+
+    if(n &lt; 0){
+        printf(&quot;%d is a illegal number.\n&quot;, n);
+        return;  //return后面不带任何数据
+    }
+
+    for(i=2; i&lt;n; i++){
+        if(n % i == 0){
+            is_prime = 0;
+            break;
+        }
+    }
+
+    if(is_prime &gt; 0){
+        printf(&quot;%d is a prime number.\n&quot;, n);
+    }else{
+        printf(&quot;%d is not a prime number.\n&quot;, n);
+    }
+}
+
+int main(){
+    int num;
+    scanf(&quot;%d&quot;, &amp;num);
+    prime(num);
+
+    return 0;
+}</pre>
+prime() 的返回值是 void，return 后面不能带任何数据，直接写分号即可。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/491.html">C语言函数的形参和实参</a></span>
+                    <span class="next right"><a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/491.html";window.nextPageURL = "/view/493.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 492;
+window.arcId = "f07bAgfRVK7B/1COO9zBXoYEi2UqZbLqBw1WtY5Y/Lwva451jAElP/iMLA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

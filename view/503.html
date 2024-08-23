@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言预处理命令是什么？</title>
+<meta name="keywords" content="语言,预处理,命令,是什么,前面,各章,中,已经," />
+<meta name="description" content="前面各章中，已经多次使用过 #include 命令。使用库函数之前，应该用 #include 引入对应的头文件。 这种以 # 号开头的命令称为预处理命令。 C语言源文件要经过编译、链接才能生成可执行" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/c/preprocess/">预处理命令</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/503.html">什么是预处理命令？</a></dd><dd>8.2 <a href="/view/504.html">#include的用法</a></dd><dd>8.3 <a href="/view/505.html">C语言宏定义</a></dd><dd>8.4 <a href="/view/506.html">C语言带参数的宏定义</a></dd><dd>8.5 <a href="/view/507.html">带参宏定义和函数的区别</a></dd><dd>8.6 <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a></dd><dd>8.7 <a href="/view/509.html">C语言中几个预定义宏</a></dd><dd>8.8 <a href="/view/510.html">C语言条件编译</a></dd><dd>8.9 <a href="/view/511.html">#error命令，阻止程序编译</a></dd><dd>8.10 <a href="/view/512.html">C语言预处理命令总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言预处理命令是什么？</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/preprocess/">预处理命令</a></span>
+                    <span class="next right"><a href="/view/504.html">#include的用法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/preprocess/";window.nextPageURL = "/view/504.html";</script>
+			<div id="arc-body">前面各章中，已经多次使用过<code>#include</code>命令。使用库函数之前，应该用<code>#include</code>引入对应的头文件。<span style="color: #b22222">这种以<code>#</code>号开头的命令称为预处理命令。</span><br />
+<br />
+C语言源文件要经过编译、链接才能生成可执行程序：<br />
+1) 编译（Compile）会将源文件（<code>.c</code>文件）转换为目标文件。对于 VC/VS，目标文件后缀为<code>.obj</code>；对于GCC，目标文件后缀为<code>.o</code>。
+<blockquote>
+	编译是针对单个源文件的，一次编译操作只能编译一个源文件，如果程序中有多个源文件，就需要多次编译操作。</blockquote>
+2) 链接（Link）是针对多个文件的，它会将编译生成的多个目标文件以及系统中的库、组件等合并成一个可执行程序。<br />
+<br />
+关于编译和链接的过程、目标文件和可执行文件的结构、.h 文件和 .c 文件的区别，我们将在《<a href="/c/module/" target="_blank">C语言多文件编程</a>》专题中讲解。<br />
+<br />
+在实际开发中，有时候在编译之前还需要对源文件进行简单的处理。例如，我们希望自己的程序在 Windows 和 Linux 下都能够运行，那么就要在 Windows 下使用 VS 编译一遍，然后在 Linux 下使用 GCC 编译一遍。但是现在有个问题，程序中要实现的某个功能在 VS 和 GCC 下使用的函数不同（假设 VS 下使用 a()，GCC 下使用 b()），VS 下的函数在 GCC 下不能编译通过，GCC 下的函数在 VS 下也不能编译通过，怎么办呢？<br />
+<br />
+这就需要在编译之前先对源文件进行处理：如果检测到是 VS，就保留 a() 删除 b()；如果检测到是 GCC，就保留 b() 删除 a()。<br />
+<br />
+这些在编译之前对源文件进行简单加工的过程，就称为<strong><span style="color: #008000">预处理</span></strong>（即预先处理、提前处理）。<br />
+<br />
+预处理主要是处理以<code>#</code>开头的命令，例如<code>#include &lt;stdio.h&gt;</code>等。预处理命令要放在所有函数之外，而且一般都放在源文件的前面。<br />
+<br />
+预处理是C语言的一个重要功能，由<strong><span style="color:#008000;">预处理程序</span></strong>完成。当对一个源文件进行编译时，系统将自动调用预处理程序对源程序中的预处理部分作处理，处理完毕自动进入对源程序的编译。<br />
+<br />
+编译器会将预处理的结果保存到和源文件同名的<code>.i</code>文件中，例如 main.c 的预处理结果在 main.i 中。和<code>.c</code>一样，<code>.i</code>也是文本文件，可以用编辑器打开直接查看内容。<br />
+<br />
+C语言提供了多种预处理功能，如宏定义、文件包含、条件编译等，合理地使用它们会使编写的程序便于阅读、修改、移植和调试，也有利于模块化程序设计。
+<h2>
+	实例</h2>
+下面我们举个例子来说明预处理命令的实际用途。假如现在要开发一个C语言程序，让它暂停 5 秒以后再输出内容，并且要求跨平台，在 Windows 和 Linux 下都能运行，怎么办呢？<br />
+<br />
+这个程序的难点在于，不同平台下的暂停函数和头文件都不一样：
+<ul>
+	<li>
+		Windows 平台下的暂停函数的原型是<code>void Sleep(DWORD dwMilliseconds)</code>（注意 S 是大写的），参数的单位是&ldquo;毫秒&rdquo;，位于&nbsp;&lt;windows.h&gt; 头文件。</li>
+	<li>
+		Linux 平台下暂停函数的原型是<code>unsigned int sleep (unsigned int seconds)</code>，参数的单位是&ldquo;秒&rdquo;，位于&nbsp;&lt;unistd.h&gt; 头文件。</li>
+</ul>
+<br />
+不同的平台下必须调用不同的函数，并引入不同的头文件，否则就会导致编译错误，因为 Windows 平台下没有 sleep() 函数，也没有 &lt;unistd.h&gt; 头文件，反之亦然。这就要求我们在编译之前，也就是预处理阶段来解决这个问题。请看下面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+//不同的平台下引入不同的头文件
+#if _WIN32  //识别windows平台
+#include &lt;windows.h&gt;
+#elif __linux__  //识别linux平台
+#include &lt;unistd.h&gt;
+#endif
+
+int main() {
+    //不同的平台下调用不同的函数
+    #if _WIN32  //识别windows平台
+    Sleep(5000);
+    #elif __linux__  //识别linux平台
+    sleep(5);
+    #endif
+
+    puts(&quot;https://xiexuewu.github.io&quot;);
+
+    return 0;
+}</pre>
+#if、#elif、#endif 就是预处理命令，它们都是在编译之前由预处理程序来执行的。这里我们不讨论细节，只从整体上来理解。<br />
+<br />
+对于 Windows 平台，预处理以后的代码变成：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;windows.h&gt;
+
+int main() {
+    Sleep(5000);
+    puts(&quot;https://xiexuewu.github.io&quot;);
+
+    return 0;
+}</pre>
+<br />
+对于 Linux 平台，预处理以后的代码变成：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+    sleep(5);
+    puts(&quot;https://xiexuewu.github.io&quot;);
+
+    return 0;
+}</pre>
+<br />
+你看，在不同的平台下，编译之前（预处理之后）的源代码都是不一样的。这就是预处理阶段的工作，它把代码当成普通文本，根据设定的条件进行一些简单的文本替换，将替换以后的结果再交给编译器处理。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/preprocess/">预处理命令</a></span>
+                    <span class="next right"><a href="/view/504.html">#include的用法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/preprocess/";window.nextPageURL = "/view/504.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 503;
+window.arcId = "b9a2sQX8jUKAMMqFQDSX9HeoNp1l2kJjICR0U3SfdzH58HQ6X/WM0rI6fA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

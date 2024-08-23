@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>什么是编译器？</title>
+<meta name="keywords" content="什么,是,编译器,我们,平时,所,说的,程序,是指," />
+<meta name="description" content="我们平时所说的程序，是指双击后就可以直接运行的程序，这样的程序被称为 可执行程序（Executable Program） 。在 Windows 下，可执行程序的后缀有 .exe 和 .com（其中 .exe 比较常见）；在类" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>什么是编译器？</h1>
+			
+			<div id="arc-body">我们平时所说的程序，是指双击后就可以直接运行的程序，这样的程序被称为<span style="color:#008000;">可执行程序（Executable Program）</span>。在 Windows 下，可执行程序的后缀有 .exe 和 .com（其中 .exe 比较常见）；在类 UNIX 系统（Linux、Mac OS 等）下，可执行程序没有特定的后缀，系统根据文件的头部信息来判断是否是可执行程序。<br />
+<br />
+可执行程序的内部是一系列计算机指令和数据的集合，它们都是二进制形式的，CPU 可以直接识别，毫无障碍；但是对于程序员，它们非常晦涩，难以记忆和使用。<br />
+<br />
+例如，在屏幕上输出&ldquo;VIP会员&rdquo;，C语言的写法为：
+<p class="info-box">
+	puts(&quot;VIP会员&quot;);</p>
+二进制的写法为：<br />
+<br />
+<div style="padding-top: 8px;">
+	<img alt="" src="/uploads/allimg/240819/20101111N-0.jpg" /></div>
+<br />
+你感受一下，直接使用二进制是不是想撞墙，是不是受到一吨重的伤害？<br />
+<blockquote>
+	在计算机发展的初期，程序员就是使用这样的二进制指令来编写程序的，那个拓荒的年代还没有编程语言。</blockquote>
+直接使用二进制指令编程对程序员来说简直是噩梦，尤其是当程序比较大的时候，不但编写麻烦，需要频繁查询指令手册，而且除错会异常苦恼，要直接面对一堆二进制数据，让人眼花缭乱。另外，用二进制指令编程步骤繁琐，要考虑各种边界情况和底层问题，开发效率十分低下。<br />
+<br />
+这就倒逼程序员开发出了编程语言，提高自己的生产力，例如汇编、C语言、C++、Java、Python、Go语言等，都是在逐步提高开发效率。至此，编程终于不再是只有极客能做的事情了，不了解计算机的读者经过一定的训练也可以编写出有模有样的程序。
+<h2>
+	什么是编译器</h2>
+C语言代码由固定的词汇按照固定的格式组织起来，简单直观，程序员容易识别和理解，但是对于CPU，C语言代码就是天书，根本不认识，CPU只认识几百个二进制形式的指令。这就需要一个工具，将C语言代码转换成CPU能够识别的二进制指令，也就是将代码加工成 .exe 程序；这个工具是一个特殊的软件，叫做<span style="color: rgb(0, 128, 0);">编译器（Compiler）</span>。<br />
+<br />
+编译器能够识别代码中的词汇、句子以及各种特定的格式，并将他们转换成计算机能够识别的二进制形式，这个过程称为<span style="color: rgb(0, 128, 0);">编译（Compile）</span>。<br />
+<br />
+编译也可以理解为&ldquo;翻译&rdquo;，类似于将中文翻译成英文、将英文翻译成象形文字，它是一个复杂的过程，大致包括词法分析、语法分析、语义分析、性能优化、生成可执行文件五个步骤，期间涉及到复杂的算法和硬件架构。对于学计算机或者软件的大学生，&ldquo;编译原理&rdquo;是一门专业课程，有兴趣的读者请自行阅读《编译原理》一书，这里我们不再展开讲解。
+<blockquote>
+	注意：不了解编译原理并不影响我们学习C语言，我也不建议初学者去钻研编译原理，贪多嚼不烂，不要把自己绕进去。</blockquote>
+C语言的编译器有很多种，不同的平台下有不同的编译器，例如：
+<ul>
+	<li>
+		Windows 下常用的是<span style="color:#008000;"><strong>微软编译器（cl.exr）</strong></span>，它被集成在 Visual Studio 或 Visual C++ 中，一般不单独使用；</li>
+	<li>
+		Linux 下常用的是 GUN 组织开发的&nbsp;<span style="color: rgb(0, 128, 0);"><strong>GCC</strong></span>，很多 Linux 发行版都自带 GCC；</li>
+	<li>
+		Mac 下常用的是&nbsp;<strong><span style="color: rgb(0, 128, 0);">LLVM/Clang</span></strong>，它被集成在 Xcode 中（Xcode 以前集成的是 GCC，后来由于 GCC 的不配合才改为 LLVM/Clang，LLVM/Clang 的性能比 GCC 更加强大）。</li>
+</ul>
+<br />
+你的代码语法正确与否，编译器说了才算，我们学习C语言，从某种意义上说就是学习如何使用编译器，让编译器生成可执行程序（例如 Windows 下的 .exe 程序）。<br />
+<br />
+编译器可以 100% 保证你的代码从语法上讲是正确的，因为哪怕有一点小小的错误，编译也不能通过，编译器会告诉你哪里错了，便于你的更改。
+<h2>
+	什么是集成开发环境</h2>
+实际开发中，除了编译器是必须的工具，我们往往还需要很多其他辅助软件，例如：
+<ul>
+	<li>
+		编辑器：用来编写代码，并且给代码着色，以方便阅读；</li>
+	<li>
+		代码提示器：输入部分代码，即可提示全部代码，加速代码的编写过程；</li>
+	<li>
+		调试器：观察程序的每一个运行步骤，发现程序的逻辑错误；</li>
+	<li>
+		项目管理工具：对程序涉及到的所有资源进行管理，包括源文件、<u><a href='/view/200.html' target='_blank'>图</a></u>片、视频、第三方库等；</li>
+	<li>
+		漂亮的界面：各种按钮、面板、菜单、窗口等控件整齐排布，操作更方便。</li>
+</ul>
+<br />
+这些工具通常被打包在一起，统一发布和安装，例如 Visual Studio、Dev C++、Xcode、Visual C++ 6.0、C-Free、Code::Blocks 等，它们统称为<span style="color:#008000;">集成开发环境（IDE，Integrated Development Environment）</span>。<br />
+<br />
+<span style="color:#b22222;">集成开发环境就是一系列开发工具的组合套装。</span>这就好比台式机，一个台式机的核心部件是主机，有了主机就能独立工作了，但是我们在购买台式机时，往往还要附带上显示器、键盘、鼠标、U盘、摄像头等外围设备，因为只有主机太不方便了，必须有外设才能玩的爽。<br />
+<br />
+集成开发环境也是这个道理，只有编译器不方便，所以还要增加其他的辅助工具。
+<h2>
+	选择哪种集成开发环境</h2>
+C语言的集成开发环境有很多种，尤其是 Windows 下，多如牛毛，初学者往往不知道该如何选择。我们将在接下来的三篇文章中，分别讲解 Windows、Mac OS、Linux 下集成开发环境的选择：
+<ul>
+	<li>
+		<a href="/view/452.html">Windows下的编译器有哪些？如何选择？</a></li>
+	<li>
+		<a href="/view/475.html">Linux GCC简明教程（使用GCC编写C语言程序）</a></li>
+	<li>
+		<a href="/view/476.html">Mac Xcode简明教程（使用Xcode编写C语言程序）</a></li>
+</ul>
+<br />
+当然，你不用全部都了解，如果你使用 Windows，那么请忽略 Mac OS 和 Linux；如果你使用 Mac OS，那么请忽略 Windows 和 Linux。</div>
+			
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 382;
+window.arcId = "c2493xHlSVfRKqoHvoxca/FtewlSFpPYRgk2vXkG/HmGvuCsgOuTNSoeQA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

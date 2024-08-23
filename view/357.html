@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言究竟是一门怎样的语言？</title>
+<meta name="keywords" content="语言,究,竟是,一门,怎样,的,对于,大部分," />
+<meta name="description" content="对于大部分程序员，C语言是学习编程的第一门语言，很少有不了解C的程序员。 C语言除了能让你了解编程的相关概念，带你走进编程的大门，还能让你明白程序的运行原理，比如，计算" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd class="this"> <span class="channel-num">1</span> <a href="/c/base/">编程基础</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/356.html">通俗地理解什么是编程语言</a></dd><dd>1.2 <a href="/view/357.html">C语言究竟是一门怎样的语言？</a></dd><dd>1.3 <a href="/view/358.html">C语言是菜鸟和大神的分水岭</a></dd><dd>1.4 <a href="/view/359.html">学编程难吗？多久能入门？</a></dd><dd>1.5 <a href="/view/360.html">英语和数学不好，能学编程吗？</a></dd><dd>1.6 <a href="/view/361.html">高中毕业能学会编程吗？</a></dd><dd>1.7 <a href="/view/362.html">C语言和C++到底有什么关系？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/363.html">学了C语言到底能做什么，能从事什么工作？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.9 <a href="/view/364.html">二进制、八进制和十六进制</a></dd><dd>1.10 <a href="/view/365.html">不同进制之间的转换</a></dd><dd>1.11 <a href="/view/366.html">数据在内存中的存储</a></dd><dd>1.12 <a href="/view/367.html">载入内存，让程序运行起来</a></dd><dd>1.13 <a href="/view/368.html">ASCII编码，将英文存储到计算机</a></dd><dd>1.14 <a href="/view/369.html">GB2312编码和GBK编码，将中文存储到计算机</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.15 <a href="/view/370.html">Unicode字符集，将全世界的文字存储到计算机</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.16 <a href="/view/371.html">程序员的薪水和发展方向大全</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.17 <a href="/view/372.html">不要这样学习C语言，这是一个坑！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.18 <a href="/view/373.html">明白了这点才能学好编程，否则参加什么培训班都没用</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言究竟是一门怎样的语言？</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/356.html">通俗地理解什么是编程语言</a></span>
+                    <span class="next right"><a href="/view/358.html">C语言是菜鸟和大神的分水岭</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/356.html";window.nextPageURL = "/view/358.html";</script>
+			<div id="arc-body">对于大部分程序员，C语言是学习编程的第一门语言，很少有不了解 C 的程序员。<br />
+<br />
+C语言除了能让你了解编程的相关概念，带你走进编程的大门，还能让你明白程序的运行原理，比如，计算机的各个部件是如何交互的，程序在内存中是一种怎样的状态，操作系统和用户程序之间有着怎样的&ldquo;爱恨情仇&rdquo;，这些底层知识决定了你的发展高度，也决定了你的职业生涯。<br />
+<br />
+如果你希望成为出类拔萃的人才，而不仅仅是码农，这么这些知识就是不可逾越的。也只有学习 C语言，才能更好地了解它们。有了足够的基础，以后学习其他语言，会触类旁通，很快上手，7 天了解一门新语言不是神话。<br />
+<br />
+<span style="color:#b22222;">C语言概念少，词汇少，包含了基本的编程元素，后来的很多语言（C++、Java等）都参考了 C语言，说 C语言是现代编程语言的开山鼻祖毫不夸张，它改变了编程世界。</span><br />
+<br />
+正是由于 C语言的简单，对初学者来说，学习成本小，时间短，结合本教程，能够快速掌握编程技术。<br />
+<br />
+在世界编程语言排行榜中，C语言、Java 和 C++ 长期霸占着前三名，加上近几年爆火的 Python，四门语言的市场占用率之和接近 50%，拥有绝对优势，如下表所示：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th colspan="3" rowspan="1">
+				2022年07月榜单</th>
+		</tr>
+		<tr>
+			<th>
+				排名</th>
+			<th>
+				语言</th>
+			<th>
+				占有率</th>
+		</tr>
+		<tr>
+			<td>
+				1</td>
+			<td>
+				Python</td>
+			<td>
+				13.44%</td>
+		</tr>
+		<tr>
+			<td>
+				2</td>
+			<td>
+				C</td>
+			<td>
+				13.13%</td>
+		</tr>
+		<tr>
+			<td>
+				3</td>
+			<td>
+				Java</td>
+			<td>
+				11.59%</td>
+		</tr>
+		<tr>
+			<td>
+				4</td>
+			<td>
+				C++</td>
+			<td>
+				10.00%</td>
+		</tr>
+		<tr>
+			<td>
+				5</td>
+			<td>
+				C#</td>
+			<td>
+				&nbsp; 5.65%</td>
+		</tr>
+		<tr>
+			<td>
+				6</td>
+			<td>
+				Visual Basic</td>
+			<td>
+				&nbsp; 4.97%</td>
+		</tr>
+		<tr>
+			<td>
+				7</td>
+			<td>
+				JavaScript</td>
+			<td>
+				&nbsp; 1.78%</td>
+		</tr>
+		<tr>
+			<td>
+				8</td>
+			<td>
+				汇编语言</td>
+			<td>
+				&nbsp; 1.65%</td>
+		</tr>
+		<tr>
+			<td>
+				9</td>
+			<td>
+				SQL</td>
+			<td>
+				&nbsp; 1.64%</td>
+		</tr>
+		<tr>
+			<td>
+				10</td>
+			<td>
+				Swift</td>
+			<td>
+				&nbsp; 1.27%</td>
+		</tr>
+		<tr>
+			<th colspan="3" rowspan="1">
+				2023年07月榜单</th>
+		</tr>
+		<tr>
+			<th>
+				排名</th>
+			<th>
+				语言</th>
+			<th>
+				占有率</th>
+		</tr>
+		<tr>
+			<td>
+				1</td>
+			<td>
+				Python</td>
+			<td>
+				13.42%</td>
+		</tr>
+		<tr>
+			<td>
+				2</td>
+			<td>
+				C</td>
+			<td>
+				11.56%</td>
+		</tr>
+		<tr>
+			<td>
+				3</td>
+			<td>
+				C++</td>
+			<td>
+				10.80%</td>
+		</tr>
+		<tr>
+			<td>
+				4</td>
+			<td>
+				Java</td>
+			<td>
+				10.50%</td>
+		</tr>
+		<tr>
+			<td>
+				5</td>
+			<td>
+				C#</td>
+			<td>
+				6.87%</td>
+		</tr>
+		<tr>
+			<td>
+				6</td>
+			<td>
+				JavaScript</td>
+			<td>
+				3.11%</td>
+		</tr>
+		<tr>
+			<td>
+				7</td>
+			<td>
+				Visual Basic</td>
+			<td>
+				2.90%</td>
+		</tr>
+		<tr>
+			<td>
+				8</td>
+			<td>
+				SQL</td>
+			<td>
+				1.48%</td>
+		</tr>
+		<tr>
+			<td>
+				9</td>
+			<td>
+				PHP</td>
+			<td>
+				1.41%</td>
+		</tr>
+		<tr>
+			<td>
+				10</td>
+			<td>
+				MATLAB</td>
+			<td>
+				1.26%</td>
+		</tr>
+		<tr>
+			<th colspan="3" rowspan="1">
+				2024年07月榜单</th>
+		</tr>
+		<tr>
+			<th>
+				排名</th>
+			<th>
+				语言</th>
+			<th>
+				占有率</th>
+		</tr>
+		<tr>
+			<td>
+				1</td>
+			<td>
+				Python</td>
+			<td>
+				16.12%</td>
+		</tr>
+		<tr>
+			<td>
+				2</td>
+			<td>
+				C++</td>
+			<td>
+				10.34%</td>
+		</tr>
+		<tr>
+			<td>
+				3</td>
+			<td>
+				C</td>
+			<td>
+				9.48%</td>
+		</tr>
+		<tr>
+			<td>
+				4</td>
+			<td>
+				Java</td>
+			<td>
+				8.59%</td>
+		</tr>
+		<tr>
+			<td>
+				5</td>
+			<td>
+				C#</td>
+			<td>
+				6.72%</td>
+		</tr>
+		<tr>
+			<td>
+				6</td>
+			<td>
+				JavaScript</td>
+			<td>
+				3.79%</td>
+		</tr>
+		<tr>
+			<td>
+				7</td>
+			<td>
+				Go</td>
+			<td>
+				2.19%</td>
+		</tr>
+		<tr>
+			<td>
+				8</td>
+			<td>
+				Visual Basic</td>
+			<td>
+				2.08%</td>
+		</tr>
+		<tr>
+			<td>
+				9</td>
+			<td>
+				Fortran</td>
+			<td>
+				2.05%</td>
+		</tr>
+		<tr>
+			<td>
+				10</td>
+			<td>
+				SQL</td>
+			<td>
+				2.04%</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+2017 年，由于小型软件设备的蓬勃发展以及汽车行业底层软件的增加，C语言还拿下了「<span style="color:#b22222;">年度编程语言</span>」的桂冠，成为 2017 年全球增长最快的编程语言。下表列出了最近 10 年的&ldquo;年度编程语言&rdquo;：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				年份</th>
+			<th>
+				优胜者</th>
+		</tr>
+		<tr>
+			<th>
+				2023</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />C#</td>
+		</tr>
+		<tr>
+			<th>
+				2022</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />C++</td>
+		</tr>
+		<tr>
+			<th>
+				2021</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />Python</td>
+		</tr>
+		<tr>
+			<th>
+				2020</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />Python</td>
+		</tr>
+		<tr>
+			<th>
+				2019</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />C</td>
+		</tr>
+		<tr>
+			<th>
+				2018</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />Python</td>
+		</tr>
+		<tr>
+			<th>
+				2017</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />C</td>
+		</tr>
+		<tr>
+			<th>
+				2016</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />Go</td>
+		</tr>
+		<tr>
+			<th>
+				2015</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />Java</td>
+		</tr>
+		<tr>
+			<th>
+				2014</th>
+			<td>
+				<img alt="" src="/uploads/allimg/240819/160PM527-0.png" style="width: 15px; height: 15px;" />JavaScript</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+C语言诞生于 20 世纪 70年代，年龄比我们都要大，我们将在《<a href="/view/405.html" target="_blank">C语言的三套标准：C89、C99和C11</a>》一节中讲解更多关于 C语言的历史。<br />
+<br />
+当然，C语言也不是没有缺点，毕竟是 70 后老人，有点落后时代，开发效率较低，后来人们又在 C语言的基础上增加了面向对象的机制，形成了一门新的语言，称为 C++，我们将在《<a href="/view/362.html" target="_blank">C语言和C++到底有什么关系</a>》中讲解。
+<h2>
+	C语言难吗？</h2>
+和 Java、C++、Python、C#、JavaScript 等高级编程语言相比，C语言涉及到的编程概念少，附带的标准库小，所以整体比较简洁，容易学习，非常适合初学者入门。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="C语言非常简单" src="/uploads/allimg/240819/160PM500-10.jpg" /></div>
+<br />
+编程语言的发展大概经历了以下几个阶段：
+<p class="info-box">
+	汇编语言 --&gt; 面向过程编程 --&gt; 面向对象编程</p>
+<ul>
+	<li>
+		汇编语言是编程语言的拓荒年代，它非常底层，直接和计算机硬件打交道，开发效率低，学习成本高；</li>
+	<li>
+		C语言是面向过程的编程语言，已经脱离了计算机硬件，可以设计中等规模的程序了；</li>
+	<li>
+		Java、C++、Python、C#、PHP 等是面向对象的编程语言，它们在面向过程的基础上又增加了很多概念。</li>
+</ul>
+<br />
+C语言出现的时候，已经度过了编程语言的拓荒年代，具备了现代编程语言的特性，但是这个时候还没有出现&ldquo;<a href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA/564526" target="_blank">软件危机</a>&rdquo;，人们没有动力去开发更加高级的语言，所以也没有太复杂的编程思想。<br />
+<br />
+<span style="color:#b22222;">也就是说，C语言虽然是现代编程语言，但是它涉及到的概念少，词汇少，思想也简单。C语言学习成本小，初学者能够在短时间内掌握编程技能，非常适合入门。</span>
+<h2>
+	C语言是计算机产业的核心语言</h2>
+也许是机缘巧合，C语言出现后不久，计算机产业开始爆发，计算机硬件越来越小型化，越来越便宜，逐渐进入政府机构，进入普通家庭，C语言成了编程的主力军，获得了前所未有的成功，操作系统、常用软件、硬件驱动、底层组件、核心算法、数据库、小游戏等都使用 C语言开发。<br />
+<br />
+雷军说过，站在风口上，猪都能飞起来；C语言就是那头猪，不管它好不好，反正它飞起来了。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="C语言飞起来了" src="/uploads/allimg/240819/160PI104-11.jpg" /></div>
+<br />
+<span style="color:#b22222;">C语言在计算机产业大爆发阶段被万人膜拜，无疑会成为整个软件产业的基础，拥有核心地位。</span><br />
+<br />
+软件行业的很多细分学科都是基于 C语言的，学习数据结构、算法、操作系统、编译原理等都离不开 C语言，所以大学将 C语言作为一门公共课程，计算机相关专业的同学都要学习。<br />
+<br />
+C语言被誉为&ldquo;上帝语言&rdquo;，它不但奠定了软件产业的基础，还创造了很多其它语言，例如：
+<ul>
+	<li>
+		PHP、Python 等都是用 C语言开发出来的，虽然平时做项目的时候看不到 C语言的影子，但是如果想深入学习 PHP 和 Python，那就要有 C语言基础了。</li>
+	<li>
+		C++ 和 Objective-C 干脆在 C语言的基础上直接进行扩展，增加一些新功能后变成了新的语言，所以学习 C++ 和 Objective-C 之前也要先学习 C语言。</li>
+</ul>
+<br />
+C语言是有史以来最为重要的编程语言：要进入编程行业高手级别必学 C语言，要挣大钱必学 C语言，要做黑客、红客必学 C语言，要面试名企、外企、高薪职位必学 C语言。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/356.html">通俗地理解什么是编程语言</a></span>
+                    <span class="next right"><a href="/view/358.html">C语言是菜鸟和大神的分水岭</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/356.html";window.nextPageURL = "/view/358.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 357;
+window.arcId = "2e93Nu5mV3tcf8O7HoN+DAcEL+8AwgQIUbDIK5hcDL7Gs0lp+4d7mWMPVw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

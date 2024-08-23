@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言typedef的用法详解</title>
+<meta name="keywords" content="语言,typedef,的,用法,详解,语言,允许,为,一个," />
+<meta name="description" content="C语言允许为一个数据类型起一个新的别名，就像给人起绰号一样。 起别名的目的不是为了提高程序运行效率，而是为了编码方便。例如有一个结构体的名字是 stu，要想定义一个结构体" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/c/struct/">结构体</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/532.html">C语言结构体</a></dd><dd>10.2 <a href="/view/533.html">C语言结构体数组</a></dd><dd>10.3 <a href="/view/534.html">C语言结构体指针</a></dd><dd>10.4 <a href="/view/535.html">C语言枚举类型</a></dd><dd>10.5 <a href="/view/536.html">C语言共用体</a></dd><dd>10.6 <a href="/view/541.html">typedef的用法</a></dd><dd>10.7 <a href="/view/537.html">大端小端以及判别方式</a></dd><dd>10.8 <a href="/view/538.html">C语言位域</a></dd><dd>10.9 <a href="/view/539.html">C语言位运算</a></dd><dd>10.10 <a href="/view/540.html">使用位运算对数据或文件内容进行加密</a></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言typedef的用法详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/536.html">C语言共用体</a></span>
+                    <span class="next right"><a href="/view/537.html">大端小端以及判别方式</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/536.html";window.nextPageURL = "/view/537.html";</script>
+			<div id="arc-body">C语言允许为一个数据类型起一个新的别名，就像给人起&ldquo;绰号&rdquo;一样。<br />
+<br />
+起别名的目的不是为了提高程序运行效率，而是为了编码方便。例如有一个结构体的名字是 stu，要想定义一个结构体变量就得这样写：
+<p class="info-box">
+	struct stu stu1;</p>
+struct 看起来就是多余的，但不写又会报错。如果为 struct stu 起了一个别名 STU，书写起来就简单了：
+<p class="info-box">
+	STU stu1;</p>
+这种写法更加简练，意义也非常明确，不管是在标准头文件中还是以后的编程实践中，都会大量使用这种别名。<br />
+<br />
+使用关键字 <span style="color: #008000"><strong>typedef</strong></span> 可以为类型起一个新的别名。typedef 的用法一般为：
+<p class="info-box">
+	typedef &nbsp;oldName &nbsp;newName;</p>
+oldName 是类型原来的名字，newName 是类型新的名字。例如：
+<pre class="c">
+typedef int INTEGER;
+INTEGER a, b;
+a = 1;
+b = 2;</pre>
+<code>INTEGER a, b;</code>等效于<code>int a, b;</code>。<br />
+<br />
+typedef 还可以给<u><a href='/view/181.html' target='_blank'>数组</a></u>、指针、结构体等类型定义别名。先来看一个给数组类型定义别名的例子：<br />
+<p class="info-box">
+	typedef char ARRAY20[20];</p>
+表示 ARRAY20 是类型<code>char [20]</code>的别名。它是一个长度为 20 的数组类型。接着可以用 ARRAY20 定义数组：
+<p class="info-box">
+	ARRAY20 a1, a2, s1, s2;</p>
+它等价于：
+<p class="info-box">
+	char a1[20], a2[20], s1[20], s2[20];</p>
+注意，数组也是有类型的。例如<code>char a1[20];</code>定义了一个数组 a1，它的类型就是 char [20]，这一点已在VIP教程《<a href="/view/523.html" target="_blank">数组和指针绝不等价，数组是另外一种类型</a>》中讲解过。<br />
+<br />
+又如，为结构体类型定义别名：<br />
+<pre class="c">
+typedef struct stu{
+    char name[20];
+    int age;
+    char sex;
+} STU;</pre>
+STU 是 struct stu 的别名，可以用 STU 定义结构体变量：
+<p class="info-box">
+	STU body1,body2;</p>
+它等价于：
+<p class="info-box">
+	struct stu body1, body2;</p>
+<br />
+再如，为指针类型定义别名：
+<p class="info-box">
+	typedef&nbsp;int (*PTR_TO_ARR)[4];</p>
+表示 PTR_TO_ARR 是类型<code>int * [4]</code>的别名，它是一个二维数组指针类型。接着可以使用 PTR_TO_ARR 定义二维数组指针：
+<p class="info-box">
+	PTR_TO_ARR p1, p2;</p>
+按照类似的写法，还可以为函数指针类型定义别名：
+<p class="info-box">
+	typedef int (*PTR_TO_FUNC)(int, int);<br />
+	PTR_TO_FUNC pfunc;</p>
+【示例】为指针定义别名。
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+typedef char (*PTR_TO_ARR)[30];
+typedef int (*PTR_TO_FUNC)(int, int);
+
+int max(int a, int b){
+    return a&gt;b ? a : b;
+}
+
+char str[3][30] = {
+    &quot;https://xiexuewu.github.io&quot;,
+    &quot;C语言&quot;,
+    &quot;C-Language&quot;
+};
+
+int main(){
+    PTR_TO_ARR parr = str;
+    PTR_TO_FUNC pfunc = max;
+    int i;
+   
+    printf(&quot;max: %d\n&quot;, (*pfunc)(10, 20));
+    for(i=0; i&lt;3; i++){
+        printf(&quot;str[%d]: %s\n&quot;, i, *(parr+i));
+    }
+
+    return 0;
+}</pre>
+运行结果：<br />
+max: 20<br />
+str[0]: https://xiexuewu.github.io<br />
+str[1]: C语言<br />
+str[2]: C-Language<br />
+<br />
+<span style="color: #b22222">需要强调的是，typedef 是赋予现有类型一个新的名字，而不是创建新的类型。为了&ldquo;见名知意&rdquo;，请尽量使用含义明确的标识符，并且尽量大写。</span>
+<h2>
+	typedef 和 #define 的区别</h2>
+typedef 在表现上有时候类似于 #define，但它和宏替换之间存在一个关键性的区别。正确思考这个问题的方法就是把 typedef 看成一种彻底的&ldquo;封装&rdquo;类型，声明之后不能再往里面增加别的东西。<br />
+<br />
+1) 可以使用其他类型说明符对宏类型名进行扩展，但对 typedef 所定义的类型名却不能这样做。如下所示：
+<p class="info-box">
+	#define INTERGE int<br />
+	unsigned INTERGE n; &nbsp;//没问题<br />
+	<br />
+	typedef int INTERGE;<br />
+	unsigned INTERGE n; &nbsp;//错误，不能在 INTERGE 前面添加 unsigned</p>
+<br />
+2) 在连续定义几个变量的时候，typedef 能够保证定义的所有变量均为同一类型，而 #define 则无法保证。例如：
+<p class="info-box">
+	#define PTR_INT int *<br />
+	PTR_INT p1, p2;</p>
+经过宏替换以后，第二行变为：
+<p class="info-box">
+	int *p1, p2;</p>
+这使得 p1、p2 成为不同的类型：p1 是指向 int 类型的指针，p2 是 int 类型。<br />
+<br />
+相反，在下面的代码中：
+<p class="info-box">
+	typedef int *&nbsp;PTR_INT<br />
+	PTR_INT p1, p2;</p>
+p1、p2 类型相同，它们都是指向 int 类型的指针。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/536.html">C语言共用体</a></span>
+                    <span class="next right"><a href="/view/537.html">大端小端以及判别方式</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/536.html";window.nextPageURL = "/view/537.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 541;
+window.arcId = "5325DeH2IPkVBeNjVz29U/enk4St/hWoCeiEE2urbdTmBluoiFqfWsQEtg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

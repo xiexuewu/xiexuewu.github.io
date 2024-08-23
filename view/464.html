@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言判断一个数是否是素数</title>
+<meta name="keywords" content="语言,判断,一,个数,是否是,素数,在,数学,中," />
+<meta name="description" content="在数学中，有些数字满足除了 1 和它本身外，不能被任何整数整除，这些数字就统称为素数（又称质数）。 例如，数字 17 就是素数，因为它不能被 2~16 的任意一个整数整除。 判断一个" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言判断一个数是否是素数</h1>
+			<div id="arc-body">在数学中，有些数字满足&ldquo;除了 1 和它本身外，不能被任何整数整除&rdquo;，这些数字就统称为素数（又称质数）。<br />
+<br />
+例如，数字 17 就是素数，因为它不能被 2~16 的任意一个整数整除。<br />
+<br />
+判断一个数字是否为素数，接下来讲解两种解决方案。
+<h2>
+	实现方案一</h2>
+判断一个整数 m 是否是素数，只需把 m 和 2 ~ m-1 之间的每一个整数做整除运算，如果都不能被整除，那么 m 就是一个素数。<br />
+<br />
+实现代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 0;  // 素数的个数
+    int num = 0;  // 输入的整数
+
+    printf(&quot;输入一个整数：&quot;);
+    scanf(&quot;%d&quot;, &amp;num);
+
+    for (int i = 2; i &lt; num; i++) {
+        if (num % i == 0) {
+            a++;  // 素数个数加1
+        }
+    }
+    if (a == 0) {
+        printf(&quot;%d是素数\n&quot;, num);
+    }
+    else {
+        printf(&quot;%d不是素数\n&quot;, num);
+    }
+    return 0;
+}</pre>
+运行结果为：
+<p class="info-box">
+	输入一个整数：17<br />
+	17是素数</p>
+<h2>
+	实现方案二</h2>
+如果 m 能被 2~m-1 之间的某些整数整除，那么两个因子必定有一个小于或等于 sqrt(m)，另一个大于或等于 sqrt(m)。例如 16 能被 2、4、8 整除：
+<ul>
+	<li>
+		16=2*8，2 小于 4，8 大于 4；</li>
+	<li>
+		16=4*4，两个因子正好等于 sqrt(16)；</li>
+</ul>
+<br />
+因此，第一种实现方案还可以简化，m 不必被 2~m-1 之间的每一个整数去除，只需被 2~sqrt(m) 之间的每一个整数去除就可以了。如果 m 不能被 2~sqrt(m) 间任一整数整除，m 必定是素数。
+<blockquote>
+	<p>
+		sqrt(m)，表示 m 的平方根。</p>
+</blockquote>
+例如，判别 17 是是否为素数，只需使 17 被 2~sqrt(17)（2~4）之间的每一个整数去除，由于都不能整除，可以判定 17 是素数。<br />
+<br />
+实现代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+int main() {
+    int m;  // 输入的整数
+    int i;  // 循环次数
+    int k;  // m 的平方根
+
+    printf(&quot;输入一个整数：&quot;);
+    scanf(&quot;%d&quot;, &amp;m);
+
+    // 求平方根，注意sqrt()的参数为 double 类型，这里要强制转换m的类型
+    k = (int)sqrt((double)m);
+    for (i = 2; i &lt;= k; i++)
+        if (m % i == 0)
+            break;
+
+    // 如果完成所有循环，那么m为素数
+    // 注意最后一次循环，会执行i++，此时 i=k+1，所以有i&gt;k
+    if (i &gt; k)
+        printf(&quot;%d是素数\n&quot;, m);
+    else
+        printf(&quot;%d不是素数\n&quot;, m);
+
+    return 0;
+}</pre>
+运行结果为：
+<p class="info-box">
+	输入一个整数：97<br />
+	97是素数</p>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 464;
+window.arcId = "763dB0qqvgcwm+SLpXLxlwE6o/tDwiKIhHDTO9TiI61aCZ5u7h0CKkk9DA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

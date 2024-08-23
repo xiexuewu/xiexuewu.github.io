@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言中的文件是什么？</title>
+<meta name="keywords" content="语言,中的,文件,是什么,我们,对,文件,的,概念," />
+<meta name="description" content="我们对文件的概念已经非常熟悉了，比如常见的 Word 文档、txt 文件、源文件等。文件是数据源的一种，最主要的作用是保存数据。 在操作系统中，为了统一对各种硬件的操作，简化接口" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言中的文件是什么？</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/file/">文件操作</a></span>
+                    <span class="next right"><a href="/view/545.html">C语言打开文件</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/file/";window.nextPageURL = "/view/545.html";</script>
+			<div id="arc-body">我们对文件的概念已经非常熟悉了，比如常见的 Word 文档、txt 文件、源文件等。文件是数据源的一种，最主要的作用是保存数据。<br />
+<br />
+在操作系统中，为了统一对各种硬件的操作，简化接口，不同的硬件设备也都被看成一个文件。对这些文件的操作，等同于对磁盘上普通文件的操作。例如：
+<ul>
+	<li>
+		通常把显示器称为标准输出文件，printf 就是向这个文件输出数据；</li>
+	<li>
+		通常把键盘称为标准输入文件，scanf 就是从这个文件读取数据。</li>
+</ul>
+<br />
+<table>
+	<caption>
+		常见硬件设备所对应的文件</caption>
+	<tbody>
+		<tr>
+			<th>
+				文件</th>
+			<th>
+				硬件设备</th>
+		</tr>
+		<tr>
+			<td>
+				stdin</td>
+			<td>
+				标准输入文件，一般指键盘；scanf()、getchar() 等函数默认从 stdin 获取输入。</td>
+		</tr>
+		<tr>
+			<td>
+				stdout</td>
+			<td>
+				标准输出文件，一般指显示器；printf()、putchar() 等函数默认向 stdout 输出数据。</td>
+		</tr>
+		<tr>
+			<td>
+				stderr</td>
+			<td>
+				标准错误文件，一般指显示器；perror() 等函数默认向 stderr&nbsp;输出数据（后续会讲到）。</td>
+		</tr>
+		<tr>
+			<td>
+				stdprn</td>
+			<td>
+				标准打印文件，一般指打印机。</td>
+		</tr>
+	</tbody>
+</table>
+<blockquote>
+	我们不去探讨硬件设备是如何被映射成文件的，大家只需要记住，在C语言中硬件设备可以看成文件，有些输入输出函数不需要你指明到底读写哪个文件，系统已经为它们设置了默认的文件，当然你也可以更改，例如让 printf 向磁盘上的文件输出数据。</blockquote>
+操作文件的正确流程为：打开文件 --&gt; 读写文件 --&gt; 关闭文件。文件在进行读写操作之前要先打开，使用完毕要关闭。<br />
+<br />
+所谓打开文件，就是获取文件的有关信息，例如文件名、文件状态、当前读写位置等，这些信息会被保存到一个 FILE 类型的结构体变量中。关闭文件就是断开与文件之间的联系，释放结构体变量，同时禁止再对该文件进行操作。<br />
+<br />
+在C语言中，文件有多种读写方式，可以一个字符一个字符地读取，也可以读取一整行，还可以读取若干个字节。文件的读写位置也非常灵活，可以从文件开头读取，也可以从中间位置读取。<br />
+<h2>
+	文件流</h2>
+在《<a href="/view/367.html" target="_blank">载入内存，让程序运行起来</a>》一文中提到，所有的文件（保存在磁盘）都要载入内存才能处理，所有的数据必须写入文件（磁盘）才不会丢失。数据在文件和内存之间传递的过程叫做<span style="color: #008000">文件流</span>，类似水从一个地方流动到另一个地方。数据从文件复制到内存的过程叫做<span style="color: #008000">输入流</span>，从内存保存到文件的过程叫做<span style="color: #008000">输出流</span>。<br />
+<br />
+文件是数据源的一种，除了文件，还有数据库、网络、键盘等；数据传递到内存也就是保存到C语言的变量（例如整数、字符<u><a href='/view/175.html' target='_blank'>串</a></u>、<u><a href='/view/181.html' target='_blank'>数组</a></u>、缓冲区等）。我们把数据在数据源和程序（内存）之间传递的过程叫做<span style="color: #008000">数据流(Data Stream)</span>。相应的，数据从数据源到程序（内存）的过程叫做<span style="color: #008000">输入流(Input Stream)</span>，从程序（内存）到数据源的过程叫做<span style="color: #008000">输出流(Output Stream)</span>。<br />
+<br />
+输入输出（Input output，IO）是指程序（内存）与外部设备（键盘、显示器、磁盘、其他计算机等）进行交互的操作。几乎所有的程序都有输入与输出操作，如从键盘上读取数据，从本地或网络上的文件读取数据或写入数据等。通过输入和输出操作可以从外界接收信息，或者是把信息传递给外界。<br />
+<br />
+我们可以说，打开文件就是打开了一个流。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/file/">文件操作</a></span>
+                    <span class="next right"><a href="/view/545.html">C语言打开文件</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/file/";window.nextPageURL = "/view/545.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 544;
+window.arcId = "e7d7wc/WOaihSY+xJ+Sw0XUDy1OMLElbKmyn+l0w33Vc2Lkf+r6hdbSk0A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

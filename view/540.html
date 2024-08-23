@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>使用位运算对数据或文件内容进行加密</title>
+<meta name="keywords" content="使用,位,运算,对,数据,或,文件,内容,进行," />
+<meta name="description" content="数据加密解密是一个常用的功能，如果你不希望让别人看到文件中的内容，可以通过密钥（也称密码）将文件的内容加密。比如文本文件(.txt)，加密前的内容是能够读懂的，加密后的内" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/c/struct/">结构体</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/532.html">C语言结构体</a></dd><dd>10.2 <a href="/view/533.html">C语言结构体数组</a></dd><dd>10.3 <a href="/view/534.html">C语言结构体指针</a></dd><dd>10.4 <a href="/view/535.html">C语言枚举类型</a></dd><dd>10.5 <a href="/view/536.html">C语言共用体</a></dd><dd>10.6 <a href="/view/541.html">typedef的用法</a></dd><dd>10.7 <a href="/view/537.html">大端小端以及判别方式</a></dd><dd>10.8 <a href="/view/538.html">C语言位域</a></dd><dd>10.9 <a href="/view/539.html">C语言位运算</a></dd><dd>10.10 <a href="/view/540.html">使用位运算对数据或文件内容进行加密</a></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>使用位运算对数据或文件内容进行加密</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/539.html">C语言位运算</a></span>
+                    <span class="next right"><a href="/c/file/">文件操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/539.html";window.nextPageURL = "/c/file/";</script>
+			<div id="arc-body">数据加密解密是一个常用的功能，如果你不希望让别人看到文件中的内容，可以通过密钥（也称&rdquo;密码&ldquo;）将文件的内容加密。比如文本文件(.txt)，加密前的内容是能够读懂的，加密后的内容是&rdquo;乱码&ldquo;，都是一些奇怪的字符，根本无法阅读。<br />
+<br />
+数据加密解密的原理也很简单，就是使用异或运算。请先看下面的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(){
+    char plaintext = &#39;a&#39;;  // 明文
+    char secretkey = &#39;!&#39;;  // 密钥
+    char ciphertext = plaintext ^ secretkey;  // 密文
+    char decodetext = ciphertext ^ secretkey;  // 解密后的字符
+    char buffer[9];
+
+    printf(&quot;            char    ASCII\n&quot;);
+    // itoa()用来将数字转换为字符<u><a href='/view/175.html' target='_blank'>串</a></u>，可以设定转换时的进制（基数）
+    // 这里将字符对应的ascii码转换为二进制
+    printf(&quot; plaintext   %c     %7s\n&quot;, plaintext, itoa(plaintext, buffer, 2));
+    printf(&quot; secretkey   %c     %7s\n&quot;, secretkey, itoa(secretkey, buffer, 2));
+    printf(&quot;ciphertext   %c     %7s\n&quot;, ciphertext, itoa(ciphertext, buffer, 2));
+    printf(&quot;decodetext   %c     %7s\n&quot;, decodetext, itoa(decodetext, buffer, 2));
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+            char    ASCII
+ plaintext   a     1100001
+ secretkey   !      100001
+ciphertext   @     1000000
+decodetext   a     1100001</pre>
+看到了吗，plaintext 与&nbsp;decodetext相同，也就是说，两次异或运算后还是原来的结果。<br />
+<br />
+这就是加密的关键技术：
+<ul>
+	<li>
+		通过一次异或运算，生成密文，密文没有可读性，与原文风马牛不相及，这就是加密；</li>
+	<li>
+		密文再经过一次异或运算，就会还原成原文，这就是解密的过程；</li>
+	<li>
+		加密和解密需要相同的密钥，如果密钥不对，是无法成功解密的。</li>
+</ul>
+<br />
+上面的加密算法称为对称加密算法，加密和解密使用同一个密钥。<br />
+<br />
+如果加密和解密的密钥不同，则称为非对称加密算法。在非对称算法中，加密的密钥称为公钥，解密的密钥称为私钥，只知道公钥是无法解密的，还必须知道私钥。<br />
+<br />
+注意：程序中的 itoa() 位于 stdlib.h 头文件，它并不是一个标准的C函数，只有Windows下有。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/539.html">C语言位运算</a></span>
+                    <span class="next right"><a href="/c/file/">文件操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/539.html";window.nextPageURL = "/c/file/";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 540;
+window.arcId = "b351W2XHt7TAGr7JHfWv1YpAGd3LYyriOULkCMHvBuSetk6Z5RnARaF6Pw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

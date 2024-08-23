@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<link href="/templets/default/style/index.css?v=1.2" rel="stylesheet" />
+<title>数据结构与算法教程，数据结构C语言版教程！</title>
+<meta name="keywords" content="" />
+<meta name="description" content="C语言是一门面向过程的编译型语言，运行速度极快，仅次于汇编语言。C语言是计算机产业的核心语言，操作系统、硬件驱动、关键组件、数据库等都离不开C语言；不学习C语言，就不能了解计算机底层。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+		<div id="contents">
+			<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+			
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+			
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+			
+		</div>
+	</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言入门教程（非常详细）</h1>
+			<div id="arc-body"><img align="left" alt="C语言入门教程（非常详细）" src="/uploads/allimg/240819/2-240Q915302AJ.png" style="width: 64px; height: 64px;padding-right: 10px;" />C语言是一门面向过程的编译型语言，它的运行速度极快，仅次于汇编语言。<br />
+<br />
+C语言是计算机产业的核心语言，操作系统、硬件驱动、关键组件、数据库等都离不开C语言；不学习C语言，就不能了解计算机底层。<br />
+<br />
+这套「C语言入门教程」由站长亲自执笔，将多年的编程经验灌输其中，典型的实践派。<br />
+<br />
+本教程通俗易懂，深入浅出，既适合初学者入门，也适合程序员进阶，还适合在校生打比赛。<br />
+</div>
+			
+			<div id="contents-detail">
+			<dl>
+					<dt><a href="/c/base/">第1章 编程基础</a></dt>
+					<dd>1.<a href="/view/356.html">通俗地理解什么是编程语言</a>
+					</dd>
+<dd>2.<a href="/view/357.html">C语言究竟是一门怎样的语言？</a>
+					</dd>
+<dd>3.<a href="/view/358.html">C语言是菜鸟和大神的分水岭</a>
+					</dd>
+<dd>4.<a href="/view/359.html">学编程难吗？多久能入门？</a>
+					</dd>
+<dd>5.<a href="/view/360.html">英语和数学不好，能学编程吗？</a>
+					</dd>
+<dd>6.<a href="/view/361.html">高中毕业能学会编程吗？</a>
+					</dd>
+<dd class="vip">7.<a href="/view/362.html">C语言和C++到底有什么关系？</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">8.<a href="/view/363.html">学了C语言到底能做什么，能从事什么工作？</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd>9.<a href="/view/364.html">二进制、八进制和十六进制</a>
+					</dd>
+<dd>10.<a href="/view/365.html">不同进制之间的转换</a>
+					</dd>
+<dd>11.<a href="/view/366.html">数据在内存中的存储</a>
+					</dd>
+<dd>12.<a href="/view/367.html">载入内存，让程序运行起来</a>
+					</dd>
+<dd>13.<a href="/view/368.html">ASCII编码，将英文存储到计算机</a>
+					</dd>
+<dd class="vip">14.<a href="/view/369.html">GB2312编码和GBK编码，将中文存储到计算机</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">15.<a href="/view/370.html">Unicode字符集，将全世界的文字存储到计算机</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">16.<a href="/view/371.html">程序员的薪水和发展方向大全</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">17.<a href="/view/372.html">不要这样学习C语言，这是一个坑！</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">18.<a href="/view/373.html">明白了这点才能学好编程，否则参加什么培训班都没用</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/begin/">第2章 C语言初探</a></dt>
+					<dd>1.<a href="/view/374.html">第一个C语言程序</a>
+					</dd>
+<dd>2.<a href="/view/375.html">选择正确的输入法，严格区分中英文</a>
+					</dd>
+<dd>3.<a href="/view/376.html">什么是源文件？</a>
+					</dd>
+<dd>4.<a href="/view/377.html">什么是编译和链接？</a>
+					</dd>
+<dd>5.<a href="/view/378.html">主流C语言编译器有哪些？</a>
+					</dd>
+<dd>6.<a href="/view/379.html">什么是IDE（集成开发环境）？</a>
+					</dd>
+<dd>7.<a href="/view/380.html">什么是工程/项目？</a>
+					</dd>
+<dd>8.<a href="/view/381.html">哪款C语言编译器（IDE）适合初学者？</a>
+					</dd>
+<dd>9.<a href="/view/405.html">C语言的三套标准：C89、C99和C11</a>
+					</dd>
+<dd>10.<a href="/view/404.html">如何在手机上编写C语言代码？</a>
+					</dd>
+<dd>11.<a href="/view/406.html">C语言为什么有那么多编译器？</a>
+					</dd>
+<dd>12.<a href="/view/407.html">程序安装是怎么回事？</a>
+					</dd>
+<dd>13.<a href="/view/408.html">制作安装包，让用户安装程序</a>
+					</dd>
+<dd>14.<a href="/view/409.html">C语言程序的错误和警告</a>
+					</dd>
+<dd>15.<a href="/view/410.html">分析第一个C语言程序</a>
+					</dd>
+<dd>16.<a href="/view/411.html">C语言代码中的空白符</a>
+					</dd>
+<dd class="vip">17.<a href="/view/413.html">一个真正带界面的C语言程序</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">18.<a href="/view/412.html">彩色版的C语言，让文字更漂亮</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/variable_datatype/">第3章 变量和数据类型</a></dt>
+					<dd>1.<a href="/view/414.html">大话C语言变量和数据类型</a>
+					</dd>
+<dd>2.<a href="/view/415.html">在屏幕上输出各种类型的数据</a>
+					</dd>
+<dd>3.<a href="/view/416.html">C语言中的整数（short,int,long）</a>
+					</dd>
+<dd>4.<a href="/view/417.html">二进制数、八进制数和十六进制数</a>
+					</dd>
+<dd>5.<a href="/view/418.html">C语言中的正负数及其输出</a>
+					</dd>
+<dd>6.<a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a>
+					</dd>
+<dd class="vip">7.<a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd>8.<a href="/view/421.html">C语言中的小数（float,double）</a>
+					</dd>
+<dd class="vip">9.<a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd>10.<a href="/view/423.html">在C语言中使用英文字符</a>
+					</dd>
+<dd class="vip">11.<a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">12.<a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd>13.<a href="/view/427.html">C语言转义字符</a>
+					</dd>
+<dd>14.<a href="/view/428.html">C语言中的几个重要概念</a>
+					</dd>
+<dd>15.<a href="/view/430.html">C语言加减乘除运算</a>
+					</dd>
+<dd>16.<a href="/view/431.html">C语言自增(++)和自减(--)</a>
+					</dd>
+<dd>17.<a href="/view/432.html">变量的定义位置以及初始值</a>
+					</dd>
+<dd>18.<a href="/view/433.html">运算符的优先级和结合性</a>
+					</dd>
+<dd>19.<a href="/view/435.html">C语言数据类型转换</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/io/">第4章 C语言输入输出</a></dt>
+					<dd>1.<a href="/view/436.html">数据输出大汇总以及轻量进阶</a>
+					</dd>
+<dd>2.<a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a>
+					</dd>
+<dd>3.<a href="/view/438.html">使用scanf读取从键盘输入的数据</a>
+					</dd>
+<dd>4.<a href="/view/439.html">从键盘输入字符和字符串</a>
+					</dd>
+<dd>5.<a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a>
+					</dd>
+<dd>6.<a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a>
+					</dd>
+<dd>7.<a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a>
+					</dd>
+<dd>8.<a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a>
+					</dd>
+<dd>9.<a href="/view/444.html">C语言模拟密码输入(显示星号)</a>
+					</dd>
+<dd>10.<a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/branch_loop/">第5章 循环结构和选择结构</a></dt>
+					<dd>1.<a href="/view/446.html">C语言if else语句</a>
+					</dd>
+<dd>2.<a href="/view/447.html">C语言关系运算符</a>
+					</dd>
+<dd>3.<a href="/view/448.html">C语言逻辑运算符</a>
+					</dd>
+<dd>4.<a href="/view/449.html">C语言switch case语句</a>
+					</dd>
+<dd>5.<a href="/view/450.html">C语言条件运算符</a>
+					</dd>
+<dd>6.<a href="/view/451.html">C语言while循环</a>
+					</dd>
+<dd>7.<a href="/view/452.html">C语言for循环</a>
+					</dd>
+<dd>8.<a href="/view/453.html">C语言跳出循环</a>
+					</dd>
+<dd>9.<a href="/view/454.html">C语言循环嵌套</a>
+					</dd>
+<dd>10.<a href="/view/456.html">对选择结构和循环结构的总结</a>
+					</dd>
+<dd>11.<a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a>
+					</dd>
+<dd>12.<a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/array/">第6章 C语言数组</a></dt>
+					<dd>1.<a href="/view/478.html">什么是数组</a>
+					</dd>
+<dd>2.<a href="/view/479.html">C语言二维数组</a>
+					</dd>
+<dd>3.<a href="/view/480.html">判断数组中是否包含某个元素</a>
+					</dd>
+<dd>4.<a href="/view/481.html">C语言字符数组和字符串</a>
+					</dd>
+<dd>5.<a href="/view/482.html">字符串的输入和输出</a>
+					</dd>
+<dd>6.<a href="/view/483.html">C语言字符串处理函数</a>
+					</dd>
+<dd>7.<a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a>
+					</dd>
+<dd>8.<a href="/view/485.html">C语言数组的越界和溢出</a>
+					</dd>
+<dd>9.<a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a>
+					</dd>
+<dd>10.<a href="/view/487.html">对数组元素进行排序</a>
+					</dd>
+<dd>11.<a href="/view/488.html">对C语言数组的总结</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/function/">第7章 C语言函数</a></dt>
+					<dd>1.<a href="/view/489.html">什么是函数？</a>
+					</dd>
+<dd>2.<a href="/view/490.html">C语言函数定义</a>
+					</dd>
+<dd>3.<a href="/view/491.html">C语言函数的形参和实参</a>
+					</dd>
+<dd>4.<a href="/view/492.html">C语言函数的返回值</a>
+					</dd>
+<dd>5.<a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a>
+					</dd>
+<dd>6.<a href="/view/494.html">函数声明以及函数原型</a>
+					</dd>
+<dd>7.<a href="/view/495.html">全局变量和局部变量</a>
+					</dd>
+<dd>8.<a href="/view/496.html">C语言变量的作用域</a>
+					</dd>
+<dd>9.<a href="/view/497.html">C语言块级变量</a>
+					</dd>
+<dd>10.<a href="/view/498.html">C语言递归函数（带实例演示）</a>
+					</dd>
+<dd>11.<a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a>
+					</dd>
+<dd>12.<a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a>
+					</dd>
+<dd>13.<a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a>
+					</dd>
+<dd>14.<a href="/view/543.html">C语言随机数</a>
+					</dd>
+<dd>15.<a href="/view/502.html">忽略语法细节，从整体上理解函数</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/preprocess/">第8章 预处理命令</a></dt>
+					<dd>1.<a href="/view/503.html">什么是预处理命令？</a>
+					</dd>
+<dd>2.<a href="/view/504.html">#include的用法</a>
+					</dd>
+<dd>3.<a href="/view/505.html">C语言宏定义</a>
+					</dd>
+<dd>4.<a href="/view/506.html">C语言带参数的宏定义</a>
+					</dd>
+<dd>5.<a href="/view/507.html">带参宏定义和函数的区别</a>
+					</dd>
+<dd>6.<a href="/view/508.html">宏参数的字符串化和宏参数的连接</a>
+					</dd>
+<dd>7.<a href="/view/509.html">C语言中几个预定义宏</a>
+					</dd>
+<dd>8.<a href="/view/510.html">C语言条件编译</a>
+					</dd>
+<dd>9.<a href="/view/511.html">#error命令，阻止程序编译</a>
+					</dd>
+<dd>10.<a href="/view/512.html">C语言预处理命令总结</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/pointer/">第9章 指针</a></dt>
+					<dd>1.<a href="/view/513.html">1分钟彻底理解指针的概念</a>
+					</dd>
+<dd>2.<a href="/view/514.html">指针变量的定义和使用</a>
+					</dd>
+<dd>3.<a href="/view/515.html">C语言指针变量的运算</a>
+					</dd>
+<dd>4.<a href="/view/516.html">数组指针（指向数组的指针）</a>
+					</dd>
+<dd>5.<a href="/view/517.html">字符串指针（指向字符串的指针）</a>
+					</dd>
+<dd>6.<a href="/view/518.html">C语言数组灵活多变的访问形式</a>
+					</dd>
+<dd>7.<a href="/view/519.html">指针变量作为函数参数</a>
+					</dd>
+<dd>8.<a href="/view/520.html">C语言指针作为函数返回值</a>
+					</dd>
+<dd>9.<a href="/view/521.html">二级指针（指向指针的指针）</a>
+					</dd>
+<dd>10.<a href="/view/522.html">空指针NULL以及void指针</a>
+					</dd>
+<dd>11.<a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a>
+					</dd>
+<dd>12.<a href="/view/524.html">数组到底在什么时候会转换为指针</a>
+					</dd>
+<dd>13.<a href="/view/525.html">指针数组（数组每个元素都是指针）</a>
+					</dd>
+<dd>14.<a href="/view/526.html">一道题目玩转指针数组和二级指针</a>
+					</dd>
+<dd>15.<a href="/view/527.html">二维数组指针（指向二维数组的指针）</a>
+					</dd>
+<dd>16.<a href="/view/528.html">函数指针（指向函数的指针）</a>
+					</dd>
+<dd>17.<a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a>
+					</dd>
+<dd>18.<a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a>
+					</dd>
+<dd>19.<a href="/view/542.html">const的用法</a>
+					</dd>
+<dd>20.<a href="/view/531.html">对C语言指针的总结</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/struct/">第10章 结构体</a></dt>
+					<dd>1.<a href="/view/532.html">C语言结构体</a>
+					</dd>
+<dd>2.<a href="/view/533.html">C语言结构体数组</a>
+					</dd>
+<dd>3.<a href="/view/534.html">C语言结构体指针</a>
+					</dd>
+<dd>4.<a href="/view/535.html">C语言枚举类型</a>
+					</dd>
+<dd>5.<a href="/view/536.html">C语言共用体</a>
+					</dd>
+<dd>6.<a href="/view/541.html">typedef的用法</a>
+					</dd>
+<dd>7.<a href="/view/537.html">大端小端以及判别方式</a>
+					</dd>
+<dd>8.<a href="/view/538.html">C语言位域</a>
+					</dd>
+<dd>9.<a href="/view/539.html">C语言位运算</a>
+					</dd>
+<dd>10.<a href="/view/540.html">使用位运算对数据或文件内容进行加密</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/file/">第11章 文件操作</a></dt>
+					<dd>1.<a href="/view/544.html">C语言中的文件是什么？</a>
+					</dd>
+<dd>2.<a href="/view/545.html">C语言打开文件</a>
+					</dd>
+<dd>3.<a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a>
+					</dd>
+<dd>4.<a href="/view/547.html">以字符形式读写文件</a>
+					</dd>
+<dd>5.<a href="/view/548.html">以字符串的形式读写文件</a>
+					</dd>
+<dd>6.<a href="/view/549.html">以数据块的形式读写文件</a>
+					</dd>
+<dd>7.<a href="/view/550.html">格式化读写文件</a>
+					</dd>
+<dd>8.<a href="/view/551.html">随机读写文件</a>
+					</dd>
+<dd>9.<a href="/view/552.html">C语言实现文件复制功能</a>
+					</dd>
+<dd>10.<a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a>
+					</dd>
+<dd>11.<a href="/view/554.html">获取文件大小（长度）</a>
+					</dd>
+<dd>12.<a href="/view/555.html">插入、删除、更改文件内容</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/debug/">第12章 C语言调试</a></dt>
+					<dd>1.<a href="/view/556.html">调试的概念以及调试器的选择</a>
+					</dd>
+<dd>2.<a href="/view/557.html">设置断点，开始调试</a>
+					</dd>
+<dd>3.<a href="/view/558.html">查看和修改变量的值</a>
+					</dd>
+<dd>4.<a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a>
+					</dd>
+<dd>5.<a href="/view/560.html">即时窗口的使用</a>
+					</dd>
+<dd>6.<a href="/view/561.html">查看、修改运行时的内存</a>
+					</dd>
+<dd>7.<a href="/view/562.html">有条件断点的设置</a>
+					</dd>
+<dd>8.<a href="/view/563.html">assert断言函数</a>
+					</dd>
+<dd>9.<a href="/view/564.html">调试信息的输出</a>
+					</dd>
+<dd>10.<a href="/view/565.html">VS调试的总结以及技巧</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/memory/">第13章 C语言内存精讲</a></dt>
+					<dd>1.<a href="/view/566.html">一个程序在计算机中到底是如何运行的？</a>
+					</dd>
+<dd>2.<a href="/view/567.html">虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？</a>
+					</dd>
+<dd>3.<a href="/view/568.html">虚拟地址空间以及编译模式</a>
+					</dd>
+<dd>4.<a href="/view/569.html">C语言内存对齐，提高寻址效率</a>
+					</dd>
+<dd>5.<a href="/view/570.html">内存分页机制，完成虚拟地址的映射</a>
+					</dd>
+<dd>6.<a href="/view/571.html">分页机制究竟是如何实现的？</a>
+					</dd>
+<dd>7.<a href="/view/572.html">MMU部件以及对内存权限的控制</a>
+					</dd>
+<dd>8.<a href="/view/573.html">Linux下C语言程序的内存布局</a>
+					</dd>
+<dd>9.<a href="/view/574.html">Windows下C语言程序的内存布局</a>
+					</dd>
+<dd>10.<a href="/view/575.html">用户模式和内核模式</a>
+					</dd>
+<dd>11.<a href="/view/576.html">栈（Stack）是什么？栈溢出又是怎么回事？</a>
+					</dd>
+<dd>12.<a href="/view/577.html">一个函数在栈上到底是怎样的？</a>
+					</dd>
+<dd>13.<a href="/view/578.html">函数调用惯例(Calling Convention)</a>
+					</dd>
+<dd>14.<a href="/view/579.html">用一个实例来深入剖析函数进栈出栈的过程</a>
+					</dd>
+<dd>15.<a href="/view/580.html">栈溢出攻击的原理是什么？</a>
+					</dd>
+<dd>16.<a href="/view/581.html">C语言动态内存分配</a>
+					</dd>
+<dd>17.<a href="/view/582.html">malloc函数背后的实现原理——内存池</a>
+					</dd>
+<dd>18.<a href="/view/583.html">C语言野指针以及非法内存操作</a>
+					</dd>
+<dd>19.<a href="/view/584.html">C语言内存泄露（内存丢失）</a>
+					</dd>
+<dd>20.<a href="/view/585.html">C语言变量的存储类别和生存期</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/module/">第14章 多文件编程</a></dt>
+					<dd>1.<a href="/view/586.html">从extern关键字开始谈多文件编程</a>
+					</dd>
+<dd>2.<a href="/view/587.html">那些被编译器隐藏了的过程</a>
+					</dd>
+<dd>3.<a href="/view/588.html">目标文件和可执行文件里面都有什么？</a>
+					</dd>
+<dd>4.<a href="/view/589.html">到底什么是链接，它起到了什么作用？</a>
+					</dd>
+<dd>5.<a href="/view/590.html">符号——链接的粘合剂</a>
+					</dd>
+<dd>6.<a href="/view/591.html">强符号和弱符号</a>
+					</dd>
+<dd>7.<a href="/view/592.html">强引用和弱引用</a>
+					</dd>
+<dd>8.<a href="/view/593.html">C语言模块化编程中的头文件</a>
+					</dd>
+<dd>9.<a href="/view/594.html">C语言标准库以及标准头文件</a>
+					</dd>
+<dd>10.<a href="/view/595.html">细说C语言头文件的路径</a>
+					</dd>
+<dd>11.<a href="/view/596.html">防止C语言头文件被重复包含</a>
+					</dd>
+<dd>12.<a href="/view/597.html">C语言static变量和函数</a>
+					</dd>
+<dd>13.<a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a>
+					</dd>
+
+				</dl><dl>
+					<dt><a href="/c/practice/">第15章 C语言项目实战案例</a></dt>
+					<dd>1.<a href="/view/599.html">C语言学生信息管理系统（文件版）</a>
+					</dd>
+<dd>2.<a href="/view/600.html">学生信息管理系统源码下载和思路解析（文件版）</a>
+					</dd>
+<dd>3.<a href="/view/601.html">C语言贪吃蛇小游戏</a>
+					</dd>
+<dd>4.<a href="/view/602.html">贪吃蛇小游戏源码下载和思路解析</a>
+					</dd>
+<dd>5.<a href="/view/603.html">C语言2048小游戏</a>
+					</dd>
+<dd>6.<a href="/view/604.html">2048小游戏源码下载和思路解析</a>
+					</dd>
+<dd>7.<a href="/view/605.html">C语言推箱子小游戏</a>
+					</dd>
+<dd>8.<a href="/view/606.html">推箱子小游戏源码下载和思路解析</a>
+					</dd>
+<dd>9.<a href="/view/607.html">C语言扫雷小游戏</a>
+					</dd>
+<dd>10.<a href="/view/608.html">扫雷小游戏源码下载和思路解析</a>
+					</dd>
+
+				</dl>
+			</div>
+		</div>
+		
+	</div>	
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'home';
+window.arcId = "2fb3BhNFXTop/PyDhk42N7y73TX1FiUZv0niGEmwBWNDv0k+fxbp/TIdkoo";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+
+</body>
+</html>

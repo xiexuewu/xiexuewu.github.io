@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>什么是数组？C语言数组的基本概念</title>
+<meta name="keywords" content="什么,是,数组,语言,的,基本概念,在,《," />
+<meta name="description" content="在《 C语言数据输出大汇总以及轻量进阶 》一节中我们举了一个例子，是输出一个 44 的整数矩阵，代码如下： #include stdio.h#include stdlib.hint main(){ int a1=20, a2=345, a3=700, a4=22; int b1=56720, b2" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>什么是数组？C语言数组的基本概念</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/array/">C语言数组</a></span>
+                    <span class="next right"><a href="/view/479.html">C语言二维数组</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/array/";window.nextPageURL = "/view/479.html";</script>
+			<div id="arc-body">在《<a href="/view/436.html" target="_blank">C语言数据输出大汇总以及轻量进阶</a>》一节中我们举了一个例子，是输出一个 4&times;4 的整数矩阵，代码如下：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main()
+{
+    int a1=20, a2=345, a3=700, a4=22;
+    int b1=56720, b2=9999, b3=20098, b4=2;
+    int c1=233, c2=205, c3=1, c4=6666;
+    int d1=34, d2=0, d3=23, d4=23006783;
+
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, a1, a2, a3, a4);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, b1, b2, b3, b4);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, c1, c2, c3, c4);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, d1, d2, d3, d4);
+
+    system(&quot;pause&quot;);
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+20        345       700       22
+56720     9999      20098     2
+233       205       1         6666
+34        0         23        23006783</pre>
+矩阵共有 16 个整数，我们为每个整数定义了一个变量，也就是 16 个变量。那么，为了减少变量的数量，让开发更有效率，能不能为多个数据定义一个变量呢？比如，把每一行的整数放在一个变量里面，或者把 16 个整数全部都放在一个变量里面。答案当然是肯定的，办法就是使用<u><a href='/view/181.html' target='_blank'>数组</a></u>（Array）。
+<h2>
+	数组的概念和定义</h2>
+我们知道，要想把数据放入内存，必须先要分配内存空间。放入 4 个整数，就得分配 4 个<code>int</code>类型的内存空间：<br />
+<pre class="info-box">
+int a[4];
+</pre>
+这样，就在内存中分配了 4 个<code>int</code>类型的内存空间，共 4&times;4=16 个字节，并为它们起了一个名字，叫<code>a</code>。<br />
+<br />
+我们把这样的一组数据的集合称为<strong><span style="color: #008000">数组（Array）</span></strong>，它所包含的每一个数据叫做数组<span style="color: #008000">元素（Element）</span>，所包含的数据的个数称为数组<span style="color: #008000">长度（Length）</span>，例如<code>int a[4];</code>就定义了一个长度为4的整型数组，名字是<code>a</code>。<br />
+<br />
+数组中的每个元素都有一个序号，这个序号从 0 开始，而不是从我们熟悉的 1 开始，称为<span style="color: #008000">下标（Index）</span>。使用数组元素时，指明下标即可，形式为：
+<pre class="info-box">
+arrayName[index]</pre>
+arrayName 为数组名称，index 为下标。例如，a[0] 表示第 0 个元素，a[3] 表示第 3 个元素。<br />
+<br />
+接下来我们就把第一行的 4 个整数放入数组：
+<pre class="info-box">
+a[0]=20;
+a[1]=345;
+a[2]=700;
+a[3]=22;</pre>
+这里的 0、1、2、3 就是数组下标，a[0]、a[1]、a[2]、a[3] 就是数组元素。<br />
+<br />
+在学习过程中，我们经常会使用循环结构将数据放入数组中（也就是为数组元素逐个赋值），然后再使用循环结构输出（也就是依次读取数组元素的值），下面我们就来演示一下如何将 1~10 这十个数字放入数组中：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int nums[10];
+    int i;
+   
+    //将1~10放入数组中
+    for(i=0; i&lt;10; i++){
+        nums[i] = (i+1);
+    }
+   
+    //依次输出数组元素
+    for(i=0; i&lt;10; i++){
+        printf(&quot;%d &quot;, nums[i]);
+    }
+   
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	1 2 3 4 5 6 7 8 9 10&nbsp;</p>
+变量 i 既是数组下标，也是循环条件；将数组下标作为循环条件，达到最后一个元素时就结束循环。数组 nums 的最大下标是 9，也就是不能超过 10，所以我们规定循环的条件是 i&lt;10，一旦 i 达到 10 就得结束循环。<br />
+<br />
+更改上面的代码，让用户输入 10 个数字并放入数组中：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int nums[10];
+    int i;
+   
+    //从控制台读取用户输入
+    for(i=0; i&lt;10; i++){
+        scanf(&quot;%d&quot;, &amp;nums[i]);  //注意取地址符 &amp;，不要遗忘哦
+    }
+   
+    //依次输出数组元素
+    for(i=0; i&lt;10; i++){
+        printf(&quot;%d &quot;, nums[i]);
+    }
+   
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+22 18 928 5 4 82 30 10 666 888↙
+22 18 928 5 4 82 30 10 666 888 </pre>
+第 8 行代码中，scanf() 读取数据时需要一个地址（地址用来指明数据的存储位置），而 nums[i] 表示一个具体的数组元素，所以我们要在前边加 &amp; 来获取地址。<br />
+<br />
+最后我们来总结一下数组的定义方式：<br />
+<pre class="info-box">
+dataType  arrayName[length];</pre>
+dataType 为数据类型，arrayName 为数组名称，length 为数组长度。例如：
+<pre class="cpp">
+float m[12];  //定义一个长度为 12 的浮点型数组
+char ch[9];  //定义一个长度为 9 的字符型数组</pre>
+<br />
+需要注意的是：<br />
+1) 数组中每个元素的数据类型必须相同，对于<code>int a[4];</code>，每个元素都必须为 int。<br />
+<br />
+2) 数组长度 length&nbsp;最好是整数或者常量表达式，例如 10、20*4 等，这样在所有编译器下都能运行通过；如果 length 中包含了变量，例如 n、4*m 等，在某些编译器下就会报错，我们将在《<a href="/view/486.html" target="_blank">C语言变长数组：使用变量指明数组的长度</a>》一节专门讨论这点。<br />
+<br />
+3) 访问数组元素时，下标的取值范围为 0 &le; index &lt; length，过大或过小都会越界，导致数组溢出，发生不可预测的情况，我们将在《<a href="/view/485.html" target="_blank">C语言数组的越界和溢出</a>》一节重点讨论，请大家务必要引起注意。
+<h2>
+	数组内存是连续的</h2>
+<span style="color:#b22222;">数组是一个整体，它的内存是连续的；也就是说，数组元素之间是相互挨着的，彼此之间没有一点点缝隙。</span>下图演示了<code>int a[4];</code>在内存中的存储情形：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240821/110S35013-0.png" /></div>
+<br />
+「数组内存是连续的」这一点很重要，所以我使用了一个大标题来强调。连续的内存为指针操作（通过指针来访问数组元素）和内存处理（整块内存的复制、写入等）提供了便利，这使得数组可以作为缓存（临时存储数据的一块内存）使用。大家暂时可能不理解这句话是什么意思，等后边学了指针和内存自然就明白了。<br />
+<h2>
+	数组的初始化</h2>
+上面的代码是先定义数组再给数组赋值，我们也可以在定义数组的同时赋值，例如：
+<pre class="info-box">
+int a[4] = {20, 345, 700, 22};</pre>
+数组元素的值由<code>{ }</code>包围，各个值之间以<code>,</code>分隔。<br />
+<br />
+<strong>对于数组的初始化需要注意以下几点：</strong><br />
+1) 可以只给部分元素赋值。当<code>{ }</code>中值的个数少于元素个数时，只给前面部分元素赋值。例如：
+<pre class="info-box">
+int a[10]={12, 19, 22 , 993, 344};</pre>
+表示只给 a[0]~a[4] 5个元素赋值，而后面 5 个元素自动初始化为 0。<br />
+<br />
+当赋值的元素少于数组总体元素的时候，剩余的元素自动初始化为 0：
+<ul>
+	<li>
+		对于short、int、long，就是整数 0；</li>
+	<li>
+		对于char，就是字符 &#39;\0&#39;；</li>
+	<li>
+		对于float、double，就是小数 0.0。</li>
+</ul>
+<br />
+我们可以通过下面的形式将数组的所有元素初始化为 0：
+<pre class="info-box">
+int nums[10] = {0};
+char str[10] = {0};
+float scores[10] = {0.0};</pre>
+由于剩余的元素会自动初始化为 0，所以只需要给第 0 个元素赋值为 0 即可。<br />
+<br />
+2) 只能给元素逐个赋值，不能给数组整体赋值。例如给 10 个元素全部赋值为 1，只能写作：
+<pre class="info-box">
+int a[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};</pre>
+而不能写作：
+<pre class="info-box">
+int a[10] = 1;</pre>
+<br />
+3) 如给全部元素赋值，那么在定义数组时可以不给出数组长度。例如：
+<pre class="info-box">
+int a[] = {1, 2, 3, 4, 5};</pre>
+等价于
+<pre class="info-box">
+int a[5] = {1, 2, 3, 4, 5};</pre>
+<br />
+最后，我们借助数组来输出一个 4&times;4 的矩阵：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a[4] = {20, 345, 700, 22};
+    int b[4] = {56720, 9999, 20098, 2};
+    int c[4] = {233, 205, 1, 6666};
+    int d[4] = {34, 0, 23, 23006783};
+
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, a[0], a[1], a[2], a[3]);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, b[0], b[1], b[2], b[3]);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, c[0], c[1], c[2], c[3]);
+    printf(&quot;%-9d %-9d %-9d %-9d\n&quot;, d[0], d[1], d[2], d[3]);
+
+    return 0;
+}</pre>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/array/">C语言数组</a></span>
+                    <span class="next right"><a href="/view/479.html">C语言二维数组</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/array/";window.nextPageURL = "/view/479.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 478;
+window.arcId = "4e5b5doCYbFvt7olGAz7nkksvPAT99DZ4VDEuUt0BNOaqj48HByspCourA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

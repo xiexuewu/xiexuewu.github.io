@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言求最小公倍数</title>
+<meta name="keywords" content="语言,求,最小公倍数,求,任意,两个,正,整数,的," />
+<meta name="description" content="求任意两个正整数的最小公倍数（LCM）。 最小公倍数（Least Common Multiple，LCM），如果有一个自然数 a 能被自然数 b 整除，则称 a 为 b 的倍数，b 为 a 的约数，对于两个整数来说，指该两" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言求最小公倍数</h1>
+			<div id="arc-body">求任意两个正整数的最小公倍数（LCM）。<br />
+<br />
+最小公倍数（Least Common Multiple，LCM），如果有一个自然数 a 能被自然数 b 整除，则称 a 为 b 的倍数，b 为 a 的约数，对于两个整数来说，指该两数共有倍数中最小的一个。计算最小公倍数时，通常会借助最大公约数来辅助计算。<br />
+<br />
+最小公倍数=两数的乘积/最大公约（因）数，解题时要避免和最大公约（因）数问题混淆。<br />
+<br />
+对于最小公倍数的求解，除了利用最大公约数外，还可根据定义进行算法设计。求任意两个正整数的最小公倍数，即求出一个最小的能同时被两整数整除的自然数。
+<h2>
+	分析</h2>
+对于输入的两个正整数 m 和 n 每次输入的大小顺序可能不同，为了使程序具有一般性，首先对整数所 m 和 n 进行大小排序，规定变量 m 中存储大数、变量 n 中存储小数。<br />
+<br />
+输入的两个数，大数 m 是小数 n 的倍数，那么大数 m 即为所求的最小公倍数；若大数 m 不能被小数 n 整除则需要寻找一个能同时被两数整除的自然数。从大数 m 开始依次向后递增直到找到第一个能同时被两数整除的数为止，所以循环变量i的初值为寻找第一个能同时被两整数整除的自然数，并将其输出。需要注意的是，在找到第一个满足条件的i值后，循环没必要继续下去，所以用 break 来结束循环。<br />
+<br />
+在上面的分析过程中没有提到循环变量的终止条件，因i的最大值不能确定，像这种终止条件不确定的情况如何来表示？方法有两种，第一，可以把判定条件表示成循环变量满足的基本条件，如本例终止条件可表示成 i&gt;0；第二，终止条件省略不写，利用循环体中的语句结束循环，如在找到第一个满足条件的自然数时利用 break 语句结束循环。
+<h2>
+	实现</h2>
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+int main()
+{
+    int m, n, temp, i;
+    printf(&quot;输入两个数:&quot;);
+    scanf(&quot;%d%d&quot;, &amp;m, &amp;n);
+    if (m &lt; n)  /*比较大小，使得m中存储大数，n中存储小数*/
+    {
+        temp = m;
+        m = n;
+        n = temp;
+    }
+    for (i = m; i &gt; 0; i++)  /*从大数开始寻找满足条件的自然数*/
+        if (i % m == 0 &amp;&amp; i % n == 0)
+        {/*输出满足条件的自然数并结束循环*/
+            printf(&quot;%d和%d的最小公倍数是%d\n&quot;, m, n, i);
+            break;
+        }
+
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	输入两个数:6 24<br />
+	24和6的最小公倍数是24</p>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 473;
+window.arcId = "e441qr50c9Ep2Ha0XVBZvmRQkiNBBCgm0iD04KGD/8IMM2EVEHxXOrYLVQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

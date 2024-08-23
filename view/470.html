@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言求回文数</title>
+<meta name="keywords" content="语言,求,回文,数,打印,所有,不超过,取,n256,的," />
+<meta name="description" content="打印所有不超过 n（取 n256）的其平方具有对称性质的数（也称回文数）。 分析 对于要判定的数n计算出其平方后（存于 a），按照回文数的定义要将最高位与最低位、次高位与次低位进" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言求回文数</h1>
+			<div id="arc-body">打印所有不超过 n（取 n&lt;256）的其平方具有对称性质的数（也称回文数）。
+<h2>
+	分析</h2>
+对于要判定的数 n 计算出其平方后（存于 a），按照&ldquo;回文数&rdquo;的定义要将最高位与最低位、次高位与次低位&hellip;&hellip;进行比较，若彼此相等则为回文数。此算法需要知道平方数的位数，再一一将每一位分解、比较，此方法对于位数已知且位数不是太多的数来说比较适用。<br />
+<br />
+此问题可借助<u><a href='/view/181.html' target='_blank'>数组</a></u>来解决。将平方后的（a 的）每一位进行分解，按从低位到高位的顺序依次暂存到数组中，再将数组中的元素按照下标从大到小的顺序重新将其组合成一个数众（如 n=15，则 a=225 且 k=522），若 k 等于 n&times;n 则可判定 n 为回文数。
+<h2>
+	实现</h2>
+从低位到高位将某一整数拆分。对于一个整数（设变量名为 a）无论其位数多少，若欲将最低位拆分，只需对 10 进行求模运算 a%10，拆分次低位首先要想办法将原来的次低位作为最低位来处理，用原数对 10 求商可得到由除最低位之外的数形成的新数，且新数的最低位是原数的次低位，根据拆分最低位的方法将次低位求出 a/10、a%10，对于其他位上的数算法相同。<br />
+<br />
+利用这个方法要解决的一个问题就是，什么情况下才算把所有数都拆分完？当拆分到只剩原数最高位时（即新数为个位数时），再对 10 求商的话，得到的结果肯定为0，可以通过这个条件判断是否拆分完毕。根据题意，应将每次拆分出来的数据存储到数组中，原数的最低位存到下标为0的位置，次低位存到下标为 1 的位置&hellip;&hellip;依次类推。<br />
+<br />
+程序段如下：
+<pre class="cpp">
+for (i=0; a!=0; i++)
+{
+    m[i] = a % 10;
+    a /= 10;
+}</pre>
+将数组中元素重新组合成一新数。拆分时变量 a 的最高位仍然存储在数组中下标最大的位置，根据&ldquo;回文数&rdquo;定义，新数中数据的顺序与 a 中数据的顺序相反，所以我们按照下标从大到小的顺序分别取出数组中的元素组成新数 k，由几个数字组成一个新数时只需用每一个数字乘以所在位置对应的权值然后相加即可，在编程过程中应该有一个变量 t 来存储每一位对应的权值，个位权值为 1，十位权值为 10，百位权值为 100&hellip;&hellip;，所以可以利用循环，每循环一次t的值就扩大 10 倍。对应程序段如下：
+<pre class="cpp">
+for( ; i&gt;0; i--)
+{
+    k += m[i-l] * t;
+    t *= 10;
+}</pre>
+<br />
+下面是完整的代码：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+int main()
+{
+    int m[16], n, i, t, count = 0;
+    long unsigned a, k;
+    printf(&quot;序号     数字      回文\n&quot;);
+    for (n = 1; n &lt; 256; n++)  /*穷举n的取值范围*/
+    {
+        k = 0; t = 1; a = n * n;  /*计算n的平方*/
+        for (i = 0; a != 0; i++)  /*从低到高分解数a的每一位存于数组m[1]~m[16]*/
+        {
+            m[i] = a % 10;
+            a /= 10;
+        }
+        for (; i &gt; 0; i--)
+        {
+            k += m[i - 1] * t;  /*t记录某一位置对应的权值 */
+            t *= 10;
+        }
+        if (k == n * n)
+            printf(&quot;%2d%10d%10d\n&quot;, ++count, n, n * n);
+    }
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+序号     数字      回文
+1         1         1
+2         2         4
+3         3         9
+4        11       121
+5        22       484
+6        26       676
+7       101     10201
+8       111     12321
+9       121     14641
+10       202     40804
+11       212     44944</pre>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 470;
+window.arcId = "25446j8OD377biB/Gj6y9fZieOEtdtj3AzaLSlT8Rlp1VksrLqz9CPsLDg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

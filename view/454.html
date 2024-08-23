@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言循环嵌套详解</title>
+<meta name="keywords" content="语言,循环,嵌套,详解,在,语,言中,if-else,、," />
+<meta name="description" content="在 C 语言中，if-else、while、do-while、for 都可以相互嵌套。所谓 嵌套（Nest） ，就是一条语句里面还有另一条语句，例如 for 里面还有 for，while 里面还有 while，或者 for 里面有 while，while" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a></dd></dl>
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言循环嵌套详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/453.html">C语言跳出循环</a></span>
+                    <span class="next right"><a href="/view/456.html">对选择结构和循环结构的总结</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/453.html";window.nextPageURL = "/view/456.html";</script>
+			<div id="arc-body">在 C 语言中，if-else、while、do-while、for 都可以相互嵌套。所谓<span style="color: #008000">嵌套（Nest）</span>，就是一条语句里面还有另一条语句，例如 for 里面还有 for，while 里面还有 while，或者 for 里面有 while，while 里面有 if-else，这都是允许的。<br />
+<br />
+if-else 的嵌套在《<a href="/view/446.html" target="_blank">C语言if else语句</a>》一节中已经进行了讲解，本节主要介绍循环结构的嵌套。<br />
+<br />
+示例1：for 嵌套执行的流程。
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int i, j;
+    for(i=1; i&lt;=4; i++){  //外层for循环
+        for(j=1; j&lt;=4; j++){  //内层for循环
+            printf(&quot;i=%d, j=%d\n&quot;, i, j);
+        }
+        printf(&quot;\n&quot;);
+    }
+    return 0;
+}</pre>
+运行结果：<br />
+i=1, j=1<br />
+i=1, j=2<br />
+i=1, j=3<br />
+i=1, j=4<br />
+<br />
+i=2, j=1<br />
+i=2, j=2<br />
+i=2, j=3<br />
+i=2, j=4<br />
+<br />
+i=3, j=1<br />
+i=3, j=2<br />
+i=3, j=3<br />
+i=3, j=4<br />
+<br />
+i=4, j=1<br />
+i=4, j=2<br />
+i=4, j=3<br />
+i=4, j=4<br />
+<br />
+本例是一个简单的 for 循环嵌套，外层循环和内层循环交叉执行，外层 for 每执行一次，内层 for 就要执行四次。<br />
+<br />
+在 C语言中，代码是顺序、同步执行的，当前代码必须执行完毕后才能执行后面的代码。这就意味着，外层 for 每次循环时，都必须等待内层 for 循环完毕（也就是循环 4 次）才能进行下次循环。虽然 i 是变量，但是对于内层 for 来说，每次循环时它的值都是固定的。<br />
+<br />
+示例2：输出一个 4&times;4 的整数矩阵。
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int i, j;
+    for(i=1; i&lt;=4; i++){  //外层for循环
+        for(j=1; j&lt;=4; j++){  //内层for循环
+            printf(&quot;%-4d&quot;, i*j);
+        }
+        printf(&quot;\n&quot;);
+    }
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+1   2   3   4
+2   4   6   8
+3   6   9   12
+4   8   12  16</pre>
+外层 for 第一次循环时，i 为 1，内层 for 要输出四次 1*j 的值，也就是第一行数据；内层 &nbsp;for 循环结束后执行 printf(&quot;\n&quot;)，输出换行符；接着执行外层 for 的 i++ 语句。此时外层 for 的第一次循环才算结束。<br />
+<br />
+外层 for 第二次循环时，i 为 2，内层 for 要输出四次 2*j 的值，也就是第二行的数据；接下来执行 printf(&quot;\n&quot;) 和 i++，外层 for 的第二次循环才算结束。外层 for 第三次、第四次循环以此类推。<br />
+<br />
+<span style="color: #b22222">可以看到，内层 for 每循环一次输出一个数据，而外层 for 每循环一次输出一行数据。</span><br />
+<br />
+示例3：输出九九乘法表。
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int i, j;
+    for(i=1; i&lt;=9; i++){  //外层for循环
+        for(j=1; j&lt;=i; j++){  //内层for循环
+            printf(&quot;%d*%d=%-2d  &quot;, i, j, i*j);
+        }
+        printf(&quot;\n&quot;);
+    }
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+1*1=1
+2*1=2   2*2=4
+3*1=3   3*2=6   3*3=9
+4*1=4   4*2=8   4*3=12  4*4=16
+5*1=5   5*2=10  5*3=15  5*4=20  5*5=25
+6*1=6   6*2=12  6*3=18  6*4=24  6*5=30  6*6=36
+7*1=7   7*2=14  7*3=21  7*4=28  7*5=35  7*6=42  7*7=49
+8*1=8   8*2=16  8*3=24  8*4=32  8*5=40  8*6=48  8*7=56  8*8=64
+9*1=9   9*2=18  9*3=27  9*4=36  9*5=45  9*6=54  9*7=63  9*8=72  9*9=81</pre>
+和示例 2 一样，内层 for 每循环一次输出一条数据，外层 for 每循环一次输出一行数据。<br />
+<br />
+需要注意的是，内层 for 的结束条件是<code>j&lt;=i</code>。外层 for 每循环一次，i 的值就会变化，所以每次开始内层 for 循环时，结束条件是不一样的。具体如下：
+<ul>
+	<li>
+		当 i=1 时，内层 for 的结束条件为 j&lt;=1，只能循环一次，输出第一行。</li>
+	<li>
+		当 i=2 时，内层 for 的结束条件是 j&lt;=2，循环两次，输出第二行。</li>
+	<li>
+		当 i=3 时，内层 for 的结束条件是 j&lt;=3，循环三次，输出第三行。</li>
+	<li>
+		当 i=4、5、6... 时，以此类推。</li>
+</ul>
+<br />
+九九乘法表还有更多输出方式，请查看：<a href="/view/455.html" target="_blank">C语言输出九九乘法表(5种解法)</a></div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/453.html">C语言跳出循环</a></span>
+                    <span class="next right"><a href="/view/456.html">对选择结构和循环结构的总结</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/453.html";window.nextPageURL = "/view/456.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 454;
+window.arcId = "3f70ZF1SZcsmVVz9HUvQ7V2lLrW4f17NPQZ7lViQq1iHH76vklLo48ZJzg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

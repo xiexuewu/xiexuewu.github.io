@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言预处理命令总结</title>
+<meta name="keywords" content="语言,预处理,命令,总结,预处理,指令,是以,号," />
+<meta name="description" content="预处理指令是以 # 号开头的代码行，# 号必须是该行除了任何空白字符外的第一个字符。# 后是指令关键字，在关键字和 # 号之间允许存在任意个数的空白字符，整行语句构成了一条预处" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/c/preprocess/">预处理命令</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/503.html">什么是预处理命令？</a></dd><dd>8.2 <a href="/view/504.html">#include的用法</a></dd><dd>8.3 <a href="/view/505.html">C语言宏定义</a></dd><dd>8.4 <a href="/view/506.html">C语言带参数的宏定义</a></dd><dd>8.5 <a href="/view/507.html">带参宏定义和函数的区别</a></dd><dd>8.6 <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a></dd><dd>8.7 <a href="/view/509.html">C语言中几个预定义宏</a></dd><dd>8.8 <a href="/view/510.html">C语言条件编译</a></dd><dd>8.9 <a href="/view/511.html">#error命令，阻止程序编译</a></dd><dd>8.10 <a href="/view/512.html">C语言预处理命令总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言预处理命令总结</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/511.html">#error命令，阻止程序编译</a></span>
+                    <span class="next right"><a href="/c/pointer/">指针</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/511.html";window.nextPageURL = "/c/pointer/";</script>
+			<div id="arc-body">预处理指令是以<code>#</code>号开头的代码行，# 号必须是该行除了任何空白字符外的第一个字符。# 后是指令关键字，在关键字和 # 号之间允许存在任意个数的空白字符，整行语句构成了一条预处理指令，该指令将<span style="color: rgb(178,34,34)">在编译器进行编译之前对源代码做某些转换</span>。<br />
+<br />
+下面是本章涉及到的部分预处理指令：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				指令</th>
+			<th>
+				说明</th>
+		</tr>
+		<tr>
+			<td>
+				#</td>
+			<td>
+				空指令，无任何效果</td>
+		</tr>
+		<tr>
+			<td>
+				#include</td>
+			<td>
+				包含一个源代码文件</td>
+		</tr>
+		<tr>
+			<td>
+				#define</td>
+			<td>
+				定义宏</td>
+		</tr>
+		<tr>
+			<td>
+				#undef</td>
+			<td>
+				取消已定义的宏</td>
+		</tr>
+		<tr>
+			<td>
+				#if</td>
+			<td>
+				如果给定条件为真，则编译下面代码</td>
+		</tr>
+		<tr>
+			<td>
+				#ifdef</td>
+			<td>
+				如果宏已经定义，则编译下面代码</td>
+		</tr>
+		<tr>
+			<td>
+				#ifndef</td>
+			<td>
+				如果宏没有定义，则编译下面代码</td>
+		</tr>
+		<tr>
+			<td>
+				#elif</td>
+			<td>
+				如果前面的#if给定条件不为真，当前条件为真，则编译下面代码</td>
+		</tr>
+		<tr>
+			<td>
+				#endif</td>
+			<td>
+				结束一个#if&hellip;&hellip;#else条件编译块</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+预处理功能是 C语言特有的功能，它是在对源程序正式编译前由预处理程序完成的，程序员在程序中用预处理命令来调用这些功能。<br />
+<br />
+宏定义可以带有参数，宏调用时是以实参代换形参，而不是&ldquo;值传送&rdquo;。<br />
+<br />
+为了避免宏代换时发生错误，宏定义中的字符<u><a href='/view/175.html' target='_blank'>串</a></u>应加括号，字符串中出现的形式参数两边也应加括号。<br />
+<br />
+文件包含是预处理的一个重要功能，它可用来把多个源文件连接成一个源文件进行编译，结果将生成一个目标文件。<br />
+<br />
+条件编译允许只编译源程序中满足条件的程序段，使生成的目标程序较短，从而减少了内存的开销并提高了程序的效率。<br />
+<br />
+使用预处理功能便于程序的修改、阅读、移植和调试，也便于实现模块化程序设计。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/511.html">#error命令，阻止程序编译</a></span>
+                    <span class="next right"><a href="/c/pointer/">指针</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/511.html";window.nextPageURL = "/c/pointer/";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 512;
+window.arcId = "c69f14vWIx3Lu3yb5QIbopyJuXfdocGnxIGnCb1O/vcSmC2k3qhB3QEWsw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言结构体详解，C语言struct用法详解</title>
+<meta name="keywords" content="语言,结构,体,详解,struct,用法,前,面的,教程," />
+<meta name="description" content="前面的教程中我们讲解了 数组（Array） ，它是一组具有相同类型的数据的集合。但在实际的编程过程中，我们往往还需要一组类型不同的数据，例如对于学生信息登记表，姓名为字符串" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/c/struct/">结构体</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/532.html">C语言结构体</a></dd><dd>10.2 <a href="/view/533.html">C语言结构体数组</a></dd><dd>10.3 <a href="/view/534.html">C语言结构体指针</a></dd><dd>10.4 <a href="/view/535.html">C语言枚举类型</a></dd><dd>10.5 <a href="/view/536.html">C语言共用体</a></dd><dd>10.6 <a href="/view/541.html">typedef的用法</a></dd><dd>10.7 <a href="/view/537.html">大端小端以及判别方式</a></dd><dd>10.8 <a href="/view/538.html">C语言位域</a></dd><dd>10.9 <a href="/view/539.html">C语言位运算</a></dd><dd>10.10 <a href="/view/540.html">使用位运算对数据或文件内容进行加密</a></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言结构体详解，C语言struct用法详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/struct/">结构体</a></span>
+                    <span class="next right"><a href="/view/533.html">C语言结构体数组</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/struct/";window.nextPageURL = "/view/533.html";</script>
+			<div id="arc-body">前面的教程中我们讲解了<a href="/c/array/" target="_blank">数组（Array）</a>，它是一组具有相同类型的数据的集合。但在实际的编程过程中，我们往往还需要一组类型不同的数据，例如对于学生信息登记表，姓名为字符<u><a href='/view/175.html' target='_blank'>串</a></u>，学号为整数，年龄为整数，所在的学习小组为字符，成绩为小数，因为数据类型不同，显然不能用一个<u><a href='/view/181.html' target='_blank'>数组</a></u>来存放。<br />
+<br />
+在C语言中，可以使用<strong><span style="color: #008000">结构体（Struct）</span></strong>来存放一组不同类型的数据。结构体的定义形式为：
+<p class="info-box">
+	struct 结构体名{<br />
+	&nbsp; &nbsp; 结构体所包含的变量或数组<br />
+	};</p>
+结构体是一种集合，它里面包含了多个变量或数组，它们的类型可以相同，也可以不同，每个这样的变量或数组都称为结构体的<span style="color: #008000">成员（Member）</span>。请看下面的一个例子：<br />
+<pre class="c">
+struct stu{
+    char *name;  //姓名
+    int num;  //学号
+    int age;  //年龄
+    char group;  //所在学习小组
+    float score;  //成绩
+};</pre>
+stu 为结构体名，它包含了 5 个成员，分别是 name、num、age、group、score。结构体成员的定义方式与变量和数组的定义方式相同，只是不能初始化。
+<blockquote>
+	注意大括号后面的分号<code>;</code>不能少，这是一条完整的语句。</blockquote>
+结构体也是一种数据类型，它由程序员自己定义，可以包含多个其他类型的数据。<br />
+<br />
+像 int、float、char 等是由C语言本身提供的数据类型，不能再进行分拆，我们称之为<span style="color: #008000">基本数据类型</span>；而结构体可以包含多个基本类型的数据，也可以包含其他的结构体，我们将它称为<span style="color: #008000">复杂数据类型</span>或<span style="color: #008000">构造数据类型</span>。<br />
+<h2>
+	结构体变量</h2>
+既然结构体是一种数据类型，那么就可以用它来定义变量。例如：
+<pre class="info-box">
+struct stu stu1, stu2;</pre>
+定义了两个变量 stu1 和 stu2，它们都是 stu 类型，都由 5 个成员组成。注意关键字<code>struct</code>不能少。<br />
+<br />
+stu 就像一个&ldquo;模板&rdquo;，定义出来的变量都具有相同的性质。也可以将结构体比作&ldquo;图纸&rdquo;，将结构体变量比作&ldquo;零件&rdquo;，根据同一张图纸生产出来的零件的特性都是一样的。<br />
+<br />
+你也可以在定义结构体的同时定义结构体变量：
+<pre class="c">
+struct stu{
+    char *name;  //姓名
+    int num;  //学号
+    int age;  //年龄
+    char group;  //所在学习小组
+    float score;  //成绩
+} stu1, stu2;</pre>
+将变量放在结构体定义的最后即可。<br />
+<br />
+如果只需要 stu1、stu2 两个变量，后面不需要再使用结构体名定义其他变量，那么在定义时也可以不给出结构体名，如下所示：
+<pre class="c">
+struct{  //没有写 stu
+    char *name;  //姓名
+    int num;  //学号
+    int age;  //年龄
+    char group;  //所在学习小组
+    float score;  //成绩
+} stu1, stu2;</pre>
+这样做书写简单，但是因为没有结构体名，后面就没法用该结构体定义新的变量。<br />
+<br />
+理论上讲结构体的各个成员在内存中是连续存储的，和数组非常类似，例如上面的结构体变量 stu1、stu2 的内存分布如下图所示，共占用 4+4+4+1+4 = 17 个字节。<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/1619146461-0.jpg" style="height: 32px; width: 446px" /></div>
+<br />
+但是在编译器的具体实现中，各个成员之间可能会存在缝隙，对于 stu1、stu2，成员变量 group 和 score 之间就存在 3 个字节的空白填充（见下图）。这样算来，stu1、stu2 其实占用了 17 + 3 = 20 个字节。<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/1619142941-1.jpg" style="height: 32px; width: 485px" /></div>
+<br />
+关于成员变量之间存在&ldquo;裂缝&rdquo;的原因，我们将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题中的《<a href="/view/569.html" target="_blank">C语言内存对齐，提高寻址效率</a>》一节中详细讲解。
+<h2>
+	成员的获取和赋值</h2>
+结构体和数组类似，也是一组数据的集合，整体使用没有太大的意义。数组使用下标<code>[ ]</code>获取单个元素，结构体使用点号<code>.</code>获取单个成员。获取结构体成员的一般格式为：
+<p class="info-box">
+	结构体变量名.成员名;</p>
+通过这种方式可以获取成员的值，也可以给成员赋值：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    struct{
+        char *name;  //姓名
+        int num;  //学号
+        int age;  //年龄
+        char group;  //所在小组
+        float score;  //成绩
+    } stu1;
+
+    //给结构体成员赋值
+    stu1.name = &quot;Tom&quot;;
+    stu1.num = 12;
+    stu1.age = 18;
+    stu1.group = &#39;A&#39;;
+    stu1.score = 136.5;
+
+    //读取结构体成员的值
+    printf(&quot;%s的学号是%d，年龄是%d，在%c组，今年的成绩是%.1f！\n&quot;, stu1.name, stu1.num, stu1.age, stu1.group, stu1.score);
+
+    return 0;
+}</pre>
+运行结果：<br />
+Tom的学号是12，年龄是18，在A组，今年的成绩是136.5！<br />
+<br />
+除了可以对成员进行逐一赋值，也可以在定义时整体赋值，例如：
+<pre class="c">
+struct{
+    char *name;  //姓名
+    int num;  //学号
+    int age;  //年龄
+    char group;  //所在小组
+    float score;  //成绩
+} stu1, stu2 = { &quot;Tom&quot;, 12, 18, &#39;A&#39;, 136.5 };</pre>
+不过整体赋值仅限于定义结构体变量的时候，在使用过程中只能对成员逐一赋值，这和数组的赋值非常类似。<br />
+<br />
+<span style="color: #b22222">需要注意的是，结构体是一种自定义的数据类型，是创建变量的模板，不占用内存空间；结构体变量才包含了实实在在的数据，需要内存空间来存储。</span></div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/struct/">结构体</a></span>
+                    <span class="next right"><a href="/view/533.html">C语言结构体数组</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/struct/";window.nextPageURL = "/view/533.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 532;
+window.arcId = "b89acQMPPWb0rcmxqwZvvz7NaTigKZEaGEfz79FDLpb6ZVYHJqjoMkCMGg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

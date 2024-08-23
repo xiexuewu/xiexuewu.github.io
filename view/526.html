@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>一道题目玩转指针数组和二级指针</title>
+<meta name="keywords" content="一道,题目,玩转,指针,数组,和,二级,请,大家," />
+<meta name="description" content="请大家先看下面的代码： #include stdio.hint main(){ char *lines[5] = { COSC1283/1284, Programming, Techniques, is, great fun }; char *str1 = lines[1]; char *str2 = *(lines + 3); char c1 = *(*(lines + 4) + 6); char c2 = (*lines + 5)" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>一道题目玩转指针数组和二级指针</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></span>
+                    <span class="next right"><a href="/view/527.html">二维数组指针（指向二维数组的指针）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/525.html";window.nextPageURL = "/view/527.html";</script>
+			<div id="arc-body">请大家先看下面的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int main(){
+    char *lines[5] = {
+        &quot;COSC1283/1284&quot;,
+        &quot;Programming&quot;,
+        &quot;Techniques&quot;,
+        &quot;is&quot;,
+        &quot;great fun&quot;
+    };
+
+    char *str1 = lines[1];
+    char *str2 = *(lines + 3);
+    char c1 = *(*(lines + 4) + 6);
+    char c2 = (*lines + 5)[5];
+    char c3 = *lines[0] + 2;
+
+    printf(&quot;str1 = %s\n&quot;, str1);
+    printf(&quot;str2 = %s\n&quot;, str2);
+    printf(&quot;  c1 = %c\n&quot;, c1);
+    printf(&quot;  c2 = %c\n&quot;, c2);
+    printf(&quot;  c3 = %c\n&quot;, c3);
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+str1 = Programming
+str2 = is
+  c1 = f
+  c2 = 2
+  c3 = E</pre>
+为了方便说明问题，我们将上面的字符<u><a href='/view/175.html' target='_blank'>串</a></u><u><a href='/view/181.html' target='_blank'>数组</a></u>改成下面的形式，它们都是等价的：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int main(){
+    char *string0 = &quot;COSC1283/1284&quot;;
+    char *string1 = &quot;Programming&quot;;
+    char *string2 = &quot;Techniques&quot;;
+    char *string3 = &quot;is&quot;;
+    char *string4 = &quot;great fun&quot;;
+   
+    char *lines[5];
+    lines[0] = string0;
+    lines[1] = string1;
+    lines[2] = string2;
+    lines[3] = string3;
+    lines[4] = string4;
+
+    char *str1 = lines[1];
+    char *str2 = *(lines + 3);
+    char c1 = *(*(lines + 4) + 6);
+    char c2 = (*lines + 5)[5];
+    char c3 = *lines[0] + 2;
+
+    printf(&quot;str1 = %s\n&quot;, str1);
+    printf(&quot;str2 = %s\n&quot;, str2);
+    printf(&quot;  c1 = %c\n&quot;, c1);
+    printf(&quot;  c2 = %c\n&quot;, c2);
+    printf(&quot;  c3 = %c\n&quot;, c3);
+
+    return 0;
+}</pre>
+<code>char *lines[5]</code>定义了一个指针数组，它的每个元素的类型都是<code>char *</code>。<span style="color: #b22222">在表达式中使用 lines 时，它会转换为一个类型为<code>char **</code>的指针，这样<code>*lines</code>就表示一个指向字符的指针，而<code>**lines</code>表示一个具体的字符，这一点很重要，读者一定要明白。</span><br />
+<br />
+指针是可以进行运算的，lines 表示数组的首地址（第0个元素的地址），lines+0、lines+1、lines+2 ... 分别表示第0、1、2 ...个元素的地址，*(lines+0)或lines[0]、*(lines+1)或lines[1]、*(lines+2)或lines[2] ... 分别是字符串 string0, string1, string2 ... 的首地址。所以：
+<p class="info-box">
+	*lines == *(lines+0) == lines[0] == string0<br />
+	*(lines+1) == lines[1] == string1<br />
+	*(lines+2) == lines[2] == string2<br />
+	...</p>
+<br />
+<span style="color: #b22222">注意：lines 是二级指针，*(lines+i) 是一级指针，**(lines+i) 才是具体的字符。</span><br />
+<br />
+上面的题目中：<br />
+<ul>
+	<li>
+		<span style="line-height: 1.5">lines[1]：它是一个指针，指向字符串string1，即 string1 的首地址。</span></li>
+	<li>
+		<span style="line-height: 1.5">*(lines + 3)：lines + 3 为数组中第 3 个元素的地址，*(lines + 3) 为第 3 个元素的值，它是一个指针，指向字符串 string3。</span></li>
+	<li>
+		<span style="line-height: 1.5">*(*(lines + 4) + 6)：*(lines + 4) + 6 == lines[4] + 6 == string4 + 6，表示字符串 string4 中第 6 个字符的地址，即 f 的地址，所以 *(*(lines + 4) + 6) 就表示字符 f。</span></li>
+	<li>
+		<span style="line-height: 1.5">(*lines + 5)[5]：*lines + 5 为字符串 string0 中第 5 个字符的地址，即 2 的地址，(*lines + 5)[5]等价于*(*lines + 5 + 5)，表示第10个字符，即 2。</span></li>
+	<li>
+		<span style="line-height: 1.5">*lines[0] + 2：lines[0] 为字符串 string0 中第 0 个字符的地址，即 C 的地址；*lines[0] 也就表示第 0 个字符，即字符 C。字符与整数运算，首先转换为该字符对应的 ASCII 码，然后再运算，所以 *lines[0] + 2 = 67 + 2 = 69，69 对应的字符为 E。</span></li>
+</ul>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></span>
+                    <span class="next right"><a href="/view/527.html">二维数组指针（指向二维数组的指针）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/525.html";window.nextPageURL = "/view/527.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 526;
+window.arcId = "759cRLjOzqArIpa9QnI+oAX7LbFn/UP5xegArv6Qlg7SmI+D0yWzQzOZ0Q";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

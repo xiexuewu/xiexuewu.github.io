@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>Linux GCC简明教程（使用GCC编写C语言程序）</title>
+<meta name="keywords" content="Linux,GCC,简明教程,使用,编写,语言程序,市," />
+<meta name="description" content="市面上常见的 Linux 都是发行版本，典型的 Linux 发行版包含了 Linux 内核、桌面环境（例如 GNOME、KDE、Unity 等）和各种常用的必备工具（例如 Shell、GCC、VIM、Firefox 等），国内使用较多的是" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>Linux GCC简明教程（使用GCC编写C语言程序）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/402.html">Xcode简明教程</a></span>
+                    <span class="next right"><a href="/view/399.html">VS安全函数问题问题</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/402.html";window.nextPageURL = "/view/399.html";</script>
+			<div id="arc-body">市面上常见的 Linux 都是发行版本，典型的 Linux 发行版包含了 Linux 内核、桌面环境（例如 GNOME、KDE、Unity 等）和各种常用的必备工具（例如 Shell、GCC、VIM、Firefox 等），国内使用较多的是 CentOS、Ubuntu（乌班图）、Debian、Redhat 等。<br />
+<br />
+Linux 主要应用于各种服务器（例如网站服务器、数据库服务器、DNS服务器、邮件服务器、路由器、负载均衡集群等），而不是我们常见的个人电脑。Linux 是服务器操作系统的绝对霸主，占据了 80% 以上的份额，在未来的服务器领域，Linux 是大势所趋。<br />
+<br />
+这其中，又以 CentOS 和 Ubuntu 为主，CentOS 占有压倒性的优势。服务器操作系统 80% 以上的市场份额被 Linux 占据，而 Linux 80% 以上的份额又被 CentOS 占据。本教程以 CentOS 为例来讲述如何编译C程序。
+<blockquote>
+	服务器上的 Linux 是不安装图形界面的，只能在控制台模式下使用，以尽量节省服务器资源。而我们在学习过程中使用的 Linux 是带图形界面的，以满足初学者的需求，降低学习成本。</blockquote>
+在 Linux 下我们仍然可以使用带界面的、傻瓜式的 IDE，例如&nbsp;CodeLite、CLion（收费）、Code::Blocks、Netbeans、Eclipse CDT 等。微软的 Visual Studio 也支持 Linux 了，在 Windows 下用惯了 Visual Studio 的用户也可以毫无障碍地迁移到 Linux 平台。<br />
+<br />
+但是作为初学者，我建议大家在命令行模式下编译 C语言程序，这样能够了解生成一个可执行程序的详细步骤，以及编译命令的各种设置选项，为以后的 Linux C/C++ 开发打好坚实的基础。
+<h2>
+	Gedit 编辑器</h2>
+在 Linux 下，很多程序员都推崇使用 Vim、Emacs 等命令行模式的编辑器，它们功能强大，逼格够高，不管有没有桌面环境都能使用，是 Linux C/C++ 程序员必备的神器。但是 Vim 和 Emacs 并不容易上手，使用者需要记忆很多命令和快捷键，熟练才能生巧，所以需要一段时间的学习和适应，这会增加初学者的学习成本，所以这里不推荐大家使用。<br />
+<br />
+CentOS 下有一款自带的图形界面编辑器，叫做&nbsp;<span style="color: rgb(0, 128, 0);">Gedit</span>。Gedit 是一款简单实用的文本编辑器，界面优雅，支持语法高亮，比 Vim 容易上手，它和 Windows 下的编辑器没有什么两样。本教程将 Gedit 作为C语言代码的编辑器。<br />
+<blockquote>
+	如果你使用的是其它的 Linux 发行版，可能没有默认安装 Gedit，这个时候就得自己安装，具体步骤为：
+	<p class="info-box">
+		$ sudo apt-add-repository ppa:ubuntu-on-rails/ppa&nbsp; &nbsp; #添加ubuntu的软件源<br />
+		$ sudo apt-get update&nbsp; &nbsp; #更新软件列表<br />
+		$ sudo apt-get install gedit-gmate&nbsp; &nbsp; #安装</p>
+</blockquote>
+首先，在我们自己的用户目录下新建一个名为<code>demo</code>的文件夹。这个文件夹专门用来存放与C语言相关的文件，例如源文件、目标文件、可执行文件等，它专供我们学习使用。
+<blockquote>
+	用户目录有时候也叫 home 文件夹或者主文件夹，它的路径是<code>/home/username</code>，其中 username 就是我们登录 Linux 时使用的用户名。Linux 会在 home 目录下为每一个登录的用户创建一个文件夹，专门用来存放该用户使用到的配置文件、文本文档、图片、可执行程序等，以和其他用户区分开来。</blockquote>
+接下来需要创建一个空白的 main.c 源文件。main.c 其实就是一个纯文本文件，并没有任何特殊格式，但是 Linux 不像 Windows，可以在右键菜单中新建文本文档，Linux 必须使用命令来创建，如下所示：
+<p class="info-box">
+	$ cd demo&nbsp; #进入 demo 目录，这是源文件所在的目录<br />
+	$ touch main.c&nbsp; #使用 touch 命令创建一个名为 main.c 的空文件<br />
+	$ gedit main.c&nbsp; #使用 gedit 命令编辑 main.c</p>
+这样就完成了源文件的创建，并能够使用 Gedit 编辑源文件了。<br />
+<br />
+在 Gedit 中输入下面的C语言代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    puts(&quot;Hello,World!&quot;);
+    return 0;
+}</pre>
+输入完成后的效果如下图所示：
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240822/2-240R2124Q0205.gif" /></div>
+<code>Ctrl+S</code>保存文件，就完成了源代码的编辑工作。此时需要关闭 Gedit 的窗口，<code>$ gedit main.c</code>命令才算执行结束，才能在控制台继续输入其它命令。<br />
+<br />
+注意，在 CentOS 下，使用<code>touch</code>命令创建完 main.c 后，进入 demo 目录，在右键菜单中也可以使用 Gedit 打开 main.c，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/10325WC9-2.jpg" /></div>
+<h2>
+	GCC 编译器</h2>
+Linux 下使用最广泛的 C/C++ 编译器是 GCC，大多数的 Linux 发行版本都默认安装，不管是开发人员还是初学者，一般都将 GCC 作为 Linux 下首选的编译工具。<br />
+<br />
+GCC 仅仅是一个编译器，没有界面，必须在命令行模式下使用。通过<code>gcc</code>命令就可以将源文件编译成可执行文件。
+<h4>
+	1) 生成可执行程序</h4>
+最简单的生成可执行文件的写法为：
+<p class="info-box">
+	$ cd demo&nbsp; #进入源文件所在的目录<br />
+	$ gcc main.c&nbsp; #在 gcc 命令后面紧跟源文件名</p>
+打开 demo 目录，会看到多了一个名为 a.out 的文件，这就是最终生成的可执行文件，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/10325W622-3.jpg" /></div>
+这样就一次性完成了编译和链接的全部过程，非常方便。
+<blockquote>
+	注意：不像 Windows，Linux 不以文件后缀来区分可执行文件，Linux 下的可执行文件后缀理论上可以是任意的，这里的<code>.out</code>只是用来表明它是 GCC 的输出文件。不管源文件的名字是什么，GCC 生成的可执行文件的默认名字始终是<code>a.out</code>。</blockquote>
+如果不想使用默认的文件名，那么可以通过<code>-o</code>选项来自定义文件名，例如：
+<p class="info-box">
+	$ gcc main.c -o main.out</p>
+这样生成的可执行程序的名字就是<code>main.out</code>。<br />
+<br />
+因为 Linux 下可执行文件的后缀仅仅是一种形式上的，所以可执行文件也可以不带后缀，例如：
+<p class="info-box">
+	$ gcc main.c -o main</p>
+这样生成的可执行程序的名字就是<code>main</code>。<br />
+<br />
+通过<code>-o</code>选项也可以将可执行文件输出到其他目录，并不一定非得在当前目录下，例如：
+<p class="info-box">
+	$ gcc main.c -o ./out/main.out</p>
+或者
+<p class="info-box">
+	$ gcc main.c -o out/main.out</p>
+表示将可执行文件输出到当前目录下的<code>out</code>目录，并命名为<code>main.out</code>。<code>./</code>表示当前目录，如果不写，默认也是当前目录。
+<blockquote>
+	注意：out 目录必须存在，如果不存在，gcc 命令不会自动创建，而是抛出一个错误。</blockquote>
+<h4>
+	2) 运行可执行程序</h4>
+上面我们生成了可执行程序，那么该如何运行它呢？很简单，在控制台中输入程序的名字就可以，如下所示：
+<p class="info-box">
+	$ ./a.out</p>
+<code>./</code>表示当前目录，整条命令的意思是运行当前目录下的 a.out 程序。如果不写<code>./</code>，Linux 会到系统路径下查找 a.out，而系统路径下显然不存在这个程序，所以会运行失败。
+<blockquote>
+	所谓系统路径，就是环境变量指定的路径，我们可以通过修改环境变量添加自己的路径，或者删除某个路径。很多时候，一条 Linux 命令对应一个可执行程序，如果执行命令时没有指明路径，那么就会到系统路径下查找对应的程序。</blockquote>
+输入完上面的命令，按下回车键，程序就开始执行了，它会将输出结果直接显示在控制台上，如下所示：
+<p class="info-box">
+	$ cd demo<br />
+	$ gcc main.c<br />
+	$ ./a.out<br />
+	Hello,World!<br />
+	$</p>
+如果程序在其它目录下，运行程序时还要带上目录的名字，例如：
+<p class="info-box">
+	$ ./out/main.out</p>
+或者
+<p class="info-box">
+	$ out/main.out</p>
+这个时候加不加<code>./</code>都一样，Linux 能够识别出<code>out</code>是一个目录，而不是一个命令，它默认会在当前路径下查找该目录，而不是去系统路径下查找，所以不加<code>./</code>也不会出错。<br />
+<br />
+注意，如果程序没有执行权限，可以使用<code>sudo</code>命令来增加权限，例如：
+<p class="info-box">
+	$ sudo chmod 777 a.out</p>
+<h2>
+	完整的演示</h2>
+为了让读者有一个更加全面的认识，我们不妨将上面两部分的内容连接起来，完整的演示一下从编辑源文件到运行可执行程序的全过程：
+<p class="info-box">
+	$ cd demo&nbsp; #进入源文件所在目录<br />
+	$ touch main.c&nbsp; #新建空白的源文件<br />
+	$ gedit main.c&nbsp; #编辑源文件<br />
+	$ gcc main.c&nbsp; #生成可执行程序<br />
+	$ ./a.out&nbsp; #运行可执行程序<br />
+	Hello,World!<br />
+	$&nbsp; &nbsp;#继续等待输入其它命令</p>
+<h2>
+	分步骤编译</h2>
+上面讲解的是通过<code>gcc</code>命令一次性完成编译和链接的整个过程，这样最方便，大家在学习C语言的过程中一般都这么做。实际上，<code>gcc</code>命令也可以将编译和链接分开，每次只完成一项任务。
+<h4>
+	1) 编译（Compile）</h4>
+将源文件编译成目标文件需要使用<code>-c</code>选项，例如：
+<p class="info-box">
+	gcc -c main.c</p>
+就将 main.c 编译为 main.o。打开 demo 目录，就会看到 main.o：<br />
+<br />
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/10325S3K-6.jpg" /></div>
+<br />
+对于微软编译器（内嵌在 Visual C++ 或者 Visual Studio 中），目标文件的后缀为<code>.obj</code>；对于 GCC 编译器，目标文件的后缀为<code>.o</code>。<br />
+<br />
+一个源文件会生成一个目标文件，多个源文件会生成多个目标文件，源文件数目和目标文件数目是一样的。通常情况下，默认的目标文件名字和源文件名字是一样的。<br />
+<br />
+如果希望自定义目标文件的名字，那么可以使用<code>-o</code>选项，例如：
+<p class="info-box">
+	gcc -c main.c -o a.o</p>
+这样生成的目标文件的名字就是 a.o。
+<h4>
+	2) 链接（Link）</h4>
+在<code>gcc</code>命令后面紧跟目标文件的名字，就可以将目标文件链接成为可执行文件，例如：
+<p class="info-box">
+	gcc main.o</p>
+就将 main.o 链接为 a.out。打开 demo 目录，就会看到 a.out。<br />
+<br />
+在<code>gcc</code>命令后面紧跟源文件名字或者目标文件名字都是可以的，<code>gcc</code>命令能够自动识别到底是源文件还是目标文件：如果是源文件，那么要经过编译和链接两个步骤才能生成可执行文件；如果是目标文件，只需要链接就可以了。<br />
+<br />
+使用<code>-o</code>选项仍然能够自定义可执行文件的名字，例如：
+<p class="info-box">
+	gcc main.o -o main.out</p>
+这样生成的可执行文件的名字就是 main.out。<br />
+<br />
+下面是一个完整的演示：
+<p class="info-box">
+	$ cd demo<br />
+	$ gcc -c main.c<br />
+	$ gcc main.o<br />
+	$ ./a.out<br />
+	Hello,World!<br />
+	$&nbsp;</p>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/402.html">Xcode简明教程</a></span>
+                    <span class="next right"><a href="/view/399.html">VS安全函数问题问题</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/402.html";window.nextPageURL = "/view/399.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 401;
+window.arcId = "0c05VZOQKfIrlCPG6Rd6GP0V7pxf8bncvAF9ErHvVDO3zOLdDBFIl5Du/A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

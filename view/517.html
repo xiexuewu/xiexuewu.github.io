@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言字符串指针（指向字符串的指针）详解</title>
+<meta name="keywords" content="语言,字符串,指针,指向,的,详解,语,言中,没有," />
+<meta name="description" content="C语言中没有特定的字符串类型，我们通常是将字符串放在一个字符数组中，这在《 C语言字符数组和字符串 》中已经进行了详细讲解，这里不妨再来演示一下： #include stdio.h#include stri" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言字符串指针（指向字符串的指针）详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/516.html">数组指针（指向数组的指针）</a></span>
+                    <span class="next right"><a href="/view/518.html">C语言数组灵活多变的访问形式</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/516.html";window.nextPageURL = "/view/518.html";</script>
+			<div id="arc-body">C语言中没有特定的字符<u><a href='/view/175.html' target='_blank'>串</a></u>类型，我们通常是将字符串放在一个字符<u><a href='/view/181.html' target='_blank'>数组</a></u>中，这在《<a href="/view/481.html" target="_blank">C语言字符数组和字符串</a>》中已经进行了详细讲解，这里不妨再来演示一下：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(){
+    char str[] = &quot;https://xiexuewu.github.io&quot;;
+    int len = strlen(str), i;
+    //直接输出字符串
+    printf(&quot;%s\n&quot;, str);
+    //每次输出一个字符
+    for(i=0; i&lt;len; i++){
+        printf(&quot;%c&quot;, str[i]);
+    }
+    printf(&quot;\n&quot;);
+    return 0;
+}</pre>
+运行结果：<br />
+https://xiexuewu.github.io<br />
+https://xiexuewu.github.io<br />
+<br />
+字符数组归根结底还是一个数组，上节讲到的关于指针和数组的规则同样也适用于字符数组。更改上面的代码，使用指针的方式来输出字符串：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(){
+    char str[] = &quot;https://xiexuewu.github.io&quot;;
+    char *pstr = str;
+    int len = strlen(str), i;
+
+    //使用*(pstr+i)
+    for(i=0; i&lt;len; i++){
+        printf(&quot;%c&quot;, *(pstr+i));
+    }
+    printf(&quot;\n&quot;);
+    //使用pstr[i]
+    for(i=0; i&lt;len; i++){
+        printf(&quot;%c&quot;, pstr[i]);
+    }
+    printf(&quot;\n&quot;);
+    //使用*(str+i)
+    for(i=0; i&lt;len; i++){
+        printf(&quot;%c&quot;, *(str+i));
+    }
+    printf(&quot;\n&quot;);
+
+    return 0;
+}</pre>
+运行结果：<br />
+https://xiexuewu.github.io<br />
+https://xiexuewu.github.io<br />
+https://xiexuewu.github.io<br />
+<br />
+除了字符数组，C语言还支持另外一种表示字符串的方法，就是直接使用一个指针指向字符串，例如：
+<pre class="c">
+char *str = &quot;https://xiexuewu.github.io&quot;;</pre>
+或者：
+<pre class="c">
+char *str;
+str = &quot;https://xiexuewu.github.io&quot;;</pre>
+字符串中的所有字符在内存中是连续排列的，str 指向的是字符串的第 0 个字符；我们通常将第 0 &nbsp;个字符的地址称为字符串的首地址。字符串中每个字符的类型都是<code>char</code>，所以 str 的类型也必须是<code>char *</code>。<br />
+<br />
+下面的例子演示了如何输出这种字符串：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(){
+    char *str = &quot;https://xiexuewu.github.io&quot;;
+    int len = strlen(str), i;
+   
+    //直接输出字符串
+    printf(&quot;%s\n&quot;, str);
+    //使用*(str+i)
+    for(i=0; i&lt;len; i++){
+        printf(&quot;%c&quot;, *(str+i));
+    }
+    printf(&quot;\n&quot;);
+    //使用str[i]
+    for(i=0; i&lt;len; i++){
+        printf(&quot;%c&quot;, str[i]);
+    }
+    printf(&quot;\n&quot;);
+
+    return 0;
+}</pre>
+运行结果：<br />
+https://xiexuewu.github.io<br />
+https://xiexuewu.github.io<br />
+https://xiexuewu.github.io<br />
+<br />
+这一切看起来和字符数组是多么地相似，它们都可以使用<code>%s</code>输出整个字符串，都可以使用<code>*</code>或<code>[ ]</code>获取单个字符，这两种表示字符串的方式是不是就没有区别了呢？<br />
+<br />
+<span style="color: #b22222">有！它们最根本的区别是在内存中的存储区域不一样，字符数组存储在全局数据区或<u><a href='/view/169.html' target='_blank'>栈</a></u>区，第二种形式的字符串存储在常量区。全局数据区和栈区的字符串（也包括其他数据）有读取和写入的权限，而常量区的字符串（也包括其他数据）只有读取权限，没有写入权限。</span>
+<blockquote>
+	关于全局数据区、栈区、常量区以及其他的内存分区，我们将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题中详细讲解，相信你必将有所顿悟，从根本上理解C语言。</blockquote>
+内存权限的不同导致的一个明显结果就是，字符数组在定义后可以读取和修改每个字符，而对于第二种形式的字符串，一旦被定义后就只能读取不能修改，任何对它的赋值都是错误的。<br />
+<br />
+我们将第二种形式的字符串称为<span style="color: #008000">字符串常量</span>，意思很明显，常量只能读取不能写入。请看下面的演示：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    char *str = &quot;Hello World!&quot;;
+    str = &quot;I love C!&quot;;  //正确
+    str[3] = &#39;P&#39;;  //错误
+
+    return 0;
+}</pre>
+这段代码能够正常编译和链接，但在运行时会出现<span style="color: #008000">段错误（Segment Fault）</span>或者<span style="color: #008000">写入位置错误</span>。<br />
+<br />
+第4行代码是正确的，可以更改指针变量本身的指向；第5行代码是错误的，不能修改字符串中的字符。
+<h2>
+	到底使用字符数组还是字符串常量</h2>
+在编程过程中如果只涉及到对字符串的读取，那么字符数组和字符串常量都能够满足要求；如果有写入（修改）操作，那么只能使用字符数组，不能使用字符串常量。<br />
+<br />
+获取用户输入的字符串就是一个典型的写入操作，只能使用字符数组，不能使用字符串常量，请看下面的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    char str[30];
+    gets(str);
+    printf(&quot;%s\n&quot;, str);
+
+    return 0;
+}</pre>
+运行结果：<br />
+C C++ Java Python JavaScript<br />
+C C++ Java Python JavaScript<br />
+<br />
+最后我们来总结一下，C语言有两种表示字符串的方法，一种是字符数组，另一种是字符串常量，它们在内存中的存储位置不同，使得字符数组可以读取和修改，而字符串常量只能读取不能修改。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/516.html">数组指针（指向数组的指针）</a></span>
+                    <span class="next right"><a href="/view/518.html">C语言数组灵活多变的访问形式</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/516.html";window.nextPageURL = "/view/518.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 517;
+window.arcId = "4c17GnHXxk+/Gfohu8RDH4gEbWWbJ57is7jesXWCa9poMxR1QDEFIkHbiw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

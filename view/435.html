@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言数据类型转换（自动类型转换+强制类型转换）</title>
+<meta name="keywords" content="语言,数据,类型,转换,自动,强制,数据,类型," />
+<meta name="description" content="数据类型转换就是将数据（变量、数值、表达式的结果等）从一种类型转换为另一种类型。 自动类型转换 自动类型转换就是编译器默默地、隐式地、偷偷地进行的数据类型转换，这种转" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/c/variable_datatype/">变量和数据类型</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/414.html">大话C语言变量和数据类型</a></dd><dd>3.2 <a href="/view/415.html">在屏幕上输出各种类型的数据</a></dd><dd>3.3 <a href="/view/416.html">C语言中的整数（short,int,long）</a></dd><dd>3.4 <a href="/view/417.html">二进制数、八进制数和十六进制数</a></dd><dd>3.5 <a href="/view/418.html">C语言中的正负数及其输出</a></dd><dd>3.6 <a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a></dd><dd>3.7 <a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/421.html">C语言中的小数（float,double）</a></dd><dd>3.9 <a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/view/423.html">在C语言中使用英文字符</a></dd><dd>3.11 <a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.12 <a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/427.html">C语言转义字符</a></dd><dd>3.14 <a href="/view/428.html">C语言中的几个重要概念</a></dd><dd>3.15 <a href="/view/430.html">C语言加减乘除运算</a></dd><dd>3.16 <a href="/view/431.html">C语言自增(++)和自减(--)</a></dd><dd>3.17 <a href="/view/432.html">变量的定义位置以及初始值</a></dd><dd>3.18 <a href="/view/433.html">运算符的优先级和结合性</a></dd><dd>3.19 <a href="/view/435.html">C语言数据类型转换</a></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言数据类型转换（自动类型转换+强制类型转换）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/433.html">运算符的优先级和结合性</a></span>
+                    <span class="next right"><a href="/c/io/">C语言输入输出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/433.html";window.nextPageURL = "/c/io/";</script>
+			<div id="arc-body">数据类型转换就是将数据（变量、数值、表达式的结果等）从一种类型转换为另一种类型。
+<h2>
+	自动类型转换</h2>
+<span style="color:#b22222;">自动类型转换就是编译器默默地、隐式地、偷偷地进行的数据类型转换，这种转换不需要程序员干预，会自动发生。</span><br />
+<br />
+1) 将一种类型的数据赋值给另外一种类型的变量时就会发生自动类型转换，例如：
+<p class="info-box">
+	float f = 100;</p>
+100 是 int 类型的数据，需要先转换为 float 类型才能赋值给变量 f。再如：
+<p class="info-box">
+	int n = f;</p>
+f 是 float 类型的数据，需要先转换为 int 类型才能赋值给变量 n。<br />
+<br />
+在赋值运算中，赋值号两边的数据类型不同时，需要把右边表达式的类型转换为左边变量的类型，这可能会导致数据失真，或者精度降低；所以说，自动类型转换并不一定是安全的。对于不安全的类型转换，编译器一般会给出警告。<br />
+<br />
+2) 在不同类型的混合运算中，编译器也会自动地转换数据类型，将参与运算的所有数据先转换为同一种类型，然后再进行计算。转换的规则如下：
+<ul>
+	<li>
+		转换按数据长度增加的方向进行，以保证数值不失真，或者精度不降低。例如，int 和 long 参与运算时，先把 int 类型的数据转成 long 类型后再进行运算。</li>
+	<li>
+		所有的浮点运算都是以双精度进行的，即使运算中只有&nbsp;float 类型，也要先转换为 double 类型，才能进行运算。</li>
+	<li>
+		char 和 short 参与运算时，必须先转换成 int 类型。</li>
+</ul>
+<br />
+下图对这种转换规则进行了更加形象地描述：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/1U6132444-0.png" style="height: 119px; width: 582px;" /></div>
+<blockquote>
+	unsigned 也即 unsigned int，此时可以省略 int，只写 unsigned。</blockquote>
+自动类型转换示例：
+<pre class="cpp">
+#include&lt;stdio.h&gt;
+int main(){
+    float PI = 3.14159;
+    int s1, r = 5;
+    double s2;
+    s1 = r * r * PI;
+    s2 = r * r * PI;
+    printf(&quot;s1=%d, s2=%f\n&quot;, s1, s2);
+
+    return 0;
+}</pre>
+运行结果：<br />
+s1=78, s2=78.539749<br />
+<br />
+在计算表达式<code>r*r*PI</code>时，r 和 PI 都被转换成 double 类型，表达式的结果也是 double 类型。但由于 s1 为整型，所以赋值运算的结果仍为整型，舍去了小数部分，导致数据失真。
+<h2>
+	强制类型转换</h2>
+自动类型转换是编译器根据代码的上下文环境自行判断的结果，有时候并不是那么&ldquo;智能&rdquo;，不能满足所有的需求。<span style="color:#b22222;">如果需要，程序员也可以自己在代码中明确地提出要进行类型转换，这称为强制类型转换。</span><br />
+<br />
+自动类型转换是编译器默默地、隐式地进行的一种类型转换，不需要在代码中体现出来；强制类型转换是程序员明确提出的、需要通过特定格式的代码来指明的一种类型转换。换句话说，自动类型转换不需要程序员干预，强制类型转换必须有程序员干预。<br />
+<br />
+强制类型转换的格式为：
+<pre class="info-box">
+(type_name) expression</pre>
+<code>type_name</code>为新类型名称，<code>expression</code>为表达式。例如：<br />
+<pre class="c">
+(float) a;  //将变量 a 转换为 float 类型
+(int)(x+y);  //把表达式 x+y 的结果转换为 int 整型
+(float) 100;  //将数值 100（默认为int类型）转换为 float 类型</pre>
+下面是一个需要强制类型转换的经典例子：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int sum = 103;  //总数
+    int count = 7;  //数目
+    double average;  //平均数
+    average = (double) sum / count;
+    printf(&quot;Average is %lf!\n&quot;, average);
+
+    return 0;
+}</pre>
+运行结果：<br />
+Average is 14.714286!<br />
+<br />
+sum 和 count 都是 int 类型，如果不进行干预，那么<code>sum / count</code>的运算结果也是 int 类型，小数部分将被丢弃；虽然是 average 是 double 类型，可以接收小数部分，但是心有余力不足，小数部分提前就被&ldquo;阉割&rdquo;了，它只能接收到整数部分，这就导致除法运算的结果严重失真。<br />
+<br />
+既然 average 是 double 类型，为何不充分利用，尽量提高运算结果的精度呢？为了达到这个目标，我们只要将 sum 或者 count 其中之一转换为 double 类型即可。上面的代码中，我们将 sum 强制转换为 double 类型，这样<code>sum / count</code>的结果也将变成 double 类型，就可以保留小数部分了，average 接收到的值也会更加精确。<br />
+<br />
+在这段代码中，有两点需要注意：
+<ul>
+	<li>
+		对于除法运算，如果除数和被除数都是整数，那么运算结果也是整数，小数部分将被直接丢弃；如果除数和被除数其中有一个是小数，那么运算结果也是小数。这一点已在《<a href="/view/430.html" target="_blank">C语言加减乘除运算</a>》中进行了详细说明。</li>
+	<li>
+		<code>( )</code>的优先级高于<code>/</code>，对于表达式<code>(double) sum / count</code>，会先执行<code>(double) sum</code>，将 sum 转换为 double 类型，然后再进行除法运算，这样运算结果也是 double 类型，能够保留小数部分。注意不要写作<code>(double) (sum / count)</code>，这样写运算结果将是 3.000000，仍然不能保留小数部分。</li>
+</ul>
+<h2>
+	类型转换只是临时性的</h2>
+无论是自动类型转换还是强制类型转换，都只是为了本次运算而进行的临时性转换，转换的结果也会保存到临时的内存空间，不会改变数据本来的类型或者值。请看下面的例子：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    double total = 400.8;  //总价
+    int count = 5;  //数目
+    double unit;  //单价
+    int total_int = (int)total;
+    unit = total / count;
+    printf(&quot;total=%lf, total_int=%d, unit=%lf\n&quot;, total, total_int, unit);
+
+    return 0;
+}</pre>
+运行结果：<br />
+total=400.800000, total_int=400, unit=80.160000<br />
+<br />
+注意看第 6 行代码，total 变量被转换成了 int 类型才赋值给 total_int 变量，而这种转换并未影响 total 变量本身的类型和值。如果 total 的值变了，那么 total 的输出结果将变为 400.000000；如果 total 的类型变了，那么 unit 的输出结果将变为 80.000000。
+<h2>
+	自动类型转换 VS 强制类型转换</h2>
+在C语言中，有些类型既可以自动转换，也可以强制转换，例如 int 到 double，float 到 int 等；而有些类型只能强制转换，不能自动转换，例如以后将要学到的 void * 到 int *，int 到 char * 等。<br />
+<br />
+可以自动转换的类型一定能够强制转换，但是，需要强制转换的类型不一定能够自动转换。现在我们学到的数据类型，既可以自动转换，又可以强制转换，以后我们还会学到一些只能强制转换而不能自动转换的类型。<br />
+<br />
+可以自动进行的类型转换一般风险较低，不会对程序带来严重的后果，例如，int 到 double 没有什么缺点，float 到 int 顶多是数值失真。只能强制进行的类型转换一般风险较高，或者行为匪夷所思，例如，char * 到 int * 就是很奇怪的一种转换，这会导致取得的值也很奇怪，再如，int 到 char * 就是风险极高的一种转换，一般会导致程序崩溃。<br />
+<br />
+使用强制类型转换时，程序员自己要意识到潜在的风险。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/433.html">运算符的优先级和结合性</a></span>
+                    <span class="next right"><a href="/c/io/">C语言输入输出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/433.html";window.nextPageURL = "/c/io/";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 435;
+window.arcId = "b9d7iJSuz74I4wM9oYmVZdMKV/YOmDwmrITQnPYYDdbaJi6vHnVt2QUELQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言对数组元素进行排序（冒泡排序法）</title>
+<meta name="keywords" content="语言,对,数组,元素,进行,排序,冒泡,法,在," />
+<meta name="description" content="在实际开发中，有很多场景需要我们将数组元素按照从大到小（或者从小到大）的顺序排列，这样在查阅数据时会更加直观，例如： 一个保存了班级学号的数组，排序后更容易分区好学" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言对数组元素进行排序（冒泡排序法）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></span>
+                    <span class="next right"><a href="/view/488.html">对C语言数组的总结</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/486.html";window.nextPageURL = "/view/488.html";</script>
+			<div id="arc-body">在实际开发中，有很多场景需要我们将<u><a href='/view/181.html' target='_blank'>数组</a></u>元素按照从大到小（或者从小到大）的顺序排列，这样在查阅数据时会更加直观，例如：
+<ul>
+	<li>
+		一个保存了班级学号的数组，排序后更容易分区好学生和坏学生；</li>
+	<li>
+		一个保存了商品单价的数组，排序后更容易看出它们的性价比。</li>
+</ul>
+<br />
+对数组元素进行排序的方法有很多种，比如<u><a href='/view/70.html' target='_blank'>冒泡排序</a></u>、归并排序、<u><a href='/view/72.html' target='_blank'>选择排序</a></u>、插入排序、快速排序等，其中最经典最需要掌握的是「冒泡排序」。<br />
+<br />
+以从小到大排序为例，冒泡排序的整体思想是这样的：
+<ul>
+	<li>
+		从数组头部开始，不断比较相邻的两个元素的大小，让较大的元素逐渐往后移动（交换两个元素的值），直到数组的末尾。经过第一轮的比较，就可以找到最大的元素，并将它移动到最后一个位置。</li>
+	<li>
+		第一轮结束后，继续第二轮。仍然从数组头部开始比较，让较大的元素逐渐往后移动，直到数组的倒数第二个元素为止。经过第二轮的比较，就可以找到次大的元素，并将它放到倒数第二个位置。</li>
+	<li>
+		以此类推，进行 n-1（n 为数组长度）轮&ldquo;冒泡&rdquo;后，就可以将所有的元素都排列好。</li>
+</ul>
+<br />
+整个排序过程就好像气泡不断从水里冒出来，最大的先出来，次大的第二出来，最小的最后出来，所以将这种排序方式称为<span style="color:#008000;">冒泡排序（Bubble Sort）</span>。<br />
+<br />
+下面我们以&ldquo;3&nbsp; 2&nbsp; 4&nbsp; 1&rdquo;为例对冒泡排序进行说明。<br />
+<br />
+第一轮&nbsp; 排序过程<br />
+3&nbsp; 2&nbsp; 4&nbsp; 1&nbsp;&nbsp;&nbsp; （最初）<br />
+2&nbsp; 3&nbsp; 4&nbsp; 1&nbsp; &nbsp; （比较3和2，交换）<br />
+2&nbsp; 3&nbsp; 4&nbsp; 1&nbsp;&nbsp;&nbsp; （比较3和4，不交换）<br />
+2&nbsp; 3&nbsp; 1&nbsp; 4&nbsp;&nbsp;&nbsp; （比较4和1，交换）<br />
+第一轮结束，最大的数字 4 已经在最后面，因此第二轮排序只需要对前面三个数进行比较。<br />
+<br />
+第二轮&nbsp; 排序过程<br />
+2&nbsp; 3&nbsp; 1&nbsp; 4 （第一轮排序结果）<br />
+2&nbsp; 3&nbsp; 1&nbsp; 4 （比较2和3，不交换）<br />
+2&nbsp; 1&nbsp; 3&nbsp; 4 （比较3和1，交换）<br />
+第二轮结束，次大的数字 3 已经排在倒数第二个位置，所以第三轮只需要比较前两个元素。<br />
+<br />
+第三轮&nbsp; 排序过程<br />
+2&nbsp; 1&nbsp; 3&nbsp; 4&nbsp; （第二轮排序结果）<br />
+1&nbsp; 2&nbsp; 3&nbsp; 4&nbsp; （比较2和1，交换）<br />
+<br />
+至此，排序结束。
+<h2>
+	算法总结及实现</h2>
+对拥有 n 个元素的数组 R[n] 进行 n-1 轮比较。<br />
+<br />
+第一轮，逐个比较 (R[1], R[2]),&nbsp; (R[2], R[3]),&nbsp; (R[3], R[4]),&nbsp; &hellip;&hellip;.&nbsp; (R[N-1], R[N])，最大的元素被移动到 R[n] 上。<br />
+<br />
+第二轮，逐个比较 (R[1], R[2]),&nbsp; (R[2], R[3]),&nbsp; (R[3], R[4]),&nbsp; &hellip;&hellip;.&nbsp; (R[N-2], R[N-1])，次大的元素被移动到 R[n-1] 上。<br />
+。。。。。。<br />
+以此类推，直到整个数组从小到大排序。<br />
+<br />
+具体的代码实现如下所示：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int nums[10] = {4, 5, 2, 10, 7, 1, 8, 3, 6, 9};
+    int i, j, temp;
+
+    //<u><a href='/view/70.html' target='_blank'>冒泡排序算法</a></u>：进行 n-1 轮比较
+    for(i=0; i&lt;10-1; i++){
+        //每一轮比较前 n-1-i 个，也就是说，已经排序好的最后 i 个不用比较
+        for(j=0; j&lt;10-1-i; j++){
+            if(nums[j] &gt; nums[j+1]){
+                temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;
+            }
+        }
+    }
+   
+    //输出排序后的数组
+    for(i=0; i&lt;10; i++){
+        printf(&quot;%d &quot;, nums[i]);
+    }
+    printf(&quot;\n&quot;);
+   
+    return 0;
+}</pre>
+运行结果：<br />
+1 2 3 4 5 6 7 8 9 10
+<h2>
+	优化算法</h2>
+上面的算法是大部分教材中提供的算法，其中有一点是可以优化的：当比较到第 i 轮的时候，如果剩下的元素已经排序好了，那么就不用再继续比较了，跳出循环即可，这样就减少了比较的次数，提高了执行效率。<br />
+<br />
+未经优化的算法一定会进行 n-1 轮比较，经过优化的算法最多进行 n-1 轮比较，高下立判。<br />
+<br />
+优化后的算法实现如下所示：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    int nums[10] = {4, 5, 2, 10, 7, 1, 8, 3, 6, 9};
+    int i, j, temp, isSorted;
+   
+    //优化算法：最多进行 n-1 轮比较
+    for(i=0; i&lt;10-1; i++){
+        isSorted = 1;  //假设剩下的元素已经排序好了
+        for(j=0; j&lt;10-1-i; j++){
+            if(nums[j] &gt; nums[j+1]){
+                temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;
+                isSorted = 0;  //一旦需要交换数组元素，就说明剩下的元素没有排序好
+            }
+        }
+        if(isSorted) break; //如果没有发生交换，说明剩下的元素已经排序好了
+    }
+
+    for(i=0; i&lt;10; i++){
+        printf(&quot;%d &quot;, nums[i]);
+    }
+    printf(&quot;\n&quot;);
+   
+    return 0;
+}</pre>
+我们额外设置了一个变量 isSorted，用它作为标志，值为&ldquo;真&rdquo;表示剩下的元素已经排序好了，值为&ldquo;假&rdquo;表示剩下的元素还未排序好。<br />
+<br />
+每一轮比较之前，我们预先假设剩下的元素已经排序好了，并将 isSorted 设置为&ldquo;真&rdquo;，一旦在比较过程中需要交换元素，就说明假设是错的，剩下的元素没有排序好，于是将 isSorted 的值更改为&ldquo;假&rdquo;。<br />
+<br />
+每一轮循环结束后，通过检测 isSorted 的值就知道剩下的元素是否排序好。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></span>
+                    <span class="next right"><a href="/view/488.html">对C语言数组的总结</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/486.html";window.nextPageURL = "/view/488.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 487;
+window.arcId = "dd3fQYLkjX2fSIUCg9RAJ+Tfsm0VxkXSTuy9pqGtystFSRIwpd2PGIKgxA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

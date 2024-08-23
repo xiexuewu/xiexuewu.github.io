@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言指针变量的定义和使用（精华）</title>
+<meta name="keywords" content="语言,指针,变量,的,定,义和,使用,精华,数据," />
+<meta name="description" content="数据在内存中的地址也称为指针，如果一个变量存储了一份数据的指针，我们就称它为 指针变量 。 在C语言中，允许用一个变量来存放指针，这种变量称为指针变量。指针变量的值就是" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言指针变量的定义和使用（精华）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/513.html">1分钟彻底理解指针的概念</a></span>
+                    <span class="next right"><a href="/view/515.html">C语言指针变量的运算</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/513.html";window.nextPageURL = "/view/515.html";</script>
+			<div id="arc-body">数据在内存中的地址也称为指针，如果一个变量存储了一份数据的指针，我们就称它为<strong><span style="color: #008000">指针变量</span></strong>。<br />
+<br />
+在C语言中，允许用一个变量来存放指针，这种变量称为指针变量。指针变量的值就是某份数据的地址，这样的一份数据可以是<u><a href='/view/181.html' target='_blank'>数组</a></u>、字符<u><a href='/view/175.html' target='_blank'>串</a></u>、函数，也可以是另外的一个普通变量或指针变量。<br />
+<br />
+现在假设有一个 char 类型的变量 c，它存储了字符 &#39;K&#39;（ASCII码为十进制数 75），并占用了地址为 0X11A 的内存（地址通常用十六进制表示）。另外有一个指针变量 p，它的值为 0X11A，正好等于变量 c 的地址，这种情况我们就称 p 指向了 c，或者说 p 是指向变量 c 的指针。
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/15233613X-0.png" style="height: 68px; width: 121px" /></div>
+<h2>
+	定义指针变量</h2>
+定义指针变量与定义普通变量非常类似，不过要在变量名前面加星号<code>*</code>，格式为：
+<p class="info-box">
+	datatype *name;</p>
+或者
+<p class="info-box">
+	datatype *name = value;</p>
+<code>*</code>表示这是一个指针变量，<code>datatype</code>表示该指针变量所指向的数据的类型 。例如：
+<pre class="c">
+int *p1;</pre>
+p1&nbsp;是一个指向 int 类型数据的指针变量，至于 p1 究竟指向哪一份数据，应该由赋予它的值决定。再如：
+<pre class="c">
+int a = 100;
+int *p_a = &amp;a;</pre>
+在定义指针变量 p_a 的同时对它进行初始化，并将变量 a 的地址赋予它，此时 p_a 就指向了 a。值得注意的是，p_a 需要的一个地址，a 前面必须要加取地址符<code>&amp;</code>，否则是不对的。<br />
+<br />
+和普通变量一样，指针变量也可以被多次写入，只要你想，随时都能够改变指针变量的值，请看下面的代码：
+<pre class="c">
+//定义普通变量
+float a = 99.5, b = 10.6;
+char c = &#39;@&#39;, d = &#39;#&#39;;
+//定义指针变量
+float *p1 = &amp;a;
+char *p2 = &amp;c;
+//修改指针变量的值
+p1 = &amp;b;
+p2 = &amp;d;</pre>
+<code>*</code>是一个特殊符号，表明一个变量是指针变量，定义 p1、p2 时必须带<code>*</code>。而给 p1、p2 赋值时，因为已经知道了它是一个指针变量，就没必要多此一举再带上<code>*</code>，后边可以像使用普通变量一样来使用指针变量。<span style="color: #b22222">也就是说，定义指针变量时必须带<code>*</code>，给指针变量赋值时不能带<code>*</code>。</span><br />
+<br />
+假设变量 a、b、c、d 的地址分别为 0X1000、0X1004、0X2000、0X2004，下面的示意图很好地反映了 p1、p2 指向的变化：
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/15233BL4-1.jpg" style="height: 383px; width: 483px" /></div>
+需要强调的是，p1、p2 的类型分别是<code>float*</code>和<code>char*</code>，而不是<code>float</code>和<code>char</code>，它们是完全不同的数据类型，读者要引起注意。<br />
+<br />
+指针变量也可以连续定义，例如：
+<pre class="c">
+int *a, *b, *c;  //a、b、c 的类型都是 int*</pre>
+注意每个变量前面都要带<code>*</code>。如果写成下面的形式，那么只有 a 是指针变量，b、c 都是类型为 int 的普通变量：
+<pre class="c">
+int *a, b, c;</pre>
+<h2>
+	通过指针变量取得数据</h2>
+指针变量存储了数据的地址，通过指针变量能够获得该地址上的数据，格式为：
+<p class="info-box">
+	*pointer;</p>
+这里的<code>*</code>称为<span style="color: #008000">指针运算符</span>，用来取得某个地址上的数据，请看下面的例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int main(){
+    int a = 15;
+    int *p = &amp;a;
+    printf(&quot;%d, %d\n&quot;, a, *p);  //两种方式都可以输出a的值
+    return 0;
+}</pre>
+运行结果：<br />
+15, 15<br />
+<br />
+假设 a 的地址是 0X1000，p 指向 a 后，p 本身的值也会变为 0X1000，*p 表示获取地址 0X1000 上的数据，也即变量 a 的值。从运行结果看，*p 和 a 是等价的。<br />
+<br />
+上节我们说过，CPU 读写数据必须要知道数据在内存中的地址，普通变量和指针变量都是地址的助记符，虽然通过 *p 和 a 获取到的数据一样，但它们的运行过程稍有不同：a 只需要一次运算就能够取得数据，而 *p 要经过两次运算，多了一层&ldquo;间接&rdquo;。<br />
+<br />
+假设变量 a、p 的地址分别为 0X1000、0XF0A0，它们的指向关系如下图所示：
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/15233B431-2.jpg" style="height: 115px; width: 264px" /></div>
+程序被编译和链接后，a、p 被替换成相应的地址。使用 *p 的话，要先通过地址 0XF0A0 取得变量 p 本身的值，这个值是变量 a 的地址，然后再通过这个值取得变量 a 的数据，前后共有两次运算；而使用 a 的话，可以通过地址 0X1000 直接取得它的数据，只需要一步运算。<br />
+<br />
+<span style="color: #b22222">也就是说，使用指针是间接获取数据，使用变量名是直接获取数据，前者比后者的代价要高。</span><br />
+<br />
+指针除了可以获取内存上的数据，也可以修改内存上的数据，例如：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int main(){
+    int a = 15, b = 99, c = 222;
+    int *p = &amp;a;  //定义指针变量
+    *p = b;  //通过指针变量修改内存上的数据
+    c = *p;  //通过指针变量获取内存上的数据
+    printf(&quot;%d, %d, %d, %d\n&quot;, a, b, c, *p);
+    return 0;
+}</pre>
+运行结果：<br />
+99, 99, 99, 99<br />
+<br />
+*p 代表的是 a 中的数据，它等价于 a，可以将另外的一份数据赋值给它，也可以将它赋值给另外的一个变量。<br />
+<br />
+<code>*</code>在不同的场景下有不同的作用：<code>*</code>可以用在指针变量的定义中，表明这是一个指针变量，以和普通变量区分开；使用指针变量时在前面加<code>*</code>表示获取指针指向的数据，或者说表示的是指针指向的数据本身。<br />
+<br />
+也就是说，定义指针变量时的<code>*</code>和使用指针变量时的<code>*</code>意义完全不同。以下面的语句为例：
+<pre class="c">
+int *p = &amp;a;
+*p = 100;</pre>
+第1行代码中<code>*</code>用来指明 p 是一个指针变量，第2行代码中<code>*</code>用来获取指针指向的数据。<br />
+<br />
+需要注意的是，给指针变量本身赋值时不能加<code>*</code>。修改上面的语句：
+<pre class="c">
+int *p;
+p = &amp;a;
+*p = 100;</pre>
+第2行代码中的 p 前面就不能加<code>*</code>。<br />
+<br />
+指针变量也可以出现在普通变量能出现的任何表达式中，例如：
+<pre class="c">
+int x, y, *px = &amp;x, *py = &amp;y;
+y = *px + 5;  //表示把x的内容加5并赋给y，*px+5相当于(*px)+5
+y = ++*px;  //px的内容加上1之后赋给y，++*px相当于++(*px)
+y = *px++;  //相当于y=*(px++)
+py = px;  //把一个指针的值赋给另一个指针</pre>
+<br />
+【示例】通过指针交换两个变量的值。
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int main(){
+    int a = 100, b = 999, temp;
+    int *pa = &amp;a, *pb = &amp;b;
+    printf(&quot;a=%d, b=%d\n&quot;, a, b);
+    /*****开始交换*****/
+    temp = *pa;  //将a的值先保存起来
+    *pa = *pb;  //将b的值交给a
+    *pb = temp;  //再将保存起来的a的值交给b
+    /*****结束交换*****/
+    printf(&quot;a=%d, b=%d\n&quot;, a, b);
+    return 0;
+}</pre>
+运行结果：<br />
+a=100, b=999<br />
+a=999, b=100<br />
+<br />
+从运行结果可以看出，a、b 的值已经发生了交换。需要注意的是临时变量 temp，它的作用特别重要，因为执行<code>*pa = *pb;</code>语句后 a 的值会被 b 的值覆盖，如果不先将 a 的值保存起来以后就找不到了。<br />
+<h2>
+	关于 * 和 &amp; 的谜题</h2>
+假设有一个 int 类型的变量 a，pa 是指向它的指针，那么<code>*&amp;a</code>和<code>&amp;*pa</code>分别是什么意思呢？<br />
+<br />
+<code>*&amp;a</code>可以理解为<code>*(&amp;a)</code>，<code>&amp;a</code>表示取变量 a 的地址（等价于 pa），<code>*(&amp;a)</code>表示取这个地址上的数据（等价于 *pa），绕来绕去，又回到了原点，<code>*&amp;a</code>仍然等价于 a。<br />
+<br />
+<code>&amp;*pa</code>可以理解为<code>&amp;(*pa)</code>，<code>*pa</code>表示取得 pa 指向的数据（等价于 a），<code>&amp;(*pa)</code>表示数据的地址（等价于 &amp;a），所以<code>&amp;*pa</code>等价于 pa。
+<h2>
+	对星号<code>*</code>的总结</h2>
+在我们目前所学到的语法中，星号<code>*</code>主要有三种用途：
+<ul>
+	<li>
+		表示乘法，例如<code>int a = 3, b = 5, c; &nbsp;c = a * b;</code>，这是最容易理解的。</li>
+	<li>
+		表示定义一个指针变量，以和普通变量区分开，例如<code>int a = 100; &nbsp;int *p = &amp;a;</code>。</li>
+	<li>
+		表示获取指针指向的数据，是一种间接操作，例如<code>int a, b, *p = &amp;a; &nbsp;*p = 100; &nbsp;b = *p;</code>。</li>
+</ul>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/513.html">1分钟彻底理解指针的概念</a></span>
+                    <span class="next right"><a href="/view/515.html">C语言指针变量的运算</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/513.html";window.nextPageURL = "/view/515.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 514;
+window.arcId = "f4b4chLs/ei610v2PS1C9RqTpjoghz2hmA9WDLVvPlKRnbs8DLmNYa+F6Q";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数组到底在什么时候会转换为指针</title>
+<meta name="keywords" content="数组,到底,在,什么时候,会,转换,为,指针,数组," />
+<meta name="description" content="数组名的本意是表示一组数据的集合，它和普通变量一样，都用来指代一块内存，但在使用过程中，数组名有时候会转换为指向数据集合的指针（地址），而不是表示数据集合本身，这" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>数组到底在什么时候会转换为指针</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></span>
+                    <span class="next right"><a href="/view/525.html">指针数组（数组每个元素都是指针）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/523.html";window.nextPageURL = "/view/525.html";</script>
+			<div id="arc-body"><u><a href='/view/181.html' target='_blank'>数组</a></u>名的本意是表示一组数据的集合，它和普通变量一样，都用来指代一块内存，但在使用过程中，数组名有时候会转换为指向数据集合的指针（地址），而不是表示数据集合本身，这在前面的例子中已经被多次证实。<br />
+<br />
+数据集合包含了多份数据，直接使用一个集合没有明确的含义，将数组名转换为指向数组的指针后，可以很容易地访问其中的任何一份数据，使用时的语义更加明确。<br />
+<br />
+C语言标准规定，当数组名作为数组定义的标识符（也就是定义或声明数组时）、sizeof 或 &amp; 的操作数时，它才表示整个数组本身，在其他的表达式中，数组名会被转换为指向第 0 个元素的指针（地址）。<br />
+<br />
+数组和指针的关系颇像诗和词的关系，它们都是一种文学形式，有不少共同之处，但在实际的表现手法上又各有特色。<br />
+<h2>
+	再谈数组下标[ ]</h2>
+C语言标准还规定，数组下标与指针的偏移量相同。通俗地理解，就是对数组下标的引用总是可以写成&ldquo;一个指向数组的起始地址的指针加上偏移量&rdquo;。假设现在有一个数组 a 和指针变量 p，它们的定义形式为：
+<pre class="c">
+int a = {1, 2, 3, 4, 5}, *p, i = 2;</pre>
+读者可以通过以下任何一种方式来访问 a[i]：<br />
+<table style="margin-left: 0px">
+	<tbody>
+		<tr>
+			<td style="border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 0px; border-top-width: 0px">
+				<p class="info-box" style="border-top: #888 1px solid; border-right: #888 1px solid; width: 70px; border-bottom: #888 1px solid; margin: 0px 24px 0px 0px; border-left: #888 1px solid">
+					p = a;<br />
+					p[i];</p>
+			</td>
+			<td style="border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 0px; border-top-width: 0px">
+				<p class="info-box" style="border-top: #888 1px solid; border-right: #888 1px solid; width: 70px; border-bottom: #888 1px solid; margin: 0px 24px 0px 0px; border-left: #888 1px solid">
+					p = a;<br />
+					*(p + i);</p>
+			</td>
+			<td style="border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 0px; border-top-width: 0px">
+				<p class="info-box" style="border-top: #888 1px solid; border-right: #888 1px solid; width: 70px; border-bottom: #888 1px solid; margin: 0px 24px 0px 0px; border-left: #888 1px solid">
+					p = a + i;<br />
+					*p;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+对数组的引用 a[i] 在编译时总是被编译器改写成<code>*(a+i)</code>的形式，C语言标准也要求编译器必须具备这种行为。<br />
+<br />
+取下标操作符<code>[ ]</code>是建立在指针的基础上，它的作用是使一个指针和一个整数相加，产生出一个新的指针，然后从这个新指针（新地址）上取得数据；假设指针的类型为<code>T *</code>，所产生的结果的类型就是<code>T</code>。<br />
+<br />
+取下标操作符的两个操作数是可以交换的，它并不在意操作数的先后顺序，就像在加法中 3+5 和 5+3 并没有什么不一样。以上面的数组 a 为例，如果希望访问第 3 个元素，那么可以写作<code>a[3]</code>，也可以写作<code>3[a]</code>，这两种形式都是正确的，只不过后面的形式从不曾使用，它除了可以把初学者搞晕之外，实在没有什么实际的意义。
+<blockquote>
+	a[3] 等价于 *(a + 3)，3[a] 等价于 *(3 + a)，仅仅是把加法的两个操作数调换了位置。</blockquote>
+使用下标时，编译器会自动把下标的步长调整到数组元素的大小。数组 a 中每个元素都是 int 类型，长度为 4 个字节，那么<code>a[i+1]</code>和<code>a[i]</code>在内存中的距离是 4（而不是 1）。
+<h2>
+	数组作函数参数</h2>
+C语言标准规定，作为&ldquo;类型的数组&rdquo;的形参应该调整为&ldquo;类型的指针&rdquo;。在函数形参定义这个特殊情况下，编译器必须把数组形式改写成指向数组第 0 个元素的指针形式。编译器只向函数传递数组的地址，而不是整个数组的拷贝。<br />
+<br />
+这种隐式转换意味着下面三种形式的函数定义是完全等价的：
+<pre class="c">
+void func(int *parr){ ...... }
+void func(int arr[]){ ...... }
+void func(int arr[5]){ ...... }</pre>
+在函数内部，arr 会被转换成一个指针变量，编译器为 arr 分配 4 个字节的内存，用 sizeof(arr) 求得的是指针变量的长度，而不是数组长度。要想在函数内部获得数组长度必须额外增加一个参数，在调用函数之前求得数组长度，这在《<a href="/view/519.html" target="_blank">C语言指针变量作为函数参数</a>》一节已经重点强调过。<br />
+<br />
+参数传递是一次赋值的过程，赋值也是一个表达式，函数调用时不管传递的是数组名还是数组指针，效果都是一样的，相当于给一个指针变量赋值。<br />
+<br />
+把作为形参的数组和指针等同起来是出于效率方面的考虑。数组是若干类型相同的数据的集合，数据的数目没有限制，可能只有几个，也可能成千上万，如果要传递整个数组，无论在时间还是内存空间上的开销都可能非常大。而且绝大部分情况下，我们其实并不需要整个数组的拷贝，我们只想告诉函数在那一时刻对哪个特定的数组感兴趣。
+<h2>
+	关于数组和指针可交换性的总结</h2>
+1) 用 a[i] 这样的形式对数组进行访问总是会被编译器改写成（或者说解释为）像 *(a+i) 这样的指针形式。<br />
+<br />
+2) 指针始终是指针，它绝不可以改写成数组。你可以用下标形式访问数组，一般都是指针作为函数参数时，而且你知道实际传递给函数的是一个数组。<br />
+<br />
+3) 在特定的环境中，也就是数组作为函数形参，也只有这种情况，一个数组可以看做是一个指针。作为函数形参的数组始终会被编译器修改成指向数组第一个元素的指针。<br />
+<br />
+3) 当希望向函数传递数组时，可以把函数参数定义为数组形式（可以指定长度也可以不指定长度），也可以定义为指针。不管哪种形式，在函数内部都要作为指针变量对待。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></span>
+                    <span class="next right"><a href="/view/525.html">指针数组（数组每个元素都是指针）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/523.html";window.nextPageURL = "/view/525.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 524;
+window.arcId = "920fK0pNFe+BDUil1egFi/Tr3USxVKbRtTGs0fZ42Kv1gRq91SoNLEvlxA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

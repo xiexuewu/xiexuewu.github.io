@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言的三套标准：C89、C99和C11</title>
+<meta name="keywords" content="语言,的,三套,标准,C89,、,C99,和,C11,我们," />
+<meta name="description" content="我们今天使用的 Windows、Linux、Mac OS 等操作系统都是由一种叫做 Unix 的系统演化而来。Unix 作为80年代主流的操作系统，是整个软件工业的基础，是现代操作系统的开山鼻祖，C语言就是为" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">2</span> <a href="/c/begin/">C语言初探</a> </dd><dl class="dl-sub"><dd>2.1 <a href="/view/374.html">第一个C语言程序</a></dd><dd>2.2 <a href="/view/375.html">选择正确的输入法，严格区分中英文</a></dd><dd>2.3 <a href="/view/376.html">什么是源文件？</a></dd><dd>2.4 <a href="/view/377.html">什么是编译和链接？</a></dd><dd>2.5 <a href="/view/378.html">主流C语言编译器有哪些？</a></dd><dd>2.6 <a href="/view/379.html">什么是IDE（集成开发环境）？</a></dd><dd>2.7 <a href="/view/380.html">什么是工程/项目？</a></dd><dd>2.8 <a href="/view/381.html">哪款C语言编译器（IDE）适合初学者？</a></dd><dd>2.9 <a href="/view/405.html">C语言的三套标准：C89、C99和C11</a></dd><dd>2.10 <a href="/view/404.html">如何在手机上编写C语言代码？</a></dd><dd>2.11 <a href="/view/406.html">C语言为什么有那么多编译器？</a></dd><dd>2.12 <a href="/view/407.html">程序安装是怎么回事？</a></dd><dd>2.13 <a href="/view/408.html">制作安装包，让用户安装程序</a></dd><dd>2.14 <a href="/view/409.html">C语言程序的错误和警告</a></dd><dd>2.15 <a href="/view/410.html">分析第一个C语言程序</a></dd><dd>2.16 <a href="/view/411.html">C语言代码中的空白符</a></dd><dd>2.17 <a href="/view/413.html">一个真正带界面的C语言程序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.18 <a href="/view/412.html">彩色版的C语言，让文字更漂亮</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言的三套标准：C89、C99和C11</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/381.html">哪款C语言编译器（IDE）适合初学者？</a></span>
+                    <span class="next right"><a href="/view/404.html">如何在手机上编写C语言代码？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/381.html";window.nextPageURL = "/view/404.html";</script>
+			<div id="arc-body">我们今天使用的 Windows、Linux、Mac OS 等操作系统都是由一种叫做 Unix 的系统演化而来。Unix 作为 80 年代主流的操作系统，是整个软件工业的基础，是现代操作系统的开山鼻祖，C语言就是为 Unix 而生的。<br />
+<br />
+Unix 和 C语言的开发者是同一人，名字叫<span style="color: #008000">丹尼斯&middot;里奇（Dennis MacAlistair Ritchie）</span>。<br />
+<br />
+<div style="text-align: center">
+	<img alt="丹尼斯·里奇（Dennis MacAlistair Ritchie）" src="/uploads/allimg/240820/1111123137-0.jpg" /><br />
+	C语言和 Unix 之父&mdash;&mdash;丹尼斯&middot;里奇</div>
+<blockquote>
+	2011 年 10 月 12 日（北京时间为 10 月 13 日），丹尼斯&middot;里奇去世，享年 70 岁。</blockquote>
+<h2>
+	C语言的诞生</h2>
+1967 年，26 岁的丹尼斯&middot;里奇进入贝尔实验室开发 Unix，并于 1969 年圣诞节前推出第一个试运行版本。这个时候的 Unix 是用汇编语言写的，移植性非常差，要想让 Unix 运行在不同型号的机器上，就得针对每个型号的机器重写一遍操作系统，这显然是一个不可能完成的任务。<br />
+<br />
+<span style="color: #b22222">为了提高通用性和开发效率，丹尼斯&middot;里奇决定发明一种新的编程语言&mdash;&mdash;C语言。</span>紧接着，丹尼斯&middot;里奇就用 C语言改写了 Unix 上的 C语言编译器，他的同事汤姆森则使用 C语言重写了 Unix，使它成为一种通用性强、移植简单的操作系统，从此开创了计算机编程史上的新篇章，C语言也成为了操作系统专用语言。
+<h2>
+	C89 标准</h2>
+到了 80 年代，C语言越来越流行，广泛被业界使用，从大型主机到小型微机，各个厂商群雄并起，推出了多款C语言的编译器。这些编译器根据行业和厂商自己的需求，进行了各种扩展，C语言进入了春秋战国时代，逐渐演变成一个松散杂乱的大家族。<br />
+<br />
+为统一 C语言版本，1983 年美国国家标准局（American National Standards Institute，简称 ANSI）成立了一个委员会，专门来制定 C语言标准。1989 年 C语言标准被批准，被称为 ANSI X3.159-1989 &quot;Programming Language C&quot;。这个版本的 C语言标准通常被称为&nbsp;<span style="color: #008000">ANSI C</span>。又由于这个版本是 89 年完成制定的，因此也被称为 <span style="color: #008000">C89</span>。<br />
+<br />
+后来 ANSI 把这个标准提交到 ISO（国际化标准组织），1990 年被 ISO 采纳为国际标准，称为 <span style="color: #008000">ISO C</span>。又因为这个版本是1990年发布的，因此也被称为&nbsp;<span style="color: #008000">C90</span>。<br />
+<br />
+ANSI C（C89）与 ISO C（C90）内容基本相同，主要是格式组织不一样。<br />
+<br />
+因为 ANSI 与 ISO 的C标准内容基本相同，所以对于C标准，可以称为 ANSI C，也可以说是 ISO C，或者 ANSI / ISO C。<span style="color:#b22222;">以后大家看到 ANSI C、ISO C、C89、C90，要知道这些标准的内容都是一样的。</span><br />
+<br />
+目前常用的编译器，例如微软编译器、GCC、LLVM/Clang 等，都能很好地支持 ANSI C 的内容。
+<h2>
+	C99 标准</h2>
+在 ANSI C 标准确立之后，C语言的规范在很长一段时间内都没有大的变动。1995 年C程序设计语言工作组对C语言进行了一些修改，增加了新的关键字，编写了新的库，取消了原有的限制，并于 1999 年形成新的标准&mdash;&mdash;ISO/IEC 9899:1999 标准，通常被成为&nbsp;<span style="color: #008000">C99</span>。<br />
+<br />
+但是这个时候的C语言编译器基本已经成熟，各个组织对 C99 的支持所表现出来的兴趣不同。当 GCC 和其它一些商业编译器支持 C99 的大部分特性的時候，微软和 Borland 却似乎对此不感兴趣，或者说没有足够的资源和动力来改进编译器，最终导致不同的编译器在部分语法上存在差异。<br />
+<br />
+例如，ANSI C 规定，局部变量要在函数开头定义，而 C99 取消了这个限制，变量可以在任意位置定义，我们将在《<a href="/view/432.html" target="_blank">C语言变量的定义位置以及初始值</a>》一节中详细介绍。
+<h2>
+	C11 标准</h2>
+C11 标准由国际标准化组织（ISO）和国际电工委员会（IEC） 旗下的C语言标准委员会于 2011 年底正式发布，支持此标准的主流C语言编译器有 GCC、LLVM/Clang、Intel C++ Compile 等。<br />
+<br />
+C11 标准主要增加了以下内容：
+<ul>
+	<li>
+		增加了安全函数，例如 gets_s()、fopen_s() 等；</li>
+	<li>
+		增加了&nbsp;&lt;threads.h&gt; 头文件以支持多线程；</li>
+	<li>
+		增加了&nbsp;&lt;uchar.h&gt; 头文件以支持 Unicode 字符集；</li>
+	<li>
+		以及其它一些细节。</li>
+</ul>
+<h2>
+	总结</h2>
+现有的教程（包括书籍、视频、大学课程等）大都是针对 C89 编写的，这是C语言的核心，后来的 C99、C11 新增的特性并不多，只是在&ldquo;打补丁&rdquo;。本教程虽然基于 C99 标准，但是绝大部分内容还是 C89 的，我会在 C89 和 C99 有差异的语法上给出重点说明。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/381.html">哪款C语言编译器（IDE）适合初学者？</a></span>
+                    <span class="next right"><a href="/view/404.html">如何在手机上编写C语言代码？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/381.html";window.nextPageURL = "/view/404.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 405;
+window.arcId = "952dTTEKP6RmDjWsAluW2T1Nprwl6HzrJE2lLkqckcSIjGSvxwBPpynbZA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

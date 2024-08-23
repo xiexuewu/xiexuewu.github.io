@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言逻辑运算符详解</title>
+<meta name="keywords" content="语言,逻辑,运算符,详解,现在,假,设有,这样," />
+<meta name="description" content="现在假设有这样一种情况，我们的软件比较特殊，要求使用者必须成年，并且成绩大于等于60，该怎么办呢？ 或许你会想到使用嵌套的 if 语句，类似下面这样的代码： #include stdio.hint" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a></dd></dl>
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言逻辑运算符详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/447.html">C语言关系运算符</a></span>
+                    <span class="next right"><a href="/view/449.html">C语言switch case语句</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/447.html";window.nextPageURL = "/view/449.html";</script>
+			<div id="arc-body">现在假设有这样一种情况，我们的软件比较特殊，要求使用者必须成年，并且成绩大于等于 60，该怎么办呢？<br />
+<br />
+或许你会想到使用嵌套的 if 语句，类似下面这样的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int age;
+    float score;
+    printf(&quot;请输入你的年龄和成绩：&quot;);
+    scanf(&quot;%d %f&quot;, &amp;age, &amp;score);
+    if(age &gt;= 18){
+        if(score &gt;= 60){
+            printf(&quot;你满足条件，欢迎使用该软件\n&quot;);
+        }else{
+            printf(&quot;抱歉，你的成绩不及格，不能使用该软件\n&quot;);
+        }
+    }else{
+        printf(&quot;抱歉，你还未成年，不能使用该软件！\n&quot;);
+    }
+    return 0;
+}</pre>
+这种方法虽然能够行得通，但不够简洁和专业，我们可以将其压缩为一条 if else 语句：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int age;
+    float score;
+    printf(&quot;请输入你的年龄和成绩：&quot;);
+    scanf(&quot;%d %f&quot;, &amp;age, &amp;score);
+    if(age&gt;=18 &amp;&amp; score&gt;=60){
+        printf(&quot;你满足条件，欢迎使用该软件\n&quot;);
+    }else{
+        printf(&quot;抱歉，你还未成年，或者成绩不及格，不能使用该软件！\n&quot;);
+    }
+    return 0;
+}</pre>
+<code>&amp;&amp;</code>是一个新的运算符，称为<span style="color: #008000">逻辑运算符</span>，表示<code>age&gt;=18</code>和<code>score&gt;=60</code>两个条件必须同时成立才能执行 if 后面的代码，否则就执行 else 后面的代码。<br />
+<br />
+在高中数学中，我们就学过逻辑运算，例如p为真命题，q为假命题，那么&ldquo;p且q&rdquo;为假，&ldquo;p或q&rdquo;为真，&ldquo;非q&rdquo;为真。在C语言中，也有类似的逻辑运算：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				运算符</th>
+			<th>
+				说明</th>
+			<th>
+				结合性</th>
+			<th>
+				举例</th>
+		</tr>
+		<tr>
+			<td>
+				&amp;&amp;</td>
+			<td>
+				与运算，双目，对应数学中的&ldquo;且&rdquo;</td>
+			<td>
+				左结合</td>
+			<td>
+				1&amp;&amp;0、(9&gt;3)&amp;&amp;(b&gt;a)</td>
+		</tr>
+		<tr>
+			<td>
+				||</td>
+			<td>
+				或运算，双目，对应数学中的&ldquo;或&rdquo;</td>
+			<td>
+				左结合</td>
+			<td>
+				1||0、(9&gt;3)||(b&gt;a)</td>
+		</tr>
+		<tr>
+			<td>
+				!</td>
+			<td>
+				非运算，单目，对应数学中的&ldquo;非&rdquo;</td>
+			<td>
+				右结合</td>
+			<td>
+				!a、!(2&lt;5)</td>
+		</tr>
+	</tbody>
+</table>
+<h2>
+	逻辑运算的结果</h2>
+在编程中，我们一般将零值称为&ldquo;假&rdquo;，将非零值称为&ldquo;真&rdquo;。逻辑运算的结果也只有&ldquo;真&rdquo;和&ldquo;假&rdquo;，&ldquo;真&rdquo;对应的值为 1，&ldquo;假&rdquo;对应的值为 0。
+<h4>
+	1) 与运算(&amp;&amp;)</h4>
+参与运算的两个表达式都为真时，结果才为真，否则为假。例如：
+<p class="info-box">
+	5&amp;&amp;0</p>
+5为真，0为假，相与的结果为假，也就是 0。<br />
+<p class="info-box">
+	(5&gt;0) &amp;&amp; (4&gt;2)</p>
+5&gt;0 的结果是1，为真，4&gt;2结果是1，也为真，所以相与的结果为真，也就是1。
+<h4>
+	2) 或运算(||)</h4>
+参与运算的两个表达式只要有一个为真，结果就为真；两个表达式都为假时结果才为假。例如：
+<p class="info-box">
+	10 || 0</p>
+10 为真，0 为假，相或的结果为真，也就是 1。
+<p class="info-box">
+	(5&gt;0) || (5&gt;8)</p>
+5&gt;0 的结果是 1，为真，5&gt;8 的结果是 0，为假，所以相或的结果为真，也就是 1。
+<h4>
+	3) 非运算(!)</h4>
+参与运算的表达式为真时，结果为假；参与运算的表达式为假时，结果为真。例如：
+<p class="info-box">
+	!0</p>
+0 为假，非运算的结果为真，也就是 1。
+<p class="info-box">
+	!(5&gt;0)</p>
+5&gt;0 的结果是 1，为真，非运算的结果为假，也就是 0。<br />
+<br />
+输出逻辑运算的结果：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int a = 0, b = 10, c = -6;
+    int result_1 = a&amp;&amp;b, result_2 = c||0;
+    printf(&quot;%d, %d\n&quot;, result_1, !c);
+    printf(&quot;%d, %d\n&quot;, 9&amp;&amp;0, result_2);
+    printf(&quot;%d, %d\n&quot;, b||100, 0&amp;&amp;0);
+    return 0;
+}</pre>
+运行结果：<br />
+0, 0<br />
+0, 1<br />
+1, 0<br />
+<h2>
+	优先级</h2>
+逻辑运算符和其它运算符优先级从低到高依次为：
+<p class="info-box">
+	赋值运算符(=) &lt; &amp;&amp; 和 || &lt; 关系运算符 &lt; 算术运算符 &lt; 非(!)</p>
+&amp;&amp; 和 || 低于关系运算符，! 高于算术运算符。<br />
+&nbsp;<br />
+按照运算符的优先顺序可以得出：
+<ul>
+	<li>
+		a&gt;b &amp;&amp; c&gt;d &nbsp;等价于 &nbsp;(a&gt;b)&amp;&amp;(c&gt;d)</li>
+	<li>
+		!b==c||d&lt;a &nbsp;等价于 &nbsp;((!b)==c)||(d&lt;a)</li>
+	<li>
+		a+b&gt;c&amp;&amp;x+y&lt;b &nbsp;等价于 &nbsp;((a+b)&gt;c)&amp;&amp;((x+y)&lt;b)</li>
+</ul>
+<br />
+另外，逻辑表达式也可以嵌套使用，例如<code>a&gt;b &amp;&amp; b || 9&gt;c</code>，<code>a || c&gt;d &amp;&amp; &nbsp;!p</code>。<br />
+<br />
+逻辑运算符举例：<br />
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    char c=&#39;k&#39;;
+    int i=1,j=2,k=3;
+    float x=3e+5,y=0.85;
+    printf( &quot;%d,%d\n&quot;, !x*!y, !!!x );
+    printf( &quot;%d,%d\n&quot;, x||i&amp;&amp;j-3, i&lt;j&amp;&amp;x&lt;y );
+    printf( &quot;%d,%d\n&quot;, i==5&amp;&amp;c&amp;&amp;(j=8), x+y||i+j+k );
+    return 0;
+}</pre>
+运行结果：<br />
+0,0<br />
+1,0<br />
+0,1<br />
+<br />
+分析如下：
+<ul>
+	<li>
+		!x 和 !y 分别为 0，!x*!y 也为 0，故其输出值为 0。</li>
+	<li>
+		由于 x 为非 0，故 !!!x 的逻辑值为 0。</li>
+	<li>
+		对 x|| i &amp;&amp; j-3 式，先计算 j-3 的值为非 0，再求 i &amp;&amp; j-3 的逻辑值为 1，故 x||i&amp;&amp;j-3 的逻辑值为 1。</li>
+	<li>
+		对 i&lt;j&amp;&amp;x&lt;y 式，由于 i&lt;j 的值为 1，而 x&lt;y 为 0 故表达式的值为 1，0 相与，最后为 0。</li>
+	<li>
+		对 i==5&amp;&amp;c&amp;&amp;(j=8) 式，由于 i==5 为假，即值为 0，该表达式由两个与运算组成，所以整个表达式的值为 0。</li>
+	<li>
+		对于式 x+ y||i+j+k，由于 x+y 的值为非 0，故整个或表达式的值为 1。</li>
+</ul>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/447.html">C语言关系运算符</a></span>
+                    <span class="next right"><a href="/view/449.html">C语言switch case语句</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/447.html";window.nextPageURL = "/view/449.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 448;
+window.arcId = "ecc4nPMDi9WW1+QbWFNyPDPjIgD/J0KsX26TS7H7p9imW9ahdYj/nZx6TA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

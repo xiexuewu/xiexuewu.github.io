@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言关键字及其解释[共32个]</title>
+<meta name="keywords" content="语言,关键字,及其,解释,共,32个,语言,一,共有," />
+<meta name="description" content="C语言一共有32个关键字，如下表所示： 关键字 说明 auto 声明自动变量 short 声明短整型变量或函数 int 声明整型变量或函数 long 声明长整型变量或函数 float 声明浮点型变量或函数 double" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言关键字及其解释[共32个]</h1>
+			<div id="arc-body">C语言一共有32个关键字，如下表所示：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				关键字</th>
+			<th>
+				说明</th>
+		</tr>
+		<tr>
+			<td>
+				auto</td>
+			<td>
+				声明自动变量</td>
+		</tr>
+		<tr>
+			<td>
+				short</td>
+			<td>
+				声明短整型变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				int</td>
+			<td>
+				声明整型变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				long</td>
+			<td>
+				声明长整型变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				float</td>
+			<td>
+				声明浮点型变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				double</td>
+			<td>
+				声明双精度变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				char</td>
+			<td>
+				声明字符型变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				struct</td>
+			<td>
+				声明结构体变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				union</td>
+			<td>
+				声明共用数据类型</td>
+		</tr>
+		<tr>
+			<td>
+				enum</td>
+			<td>
+				声明枚举类型</td>
+		</tr>
+		<tr>
+			<td>
+				typedef</td>
+			<td>
+				用以给数据类型取别名</td>
+		</tr>
+		<tr>
+			<td>
+				const</td>
+			<td>
+				声明只读变量</td>
+		</tr>
+		<tr>
+			<td>
+				unsigned</td>
+			<td>
+				声明无符号类型变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				signed</td>
+			<td>
+				声明有符号类型变量或函数</td>
+		</tr>
+		<tr>
+			<td>
+				extern</td>
+			<td>
+				声明变量是在其他文件正声明</td>
+		</tr>
+		<tr>
+			<td>
+				register</td>
+			<td>
+				声明寄存器变量</td>
+		</tr>
+		<tr>
+			<td>
+				static</td>
+			<td>
+				声明静态变量</td>
+		</tr>
+		<tr>
+			<td>
+				volatile</td>
+			<td>
+				说明变量在程序执行中可被隐含地改变</td>
+		</tr>
+		<tr>
+			<td>
+				void</td>
+			<td>
+				声明函数无返回值或无参数，声明无类型指针</td>
+		</tr>
+		<tr>
+			<td>
+				if</td>
+			<td>
+				条件语句</td>
+		</tr>
+		<tr>
+			<td>
+				else</td>
+			<td>
+				条件语句否定分支（与 if 连用）</td>
+		</tr>
+		<tr>
+			<td>
+				switch</td>
+			<td>
+				用于开关语句</td>
+		</tr>
+		<tr>
+			<td>
+				case</td>
+			<td>
+				开关语句分支</td>
+		</tr>
+		<tr>
+			<td>
+				for</td>
+			<td>
+				一种循环语句</td>
+		</tr>
+		<tr>
+			<td>
+				do</td>
+			<td>
+				循环语句的循环体</td>
+		</tr>
+		<tr>
+			<td>
+				while</td>
+			<td>
+				循环语句的循环条件</td>
+		</tr>
+		<tr>
+			<td>
+				goto</td>
+			<td>
+				无条件跳转语句</td>
+		</tr>
+		<tr>
+			<td>
+				continue</td>
+			<td>
+				结束当前循环，开始下一轮循环</td>
+		</tr>
+		<tr>
+			<td>
+				break</td>
+			<td>
+				跳出当前循环</td>
+		</tr>
+		<tr>
+			<td>
+				default</td>
+			<td>
+				开关语句中的&ldquo;其他&rdquo;分支</td>
+		</tr>
+		<tr>
+			<td>
+				sizeof</td>
+			<td>
+				计算数据类型长度</td>
+		</tr>
+		<tr>
+			<td>
+				return</td>
+			<td>
+				子程序返回语句（可以带参数，也可不带参数）循环条件</td>
+		</tr>
+	</tbody>
+</table></div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 429;
+window.arcId = "ae4fvrKrLUSIxsv7CGySRRemdrac/7K3r7Dh6/LAFJlk+77KUvJMl1bjrw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

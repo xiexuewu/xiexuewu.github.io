@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言二维数组的定义、初始化、赋值</title>
+<meta name="keywords" content="语言,二维,数组,的,定义,、,初始化,赋值,上节," />
+<meta name="description" content="上节讲解的数组可以看作是一行连续的数据，只有一个下标，称为 一维数组 。在实际问题中有很多数据是二维的或多维的，因此C语言允许构造多维数组。多维数组元素有多个下标，以" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言二维数组的定义、初始化、赋值</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/478.html">什么是数组</a></span>
+                    <span class="next right"><a href="/view/480.html">判断数组中是否包含某个元素</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/478.html";window.nextPageURL = "/view/480.html";</script>
+			<div id="arc-body">上节讲解的<u><a href='/view/181.html' target='_blank'>数组</a></u>可以看作是一行连续的数据，只有一个下标，称为<span style="color: #008000">一维数组</span>。在实际问题中有很多数据是二维的或多维的，因此 C语言允许构造多维数组。多维数组元素有多个下标，以确定它在数组中的位置。本节只介绍<span style="color:#008000;">二维数组</span>，多维数组可由二维数组类推而得到。
+<h3>
+	二维数组的定义</h3>
+二维数组定义的一般形式是：
+<pre class="info-box">
+dataType arrayName[length1][length2];</pre>
+其中，dataType 为数据类型，arrayName 为数组名，length1 为第一维下标的长度，length2 为第二维下标的长度。<br />
+<br />
+<span style="color:#b22222;">我们可以将二维数组看做一个 Excel 表格，有行有列，length1 表示行数，length2 表示列数，要在二维数组中定位某个元素，必须同时指明行和列。</span>例如：
+<pre class="info-box">
+int a[3][4];</pre>
+定义了一个 3 行 4 列的二维数组，共有 3&times;4=12 个元素，数组名为 a，即：
+<p class="info-box">
+	a[0][0], a[0][1], a[0][2], a[0][3]<br />
+	a[1][0], a[1][1], a[1][2], a[1][3]<br />
+	a[2][0], a[2][1], a[2][2], a[2][3]</p>
+如果想表示第 2 行第 1 列的元素，应该写作 a[2][1]。<br />
+<br />
+也可以将二维数组看成一个坐标系，有 x 轴和 y 轴，要想在一个平面中确定一个点，必须同时知道 x 轴和 y 轴。<br />
+<br />
+二维数组在概念上是二维的，但在内存中是连续存放的；换句话说，二维数组的各个元素是相互挨着的，彼此之间没有缝隙。那么，如何在线性内存中存放二维数组呢？有两种方式：
+<ul>
+	<li>
+		一种是按行排列， 即放完一行之后再放入第二行；</li>
+	<li>
+		另一种是按列排列， 即放完一列之后再放入第二列。</li>
+</ul>
+<br />
+<span style="color:#b22222;">在C语言中，二维数组是按行排列的。</span>也就是先存放 a[0] 行，再存放 a[1] 行，最后存放 a[2] 行；每行中的 4 个元素也是依次存放。数组 a 为 int 类型，每个元素占用 4 个字节，整个数组共占用 4&times;(3&times;4)=48 个字节。<br />
+<br />
+你可以这样认为，二维数组是由多个长度相同的一维数组构成的。<br />
+<br />
+【实例1】一个学习小组有 5 个人，每个人有 3 门课程的考试成绩，求该小组各科的平均分和总平均分。<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<td>
+				--</td>
+			<td>
+				Math</td>
+			<td>
+				C</td>
+			<td>
+				English</td>
+		</tr>
+		<tr>
+			<td>
+				张涛</td>
+			<td>
+				80</td>
+			<td>
+				75</td>
+			<td>
+				92</td>
+		</tr>
+		<tr>
+			<td>
+				王正华</td>
+			<td>
+				61</td>
+			<td>
+				65</td>
+			<td>
+				71</td>
+		</tr>
+		<tr>
+			<td>
+				李丽丽</td>
+			<td>
+				59</td>
+			<td>
+				63</td>
+			<td>
+				70</td>
+		</tr>
+		<tr>
+			<td>
+				赵圈圈</td>
+			<td>
+				85</td>
+			<td>
+				87</td>
+			<td>
+				90</td>
+		</tr>
+		<tr>
+			<td>
+				周梦真</td>
+			<td>
+				76</td>
+			<td>
+				77</td>
+			<td>
+				85</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+对于该题目，可以定义一个二维数组 a[5][3] 存放 5 个人 3 门课的成绩，定义一个一维数组 v[3] 存放各科平均分，再定义一个变量 average 存放总平均分。最终编程如下：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int i, j;  //二维数组下标
+    int sum = 0;  //当前科目的总成绩
+    int average;  //总平均分
+    int v[3];  //各科平均分
+    int a[5][3];  //用来保存每个同学各科成绩的二维数组
+    printf(&quot;Input score:\n&quot;);
+    for(i=0; i&lt;3; i++){
+        for(j=0; j&lt;5; j++){
+            scanf(&quot;%d&quot;, &amp;a[j][i]);  //输入每个同学的各科成绩
+            sum += a[j][i];  //计算当前科目的总成绩
+        }
+        v[i]=sum/5;  // 当前科目的平均分
+        sum=0;
+    }
+    average = (v[0] + v[1] + v[2]) / 3;
+    printf(&quot;Math: %d\nC Languag: %d\nEnglish: %d\n&quot;, v[0], v[1], v[2]);
+    printf(&quot;Total: %d\n&quot;, average);
+    return 0;
+}</pre>
+运行结果：<br />
+Input score:<br />
+80 61 59 85 76 75 65 63 87 77 92 71 70 90 85↙<br />
+Math: 72<br />
+C Languag: 73<br />
+English: 81<br />
+Total: 75<br />
+<br />
+程序使用了一个嵌套循环来读取所有学生所有科目的成绩。在内层循环中依次读入某一门课程的各个学生的成绩，并把这些成绩累加起来，退出内层循环（进入外层循环）后再把该累加成绩除以 5 送入 v[i] 中，这就是该门课程的平均分。外层循环共循环三次，分别求出三门课各自的平均成绩并存放在数组 v 中。所有循环结束后，把 v[0]、v[1]、v[2] 相加除以 3 就可以得到总平均分。<br />
+<h2>
+	二维数组的初始化（赋值）</h2>
+二维数组的初始化可以按行分段赋值，也可按行连续赋值。<br />
+<br />
+例如，对于数组 a[5][3]，按行分段赋值应该写作：
+<pre class="info-box">
+int a[5][3]={ {80,75,92}, {61,65,71}, {59,63,70}, {85,87,90}, {76,77,85} };</pre>
+按行连续赋值应该写作：
+<pre class="info-box">
+int a[5][3]={80, 75, 92, 61, 65, 71, 59, 63, 70, 85, 87, 90, 76, 77, 85};</pre>
+这两种赋初值的结果是完全相同的。<br />
+<br />
+【实例2】和&ldquo;实例1&rdquo;类似，依然求各科的平均分和总平均分，不过本例要求在初始化数组的时候直接给出成绩。
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int i, j;  //二维数组下标
+    int sum = 0;  //当前科目的总成绩
+    int average;  //总平均分
+    int v[3];  //各科平均分
+    int a[5][3] = {{80,75,92}, {61,65,71}, {59,63,70}, {85,87,90}, {76,77,85}};
+
+    for(i=0; i&lt;3; i++){
+        for(j=0; j&lt;5; j++){
+            sum += a[j][i];  //计算当前科目的总成绩
+        }
+        v[i] = sum / 5;  // 当前科目的平均分
+        sum = 0;
+    }
+
+    average = (v[0] + v[1] + v[2]) / 3;
+    printf(&quot;Math: %d\nC Languag: %d\nEnglish: %d\n&quot;, v[0], v[1], v[2]);
+    printf(&quot;Total: %d\n&quot;, average);
+
+    return 0;
+}</pre>
+运行结果：<br />
+Math: 72<br />
+C Languag: 73<br />
+English: 81<br />
+Total: 75<br />
+<h4>
+	对于二维数组的初始化还要注意以下几点：</h4>
+1) 可以只对部分元素赋值，未赋值的元素自动取&ldquo;零&rdquo;值。例如：
+<pre class="info-box">
+int a[3][3] = {{1}, {2}, {3}};</pre>
+是对每一行的第一列元素赋值，未赋值的元素的值为 0。赋值后各元素的值为：<br />
+1 &nbsp;0 &nbsp;0<br />
+2 &nbsp;0 &nbsp;0<br />
+3 &nbsp;0 &nbsp;0<br />
+<br />
+再如：<br />
+<pre class="info-box">
+int a[3][3] = {{0,1}, {0,0,2}, {3}};</pre>
+赋值后各元素的值为：<br />
+0 &nbsp;1 &nbsp;0<br />
+0 &nbsp;0 &nbsp;2<br />
+3 &nbsp;0 &nbsp;0<br />
+<br />
+2) 如果对全部元素赋值，那么第一维的长度可以不给出。例如：
+<pre class="info-box">
+int a[3][3] = {1, 2, 3, 4, 5, 6, 7, 8, 9};</pre>
+可以写为：
+<pre class="info-box">
+int a[][3] = {1, 2, 3, 4, 5, 6, 7, 8, 9};</pre>
+<br />
+3) 二维数组可以看作是由一维数组嵌套而成的；如果一个数组的每个元素又是一个数组，那么它就是二维数组。当然，前提是各个元素的类型必须相同。根据这样的分析，一个二维数组也可以分解为多个一维数组，C语言允许这种分解。<br />
+<br />
+例如，二维数组<code>a[3][4]</code>可分解为三个一维数组，它们的数组名分别为 a[0]、a[1]、a[2]。<br />
+<br />
+这三个一维数组可以直接拿来使用。这三个一维数组都有 4 个元素，比如，一维数组 a[0] 的元素为 a[0][0]、a[0][1]、a[0][2]、a[0][3]。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/478.html">什么是数组</a></span>
+                    <span class="next right"><a href="/view/480.html">判断数组中是否包含某个元素</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/478.html";window.nextPageURL = "/view/480.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 479;
+window.arcId = "8fc8BwkMIUGew/RTOJT8IxWOukcA6t0OUAsSf0uFSB44SruChfO6+7zPPw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

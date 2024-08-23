@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>调试信息的输出</title>
+<meta name="keywords" content="调试,信息,的,输出,上,一节,讲,解了,assert," />
+<meta name="description" content="上一节讲解了 assert 断言函数的使用，本节学习在调试器的调试窗口上输出我们自己的调试信息。 接下来，我们将用到一个 Windows 操作系统提供的函数，叫做 OutputDebugString()，这个函数非" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a></dd></dl>
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>调试信息的输出</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/563.html">assert断言函数</a></span>
+                    <span class="next right"><a href="/view/565.html">VS调试的总结以及技巧</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/563.html";window.nextPageURL = "/view/565.html";</script>
+			<div id="arc-body">上一节讲解了 assert 断言函数的使用，本节学习在调试器的调试窗口上输出我们自己的调试信息。<br />
+<br />
+接下来，我们将用到一个 Windows 操作系统提供的函数，叫做 OutputDebugString()，这个函数非常常用，它可以向调试输出窗口输出信息（无需设置断点，执行就会输出调试信息），并且一般只在绑定了调试器的情况下才会生效，否则会被 Windows 直接忽略。<br />
+<br />
+接下来我们了解一下 OutputDebugString() 函数的使用方法。首先，这个函数在 windows.h 中被定义，所以程序里需要包含 &lt;windows.h&gt; 头文件才能使用 OutputDebugString() 函数。这个函数的使用方式非常的简单，它只有简单的一个参数，也就是要输出的调试信息。<br />
+<br />
+有一点值得注意，准确来说 OutputDebugString() 并不是一个函数，而是一个宏。在高版本的 Visual Studio 中，因为编译的时候 Visual Studio 默认定义了 UNICODE 宏，所以查找 OutputDebugString() 的定义会看到如下代码：
+<pre class="c">
+#ifdef UNICODE
+#define OutputDebugString  OutputDebugStringW
+#else
+#define OutputDebugString  OutputDebugStringA
+#endif // !UNICODE</pre>
+可以看到，OutputDebugString 实际上等价于 OutputDebugStringW，这就意味着我们必须传入宽字符<u><a href='/view/175.html' target='_blank'>串</a></u>（事实上只要定义了 UNICODE ，调用所有 Windows 提供的函数都需要使用宽字符），或者使用 TEXT 或 _T 宏。这里推荐使用后者，因为 TEXT 或者 _T 会自动识别编译器是否处于默认宽字符的状态，进而对传入的字符串做些处理，这大大加强了代码对不同编译环境的兼容性。<br />
+<br />
+下面我们就来看一段示例代码：
+<pre class="c">
+#include &lt;windows.h&gt; //使用 OutputDebugString 包含此文件
+#include &lt;tchar.h&gt; //使用 TEXT 宏需要包含此文件
+int main(){
+    OutputDebugString(TEXT(&quot;你好,xiexuewu.github.io。&quot;));
+    OutputDebugString(_T(&quot;大家好才是真的好。&quot;));
+    //也可以：OutputDebugStringA(&quot;大家好才是真的好。&quot;);
+    //也可以：OutputDebugStringW(L&quot;大家好才是真的好。&quot;);
+    //使用自动字符宏 TEXT 或者 _T 可以自动判断是否使用宽字符
+    system(&quot;pause&quot;); //使程序暂停一下
+    return 0;
+}</pre>
+在程序执行 system(&quot;pause&quot;); 暂停的时候我们来观察一下我们的，调试输出窗口：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2-240R1202321515.gif" /></div>
+<br />
+怎么样，是不是输出了&ldquo;你好,xiexuewu.github.io。大家好才是真的好。&rdquo;呢？这个函数与 printf 等函数一样，需要我们自己插入换行符，但在 Windows 下，我们一般使用 \r\n 作为完整的换行符。<br />
+<br />
+直接使用这个调试信息输出函数有个弊端，那就是不能直接输出含参数的字符串。我们可以借助 sprintf() / wsprintf() 等缓冲区写入函数实现输出含参数字符串的功能。下面是一段示例代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;windows.h&gt;
+int main(){
+    //注意！这段代码我们指定使用ANSI字符！
+    char szBuffer[200];
+    int number = 100;
+    sprintf_s(szBuffer, &quot;变量 number 的值是 %d \r\n&quot;, number); //写入缓冲区，注意不要溢出
+    OutputDebugStringA(szBuffer);
+    sprintf_s(szBuffer, &quot;变量 number 的地址是 %x \r\n&quot;, &amp;number);
+    OutputDebugStringA(szBuffer);
+    //我门指定使用 ANSI 版本的 OutputDebugString 函数
+    return 0;
+}</pre>
+我们按 F5 开始调试：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2-240R1202434356.gif" /></div>
+<br />
+虽然看到了输出的结果，但这种实现方法太麻烦了。这里给大家提供了一个更好的解决方案，可以自己写一个前端函数，然后保存到头文件中（编译生成 dll 也可以，有兴趣的同学可以试试）。<br />
+<br />
+为了方便，我们已经编写好了这么一套函数。代码如下：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;windows.h&gt;
+
+#ifndef _DEBUG_INFO_HEADER_
+//防止头文件被重复载入出错
+#define _DEBUG_INFO_HEADER_
+#if (defined UNICODE)||(defined _UNICODE)
+#define DebugInfo DebugInfoW
+#else
+#define DebugInfo DebugInfoA
+#endif
+
+//  函数:  DebugInfoA(char*, int, ...)
+//
+//  目的:   以窄字符的形式输出调试信息
+//
+//  char* str    - 格式化 ANSI 字符串
+//  ...            - 任意不定长参数
+//
+void DebugInfoA(char* str, ...){
+    char szBuffer[500]; //注意不要让缓冲区溢出！
+    va_list Argv;
+    va_start(Argv, str);
+    _vsnprintf_s(szBuffer, 500, str, Argv);
+    va_end(Argv);
+    OutputDebugStringA(szBuffer);
+}
+
+//  函数:  DebugInfoW(char*, int, ...)
+//
+//  目的:   以宽字符的形式输出调试信息
+//
+//  char* str    - 格式化 UNICODE 字符串
+//  ...            - 任意不定长参数
+//
+void DebugInfoW(wchar_t* str, ...){
+    wchar_t szBuffer[1000];
+    va_list Argv;
+    va_start(Argv, str);
+    _vsnwprintf_s(szBuffer, 500, str, Argv);
+    va_end(Argv);
+    OutputDebugStringW(szBuffer);
+}
+#endif</pre>
+上面的这段代码会自动识别编译器是否默认使用了宽字符并且使用对应版本的输出函数，其中注释为 Visual Studio 的智能提示信息，我们把上面的代码保存到 debuginfo.h 并添加到当前工程中，就可以直接通过如下代码调用：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;tchar.h&gt;
+#include &lt;windows.h&gt;
+#include &quot;debuginfo.h&quot;
+int main(){
+    int num;
+    //这里我们使用微软提供的 xxxx_s 安全函数
+    printf_s(&quot;请输入数值:\n&quot;);
+    scanf_s(&quot;%d&quot;, &amp;num);
+    DebugInfo(TEXT(&quot;用户输入的数是 %d\n&quot;), num);
+    return 0;
+}</pre>
+我们按 F5 开始调试，我们输入666，观察 IDE 的输出窗口：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2-240R1202531634.gif" /></div>
+<br />
+可以看到，正确地输出了 &ldquo;用户输入的数是 666&rdquo; ，说明我们的代码执行成功了。<br />
+<br />
+除了在调试器中可以看到调试字符串的输出，我们还可以借助 Sysinternals 软件公司研发的一个相当高级的工具 &mdash;&mdash; DebugView 调试信息捕捉工具，这个工具可以在随时随地捕捉 OutputDebugString 调试字符串的输出(包括发布模式构建的程序)，可以说这是个神器，大家可以在微软 MSDN 库上搜索下载。<br />
+<br />
+接下来我们运行 DebugView 调试信息捕捉工具。首先打开 DebugView：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2-240R1202F62Y.gif" /></div>
+<br />
+我们可以看到随时有程序在输出调试信息，接下来我们运行（按Ctrl+F5 运行，不要启动调试器）刚才的程序，输入 222，看看 DebugView 有什么反应：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2-240R1202KS16.gif" /></div>
+<br />
+这个调试信息查看工具显示了正确的调试信息。注意！如果挂载了 Visual Studio 的调试器,这个工具就会失效。<br />
+<br />
+使用这个工具可以捕获发布版程序的输出，我们一般可以用来跟踪测试产品的运行状态。以趁早发现我们程序中存在的问题，避免发布后出现的容易被检测到的 BUG。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/563.html">assert断言函数</a></span>
+                    <span class="next right"><a href="/view/565.html">VS调试的总结以及技巧</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/563.html";window.nextPageURL = "/view/565.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 564;
+window.arcId = "ba7cIFoQ2VwGDDaHd9dakTyKc8ySARc3n3yKL+P3rj8NUt73vjZ7eT0vTQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

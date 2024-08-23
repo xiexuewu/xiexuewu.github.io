@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>assert断言函数</title>
+<meta name="keywords" content="assert,断言,函数,在,我们,的,实际,开发,过程," />
+<meta name="description" content="在我们的实际开发过程之中，常常会出现一些隐藏得很深的 BUG，或者是一些概率性发生的 BUG，通常这些 BUG 在我们调试的过程中不会出现很明显的问题，但是如果我们将其发布，在用户" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a></dd></dl>
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>assert断言函数</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/562.html">有条件断点的设置</a></span>
+                    <span class="next right"><a href="/view/564.html">调试信息的输出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/562.html";window.nextPageURL = "/view/564.html";</script>
+			<div id="arc-body">在我们的实际开发过程之中，常常会出现一些隐藏得很深的 BUG，或者是一些概率性发生的 BUG，通常这些 BUG 在我们调试的过程中不会出现很明显的问题，但是如果我们将其发布，在用户的各种运行环境下，这些程序可能就会露出马脚了。<br />
+<br />
+那么，如何让我们的程序更明显的暴露出问题呢？这种情况下，我们一般都会使用 assert 断言函数，这是 C语言标准库提供的一个函数，也就是说，它的使用与操作系统平台，调试器种类无关。我们只要学会了它的使用，便可一次使用，处处开花。<br />
+<br />
+接下来我们来了解一下 assert 函数的用法，这个函数在 assert.h 头文件中被定义，在微软的 cl 编译器中它的原型是这样的：
+<p class="info-box">
+	#define assert(_Expression) (void)( (!!(_Expression)) || (_wassert(_CRT_WIDE(#_Expression), _CRT_WIDE(__FILE__), __LINE__), 0) )</p>
+我们看到 assert 在 cl 编译器中被包装成了一个宏，实际调用的函数是 _wassert ，不过在一些编译器中，assert 就是一个函数。为了避免这些编译器差异带来的麻烦，我们就统一将 assert 当成一个函数使用。<br />
+<br />
+我们来了解一下 assert 函数的用法和运行机制，assert 函数的用法很简单，我们只要传入一个表达式即可，它会计算我们传入的表达式的结果，如果为真，则不会有任何操作，但是如果我们传入的表达式的计算结果为假，它就会像&nbsp; stderr （标准错误输出）打印一条错误信息，然后调用 abort 函数直接终止程序的运行。<br />
+<br />
+现在我们在 Visual Studio 中创建一个工程，输入下面这段非常简单的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+int main()
+{
+    printf(&quot;assert 函数测试:&quot;);
+    assert(true); //表达式为真
+    assert(1 &gt;= 2); //表达式为假
+    return 0;
+}</pre>
+我们按 F5 启动调试：<br />
+<div style="text-align: center">
+	<br />
+	<img alt="" src="/uploads/allimg/240821/2-240R1201132P7.gif" /></div>
+<br />
+我们看到,我们的输出窗口打印出了断言失败的信息，并且 Visual Studio 弹出了一个对话框询问我们是否继续执行。<br />
+<br />
+但是如果我们不绑定调试器，构建发布版程序，按 Ctrl + F5 直接运行呢?是的，这个 assert 语句就无效了，原因其实很简单，我们看看 assert.h 头文件中的这部分代码：
+<pre class="c">
+#ifdef NDEBUG
+#define assert(_Expression)     ((void)0)
+#else  /* NDEBUG */</pre>
+我们看到，只要我们定义了 NDEBUG 宏，assert 就会失效，而 Visual Studio 的默认的发布版程序编译参数中定义了 NDEBUG 宏，所以我们不用额外定义，但是在其他编译器中，我们在发布程序的时候就必须在包含 assert.h 头文件前定义 NDEBUG 宏，避免 assert 生效，否则总是让用户看到&ldquo;程序已经停止运行，正在寻找解决方案 . . .&rdquo;的 Windows 系统对话框可就不妙了。<br />
+<br />
+下面我们来了解一下 assert 的常用情境以及一些注意事项。举个C语言文件操作的例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    FILE *fpoint;
+    fpoint = fopen(&quot;存在的文件.txt&quot;, &quot;w&quot;);
+    //以可读写的方式打开一个文件
+    //如果文件不存在就自动创建一个同名文件
+    assert(fpoint);                        
+    //（第一次断言）所以这里断言成功
+    fclose(fpoint);
+    fpoint = fopen(&quot;不存在的文件.txt&quot;, &quot;r&quot;);
+    //以只读的方式打开一个文件，如果不存在就打开文件失败
+    assert(fpoint);
+    //（第二次断言）所以断言失败
+    printf(&quot;文件打开成功&quot;);
+    //程序永远都执行不到这里来
+    fclose(fpoint);                          
+    return 0;
+}</pre>
+阅读代码可以知道，如果我们错误的设置了读写权限，或者没有考虑 Windows 7（或更高版本）的 UAC（用户账户权限控制）问题的话，程序出现的问题就很容易在测试中暴露出来。<br />
+<br />
+事实上，上面的代码也不是一定能通过第一次断言的，把构建生成的（Debug 模式的）可执行文件复制到系统盘的 Program Files 文件夹再执行，那么 Win7 及以上的操作系统的 UAC 都会导致程序无法通过第一次断言的。在这种情况下，就需要在必要的情况申请管理员权限避免程序 BUG 的发生。<br />
+<br />
+在我们的实际使用过程中，我们需要注意一些使用 assert 的问题。首先我们看看下面的这个断言语句：
+<pre class="info-box">
+//...
+assert( c1 /*条件1*/ &amp;&amp; c2 /*条件2*/ );
+//...</pre>
+思考一下：如果我们的程序在这里断言失败了，如何知道是 c1 断言失败还是 c2 断言失败呢，答案是：没有办法。在这里我们应该遵循使用 assert 函数的第一个原则：每次断言只能检验一个条件，所以上面的代码应该改成这样:
+<pre class="info-box">
+//...
+assert(c1 /*条件1*/);
+assert(c2 /*条件2*/);
+//...</pre>
+这样，一旦出现问题，我们就可以通过行号知道是哪个条件断言失败了。<br />
+<br />
+接下来再思考一个问题：可以使用 assert 语句代替我们的条件过滤语句么？<br />
+<br />
+举个例子，我们写了一个视频格式转换器，本应输出标准 MP4 格式的视频，但是由于编码解码库的问题，在转换过程中出现了错误，像这种情况下，能否用 assert 代替掉 if 语句呢（假设这里忽略了 Visual Studio 发布版程序编译过程中自动定义的 NDEBUG 宏）？<br />
+<br />
+很明显，这样做是不可以的。这是为什么呢？<br />
+<br />
+现在来区分一下程序中的错误与异常，所谓错误，是代码编写途中的缺陷导致的，是程序运行中可以用 if 语句检测出来的。而异常在 C 语言中，一般也可以使用 if 语句判断，并进行对应的处理。而 assert 是用来判断我们程序中的代码级别的错误的。像用户输入错误，调用其他函数库错误，这些问题我们都是可以用 if 语句检测处理的。另一方面，使用 if 语句的程序对用户更友好。<br />
+<br />
+下面我们通过代码展示使用 assert 的另外一个注意意事项，我们新建一个工程，输入如下代码:
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+int main(void)
+{
+    int i = 0;
+    for ( ; ; )
+    {
+        assert(i++ &lt;= 100);
+        printf(&quot;我是第%d行\n&quot;,i);
+    }
+    return 0;
+}</pre>
+按 F5 运行调试器，我们会看到这样的情景：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2-240R120151V55.gif" /></div>
+<br />
+这是正常的，我们按 Shift + F5 终止调试，接下来，我们切换一下编译模式到发布模式（Release）：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2-240R1201545543.gif" /></div>
+<br />
+接下来按 Ctrl+F5 不绑定调试器直接运行：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2-240R12016145L.gif" /></div>
+<br />
+我们看到了一个完全不相同的运行结果，这是为什么呢？其实原因很简单，注意这段代码：
+<p class="info-box">
+	assert(i++ &lt;= 100);</p>
+条件表达式为 i++ &lt;= 100，这个表达式会更改我们的运行环境(变量 i 的值)，在发布版程序中，所有的 assert 语句都会失效，那么这条语句也就被忽略了。可以把它改为 i++ ; assert(i &lt;= 100); ，这样程序就能正常运行了。所以请记住：不要使用会改变环境的语句作为断言函数的参数，这可能导致实际运行中出现问题。<br />
+<br />
+最后，我们再来探讨一下，什么时候应该用 assert 语句？一个健壮的程序，都会有 30%~50% 的错误处理代码，几乎用不上 assert 断言函数，我们应该将 assert 用到那些极少发生的问题下，比如空指针一般都是指针内存分配出错导致的，不是我们可以控制的。这时即使你使用了容错语句，后面的代码也不一定能够正常运行，所以我们也就只能停止运行报错了。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/562.html">有条件断点的设置</a></span>
+                    <span class="next right"><a href="/view/564.html">调试信息的输出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/562.html";window.nextPageURL = "/view/564.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 563;
+window.arcId = "bb99lX+z/i8Gri0uw1S+Bi26dUOKWCSsaPDQYNv2VvKbJzby3KnE2NOXsQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

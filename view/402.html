@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>Xcode简明教程（使用Xcode编写C语言程序）</title>
+<meta name="keywords" content="Xcode,简明教程,使用,编写,语言程序,在,Mac,下," />
+<meta name="description" content="在 Mac OS X 下学习C语言使用 Xcode。Xcode 是由Apple官方开发的IDE，支持C、C++、Objective-C、Swift等，可以用来开发 Mac OS X 和 iOS 上的应用程序。Xcode最初使用GCC作为编译器，后来由于GCC的不配合" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>Xcode简明教程（使用Xcode编写C语言程序）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/398.html">使用Code::Blocks编写C语言程序</a></span>
+                    <span class="next right"><a href="/view/401.html">Linux GCC简明教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/398.html";window.nextPageURL = "/view/401.html";</script>
+			<div id="arc-body">在 Mac OS X 下学习 C语言使用 Xcode。Xcode 是由 Apple 官方开发的 IDE，支持 C、C++、Objective-C、Swift 等，可以用来开发 Mac OS X 和 iOS 上的应用程序。Xcode 最初使用 GCC 作为编译器，后来由于 GCC 的不配合，改用 LLVM/Clang。<br />
+<br />
+Xcode 的安装非常简单，在 APP Store 上直接下载即可，这里不再赘述。
+<h2>
+	在Xcode上运行C语言程序</h2>
+在 Xcode 上运行C语言程序需要先创建工程，再在工程中添加源代码。<br />
+<br />
+1) 打开 Xcode，选择&ldquo;Create a new Xcode project&rdquo;创建一个新工程，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/103415JV-0.jpg" /></div>
+<br />
+2) 接下来，选择要创建的工程类型，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240820/1034156038-1.jpg" /></div>
+<br />
+3) 选择&ldquo;OS X --&gt; Application --&gt; Command Line Tool&rdquo;，点击&ldquo;Next&rdquo;。Command Line Tool 是&ldquo;命令行工具&rdquo;的意思，也就是控制台程序。<br />
+<br />
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240822/2-240R2124113953.gif" /></div>
+<br />
+这里需要填写和工程相关的一些信息：
+<ul>
+	<li>
+		Product Name：产品名称，即工程名称。</li>
+	<li>
+		Organization Name：组织名称，即公司、个人、协会、团队等的名称。</li>
+	<li>
+		Organization Identifier：组织标识符，即有别于其他组织的一个标记，例如身份证号、公司网址、组织机构代码证等。</li>
+	<li>
+		Bundle Identifier：程序标识符，即有别于其他程序的一个标记，由 Organization Identifier + Product Name 组成。</li>
+	<li>
+		Language：工程所用的编程语言，这里选择C语言。</li>
+</ul>
+<br />
+4) 点击&ldquo;Next&rdquo;，保存文件后即可进入当前工程，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img src="/uploads/allimg/240822/2-240R2124135362.gif" /></div>
+<br />
+左侧是工程目录，主要包含了工程所用到的文件和资源。单击&ldquo;main.c&rdquo;，即可进入代码编辑模式，这里 Xcode 已经为我们创建好了一个&ldquo;Hello World&rdquo;小程序。点击上方的&ldquo;运行&rdquo;按钮，即可在右下角的选项卡中看到输出结果。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/398.html">使用Code::Blocks编写C语言程序</a></span>
+                    <span class="next right"><a href="/view/401.html">Linux GCC简明教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/398.html";window.nextPageURL = "/view/401.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 402;
+window.arcId = "4854BXYcUyhBJ3MUbLZ0zldnzVKQaNv0nZTHDrPH9jkGR+LtNjMKl9YsOw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

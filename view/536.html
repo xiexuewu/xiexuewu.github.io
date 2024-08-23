@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言共用体（C语言union用法）详解</title>
+<meta name="keywords" content="语言,共用,体,union,用法,详解,通过,前,面的," />
+<meta name="description" content="通过前面的讲解，我们知道结构体（Struct）是一种构造类型或复杂类型，它可以包含多个类型不同的成员。在C语言中，还有另外一种和结构体非常类似的语法，叫做 共用体（Union） ，它" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/c/struct/">结构体</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/532.html">C语言结构体</a></dd><dd>10.2 <a href="/view/533.html">C语言结构体数组</a></dd><dd>10.3 <a href="/view/534.html">C语言结构体指针</a></dd><dd>10.4 <a href="/view/535.html">C语言枚举类型</a></dd><dd>10.5 <a href="/view/536.html">C语言共用体</a></dd><dd>10.6 <a href="/view/541.html">typedef的用法</a></dd><dd>10.7 <a href="/view/537.html">大端小端以及判别方式</a></dd><dd>10.8 <a href="/view/538.html">C语言位域</a></dd><dd>10.9 <a href="/view/539.html">C语言位运算</a></dd><dd>10.10 <a href="/view/540.html">使用位运算对数据或文件内容进行加密</a></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言共用体（C语言union用法）详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/535.html">C语言枚举类型</a></span>
+                    <span class="next right"><a href="/view/541.html">typedef的用法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/535.html";window.nextPageURL = "/view/541.html";</script>
+			<div id="arc-body">通过前面的讲解，我们知道结构体（Struct）是一种构造类型或复杂类型，它可以包含多个类型不同的成员。在C语言中，还有另外一种和结构体非常类似的语法，叫做<strong><span style="color: #008000">共用体（Union）</span></strong>，它的定义格式为：
+<p class="info-box">
+	union 共用体名{<br />
+	&nbsp; &nbsp; 成员列表<br />
+	};</p>
+<blockquote>
+	共用体有时也被称为联合或者联合体，这也是 Union 这个单词的本意。</blockquote>
+结构体和共用体的区别在于：结构体的各个成员会占用不同的内存，互相之间没有影响；而共用体的所有成员占用同一段内存，修改一个成员会影响其余所有成员。<br />
+<br />
+结构体占用的内存大于等于所有成员占用的内存的总和（成员之间可能会存在缝隙），共用体占用的内存等于最长的成员占用的内存。共用体使用了内存覆盖技术，同一时刻只能保存一个成员的值，如果对新的成员赋值，就会把原来成员的值覆盖掉。<br />
+<br />
+共用体也是一种自定义类型，可以通过它来创建变量，例如：
+<pre class="c">
+union data{
+    int n;
+    char ch;
+    double f;
+};
+union data a, b, c;</pre>
+上面是先定义共用体，再创建变量，也可以在定义共用体的同时创建变量：
+<pre class="c">
+union data{
+    int n;
+    char ch;
+    double f;
+} a, b, c;</pre>
+如果不再定义新的变量，也可以将共用体的名字省略：
+<pre class="c">
+union{
+    int n;
+    char ch;
+    double f;
+} a, b, c;</pre>
+共用体 data 中，成员 f 占用的内存最多，为 8 个字节，所以 data 类型的变量（也就是 a、b、c）也占用 8 个字节的内存，请看下面的演示：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+union data{
+    int n;
+    char ch;
+    short m;
+};
+
+int main(){
+    union data a;
+    printf(&quot;%d, %d\n&quot;, sizeof(a), sizeof(union data) );
+    a.n = 0x40;
+    printf(&quot;%X, %c, %hX\n&quot;, a.n, a.ch, a.m);
+    a.ch = &#39;9&#39;;
+    printf(&quot;%X, %c, %hX\n&quot;, a.n, a.ch, a.m);
+    a.m = 0x2059;
+    printf(&quot;%X, %c, %hX\n&quot;, a.n, a.ch, a.m);
+    a.n = 0x3E25AD54;
+    printf(&quot;%X, %c, %hX\n&quot;, a.n, a.ch, a.m);
+   
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+4, 4
+40, @, 40
+39, 9, 39
+2059, Y, 2059
+3E25AD54, T, AD54</pre>
+这段代码不但验证了共用体的长度，还说明共用体成员之间会相互影响，修改一个成员的值会影响其他成员。<br />
+<br />
+要想理解上面的输出结果，弄清成员之间究竟是如何相互影响的，就得了解各个成员在内存中的分布。以上面的 data 为例，各个成员在内存中的分布如下：<br />
+<img alt="" src="/uploads/allimg/240821/1622023262-0.jpg" style="height: 176px; width: 711px" /><br />
+成员 n、ch、m 在内存中&ldquo;对齐&rdquo;到一头，对 ch 赋值修改的是前一个字节，对 m 赋值修改的是前两个字节，对 n 赋值修改的是全部字节。也就是说，ch、m 会影响到 n 的一部分数据，而 n 会影响到 ch、m 的全部数据。<br />
+<br />
+上图是在绝大多数 PC 机上的内存分布情况，如果是 51 单片机，情况就会有所不同：<br />
+<img alt="" src="/uploads/allimg/240821/1622021206-1.jpg" style="height: 176px; width: 711px" /><br />
+为什么不同的机器会有不同的分布情况呢？这跟机器的存储模式有关，我们将在VIP教程《<a href="/view/537.html" target="_blank">大端小端以及判别方式</a>》一节中展开探讨。
+<h2>
+	共用体的应用</h2>
+共用体在一般的编程中应用较少，在单片机中应用较多。对于 PC 机，经常使用到的一个实例是： 现有一张关于学生信息和教师信息的表格。学生信息包括姓名、编号、性别、职业、分数，教师的信息包括姓名、编号、性别、职业、教学科目。请看下面的表格：
+<table>
+	<tbody>
+		<tr>
+			<th>
+				<div>
+					Name</div>
+			</th>
+			<th>
+				<div>
+					Num</div>
+			</th>
+			<th>
+				<div>
+					Sex</div>
+			</th>
+			<th>
+				<div>
+					Profession</div>
+			</th>
+			<th>
+				<div>
+					Score / Course</div>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				HanXiaoXiao</td>
+			<td>
+				<div>
+					501</div>
+			</td>
+			<td>
+				<div>
+					f</div>
+			</td>
+			<td>
+				<div>
+					s</div>
+			</td>
+			<td>
+				<div>
+					89.5</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				YanWeiMin</td>
+			<td>
+				<div>
+					1011</div>
+			</td>
+			<td>
+				<div>
+					m</div>
+			</td>
+			<td>
+				<div>
+					t</div>
+			</td>
+			<td>
+				<div>
+					math</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LiuZhenTao</td>
+			<td>
+				<div>
+					109</div>
+			</td>
+			<td>
+				<div>
+					f</div>
+			</td>
+			<td>
+				<div>
+					t</div>
+			</td>
+			<td>
+				<div>
+					English</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ZhaoFeiYan</td>
+			<td>
+				<div>
+					982</div>
+			</td>
+			<td>
+				<div>
+					m</div>
+			</td>
+			<td>
+				<div>
+					s</div>
+			</td>
+			<td>
+				<div>
+					95.0</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+f 和 m 分别表示女性和男性，s 表示学生，t 表示教师。可以看出，学生和教师所包含的数据是不同的。现在要求把这些信息放在同一个表格中，并设计程序输入人员信息然后输出。<br />
+<br />
+如果把每个人的信息都看作一个结构体变量的话，那么教师和学生的前 4 个成员变量是一样的，第 5 个成员变量可能是 score 或者 course。当第 4 个成员变量的值是 s 的时候，第 5 个成员变量就是 score；当第 4 个成员变量的值是 t 的时候，第 5 个成员变量就是 course。<br />
+<br />
+经过上面的分析，我们可以设计一个包含共用体的结构体，请看下面的代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define TOTAL 4  //人员总数
+
+struct{
+    char name[20];
+    int num;
+    char sex;
+    char profession;
+    union{
+        float score;
+        char course[20];
+    } sc;
+} bodys[TOTAL];
+
+int main(){
+    int i;
+    //输入人员信息
+    for(i=0; i&lt;TOTAL; i++){
+        printf(&quot;Input info: &quot;);
+        scanf(&quot;%s %d %c %c&quot;, bodys[i].name, &amp;(bodys[i].num), &amp;(bodys[i].sex), &amp;(bodys[i].profession));
+        if(bodys[i].profession == &#39;s&#39;){  //如果是学生
+            scanf(&quot;%f&quot;, &amp;bodys[i].sc.score);
+        }else{  //如果是老师
+            scanf(&quot;%s&quot;, bodys[i].sc.course);
+        }
+        fflush(stdin);
+    }
+
+    //输出人员信息
+    printf(&quot;\nName\t\tNum\tSex\tProfession\tScore / Course\n&quot;);
+    for(i=0; i&lt;TOTAL; i++){
+        if(bodys[i].profession == &#39;s&#39;){  //如果是学生
+            printf(&quot;%s\t%d\t%c\t%c\t\t%f\n&quot;, bodys[i].name, bodys[i].num, bodys[i].sex, bodys[i].profession, bodys[i].sc.score);
+        }else{  //如果是老师
+            printf(&quot;%s\t%d\t%c\t%c\t\t%s\n&quot;, bodys[i].name, bodys[i].num, bodys[i].sex, bodys[i].profession, bodys[i].sc.course);
+        }
+    }
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+Input info: HanXiaoXiao 501 f s 89.5↙
+Input info: YanWeiMin 1011 m t math↙
+Input info: LiuZhenTao 109 f t English↙
+Input info: ZhaoFeiYan 982 m s 95.0↙
+
+Name            Num     Sex     Profession      Score / Course
+HanXiaoXiao     501     f       s               89.500000
+YanWeiMin       1011    m       t               math
+LiuZhenTao      109     f       t               English
+ZhaoFeiYan      982     m       s               95.000000</pre>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/535.html">C语言枚举类型</a></span>
+                    <span class="next right"><a href="/view/541.html">typedef的用法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/535.html";window.nextPageURL = "/view/541.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 536;
+window.arcId = "0ac5Mr7MeU3bVCScVhoX9L2yKrA7RhsQ97i4d26LzhC2ROfP7mx1ynus5w";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

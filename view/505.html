@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言#define的用法，C语言宏定义</title>
+<meta name="keywords" content="语言,#define,的,用法,宏,定义,#define,叫" />
+<meta name="description" content="#define 叫做 宏定义命令 ，它也是C语言预处理命令的一种。所谓 宏定义 ，就是用一个标识符来表示一个字符串，如果在后面的代码中出现了该标识符，那么就全部替换成指定的字符串。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/c/preprocess/">预处理命令</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/503.html">什么是预处理命令？</a></dd><dd>8.2 <a href="/view/504.html">#include的用法</a></dd><dd>8.3 <a href="/view/505.html">C语言宏定义</a></dd><dd>8.4 <a href="/view/506.html">C语言带参数的宏定义</a></dd><dd>8.5 <a href="/view/507.html">带参宏定义和函数的区别</a></dd><dd>8.6 <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a></dd><dd>8.7 <a href="/view/509.html">C语言中几个预定义宏</a></dd><dd>8.8 <a href="/view/510.html">C语言条件编译</a></dd><dd>8.9 <a href="/view/511.html">#error命令，阻止程序编译</a></dd><dd>8.10 <a href="/view/512.html">C语言预处理命令总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言#define的用法，C语言宏定义</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/504.html">#include的用法</a></span>
+                    <span class="next right"><a href="/view/506.html">C语言带参数的宏定义</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/504.html";window.nextPageURL = "/view/506.html";</script>
+			<div id="arc-body">#define 叫做<span style="color:#008000;">宏定义命令</span>，它也是C语言预处理命令的一种。所谓<span style="color:#008000;">宏定义</span>，就是用一个标识符来表示一个字符<u><a href='/view/175.html' target='_blank'>串</a></u>，如果在后面的代码中出现了该标识符，那么就全部替换成指定的字符串。<br />
+<br />
+我们先通过一个例子来看一下 #define 的用法：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+#define N 100
+
+int main(){
+    int sum = 20 + N;
+    printf(&quot;%d\n&quot;, sum);
+    return 0;
+}</pre>
+运行结果：<br />
+120<br />
+<br />
+注意第 6 行代码<code>int sum = 20 + N</code>，<code>N</code>被<code>100</code>代替了。<br />
+<br />
+<code>#define N 100</code>就是宏定义，<code>N</code>为宏名，<code>100</code>是宏的内容（宏所表示的字符串）。在预处理阶段，对程序中所有出现的&ldquo;宏名&rdquo;，预处理器都会用宏定义中的字符串去代换，这称为&ldquo;宏替换&rdquo;或&ldquo;宏展开&rdquo;。<br />
+<br />
+宏定义是由源程序中的宏定义命令<code>#define</code>完成的，宏替换是由预处理程序完成的。<br />
+<br />
+宏定义的一般形式为：
+<p class="info-box">
+	#define&nbsp; 宏名&nbsp; 字符串</p>
+<code>#</code>表示这是一条预处理命令，所有的预处理命令都以 # 开头。<code>宏名</code>是标识符的一种，命名规则和变量相同。<code>字符串</code>可以是数字、表达式、if 语句、函数等。
+<blockquote>
+	这里所说的字符串是一般意义上的字符序列，不要和C语言中的字符串等同，它不需要双引号。</blockquote>
+程序中反复使用的表达式就可以使用宏定义，例如：
+<pre class="info-box">
+#define M (n*n+3*n)</pre>
+它的作用是指定标识符<code>M</code>来表示<code>(y*y+3*y)</code>这个表达式。在编写代码时，所有出现 (y*y+3*y) 的地方都可以用 M 来表示，而对源程序编译时，将先由预处理程序进行宏代替，即用 (y*y+3*y) 去替换所有的宏名 M，然后再进行编译。<br />
+<br />
+将上面的例子补充完整：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+#define M (n*n+3*n)
+
+int main(){
+    int sum, n;
+    printf(&quot;Input a number: &quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+    sum = 3*M+4*M+5*M;
+    printf(&quot;sum=%d\n&quot;, sum);
+    return 0;
+}</pre>
+运行结果：<br />
+Input a number: 10↙<br />
+sum=1560<br />
+<br />
+程序的开头首先定义了一个宏 M，它表示 (n*n+3*n) 这个表达式。在 9 行代码中使用了宏 M，预处理程序将它展开为下面的语句：
+<pre class="info-box">
+sum=3*(n*n+3*n)+4*(n*n+3*n)+5*(n*n+3*n);</pre>
+<span style="color: #b22222">需要注意的是，在宏定义中表达式<code>(n*n+3*n)</code>两边的括号不能少，否则在宏展开以后可能会产生歧义。</span>下面是一个反面的例子：
+<pre class="info-box">
+#difine M n*n+3*n</pre>
+在宏展开后将得到下述语句：
+<pre class="info-box">
+s=3*n*n+3*n+4*n*n+3*n+5*n*n+3*n;</pre>
+这相当于：
+<div class="info-box">
+	3n<sup>2</sup>+3n+4n<sup>2</sup>+3n+5n<sup>2</sup>+3n</div>
+这显然是不正确的。所以进行宏定义时要注意，应该保证在宏替换之后不发生歧义。
+<h4>
+	对 #define 用法的几点说明</h4>
+1) 宏定义是用宏名来表示一个字符串，在宏展开时又以该字符串取代宏名，这只是一种简单粗暴的替换。字符串中可以含任何字符，它可以是常数、表达式、if 语句、函数等，预处理程序对它不作任何检查，如有错误，只能在编译已被宏展开后的源程序时发现。<br />
+<br />
+2) 宏定义不是说明或语句，在行末不必加分号，如加上分号则连分号也一起替换。<br />
+<br />
+3) 宏定义必须写在函数之外，其作用域为宏定义命令起到源程序结束。如要终止其作用域可使用<code>#undef</code>命令。例如：
+<pre class="c">
+#define PI 3.14159
+
+int main(){
+    // Code
+    return 0;
+}
+
+#undef PI
+
+void func(){
+    // Code
+}</pre>
+表示 PI 只在 main() 函数中有效，在 func() 中无效。<br />
+<br />
+4) 代码中的宏名如果被引号包围，那么预处理程序不对其作宏代替，例如：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#define OK 100
+int main(){
+    printf(&quot;OK\n&quot;);
+    return 0;
+}</pre>
+运行结果：<br />
+OK<br />
+<br />
+该例中定义宏名 OK 表示 100，但在 printf 语句中 OK 被引号括起来，因此不作宏替换，而作为字符串处理。<br />
+<br />
+5) 宏定义允许嵌套，在宏定义的字符串中可以使用已经定义的宏名，在宏展开时由预处理程序层层代换。例如：
+<pre class="info-box">
+#define PI 3.1415926
+#define S PI*y*y    /* PI是已定义的宏名*/</pre>
+对语句：
+<pre class="info-box">
+printf(&quot;%f&quot;, S);</pre>
+在宏代换后变为：
+<pre class="info-box">
+printf(&quot;%f&quot;, 3.1415926*y*y);</pre>
+<br />
+6) 习惯上宏名用大写字母表示，以便于与变量区别。但也允许用小写字母。<br />
+<br />
+7) 可用宏定义表示数据类型，使书写方便。例如：
+<pre class="info-box">
+#define UINT unsigned int</pre>
+在程序中可用 UINT 作变量说明：
+<pre class="info-box">
+UINT a, b;</pre>
+应注意用宏定义表示数据类型和用 <a href="/view/541.html" target="_blank">typedef</a> 定义数据说明符的区别。<span style="color: #b22222">宏定义只是简单的字符串替换，由预处理器来处理；而 typedef 是在编译阶段由编译器处理的，它并不是简单的字符串替换，而给原有的数据类型起一个新的名字，将它作为一种新的数据类型。</span><br />
+<br />
+请看下面的例子：
+<pre class="info-box">
+#define PIN1 int *
+typedef int *PIN2;  //也可以写作typedef int (*PIN2);</pre>
+从形式上看这两者相似， 但在实际使用中却不相同。<br />
+<br />
+下面用 PIN1，PIN2 说明变量时就可以看出它们的区别：
+<pre class="info-box">
+PIN1 a, b;</pre>
+在宏代换后变成：
+<pre class="info-box">
+int * a, b;</pre>
+表示 a 是指向整型的指针变量，而 b 是整型变量。然而：
+<pre class="info-box">
+PIN2 a,b;</pre>
+表示 a、b 都是指向整型的指针变量。因为 PIN2 是一个新的、完整的数据类型。<span style="color: #b22222">由这个例子可见，宏定义虽然也可表示数据类型， 但毕竟只是简单的字符串替换。在使用时要格外小心，以避出错。</span><br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/504.html">#include的用法</a></span>
+                    <span class="next right"><a href="/view/506.html">C语言带参数的宏定义</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/504.html";window.nextPageURL = "/view/506.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 505;
+window.arcId = "acc1j3EiI+rAfWVgfp+D1Z+iI6teTjyOjUKtNOjulIaRyVUFNhB8kiylxw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

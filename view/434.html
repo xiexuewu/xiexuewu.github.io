@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言运算符优先级和结合性一览表</title>
+<meta name="keywords" content="语言,运算符,优先级,和,结合,性,一览表,所谓," />
+<meta name="description" content="所谓优先级就是当一个表达式中有多个运算符时，先计算谁，后计算谁。这个其实我们在小学学算术的时候就学过，如 1+42 。 但是C语言中的运算符已经远不止四则运算中的加减乘除了，" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言运算符优先级和结合性一览表</h1>
+			<div id="arc-body">所谓优先级就是当一个表达式中有多个运算符时，先计算谁，后计算谁。这个其实我们在小学学算术的时候就学过，如<code>1+4&divide;2</code>。<br />
+<br />
+但是C语言中的运算符已经远不止四则运算中的加减乘除了，还有其他很多运算符。当它们出现在同一个表达式中时先计算谁后计算谁呢？所以本节还是有必要讲一下的。最后我还会将所有运算符展示出来，然后告诉你哪个优先级高、哪个优先级低。<br />
+<br />
+首先不需要专门记忆，也没有必要。因为作为初学者，哪个优先级高、哪个优先级低我们很难记住。就算死记硬背记住了，时间长不用也会忘记。所以当一个表达式中有多个运算符时，如果不知道哪个优先级高哪个优先级低就查一下优先级表，附录E有一个运算符优先级表。此外用的时间长了自然而然就记住了，这样记才会记得深刻。<br />
+<br />
+而且事实上在编程的时候也不需要考虑优先级的问题。因为如果不知道优先级高低的话，加一个括号就可以了，因为括号<code>( )</code>的优先级是最高的。比如前面的程序中：
+<p class="info-box">
+	k = (j&gt;i) &amp;&amp; (8==i);</p>
+根据运算符的优先级，这条语句完全可以写成：
+<p class="info-box">
+	k = j&gt;i &amp;&amp; 8==i;</p>
+但是第一种写法别人一看就知道先计算谁后计算谁。<br />
+<br />
+而且加圆括号也是一种编程规范，因为程序不只是写给自己看。<br />
+<br />
+此外运算符还有&ldquo;目&rdquo;和&ldquo;结合性&rdquo;的概念，这个很简单。&ldquo;目&rdquo;就是&ldquo;眼睛&rdquo;的意思，一个运算符需要几个数就叫&ldquo;几目&rdquo;。比如加法运算符<code>+</code>，要使用这个运算符需要两个数，如 3+2。对<code>+</code>而言，3 和 2 就像它的两只眼睛，所以这个运算符是双目的。<br />
+<br />
+C语言中大多数的运算符都是双目的，也有单目和三目的。单目运算符比如逻辑非，如<code>!1</code>，它就只有一只眼睛，所以是单目的。整个C语言中只有一个三目运算符，即条件运算符<code>? :</code>。这个稍后讲到条件语句的时候再介绍。关于&ldquo;目&rdquo;大家了解一下就行了。<br />
+<br />
+那么&ldquo;结合性&rdquo;是什么呢？上面讲的优先级都是关于优先级不同的运算符参与运算时先计算谁后计算谁。但是如果运算符的优先级相同，那么先计算谁后计算谁呢？这个就是由&ldquo;结合性&rdquo;决定的。<br />
+<br />
+比如<code>1+2&times;3&divide;4</code>，乘和除的优先级相同，但是计算的时候是从左往右，即先计算乘再计算除，所以乘和除的结合性就是从左往右。就是这么简单！<br />
+<br />
+C语言中大多数运算符的结合性都是从左往右，只有三个运算符是从右往左的。一个是单目运算符，另一个是三目运算符，还有一个就是双目运算符中的赋值运算符<code>=</code>。双目运算符中只有赋值运算符的结合性是从右往左的，其他的都是从左往右。运算符的&ldquo;结合性&rdquo;也不要死记，在不断使用中就记住了。
+<h2>
+	运算符优先级和结合性一览表</h2>
+<table>
+	<tbody>
+		<tr>
+			<th>
+				<p>
+					优先级</p>
+			</th>
+			<th>
+				<p>
+					运算符</p>
+			</th>
+			<th>
+				<p>
+					名称或含义</p>
+			</th>
+			<th>
+				<p>
+					使用形式</p>
+			</th>
+			<th>
+				<p>
+					结合方向</p>
+			</th>
+			<th>
+				<p>
+					说明</p>
+			</th>
+		</tr>
+		<tr>
+			<td rowspan="4">
+				<p>
+					1</p>
+			</td>
+			<td>
+				<p>
+					[]</p>
+			</td>
+			<td>
+				<p>
+					<u><a href='/view/181.html' target='_blank'>数组</a></u>下标</p>
+			</td>
+			<td>
+				<p>
+					数组名[常量表达式]</p>
+			</td>
+			<td rowspan="4">
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					()</p>
+			</td>
+			<td>
+				<p>
+					圆括号</p>
+			</td>
+			<td>
+				<p>
+					(表达式)<br />
+					函数名(形参表)</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					.</p>
+			</td>
+			<td>
+				<p>
+					成员选择（对象）</p>
+			</td>
+			<td>
+				<p>
+					对象.成员名</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					-&gt;</p>
+			</td>
+			<td>
+				<p>
+					成员选择（指针）</p>
+			</td>
+			<td>
+				<p>
+					对象指针-&gt;成员名</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td rowspan="9">
+				<p>
+					2</p>
+			</td>
+			<td>
+				<p>
+					-</p>
+			</td>
+			<td>
+				<p>
+					负号运算符</p>
+			</td>
+			<td>
+				<p>
+					-表达式</p>
+			</td>
+			<td rowspan="9">
+				<p>
+					右到左</p>
+			</td>
+			<td>
+				<p>
+					单目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					(类型)</p>
+			</td>
+			<td>
+				<p>
+					强制类型转换</p>
+			</td>
+			<td>
+				<p>
+					(数据类型)表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					++</p>
+			</td>
+			<td>
+				<p>
+					自增运算符</p>
+			</td>
+			<td>
+				<p>
+					++变量名<br />
+					变量名++</p>
+			</td>
+			<td>
+				<p>
+					单目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					--</p>
+			</td>
+			<td>
+				<p>
+					自减运算符</p>
+			</td>
+			<td>
+				<p>
+					--变量名<br />
+					变量名--</p>
+			</td>
+			<td>
+				<p>
+					单目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					*</p>
+			</td>
+			<td>
+				<p>
+					取值运算符</p>
+			</td>
+			<td>
+				<p>
+					*指针变量</p>
+			</td>
+			<td>
+				<p>
+					单目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					&amp;</p>
+			</td>
+			<td>
+				<p>
+					取地址运算符</p>
+			</td>
+			<td>
+				<p>
+					&amp;变量名</p>
+			</td>
+			<td>
+				<p>
+					单目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					!</p>
+			</td>
+			<td>
+				<p>
+					逻辑非运算符</p>
+			</td>
+			<td>
+				<p>
+					!表达式</p>
+			</td>
+			<td>
+				<p>
+					单目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					~</p>
+			</td>
+			<td>
+				<p>
+					按位取反运算符</p>
+			</td>
+			<td>
+				<p>
+					~表达式</p>
+			</td>
+			<td>
+				<p>
+					单目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					sizeof</p>
+			</td>
+			<td>
+				<p>
+					长度运算符</p>
+			</td>
+			<td>
+				<p>
+					sizeof(表达式)</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td rowspan="3">
+				<p>
+					3</p>
+			</td>
+			<td>
+				<p>
+					/</p>
+			</td>
+			<td>
+				<p>
+					除</p>
+			</td>
+			<td>
+				<p>
+					表达式 / 表达式</p>
+			</td>
+			<td rowspan="3">
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					*</p>
+			</td>
+			<td>
+				<p>
+					乘</p>
+			</td>
+			<td>
+				<p>
+					表达式*表达式</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					%</p>
+			</td>
+			<td>
+				<p>
+					余数（取模）</p>
+			</td>
+			<td>
+				<p>
+					整型表达式%整型表达式</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="2">
+				<p>
+					4</p>
+			</td>
+			<td>
+				<p>
+					+</p>
+			</td>
+			<td>
+				<p>
+					加</p>
+			</td>
+			<td>
+				<p>
+					表达式+表达式</p>
+			</td>
+			<td rowspan="2">
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					-</p>
+			</td>
+			<td>
+				<p>
+					减</p>
+			</td>
+			<td>
+				<p>
+					表达式-表达式</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="2">
+				<p>
+					5</p>
+			</td>
+			<td>
+				<p>
+					&lt;&lt;</p>
+			</td>
+			<td>
+				<p>
+					左移</p>
+			</td>
+			<td>
+				<p>
+					变量&lt;&lt;表达式</p>
+			</td>
+			<td rowspan="2">
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					&gt;&gt;</p>
+			</td>
+			<td>
+				<p>
+					右移</p>
+			</td>
+			<td>
+				<p>
+					变量&gt;&gt;表达式</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="4">
+				<p>
+					6</p>
+			</td>
+			<td>
+				<p>
+					&gt;</p>
+			</td>
+			<td>
+				<p>
+					大于</p>
+			</td>
+			<td>
+				<p>
+					表达式&gt;表达式</p>
+			</td>
+			<td rowspan="4">
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					&gt;=</p>
+			</td>
+			<td>
+				<p>
+					大于等于</p>
+			</td>
+			<td>
+				<p>
+					表达式&gt;=表达式</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					&lt;</p>
+			</td>
+			<td>
+				<p>
+					小于</p>
+			</td>
+			<td>
+				<p>
+					表达式&lt;表达式</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					&lt;=</p>
+			</td>
+			<td>
+				<p>
+					小于等于</p>
+			</td>
+			<td>
+				<p>
+					表达式&lt;=表达式</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="2">
+				<p>
+					7</p>
+			</td>
+			<td>
+				<p>
+					==</p>
+			</td>
+			<td>
+				<p>
+					等于</p>
+			</td>
+			<td>
+				<p>
+					表达式==表达式</p>
+			</td>
+			<td rowspan="2">
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					!=</p>
+			</td>
+			<td>
+				<p>
+					不等于</p>
+			</td>
+			<td>
+				<p>
+					表达式!= 表达式</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					8</p>
+			</td>
+			<td>
+				<p>
+					&amp;</p>
+			</td>
+			<td>
+				<p>
+					按位与</p>
+			</td>
+			<td>
+				<p>
+					表达式&amp;表达式</p>
+			</td>
+			<td>
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					9</p>
+			</td>
+			<td>
+				<p>
+					^</p>
+			</td>
+			<td>
+				<p>
+					按位异或</p>
+			</td>
+			<td>
+				<p>
+					表达式^表达式</p>
+			</td>
+			<td>
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					10</p>
+			</td>
+			<td>
+				<p>
+					|</p>
+			</td>
+			<td>
+				<p>
+					按位或</p>
+			</td>
+			<td>
+				<p>
+					表达式|表达式</p>
+			</td>
+			<td>
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					11</p>
+			</td>
+			<td>
+				<p>
+					&amp;&amp;</p>
+			</td>
+			<td>
+				<p>
+					逻辑与</p>
+			</td>
+			<td>
+				<p>
+					表达式&amp;&amp;表达式</p>
+			</td>
+			<td>
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					12</p>
+			</td>
+			<td>
+				<p>
+					||</p>
+			</td>
+			<td>
+				<p>
+					逻辑或</p>
+			</td>
+			<td>
+				<p>
+					表达式||表达式</p>
+			</td>
+			<td>
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					双目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					13</p>
+			</td>
+			<td>
+				<p>
+					?:</p>
+			</td>
+			<td>
+				<p>
+					条件运算符</p>
+			</td>
+			<td>
+				<p>
+					表达式1? 表达式2: 表达式3</p>
+			</td>
+			<td>
+				<p>
+					右到左</p>
+			</td>
+			<td>
+				<p>
+					三目运算符</p>
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="11">
+				<p>
+					14</p>
+			</td>
+			<td>
+				<p>
+					=</p>
+			</td>
+			<td>
+				<p>
+					赋值运算符</p>
+			</td>
+			<td>
+				<p>
+					变量=表达式</p>
+			</td>
+			<td rowspan="11">
+				<p>
+					右到左</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					/=</p>
+			</td>
+			<td>
+				<p>
+					除后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量/=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					*=</p>
+			</td>
+			<td>
+				<p>
+					乘后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量*=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					%=</p>
+			</td>
+			<td>
+				<p>
+					取模后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量%=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					+=</p>
+			</td>
+			<td>
+				<p>
+					加后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量+=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					-=</p>
+			</td>
+			<td>
+				<p>
+					减后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量-=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					&lt;&lt;=</p>
+			</td>
+			<td>
+				<p>
+					左移后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量&lt;&lt;=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					&gt;&gt;=</p>
+			</td>
+			<td>
+				<p>
+					右移后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量&gt;&gt;=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					&amp;=</p>
+			</td>
+			<td>
+				<p>
+					按位与后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量&amp;=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					^=</p>
+			</td>
+			<td>
+				<p>
+					按位异或后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量^=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					|=</p>
+			</td>
+			<td>
+				<p>
+					按位或后赋值</p>
+			</td>
+			<td>
+				<p>
+					变量|=表达式</p>
+			</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				<p>
+					15</p>
+			</td>
+			<td>
+				<p>
+					,</p>
+			</td>
+			<td>
+				<p>
+					逗号运算符</p>
+			</td>
+			<td>
+				<p>
+					表达式,表达式,&hellip;</p>
+			</td>
+			<td>
+				<p>
+					左到右</p>
+			</td>
+			<td>
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+上表中可以总结出如下规律：
+<ol>
+	<li>
+		结合方向只有三个是从右往左，其余都是从左往右。</li>
+	<li>
+		所有双目运算符中只有赋值运算符的结合方向是从右往左。</li>
+	<li>
+		另外两个从右往左结合的运算符也很好记，因为它们很特殊：一个是单目运算符，一个是三目运算符。</li>
+	<li>
+		C语言中有且只有一个三目运算符。</li>
+	<li>
+		逗号运算符的优先级最低，要记住。</li>
+	<li>
+		此外要记住，对于优先级：算术运算符 &gt; 关系运算符 &gt; 逻辑运算符 &gt; 赋值运算符。逻辑运算符中&ldquo;逻辑非 !&rdquo;除外。</li>
+</ol>
+<h2>
+	一些容易出错的优先级问题</h2>
+上表中，优先级同为 1 的几种运算符如果同时出现，那怎么确定表达式的优先级呢？这是很多初学者迷糊的地方。下表就整理了这些容易出错的情况：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				优先级问题</th>
+			<th>
+				表达式</th>
+			<th>
+				经常误认为的结果</th>
+			<th>
+				实际结果</th>
+		</tr>
+		<tr>
+			<td>
+				. 的优先级高于 *（-&gt; 操作符用于消除这个问题）</td>
+			<td>
+				*p.f</td>
+			<td>
+				p 所指对象的字段 f，等价于：<br />
+				(*p).f</td>
+			<td>
+				对 p 取&nbsp;f&nbsp;偏移，作为指针，然后进行解除引用操作，等价于：<br />
+				*(p.f)</td>
+		</tr>
+		<tr>
+			<td>
+				[] 高于 *</td>
+			<td>
+				int *ap[]</td>
+			<td>
+				ap&nbsp;是个指向&nbsp;int&nbsp;数组的指针，等价于：<br />
+				int (*ap)[]</td>
+			<td>
+				ap&nbsp;是个元素为&nbsp;int&nbsp;指针的数组，等价于：<br />
+				int *(ap [])</td>
+		</tr>
+		<tr>
+			<td>
+				函数 () 高于 *</td>
+			<td>
+				int *fp()</td>
+			<td>
+				fp&nbsp;是个函数指针，所指函数返回&nbsp;int，等价于：<br />
+				int (*fp)()</td>
+			<td>
+				fp 是个函数，返回&nbsp;int*，等价于：<br />
+				int* ( fp() )</td>
+		</tr>
+		<tr>
+			<td>
+				== 和 != 高于位操作</td>
+			<td>
+				(val&nbsp;&amp;&nbsp;mask != 0)</td>
+			<td>
+				(val&nbsp;&amp;mask) != 0</td>
+			<td>
+				val &amp;&nbsp;(mask != 0)</td>
+		</tr>
+		<tr>
+			<td>
+				== 和 != 高于赋值符</td>
+			<td>
+				c = getchar() != EOF</td>
+			<td>
+				(c = getchar()) != EOF</td>
+			<td>
+				c = (getchar() != EOF)</td>
+		</tr>
+		<tr>
+			<td>
+				算术运算符高于位移 运算符</td>
+			<td>
+				msb &lt;&lt;&nbsp;4 + lsb</td>
+			<td>
+				(msb &lt;&lt;&nbsp;4) + lsb</td>
+			<td>
+				msb &lt;&lt;&nbsp;(4 + lsb)</td>
+		</tr>
+		<tr>
+			<td>
+				逗号运算符在所有运 算符中优先级最低</td>
+			<td>
+				i = 1, 2</td>
+			<td>
+				i = (1,2)</td>
+			<td>
+				(i = 1),&nbsp;2</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+这些容易出错的情况，希望读者好好在编译器上调试调试，这样印象会深一些。一定要多调试，光靠看代码，水平是很难提上来的。调试代码才是最长水平的。</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 434;
+window.arcId = "f80cMzedVSwyBK+eCATacE/YEkDaFUcDACQDfzCcbag3FMjcfdMHTLZt8Q";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

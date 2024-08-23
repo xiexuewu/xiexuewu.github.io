@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>VS2015使用教程（使用VS2015编写C语言程序）</title>
+<meta name="keywords" content="VS2015,使用,教程,编写,语言程序,前面,我们,给," />
+<meta name="description" content="前面我们给出了一段完整的C语言代码，就是在显示器上输出C语言中文网，如下所示： #include stdio.hint main(){ puts(C语言中文网); return 0;} 本节我们就来看看如何通过 VS2015 来运行这段代码。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>VS2015使用教程（使用VS2015编写C语言程序）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/391.html">VS2015下载地址和安装教程</a></span>
+                    <span class="next right"><a href="/view/393.html">Dev C++下载地址和安装教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/391.html";window.nextPageURL = "/view/393.html";</script>
+			<div id="arc-body">前面我们给出了一段完整的C语言代码，就是在显示器上输出&ldquo;Hello,World!&rdquo;，如下所示：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    puts(&quot;Hello,World!&quot;);
+    return 0;
+}</pre>
+本节我们就来看看如何通过 VS2015 来运行这段代码。
+<div style="text-align: center;">
+	&nbsp;</div>
+<h2>
+	1) 创建项目（Project）</h2>
+在 VS2015 下开发程序首先要创建项目，不同类型的程序对应不同类型的项目，初学者应该从控制台程序学起。<br />
+<br />
+打开 VS2015，在上方菜单栏中选择&ldquo;文件 --&gt; 新建 --&gt; 项目&rdquo;：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/1013561J8-0.png" /></div>
+<br />
+或者按下<code>Ctrl+Shift+N</code>组合键，都会弹出下面的对话框：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/1013563230-1.png" /></div>
+<br />
+选择&ldquo;Win32控制台应用程序&rdquo;，填写好项目名称，选择好存储路径，点击&ldquo;确定&rdquo;按钮即可。<br />
+<br />
+如果你安装的是英文版的 VS2015，那么对应的项目类型是&ldquo;Win32 Console Application&rdquo;。另外还要注意，项目名称和存储路径最好不要包含中文。<br />
+<br />
+点击&ldquo;确定&rdquo;按钮后会弹出向导对话框：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/10135B224-2.png" /></div>
+<br />
+点击&ldquo;下一步&rdquo;按钮，弹出新的对话框：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/1013561207-3.png" /></div>
+<br />
+先取消&ldquo;预编译头&rdquo;和&ldquo;安全开发生命周期检查&rdquo;这两个选项，再勾选&ldquo;空项目&rdquo;，然后点击&ldquo;完成&rdquo;按钮就创建了一个新的项目。<br />
+<br />
+感兴趣的读者可以打开 E 盘，会发现多了一个cDemo文件夹，这就是整个项目所在的文件夹。
+<h2>
+	2) 添加源文件</h2>
+在&ldquo;源文件&rdquo;处右击鼠标，在弹出菜单中选择&ldquo;添加 -&gt; 新建项&rdquo;，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/10135A517-4.png" /></div>
+<br />
+或者按下<code>Ctrl+Shift+A</code>组合键，都会弹出添加源文件的对话框。如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/10135CS1-5.png" /></div>
+<br />
+在&ldquo;代码&rdquo;分类中选择C++文件(.cpp)，填写文件名，点击&ldquo;添加&rdquo;按钮就添加了一个新的源文件。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/2-240R2120050944.gif" /></div>
+<br />
+小小的提示：C++是在C语言的基础上进行的扩展，C++已经包含了C语言的所有内容，所以大部分的 IDE 只有创建C++文件的选项，没有创建C语言文件的选项。但是这并不影响使用，我们在填写源文件名称时把后缀改为<code>.c</code>即可，编译器会根据源文件的后缀来判断代码的种类。上图中，我们将源文件命名为<code>hello.c</code>。
+<h2>
+	3) 编写代码并生成程序</h2>
+打开 hello.c，将本节开头的代码输入到 hello.c 中，上图是输入完成以后的效果。
+<blockquote>
+	注意：虽然可以将整段代码复制到编辑器，但是我还是强烈建议你手动输入，我敢保证你第一次输入代码会有各种各样的错误，只有把这些错误都纠正了，你才会进步。本教程后续章节还会给出很多示例代码，这些代码一定要手动输入，不要复制后运行成功了就万事大吉。</blockquote>
+<h4>
+	编译（Compile）</h4>
+在上方菜单栏中选择&ldquo;生成 --&gt; 编译&rdquo;，就完成了 hello.c 源文件的编译工作。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/10135BI5-7.png" /></div>
+<br />
+或者直接按下<code>Ctrl+F7</code>组合键，也能够完成编译工作，这样更加便捷。<br />
+<br />
+如果代码没有错误，会在下方的&ldquo;输出窗口&rdquo;中看到编译成功的提示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/1013562144-8.png" /></div>
+<br />
+编译完成后，打开项目目录（本教程中是 E:\cDemo\）下的 Debug 文件夹，会看到一个名为<code>hello.obj</code>的文件，这就是经过编译产生的中间文件，这种中间文件的专业称呼是<span style="color:#008000;">目标文件（Object File）</span>。在 VS 和 VC 下，目标文件的后缀都是<code>.obj</code>。
+<h4>
+	链接（Link）</h4>
+在菜单栏中选择&ldquo;项目 --&gt; 仅用于项目 --&gt; 仅链接 cDemo&rdquo;，就完成了 hello.obj 的链接工作，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/10135CO9-9.png" /></div>
+<br />
+如果代码没有错误，会在下方的&ldquo;输出窗口&rdquo;中看到链接成功的提示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/10135AG1-10.png" /></div>
+<blockquote>
+	本项目中只有一个目标文件，链接的作用是将 hello.obj 和系统组件（专业讲是静态链接库）结合起来，形成可执行文件。如果有多个目标文件，这些目标文件之间还要相互结合。</blockquote>
+再次打开项目目录（本教程中是 E:\cDemo\）下的 Debug 文件夹，会看到一个名为<code>cDemo.exe</code>的文件，这就是最终生成的可执行文件，就是我们想要的结果。<br />
+<br />
+双击 cDemo.exe 运行，并没有输出&ldquo;Hello,World！&rdquo;几个字，而是会看到一个黑色窗口一闪而过。这是因为，程序输出&ldquo;Hello,World！&rdquo;后就运行结束了，窗口会自动关闭，时间非常短暂，所以看不到输出结果，只能看到一个&ldquo;黑影&rdquo;。<br />
+<br />
+对上面的代码稍作修改，让程序输出&ldquo;Hello,World！&rdquo;后暂停下来：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main()
+{
+    puts(&quot;Hello,World!&quot;);
+    system(&quot;pause&quot;);
+    return 0;
+}</pre>
+<code>system(&quot;pause&quot;);</code>语句的作用就是让程序暂停一下。注意代码开头部分还添加了<code>#include &lt;stdlib.h&gt;</code>语句，否则<code>system(&quot;pause&quot;);</code>无效。<br />
+<br />
+再次编译并链接，运行生成的 cDemo.exe，终于如愿以偿，看到输出结果了，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/2-240R212002I11.gif" /></div>
+按下键盘上的任意一个键，程序就会关闭。
+<h4>
+	更加快捷的办法</h4>
+我们把上面的步骤总结一下，可以发现一个完整的编程过程是：
+<ul>
+	<li>
+		编写源文件：这是编程的主要工作，我们要保证代码的语法100%正确，不能有任何差错；</li>
+	<li>
+		编译：将源文件转换为目标文件；</li>
+	<li>
+		链接：将目标文件和系统库组合在一起，转换为可执行文件；</li>
+	<li>
+		运行：可以检验代码的正确性。</li>
+</ul>
+<br />
+不过 VS 提供了一种更加快捷的方式，可以一键完成编译、链接、运行三个动作，点击菜单栏中的&ldquo;运行&rdquo;按钮，或者按下<code>F5</code>键就能做到这一点。
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240820/10135640U-12.png" /></div>
+<h4>
+	还有更实用的技巧</h4>
+如果我们的代码中没有添加<code>system(&quot;pause&quot;);</code>暂停语句，点击&ldquo;运行&rdquo;按钮，或者按下<code>F5</code>键后程序依然会一闪而过，只能看到一个&ldquo;黑影&rdquo;。<br />
+<br />
+<span style="color:#b22222;">如果想让程序自动暂停，可以按下<code>Ctrl+F5</code>组合键，这样程序就不会一闪而过了；换句话说，按下<code>Ctrl+F5</code>键，VS 会自动在程序的最后添加暂停语句。</span><br />
+<br />
+现在我们已经了解了从编写代码到生成程序的整个过程，在以后的学习中，可以直接使用<code>Ctrl+F5</code>组合键了，不用再分步骤完成了，这样会更加方便和实用。
+<h2>
+	4) 总结</h2>
+现在，你就可以将 cDemo.exe 分享给你的朋友了，告诉他们这是你编写的第一个C语言程序。虽然这个程序非常简单，但是你已经越过了第一道障碍，学会了如何编写代码，如何将代码生成可执行程序，这是一个完整的体验。<br />
+<br />
+在本教程的基础部分，教大家编写的程序都是这样的&ldquo;黑窗口&rdquo;，与我们平时使用的软件不同，它们没有漂亮的界面，没有复杂的功能，只能看到一些文字，这就是<span style="color:#008000;">控制台程序（Console Application）</span>，它与DOS非常相似，早期的计算机程序都是这样的。<br />
+<br />
+控制台程序虽然看起来枯燥无趣，但是它非常简单，适合入门，能够让大家学会编程的基本知识；只有夯实基本功，才能开发出健壮的<span style="color:#008000;">GUI（Graphical User Interface，图形用户界面）</span>程序，也就是带界面的程序。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/391.html">VS2015下载地址和安装教程</a></span>
+                    <span class="next right"><a href="/view/393.html">Dev C++下载地址和安装教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/391.html";window.nextPageURL = "/view/393.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 392;
+window.arcId = "a4088Kser0NomkpRGO5iIhKaT23iVPgMrEuINwVNa/qjRSvgUZAeQkswEg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

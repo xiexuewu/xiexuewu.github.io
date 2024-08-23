@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言while循环和do while循环详解</title>
+<meta name="keywords" content="语言,while,循环,和,详解,在,语,言中,共有,三大," />
+<meta name="description" content="在 C语言中，共有三大常用的程序结构： 顺序结构：代码从前往后执行，没有任何拐弯抹角； 选择结构：也叫分支结构，重点要掌握 if else、switch 以及条件运算符； 循环结构：重复执行" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a></dd></dl>
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言while循环和do while循环详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/450.html">C语言条件运算符</a></span>
+                    <span class="next right"><a href="/view/452.html">C语言for循环</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/450.html";window.nextPageURL = "/view/452.html";</script>
+			<div id="arc-body">在 C语言中，共有三大常用的程序结构：
+<ul>
+	<li>
+		顺序结构：代码从前往后执行，没有任何&ldquo;拐弯抹角&rdquo;；</li>
+	<li>
+		选择结构：也叫分支结构，重点要掌握 if else、switch 以及条件运算符；</li>
+	<li>
+		循环结构：重复执行同一段代码。</li>
+</ul>
+<br />
+前面讲解了顺序结构和选择结构，本节开始讲解循环结构。所谓<span style="color: #008000">循环（Loop）</span>，就是重复地执行同一段代码，例如要计算 1+2+3+&hellip;&hellip;+99+100 的值，就要重复进行 99 次加法运算。
+<h2>
+	while循环</h2>
+while循环的一般形式为：
+<p class="info-box">
+	while(表达式){<br />
+	&nbsp; &nbsp; 语句块<br />
+	}</p>
+意思是，先计算&ldquo;表达式&rdquo;的值，当值为真（非 0）时， 执行&ldquo;语句块&rdquo;；执行完&ldquo;语句块&rdquo;，再次计算表达式的值，如果为真，继续执行&ldquo;语句块&rdquo;&hellip;&hellip;这个过程会一直重复，直到表达式的值为假（0），就退出循环，执行 while 后面的代码。<br />
+<br />
+我们通常将&ldquo;表达式&rdquo;称为<span style="color: #008000">循环条件</span>，把&ldquo;语句块&rdquo;称为<span style="color: #008000">循环体</span>，整个循环的过程就是不停判断循环条件、并执行循环体代码的过程。<br />
+<br />
+用 while 循环计算 1 加到 100 的值：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int i=1, sum=0;
+    while(i&lt;=100){
+        sum+=i;
+        i++;
+    }
+    printf(&quot;%d\n&quot;,sum);
+    return 0;
+}</pre>
+运行结果：<br />
+5050<br />
+<br />
+代码分析：<br />
+1) 程序运行到 while 时，因为 i=1，i&lt;=100 成立，所以会执行循环体；执行结束后 i 的值变为 2，sum 的值变为 1。<br />
+<br />
+2) 接下来会继续判断 i&lt;=100 是否成立，因为此时 i=2，i&lt;=100 成立，所以继续执行循环体；执行结束后 i 的值变为 3，sum 的值变为3。<br />
+<br />
+3) 重复执行步骤 2)。<br />
+<br />
+4) 当循环进行到第 100 次，i 的值变为 101，sum 的值变为 5050；因为此时 i&lt;=100 不再成立，所以就退出循环，不再执行循环体，转而执行 while 循环后面的代码。<br />
+<br />
+while 循环的整体思路是这样的：设置一个带有变量的循环条件，也即一个带有变量的表达式；在循环体中额外添加一条语句，让它能够改变循环条件中变量的值。这样，随着循环的不断执行，循环条件中变量的值也会不断变化，终有一个时刻，循环条件不再成立，整个循环就结束了。<br />
+<br />
+如果循环条件中不包含变量，会发生什么情况呢？<br />
+<br />
+1) 循环条件成立时的话，while 循环会一直执行下去，永不结束，成为&ldquo;死循环&rdquo;。例如：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    while(1){
+        printf(&quot;1&quot;);
+    }
+    return 0;
+}</pre>
+运行程序，会不停地输出&ldquo;1&rdquo;，直到用户强制关闭。<br />
+<br />
+2) 循环条件不成立的话，while 循环就一次也不会执行。例如：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    while(0){
+        printf(&quot;1&quot;);
+    }
+    return 0;
+}</pre>
+运行程序，什么也不会输出。<br />
+<br />
+再看一个例子，统计从键盘输入的一行字符的个数：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int n=0;
+    printf(&quot;Input a string:&quot;);
+    while(getchar()!=&#39;\n&#39;) n++;
+    printf(&quot;Number of characters: %d\n&quot;, n);
+    return 0;
+}</pre>
+运行结果：<br />
+Input a string:c.biancheng.net↙<br />
+Number of characters: 15<br />
+<br />
+本例程序中的循环条件为<code>getchar()!=&#39;\n&#39;</code>，其意义是，只要从键盘输入的字符不是回车就继续循环。循环体<code>n++;</code>完成对输入字符个数计数。
+<h2>
+	do-while循环</h2>
+除了 while 循环，在 C语言中还有一种 do-while 循环。<br />
+<br />
+do-while 循环的一般形式为：
+<p class="info-box">
+	do{<br />
+	&nbsp; &nbsp; 语句块<br />
+	}while(表达式);</p>
+do-while 循环与 while 循环的不同在于：它会先执行&ldquo;语句块&rdquo;，然后再判断表达式是否为真，如果为真则继续循环；如果为假，则终止循环。因此，do-while 循环至少要执行一次&ldquo;语句块&rdquo;。<br />
+<br />
+用 do-while 计算 1 加到 100 的值：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int i=1, sum=0;
+    do{
+        sum+=i;
+        i++;
+    }while(i&lt;=100);
+    printf(&quot;%d\n&quot;, sum);
+    return 0;
+}</pre>
+运行结果：<br />
+5050
+<blockquote>
+	注意<code>while(i&lt;=100);</code>最后的分号<code>;</code>，这个必须要有。</blockquote>
+while 循环和 do-while 各有特点，大家可以适当选择，实际编程中使用 while 循环较多。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/450.html">C语言条件运算符</a></span>
+                    <span class="next right"><a href="/view/452.html">C语言for循环</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/450.html";window.nextPageURL = "/view/452.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 451;
+window.arcId = "32c4J2jA2/nX/0CrE0WXyajwaZGdtNk7FpZLFPS+MktLPMOwua9tgOtq2A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言字符数组和字符串详解</title>
+<meta name="keywords" content="语言,字符,数组,和,字符串,详解,用来,存放," />
+<meta name="description" content="用来存放字符的数组称为 字符数组 ，例如： char a[10]; //一维字符数组char b[5][10]; //二维字符数组char c[20]={c, , p, r, o, g, r, a,m}; // 给部分数组元素赋值char d[]={c, , p, r, o, g, r, a, m }; //对全体" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言字符数组和字符串详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/480.html">判断数组中是否包含某个元素</a></span>
+                    <span class="next right"><a href="/view/482.html">字符串的输入和输出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/480.html";window.nextPageURL = "/view/482.html";</script>
+			<div id="arc-body">用来存放字符的<u><a href='/view/181.html' target='_blank'>数组</a></u>称为<span style="color:#008000;"><strong>字符数组</strong></span>，例如：
+<pre class="c">
+char a[10];  //一维字符数组
+char b[5][10];  //二维字符数组
+char c[20]={&#39;c&#39;, &#39;  &#39;, &#39;p&#39;, &#39;r&#39;, &#39;o&#39;, &#39;g&#39;, &#39;r&#39;, &#39;a&#39;,&#39;m&#39;};  // 给部分数组元素赋值
+char d[]={&#39;c&#39;, &#39; &#39;, &#39;p&#39;, &#39;r&#39;, &#39;o&#39;, &#39;g&#39;, &#39;r&#39;, &#39;a&#39;, &#39;m&#39; };  //对全体元素赋值时可以省去长度</pre>
+字符数组实际上是一系列字符的集合，也就是<strong><span style="color: #008000">字符<u><a href='/view/175.html' target='_blank'>串</a></u>（String）</span></strong>。在 C语言中，没有专门的字符串变量，没有 string 类型，通常就用一个字符数组来存放一个字符串。<br />
+<br />
+C语言规定，可以将字符串直接赋值给字符数组，例如：<br />
+<pre class="c">
+char str[30] = {&quot;https://xiexuewu.github.io&quot;};
+char str[30] = &quot;https://xiexuewu.github.io&quot;;  //这种形式更加简洁，实际开发中常用
+</pre>
+数组第 0 个元素为<code>&#39;c&#39;</code>，第 1 个元素为<code>&#39;.&#39;</code>，第 2 个元素为<code>&#39;b&#39;</code>，后面的元素以此类推。<br />
+<br />
+为了方便，你也可以不指定数组长度，从而写作：
+<pre class="c">
+char str[] = {&quot;https://xiexuewu.github.io&quot;};
+char str[] = &quot;https://xiexuewu.github.io&quot;;  //这种形式更加简洁，实际开发中常用</pre>
+给字符数组赋值时，我们通常使用这种写法，将字符串一次性地赋值（可以指明数组长度，也可以不指明），而不是一个字符一个字符地赋值，那样做太麻烦了。<br />
+<br />
+这里需要留意一个坑，字符数组只有在定义时才能将整个字符串一次性地赋值给它，一旦定义完了，就只能一个字符一个字符地赋值了。请看下面的例子：
+<pre class="cpp">
+char str[7];
+str = &quot;abc123&quot;;  //错误
+//正确
+str[0] = &#39;a&#39;; str[1] = &#39;b&#39;; str[2] = &#39;c&#39;;
+str[3] = &#39;1&#39;; str[4] = &#39;2&#39;; str[5] = &#39;3&#39;;</pre>
+<h2>
+	字符串结束标志（划重点）</h2>
+字符串是一系列连续的字符的组合，要想在内存中定位一个字符串，除了要知道它的开头，还要知道它的结尾。<span style="color:#b22222;">找到字符串的开头很容易，知道它的名字（字符数组名或者字符串名）就可以；</span>然而，如何找到字符串的结尾呢？C语言的解决方案有点奇妙，或者说有点奇葩。<br />
+<br />
+<span style="color:#b22222;">在C语言中，字符串总是以<code>&#39;\0&#39;</code>作为结尾，所以<code>&#39;\0&#39;</code>也被称为字符串结束标志，或者字符串结束符。</span>
+<blockquote>
+	<code>&#39;\0&#39;</code>是 ASCII 码表中的第 0 个字符，英文称为 NUL，中文称为&ldquo;空字符&rdquo;。该字符既不能显示，也没有控制功能，输出该字符不会有任何效果，它在C语言中唯一的作用就是作为字符串结束标志。</blockquote>
+C语言在处理字符串时，会从前往后逐个扫描字符，一旦遇到<code>&#39;\0&#39;</code>就认为到达了字符串的末尾，就结束处理。<code>&#39;\0&#39;</code>至关重要，没有<code>&#39;\0&#39;</code>就意味着永远也到达不了字符串的结尾。<br />
+<br />
+<span style="color:#b22222;">由<code>&quot; &quot;</code>包围的字符串会自动在末尾添加<code>&#39;\0&#39;</code>。</span>例如，<code>&quot;abc123&quot;</code>从表面看起来只包含了 6 个字符，其实不然，C语言会在最后隐式地添加一个<code>&#39;\0&#39;</code>，这个过程是在后台默默地进行的，所以我们感受不到。<br />
+<br />
+下图演示了<code>&quot;C program&quot;</code>在内存中的存储情形：<br />
+<br />
+<img src="/uploads/allimg/240821/1114155246-0.png" /><br />
+<br />
+需要注意的是，逐个字符地给数组赋值并不会自动添加<code>&#39;\0&#39;</code>，例如：
+<pre class="cpp">
+char str[] = {&#39;a&#39;, &#39;b&#39;, &#39;c&#39;};</pre>
+数组 str 的长度为 3，而不是 4，因为最后没有<code>&#39;\0&#39;</code>。<br />
+<br />
+当用字符数组存储字符串时，要特别注意<code>&#39;\0&#39;</code>，要为<code>&#39;\0&#39;</code>留个位置；这意味着，字符数组的长度至少要比字符串的长度大 1。请看下面的例子：
+<pre class="cpp">
+char str[7] = &quot;abc123&quot;;</pre>
+<code>&quot;abc123&quot;</code>看起来只包含了 6 个字符，我们却将 str 的长度定义为 7，就是为了能够容纳最后的<code>&#39;\0&#39;</code>。如果将 str 的长度定义为 6，它就无法容纳<code>&#39;\0&#39;</code>了。
+<blockquote>
+	<p>
+		当字符串长度大于数组长度时，有些较老或者不严格的编译器并不会报错，甚至连警告都没有，这就为以后的错误埋下了伏笔，读者自己要多多注意。</p>
+</blockquote>
+有些时候，程序的逻辑要求我们必须逐个字符地为数组赋值，这个时候就很容易遗忘字符串结束标志<code>&#39;\0&#39;</code>。下面的代码中，我们将 26 个大写英文字符存入字符数组，并以字符串的形式输出：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    char str[30];
+    char c;
+    int i;
+    for(c=65,i=0; c&lt;=90; c++,i++){
+        str[i] = c;
+    }
+    printf(&quot;%s\n&quot;, str);
+
+    return 0;
+}</pre>
+在 VS2015 下的运行结果：
+<p class="info-box">
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ口口口口i口口0 ?</p>
+<code>口&nbsp;</code>表示无法显示的特殊字符。<br />
+<br />
+大写字母在 ASCII 码表中是连续排布的，编码值从 65 开始，到 90 结束，使用循环非常方便。<br />
+<br />
+在《<a href="/view/432.html" target="_blank">C语言变量的定义位置以及初始值</a>》一节中我们讲到，在很多编译器下，局部变量的初始值是随机的，是垃圾值，而不是我们通常认为的&ldquo;零&rdquo;值。局部数组（在函数内部定义的数组，本例中的 str 数组就是在 main() 函数内部定义的）也有这个问题，很多编译器并不会把局部数组的内存都初始化为&ldquo;零&rdquo;值，而是放任不管，爱是什么就是什么，所以它们的值也是没有意义的，也是垃圾值。<br />
+<br />
+<span style="color:#b22222;">在函数内部定义的变量、数组、结构体、共用体等都称为局部数据。在很多编译器下，局部数据的初始值都是随机的、无意义的，而不是我们通常认为的&ldquo;零&rdquo;值。这一点非常重要，大家一定要谨记，否则后面会遇到很多奇葩的错误。</span><br />
+<br />
+本例中的 str 数组在定义完成以后并没有立即初始化，所以它所包含的元素的值都是随机的，只有很小的概率会是&ldquo;零&rdquo;值。循环结束以后，str 的前 26 个元素被赋值了，剩下的 4 个元素的值依然是随机的，不知道是什么。<br />
+<br />
+printf() 输出字符串时，会从第 0 个元素开始往后检索，直到遇见<code>&#39;\0&#39;</code>才停止，然后把<code>&#39;\0&#39;</code>前面的字符全部输出，这就是 printf() 输出字符串的原理。本例中我们使用 printf() 输出 str，按理说到了第 26 个元素就能检索到<code>&#39;\0&#39;</code>，就到达了字符串的末尾，然而事实却不是这样，由于我们并未对最后 4 个元素赋值，所以第 26 个元素不是<code>&#39;\0&#39;</code>，第 27 个也不是，第 28 个也不是&hellip;&hellip;可能到了第 50 个元素才遇到<code>&#39;\0&#39;</code>，printf() 把这 50 个字符全部输出出来，就是上面的样子，多出来的字符毫无意义，甚至不能显示。<br />
+<br />
+数组总共才 30 个元素，到了第 50 个元素不早就超出数组范围了吗？是的，的确超出范围了！然而，数组后面依然有其它的数据，printf() 也会将这些数据作为字符串输出。<br />
+<br />
+你看，不注意<code>&#39;\0&#39;</code>的后果有多严重，不但不能正确处理字符串，甚至还会毁坏其它数据。<br />
+<br />
+要想避免这些问题也很容易，在字符串的最后手动添加<code>&#39;\0&#39;</code>即可。修改上面的代码，在循环结束后添加<code>&#39;\0&#39;</code>：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    char str[30];
+    char c;
+    int i;
+    for(c=65,i=0; c&lt;=90; c++,i++){
+        str[i] = c;
+    }
+    str[i] = 0;  //此处为添加的代码，也可以写作 str[i] = &#39;\0&#39;;
+    printf(&quot;%s\n&quot;, str);
+   
+    return 0;
+}</pre>
+第 9 行为新添加的代码，它让字符串能够正常结束。根据 ASCII 码表，字符<code>&#39;\0&#39;</code>的编码值就是 0。<br />
+<br />
+但是，这样的写法貌似有点业余，或者说不够简洁，更加专业的做法是将数组的所有元素都初始化为&ldquo;零&rdquo;值，这样才能够从根本上避免问题。再次修改上面的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main(){
+    char str[30] = {0};  //将所有元素都初始化为 0，或者说 &#39;\0&#39;
+    char c;
+    int i;
+    for(c=65,i=0; c&lt;=90; c++,i++){
+        str[i] = c;
+    }
+    printf(&quot;%s\n&quot;, str);
+   
+    return 0;
+}</pre>
+还记得《<a href="/view/478.html" target="_blank">什么是数组</a>》一节中强调过的吗？如果只初始化部分数组元素，那么剩余的数组元素也会自动初始化为&ldquo;零&rdquo;值，所以我们只需要将 str 的第 0 个元素赋值为 0，剩下的元素就都是 0 了。
+<h2>
+	字符串长度</h2>
+所谓字符串长度，就是字符串包含了多少个字符（不包括最后的结束符<code>&#39;\0&#39;</code>）。例如<code>&quot;abc&quot;</code>的长度是 3，而不是 4。<br />
+<br />
+在C语言中，我们使用<code>string.h</code>头文件中的 strlen() 函数来求字符串的长度，它的用法为：
+<p class="info-box">
+	length strlen(strname);</p>
+strname 是字符串的名字，或者字符数组的名字；length 是使用 strlen() 后得到的字符串长度，是一个整数。<br />
+<br />
+下面是一个完整的例子，它输出《<a href="/c/" target="_blank">C语言入门教程</a>》网址的长度：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;  //记得引入该头文件
+
+int main(){
+    char str[] = &quot;https://xiexuewu.github.io/c/&quot;;
+    long len = strlen(str);
+    printf(&quot;The lenth of the string is %ld.\n&quot;, len);
+   
+    return 0;
+}</pre>
+运行结果：<br />
+The lenth of the string is 29.<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/480.html">判断数组中是否包含某个元素</a></span>
+                    <span class="next right"><a href="/view/482.html">字符串的输入和输出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/480.html";window.nextPageURL = "/view/482.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 481;
+window.arcId = "1297m6JH6pmjzixNQEgNkB9vxXa81wG6wccsxFp3acX3WoLatEseknqbFA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

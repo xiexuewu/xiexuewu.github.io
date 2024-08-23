@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言统计英文字母、空格、数字和其它字符的个数</title>
+<meta name="keywords" content="语言,统计,英文,字母,、,空格,数字,和,其它," />
+<meta name="description" content="编写程序，要求输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。 分析 利用循环结构 while 或者 for，逐个判断输入字符的值： 位于 [a, z] 或者 [A, Z] 区间内：当" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言统计英文字母、空格、数字和其它字符的个数</h1>
+			<div id="arc-body">编写程序，要求输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。<br />
+<h2>
+	分析</h2>
+利用循环结构 while 或者 for，逐个判断输入字符的值：
+<ul>
+	<li>
+		位于 [a, z] 或者 [A, Z] 区间内：当前字符是一个英文字母；</li>
+	<li>
+		位于 [0, 9] 区间内：当前字符是一个数字；</li>
+	<li>
+		和 &#39; &#39; 相等：当前字符是一个空格；</li>
+</ul>
+<br />
+若以上三种情况都不是，那么当前字符属于其它字符的范畴。
+<h2>
+	实现</h2>
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main() {
+    char c;           //用户输入的字符
+    int letters = 0;// 字母数目
+    int space = 0;    // 空格数目
+    int digit = 0;   // 整数数目
+    int others = 0;   // 其他字符数目
+
+    printf(&quot;输入一些字符：&quot;);
+    while ((c = getchar()) != &#39;\n&#39;) {  // 每次读取一个字符，回车时结束
+        if (c &gt;= &#39;a&#39; &amp;&amp; c &lt;= &#39;z&#39; || c &gt;= &#39;A&#39; &amp;&amp; c &lt;= &#39;Z&#39;)
+            letters++;
+        else if (c == &#39; &#39;)
+            space++;
+        else if (c &gt;= &#39;0&#39; &amp;&amp; c &lt;= &#39;9&#39;)
+            digit++;
+        else
+            others++;
+    }
+
+    printf(&quot;\n统计结果:\n英文字母=%d\n空格=%d\n整数=%d\n其他字符=%d\n\n&quot;, letters, space, digit, others);
+
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	输入一些字符：https://xiexuewu.github.io 12345<br />
+	<br />
+	统计结果:<br />
+	英文字母=21<br />
+	空格=1<br />
+	整数=5<br />
+	其他字符=5</p>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 459;
+window.arcId = "8d73eTUKaVm1u9jo/OjpIgPxpnxkTCZBwW4Q9FGzE7cS4vcslrmPz36tKQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

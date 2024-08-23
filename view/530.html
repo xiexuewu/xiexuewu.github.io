@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>main()函数的高级用法：接收用户输入的数据</title>
+<meta name="keywords" content="main,函数,的,高级,用法,接收,用户,输入,数据," />
+<meta name="description" content="main() 是C语言程序的入口函数，有且只能有一个，它实际上有两种标准的原型： int main();int main(int argc, char *argv[]); 前面的教程中我们一直使用第一种原型，它简单易懂，能让初学者很快" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>main()函数的高级用法：接收用户输入的数据</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></span>
+                    <span class="next right"><a href="/view/542.html">const的用法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/529.html";window.nextPageURL = "/view/542.html";</script>
+			<div id="arc-body">main() 是C语言程序的入口函数，有且只能有一个，它实际上有两种标准的原型：
+<pre class="c">
+int main();
+int main(int argc, char *argv[]);</pre>
+前面的教程中我们一直使用第一种原型，它简单易懂，能让初学者很快入手。第二种原型在实际开发中也经常使用，它能够让我们在程序启动时给程序传递数据。<br />
+<br />
+一个程序在启动时允许系统或用户给它传递数据，Windows 和 Linux 都支持，这些数据以字符<u><a href='/view/175.html' target='_blank'>串</a></u>的形式存在，多份数据之间以空格分隔。也就是说，用户输入的多份数据在程序中表现为多个字符串。<br />
+<br />
+给程序传递数据的一种方法就是从控制台运行程序，在 Windows 下就是从 cmd（命令提示符程序）运行，在 Linux 下就是从终端（Terminal）运行，本节以 Windows 为例讲解。<br />
+<br />
+在第二个原型中，argc 表示传递的字符串的数目，argv 是一个指针<u><a href='/view/181.html' target='_blank'>数组</a></u>，每个指针指向一个字符串（一份数据）。我们来看一个具体的例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(int argc, char *argv[]){
+    int i;
+    printf(&quot;The program receives %d parameters:\n&quot;, argc);
+    for(i=0; i&lt;argc; i++){
+        printf(&quot;%s\n&quot;, argv[i]);
+    }
+    return 0;
+}</pre>
+将生成后的程序放在<code>D:\demo</code>目录下，命名为<code>main.exe</code>，打开 cmd（命令提示符程序），输入<code>D:\demo\main.exe C语言&nbsp;https://xiexuewu.github.io&nbsp;C-Lang</code>，程序的运行结果如下：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240821/2-240R1160P1946.gif" style="width: 676px; height: 262px;" /></div>
+<br />
+从运行结果可以看出，包括程序名以及它后面的字符串都会被程序所接收。<br />
+<br />
+去掉后面的数据，只输入程序名：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240821/2-240R1160QI39.gif" /></div>
+<br />
+再次证明了程序名也会被传递给程序本身。<br />
+<br />
+cd 到程序所在目录，只输入程序名（不包含路径）就可以运行程序：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240821/2-240R1160S13G.gif" /></div>
+<br />
+可以看到，程序名已经不包含路径了。<br />
+<br />
+main() 函数的第二种原型有非常实际的应用，在 Linux 中，每个 Shell 命令都需要一个程序来解释，如果这个程序是由C语言编写的，那么 main() 函数就可以接收这个命令以及它后面附带的参数。<br />
+<br />
+【实用程序】判断用户输入的是否是素数。
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+#include &lt;stdlib.h&gt;
+
+int isPrime(int n);
+
+int main(int argc, char *argv[]){
+    int i, n, result;
+    if(argc &lt;= 1){
+        printf(&quot;Error: no input integer!\n&quot;);
+        exit(EXIT_SUCCESS);
+    }
+    for(i=1; i&lt;argc; i++){
+        n = atoi(argv[i]);
+        result = isPrime(n);
+        if(result &lt; 0){
+            printf(&quot;%3d is error.\n&quot;, n);
+        }else if(result){
+            printf(&quot;%3d is prime number.\n&quot;, n);
+        }else{
+            printf(&quot;%3d is not prime number.\n&quot;, n);
+        }
+    }
+    return 0;
+}
+
+//判断是否是素数
+int isPrime(int n){
+    int i, j;
+    if(n &lt;= 1){  //参数错误
+        return -1;
+    }else if(n == 2){  //2是特例，单独处理
+        return 1;
+    }else if(n % 2 == 0){  //偶数不是素数
+        return 0;
+    }else{  //判断一个奇数是否是素数
+        j = (int)sqrt(n);
+        for(i=3; i&lt;=j; i+=2){
+            if (n % i == 0){
+                return 0;
+            }
+        }
+        return 1;
+    }
+}</pre>
+在 cmd 中的运行效果截图：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240821/2-240R1160UM43.gif" /></div>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></span>
+                    <span class="next right"><a href="/view/542.html">const的用法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/529.html";window.nextPageURL = "/view/542.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 530;
+window.arcId = "b677II/USgPNYeKAfBIzYkv9wINzktXBQw1rikOZ4diejlEtQaq3ywVIRg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

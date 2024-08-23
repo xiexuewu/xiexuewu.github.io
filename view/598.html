@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>一个比较规范的C语言多文件编程的例子</title>
+<meta name="keywords" content="一个,比较,规范,的,语,言多,文件,编程,例子," />
+<meta name="description" content="学习完 C语言的基本课程，很多老师都会布置一个大作业，让同学们编写出学生信息管理系统。学生信息管理系统可以用来管理班级学生，对学生信息（包括姓名、性别、年龄、成绩等）" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">14</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>14.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>14.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a></dd><dd>14.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a></dd><dd>14.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a></dd><dd>14.5 <a href="/view/590.html">符号——链接的粘合剂</a></dd><dd>14.6 <a href="/view/591.html">强符号和弱符号</a></dd><dd>14.7 <a href="/view/592.html">强引用和弱引用</a></dd><dd>14.8 <a href="/view/593.html">C语言模块化编程中的头文件</a></dd><dd>14.9 <a href="/view/594.html">C语言标准库以及标准头文件</a></dd><dd>14.10 <a href="/view/595.html">细说C语言头文件的路径</a></dd><dd>14.11 <a href="/view/596.html">防止C语言头文件被重复包含</a></dd><dd>14.12 <a href="/view/597.html">C语言static变量和函数</a></dd><dd>14.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a></dd></dl>
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>一个比较规范的C语言多文件编程的例子</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/597.html">C语言static变量和函数</a></span>
+                    <span class="next right"><a href="/c/practice/">C语言项目实战案例</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/597.html";window.nextPageURL = "/c/practice/";</script>
+			<div id="arc-body">学习完 C语言的基本课程，很多老师都会布置一个大作业，让同学们编写出学生信息管理系统。学生信息管理系统可以用来管理班级学生，对学生信息（包括姓名、性别、年龄、成绩等）进行增加、删除、更改、查询等操作。<br />
+<br />
+该系统主要有两种实现方案：第一种将学生信息直接保存在二进制文件中，当需要查询或者更新时，要能够使用文件操作函数精确定位学生信息；第二种使用数据结构中的<u><a href='/view/160.html' target='_blank'>链表</a></u>，将学生信息暂时缓存在链表，如果有变化，才更新到文件。<br />
+<br />
+本节我们以第一种方案为例，搭建起学生信息管理系统的框架，将前面几节的知识综合运用起来。<br />
+<br />
+创建一个文件夹，命名为 StuInfo，并添加以下几个文件：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/0946123538-0.png" style="height: 215px; width: 129px" /></div>
+<br />
+可以看到，我们将所有的头文件放在了 include 目录，将所有的源文件放在了 module 目录，而 main.c 作为主模块，直接放在了 StuInfo 目录。下面是对各个文件的说明：
+<h4>
+	1) main.c</h4>
+程序主模块，执行入口，会调用其他模块中的函数。
+<h4>
+	2) stu.c 和 stu.h</h4>
+该模块包含了程序的大部分代码，实现了对学生信息的增删改查操作。
+<h4>
+	3) tools.c 和 tools.h</h4>
+包含了一些通用的函数，比如文件复制、获取文件大小、数据插入、数据删除等与文件操作有关的函数（在《<a href="/c/110/" target="_blank">C语言文件操作</a>》一章已经对它们进行了实现），这些函数不仅可以用于当前项目，也可以不加修改地移植到其他项目，通用性很强，不妨将它们称为工具型函数。
+<h4>
+	4) vars.c 和 vars.h</h4>
+定义了一些全局变量。比如文件指针 fp、学生总数、文件长度等。
+<h4>
+	5) config.h</h4>
+配置文件，几乎都是宏定义，比如规定了学号的最大值、姓名的最大长度、成绩的最大值、文件路径等。<br />
+<br />
+下面给出了每个文件包含的简略代码。由于本节仅仅是演示，所以下面的代码不完整，我们将在《<a href="/cpp/u/xiangmu/" target="_blank">C语言项目实践</a>》中讲解学生信息管理系统的具体编码。<br />
+<br />
+main.c 源码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &quot;./include/config.h&quot;
+#include &quot;./include/stu.h&quot;
+#include &quot;./include/vars.h&quot;
+
+int main(){
+    init();
+    //addStuInfo();
+    //deleteStuInfo();
+    //findStuByID();
+    //findStuByName();
+    fclose(fp);
+    return 0;
+}</pre>
+stu.c 源码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &quot;../include/config.h&quot;
+#include &quot;../include/stu.h&quot;
+#include &quot;../include/tools.h&quot;
+#include &quot;../include/vars.h&quot;
+
+//初始化
+void init(){
+    //打开文件
+    if( (fp=fopen(FILENAME, &quot;rb+&quot;)) == NULL &amp;&amp; (fp=fopen(FILENAME, &quot;wb+&quot;)) == NULL ){
+        pause(&quot;Error on open %s file!&quot;, FILENAME);
+        exit(EXIT_FAILURE);
+    }
+    //获取文件长度
+    fileSize = getFileSize(fp);
+}
+
+//添加学生信息
+void addStuInfo(){
+    //finsert(fp, nPreEleCount*stuSize, &amp;stu, stuSize);
+    pause(&quot;提示：添加成功！按任意键返回...&quot;);
+}
+
+//删除学生信息
+void deleteStuInfo(){
+    //fdelete(fp, index*stuSize, stuSize);
+    pause(&quot;提示：删除成功，按任意键返回...&quot;);
+}
+
+//修改学生信息
+void alterStuInfo(){
+    //fwrite(&amp;stu, stuSize, 1, fp);
+    pause(&quot;提示：修改成功，按任意键返回...&quot;);
+}
+
+//根据学号查询学生信息
+void findStuByID(){
+    pause(&quot;错误：该学生信息不存在，查询失败！按任意键返回...&quot;);
+}
+
+//根据姓名查询学生信息
+void findStuByName(){
+    pause(&quot;错误：没有查询到相关记录！按任意键返回...&quot;);
+}
+
+//根据成绩查询学生信息
+void findStuByScores(){
+    pause(&quot;错误：没有查询到相关记录！按任意键返回...&quot;);
+}
+
+//显示所有学生信息
+void showAllStu(){
+    pause(&quot;\n共有%d条学生信息，按任意键返回...&quot;, n);
+}</pre>
+stu.h 源码：
+<pre class="c">
+#ifndef _STU_H
+#define _STU_H
+
+//学生信息结构体
+typedef struct _STU{
+    int id;  //学号
+    char name[20];  //姓名
+    char sex[4];  //性别
+    int age;  //年龄
+    float math;  //数学成绩
+    float cn;  //语文成绩
+    float en;  //英语成绩
+}STU;
+
+//初始化
+extern void init();
+
+//学生信息增删改查
+extern void addStuInfo();
+extern void deleteStuInfo();
+extern void alterStuInfo();
+extern void findStuByID();
+extern void findStuByName();
+extern void findStuByScores();
+extern void showAllStu();
+
+#endif</pre>
+tools.c 源码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;stdarg.h&gt;
+
+//获取文件大小（以字节计）
+long getFileSize(FILE *fp){
+    long fsize;
+    //TODO:
+    return fsize;
+}
+
+//文件复制函数
+long fcopy(FILE *fSource, long offsetSource, long len, FILE *fTarget, long offsetTarget){
+    long nBytes = 0;  //总共复制了多少个字节
+    //TODO:
+    return nBytes;
+}
+
+//向文件中插入内容
+int finsert(FILE *fp, long offset, void *buffer, int len){
+    //TODO:
+    return 0;
+}
+
+//从文件中删除内容
+int fdelete(FILE *fp, long offset, int len){
+    //TODO:
+    return 0;
+}
+
+//暂停程序
+void pause(const char *str, ...){
+    va_list vl;
+    char buf[500] = {0};
+    va_start(vl, str);
+    vsnprintf(buf, 500, str, vl);
+    va_end(vl);
+    printf(buf);
+    getch();
+    printf(&quot;\n&quot;);
+}</pre>
+tools.h 源码：
+<pre class="c">
+#ifndef _TOOLS_H
+#define _TOOLS_H
+
+extern long getFileSize(FILE *fp);  //获取文件大小
+extern long fcopy(FILE *fSource, long offsetSource, long len, FILE *fTarget, long offsetTarget);  //文件内容复制
+extern int finsert(FILE *fp, long offset, void *buffer, int len);  //向文件中插入数据
+extern int fdelete(FILE *fp, long offset, int len);  //删除文件内容
+extern void pause(const char *str, ...);  //暂停程序
+
+#endif</pre>
+vars.c 源码：
+<pre class="c">
+FILE *fp = NULL;  //文件指针
+int stuCount = 0;  //总共有多少条学生信息
+long fileSize = 0;  //文件长度（占用的字节数）</pre>
+vars.h 源码：
+<pre class="c">
+#ifndef _VARS_H
+#define _VARS_H
+
+extern FILE *fp;
+extern int stuCount;
+extern long fileSize;
+
+#endif</pre>
+config.h 源码：
+<pre class="c">
+#ifndef _CONFIG_H
+#define _CONFIG_H
+
+#define FILENAME &quot;stu.data&quot;  //保存学生信息的文件名称（含路径）
+
+#define MAX_STU_ID 99  //学号的最大值
+#define MAX_STU_NAME 10  //姓名的最大长度
+#define MAX_STU_AGE 100  //年龄的最大值
+#define MAX_STU_MATH 150  //数学成绩的最大值
+#define MAX_STU_EN 150  //英语成绩的最大值
+#define MAX_STU_CN 150  //语文成绩的最大值
+
+#endif</pre>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/597.html">C语言static变量和函数</a></span>
+                    <span class="next right"><a href="/c/practice/">C语言项目实战案例</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/597.html";window.nextPageURL = "/c/practice/";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 598;
+window.arcId = "00eaQblNDNsi/6Se8K9jVX5719xZbDIuIRIuLxqTq/V+PvzC1g2AGBR5kg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

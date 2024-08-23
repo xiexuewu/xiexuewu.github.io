@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>文本文件和二进制文件到底有什么区别？</title>
+<meta name="keywords" content="文本,文件,和,二进制,到底,有,什么,区别,在," />
+<meta name="description" content="在学习了 fopen()函数后，我们知道它的第二个参数是一个字符串，用来表示文件打开方式。如果字符串中出现 b ，则表示以二进制方式打开文件；如果字符串中出现 t ，或者两者都不出现" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>文本文件和二进制文件到底有什么区别？</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/545.html">C语言打开文件</a></span>
+                    <span class="next right"><a href="/view/547.html">以字符形式读写文件</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/545.html";window.nextPageURL = "/view/547.html";</script>
+			<div id="arc-body">在学习了 fopen()&nbsp;函数后，我们知道它的第二个参数是一个字符<u><a href='/view/175.html' target='_blank'>串</a></u>，用来表示文件打开方式。如果字符串中出现<code>b</code>，则表示以二进制方式打开文件；如果字符串中出现<code>t</code>，或者两者都不出现，则表示以文本方式打开文件。<br />
+<h2>
+	文本文件和二进制文件的区别</h2>
+根据我们以往的经验，文本文件通常用来保存肉眼可见的字符，比如<code>.txt</code>文件、<code>.c</code>文件、<code>.dat</code>文件等，用文本编辑器打开这些文件，我们能够顺利看懂文件的内容。<br />
+<br />
+二进制文件通常用来保存视频、图片、程序等不可阅读的内容，用文本编辑器打开这些文件，会看到一堆乱码，根本看不懂。<br />
+<br />
+但是从物理上讲，二进制文件和字符文件并没有什么区别，它们都是以二进制的形式保存在磁盘上的数据。<br />
+<br />
+我们之所以能看懂文本文件的内容，是因为文本文件中采用的是 ASCII、UTF-8、GBK 等字符编码，文本编辑器可以识别出这些编码格式，并将编码值转换成字符展示出来。<br />
+<br />
+而二进制文件使用的是 mp4、gif、exe 等特殊编码格式，文本编辑器并不认识这些编码格式，只能按照字符编码格式胡乱解析，所以就成了一堆乱七八糟的字符，有的甚至都没见过。<br />
+<br />
+如果我们新建一个 mp4 文件，给它写入一串字符，然后再用文本编辑器打开，你一样可以读得懂，有兴趣的读者可以自己试试。<br />
+<br />
+总起来说，不同类型的文件有不同的编码格式，必须使用对应的程序（软件）才能正确解析，否则就是一堆乱码，或者无法使用。<br />
+<h2>
+	fopen() 中的文本方式和二进制方式</h2>
+在C语言中，二进制方式很简单，读取文件时，会原封不动的读出文件的全部內容，写入数据时，也是把缓冲区中的內容原封不动的写到文件中。<br />
+<br />
+<span style="color:#a52a2a;">文本方式和二进制方式并没有本质上的区别，只是对于换行符的处理不同。</span><br />
+<br />
+C语言程序将<code>\n</code>作为换行符，类 UNIX/Linux 系统在处理文本文件时也将<code>\n</code>作为换行符，所以程序中的数据会原封不动地写入文本文件中，反之亦然。<br />
+<br />
+但是 Windows 系统却不同，它将<code>\r\n</code>作为文本文件的换行符。<br />
+<br />
+在 Windows 系统中，如果以文本方式打开文件，当读取文件时，程序会将文件中所有的<code>\r\n</code>转换成一个字符<code>\n</code>。也就是说，如果文本文件中有连续的两个字符是<code>\r\n</code>，则程序会丢弃前面的<code>\r</code>，只读入<code>\n</code>。<br />
+<br />
+当写入文件时，程序会将<code>\n</code>转换成<code>\r\n</code>写入。也就是说，如果要写入的内容中有字符<code>\n</code>，则在写入该字符前，程序会自动先写入一个<code>\r</code>。<br />
+<br />
+因此，如果用文本方式打开二进制文件进行读写，读写的内容就可能和文件的内容有出入。<br />
+<br />
+<span style="color:#b22222;">总起来说，对于 Windows 平台，为了保险起见，我们最好用<code>&quot;t&quot;</code>来打开文本文件，用<code>&quot;b&quot;</code>来打开二进制文件。对于 Linux 平台，使用<code>&quot;r&quot;</code>还是<code>&quot;b&quot;</code>都无所谓，既然默认是<code>&quot;r&quot;</code>，那我们什么都不写就行了。</span><br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/545.html">C语言打开文件</a></span>
+                    <span class="next right"><a href="/view/547.html">以字符形式读写文件</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/545.html";window.nextPageURL = "/view/547.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 546;
+window.arcId = "577eB62Osf9dTzyM0XTDKDNBYmJDdSmELGaCkfrWbBJvAtKSWWNMu1gaWw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

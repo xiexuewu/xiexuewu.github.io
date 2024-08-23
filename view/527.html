@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言二维数组指针（指向二维数组的指针）详解</title>
+<meta name="keywords" content="语言,二维,数组,指针,指向,的,详解,二维,数组," />
+<meta name="description" content="二维数组在概念上是二维的，有行和列，但在内存中所有的数组元素都是连续排列的，它们之间没有缝隙。以下面的二维数组 a 为例： int a[3][4] = { {0, 1, 2, 3}, {4, 5, 6, 7}, {8, 9, 10, 11} }; 从" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言二维数组指针（指向二维数组的指针）详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></span>
+                    <span class="next right"><a href="/view/528.html">函数指针（指向函数的指针）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/526.html";window.nextPageURL = "/view/528.html";</script>
+			<div id="arc-body">二维<u><a href='/view/181.html' target='_blank'>数组</a></u>在概念上是二维的，有行和列，但在内存中所有的数组元素都是连续排列的，它们之间没有&ldquo;缝隙&rdquo;。以下面的二维数组 a 为例：
+<p class="info-box">
+	int a[3][4] = { {0, 1, 2, 3}, {4, 5, 6, 7}, {8, 9, 10, 11} };</p>
+从概念上理解，a 的分布像一个矩阵：
+<pre class="info-box">
+0   1   2   3
+4   5   6   7
+8   9  10  11</pre>
+但在内存中，a 的分布是一维线性的，整个数组占用一块连续的内存：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="二维数组在内存中的存储" src="/uploads/allimg/240821/1554125144-0.jpg" /></div>
+<br />
+C语言中的二维数组是按行排列的，也就是先存放 a[0] 行，再存放 a[1] 行，最后存放 a[2] 行；每行中的 4 个元素也是依次存放。数组 a 为 int 类型，每个元素占用 4 个字节，整个数组共占用 4&times;(3&times;4) = 48 个字节。<br />
+<br />
+C语言允许把一个二维数组分解成多个一维数组来处理。对于数组 a，它可以分解成三个一维数组，即 a[0]、a[1]、a[2]。每一个一维数组又包含了 4 个元素，例如 a[0] 包含 a[0][0]、a[0][1]、a[0][2]、a[0][3]。<br />
+<br />
+假设数组 a 中第 0 个元素的地址为 1000，那么每个一维数组的首地址如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="把二维数组拆解成一维数组" src="/uploads/allimg/240821/1554125M7-1.png" /></div>
+<br />
+为了更好的理解指针和二维数组的关系，我们先来定义一个指向 a 的指针变量 p：
+<p class="info-box">
+	int (*p)[4] = a;</p>
+括号中的<code>*</code>表明 p 是一个指针，它指向一个数组，数组的类型为<code>int [4]</code>，这正是 a 所包含的每个一维数组的类型。<br />
+<br />
+<code>[ ]</code>的优先级高于<code>*</code>，<code>( )</code>是必须要加的，如果赤裸裸地写作<code>int *p[4]</code>，那么应该理解为<code>int *(p[4])</code>，p 就成了一个指针数组，而不是二维数组指针，这在《<a href="/view/2020.html" target="_blank">C语言指针数组</a>》中已经讲到。<br />
+<br />
+对指针进行加法（减法）运算时，它前进（后退）的步长与它指向的数据类型有关，p 指向的数据类型是<code>int [4]</code>，那么<code>p+1</code>就前进 4&times;4 = 16 个字节，<code>p-1</code>就后退 16 个字节，这正好是数组 a 所包含的每个一维数组的长度。也就是说，<code>p+1</code>会使得指针指向二维数组的下一行，<code>p-1</code>会使得指针指向数组的上一行。<br />
+<br />
+<span style="color: #b22222">数组名 a 在表达式中也会被转换为和 p 等价的指针！</span><br />
+<br />
+下面我们就来探索一下如何使用指针 p 来访问二维数组中的每个元素。按照上面的定义：<br />
+1) <code>p</code>指向数组 a 的开头，也即第 0 行；<code>p+1</code>前进一行，指向第 1 行。<br />
+<br />
+2) <code>*(p+1)</code>表示取地址上的数据，也就是整个第 1 行数据。注意是一行数据，是多个数据，不是第 1 行中的第 0 个元素，下面的运行结果有力地证明了这一点：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int a[3][4] = { {0, 1, 2, 3}, {4, 5, 6, 7}, {8, 9, 10, 11} };
+    int (*p)[4] = a;
+    printf(&quot;%d\n&quot;, sizeof(*(p+1)));
+
+    return 0;
+}</pre>
+运行结果：<br />
+16<br />
+<br />
+3) <code>*(p+1)+1</code>表示第 1 行第 1 个元素的地址。如何理解呢？<br />
+<br />
+<code>*(p+1)</code>单独使用时表示的是第 1 行数据，放在表达式中会被转换为第 1 行数据的首地址，也就是第 1 行第 0 个元素的地址，因为使用整行数据没有实际的含义，编译器遇到这种情况都会转换为指向该行第 0 个元素的指针；就像一维数组的名字，在定义时或者和 sizeof、&amp; 一起使用时才表示整个数组，出现在表达式中就会被转换为指向数组第 0 个元素的指针。<br />
+<br />
+4) <code>*(*(p+1)+1)</code>表示第 1 行第 1 个元素的值。很明显，增加一个 * 表示取地址上的数据。<br />
+<br />
+根据上面的结论，可以很容易推出以下的等价关系：
+<p class="info-box">
+	a+i == p+i<br />
+	a[i] == p[i] == *(a+i) == *(p+i)<br />
+	a[i][j] == p[i][j] == *(a[i]+j) == *(p[i]+j) == *(*(a+i)+j) ==&nbsp;*(*(p+i)+j)</p>
+【实例】使用指针遍历二维数组。<br />
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    int a[3][4]={0,1,2,3,4,5,6,7,8,9,10,11};
+    int(*p)[4];
+    int i,j;
+    p=a;
+    for(i=0; i&lt;3; i++){
+        for(j=0; j&lt;4; j++) printf(&quot;%2d  &quot;,*(*(p+i)+j));
+        printf(&quot;\n&quot;);
+    }
+
+    return 0;
+}</pre>
+运行结果：
+<pre class="info-box">
+ 0   1   2   3
+ 4   5   6   7
+ 8   9  10  11</pre>
+<h2>
+	指针数组和二维数组指针的区别</h2>
+指针数组和二维数组指针在定义时非常相似，只是括号的位置不同：
+<pre class="c">
+int *(p1[5]);  //指针数组，可以去掉括号直接写作 int *p1[5];
+int (*p2)[5];  //二维数组指针，不能去掉括号</pre>
+指针数组和二维数组指针有着本质上的区别：指针数组是一个数组，只是每个元素保存的都是指针，以上面的 p1 为例，在32位环境下它占用 4&times;5 = 20 个字节的内存。二维数组指针是一个指针，它指向一个二维数组，以上面的 p2 为例，它占用 4 个字节的内存。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></span>
+                    <span class="next right"><a href="/view/528.html">函数指针（指向函数的指针）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/526.html";window.nextPageURL = "/view/528.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 527;
+window.arcId = "2bb1c43baFJNBKx4SrslEYNKjtC6EyQb/+lmVgRfwWLWWIOVMdGyqqVSlw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

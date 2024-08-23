@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言贪吃蛇小游戏源码下载和思路解析</title>
+<meta name="keywords" content="语言,贪吃,蛇,小游戏,源码,下载和,思路,解析," />
+<meta name="description" content="在《 C语言贪吃蛇小游戏演示和说明 》一节中，我们对贪吃蛇游戏的玩法进行了介绍和演示，这节就来分析一下它的源码。 贪吃蛇源代码下载地址： https://pan.quark.cn/s/02ab8876aca0 各位读者" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">15</span> <a href="/c/practice/">C语言项目实战案例</a> </dd><dl class="dl-sub"><dd>15.1 <a href="/view/599.html">C语言学生信息管理系统（文件版）</a></dd><dd>15.2 <a href="/view/600.html">学生信息管理系统源码下载和思路解析（文件版）</a></dd><dd>15.3 <a href="/view/601.html">C语言贪吃蛇小游戏</a></dd><dd>15.4 <a href="/view/602.html">贪吃蛇小游戏源码下载和思路解析</a></dd><dd>15.5 <a href="/view/603.html">C语言2048小游戏</a></dd><dd>15.6 <a href="/view/604.html">2048小游戏源码下载和思路解析</a></dd><dd>15.7 <a href="/view/605.html">C语言推箱子小游戏</a></dd><dd>15.8 <a href="/view/606.html">推箱子小游戏源码下载和思路解析</a></dd><dd>15.9 <a href="/view/607.html">C语言扫雷小游戏</a></dd><dd>15.10 <a href="/view/608.html">扫雷小游戏源码下载和思路解析</a></dd></dl>
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言贪吃蛇小游戏源码下载和思路解析</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/601.html">C语言贪吃蛇小游戏</a></span>
+                    <span class="next right"><a href="/view/603.html">C语言2048小游戏</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/601.html";window.nextPageURL = "/view/603.html";</script>
+			<div id="arc-body">在《<a href="/view/5904.html" target="_blank">C语言贪吃蛇小游戏演示和说明</a>》一节中，我们对贪吃蛇游戏的玩法进行了介绍和演示，这节就来分析一下它的源码。<br />
+<br />
+贪吃蛇源代码下载地址：<a href="https://pan.quark.cn/s/02ab8876aca0" target="_blank">https://pan.quark.cn/s/02ab8876aca0</a><br />
+<br />
+各位读者不妨先将源码下载下来浏览一遍，记住关键的几个函数，整理一下不了解的知识点，做到心中有数。<br />
+<br />
+需要说明的是：贪吃蛇背景地图、食物、贪吃蛇本身都是由特殊字符组成（由 printf() 输出），并不是绘制出来的图形。C语言标准库没有绘图函数，如果绘图的话，就需要使用第三方库，增加了大家的学习成本，所以我们采用了&ldquo;投机取巧&rdquo;的办法，用特殊字符来模拟不同的图形。
+<h2>
+	一. 关键知识点</h2>
+下面请各位读者先学习一下该游戏中涉及到的几个关键知识点，有了这些必备条件，我们才好讲解贪吃蛇的设计思路。
+<h4>
+	1) 改变输出文本的颜色</h4>
+贪吃蛇游戏的背景地图是是<span style="color:#008000;">绿色</span>的，边框是<span style="color:#a52a2a;">钻红色</span>的，食物是<span style="color:#ff0000;">红色</span>的，贪吃蛇本身是<span style="color:#ffd700;">黄色</span>的，这就涉及到如何改变文本的输出颜色，请大家猛击《<a href="/view/vip_1749.html" target="_blank">彩色版的C语言，让文字更漂亮</a>》了解详情。
+<h4>
+	2) 在任意位置输出文本</h4>
+在一般的程序中，字符都是依次输出的，例如当前控制台上显示的是&ldquo;123456&rdquo;，如果我们希望输出&ldquo;abcd&rdquo;，那么&ldquo;abcd&rdquo;就位于&ldquo;123456&rdquo;之后。在一般的程序中这是没有问题的，但是对于贪吃蛇游戏，我们需要自己来控制字符的输出位置，例如：
+<ul>
+	<li>
+		输出背景地图后，我们需要在背景地图中间输出贪吃蛇和食物；</li>
+	<li>
+		要统计贪吃蛇吃掉的食物的数量，就必须不断改变同一位置的数字。</li>
+</ul>
+<br />
+这是如何做到的呢？请大家猛击《<a href="/view/vip_1794.html" target="_blank">C语言在屏幕的任意位置输出字符</a>》了解详情。
+<h4>
+	3) 键盘监听</h4>
+在贪吃蛇移动过程中，必须能够及时捕获用户按下的方向键，并改变移动方向，这是如何做到的呢？请大家猛击《<a href="/view/vip_1803.html" target="_blank">C语言非阻塞式键盘监听</a>》了解详情。
+<h4>
+	4) 获取随机数</h4>
+贪吃蛇的食物会随机出现在背景地图上的任意位置，没有任何规律，这就要求程序生成一对随机数值，来控食物所在的行和列。那么，随机数值是如何产生的呢？请大家猛击《<a href="/view/2043.html" target="_blank">C语言获取随机数</a>》了解详情。
+<h2>
+	二. 输出贪吃蛇背景地图</h2>
+贪吃蛇背景地图的最终效果如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/103S33U9-0.png" /></div>
+<br />
+<span style="color:#b22222;">钻红色空心方框</span>表示边框，<span style="color:#008000;">绿色实心方框</span>表示贪吃蛇的活动区域。实现代码如下：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;windows.h&gt;
+int main(){
+    int width = 30, height = width;  //宽度和高度
+    int x, y;  //x、y分别表示当前行和列
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  
+    //设置窗口大小
+    system(&quot;mode con: cols=64 lines=32&quot;);
+
+    //打印背景，按行输出
+    for(x=0; x&lt;width; x++){
+        for(y=0; y&lt;height; y++){
+            if(y==0 || y==width-1 || x==0 || x==height-1){  //输出边框
+                SetConsoleTextAttribute(hConsole, 4 );
+                printf(&quot;□&quot;);
+            }else{  //贪吃蛇活动区域
+                SetConsoleTextAttribute(hConsole, 2 );
+                printf(&quot;■&quot;);
+            }
+        }
+        printf(&quot;\n&quot;);
+    }
+
+    //暂停
+    getch();
+    return 0;
+}</pre>
+程序的关键是两层嵌套的循环。x=0 时，内层循环执行30次，输出第0行；x=1 时，内层循环又执行30次，输出1行。以此类推，直到 x=30，外层循环不再执行（内存循环当然也就没机会执行），输出结束。
+<blockquote>
+	注意，□和■虽然都是单个字符，但它们不在ASCII码范围内，是宽字符，占用两个字节，用 putchar 等输出ASCII码（一个字节）的函数输出时可能会出现问题，所以作为字符<u><a href='/view/175.html' target='_blank'>串</a></u>输出。</blockquote>
+<h2>
+	三. 让贪吃蛇移动起来</h2>
+接下来，我们来让一条长度为 n 的贪吃蛇移动起来，而且可以用WASD四个键控制移动方向，如下图所示：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/103S319D-1.png" /></div>
+<br />
+其实，移动贪吃蛇并不需要移动所有节点，只需要添加蛇头、删除蛇尾，就会有动态效果，这样会大大提高程序的效率。<br />
+<br />
+我们可以定义一个结构体来表示贪吃蛇一个节点在控制台上的位置（也即所在行和列）：
+<pre class="c">
+struct POS{
+    int x;  //所在行
+    int y;  //所在列
+}</pre>
+<br />
+然后再定义一个比贪吃蛇长的<u><a href='/view/181.html' target='_blank'>数组</a></u>来保存贪吃蛇的所有节点：
+<pre class="info-box">
+struct POS snakes[n+m];</pre>
+并设置两个变量 headerIndex、tailIndex，分别用来表示蛇头、蛇尾在数组中的下标坐标，这样每次添加蛇头、删除蛇尾时只需要改变两个变量的值就可以。如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/2-240R2103ZU62.png" /></div>
+<br />
+headerIndex 和 tailIndex 都向前移动，也就是每次减1。如果 headerIndex=0，也就是指向数组的头部，那么下次移动时 headerIndex = arrayLength - 1，也就是指向数组的尾部，就这样一圈一圈地循环，tailIndex 也是如此。这相当于把数组首尾相连成一个圆圈，贪吃蛇在这个圆圈中不停地转圈。<br />
+<br />
+由于这部分的演示代码较长，请大家到网盘下载：<a href="https://pan.quark.cn/s/4c0647da2092" target="_blank">https://pan.quark.cn/s/4c0647da2092</a>
+<h4>
+	对代码的说明</h4>
+1) 贪吃蛇的最大长度为<span style="color:#008000;">绿色方框</span>的个数，所以我们将容纳贪吃蛇的数组 snakes 的长度定义为<code>(HEIGHT-2) * (WIDTH-2)</code>。<br />
+<br />
+2)&nbsp;□、■、★ 占用两个字符的宽度，所以在 setPosition() 中该变光标位置时，光标的X坐标应该是：
+<pre class="info-box">
+coord.X = 2*y;</pre>
+<h2>
+	四. 随机生成食物</h2>
+食物的生成是贪吃蛇游戏的难点，因为食物只能在<span style="color:#008000;">绿色背景(■)</span>部分生成，它不能占用<span style="color:#a52a2a;">钻红色边框(□)</span>和<span style="color:#ffd700;">贪吃蛇本身(★)</span>的位置。<br />
+<br />
+最容易想到的思路是：随机生成一个坐标，然后检测该坐标是不是绿色背景，如果是，那么成功生成，如果不是，继续生成随机数，继续检测。幸运的话，可以一次生成；不幸的话，可能要循环好几次甚至上百次才能生成，这样带来的后果就是程序卡死一段时间，贪吃蛇不能移动。<br />
+<br />
+这种方案的优点就是思路简单，容易实现，缺点就是贪吃蛇移动不流畅，经常会卡顿。<br />
+<h4>
+	改进的方案</h4>
+最好的方案是生成的随机数一定会在绿色背景的范围内，这样一次就能成功生成食物。该如何实现呢？<br />
+<br />
+这里我们提供了一种看起来不容易理解却行之有效的方案。<br />
+<br />
+我们不妨将贪吃蛇的活动范围称为&ldquo;贪吃蛇地图&rdquo;，而加上边框就称为&ldquo;全局地图&rdquo;。首先定义一个二维的结构体数组，用来保存所有的点（也即全局地图）：
+<pre class="c">
+struct{
+    char type;
+    int index;
+}globalMap[MAXWIDTH][MAXHEIGHT];</pre>
+MAXWIDTH 为宽度，也即列数；MAXHEIGHT 为高度，也即行数。成员 type 表示点的类型，它可以是食物、绿色背景、边框和贪吃蛇节点。
+<blockquote>
+	直观上讲，应该将 type 定义为int类型，不过int占用四个字节，而节点类型的取值范围非常有限，一个字节就足够了，所以为了节省内存才定义为char类型。</blockquote>
+然后再定义一个一维的结构体数组，用来保存贪吃蛇的有效活动范围：
+<pre class="c">
+struct{
+    int x;
+    int y;
+} snakeMap[ (MAXWIDTH-2)*(MAXHEIGHT-2) ];</pre>
+x、y 表示行和列，也就是 globalMap 数组的两个下标。globalMap 数组中的 index 成员就是 snakeMap 数组的下标。<br />
+<br />
+globalMap 表示了所有节点的信息，而 snakeMap 只表示了贪吃蛇的活动区域。通过 snakeMap 可以定位 globalMap 中的元素，反过来通过 globalMap 也可以找到 snakeMap 中的元素。它们之间的对应关系请看下图：
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240822/103S329C-3.png" /><br />
+	图1：globalMap 和 snakeMap 的初始对应关系</div>
+<br />
+贪吃蛇向左移动时，headerIndex 指向 404，tailIndex指向 406。<br />
+<br />
+在 snakeMap 数组中，贪吃蛇占用一部分元素，剩下的元素都是绿色的背景，可以随机选取这些元素中的一个作为食物，然后通过 x、y 确定食物的坐标。而这个坐标，一定在绿色背景范围内。
+<blockquote>
+	需要注意的是，在贪吃蛇移动过程中需要维护 globalMap 和 snakeMap 的对应关系。</blockquote>
+这种方案的另外一个优点就是，贪吃蛇移动时很容易知道下一个节点的类型，不用遍历数组就可以知道是否与自身相撞。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/601.html">C语言贪吃蛇小游戏</a></span>
+                    <span class="next right"><a href="/view/603.html">C语言2048小游戏</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/601.html";window.nextPageURL = "/view/603.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 602;
+window.arcId = "6886ieS+2tsCphikXHrNArAzN53vKp8CmFLj3qKY0YyQlve1C27BmtiCBg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

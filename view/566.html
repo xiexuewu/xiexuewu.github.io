@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>一个程序在计算机中到底是如何运行的？</title>
+<meta name="keywords" content="一个,程序,在,计算,机中,到底,是,如何,运,在," />
+<meta name="description" content="在《 载入内存，让程序运行起来 》一节中讲到，程序是保存在硬盘中的，要载入内存才能运行，CPU也被设计为只能从内存中读取数据和指令。 对于CPU来说，内存仅仅是一个存放指令和" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">13</span> <a href="/c/memory/">C语言内存精讲</a> </dd><dl class="dl-sub"><dd>13.1 <a href="/view/566.html">一个程序在计算机中到底是如何运行的？</a></dd><dd>13.2 <a href="/view/567.html">虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？</a></dd><dd>13.3 <a href="/view/568.html">虚拟地址空间以及编译模式</a></dd><dd>13.4 <a href="/view/569.html">C语言内存对齐，提高寻址效率</a></dd><dd>13.5 <a href="/view/570.html">内存分页机制，完成虚拟地址的映射</a></dd><dd>13.6 <a href="/view/571.html">分页机制究竟是如何实现的？</a></dd><dd>13.7 <a href="/view/572.html">MMU部件以及对内存权限的控制</a></dd><dd>13.8 <a href="/view/573.html">Linux下C语言程序的内存布局</a></dd><dd>13.9 <a href="/view/574.html">Windows下C语言程序的内存布局</a></dd><dd>13.10 <a href="/view/575.html">用户模式和内核模式</a></dd><dd>13.11 <a href="/view/576.html">栈（Stack）是什么？栈溢出又是怎么回事？</a></dd><dd>13.12 <a href="/view/577.html">一个函数在栈上到底是怎样的？</a></dd><dd>13.13 <a href="/view/578.html">函数调用惯例(Calling Convention)</a></dd><dd>13.14 <a href="/view/579.html">用一个实例来深入剖析函数进栈出栈的过程</a></dd><dd>13.15 <a href="/view/580.html">栈溢出攻击的原理是什么？</a></dd><dd>13.16 <a href="/view/581.html">C语言动态内存分配</a></dd><dd>13.17 <a href="/view/582.html">malloc函数背后的实现原理——内存池</a></dd><dd>13.18 <a href="/view/583.html">C语言野指针以及非法内存操作</a></dd><dd>13.19 <a href="/view/584.html">C语言内存泄露（内存丢失）</a></dd><dd>13.20 <a href="/view/585.html">C语言变量的存储类别和生存期</a></dd></dl>
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>一个程序在计算机中到底是如何运行的？</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/memory/">C语言内存精讲</a></span>
+                    <span class="next right"><a href="/view/567.html">虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/memory/";window.nextPageURL = "/view/567.html";</script>
+			<div id="arc-body">在《<a href="/view/367.html" target="_blank">载入内存，让程序运行起来</a>》一节中讲到，程序是保存在硬盘中的，要载入内存才能运行，CPU 也被设计为只能从内存中读取数据和指令。<br />
+<br />
+对于 CPU 来说，内存仅仅是一个存放指令和数据的地方，并不能在内存中完成计算功能，例如要计算 a = b + c，必须将 a、b、c 都读取到 CPU 内部才能进行加法运算。为了了解具体的运算过程，我们不妨先来看一下 CPU 的结构。<br />
+<br />
+CPU是一个复杂的计算机部件，它内部又包含很多小零件，如下图所示：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/203G11023-0.jpg" style="height: 154px; width: 592px" /></div>
+<br />
+运算单元是 CPU 的大脑，负责加减乘除、比较、位移等运算工作，每种运算都有对应的电路支持，速度很快。<br />
+<br />
+<span style="color: rgb(0,128,0)">寄存器（Register）</span>是 CPU 内部非常小、非常快速的存储部件，它的容量很有限，对于 32 位的 CPU，每个寄存器一般能存储 32 位（4 个字节）的数据，对于 64 位的 CPU，每个寄存器一般能存储 64 位（8个字节）的数据。为了完成各种复杂的功能，现代 CPU 都内置了几十个甚至上百个的寄存器，嵌入式系统功能单一，寄存器数量较少。<br />
+<br />
+我们经常听说多少位的 CPU，指的就是寄存器的的位数。现在个人电脑使用的 CPU 已经进入了 64 位时代，例如 Intel 的 Core i3、i5、i7 等。<br />
+<br />
+寄存器在程序的执行过程中至关重要，不可或缺，它们可以用来完成数学运算、控制循环次数、控制程序的执行流程、标记 CPU 运行状态等。例如，EIP（Extern Instruction Pointer ）寄存器的值是下一条指令的地址，CPU 执行完当前指令后，会根据 EIP 的值找到下一条指令，改变 EIP 的值，就会改变程序的执行流程；CR3 寄存器保存着当前进程页目录的物理地址，切换进程就会改变 CR3 的值，这将在《<a href="/view/572.html" target="_blank">MMU部件以及对内存权限的控制</a>》中讲解；EBP、ESP 寄存器用来指向<u><a href='/view/169.html' target='_blank'>栈</a></u>的底部和顶部，函数调用会改变 EBP 和 ESP 的值，这将在《<a href="/view/576.html" target="_blank">栈（Stack）是什么？栈溢出又是怎么回事？</a>》中讲解。<br />
+<br />
+那么，在 CPU 内部为什么又要设置缓存呢？虽然内存的读取速度已经很快了，但是和 CPU 比起来，还是有很大差距的，不是一个数量级的，如果每次都从内存中读取数据，会严重拖慢 CPU 的运行速度，CPU 经常处于等待状态，无事可做。在 CPU 内部设置一个缓存，可以将使用频繁的数据暂时读取到缓存，需要同一地址上的数据时，就不用大老远地再去访问内存，直接从缓存中读取即可。
+<blockquote>
+	大家在购买 CPU 时，也会经常关心缓存容量，例如 Intel Core i7 3770K 的三级缓存为 8MB，二级缓存为 256KB，一级缓存为 32KB。容量越大，CPU 越强悍。</blockquote>
+缓存的容量是有限的，CPU 只能从缓存中读取到部分数据，对于使用不是很频繁的数据，会绕过缓存，直接到内存中读取。所以不是每次都能从缓存中得到数据，这就是缓存的命中率，能够从缓存中读取就命中，否则就没命中。关于缓存的命中率又是一门学问，哪些数据保留在缓存，哪些数据不保留，都有复杂的算法。
+<h2>
+	CPU指令</h2>
+要想让 CPU 工作，必须借助特定的指令，例如 add 用于加法运算，sub 用于除法运算，cmp 用于比较两个数的大小，这称为 CPU 的<span style="color: #008000">指令集（Instruction Set）</span>。我们的C语言代码最终也会编译成一条一条的 CPU 指令。不同型号的 CPU 支持的指令集会有所差异，但绝大部分是相同的。<br />
+<br />
+我们以 C语言中的加法为例来演示 CPU 指令的使用。假设有下面的 C语言代码：
+<p class="info-box">
+	int a = 0X14, b = 0XAE, c;<br />
+	c = a + b;</p>
+在 VS2010 Debug 模式下生成的 CPU 指令为：
+<p class="info-box">
+	mov&nbsp; ptr[a], 0X14<br />
+	mov&nbsp; ptr[b], 0XAE<br />
+	mov&nbsp; eax, ptr[a]<br />
+	add&nbsp; eax, ptr[b]<br />
+	mov&nbsp; ptr[c], eax</p>
+mov 和 add 都是 CPU 指令：<br />
+1) mov 用来将一个数值移动到一个存储位置。这个数值可以是一个常数，也可以在内存或者寄存器上；这个存储位置可以是寄存器或者内存。<br />
+<br />
+第一条指令中，<code>ptr[a]</code>表示变量 a 的地址，<code>0X14</code>是一个数值，<code>mov ptr[a], 0X14</code>表示把数值 0X14 移动到 ptr[a] 指向的内存，也就是给变量 a 赋值。第二条指令与此类似。<br />
+<br />
+第三条指令中，<code>eax</code>是寄存器的名字，该寄存器常用在加法运算中，用来保存某个加数或运算结果，<code>mov eax, ptr[a]</code>表示把变量 a 的值移动到寄存器 eax 中。<br />
+<br />
+第五条指令表示把寄存器 eax 的值移动到变量 c 中，此时 exa 中的值为 a、b 相加的和。<br />
+<br />
+2) add 用来将两个数值相加，这两个数值可以在寄存器或者内存中，add 会将相加的结果放在第一个数所在的位置。第四条指令<code>add&nbsp; eax, ptr[b]</code>表示把 eax 和 ptr[b] 中的数值相加，并把结果放在 eax 中。<br />
+<br />
+总起来讲：第一二条指令给变量 a、b 赋值，第三四条指令完成加法运算，第五条指令将运算结果赋值给变量 c。
+<blockquote>
+	实际上，上面的代码是汇编语言，不是CPU指令，汇编语言还要经过简单的转换才能成为CPU指令；为了更加容易地说明问题，这些语句也没有严格遵守汇编的语法。有兴趣的同学可以自行学习汇编语言，这里不再展开讲解。</blockquote>
+<br />
+本节我们讲解了 CPU 的简单构造以及 CPU 指令，重点是让大家认识寄存器这个小而快速的存储部件，它在程序运行过程中起着至关重要的作用，CPU 就是用它来记录程序的运行状态，然后根据它的值再决定下一步的操作。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/memory/">C语言内存精讲</a></span>
+                    <span class="next right"><a href="/view/567.html">虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/c/memory/";window.nextPageURL = "/view/567.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 566;
+window.arcId = "5c857uDCa+IPJ4I0pipuCv4P3NlDCcdbYcUXbwPI0xTTZPiUENT9xmtMAw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

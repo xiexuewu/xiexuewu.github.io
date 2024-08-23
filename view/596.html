@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>防止C语言头文件被重复包含</title>
+<meta name="keywords" content="防止,语言,头,文件,被,重复,包含,头,文件," />
+<meta name="description" content="头文件包含命令 #include 的效果与直接复制粘贴头文件内容的效果是一样的，预处理器实际上也是这样做的，它会读取头文件的内容，然后输出到 #include 命令所在的位置。 头文件包含是" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">14</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>14.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>14.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a></dd><dd>14.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a></dd><dd>14.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a></dd><dd>14.5 <a href="/view/590.html">符号——链接的粘合剂</a></dd><dd>14.6 <a href="/view/591.html">强符号和弱符号</a></dd><dd>14.7 <a href="/view/592.html">强引用和弱引用</a></dd><dd>14.8 <a href="/view/593.html">C语言模块化编程中的头文件</a></dd><dd>14.9 <a href="/view/594.html">C语言标准库以及标准头文件</a></dd><dd>14.10 <a href="/view/595.html">细说C语言头文件的路径</a></dd><dd>14.11 <a href="/view/596.html">防止C语言头文件被重复包含</a></dd><dd>14.12 <a href="/view/597.html">C语言static变量和函数</a></dd><dd>14.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a></dd></dl>
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>防止C语言头文件被重复包含</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/595.html">细说C语言头文件的路径</a></span>
+                    <span class="next right"><a href="/view/597.html">C语言static变量和函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/595.html";window.nextPageURL = "/view/597.html";</script>
+			<div id="arc-body">头文件包含命令 #include 的效果与直接复制粘贴头文件内容的效果是一样的，预处理器实际上也是这样做的，它会读取头文件的内容，然后输出到 #include 命令所在的位置。<br />
+<br />
+头文件包含是一个递归（循环）的过程，如果被包含的头文件中还包含了其他的头文件，预处理器会继续将它们也包含进来；这个过程会一直持续下去，直到不再包含任何头文件，这与递归的过程颇为相似。<br />
+<br />
+递归包含会导致一个问题，就是重复引入同一个源文件。例如在某个自定义头文件 xyz.h 中声明了一个 FILE 类型的指针，以使得所有的模块都能使用它，如下所示：
+<pre class="c">
+extern FILE *fp;</pre>
+FILE 是在 stdio.h 中自定义的一个类型（本质上是一个结构体），要想使用它，必须包含 stdio.h，因此 xyz.h 中完整的代码应该是这样的：
+<pre class="c">
+#include &lt;stdio.h&gt;
+extern FILE *fp;</pre>
+现在假设程序的主模块 main.c 中需要使用 fp 变量和 printf() 函数，那么就需要同时引入 xyz.h 和 stdio.h：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &quot;xyz.h&quot;
+int main(){
+    if( (fp = fopen(&quot;demo.txt&quot;, &quot;r&quot;)) == NULL ){
+        printf(&quot;File open failed!\n&quot;);
+    }
+    //TODO:
+    return 0;
+}</pre>
+这样一来，对于 main.c 这个模块，stdio.h 就被包含了两次。stdio.h 中除了有函数声明，还有宏定义、类型定义、结构体定义等，它们都会出现两次，如果不做任何处理，不仅会出现重复定义错误，而且不符合编程规范。<br />
+<br />
+有人说，既然已经知道 xyz.h 中包含了 stdio.h，那么在 main.c 中不再包含 stdio.h 不就可以了吗？是的，确实如此，这样做就不会出现任何问题！<br />
+<br />
+现在我们不妨换一种场景，假设 xyz1.h 中定义了类型 RYPE1，xyz2.h 中定义了类型 TYPE2，并且它们都包含了 stdio.h，如果主模块需要同时使用 TYPE1 和 TYPE2，就必须将 xyz1.h 和 xyz2.h 都包含进来，这样也会导致 stdio.h 被重复包含，并且无法回避，上面的方案解决不了问题。<br />
+<br />
+实际上，头文件的交叉包含是非常普遍的现象，不仅我们自己创建的头文件是这样，标准头文件也是如此。例如，标准头文件 limits.h 中定义了一些与数据类型相关的宏（最大值、最小值、一个字节所包含的比特位等），stdlib.h 就包含了它。<br />
+<br />
+我们必须找到一种行之有效的方案，使得头文件可以被包含多次，但效果与只包含一次相同。<br />
+<br />
+在实际开发中，我们往往使用宏保护来解决这个问题。例如，在 xyz.h 中可以添加如下的宏定义：
+<pre class="c">
+#ifndef _XYZ_H
+#define _XYZ_H
+/* 头文件内容 */
+#endif</pre>
+第一次包含头文件，会定义宏 _XYZ_H，并执行&ldquo;头文件内容&rdquo;部分的代码；第二次包含时因为已经定义了宏 _XYZ_H，不会重复执行&ldquo;头文件内容&rdquo;部分的代码。也就是说，头文件只在第一次包含时起作用，再次包含无效。<br />
+<br />
+标准头文件也是这样做的，例如在 Visual Studio 2010 中，stdio.h 就有如下的宏定义：
+<pre class="c">
+#ifndef _INC_STDIO
+#define _INC_STDIO
+/* 头文件内容 */
+#endif</pre>
+这种宏保护方案使得程序员可以&ldquo;任性&rdquo;地引入当前模块需要的所有头文件，不用操心这些头文件中是否包含了其他的头文件。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/595.html">细说C语言头文件的路径</a></span>
+                    <span class="next right"><a href="/view/597.html">C语言static变量和函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/595.html";window.nextPageURL = "/view/597.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 596;
+window.arcId = "63d3xUAIL+tKWaSuI/te1Z9KBGN6zHLBD5xxzbYKGbPPVWfBfD7upEkVyA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

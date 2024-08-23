@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>Windows下的编译器有哪些？如何选择？</title>
+<meta name="keywords" content="Windows,下,的,编译器,有,哪些,如何,选择,安装," />
+<meta name="description" content="安装编译器或者 IDE（集成开发环境），也叫搭建开发环境。Windows 下的C语言 IDE 众多，多如牛毛，初学者往往不知道该如何选择，本节就来给大家指点迷津。 1) Visual Studio Windows 下首先推" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>Windows下的编译器有哪些？如何选择？</h1>
+			
+			<div id="arc-body">安装编译器或者 IDE（集成开发环境），也叫搭建开发环境。Windows 下的 C语言 IDE 众多，多如牛毛，初学者往往不知道该如何选择，本节就来给大家指点迷津。
+<h4>
+	1) Visual Studio</h4>
+Windows 下首先推荐大家使用微软开发的 Visual Studio（简称 VS），它是 Windows 下的标准 IDE，实际开发中大家也都在使用。<br />
+<br />
+为了适应最新的 Windows 操作系统，微软每隔一段时间（一般是一两年）就会对 VS 进行升级。VS 的不同版本以发布年份命名，例如 VS2017 是微软于 2017 年发布的，VS2019 是微软于 2019 年发布的。<br />
+<br />
+不过 VS 有点庞大，安装包有 2~3G，下载不方便，而且会安装很多暂时用不到的工具，安装时间在半个小时左右。<br />
+<br />
+截止到目前，VS&nbsp;最新的版本是 VS2022。对于初学者，我不建议使用 VS2015 以前的版本，推荐安装较新版本的 VS，比如 VS2019，喜欢尝鲜的读者还可以选择 VS2022。<br />
+<h4>
+	2) Dev <a href="/cplus/" target="_blank">C++</a></h4>
+如果你讨厌 VS 的复杂性，那么可以使用 Dev C++。Dev C++ 是一款免费开源的 C/C++ IDE，内嵌 <a href="/gcc/" target="_blank">GCC</a> 编译器（Linux GCC 编译器的 Windows 移植版），是 NOI、NOIP&nbsp;等比赛的指定工具。Dev C++ 的优点是体积小（只有几十兆）、安装卸载方便、学习成本低，缺点是调试功能弱。<br />
+<blockquote>
+	NOI 是<code style="font-size: 14px;">National Olympiad in Informatics</code>的缩写，译为&ldquo;全国青少年信息学奥林匹克竞赛&rdquo;；NOIP 是<code style="font-size: 14px;">National Olympiad in informatics in Pro<a href="/vi/" target="_blank">vi</a>nces</code>的缩写，译为&ldquo;全国青少年信息学奥林匹克联赛&rdquo;。NOI、NOIP 都是奥林匹克竞赛的一种，参加者多为高中生，获奖者将被保送到名牌大学或者得到高考加分资格。</blockquote>
+<h4>
+	3) Visual C++ 6.0</h4>
+Visual C++ 6.0（简称 VC 6.0）是微软开发的一款经典的 IDE，很多高校都以 VC 6.0 为教学工具来讲解 C 和 C++。但 VC 6.0 是 1998 年的产品，很古老了，在 Win7、Win8、Win10 下会有各种各样的兼容性问题，甚至根本不能运行，所以不推荐使用。<br />
+<br />
+VC 6.0 早就该扔进垃圾桶了，可是依然有很多大学把它作为教学工具，并且选用的教材也以 VC 6.0 为基础来讲解 C语言和 C++，可见教学体制的极端落后，课程体系的更新远远跟不上技术的进步。
+<h4>
+	4)&nbsp;Code::Blocks</h4>
+Code::Blocks 是一款开源、跨平台、免费的 C/C++ IDE，它和 Dev C++ 非常类似，小巧灵活，易于安装和卸载，不过它的界面要比 Dev C++ 复杂一些，不如 Dev C++ 来得清爽。
+<h4>
+	5)&nbsp;Turbo C</h4>
+Turbo C 是一款古老的、DOS 年代的 C语言开发工具，程序员只能使用键盘来操作 Turbo C，不能使用鼠标，所以非常不方便。但是 Turbo C 集成了一套<u><a href='/view/200.html' target='_blank'>图</a></u>形库，可以在控制台程序中画图，看起来非常炫酷，所以至今仍然有人在使用。
+<h4>
+	6)&nbsp;C-Free</h4>
+C-Free 是一款国产的 Windows 下的 C/C++ IDE，最新版本是 5.0，整个软件才 14M，非常轻巧，安装也简单，界面也比 Dev C++ 漂亮。C-Free 的缺点也是调试功能弱。可惜的是，C-Free 已经多年不更新了，组件都老了，只能在 XP、Win7 下运行，在 Win8、Win10 下可能会存在兼容性问题。<br />
+<br />
+下面我们给出了各种 IDE（含不同版本）的下载地址、安装方法以及使用教程，并以<span style="color: rgb(178, 34, 34);">红色字体</span>附带了建议。<br />
+<ul>
+	<li>
+		<strong>VS2022 <span style="color:#b22222;">[力荐]</span></strong>
+		<ul>
+			<li>
+				<a href="/view/9753.html" target="_blank">​S2022下载地址和安装教程（图解）</a></li>
+			<li>
+				<a href="/view/9754.html" target="_blank">使用VS2022编写C语言程序</a></li>
+		</ul>
+	</li>
+</ul>
+<ul>
+	<li>
+		<strong>VS2019&nbsp;<span style="color: rgb(178, 34, 34);">[荐]</span></strong>
+		<ul>
+			<li>
+				<a href="/view/8529.html" target="_blank">​S2019下载地址和安装教程（图解）</a></li>
+			<li>
+				<a href="/view/8530.html" target="_blank">使用VS2019编写C语言程序</a></li>
+		</ul>
+	</li>
+	<li>
+		<strong>VS2017</strong>
+		<ul>
+			<li>
+				<a href="/view/456.html">VS2017下载地址和安装教程（图解）</a></li>
+			<li>
+				<a href="/view/457.html">使用VS2017编写C语言程序</a></li>
+		</ul>
+	</li>
+	<li>
+		<strong>VS2015</strong>
+		<ul>
+			<li>
+				<a href="/view/453.html">VS2015下载地址和安装教程（图解）</a></li>
+			<li>
+				<a href="/view/454.html">使用VS2015编写C语言程序</a></li>
+		</ul>
+	</li>
+	<li>
+		<strong>Dev C++&nbsp;<span style="color: rgb(178, 34, 34);">[荐]</span></strong>
+		<ul>
+			<li>
+				<a href="/view/461.html">Dev C++下载地址和安装教程（图解）</a></li>
+			<li>
+				<a href="/view/462.html">使用Dev C++编写C语言程序</a></li>
+		</ul>
+	</li>
+	<li>
+		<strong>VC6.0&nbsp;<span style="color: rgb(178, 34, 34);">[不建议]</span></strong>
+		<ul>
+			<li>
+				<a href="/view/463.html">VC6.0（VC++6.0）下载地址和安装教程（图解）</a></li>
+			<li>
+				<a href="/view/464.html">使用VC6.0（VC++6.0）编写C语言程序</a></li>
+		</ul>
+	</li>
+	<li>
+		<strong>Code::Blocks</strong>
+		<ul>
+			<li>
+				<a href="/view/465.html">Code::Blocks下载地址和安装教程（图解）</a></li>
+			<li>
+				<a href="/view/466.html">Code::Blocks汉化教程（附带汉化包）</a></li>
+			<li>
+				<a href="/view/467.html">使用Code::Blocks编写C语言程序</a></li>
+		</ul>
+	</li>
+	<li>
+		<strong>Turbo C&nbsp;<span style="color: rgb(178, 34, 34);">[不建议]</span></strong>
+		<ul>
+			<li>
+				<a href="/view/468.html">Turbo C 2.0下载地址和安装教程（图解）</a></li>
+			<li>
+				<a href="/view/469.html">使用Turbo C 2.0编写C语言程序</a></li>
+		</ul>
+	</li>
+	<li>
+		<strong>C-Free&nbsp;<span style="color: rgb(178, 34, 34);">[不建议]</span></strong>
+		<ul>
+			<li>
+				<a href="/view/470.html">C-Free 5.0下载地址和激活教程（图解）</a></li>
+			<li>
+				<a href="/view/472.html">使用C-Free编写C语言程序</a></li>
+		</ul>
+	</li>
+</ul>
+<h4>
+	到底选择哪个版本的 VS？</h4>
+在实际项目开发中，程序员倾向于选择较稳定的版本，最新版本一般是不考虑的。稳定压倒一切，出了问题要有解决方案，较早版本在长时间的使用过程中，已经解决了大多数的 Bug，资料也非常多。<br />
+<br />
+<span style="color:#b22222;">对于初学者，VS 的版本不是太重要，都能满足大家的学习需要，我推荐安装最新的 VS2022。</span></div>
+			
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 384;
+window.arcId = "436dh2Cl+Hhmw6PBf6xzmTy1J+0sYZnGNI9gApEsOD3lAJbY2Ozu913lWQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

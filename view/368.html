@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>ASCII编码，将英文存储到计算机</title>
+<meta name="keywords" content="ASCII,编码,将,英文,存储,到,计算机,前面,我们," />
+<meta name="description" content="前面我们已经讲到，计算机是以二进制的形式来存储数据的，它只认识 0 和 1 两个数字，我们在屏幕上看到的文字，在存储之前都被转换成了二进制（0和1序列），在显示时也要根据二进" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd class="this"> <span class="channel-num">1</span> <a href="/c/base/">编程基础</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/356.html">通俗地理解什么是编程语言</a></dd><dd>1.2 <a href="/view/357.html">C语言究竟是一门怎样的语言？</a></dd><dd>1.3 <a href="/view/358.html">C语言是菜鸟和大神的分水岭</a></dd><dd>1.4 <a href="/view/359.html">学编程难吗？多久能入门？</a></dd><dd>1.5 <a href="/view/360.html">英语和数学不好，能学编程吗？</a></dd><dd>1.6 <a href="/view/361.html">高中毕业能学会编程吗？</a></dd><dd>1.7 <a href="/view/362.html">C语言和C++到底有什么关系？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/363.html">学了C语言到底能做什么，能从事什么工作？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.9 <a href="/view/364.html">二进制、八进制和十六进制</a></dd><dd>1.10 <a href="/view/365.html">不同进制之间的转换</a></dd><dd>1.11 <a href="/view/366.html">数据在内存中的存储</a></dd><dd>1.12 <a href="/view/367.html">载入内存，让程序运行起来</a></dd><dd>1.13 <a href="/view/368.html">ASCII编码，将英文存储到计算机</a></dd><dd>1.14 <a href="/view/369.html">GB2312编码和GBK编码，将中文存储到计算机</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.15 <a href="/view/370.html">Unicode字符集，将全世界的文字存储到计算机</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.16 <a href="/view/371.html">程序员的薪水和发展方向大全</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.17 <a href="/view/372.html">不要这样学习C语言，这是一个坑！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.18 <a href="/view/373.html">明白了这点才能学好编程，否则参加什么培训班都没用</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>ASCII编码，将英文存储到计算机</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/367.html">载入内存，让程序运行起来</a></span>
+                    <span class="next right"><a href="/view/369.html">GB2312编码和GBK编码，将中文存储到计算机</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/367.html";window.nextPageURL = "/view/369.html";</script>
+			<div id="arc-body"><style type="text/css">
+table tr.bg-ctrl{
+background-color: #ffffe0;
+}</style>
+前面我们已经讲到，计算机是以二进制的形式来存储数据的，它只认识 0 和 1 两个数字，我们在屏幕上看到的文字，在存储之前都被转换成了二进制（0 和 1 序列），在显示时也要根据二进制找到对应的字符。<br />
+<br />
+可想而知，特定的文字必然对应着固定的二进制，否则在转换时将发生混乱。那么，怎样将文字与二进制对应起来呢？这就需要有一套规范，计算机公司和软件开发者都必须遵守，这样的一套规范就称为<span style="color: rgb(0, 128, 0);">字符集（Character Set）</span>或者<span style="color: rgb(0, 128, 0);">字符编码（Character Encoding）</span>。<br />
+<blockquote>
+	严格来说，字符集和字符编码不是一个概念，字符集定义了文字和二进制的对应关系，为字符分配了唯一的编号，而字符编码规定了如何将文字的编号存储到计算机中。我们暂时先不讨论这些细节，姑且认为它们是一个概念，本节中我也混用了这两个概念，未做区分。</blockquote>
+<span style="color: rgb(178, 34, 34);">字符集为每个字符分配一个唯一的编号，类似于学生的学号，通过编号就能够找到对应的字符。</span><br />
+<br />
+可以将字符集理解成一个很大的表格，它列出了所有字符和二进制的对应关系，计算机显示文字或者存储文字，就是一个查表的过程。<br />
+<br />
+在计算机逐步发展的过程中，先后出现了几十种甚至上百种字符集，有些还在使用，有些已经淹没在了历史的长河中，本节我们要讲解的是一种专门针对英文的字符集&mdash;&mdash;ASCII 编码。
+<h2>
+	拉丁字母（开胃小菜）</h2>
+在正式介绍 ASCII 编码之前，我们先来说说什么是拉丁字母。估计也有不少读者和我一样，对于拉丁字母、英文字母和汉语拼音中的字母的关系不是很清楚。<br />
+<br />
+拉丁字母也叫罗马字母，它源自希腊字母，是当今世界上使用最广的字母系统。基本的拉丁字母就是我们经常见到的 ABCD 等 26 个英文字母。
+<blockquote>
+	拉丁字母、阿拉伯字母、斯拉夫字母（西里尔字母）被称为世界三大字母体系。</blockquote>
+拉丁字母原先是欧洲人使用的，后来由于欧洲殖民主义，导致这套字母体系在全球范围内开始流行，美洲、非洲、澳洲、亚洲都没有逃过西方文化的影响。中国也是，我们现在使用的拼音其实就是拉丁字母，是不折不扣的舶来品。<br />
+<br />
+后来，很多国家对 26 个基本的拉丁字母进行了扩展，以适应本地的语言文化。最常见的扩展方式就是加上变音符号，例如汉语拼音中的&nbsp;<code>&uuml;</code>，就是在&nbsp;<code>u</code>&nbsp;的基础上加上两个小点演化而来；再如，<code>&aacute;&agrave;</code>&nbsp;就是在 a 的上面标上音调。<br />
+<br />
+总起来说：
+<ul>
+	<li>
+		基本拉丁字母就是 26 个英文字母；</li>
+	<li>
+		扩展拉丁字母就是在基本的 26 个英文字母的基础上添加变音符号、横线、斜线等演化而来，每个国家都不一样。</li>
+</ul>
+<h2>
+	ASCII 编码</h2>
+计算机是美国人发明的，他们首先要考虑的问题是，如何将二进制和英文字母（也就是拉丁文）对应起来。<br />
+<br />
+当时，各个厂家或者公司都有自己的做法，编码规则并不统一，这给不同计算机之间的数据交换带来不小的麻烦。但是相对来说，能够得到普遍认可的有 IBM 发明的 EBCDIC 和此处要谈的 ASCII。<br />
+<br />
+我们先说 ASCII。<span style="color: rgb(178, 34, 34);">ASCII 是&ldquo;American Standard Code for Information Interchange&rdquo;的缩写，翻译过来是&ldquo;美国信息交换标准代码&rdquo;。</span>看这个名字就知道，这套编码是美国人给自己设计的，他们并没有考虑欧洲那些扩展的拉丁字母，也没有考虑韩语和日语，我大中华几万个汉字更是不可能被重视。<br />
+<br />
+但这也无可厚非，美国人自己发明的计算机，当然要先解决自己的问题<br />
+<br />
+ASCII 的标准版本于 1967 年第一次发布，最后一次更新则是在 1986 年，迄今为止共收录了 128 个字符，包含了基本的拉丁字母（英文字母）、阿拉伯数字（也就是 1234567890）、标点符号（<code>,.!</code>&nbsp;等）、特殊符号（<code>@#$%^&amp;</code>&nbsp;等）以及一些具有控制功能的字符（往往不会显示出来）。<br />
+<br />
+在 ASCII 编码中，大写字母、小写字母和阿拉伯数字都是连续分布的（见下表），这给程序设计带来了很大的方便。例如要判断一个字符是否是大写字母，就可以判断该字符的 ASCII 编码值是否在 65~90 的范围内。<br />
+<br />
+EBCDIC 编码正好相反，它的英文字母不是连续排列的，中间出现了多次断续，给编程带来了一些困难。现在连 IBM 自己也不使用&nbsp;EBCDIC 了，转而使用更加优秀的 ASCII。<br />
+<br />
+ASCII 编码已经成了计算机的通用标准，没有人再使用&nbsp;EBCDIC 编码了，它已经消失在历史的长河中了。
+<h2>
+	ASCII 编码一览表</h2>
+标准 ASCII 编码共收录了 128 个字符，其中包含了 33 个控制字符（具有某些特殊功能但是无法显示的字符）和 95 个可显示字符。<br />
+<br />
+<table>
+	<caption>
+		ASCII 编码一览表（淡黄色背景为控制字符，白色背景为可显示字符）</caption>
+	<tbody>
+		<tr>
+			<th>
+				二进制</th>
+			<th>
+				十进制</th>
+			<th>
+				十六进制</th>
+			<th>
+				字符/缩写</th>
+			<th>
+				解释</th>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00000000</td>
+			<td>
+				0</td>
+			<td>
+				00</td>
+			<td>
+				NUL (NULL)</td>
+			<td>
+				空字符</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00000001</td>
+			<td>
+				1</td>
+			<td>
+				01</td>
+			<td>
+				SOH (Start Of Headling)</td>
+			<td>
+				标题开始</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00000010</td>
+			<td>
+				2</td>
+			<td>
+				02</td>
+			<td>
+				STX (Start Of Text)</td>
+			<td>
+				正文开始</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00000011</td>
+			<td>
+				3</td>
+			<td>
+				03</td>
+			<td>
+				ETX (End Of Text)</td>
+			<td>
+				正文结束</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00000100</td>
+			<td>
+				4</td>
+			<td>
+				04</td>
+			<td>
+				EOT (End Of Transmission)</td>
+			<td>
+				传输结束</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00000101</td>
+			<td>
+				5</td>
+			<td>
+				05</td>
+			<td>
+				ENQ (Enquiry)</td>
+			<td>
+				请求</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00000110</td>
+			<td>
+				6</td>
+			<td>
+				06</td>
+			<td>
+				ACK (Acknowledge)</td>
+			<td>
+				回应/响应/收到通知</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00000111</td>
+			<td>
+				7</td>
+			<td>
+				07</td>
+			<td>
+				BEL (Bell)</td>
+			<td>
+				响铃</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00001000</td>
+			<td>
+				8</td>
+			<td>
+				08</td>
+			<td>
+				BS (Backspace)</td>
+			<td>
+				退格</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00001001</td>
+			<td>
+				9</td>
+			<td>
+				09</td>
+			<td>
+				HT (Horizontal Tab)</td>
+			<td>
+				水平制表符</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00001010</td>
+			<td>
+				10</td>
+			<td>
+				0A</td>
+			<td>
+				LF/NL(Line Feed/New Line)</td>
+			<td>
+				换行键</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00001011</td>
+			<td>
+				11</td>
+			<td>
+				0B</td>
+			<td>
+				VT (Vertical Tab)</td>
+			<td>
+				垂直制表符</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00001100</td>
+			<td>
+				12</td>
+			<td>
+				0C</td>
+			<td>
+				FF/NP (Form Feed/New Page)</td>
+			<td>
+				换页键</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00001101</td>
+			<td>
+				13</td>
+			<td>
+				0D</td>
+			<td>
+				CR (Carriage Return)</td>
+			<td>
+				回车键</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00001110</td>
+			<td>
+				14</td>
+			<td>
+				0E</td>
+			<td>
+				SO (Shift Out)</td>
+			<td>
+				不用切换</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00001111</td>
+			<td>
+				15</td>
+			<td>
+				0F</td>
+			<td>
+				SI (Shift In)</td>
+			<td>
+				启用切换</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00010000</td>
+			<td>
+				16</td>
+			<td>
+				10</td>
+			<td>
+				DLE (Data Link Escape)</td>
+			<td>
+				数据链路转义</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00010001</td>
+			<td>
+				17</td>
+			<td>
+				11</td>
+			<td>
+				DC1/XON<br />
+				(Device Control 1/Transmission On)</td>
+			<td>
+				设备控制1/传输开始</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00010010</td>
+			<td>
+				18</td>
+			<td>
+				12</td>
+			<td>
+				DC2 (Device Control 2)</td>
+			<td>
+				设备控制2</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00010011</td>
+			<td>
+				19</td>
+			<td>
+				13</td>
+			<td>
+				DC3/XOFF<br />
+				(Device Control 3/Transmission Off)</td>
+			<td>
+				设备控制3/传输中断</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00010100</td>
+			<td>
+				20</td>
+			<td>
+				14</td>
+			<td>
+				DC4 (Device Control 4)</td>
+			<td>
+				设备控制4</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00010101</td>
+			<td>
+				21</td>
+			<td>
+				15</td>
+			<td>
+				NAK (Negative Acknowledge)</td>
+			<td>
+				无响应/非正常响应/拒绝接收</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00010110</td>
+			<td>
+				22</td>
+			<td>
+				16</td>
+			<td>
+				SYN (Synchronous Idle)</td>
+			<td>
+				同步空闲</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00010111</td>
+			<td>
+				23</td>
+			<td>
+				17</td>
+			<td>
+				ETB (End of Transmission Block)</td>
+			<td>
+				传输块结束/块传输终止</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00011000</td>
+			<td>
+				24</td>
+			<td>
+				18</td>
+			<td>
+				CAN (Cancel)</td>
+			<td>
+				取消</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00011001</td>
+			<td>
+				25</td>
+			<td>
+				19</td>
+			<td>
+				EM (End of Medium)</td>
+			<td>
+				已到介质末端/介质存储已满/介质中断</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00011010</td>
+			<td>
+				26</td>
+			<td>
+				1A</td>
+			<td>
+				SUB (Substitute)</td>
+			<td>
+				替补/替换</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00011011</td>
+			<td>
+				27</td>
+			<td>
+				1B</td>
+			<td>
+				ESC (Escape)</td>
+			<td>
+				逃离/取消</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00011100</td>
+			<td>
+				28</td>
+			<td>
+				1C</td>
+			<td>
+				FS (File Separator)</td>
+			<td>
+				文件分割符</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00011101</td>
+			<td>
+				29</td>
+			<td>
+				1D</td>
+			<td>
+				GS (Group Separator)</td>
+			<td>
+				组分隔符/分组符</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00011110</td>
+			<td>
+				30</td>
+			<td>
+				1E</td>
+			<td>
+				RS (Record Separator)</td>
+			<td>
+				记录分离符</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				00011111</td>
+			<td>
+				31</td>
+			<td>
+				1F</td>
+			<td>
+				US (Unit Separator)</td>
+			<td>
+				单元分隔符</td>
+		</tr>
+		<tr>
+			<td>
+				00100000</td>
+			<td>
+				32</td>
+			<td>
+				20</td>
+			<td>
+				(Space)</td>
+			<td>
+				空格</td>
+		</tr>
+		<tr>
+			<td>
+				00100001</td>
+			<td>
+				33</td>
+			<td>
+				21</td>
+			<td>
+				!</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00100010</td>
+			<td>
+				34</td>
+			<td>
+				22</td>
+			<td>
+				&quot;</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00100011</td>
+			<td>
+				35</td>
+			<td>
+				23</td>
+			<td>
+				#</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00100100</td>
+			<td>
+				36</td>
+			<td>
+				24</td>
+			<td>
+				$</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00100101</td>
+			<td>
+				37</td>
+			<td>
+				25</td>
+			<td>
+				%</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00100110</td>
+			<td>
+				38</td>
+			<td>
+				26</td>
+			<td>
+				&amp;</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00100111</td>
+			<td>
+				39</td>
+			<td>
+				27</td>
+			<td>
+				&#39;</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00101000</td>
+			<td>
+				40</td>
+			<td>
+				28</td>
+			<td>
+				(</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00101001</td>
+			<td>
+				41</td>
+			<td>
+				29</td>
+			<td>
+				)</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00101010</td>
+			<td>
+				42</td>
+			<td>
+				2A</td>
+			<td>
+				*</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00101011</td>
+			<td>
+				43</td>
+			<td>
+				2B</td>
+			<td>
+				+</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00101100</td>
+			<td>
+				44</td>
+			<td>
+				2C</td>
+			<td>
+				,</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00101101</td>
+			<td>
+				45</td>
+			<td>
+				2D</td>
+			<td>
+				-</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00101110</td>
+			<td>
+				46</td>
+			<td>
+				2E</td>
+			<td>
+				.</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00101111</td>
+			<td>
+				47</td>
+			<td>
+				2F</td>
+			<td>
+				/</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00110000</td>
+			<td>
+				48</td>
+			<td>
+				30</td>
+			<td>
+				0</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00110001</td>
+			<td>
+				49</td>
+			<td>
+				31</td>
+			<td>
+				1</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00110010</td>
+			<td>
+				50</td>
+			<td>
+				32</td>
+			<td>
+				2</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00110011</td>
+			<td>
+				51</td>
+			<td>
+				33</td>
+			<td>
+				3</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00110100</td>
+			<td>
+				52</td>
+			<td>
+				34</td>
+			<td>
+				4</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00110101</td>
+			<td>
+				53</td>
+			<td>
+				35</td>
+			<td>
+				5</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00110110</td>
+			<td>
+				54</td>
+			<td>
+				36</td>
+			<td>
+				6</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00110111</td>
+			<td>
+				55</td>
+			<td>
+				37</td>
+			<td>
+				7</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00111000</td>
+			<td>
+				56</td>
+			<td>
+				38</td>
+			<td>
+				8</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00111001</td>
+			<td>
+				57</td>
+			<td>
+				39</td>
+			<td>
+				9</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00111010</td>
+			<td>
+				58</td>
+			<td>
+				3A</td>
+			<td>
+				:</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00111011</td>
+			<td>
+				59</td>
+			<td>
+				3B</td>
+			<td>
+				;</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00111100</td>
+			<td>
+				60</td>
+			<td>
+				3C</td>
+			<td>
+				&lt;</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00111101</td>
+			<td>
+				61</td>
+			<td>
+				3D</td>
+			<td>
+				=</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00111110</td>
+			<td>
+				62</td>
+			<td>
+				3E</td>
+			<td>
+				&gt;</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				00111111</td>
+			<td>
+				63</td>
+			<td>
+				3F</td>
+			<td>
+				?</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01000000</td>
+			<td>
+				64</td>
+			<td>
+				40</td>
+			<td>
+				@</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01000001</td>
+			<td>
+				65</td>
+			<td>
+				41</td>
+			<td>
+				A</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01000010</td>
+			<td>
+				66</td>
+			<td>
+				42</td>
+			<td>
+				B</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01000011</td>
+			<td>
+				67</td>
+			<td>
+				43</td>
+			<td>
+				C</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01000100</td>
+			<td>
+				68</td>
+			<td>
+				44</td>
+			<td>
+				D</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01000101</td>
+			<td>
+				69</td>
+			<td>
+				45</td>
+			<td>
+				E</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01000110</td>
+			<td>
+				70</td>
+			<td>
+				46</td>
+			<td>
+				F</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01000111</td>
+			<td>
+				71</td>
+			<td>
+				47</td>
+			<td>
+				G</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01001000</td>
+			<td>
+				72</td>
+			<td>
+				48</td>
+			<td>
+				H</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01001001</td>
+			<td>
+				73</td>
+			<td>
+				49</td>
+			<td>
+				I</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01001010</td>
+			<td>
+				74</td>
+			<td>
+				4A</td>
+			<td>
+				J</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01001011</td>
+			<td>
+				75</td>
+			<td>
+				4B</td>
+			<td>
+				K</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01001100</td>
+			<td>
+				76</td>
+			<td>
+				4C</td>
+			<td>
+				L</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01001101</td>
+			<td>
+				77</td>
+			<td>
+				4D</td>
+			<td>
+				M</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01001110</td>
+			<td>
+				78</td>
+			<td>
+				4E</td>
+			<td>
+				N</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01001111</td>
+			<td>
+				79</td>
+			<td>
+				4F</td>
+			<td>
+				O</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01010000</td>
+			<td>
+				80</td>
+			<td>
+				50</td>
+			<td>
+				P</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01010001</td>
+			<td>
+				81</td>
+			<td>
+				51</td>
+			<td>
+				Q</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01010010</td>
+			<td>
+				82</td>
+			<td>
+				52</td>
+			<td>
+				R</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01010011</td>
+			<td>
+				83</td>
+			<td>
+				53</td>
+			<td>
+				S</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01010100</td>
+			<td>
+				84</td>
+			<td>
+				54</td>
+			<td>
+				T</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01010101</td>
+			<td>
+				85</td>
+			<td>
+				55</td>
+			<td>
+				U</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01010110</td>
+			<td>
+				86</td>
+			<td>
+				56</td>
+			<td>
+				V</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01010111</td>
+			<td>
+				87</td>
+			<td>
+				57</td>
+			<td>
+				W</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01011000</td>
+			<td>
+				88</td>
+			<td>
+				58</td>
+			<td>
+				X</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01011001</td>
+			<td>
+				89</td>
+			<td>
+				59</td>
+			<td>
+				Y</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01011010</td>
+			<td>
+				90</td>
+			<td>
+				5A</td>
+			<td>
+				Z</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01011011</td>
+			<td>
+				91</td>
+			<td>
+				5B</td>
+			<td>
+				[</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01011100</td>
+			<td>
+				92</td>
+			<td>
+				5C</td>
+			<td>
+				\</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01011101</td>
+			<td>
+				93</td>
+			<td>
+				5D</td>
+			<td>
+				]</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01011110</td>
+			<td>
+				94</td>
+			<td>
+				5E</td>
+			<td>
+				^</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01011111</td>
+			<td>
+				95</td>
+			<td>
+				5F</td>
+			<td>
+				_</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01100000</td>
+			<td>
+				96</td>
+			<td>
+				60</td>
+			<td>
+				`</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01100001</td>
+			<td>
+				97</td>
+			<td>
+				61</td>
+			<td>
+				a</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01100010</td>
+			<td>
+				98</td>
+			<td>
+				62</td>
+			<td>
+				b</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01100011</td>
+			<td>
+				99</td>
+			<td>
+				63</td>
+			<td>
+				c</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01100100</td>
+			<td>
+				100</td>
+			<td>
+				64</td>
+			<td>
+				d</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01100101</td>
+			<td>
+				101</td>
+			<td>
+				65</td>
+			<td>
+				e</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01100110</td>
+			<td>
+				102</td>
+			<td>
+				66</td>
+			<td>
+				f</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01100111</td>
+			<td>
+				103</td>
+			<td>
+				67</td>
+			<td>
+				g</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01101000</td>
+			<td>
+				104</td>
+			<td>
+				68</td>
+			<td>
+				h</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01101001</td>
+			<td>
+				105</td>
+			<td>
+				69</td>
+			<td>
+				i</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01101010</td>
+			<td>
+				106</td>
+			<td>
+				6A</td>
+			<td>
+				j</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01101011</td>
+			<td>
+				107</td>
+			<td>
+				6B</td>
+			<td>
+				k</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01101100</td>
+			<td>
+				108</td>
+			<td>
+				6C</td>
+			<td>
+				l</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01101101</td>
+			<td>
+				109</td>
+			<td>
+				6D</td>
+			<td>
+				m</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01101110</td>
+			<td>
+				110</td>
+			<td>
+				6E</td>
+			<td>
+				n</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01101111</td>
+			<td>
+				111</td>
+			<td>
+				6F</td>
+			<td>
+				o</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01110000</td>
+			<td>
+				112</td>
+			<td>
+				70</td>
+			<td>
+				p</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01110001</td>
+			<td>
+				113</td>
+			<td>
+				71</td>
+			<td>
+				q</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01110010</td>
+			<td>
+				114</td>
+			<td>
+				72</td>
+			<td>
+				r</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01110011</td>
+			<td>
+				115</td>
+			<td>
+				73</td>
+			<td>
+				s</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01110100</td>
+			<td>
+				116</td>
+			<td>
+				74</td>
+			<td>
+				t</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01110101</td>
+			<td>
+				117</td>
+			<td>
+				75</td>
+			<td>
+				u</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01110110</td>
+			<td>
+				118</td>
+			<td>
+				76</td>
+			<td>
+				v</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01110111</td>
+			<td>
+				119</td>
+			<td>
+				77</td>
+			<td>
+				w</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01111000</td>
+			<td>
+				120</td>
+			<td>
+				78</td>
+			<td>
+				x</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01111001</td>
+			<td>
+				121</td>
+			<td>
+				79</td>
+			<td>
+				y</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01111010</td>
+			<td>
+				122</td>
+			<td>
+				7A</td>
+			<td>
+				z</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01111011</td>
+			<td>
+				123</td>
+			<td>
+				7B</td>
+			<td>
+				{</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01111100</td>
+			<td>
+				124</td>
+			<td>
+				7C</td>
+			<td>
+				|</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01111101</td>
+			<td>
+				125</td>
+			<td>
+				7D</td>
+			<td>
+				}</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				01111110</td>
+			<td>
+				126</td>
+			<td>
+				7E</td>
+			<td>
+				~</td>
+			<td>
+				&nbsp;</td>
+		</tr>
+		<tr class="bg-ctrl">
+			<td>
+				01111111</td>
+			<td>
+				127</td>
+			<td>
+				7F</td>
+			<td>
+				DEL (Delete)</td>
+			<td>
+				删除</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+上表列出的是标准的 ASCII 编码，它共收录了 128 个字符，用一个字节中较低的 7 个比特位（Bit）足以表示（2<sup>7</sup> = 128），所以还会空闲下一个比特位，它就被浪费了。<br />
+<h2>
+	ASCII 编码和C语言</h2>
+稍微有点 C语言基本功的读者可能认为 C语言使用的就是 ASCII 编码，字符在存储时会转换成对应的 ASCII 码值，在读取时也是根据 ASCII 码找到对应的字符。这句话是错误的，严格来说，你可能被大学老师和 C语言教材给误导了。<br />
+<br />
+C语言有时候使用 ASCII 编码，有时候却不是，而是使用后面两节中即将讲到的 GBK 编码和 Unicode 字符集，我们将在《<a href="/view/426.html" target="_blank">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a>》一节中展开讲解。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/367.html">载入内存，让程序运行起来</a></span>
+                    <span class="next right"><a href="/view/369.html">GB2312编码和GBK编码，将中文存储到计算机</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/367.html";window.nextPageURL = "/view/369.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 368;
+window.arcId = "d473+sDkbK8D2MTKuzZV598NYiaXli6g89GcPURVK4OeC6uvQeShnxB2Og";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

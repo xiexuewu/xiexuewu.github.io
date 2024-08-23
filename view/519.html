@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言指针变量作为函数参数</title>
+<meta name="keywords" content="语言,指针,变量,作为,函数,参数,在,语,言中," />
+<meta name="description" content="在C语言中，函数的参数不仅可以是整数、小数、字符等具体的数据，还可以是指向它们的指针。用指针变量作函数参数可以将函数外部的地址传递到函数内部，使得在函数内部可以操作" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="/c/pointer/">指针</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/513.html">1分钟彻底理解指针的概念</a></dd><dd>9.2 <a href="/view/514.html">指针变量的定义和使用</a></dd><dd>9.3 <a href="/view/515.html">C语言指针变量的运算</a></dd><dd>9.4 <a href="/view/516.html">数组指针（指向数组的指针）</a></dd><dd>9.5 <a href="/view/517.html">字符串指针（指向字符串的指针）</a></dd><dd>9.6 <a href="/view/518.html">C语言数组灵活多变的访问形式</a></dd><dd>9.7 <a href="/view/519.html">指针变量作为函数参数</a></dd><dd>9.8 <a href="/view/520.html">C语言指针作为函数返回值</a></dd><dd>9.9 <a href="/view/521.html">二级指针（指向指针的指针）</a></dd><dd>9.10 <a href="/view/522.html">空指针NULL以及void指针</a></dd><dd>9.11 <a href="/view/523.html">数组和指针绝不等价，数组是另外一种类型</a></dd><dd>9.12 <a href="/view/524.html">数组到底在什么时候会转换为指针</a></dd><dd>9.13 <a href="/view/525.html">指针数组（数组每个元素都是指针）</a></dd><dd>9.14 <a href="/view/526.html">一道题目玩转指针数组和二级指针</a></dd><dd>9.15 <a href="/view/527.html">二维数组指针（指向二维数组的指针）</a></dd><dd>9.16 <a href="/view/528.html">函数指针（指向函数的指针）</a></dd><dd>9.17 <a href="/view/529.html">只需一招，彻底攻克C语言指针，再复杂的指针都不怕</a></dd><dd>9.18 <a href="/view/530.html">main()函数的高级用法：接收用户输入的数据</a></dd><dd>9.19 <a href="/view/542.html">const的用法</a></dd><dd>9.20 <a href="/view/531.html">对C语言指针的总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言指针变量作为函数参数</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/518.html">C语言数组灵活多变的访问形式</a></span>
+                    <span class="next right"><a href="/view/520.html">C语言指针作为函数返回值</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/518.html";window.nextPageURL = "/view/520.html";</script>
+			<div id="arc-body">在C语言中，函数的参数不仅可以是整数、小数、字符等具体的数据，还可以是指向它们的指针。用指针变量作函数参数可以将函数外部的地址传递到函数内部，使得在函数内部可以操作函数外部的数据，并且这些数据不会随着函数的结束而被销毁。<br />
+<br />
+像<u><a href='/view/181.html' target='_blank'>数组</a></u>、字符<u><a href='/view/175.html' target='_blank'>串</a></u>、动态分配的内存等都是一系列数据的集合，没有办法通过一个参数全部传入函数内部，只能传递它们的指针，在函数内部通过指针来影响这些数据集合。<br />
+<br />
+有的时候，对于整数、小数、字符等基本类型数据的操作也必须要借助指针，一个典型的例子就是交换两个变量的值。<br />
+<br />
+有些初学者可能会使用下面的方法来交换两个变量的值：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+void swap(int a, int b){
+    int temp;  //临时变量
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+int main(){
+    int a = 66, b = 99;
+    swap(a, b);
+    printf(&quot;a = %d, b = %d\n&quot;, a, b);
+    return 0;
+}</pre>
+运行结果：<br />
+a = 66, b = 99<br />
+<br />
+从结果可以看出，a、b 的值并没有发生改变，交换失败。这是因为 swap() 函数内部的 a、b 和 main() 函数内部的 a、b 是不同的变量，占用不同的内存，它们除了名字一样，没有其他任何关系，swap() 交换的是它内部 a、b 的值，不会影响它外部（main() 内部） a、b 的值。<br />
+<br />
+改用指针变量作参数后就很容易解决上面的问题：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+void swap(int *p1, int *p2){
+    int temp;  //临时变量
+    temp = *p1;
+    *p1 = *p2;
+    *p2 = temp;
+}
+
+int main(){
+    int a = 66, b = 99;
+    swap(&amp;a, &amp;b);
+    printf(&quot;a = %d, b = %d\n&quot;, a, b);
+    return 0;
+}</pre>
+运行结果：<br />
+a = 99, b = 66<br />
+<br />
+调用 swap() 函数时，将变量 a、b 的地址分别赋值给 p1、p2，这样 *p1、*p2 代表的就是变量 a、b 本身，交换 *p1、*p2 的值也就是交换 a、b 的值。函数运行结束后虽然会将 p1、p2 销毁，但它对外部 a、b 造成的影响是&ldquo;持久化&rdquo;的，不会随着函数的结束而&ldquo;恢复原样&rdquo;。<br />
+<br />
+需要注意的是临时变量 temp，它的作用特别重要，因为执行<code>*p1 = *p2;</code>语句后 a 的值会被 b 的值覆盖，如果不先将 a 的值保存起来以后就找不到了。<br />
+<br />
+这就好比拿来一瓶可乐和一瓶雪碧，要想把可乐倒进雪碧瓶、把雪碧倒进可乐瓶里面，就必须先找一个杯子，将两者之一先倒进杯子里面，再从杯子倒进瓶子里面。这里的杯子，就是一个&ldquo;临时变量&rdquo;，虽然只是倒倒手，但是也不可或缺。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="交换两个变量的值" src="/uploads/allimg/240821/1540364a5-0.jpg" /></div>
+<h2>
+	用数组作函数参数</h2>
+数组是一系列数据的集合，无法通过参数将它们一次性传递到函数内部，如果希望在函数内部操作数组，必须传递数组指针。下面的例子定义了一个函数 max()，用来查找数组中值最大的元素：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int max(int *intArr, int len){
+    int i, maxValue = intArr[0];  //假设第0个元素是最大值
+    for(i=1; i&lt;len; i++){
+        if(maxValue &lt; intArr[i]){
+            maxValue = intArr[i];
+        }
+    }
+   
+    return maxValue;
+}
+
+int main(){
+    int nums[6], i;
+    int len = sizeof(nums)/sizeof(int);
+    //读取用户输入的数据并赋值给数组元素
+    for(i=0; i&lt;len; i++){
+        scanf(&quot;%d&quot;, nums+i);
+    }
+    printf(&quot;Max value is %d!\n&quot;, max(nums, len));
+
+    return 0;
+}</pre>
+运行结果：<br />
+12 55 30 8 93 27↙<br />
+Max value is 93!<br />
+<br />
+参数 intArr 仅仅是一个数组指针，在函数内部无法通过这个指针获得数组长度，必须将数组长度作为函数参数传递到函数内部。数组 nums 的每个元素都是整数，scanf() 在读取用户输入的整数时，要求给出存储它的内存的地址，<code>nums+i</code>就是第 i 个数组元素的地址。<br />
+<br />
+用数组做函数参数时，参数也能够以&ldquo;真正&rdquo;的数组形式给出。例如对于上面的 max() 函数，它的参数可以写成下面的形式：
+<pre class="c">
+int max(int intArr[6], int len){
+    int i, maxValue = intArr[0];  //假设第0个元素是最大值
+    for(i=1; i&lt;len; i++){
+        if(maxValue &lt; intArr[i]){
+            maxValue = intArr[i];
+        }
+    }
+    return maxValue;
+}</pre>
+<code>int intArr[6]</code>好像定义了一个拥有 6 个元素的数组，调用 max() 时可以将数组的所有元素&ldquo;一股脑&rdquo;传递进来。<br />
+<br />
+读者也可以省略数组长度，把形参简写为下面的形式：
+<pre class="c">
+int max(int intArr[], int len){
+    int i, maxValue = intArr[0];  //假设第0个元素是最大值
+    for(i=1; i&lt;len; i++){
+        if(maxValue &lt; intArr[i]){
+            maxValue = intArr[i];
+        }
+    }
+    return maxValue;
+}</pre>
+<code>int intArr[]</code>虽然定义了一个数组，但没有指定数组长度，好像可以接受任意长度的数组。<br />
+<br />
+实际上这两种形式的数组定义都是假象，不管是<code>int intArr[6]</code>还是<code>int intArr[]</code>都不会创建一个数组出来，编译器也不会为它们分配内存，实际的数组是不存在的，它们最终还是会转换为<code>int *intArr</code>这样的指针。这就意味着，两种形式都不能将数组的所有元素&ldquo;一股脑&rdquo;传递进来，大家还得规规矩矩使用数组指针。<br />
+<br />
+<code>int intArr[6]</code>这种形式只能说明函数期望用户传递的数组有 6 个元素，并不意味着数组只能有 6 个元素，真正传递的数组可以有少于或多于 6 个的元素。<br />
+<br />
+需要强调的是，不管使用哪种方式传递数组，都不能在函数内部求得数组长度，因为 intArr 仅仅是一个指针，而不是真正的数组，所以必须要额外增加一个参数来传递数组长度。<br />
+<br />
+C语言为什么不允许直接传递数组的所有元素，而必须传递数组指针呢？<br />
+<br />
+<span style="color: #b22222">参数的传递本质上是一次赋值的过程，赋值就是对内存进行拷贝。所谓内存拷贝，是指将一块内存上的数据复制到另一块内存上。</span><br />
+<br />
+对于像 int、float、char 等基本类型的数据，它们占用的内存往往只有几个字节，对它们进行内存拷贝非常快速。而数组是一系列数据的集合，数据的数量没有限制，可能很少，也可能成千上万，对它们进行内存拷贝有可能是一个漫长的过程，会严重拖慢程序的效率，为了防止技艺不佳的程序员写出低效的代码，C语言没有从语法上支持数据集合的直接赋值。<br />
+<br />
+除了C语言，C++、Java、Python 等其它语言也禁止对大块内存进行拷贝，在底层都使用类似指针的方式来实现。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/518.html">C语言数组灵活多变的访问形式</a></span>
+                    <span class="next right"><a href="/view/520.html">C语言指针作为函数返回值</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/518.html";window.nextPageURL = "/view/520.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 519;
+window.arcId = "29adiwR7Hbg8Pcwsfg1/u7Wl7ArHLYCCO6W9Zu/XaKsblZNxRyi0P7oWug";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

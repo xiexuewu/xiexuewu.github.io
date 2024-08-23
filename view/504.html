@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言#include的用法详解（文件包含命令）</title>
+<meta name="keywords" content="语言,#include,的,用法,详解,文件,包含,命令," />
+<meta name="description" content="#include 叫做 文件包含命令 ，用来引入对应的头文件（ .h 文件）。#include 也是C语言预处理命令的一种。 #include 的处理过程很简单，就是将头文件的内容插入到该命令所在的位置，从而" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/c/preprocess/">预处理命令</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/503.html">什么是预处理命令？</a></dd><dd>8.2 <a href="/view/504.html">#include的用法</a></dd><dd>8.3 <a href="/view/505.html">C语言宏定义</a></dd><dd>8.4 <a href="/view/506.html">C语言带参数的宏定义</a></dd><dd>8.5 <a href="/view/507.html">带参宏定义和函数的区别</a></dd><dd>8.6 <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a></dd><dd>8.7 <a href="/view/509.html">C语言中几个预定义宏</a></dd><dd>8.8 <a href="/view/510.html">C语言条件编译</a></dd><dd>8.9 <a href="/view/511.html">#error命令，阻止程序编译</a></dd><dd>8.10 <a href="/view/512.html">C语言预处理命令总结</a></dd></dl>
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言#include的用法详解（文件包含命令）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/503.html">什么是预处理命令？</a></span>
+                    <span class="next right"><a href="/view/505.html">C语言宏定义</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/503.html";window.nextPageURL = "/view/505.html";</script>
+			<div id="arc-body"><code>#include</code>叫做<span style="color:#008000;">文件包含命令</span>，用来引入对应的头文件（<code>.h</code>文件）。#include 也是 C语言预处理命令的一种。<br />
+<br />
+#include 的处理过程很简单，就是将头文件的内容插入到该命令所在的位置，从而把头文件和当前源文件连接成一个源文件，这与复制粘贴的效果相同。<br />
+<br />
+#include 的用法有两种，如下所示：
+<p class="info-box">
+	#include &lt;stdHeader.h&gt;<br />
+	#include &quot;myHeader.h&quot;</p>
+使用尖括号<code>&lt; &gt;</code>和双引号<code>&quot; &quot;</code>的区别在于头文件的搜索路径不同：
+<ul>
+	<li>
+		使用尖括号<code>&lt; &gt;</code>，编译器会到系统路径下查找头文件；</li>
+	<li>
+		而使用双引号<code>&quot; &quot;</code>，编译器首先在当前目录下查找头文件，如果没有找到，再到系统路径下查找。</li>
+</ul>
+<br />
+<span style="color:#b22222;">也就是说，使用双引号比使用尖括号多了一个查找路径，它的功能更为强大。</span><br />
+<br />
+前面我们一直使用尖括号来引入标准头文件，现在我们也可以使用双引号了，如下所示：
+<pre class="cpp">
+#include &quot;stdio.h&quot;
+#include &quot;stdlib.h&quot;</pre>
+stdio.h 和 stdlib.h 都是标准头文件，它们存放于系统路径下，所以使用尖括号和双引号都能够成功引入；而我们自己编写的头文件，一般存放于当前项目的路径下，所以不能使用尖括号，只能使用双引号。<br />
+<br />
+当然，你也可以把当前项目所在的目录添加到系统路径，这样就可以使用尖括号了，但是一般没人这么做，纯粹多此一举，费力不讨好。
+<blockquote>
+	关于系统路径和当前路径，还有更多的细节需要读者了解，我们将在《<a href="/view/595.html" target="_blank">细说C语言头文件的路径</a>》一文中深入探讨。</blockquote>
+在以后的编程中，大家既可以使用尖括号来引入标准头文件，也可以使用双引号来引入标准头文件；不过，我个人的习惯是使用尖括号来引入标准头文件，使用双引号来引入自定义头文件（自己编写的头文件），这样一眼就能看出头文件的区别。<br />
+<br />
+关于 #include 用法的注意事项：
+<ul>
+	<li>
+		一个 #include 命令只能包含一个头文件，多个头文件需要多个 #include 命令。</li>
+	<li>
+		同一个头文件可以被多次引入，多次引入的效果和一次引入的效果相同，因为头文件在代码层面有防止重复引入的机制，具体细节我们将在《<a href="/view/596.html" target="_blank">防止C语言头文件被重复包含</a>》一文中深入探讨。</li>
+	<li>
+		文件包含允许嵌套，也就是说在一个被包含的文件中又可以包含另一个文件。</li>
+</ul>
+<h2>
+	#include 用法举例</h2>
+我们早就学会使用 #include 引入标准头文件了，但是如何使用 #include 引入自定义的头文件呢？下面我们就通过一个例子来简单地演示一下。<br />
+<br />
+本例中需要创建三个文件，分别是 main.c、my.c 和 my.h，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="演示#include的用法" src="/uploads/allimg/240821/131531CG-0.gif" /></div>
+<br />
+my.c 所包含的代码：
+<pre class="cpp">
+//计算从m加到n的和
+int sum(int m, int n) {
+    int i, sum = 0;
+    for (i = m; i &lt;= n; i++) {
+        sum += i;
+    }
+    return sum;
+}</pre>
+<br />
+my.h 所包含的代码：
+<pre class="cpp">
+//声明函数
+int sum(int m, int n);</pre>
+<br />
+main.c 所包含的代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &quot;my.h&quot;
+
+int main() {
+    printf(&quot;%d\n&quot;, sum(1, 100));
+    return 0;
+}</pre>
+<br />
+我们在 my.c 中定义了 sum() 函数，在 my.h 中声明了 sum() 函数，这可能与很多初学者的认知发生了冲突：函数不是在头文件中定义的吗？为什么头文件中只有声明？<br />
+<br />
+<span style="color:#b22222;">「在头文件中定义定义函数和全局变量」这种认知是原则性的错误！不管是标准头文件，还是自定义头文件，都只能包含变量和函数的声明，不能包含定义，否则在多次引入时会引起重复定义错误。</span><br />
+<br />
+此外，可能还有初学者会问，main.c 只是引入了 my.h，没有引入 my.c，程序在编译时应该找不到函数定义呀，然而当我们亲自去运行程序的时候，却发现运行结果是正确的，这是怎么回事呢？<br />
+<br />
+C语言多文件编程涉及到很多细节，需要深入理解编译和链接的原理，本节我们仅做演示，不做更多讲解，有兴趣的读者请阅读《<a href="/c/module/" target="_blank">C语言多文件编程</a>》，届时你将解开以上各种谜团。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/503.html">什么是预处理命令？</a></span>
+                    <span class="next right"><a href="/view/505.html">C语言宏定义</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/503.html";window.nextPageURL = "/view/505.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 504;
+window.arcId = "d2b4XGLtPpA7Bca4GD+PUmh7413SWgC47AmEYXmHt5qn93nGiNkdXSNCKQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>虚拟地址空间以及编译模式</title>
+<meta name="keywords" content="虚拟,地址,空间,以及,编译,模式,所谓,虚拟," />
+<meta name="description" content="所谓虚拟地址空间，就是程序可以使用的虚拟地址的有效范围。 虚拟地址和物理地址的映射关系由操作系统决定，相应地，虚拟地址空间的大小也由操作系统决定，但还会受到编译模式" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">13</span> <a href="/c/memory/">C语言内存精讲</a> </dd><dl class="dl-sub"><dd>13.1 <a href="/view/566.html">一个程序在计算机中到底是如何运行的？</a></dd><dd>13.2 <a href="/view/567.html">虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？</a></dd><dd>13.3 <a href="/view/568.html">虚拟地址空间以及编译模式</a></dd><dd>13.4 <a href="/view/569.html">C语言内存对齐，提高寻址效率</a></dd><dd>13.5 <a href="/view/570.html">内存分页机制，完成虚拟地址的映射</a></dd><dd>13.6 <a href="/view/571.html">分页机制究竟是如何实现的？</a></dd><dd>13.7 <a href="/view/572.html">MMU部件以及对内存权限的控制</a></dd><dd>13.8 <a href="/view/573.html">Linux下C语言程序的内存布局</a></dd><dd>13.9 <a href="/view/574.html">Windows下C语言程序的内存布局</a></dd><dd>13.10 <a href="/view/575.html">用户模式和内核模式</a></dd><dd>13.11 <a href="/view/576.html">栈（Stack）是什么？栈溢出又是怎么回事？</a></dd><dd>13.12 <a href="/view/577.html">一个函数在栈上到底是怎样的？</a></dd><dd>13.13 <a href="/view/578.html">函数调用惯例(Calling Convention)</a></dd><dd>13.14 <a href="/view/579.html">用一个实例来深入剖析函数进栈出栈的过程</a></dd><dd>13.15 <a href="/view/580.html">栈溢出攻击的原理是什么？</a></dd><dd>13.16 <a href="/view/581.html">C语言动态内存分配</a></dd><dd>13.17 <a href="/view/582.html">malloc函数背后的实现原理——内存池</a></dd><dd>13.18 <a href="/view/583.html">C语言野指针以及非法内存操作</a></dd><dd>13.19 <a href="/view/584.html">C语言内存泄露（内存丢失）</a></dd><dd>13.20 <a href="/view/585.html">C语言变量的存储类别和生存期</a></dd></dl>
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>虚拟地址空间以及编译模式</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/567.html">虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？</a></span>
+                    <span class="next right"><a href="/view/569.html">C语言内存对齐，提高寻址效率</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/567.html";window.nextPageURL = "/view/569.html";</script>
+			<div id="arc-body"><span style="color: #b22222">所谓虚拟地址空间，就是程序可以使用的虚拟地址的有效范围。</span>虚拟地址和物理地址的映射关系由操作系统决定，相应地，虚拟地址空间的大小也由操作系统决定，但还会受到编译模式的影响。<br />
+<br />
+这节我们先讲解CPU，再讲解编译模式，让大家了解编译器是如何配合 CPU 来提高程序运行速度的。<br />
+<h2>
+	CPU的数据处理能力</h2>
+CPU 是计算机的核心，决定了计算机的数据处理能力和寻址能力，也即决定了计算机的性能。CPU 一次（一个时钟内）能处理的数据的大小由寄存器的位数和数据总线的宽度（也即有多少根数据总线）决定，我们通常所说的多少位的 CPU，除了可以理解为寄存器的位数，也可以理解数据总线的宽度，通常情况下它们是相等的。
+<blockquote>
+	数据总线位于主板之上，不在 CPU 中，也不由 CPU 决定，严格来讲，这里应该说 CPU 能够支持的数据总线的最大根数，也即能够支持的最大数据处理能力，为了表达方便，本文才使用&ldquo;CPU 的数据总线&rdquo;这一说法。</blockquote>
+数据总线和主频都是 CPU 的重要指标：数据总线决定了 CPU 单次的数据处理能力，主频决定了 CPU 单位时间内的数据处理次数，它们的乘积就是 CPU 单位时间内的数据处理量。<br />
+<br />
+我们常常听说，CPU 主频在计算机的发展过程中飞速提升，从最初的几十 KHz，到后来的几百 MHz，再到现在的 4GHz，终于因为硅晶体的物理特性很难再提升，只能向多核方向发展。在这个过程中，CPU 的数据总线宽度也在成倍增长，从早期的 8 位、16 位，到后来的 32 位，现在我们计算机大部分都在使用 64 位 CPU。<br />
+<br />
+需要注意的是，数据总线和地址总线不是一回事，数据总线用于在 CPU 和内存之间传输数据，地址总线用于在内存上定位数据，它们之间没有必然的联系，宽度并不一定相等。实际情况是，地址总线的宽度往往随着数据总线的宽度而增长，以访问更大的内存。<br />
+<h4>
+	1) 16位CPU</h4>
+早期的 CPU 是 16 位的，一次能处理 16Bit（2 个字节）的数据。这个时候计算机产业还处在早期，个人电脑也没有进入千家万户，也没有提出虚拟地址的概念，程序还是直接运行在物理内存上，操作系统对内存的管理非常简陋，程序员轻易就能编写一个恶意程序去修改其他程序的内存。<br />
+<br />
+学过汇编的同学应该知道，典型的 16 位处理器是 Intel 8086，它的数据总线有 16 根，地址总线有 20 根，寻址能力为 2^20 = 1MB。
+<h4>
+	2) 32位CPU</h4>
+随着计算机产业的进步，出现了 32 位的 CPU，一次能处理 32Bit（4 个字节）的数据。这个时候就提出了虚拟地址的概念，并被应用到 CPU 和操作系统中，由它们共同完成虚拟地址和物理地址的映射，这使得程序编写更加容易，运行更加安全。<br />
+<br />
+典型的 32 位处理器是&nbsp;Intel 的 80386 和 Intel Pentium 4（奔腾 4）：80386 的数据总线和地址总线宽度都是 32 位，寻址能力达 4GB；Pentium 4 的地址总线宽度是 36 位，理论寻址能力达 64GB。
+<h4>
+	3) 64位CPU</h4>
+现代计算机都使用 64 位的 CPU，它们一次能处理 64Bit（8 个字节）的数据。典型的 64 位处理器是 Intel 的 Core i3、i5、i7 等，它们的地址总线宽度为 40~50 位左右。64 位 CPU 的出现使个人电脑再次发生了质的飞跃。
+<h2>
+	实际支持的物理内存</h2>
+CPU 支持的物理内存只是理论上的数据，实际应用中还会受到操作系统的限制，例如，Win7 &nbsp;64 位家庭版最大仅支持 8GB 或 16GB 的物理内存，Win7 64 位专业版或企业版能够支持到 192GB 的物理内存。<br />
+<br />
+Windows Server 2003 数据中心版专为大型企业或国家机构而设计，可以处理海量数据，分为 32 位版和 64 位版，32 位版最高支持 512GB 的物理内存，这显然超出了 32 位 CPU 的寻址能力，可以通过两次寻址来实现。<br />
+<h2>
+	编译模式</h2>
+为了兼容不同的平台，现代编译器大都提供两种编译模式：32 位模式和 64 位模式。
+<h4>
+	32位编译模式</h4>
+<span style="color: #b22222">在 32 位模式下，一个指针或地址占用 4 个字节的内存，共有 32 位，理论上能够访问的虚拟内存空间大小为 2^32 =&nbsp;0X100000000 Bytes，即 4GB，有效虚拟地址范围是 0 ~ 0XFFFFFFFF。&nbsp;</span><br />
+<br />
+也就是说，对于 32 位的编译模式，不管实际物理内存有多大，程序能够访问的有效虚拟地址空间的范围就是 0 ~ 0XFFFFFFFF，也即虚拟地址空间的大小是 4GB。换句话说，程序能够使用的最大内存为 4GB，跟物理内存没有关系。<br />
+<br />
+如果程序需要的内存大于物理内存，或者内存中剩余的空间不足以容纳当前程序，那么操作系统会将内存中暂时用不到的一部分数据写入到磁盘，等需要的时候再读取回来，这在《<a href="/view/367.html" target="_blank">载入内存，让程序运行起来</a>》中已经讲到。而我们的程序只管使用 4GB 的内存，不用关心硬件资源够不够。<br />
+<br />
+如果物理内存大于 4GB，例如目前很多 PC 机都配备了 8GB 的内存，那么程序也无能为力，它只能够使用其中的 4GB。
+<h4>
+	64位编译模式</h4>
+在 64 位编译模式下，一个指针或地址占用 8 个字节的内存，共有 64 位，理论上能够访问的虚拟内存空间大小为 2^64。这是一个很大的值，几乎是无限的，就目前的技术来讲，不但物理内存不可能达到这么大，CPU 的寻址能力也没有这么大，实现 64 位长的虚拟地址只会增加系统的复杂度和地址转换的成本，带不来任何好处，<span style="color: #b22222">所以 Windows 和 Linux 都对虚拟地址进行了限制，仅使用虚拟地址的低 48 位（6 个字节），总的虚拟地址空间大小为 2^48 = 256TB</span>。<br />
+<br />
+需要注意的是：
+<ul>
+	<li>
+		32 位的操作系统只能运行 32 位的程序（也即以 32 位模式编译的程序），64 位操作系统可以同时运行 32 位的程序（为了向前兼容，保留已有的大量的 32 位应用程序）和 64 位的程序（也即以 64 位模式编译的程序）。</li>
+	<li>
+		64 位的 CPU 运行 64 位的程序才能发挥它的最大性能，运行 32 位的程序会白白浪费一部分资源。</li>
+</ul>
+<br />
+目前计算机可以说已经进入了 64 位的时代，之所以还要提供 32 位编译模式，是为了兼容一些老的硬件平台和操作系统，或者某些场合下 32 位的环境已经足够，使用 64 位环境会增大成本，例如嵌入式系统、单片机、工控等。
+<blockquote>
+	这里所说的 32 位环境是指：32 位的 CPU + 32 位的操作系统 + 32 位的程序。</blockquote>
+<span style="color: #b22222">另外需要说明的是，32 位环境拥有非常经典的设计，易于理解，适合教学，现有的很多资料都是以 32 位环境为基础进行讲解的。本教程也是如此，除非特别指明，否则都是针对 32 位环境。相比于 32 位环境，64 位环境的设计思路并没有发生质的变化，理解了 32 环境很容易向 64 位环境迁移。</span>
+<h2>
+	开启64位编译模式</h2>
+以 VS2010 为例，创建工程后默认是 32 位的，如下图所示：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/204041E36-0.png" style="height: 309px; width: 680px" /></div>
+<br />
+&ldquo;Win32&rdquo;表示 32 位编译模式。如果要以 64 位的方式编译，就需要新增编译模式，如下图所示：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2040413K3-1.png" style="height: 198px; width: 546px" /></div>
+<br />
+选择&ldquo;配置管理器&rdquo;，弹出如下的对话框：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/2040411593-2.png" style="height: 461px; width: 720px" /></div>
+<br />
+在&ldquo;活动解决方案平台&rdquo;下选择&ldquo;新建&rdquo;，弹出下面的对话框：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/204041CX-3.png" style="height: 303px; width: 446px" /></div>
+<br />
+在下拉菜单中选择&ldquo;x64&rdquo;，即可新增64位编译模式。现在，我们就可以在两种编译模式之间进行切换了：<br />
+<br />
+<div style="text-align: center">
+	<img alt="" src="/uploads/allimg/240821/204041E29-4.png" style="height: 199px; width: 540px" /></div>
+<br />
+将下面的代码复制到源文件中：
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int a;
+int main(){
+    int *p = &amp;a;
+    printf(&quot;%#X, %d\n&quot;, p, sizeof(int*));
+
+    system(&quot;pause&quot;);
+    return 0;
+}</pre>
+在 Win32 编译模式下的结果：<br />
+0XB715C, 4<br />
+<br />
+在 x64 编译模式下的结果：<br />
+0X3FF39740, 8<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/567.html">虚拟内存到底是什么？为什么我们在C语言中看到的地址是假的？</a></span>
+                    <span class="next right"><a href="/view/569.html">C语言内存对齐，提高寻址效率</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/567.html";window.nextPageURL = "/view/569.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 568;
+window.arcId = "d29bX6GWezX4C4yVDorETjige0fUto16WitHxJbB+P/NTTsZcTJ1AMedpQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言标识符、关键字、注释、表达式和语句</title>
+<meta name="keywords" content="语言,标识符,、,关键字,注释,表达式,和,语句," />
+<meta name="description" content="这一节主要讲解C语言中的几个基本概念。 标识符 定义变量时，我们使用了诸如 a、abc、mn123 这样的名字，它们都是程序员自己起的，一般能够表达出变量的作用，这叫做 标识符（Iden" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/c/variable_datatype/">变量和数据类型</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/414.html">大话C语言变量和数据类型</a></dd><dd>3.2 <a href="/view/415.html">在屏幕上输出各种类型的数据</a></dd><dd>3.3 <a href="/view/416.html">C语言中的整数（short,int,long）</a></dd><dd>3.4 <a href="/view/417.html">二进制数、八进制数和十六进制数</a></dd><dd>3.5 <a href="/view/418.html">C语言中的正负数及其输出</a></dd><dd>3.6 <a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a></dd><dd>3.7 <a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/421.html">C语言中的小数（float,double）</a></dd><dd>3.9 <a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/view/423.html">在C语言中使用英文字符</a></dd><dd>3.11 <a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.12 <a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/427.html">C语言转义字符</a></dd><dd>3.14 <a href="/view/428.html">C语言中的几个重要概念</a></dd><dd>3.15 <a href="/view/430.html">C语言加减乘除运算</a></dd><dd>3.16 <a href="/view/431.html">C语言自增(++)和自减(--)</a></dd><dd>3.17 <a href="/view/432.html">变量的定义位置以及初始值</a></dd><dd>3.18 <a href="/view/433.html">运算符的优先级和结合性</a></dd><dd>3.19 <a href="/view/435.html">C语言数据类型转换</a></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言标识符、关键字、注释、表达式和语句</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/427.html">C语言转义字符</a></span>
+                    <span class="next right"><a href="/view/430.html">C语言加减乘除运算</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/427.html";window.nextPageURL = "/view/430.html";</script>
+			<div id="arc-body">这一节主要讲解C语言中的几个基本概念。
+<h2>
+	标识符</h2>
+定义变量时，我们使用了诸如 a、abc、mn123 这样的名字，它们都是程序员自己起的，一般能够表达出变量的作用，这叫做<span style="color: #008000">标识符（Identifier）</span>。<br />
+<br />
+标识符就是程序员自己起的名字，除了变量名，后面还会讲到函数名、宏名、结构体名等，它们都是标识符。不过，名字也不能随便起，要遵守规范；C语言规定，标识符只能由字母（A~Z, a~z）、数字（0~9）和下划线（_）组成，并且第一个字符必须是字母或下划线，不能是数字。<br />
+<br />
+以下是合法的标识符：<br />
+a, x,&nbsp; x3, BOOK_1, sum5<br />
+<br />
+以下是非法的标识符：
+<ul>
+	<li>
+		3s&nbsp; &nbsp; 不能以数字开头</li>
+	<li>
+		s*T&nbsp;&nbsp;&nbsp; 出现非法字符*</li>
+	<li>
+		-3x &nbsp; &nbsp;不能以减号（-）开头</li>
+	<li>
+		bowy-1&nbsp;&nbsp;&nbsp; 出现非法字符减号（-）</li>
+</ul>
+<br />
+在使用标识符时还必须注意以下几点：
+<ul>
+	<li>
+		C语言虽然不限制标识符的长度，但是它受到不同编译器的限制，同时也受到操作系统的限制。例如在某个编译器中规定标识符前128位有效，当两个标识符前128位相同时，则被认为是同一个标识符。</li>
+	<li>
+		在标识符中，大小写是有区别的，例如 BOOK 和 book 是两个不同的标识符。</li>
+	<li>
+		标识符虽然可由程序员随意定义，但标识符是用于标识某个量的符号，因此，命名应尽量有相应的意义，以便于阅读和理解，作到&ldquo;顾名思义&rdquo;。</li>
+</ul>
+<h2>
+	关键字</h2>
+<span style="color: #008000">关键字（Keywords）</span>是由C语言规定的具有特定意义的字符<u><a href='/view/175.html' target='_blank'>串</a></u>，通常也称为保留字，例如 int、char、long、float、unsigned 等。我们定义的标识符不能与关键字相同，否则会出现错误。
+<blockquote>
+	你也可以将关键字理解为具有特殊含义的标识符，它们已经被系统使用，我们不能再使用了。</blockquote>
+标准C语言中一共规定了32个关键字，大家可以参考<a href="/view/429.html" target="_blank">C语言关键字及其解释[共32个]</a>，后续我们会一一讲解。
+<h2>
+	注释</h2>
+<span style="color: #008000">注释（Comments）</span>可以出现在代码中的任何位置，用来向用户提示或解释代码的含义。程序编译时，会忽略注释，不做任何处理，就好像它不存在一样。<br />
+<br />
+C语言支持单行注释和多行注释：
+<ul>
+	<li>
+		单行注释以<code>//</code>开头，直到本行末尾（不能换行）；</li>
+	<li>
+		多行注释以<code>/*</code>开头，以<code>*/</code>结尾，注释内容可以有一行或多行。</li>
+</ul>
+<br />
+一个使用注释的例子：
+<pre class="c">
+/*
+  Powered by: c.biancheng.net
+  Author: 严长生
+  Date: 2017-10-25
+*/
+#include &lt;stdio.h&gt;
+int main()
+{
+    /* puts 会在末尾自动添加换行符 */
+    puts(&quot;https://xiexuewu.github.io&quot;);
+    printf(&quot;C语言\n&quot;);  //printf要手动添加换行符
+    return 0;
+}</pre>
+运行结果：<br />
+https://xiexuewu.github.io<br />
+C语言<br />
+<br />
+在调试程序的过程中可以将暂时将不使用的语句注释掉，使编译器跳过不作处理，待调试结束后再去掉注释。<br />
+<br />
+需要注意的是，多行注释不能嵌套使用。例如下面的注释是错误的：
+<pre class="info-box">
+/*C语言/*xie*/xuewu*/</pre>
+而下面的注释是正确的：
+<pre class="info-box">
+/*C语言*/  /*xiexuewu.github.io*/</pre>
+<h2>
+	表达式（Expression）和语句（Statement）</h2>
+其实前面我们已经多次提到了「表达式」和「语句」这两个概念，相信读者在耳濡目染之中也已经略知一二了，本节我们不妨再重点介绍一下。<br />
+<br />
+表达式（Expression）和语句（Statement）的概念在C语言中并没有明确的定义：
+<ul>
+	<li>
+		表达式可以看做一个计算的公式，往往由数据、变量、运算符等组成，例如<code>3*4+5</code>、<code>a=c=d</code>等，表达式的结果必定是一个值；</li>
+	<li>
+		语句的范围更加广泛，不一定是计算，不一定有值，可以是某个操作、某个函数、选择结构、循环等。</li>
+</ul>
+<br />
+赶紧划重点：
+<ul>
+	<li>
+		表达式必须有一个执行结果，这个结果必须是一个值，例如<code>3*4+5</code>的结果 17，<code>a=c=d=10</code>的结果是 10，<code>printf(&quot;hello&quot;)</code>的结果是 5（printf 的返回值是成功打印的字符的个数）。</li>
+	<li>
+		以分号<code>;</code>结束的往往称为语句，而不是表达式，例如<code>3*4+5;</code>、<code>a=c=d;</code>等。</li>
+</ul>
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/427.html">C语言转义字符</a></span>
+                    <span class="next right"><a href="/view/430.html">C语言加减乘除运算</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/427.html";window.nextPageURL = "/view/430.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 428;
+window.arcId = "a6b9TbTncFyKn9c4/dM9+pruWwsNhKTLcaVyDwuV/Pb+Crj6KRCHVvvtEw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

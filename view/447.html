@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言关系运算符详解</title>
+<meta name="keywords" content="语言,关系,运算符,详解,在,上节,《," />
+<meta name="description" content="在上节《 C语言if else语句 》中看到，if 的判断条件中使用了 = 、 、 != 等符号，它们专门用在判断条件中，让程序决定下一步的操作，称为 关系运算符（Relational Operators） 。 关系运算符" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a></dd></dl>
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>C语言关系运算符详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/446.html">C语言if else语句</a></span>
+                    <span class="next right"><a href="/view/448.html">C语言逻辑运算符</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/446.html";window.nextPageURL = "/view/448.html";</script>
+			<div id="arc-body">在上节《<a href="/view/446.html" target="_blank">C语言if else语句</a>》中看到，if 的判断条件中使用了<code>&lt;=</code>、<code>&gt;</code>、<code>!=</code>等符号，它们专门用在判断条件中，让程序决定下一步的操作，称为<span style="color: rgb(0,128,0)">关系运算符（Relational Operators）</span>。<br />
+<br />
+<span style="color: #b22222">关系运算符在使用时，它的的两边都会有一个表达式，比如变量、数值、加减乘除运算等，关系运算符的作用就是判明这两个表达式的大小关系。注意，是判明大小关系，不是其他关系。</span><br />
+<br />
+C语言提供了以下关系运算符：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				关系运算符</th>
+			<th>
+				含 &nbsp;义</th>
+			<th>
+				数学中的表示</th>
+		</tr>
+		<tr>
+			<td>
+				&lt;</td>
+			<td>
+				小于</td>
+			<td>
+				&lt;</td>
+		</tr>
+		<tr>
+			<td>
+				&lt;=</td>
+			<td>
+				小于或等于</td>
+			<td>
+				&le;</td>
+		</tr>
+		<tr>
+			<td>
+				&gt;</td>
+			<td>
+				大于</td>
+			<td>
+				&gt;</td>
+		</tr>
+		<tr>
+			<td>
+				&gt;=</td>
+			<td>
+				大于或等于</td>
+			<td>
+				&ge;</td>
+		</tr>
+		<tr>
+			<td>
+				==</td>
+			<td>
+				等于</td>
+			<td>
+				=</td>
+		</tr>
+		<tr>
+			<td>
+				!=</td>
+			<td>
+				不等于</td>
+			<td>
+				&ne;</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+关系运算符都是双目运算符，其结合性均为左结合。<span style="color: #b22222">关系运算符的优先级低于算术运算符，高于赋值运算符。</span>在六个关系运算符中，&lt;、&lt;=、&gt;、&gt;=的优先级相同，高于==和!=，==和!=的优先级相同。<br />
+<br />
+在C语言中，有的运算符有两个操作数，例如 10+20，10和20都是操作数，+ 是运算符。我们将这样的运算符称为<span style="color: #008000">双目运算符</span>。同理，将有一个操作数的运算符称为<span style="color: #008000">单目运算符</span>，将有三个操作数的运算符称为<span style="color: #008000">三目运算符</span>。<br />
+<br />
+常见的双目运算符有 +、-、*、/ 等，单目运算符有 ++、-- 等，三目运算符只有一个，就是 ? :，我们将在《<a href="/view/450.html" target="_blank">C语言条件运算符</a>》中详细介绍。<br />
+<br />
+关系运算符的两边可以是变量、数据或表达式，例如：<br />
+1) a+b &gt; c-d<br />
+2) x &gt; 3/2<br />
+3) &#39;a&#39;+1 &lt; c<br />
+4) -i-5*j == k+1<br />
+<br />
+关系运算符也可以嵌套使用，例如：<br />
+1) a &gt; (b &gt; c)<br />
+2) a != (c == d)<br />
+<br />
+关系运算符的运算结果只有 0 或 1。当条件成立时结果为 1，条件不成立结果为 0。例如：
+<ul>
+	<li>
+		5&gt;0 成立，其值为&nbsp;1；</li>
+	<li>
+		34-12&gt;100 不成立，其值为 0；</li>
+	<li>
+		(a=3)&gt;(b=5) 由于3&gt;5不成立，故其值为&nbsp;0。</li>
+</ul>
+<br />
+<span style="color: #b22222">我们将运算结果 1 称为&ldquo;真&rdquo;，表示条件成立，将 0 称为&ldquo;假&rdquo;，表示条件不成立。</span><br />
+<br />
+下面的代码会将关系运算符的结果输出：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main(){
+    char c=&#39;k&#39;;
+    int i=1, j=2, k=3;
+    float x=3e+5, y=0.85;
+    int result_1 = &#39;a&#39;+5&lt;c, result_2 = x-5.25&lt;=x+y;
+    printf( &quot;%d, %d\n&quot;, result_1, -i-2*j&gt;=k+1 );
+    printf( &quot;%d, %d\n&quot;, 1&lt;j&lt;5, result_2 );
+    printf( &quot;%d, %d\n&quot;, i+j+k==-2*j, k==j==i+5 );
+    return 0;
+}</pre>
+运行结果：<br />
+1, 0<br />
+1, 1<br />
+0, 0<br />
+<br />
+对于含多个关系运算符的表达式，如 k==j==i+5，根据运算符的左结合性，先计算k==j，该式不成立，其值为0，再计算0==i+5，也不成立，故表达式值为0。<br />
+<br />
+<span style="color: #b22222">需要提醒的是，<code>==</code>才表示等于，而<code>=</code>表示赋值，大家要注意区分，切勿混淆。</span><br />
+<h2>
+	再谈 if 语句的判断条件</h2>
+if 语句的判断条件中不是必须要包含关系运算符，它可以是赋值表达式，甚至也可以是一个变量，例如：
+<pre class="c">
+//情况①
+if(b){
+    //TODO:
+}
+//情况②
+if(b=5){  //情况①
+    //TODO:
+}</pre>
+都是允许的。只要整个表达式的值为非0，条件就成立。<br />
+<br />
+上面两种情况都是根据变量 b 的最终值来判断的，如果 b 的值为非0，那么条件成立，否则不成立。<br />
+<br />
+又如，有程序段：
+<pre class="c">
+if(a=b)
+    printf(&quot;%d&quot;,a);
+else
+    printf(&quot;a=0&quot;);</pre>
+意思是，把 b 的值赋予 a，如果为非0则输出该值，否则输出&ldquo;a=0&rdquo;字符<u><a href='/view/175.html' target='_blank'>串</a></u>。这种用法在后面的程序中会经常出现。<br />
+</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/446.html">C语言if else语句</a></span>
+                    <span class="next right"><a href="/view/448.html">C语言逻辑运算符</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/446.html";window.nextPageURL = "/view/448.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 447;
+window.arcId = "ba4ftwfM4J+JPVm97L96itwlaa9YAGh6KsfwiQRZ/TH3theO9pENPEBlxw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>VC6.0（VC++6.0）使用教程（使用VC6.0编写C语言程序）</title>
+<meta name="keywords" content="VC6.0,VC++6.0,使用,教程,编写,语言程序,Vi" />
+<meta name="description" content="Visual C++ 6.0简称 VC 或者 VC6.0，是微软 1998 年推出的一款 C/C++ IDE，界面友好，调试功能强大。VC6.0 是一款革命性的产品，非常经典，至今仍然有很多企业和个人在使用，很多高校也将 VC" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>VC6.0（VC++6.0）使用教程（使用VC6.0编写C语言程序）</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/395.html">VC6.0下载地址和安装教程</a></span>
+                    <span class="next right"><a href="/view/396.html">Code::Blocks下载地址和安装教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/395.html";window.nextPageURL = "/view/396.html";</script>
+			<div id="arc-body">Visual C++ 6.0简称 VC 或者 VC6.0，是微软 1998 年推出的一款 C/C++ IDE，界面友好，调试功能强大。VC6.0 是一款革命性的产品，非常经典，至今仍然有很多企业和个人在使用，很多高校也将 VC6.0 作为 C语言的教学基础，作为上机实验的工具。本教程中的代码，也都是在 VC6.0 下运行通过。<br />
+<br />
+<span style="color: #b22222">VC6.0 确实有点老了，如果不是学校要求或者项目需要，建议使用 Visual Studio 代替，这里之所以讲解 VC6.0，是为了照顾在校生或者有特殊需求的读者。</span><br />
+<h2>
+	安装VC6.0</h2>
+微软原版的 VC6.0 已经不容易找到，网上提供的都是经过第三方修改的版本，删除了一些使用不到的功能，增强了兼容性。这里我们使用 VC6.0 完整绿色版，它能够支持一般的 C/C++ 应用程序开发以及计算机二级考试。<br />
+<br />
+下载地址：<a href="/view/395.html" target="_blank">VC 6.0中文版下载</a><br />
+<h2>
+	在VC6.0下运行C语言程序</h2>
+C-Free 支持单个源文件的编译和链接，但是在 VC6.0 下，必须先创建<span style="color: #008000">工程（Project）</span>，然后再添加源文件。
+<blockquote>
+	一个真正的软件，往往需要多个源文件和多种资源，例如图片、视频、控件等，通常是把它们放到一个文件夹下，进行有效的管理。你可以把工程理解为这样的一个文件夹，IDE 通过工程来管理这些文件。工程有不同的类型，例如开发&ldquo;黑窗口&rdquo;的控制台程序，需要创建<code>Win32 Console Application</code>工程；开发带界面的 GUI 程序，需要创建<code>Win32 Application</code>工程。</blockquote>
+<h4>
+	1) 新建Win32 Console Application工程</h4>
+打开 VC6.0，在菜单栏中选择&ldquo;文件 -&gt; 新建&rdquo;，或者<code>Ctrl+N</code>，弹出下面的对话框：<br />
+<br />
+<div style="text-align: center">
+	<img src="/uploads/allimg/240820/105211KO-0.jpg" /></div>
+<br />
+切换到&ldquo;工程&rdquo;选项卡，选择&ldquo;Win32 Console Application&rdquo;，填写工程名称和路径，点击&ldquo;确定&rdquo;，会弹出一个对话框询问类型，这里选择&ldquo;一个空工程&rdquo;，如下图所示：<br />
+<br />
+<div style="text-align: center">
+	<img src="/uploads/allimg/240820/1052112613-1.png" /></div>
+<br />
+点击&ldquo;完成&rdquo;按钮完成工程的创建。
+<h4>
+	2) 新建C源文件</h4>
+在菜单栏中选择&ldquo;文件 -&gt; 新建&rdquo;，或者<code>Ctrl+N</code>，弹出下面的对话框：<br />
+<br />
+<div style="text-align: center">
+	<img src="/uploads/allimg/240820/1052112H8-2.png" /></div>
+切换到&ldquo;文件&rdquo;选项卡，选择&ldquo;C++ Source File&rdquo;，填写文件名，点击确定完成。<br />
+<br />
+该步骤是向刚才创建的工程添加源文件。
+<h4>
+	3) 编写C语言代码</h4>
+在工作空间中可以看到刚才创建的工程和源文件，如下图所示：<br />
+<br />
+<div style="text-align: center">
+	<img src="/uploads/allimg/240820/105211C61-3.png" /></div>
+<br />
+双击 hello.c，进入编辑界面，输入上节中的代码。
+<h4>
+	4) 编译并运行代码</h4>
+你可以在&ldquo;组建&rdquo;菜单中找到编译、组建和运行的功能，如下图所示：<br />
+<br />
+<div style="text-align: center">
+	<img src="/uploads/allimg/240820/10521144M-4.jpg" /></div>
+<br />
+更加简单的方法是使用快捷方式，如下图所示：<br />
+<br />
+<div style="text-align: center">
+	<img src="/uploads/allimg/240822/2-240R2121913O6.gif" /></div>
+<br />
+保存编写好的源代码，点击运行按钮<img src="/uploads/allimg/240820/1052112U3-6.png" />或 <code>Ctrl+F5</code>，如果程序正确，可以看到运行结果，如下图所示：<br />
+<br />
+<div style="text-align: center">
+	<img src="/uploads/allimg/240822/2-240R2121535E5.gif" /></div>
+<br />
+注意：编译生成的 .exe 文件在工程目录下的Debug文件夹内。以上面的工程为例，路径为&nbsp;E:\cDemo，打开看到有一个 Debug 文件夹，进入可以看到 cDemo.exe。<br />
+<br />
+在Debug目录中还会看到一个名为 hello.obj 的文件。<code>.obj</code>是 VC/VS 生成的目标文件，类似于 C-Free 下的<code>.o</code>文件。<br />
+<h2>
+	工程文件说明</h2>
+进入工程目录 E:\cDemo，除了 hello.c，还会看到很多其他文件，它们是VC6.0创建的，用来支持当前工程，不属于C语言的范围，你可以忽略它们。<br />
+<br />
+如果读者感兴趣，我们也提供了简单的说明：<br />
+1) .dsp文件：DeveloperStudio Project，工程文件（文本格式），用来保存当前工程的信息，例如编译参数、包含的源文件等，不建议手动编辑。当需要打开一个工程时，打开该文件即可。<br />
+<br />
+2)&nbsp;.dsw文件：DeveloperStudio Workspace，工作区文件，和DSP类似。<br />
+<br />
+3) .opt文件：IDE的Option文件，保存了与当前工程有关的开发环境的配置，例如工具条位置、打开的文件、光标位置等。<br />
+<br />
+4) .plg文件：日志文件（HTML文件），保存了程序的编译信息，例如错误和警告等。<br />
+<br />
+一个工程可以包含多个源文件和资源文件（图片、视频等），但只能生成一个二进制文件，例如可执行程序<code>.exe</code>、动态链接库<code>.dll</code>、静态链接库<code>.lib</code>等。工程类型决定了不同的配置信息，也决定了生成不同的二进制文件。<br />
+<br />
+一个工作区可以包含多个工程，能够批量生成多个二进制文件。<br />
+<br />
+我们安装的较大的程序，安装目录中一般包含多个 EXE 和 DLL。对于这样的程序，可以先创建一个工作区，再创建多个工程，这样就能一次性生成所需的多个二进制文件。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/395.html">VC6.0下载地址和安装教程</a></span>
+                    <span class="next right"><a href="/view/396.html">Code::Blocks下载地址和安装教程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/395.html";window.nextPageURL = "/view/396.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 403;
+window.arcId = "43e76e6Ul8UADwoik3DFqF1PCCQ5CAB7gRlJAoxrLL4PILs2nvn3Fy5XPQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

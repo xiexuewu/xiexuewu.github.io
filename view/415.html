@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>在屏幕上输出各种类型的数据</title>
+<meta name="keywords" content="在,屏,幕上,输出,各种,类型,的,数据,在,《," />
+<meta name="description" content="在《 第一个C语言程序 》一节中，我们使用 puts 来输出字符串。puts是 output string 的缩写，只能用来输出字符串，不能输出整数、小数、字符等，我们需要用另外一个函数，那就是 print" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">教程首页</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/c/variable_datatype/">变量和数据类型</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/414.html">大话C语言变量和数据类型</a></dd><dd>3.2 <a href="/view/415.html">在屏幕上输出各种类型的数据</a></dd><dd>3.3 <a href="/view/416.html">C语言中的整数（short,int,long）</a></dd><dd>3.4 <a href="/view/417.html">二进制数、八进制数和十六进制数</a></dd><dd>3.5 <a href="/view/418.html">C语言中的正负数及其输出</a></dd><dd>3.6 <a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a></dd><dd>3.7 <a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/421.html">C语言中的小数（float,double）</a></dd><dd>3.9 <a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/view/423.html">在C语言中使用英文字符</a></dd><dd>3.11 <a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.12 <a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/427.html">C语言转义字符</a></dd><dd>3.14 <a href="/view/428.html">C语言中的几个重要概念</a></dd><dd>3.15 <a href="/view/430.html">C语言加减乘除运算</a></dd><dd>3.16 <a href="/view/431.html">C语言自增(++)和自减(--)</a></dd><dd>3.17 <a href="/view/432.html">变量的定义位置以及初始值</a></dd><dd>3.18 <a href="/view/433.html">运算符的优先级和结合性</a></dd><dd>3.19 <a href="/view/435.html">C语言数据类型转换</a></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<h1>在屏幕上输出各种类型的数据</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/414.html">大话C语言变量和数据类型</a></span>
+                    <span class="next right"><a href="/view/416.html">C语言中的整数（short,int,long）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/414.html";window.nextPageURL = "/view/416.html";</script>
+			<div id="arc-body">在《<a href="/view/374.html" target="_blank">第一个C语言程序</a>》一节中，我们使用 puts 来输出字符<u><a href='/view/175.html' target='_blank'>串</a></u>。puts&nbsp;是 output string 的缩写，只能用来输出字符串，不能输出整数、小数、字符等，我们需要用另外一个函数，那就是&nbsp;<span style="color:#008000;">printf</span>。<br />
+<br />
+printf&nbsp;比 puts 更加强大，不仅可以输出字符串，还可以输出整数、小数、单个字符等，并且输出格式也可以自己定义，例如：
+<ul>
+	<li>
+		以十进制、八进制、十六进制形式输出；</li>
+	<li>
+		要求输出的数字占 n 个字符的位置；</li>
+	<li>
+		控制小数的位数。</li>
+</ul>
+<br />
+printf 是 print format 的缩写，意思是&ldquo;格式化打印&rdquo;。这里所谓的&ldquo;打印&rdquo;就是在屏幕上显示内容，与&ldquo;输出&rdquo;的含义相同，所以我们一般称 printf 是用来<span style="color:#008000;">格式化输出</span>的。<br />
+<br />
+先来看一个简单的例子：
+<pre class="info-box">
+printf(&quot;C语言&quot;);</pre>
+这个语句可以在屏幕上显示&ldquo;C语言&rdquo;，与<code>puts(&quot;C语言&quot;);</code>的效果类似。<br />
+<br />
+输出变量 abc 的值：
+<pre class="info-box">
+int abc=999;
+printf(&quot;%d&quot;, abc);</pre>
+这里就比较有趣了。先来看<code>%d</code>，d 是&nbsp;decimal 的缩写，意思是十进制数，%d 表示以十进制整数的形式输出。输出什么呢？输出变量 abc 的值。%d 与 abc 是对应的，也就是说，会用 abc 的值来替换 %d。<br />
+<br />
+再来看个复杂点的：
+<pre class="info-box">
+int abc=999;
+printf(&quot;The value of abc is %d !&quot;, abc);</pre>
+会在屏幕上显示：<br />
+The value of abc is 999 !<br />
+<br />
+你看，字符串 &quot;The value of abc is %d !&quot; 中的 %d 被替换成了 abc 的值，其他字符没有改变。这说明 %d 比较特殊，不会原样输出，会被替换成对应的变量的值。<br />
+<br />
+再来看：
+<pre class="info-box">
+int a=100;
+int b=200;
+int c=300;
+printf(&quot;a=%d, b=%d, c=%d&quot;, a, b, c);</pre>
+会在屏幕上显示：<br />
+a=100, b=200, c=300<br />
+<br />
+再次证明了 %d 与后面的变量是一一对应的，第一个 %d 对应第一个变量，第二个 %d 对应第二个变量&hellip;&hellip;<br />
+<br />
+<code>%d</code>称为<span style="color:#008000;">格式控制符</span>，它指明了以何种形式输出数据。格式控制符均以<code>%</code>开头，后跟其他字符。%d&nbsp;表示以十进制形式输出一个整数。除了 %d，printf 支持更多的格式控制，例如：
+<ul>
+	<li>
+		%c：输出一个字符。c 是&nbsp;character 的简写。</li>
+	<li>
+		%s：输出一个字符串。s 是 string 的简写。</li>
+	<li>
+		%f：输出一个小数。f 是 float 的简写。</li>
+</ul>
+<br />
+除了这些，printf 支持更加复杂和优美的输出格式，考虑到读者的基础暂时不够，我们将在《<a href="/view/436.html" target="_blank">C语言数据输出大汇总以及轻量进阶</a>》一节中展开讲解。<br />
+<br />
+我们把代码补充完整，体验一下：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int n = 100;
+    char c = &#39;@&#39;;  //字符用单引号包围，字符串用双引号包围
+    float money = 93.96;
+    printf(&quot;n=%d, c=%c, money=%f\n&quot;, n, c, money);
+
+    return 0;
+}</pre>
+输出结果：<br />
+n=100, c=@, money=93.959999<br />
+<br />
+要点提示：<br />
+1)&nbsp;<code>\n</code>是一个整体，组合在一起表示一个换行字符。换行符是 ASCII 编码中的一个控制字符，无法在键盘上直接输入，只能用这种特殊的方法表示，被称为转义字符，我们将在《<a href="/view/427.html" target="_blank">C语言转义字符</a>》一节中有具体讲解，请大家暂时先记住<code>\n</code>的含义。
+<blockquote>
+	所谓换行，就是让文本从下一行的开头输出，相当于在编辑 Word 或者 TXT 文档时按下回车键。</blockquote>
+puts 输出完成后会自动换行，而 printf 不会，要自己添加换行符，这是 puts 和 printf 在输出字符串时的一个区别。<br />
+<br />
+2) <code>//</code>后面的为注释。注释用来说明代码是什么意思，起到提示的作用，可以帮助我们理解代码。注释虽然也是代码的一部分，但是它并不会给程序带来任何影响，编译器在编译阶段会忽略注释的内容，或者说删除注释的内容。我们将在《<a href="/view/428.html" target="_blank">C语言标识符、关键字和注释</a>》一节中详细讲解。<br />
+<br />
+3) money 的输出值并不是 93.96，而是一个非常接近的值，这与小数本身的存储机制有关，这种机制导致很多小数不能被精确地表示，即使像 93.96 这种简单的小数也不行。我们将在《<a href="/view/422.html" target="_blank">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计（长篇神文）</a>》一节详细介绍。<br />
+<br />
+我们也可以不用变量，将数据直接输出：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main()
+{
+    float money = 93.96;
+    printf(&quot;n=%d, c=%c, money=%f\n&quot;, 100, &#39;@&#39;, money);
+
+    return 0;
+}</pre>
+输出结果与上面相同。<br />
+<br />
+<span style="color:#b22222;">在以后的编程中，我们会经常使用 printf，说它是C语言中使用频率最高的一个函数一点也不为过，每个C语言程序员都应该掌握 printf 的用法，这是最基本的技能。</span><br />
+<br />
+不过 printf 的用法比较灵活，也比较复杂，初学者知识储备不足，不能一下子掌握，目前大家只需要掌握最基本的用法，以后随着编程知识的学习，我们会逐步介绍更加高级的用法，最终让大家完全掌握 printf。<br />
+<h2>
+	【脑筋急转弯】%ds输出什么</h2>
+%d 输出整数，%s 输出字符串，那么 %ds 输出什么呢？<br />
+<br />
+我们不妨先来看一个例子：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    int a=1234;
+    printf(&quot;a=%ds\n&quot;, a);
+
+    return 0;
+}</pre>
+运行结果：<br />
+a=1234s<br />
+<br />
+从输出结果可以发现，<code>%d</code>被替换成了变量 a 的值，而<code>s</code>没有变，原样输出了。这是因为，&nbsp;<code>%d</code>才是格式控制符，<code>%ds</code>在一起没有意义，<code>s</code>仅仅是跟在<code>%d</code>后面的一个普通字符，所以会原样输出。<br />
+<h2>
+	【拓展】如何在字符串中书写长文本</h2>
+假设现在我们要输出一段比较长的文本，它的内容为：
+<p class="info-box">
+	解学武的个人门户网站，一个学习C语言和数据结构的网站，坚持用工匠的精神来打磨每一套教程。坚持做好一件事情，做到极致，让自己感动，让用户心动，这就是足以传世的作品！网站的网址是：https://xiexuewu.github.io</p>
+如果将这段文本放在一个字符串中，会显得比较臃肿，格式也不好看，就像下面这样：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="超出编辑窗口宽度的文本换行" src="/uploads/allimg/240820/2-240R0161102195.gif" /><br />
+	超出编辑窗口宽度的文本换行<br />
+	<br />
+	<img alt="超出编辑窗口宽度的文本隐藏" src="/uploads/allimg/240820/2-240R0161042230.gif" style="width: 904px; height: 205px;" /><br />
+	超出编辑窗口宽度的文本隐藏</div>
+<br />
+当文本超出编辑窗口的宽度时，可以选择将文本换行，也可以选择将文本隐藏（可以在编辑器里面自行设置），但是不管哪种形式，在一个字符串里书写长文本总是不太美观。<br />
+<br />
+当然，你可以多写几个 puts 函数，就像下面这样：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="多写几个 puts 函数" src="/uploads/allimg/240820/2-240R0161126135.gif" /></div>
+<br />
+我不否认这种写法也比较美观，但是这里我要讲的是另外一种写法：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    puts(
+        &quot;解学武的个人门户网站，一个学习C语言和数据结构的网站，坚持用工匠的精神来打磨每一套教程。&quot;
+        &quot;坚持做好一件事情，做到极致，让自己感动，让用户心动，这就是足以传世的作品！&quot;
+        &quot;网站的网址是：https://xiexuewu.github.io&quot;
+    );
+    return 0;
+}</pre>
+在 puts 函数中，可以将一个较长的字符串分割成几个较短的字符串，这样会使得长文本的格式更加整齐。<br />
+<br />
+<span style="color: rgb(178, 34, 34);">注意，这只是形式上的分割，编译器在编译阶段会将它们合并为一个字符串，它们放在一块连续的内存中。</span><br />
+<br />
+多个字符串并不一定非得换行，也可以将它们写在一行中，例如：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int main()
+{
+    puts(&quot;C语言&quot;  &quot;C语言和数据结构！&quot;  &quot;https://xiexuewu.github.io&quot;);
+    return 0;
+}</pre>
+本节讲到的 puts、printf，以及后面要讲到的 fprintf、fputs 等与字符串输出有关的函数，都支持这种写法。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/414.html">大话C语言变量和数据类型</a></span>
+                    <span class="next right"><a href="/view/416.html">C语言中的整数（short,int,long）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/414.html";window.nextPageURL = "/view/416.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 415;
+window.arcId = "2a07NzZ58n/Y0Sfw7MUmaJGiMQ6TvXKd2JYrunHCzT+ONBP83tUpsR8xFg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/view/267.html" target="_blank">联系方式</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+</body>
+</html>

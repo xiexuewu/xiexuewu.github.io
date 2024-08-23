@@ -1,3 +1,72 @@
+#main-index{
+	width: 70%;
+	margin: auto;
+}
+
+
+/******* index.htm 网站介绍 *******/
+#main-index{
+	width: 60%;
+	margin: 0px auto 40px auto;
+	font-size: 16px;
+}
+#index-profile{
+	margin-top: 30px;
+	padding-bottom: 20px;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+}
+#index-profile h1{
+	padding: 15px 0px;
+	font-size: 32px;
+	font-weight: bold;
+	color: #444;
+}
+#index-profile p{
+	font-size: 20px;
+	color: #666;
+}
+
+/******* index.htm课程列表 *******/
+#course-list dl{
+	margin-top: 20px;
+	border: 1px solid #ddd;
+}
+#course-list dl dt{
+	margin-bottom: 8px;
+	background: url(../images/index_list_bg_32.png) 0px -5px repeat-x #f6f6f6;
+	border-bottom: 1px solid #ddd;
+}
+#course-list dl dt .title, #course-list dl dt .more{
+	height: 38px;
+	font-size: 16px;
+	line-height: 38px;
+}
+#course-list dl dt .title{
+	margin-left: 12px;
+}
+#course-list dl dt .more{
+	padding: 0px 16px;
+	border-left: 1px solid #dbdbdb;
+	background-color: #eee;
+}
+#course-list dl dt a{
+	color: #444;
+}
+#course-list dl dt a:hover{
+	text-decoration: none;
+}
+#course-list dl dd{
+	float: left;
+	width: 24.9%;
+	padding-bottom: 8px;
+}
+#course-list dl dd a{
+	display: inline-block;
+	margin: auto 15px auto 12px;
+	color: #007dbb;
+}
+
 /*****文章信息******/
 #arc-info{
 	border-bottom: 1px solid #ddd;
@@ -55,6 +124,57 @@ h1{
 	color: #D33428;
 }
 /*----------------自适应处理-------------------*/
+@media all and (max-width: 1400px){
+	#main-index{
+		width: 80%;
+	}
+}
+@media all and (max-width: 1100px){
+	#main-index{
+		width: 90%;
+	}
+}
+@media all and (max-width: 960px){
+	#course-list dl dd{
+		width: 33.3%;
+	}
+}
+@media all and (max-width: 800px){ /*移动端*/
+	#main-index{
+		width: 100%;
+	}
+	#index-profile p{
+		padding: 0px 10px;
+	}
+	#course-list dl{
+		border-right: none;
+		border-left: none;
+	}
+	#note-update ul{
+		margin-left: 12px;
+		margin-right: 12px;
+	}
+}
+@media all and (max-width: 660px){
+	#note-update ul li{
+		float: none;
+		width: 100%;
+	}
+}
+@media all and (max-width: 600px){
+	#course-list dl dd{
+		width: 49.9%;
+	}
+	#course-list dl dt .more{
+		display: none;
+	}
+}
+@media all and (max-width: 380px){
+	#index-profile img{
+		height: 95px !important;
+	}
+}
+
 @media all and (max-width: 1100px){
 	#contents-detail dl{
 		width: 46%;
