@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -93,15 +95,15 @@
 				<span class="channel-num">11</span>
 				<a href='/c/file/'>文件操作</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a></dd></dl>
+		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,74 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/556.html";window.nextPageURL = "/view/558.html";</script>
-			<div id="arc-body">默认情况下，程序不会进入调试模式，代码会瞬间从开头执行到末尾。要想观察程序的内部细节，就得让程序在某个地方停下来，我们可以在这个地方设置断点。<br />
-<br />
-所谓<span style="color: #008000">断点（BreakPoint）</span>，可以理解为障碍物，人遇到障碍物不能行走，程序遇到断点就暂停执行。<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1193635322.gif" /></div>
-<br />
-上图中，我们希望让程序在第 4 行代码处暂停执行，那么在第 4 行代码左侧的灰色部分单击鼠标即可插入断点。你也可以将光标定位到要暂停的代码行，然后按<code>F9</code>键插入断点。也可以在要暂停的位置单击鼠标右键，在弹出菜单中插入断点，如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1193F4924.gif" /></div>
-<br />
-插入断点后，点击上方的&ldquo;本地 Windows 调试器&rdquo;按钮，或者按<code>F5</code>键，即可进入调试模式，如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1193J3506.gif" /></div>
-<br />
-可以看到，程序虽然运行了，但并未输出任何数据，这是因为在输出数据之前就暂停了。同时，在IDE的上方出现了与调试相关的工具条，下方也多出了几个与调试相关的窗口：
-<ul>
-	<li>
-		<code>调用堆<u><a href='/view/169.html' target='_blank'>栈</a></u></code>可以看到当前函数的调用关系。</li>
-	<li>
-		<code>断点</code>窗口可以看到当前设置的所有断点。</li>
-	<li>
-		<code>即时窗口</code>可以让我们临时运行一段代码，后续我们会重点讲解。</li>
-	<li>
-		<code>输出</code>窗口和我们之前看到的没有，用来显示程序的运行过程，给出错误信息和警告信息。</li>
-	<li>
-		<code>自动窗口</code>会显示当前代码行和上一代码行中所使用到的变量。</li>
-	<li>
-		<code>局部变量</code>窗口会显示当前函数中的所有局部变量。</li>
-	<li>
-		<code>线程</code>和<code>模块</code>窗口暂时无需理会。</li>
-</ul>
-<br />
-如果你的 VS 缺少某个窗口，可以通过 VS 上方的&ldquo;调试&rdquo;菜单调出，如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1193Q1T1.gif" /></div>
-<blockquote>
-	注意：必须在调试状态下才能看到图中的菜单。</blockquote>
-如果你希望关闭某个窗口，可以在窗口标题处单击鼠标右键，在弹出菜单中隐藏，如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1193S2414.gif" /></div>
-<h2>
-	断点的真正含义</h2>
-严格来说，调试器遇到断点时会把程序暂时挂起，让程序进入一种特殊的状态&mdash;&mdash;中断状态，这种状态下操作系统不会终止程序的执行，也不会清除与程序相关的元素，比如变量、函数等，它们在内存中的位置不会发生变化。<br />
-<br />
-<span style="color: #b22222">关键是，处于中断状态下的程序允许用户查看和修改它的运行状态，比如查看和修改变量的值、查看和修改内存中的数据、查看函数调用关系等，这就是调试的奥秘。</span>
-<h2>
-	继续执行程序</h2>
-点击&ldquo;继续&rdquo;按钮（位于先前&ldquo;本地 Windows 调试器&rdquo;按钮的位置）或者按<code>F5</code>键即可跳过断点，让程序恢复正常状态，继续执行后面的代码，直到程序结束或者遇到下一个断点。<br />
-<br />
-在调试过程中，按照上面的方法可以设置多个断点，程序在执行过程中每次遇到断点都会暂停，如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1193922929.gif" /></div>
-<h2>
-	删除断点</h2>
-如果不希望程序暂停，可以删除断点。删除断点也很简单，在原有断点处再次单击鼠标即可，也可以将光标定位到要删除断点的代码行，再次按<code>F9</code>键，或者在右键菜单中删除，如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1193945319.gif" /></div>
-<h2>
-	代替暂停语句</h2>
-在 VS 下，程序运行结束后不会自动暂停（一闪而退），要手动添加暂停语句<code>system(&quot;pause&quot;);</code>，如果大家觉得麻烦，也可以在代码最后插入断点，强制程序暂停。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="557"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/556.html">调试的概念以及调试器的选择</a></span>
                     <span class="next right"><a href="/view/558.html">查看和修改变量的值</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -217,7 +152,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 557;
-window.arcId = "5ebbyWhKO/aT6uljhHokftjqnNvuwp7APgAccuuLxpSgAwe3RrX05Xo+0w";
+window.arcId = "232fMwaqUTrHHqTc1+a/8KxhbsdCZb/zGmxzg32rz1A0BEvytyBKWBuaQg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

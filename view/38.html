@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -116,7 +118,7 @@
 	邻接表</h2>
 使用邻接表存储图时，对于图中的每一个顶点和它相关的邻接点，都存储到一个链表中。每个链表都配有头结点，头结点的数据域不为NULL，而是用于存储顶点本身的数据；后续链表中的各个结点存储的是当前顶点的所有邻接点。<br />
 <br />
-所以，采用邻接表存储图时，有多少顶点就会构建多少个链表，为了便于管理这些链表，常用的方法是将所有链表的链表头按照一定的顺序存储在一个<u><a href='/view/181.html' target='_blank'>数组</a></u>中（也可以用链表<u><a href='/view/175.html' target='_blank'>串</a></u>起来）。<br />
+所以，采用邻接表存储图时，有多少顶点就会构建多少个链表，为了便于管理这些链表，常用的方法是将所有链表的链表头按照一定的顺序存储在一个数组中（也可以用链表串起来）。<br />
 <br />
 在邻接表中，每个链表的头结点和其它结点的组成成分有略微的不同。头结点需要存储每个顶点的数据和指向下一个结点的指针，由两部分构成：而在存储邻接点时，由于各个顶点的数据都存储在数组中，所以每个邻接点只需要存储自己在数组中的位置下标即可。另外还需要一个指向下一个结点的指针。除此之外，如果存储的是网，还需要一个记录权值的信息域。所以表头结点和其它结点的构造分别为：<br />
 <br />
@@ -335,7 +337,7 @@ typedef struct {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 38;
-window.arcId = "dc87GNQDgxiY8tKB+Clu08LLhft3AdQexS5tHc4Kho6O2cpDTL1snbgz";
+window.arcId = "e592gze5CeIFYceKtb6WYNmJDcrq2VD1NmjGSS7Aa/n/tjVzzCpJj8rF";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

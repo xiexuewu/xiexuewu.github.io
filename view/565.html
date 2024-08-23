@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -93,15 +95,15 @@
 				<span class="channel-num">11</span>
 				<a href='/c/file/'>文件操作</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a></dd></dl>
+		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -116,115 +118,23 @@
 			<h1>VS调试的总结以及技巧</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/564.html">调试信息的输出</a></span>
-                    <span class="next right"><a href="/c/memory/">C语言内存精讲</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="next right"><a href="/c/module/">多文件编程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/564.html";window.nextPageURL = "/c/memory/";</script>
-			<div id="arc-body">学到这里，大家已经对 Visual Studio 的调试有了一些了解，本节我将为大家展示调试过程中可以使用的一些实用技巧。使大家的调试操作更加轻松愉快。<br />
-<br />
-首先我们再回顾一下 Visual Studio 中 Release 和 Debug 构建模式的区别，在下图标注的位置可以切换构建模式：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/2-240R120293Y60.gif" /></div>
-<br />
-Release构建模式下构建的程序为发行版，而Debug构建模式下构建的程序为调试版。<br />
-<br />
-在 Visual Studio 中，调试模式会定义两个宏 _DEBUG 和 DEBUG，下文中会介绍它们的一些妙用。在 Visual Studio 中，如果我们要更改编译参数的话，可以点击菜单 -&gt; 项目(P) -&gt; &lt;项目名&gt;属性(P)，我们在弹出的页面左侧选择配置属性即可对编译参数进行修改。<br />
-<br />
-接下来，我们来了解一下调试标记。不知道大家有没有遇到这样的情况，有些代码段只想在调试的时候执行，而实际发布的时候不想让它们执行。那该怎么办，绝大多数数的初学者会选择使用注释，即在发布的时候将无用的测试代码注释掉。但是这样很麻烦，下面我们就为大家介绍一种全新的方法&mdash;&mdash;使用调试标记。事实上这种方法我们在前面使用过，但是没有详细讲解。<br />
-<br />
-这种方法借助了预处理指令，方法很简单，我们首先定义一个宏作为处于调试状态的标记，后面的代码用 #ifdef 和 #endif 预处理指令检测宏是否被定义，然后由编译器判断是否编译其中的代码。这么做的好处就是可以减少发布程序的体积，另一方面可以提高发布程序的运行效率。下面是一段示范代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#define _DEBUGNOW
-int main(){
-    #ifdef _DEBUGNOW
-    printf(&quot;正在为调试做准备...&quot;);
-    #endif // _DEBUGNOW
-    printf(&quot;程序正在运行...&quot;);
-    return 0;
-}</pre>
-当发布上面这段程序的时候，只要将 #define _DEBUGNOW 注释掉即可，无需进行任何额外的操作。是不是很方便呢？善用调试标记可以大大地提高我们的调试效率，但是有一点记住，调试标记名不要过于简单，否则可能和程序中的变量/常量产生冲突。<br />
-<br />
-在我们的调试过程中，我们常常会需要在不触发断点的情况下输出一些数值，这时我们一般会这么做：
-<pre class="info-box">
-printf(&quot;%d\n&quot;,Value/*要输出的数值*/);</pre>
-但是像这种代码写多了我们可能会对它产生一种厌恶之情，这是我们的预处理器又可以派上用场了，我们可以定义一个宏解决这个问题，定义宏的代码如下：
-<pre class="info-box">
-#define _PUTINT(NUM) printf(&quot;%d\n&quot;,NUM)</pre>
-然后我们只要这样调用我们的宏：
-<pre class="info-box">
-_PUTINT(45/*要输出的数值*/);</pre>
-怎么样？是不是很方便呢？那如果我们想让这个宏在我们发布程序的时候失效呢，我们该怎么做？其实很简单，我们依然可以使用预处理指令完成这项操作，下面我们来看一套完整的代码（同时使用调试标记和宏）：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#define _PAUSE() system(&quot;pause&quot;);
-#if (defined DEBUG) || (defined _DEBUG) //检测构建模式是否为调试模式
-//如果构建模式为调试模式，这里定义几个宏
-#define _DEBUGNOW
-#define _PUTSIL(NUM) printf(&quot;%d\n&quot;,NUM) //输出整数
-#define _PUTFD(NUM) printf(&quot;%f\n&quot;,NUM) //输出浮点数
-#else
-//如果构建模式为发布模式，自动忽略这些宏的存在
-#define _PUTSIL(NUM) ((void)0)
-#define _PUTFD(NUM) ((void)0)
-#endif
-
-int main(){
-    #ifdef _DEBUGNOW 
-    printf(&quot;正在为调试做准备...\n&quot;);
-    #endif // _DEBUGNOW
-    printf(&quot;程序正在运行...\n&quot;);
-    _PUTSIL(12666);
-    _PUTFD(3.1415926535898);
-    printf(&quot;程序运行完毕...\n&quot;);
-    _PAUSE(); // 暂停程序
-    return 0;
-}</pre>
-我们看到，宏的定义和函数差不多，有的简单的函数可以直接用宏实现，这样做带来的好处就是，我们可以不用频繁的判断是否处于调试状态，一次定义，一直有效。<br />
-<br />
-为了方便我们的调试（检查）操作以及日后的团队合作，我们在编写函数的时候应该为其加上 Visual Studio 的智能提示，方法比较简单，我们只要在函数定义前面加上提示注释即可（格式自由），Visual Studio 便会自动分析我们的代码并加入其智能提示列表，下面我们举一个定义函数设置智能提示的例子：
-<pre class="c">
-//
-//  函数:  Convert2Jpeg(wchar_t*, wchar_t, int)
-//
-//  目的:    转换图片到 Jpeg 格式
-//
-//  orgiPath : 源文件路径
-//  destPath : 目标路径
-//  quality  : 图像质量
-//
-bool Convert2Jpeg(wchar_t* orgiPath, wchar_t* destPath, int quality){
-    return true;
-}</pre>
-我们在自动完成将或者鼠标移动到编辑器内函数名上，就有了智能提示。<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/2-240R1203154322.gif" /></div>
-<br />
-这种智能提示不但可以减轻我们编写代码时的负担，在调试情境下也可以增加我们检查代码的效率。如此一来，岂不美哉！<br />
-<br />
-接下来我们为大家总结了一些调试的经验以及调试思路：<br />
-1) 运行我们编写的程序，如果发现运行结果与我们预想的不同，可以先打开即时窗口，使用一些比较简单的数据来测试各个函数运行结果是否符合我们的预期，如果都符合的话，可以使用程序中产生的一些比较复杂的数据进一步测试各个函数，直至找到可能导致错误的函数。<br />
-<br />
-2) 找到可能导致错误的函数之后，可以使用逐语句调试来一步步跟踪运行程序，渐渐的就可以缩小出错范围，直至定位到错误（无关代码可以考虑暂时注释掉）。在此期间，我们要仔细观察程序运行过程中各个数据的变化情况，观察的仔细与否直接关系着最终能否找到错误。<br />
-<br />
-3) 如果上一步运行的数据一直是正常的，就可以排除掉当然函数的嫌疑（减少对它的调试次数）。接下来，我们应该考虑问题是否出现在之前的函数中，可能因为偶然性，我们第一次测试函数的时候并没有发现错误，导致范围锁定产生偏差，所以要再次耐心的对所有未排除嫌疑的进行调试，直至再次找到出错的函数。<br />
-<br />
-可以看到，调试其实是一项比较复杂的活，需要大量的操作，所以在我们编写代码的时候要万分谨慎！因为很多时候，BUG 都是因为我们的粗心大意导致的笔误引起的！</div>
+                <script type="text/javascript">window.prePageURL = "/view/564.html";window.nextPageURL = "/c/module/";</script>
+			<div id="arc-body"><div id="buy-course-tip" aid="565"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/564.html">调试信息的输出</a></span>
-                    <span class="next right"><a href="/c/memory/">C语言内存精讲</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="next right"><a href="/c/module/">多文件编程</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/564.html";window.nextPageURL = "/c/memory/";</script>
+                <script type="text/javascript">window.prePageURL = "/view/564.html";window.nextPageURL = "/c/module/";</script>
 		</div>
 		
 	</div>
@@ -242,7 +152,7 @@ bool Convert2Jpeg(wchar_t* orgiPath, wchar_t* destPath, int quality){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 565;
-window.arcId = "ff42TMZWEJYlKwAvNYV93EUv3Awqvu4g5W5xf+qSRB9hJ5rVBUZ8DTlueQ";
+window.arcId = "2254KkGrKbLNFokdTk6NdC6YbJml6j8FG//E7AIRSMdpnroE3dVm5/UxnA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

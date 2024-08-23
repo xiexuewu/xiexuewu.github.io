@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -73,7 +75,7 @@
 				<span class="channel-num">7</span>
 				<a href='/c/function/'>C语言函数</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">8</span> <a href="/c/preprocess/">预处理命令</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/503.html">什么是预处理命令？</a></dd><dd>8.2 <a href="/view/504.html">#include的用法</a></dd><dd>8.3 <a href="/view/505.html">C语言宏定义</a></dd><dd>8.4 <a href="/view/506.html">C语言带参数的宏定义</a></dd><dd>8.5 <a href="/view/507.html">带参宏定义和函数的区别</a></dd><dd>8.6 <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a></dd><dd>8.7 <a href="/view/509.html">C语言中几个预定义宏</a></dd><dd>8.8 <a href="/view/510.html">C语言条件编译</a></dd><dd>8.9 <a href="/view/511.html">#error命令，阻止程序编译</a></dd><dd>8.10 <a href="/view/512.html">C语言预处理命令总结</a></dd></dl>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/c/preprocess/">预处理命令</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/503.html">什么是预处理命令？</a></dd><dd>8.2 <a href="/view/504.html">#include的用法</a></dd><dd>8.3 <a href="/view/505.html">C语言宏定义</a></dd><dd>8.4 <a href="/view/506.html">C语言带参数的宏定义</a></dd><dd>8.5 <a href="/view/507.html">带参宏定义和函数的区别</a></dd><dd>8.6 <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.7 <a href="/view/509.html">C语言中几个预定义宏</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.8 <a href="/view/510.html">C语言条件编译</a></dd><dd>8.9 <a href="/view/511.html">#error命令，阻止程序编译</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.10 <a href="/view/512.html">C语言预处理命令总结</a></dd></dl>
 			<dd>
 				<span class="channel-num">9</span>
 				<a href='/c/pointer/'>指针</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,49 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/508.html";window.nextPageURL = "/view/510.html";</script>
-			<div id="arc-body">顾名思义，预定义宏就是已经预先定义好的宏，我们可以直接使用，无需再重新定义。<br />
-<br />
-ANSI C 规定了以下几个预定义宏，它们在各个编译器下都可以使用：
-<ul>
-	<li>
-		__LINE__：表示当前源代码的行号；</li>
-	<li>
-		__FILE__：表示当前源文件的名称；</li>
-	<li>
-		__DATE__：表示当前的编译日期；</li>
-	<li>
-		__TIME__：表示当前的编译时间；</li>
-	<li>
-		__STDC__：当要求程序严格遵循 ANSI C 标准时该标识被赋值为 1；</li>
-	<li>
-		__cplusplus：当编写 C++ 程序时该标识符被定义。</li>
-</ul>
-<br />
-预定义宏演示：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-int main() {
-    printf(&quot;Date : %s\n&quot;, __DATE__);
-    printf(&quot;Time : %s\n&quot;, __TIME__);
-    printf(&quot;File : %s\n&quot;, __FILE__);
-    printf(&quot;Line : %d\n&quot;, __LINE__);
-
-    system(&quot;pause&quot;);
-    return 0;
-}</pre>
-VS下的输出结果：<br />
-Date : Mar&nbsp; 6 2016<br />
-Time : 11:47:15<br />
-File : main.c<br />
-Line : 8<br />
-<br />
-C-Free 5.0 下的输出结果：<br />
-Date : Mar&nbsp; 6 2016<br />
-Time : 12:12:59<br />
-File : C:\Users\xiexuewu\Desktop\demo.c<br />
-Line : 8</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="509"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a></span>
                     <span class="next right"><a href="/view/510.html">C语言条件编译</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -192,7 +152,7 @@ Line : 8</div>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 509;
-window.arcId = "d8dexwE+m/UEsMtNl4R9Cde1IINfSqVeixbe7owSgPW0A8wyNCO3rwvU5g";
+window.arcId = "c8aahysmT54seumk41Ieou9A73E5Nm/odsPEKPzNfksR1ya7LoduLdc/VQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

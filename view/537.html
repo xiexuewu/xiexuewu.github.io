@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -83,7 +85,7 @@
 				<span class="channel-num">9</span>
 				<a href='/c/pointer/'>指针</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">10</span> <a href="/c/struct/">结构体</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/532.html">C语言结构体</a></dd><dd>10.2 <a href="/view/533.html">C语言结构体数组</a></dd><dd>10.3 <a href="/view/534.html">C语言结构体指针</a></dd><dd>10.4 <a href="/view/535.html">C语言枚举类型</a></dd><dd>10.5 <a href="/view/536.html">C语言共用体</a></dd><dd>10.6 <a href="/view/541.html">typedef的用法</a></dd><dd>10.7 <a href="/view/537.html">大端小端以及判别方式</a></dd><dd>10.8 <a href="/view/538.html">C语言位域</a></dd><dd>10.9 <a href="/view/539.html">C语言位运算</a></dd><dd>10.10 <a href="/view/540.html">使用位运算对数据或文件内容进行加密</a></dd></dl>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/c/struct/">结构体</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/532.html">C语言结构体</a></dd><dd>10.2 <a href="/view/533.html">C语言结构体数组</a></dd><dd>10.3 <a href="/view/534.html">C语言结构体指针</a></dd><dd>10.4 <a href="/view/535.html">C语言枚举类型</a></dd><dd>10.5 <a href="/view/536.html">C语言共用体</a></dd><dd>10.6 <a href="/view/541.html">typedef的用法</a></dd><dd>10.7 <a href="/view/537.html">大端小端以及判别方式</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="/view/538.html">C语言位域</a></dd><dd>10.9 <a href="/view/539.html">C语言位运算</a></dd><dd>10.10 <a href="/view/540.html">使用位运算对数据或文件内容进行加密</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">11</span>
 				<a href='/c/file/'>文件操作</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,105 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/541.html";window.nextPageURL = "/view/538.html";</script>
-			<div id="arc-body">大端和小端是指数据在内存中的存储模式，它由 CPU 决定：<br />
-1) <span style="color: #008000">大端模式（</span><span style="color: rgb(0,128,0)">Big-endian</span><span style="color: #008000">）</span>是指将数据的低位（比如 1234 中的 34 就是低位）放在内存的高地址上，而数据的高位（比如 1234 中的 12 就是高位）放在内存的低地址上。这种存储模式有点儿类似于把数据当作字符<u><a href='/view/175.html' target='_blank'>串</a></u>顺序处理，地址由小到大增加，而数据从高位往低位存放。<br />
-<br />
-2) <span style="color: #008000">小端模式（</span><span style="color: rgb(0,128,0)">Little-endian</span><span style="color: #008000">）</span>是指将数据的低位放在内存的低地址上，而数据的高位放在内存的高地址上。这种存储模式将地址的高低和数据的大小结合起来，高地址存放数值较大的部分，低地址存放数值较小的部分，这和我们的思维习惯是一致，比较容易理解。<br />
-<h2>
-	为什么有大小端模式之分</h2>
-计算机中的数据是以字节（Byte）为单位存储的，每个字节都有不同的地址。现代 CPU 的位数（可以理解为一次能处理的数据的位数）都超过了 8 位（一个字节），PC机、服务器的 CPU 基本都是 64 位的，嵌入式系统或单片机系统仍然在使用 32 位和 16 位的 CPU。<br />
-<br />
-对于一次能处理多个字节的CPU，必然存在着如何安排多个字节的问题，也就是大端和小端模式。以 int 类型的&nbsp;0x12345678 为例，它占用 4 个字节，如果是小端模式（Little-endian），那么在内存中的分布情况为（假设从地址 0x 4000 开始存放）：<br />
-<br />
-<table border="0" cellpadding="0" cellspacing="0">
-	<tbody>
-		<tr>
-			<td>
-				内存地址</td>
-			<td>
-				0x4000</td>
-			<td>
-				0x4001</td>
-			<td>
-				0x4002</td>
-			<td>
-				0x4003</td>
-		</tr>
-		<tr>
-			<td>
-				存放内容</td>
-			<td>
-				0x78</td>
-			<td>
-				0x56</td>
-			<td>
-				0x34</td>
-			<td>
-				0x12</td>
-		</tr>
-	</tbody>
-</table>
-<br />
-如果是大端模式（Big-endian），那么分布情况正好相反：<br />
-<br />
-<div>
-	<div>
-		<table border="0" cellpadding="0" cellspacing="0">
-			<tbody>
-				<tr>
-					<td>
-						内存地址</td>
-					<td>
-						0x4000</td>
-					<td>
-						0x4001</td>
-					<td>
-						0x4002</td>
-					<td>
-						0x4003</td>
-				</tr>
-				<tr>
-					<td>
-						存放内容</td>
-					<td>
-						0x12</td>
-					<td>
-						0x34</td>
-					<td>
-						0x56</td>
-					<td>
-						0x78</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div>
-		<br />
-		我们的 PC 机上使用的是 X86 结构的 CPU，它是小端模式；51 单片机是大端模式；很多 ARM、DSP 也是小端模式（部分 ARM 处理器还可以由硬件来选择是大端模式还是小端模式）。</div>
-</div>
-<br />
-借助共用体，我们可以检测 CPU 是大端模式还是小端模式，请看代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main(){
-    union{
-        int n;
-        char ch;
-    } data;
-
-    data.n = 0x00000001;  //也可以直接写作 data.n = 1;
-    if(data.ch == 1){
-        printf(&quot;Little-endian\n&quot;);
-    }else{
-        printf(&quot;Big-endian\n&quot;);
-    }
-    return 0;
-}</pre>
-在PC机上的运行结果：<br />
-Little-endian<br />
-<br />
-共用体的各个成员是共用一段内存的。1 是数据的低位，如果 1 被存储在 data 的低字节，就是小端模式，这个时候 data.ch 的值也是 1。如果 1 被存储在 data 的高字节，就是大端模式，这个时候 data.ch 的值就是 0。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="537"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/541.html">typedef的用法</a></span>
                     <span class="next right"><a href="/view/538.html">C语言位域</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -248,7 +152,7 @@ Little-endian<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 537;
-window.arcId = "dafejoHKNw94bRKPGPreUpvy/FbHahGefQKMrQ55rWrplNJFVCcU+erOLQ";
+window.arcId = "ca72Ab6nnnefSZML56Qrj/s/UGkxQjOvv47Okyc2z24w5n8JoKo26H0rPw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

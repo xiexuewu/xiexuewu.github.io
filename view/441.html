@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -53,7 +55,7 @@
 				<span class="channel-num">3</span>
 				<a href='/c/variable_datatype/'>变量和数据类型</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,140 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/440.html";window.nextPageURL = "/view/442.html";</script>
-			<div id="arc-body">上节讲到，scanf() 是从标准输入设备（键盘）读取数据，带有行缓冲区的，这让 scanf() 具有了一些独特的&ldquo;性格&rdquo;，例如可以连续输入、可以输入多余的数据等。反过来，scanf() 也出现了一些奇怪的行为，例如，有时候两份数据之间有空格会读取失败，而有时候两份数据之间又必须有空格。<br />
-<br />
-scanf() 的这些特性都是有章可循的，其根源就是行缓冲区。<br />
-<br />
-当遇到 scanf() 函数时，程序会先检查输入缓冲区中是否有数据：<br />
-<ul>
-	<li>
-		如果没有，就等待用户输入。用户从键盘输入的每个字符都会暂时保存到缓冲区，直到按下回车键，产生换行符<code>\n</code>，输入结束，scanf() 再从缓冲区中读取数据，赋值给变量。</li>
-	<li>
-		如果有数据，那就看是否符合控制字符<u><a href='/view/175.html' target='_blank'>串</a></u>的规则：
-		<ul>
-			<li>
-				如果能够匹配整个控制字符串，那最好了，直接从缓冲区中读取就可以了，就不用等待用户输入了。</li>
-			<li>
-				如果缓冲区中剩余的所有数据只能匹配前半部分控制字符串，那就等待用户输入剩下的数据。</li>
-			<li>
-				如果不符合，scanf() 还会尝试忽略一些空白符，例如空格、制表符、换行符等：
-				<ul>
-					<li>
-						如果这种尝试成功（可以忽略一些空白符），那么再重复以上的匹配过程。</li>
-					<li>
-						如果这种尝试失败（不能忽略空白符），那么只有一种结果，就是读取失败。</li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-</ul>
-<br />
-你看，scanf() 并不是直接让用户从键盘输入数据，而是先检查缓冲区，处理缓冲区中的数据。对于初学者来说，scanf() 检查缓冲区的规则也许有点复杂，下面我们通过几个典型的例子来&ldquo;细嚼慢咽&rdquo;。
-<h4>
-	【实例1】scanf() 连续输入：</h4>
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int a, b, c;
-    scanf(&quot;%d&quot;, &amp;a);
-    scanf(&quot;%d&quot;, &amp;b);
-    scanf(&quot;%d&quot;, &amp;c);
-    printf(&quot;a=%d, b=%d, c=%d\n&quot;, a, b, c);
-
-    return 0;
-}</pre>
-运行结果：
-<p class="info-box">
-	100 200 300↙<br />
-	a=100, b=200, c=300</p>
-程序执行到第一个 scanf()，由于缓冲区中没有数据，所以会等待用户输入。从键盘输入<code>100 200 300</code>后按下回车键，输入就结束了，scanf() 开始从缓冲区中读取数据。<br />
-<br />
-第一个 scanf() 的控制字符串是<code>&quot;%d&quot;</code>，会匹配到第一个整数，也就是 100，于是将 100 赋值给变量 a，并将内部的位置标记移动到 100 以后，此时缓冲区中剩下<code>&nbsp;200 300↙</code>。<span style="color:#b22222;">注意，换行符也是一个字符，也会进入缓冲区。</span><br />
-<blockquote>
-	位置标记是什么？系统内部有一个专门用来记录 scanf() 读取到哪个位置的标记，随着 scanf() 的读取，该标记会向后移动，下一个 scanf() 就从这个新的位置开始读取。</blockquote>
-第二个 scanf() 的控制字符串也是&quot;%d&quot;，需要读取一个整数，而此时缓冲区中的内容是<code> 200 300↙</code>，开头是一个空格，并不是一个有效的数字，不符合控制字符串的规则。空格是一个空白符，此处是可以忽略的，于是 scanf() 忽略空格后再继续匹配，就得到了数字 200，终于匹配成功了。<br />
-<br />
-到了第三个 scanf()，缓冲区中剩下<code> 300↙</code>，同样会忽略开头的空格，匹配到数字 300。<br />
-<br />
-最终，三个 scanf() 都匹配成功了，缓冲区中只留下了<code>↙</code>。嗯，那就留着吧，已经没用了，等程序运行结束了，会释放缓冲区内存，一切数据都灰飞烟灭了。<br />
-<h4>
-	【实例2】scanf() 读取失败：</h4>
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int a, b=999;
-    char str[30];
-    printf(&quot;b=%d\n&quot;, b);
-    scanf(&quot;%d&quot;, &amp;a);
-    scanf(&quot;%d&quot;, &amp;b);
-    scanf(&quot;%s&quot;, str);
-    printf(&quot;a=%d, b=%d, str=%s\n&quot;, a, b, str);
-
-    return 0;
-}</pre>
-运行结果：
-<p class="info-box">
-	b=999<br />
-	100 https://xiexuewu.github.io↙<br />
-	a=100, b=999, str=https://xiexuewu.github.io</p>
-程序执行到第一个 scanf() 时等待用户输入，从键盘输入<code>100&nbsp;https://xiexuewu.github.io</code>，按下回车键，scanf() 匹配到 100，赋值给变量 a，同时将内部的位置指针移动到 100 后面。<br />
-<br />
-到了第二个 scanf()，缓冲区中有数据，会直接读取。此时缓冲区中的内容为<code>&nbsp;https://xiexuewu.github.io↙</code>，即使忽略开头的空格也不是 scanf() 想要的整数，所以匹配失败了，不会给变量 b 赋值，b 的值保持不变，这就是两次输出变量 b 的值相同的原因。<br />
-<br />
-匹配失败意味着不会移动内部的位置指针，此时缓冲区中的内容仍然是<code>https://xiexuewu.github.io↙</code>。执行到底三个 scanf() 时，它想要一个字符串，这不是正好捡漏吗，把<code>https://xiexuewu.github.io</code>赋值给 str 就好了。
-<blockquote>
-	注意，scanf()、gets() 在读取字符串时会忽略换行符，不会把换行符作为字符串的内容。</blockquote>
-<h4>
-	【实例3】不能忽略空白符的情形：</h4>
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int a = 1, b = 2;
-    scanf(&quot;a=%d&quot;, &amp;a);
-    scanf(&quot;b=%d&quot;, &amp;b);
-    printf(&quot;a=%d, b=%d\n&quot;, a, b);
-
-    return 0;
-}</pre>
-输入示例：
-<p class="info-box">
-	a=99↙<br />
-	a=99, b=2</p>
-输入<code>a=99</code>，按下回车键，程序竟然运行结束了，只有第一个 scanf() 成功读取了数据，第二个 scanf() 仿佛没有执行一样，根本没有给用户任何机会去输入数据。这是为什么呢？<br />
-<br />
-第一个 scanf() 执行完后，将 99 赋值给了 a，缓冲区中只剩下一个换行符<code>\n</code>；到了第二个 scanf()，发现缓冲区中有内容，但是又不符合控制字符串的格式，于是尝试忽略这个空白符。注意，这个时候的空白符是不能忽略的，所以就没有办法了，只能读取失败了。<br />
-<br />
-实测发现，空白符在大部分情况下都可以忽略，前面的两个例子就是这样。但是当控制字符串不是以格式控制符 %d、%c、%f 等开头时，空白符就不能忽略了，它会参与匹配过程，如果匹配失败，就意味着 scanf() 读取失败了。<br />
-<br />
-本例中，第二个 scanf() 的开头并不是格式控制符，而是写死的<code>b</code>字符，所以不会忽略换行符，而换行符和<code>b</code>又不匹配，怎么办呢？没办法，只能读取失败了。<br />
-<br />
-如果我们换一种输入方式呢？
-<p class="info-box">
-	a=99 b=200↙<br />
-	a=99, b=2</p>
-你看，第二个 scanf() 也读取失败了。执行到第二个 scanf() 时，缓冲区中剩下<code>&nbsp;b=200↙</code>，开头的空格依然不能忽略，然而又和控制字符串不匹配，所以只能读取失败了。<br />
-<br />
-两种输入方式都不行，究竟该如何输入呢？很简单，不要让两份数据之间有空白符，只能像下面一样输入：
-<p class="info-box">
-	a=99b=200↙<br />
-	a=99, b=200</p>
-这样 a 和 b 都能够正确读取了。注意，a=99b=200中间是没有任何空格的。<br />
-<br />
-最后，我们再修改一下上面的代码，将第二个 scanf() 改成下面的样子：<br />
-<pre class="info-box">
-scanf(&quot;%d&quot;, &amp;b);</pre>
-运行结果：
-<p class="info-box">
-	a=100↙<br />
-	200↙<br />
-	a=100, b=200</p>
-此时，第二个 scanf() 的控制字符串以<code>%d</code>开头，就可以忽略换行符了。忽略换行符以后，缓冲区中就没有内容了，所以会等待用户输入。输入 200 以后，第二个 scanf() 就匹配成功了，将 200 赋值给变量 b。<br />
-<br />
-那么，为什么只有当控制字符串以格式控制符开头时，才会忽略换行符呢？我也觉得这个特性很奇怪，目前还未想明白，也没有资料可查，请读者先记住这个结论。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="441"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></span>
                     <span class="next right"><a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -283,7 +152,7 @@ scanf(&quot;%d&quot;, &amp;b);</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 441;
-window.arcId = "e901+ijb1N6pTS6Vh9uGsCFX1+b0pedxbKxsPXnm8tJ9FknV1YrtdGueiw";
+window.arcId = "1320xwfunUVLrqUokeaqjI5mXGN959UWTBC6tOm5khrZ5jM0XnH9Us6PyQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

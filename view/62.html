@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -110,7 +112,7 @@
 			<div id="arc-body"><span style="color:#008000;">键<u><a href='/view/23.html' target='_blank'>树</a></u></span>，又称为<span style="color:#008000;">数字查找树</span><span style="color:#b22222;">（根结点的子树个数 &gt;= 2）</span>，同以往所学习的树不同的是，<span style="color:#b22222;">键树的结点中存储的不是某个关键字，而是只含有组成关键字的单个符号。</span><br />
 <blockquote>
 	<p>
-		如果关键字本身是字符<u><a href='/view/175.html' target='_blank'>串</a></u>，则键树中的一个结点只包含有一个字符；如果关键字本身是数字，则键树中的一个结点只包含一个数位。每个关键字都是从键树的根结点到叶子结点中经过的所有结点中存储的组合。</p>
+		如果关键字本身是字符串，则键树中的一个结点只包含有一个字符；如果关键字本身是数字，则键树中的一个结点只包含一个数位。每个关键字都是从键树的根结点到叶子结点中经过的所有结点中存储的组合。</p>
 </blockquote>
 例如，当使用键树表示查找表<code>{CAI，CAO，CHEN，LI，LAN，ZHAO}</code>时，为了查找方便，首先对该查找表中关键字按照首字符进行分类（相同的在一起）：
 <div class="info-box">
@@ -157,7 +159,7 @@
 #include &lt;stdio.h&gt;
 typedef enum{LEFT,BRANCH}NodeKind;//定义结点的类型，是叶子结点还是其他类型的结点
 typedef  struct {
-    char a[20];//存储关键字的<u><a href='/view/181.html' target='_blank'>数组</a></u>
+    char a[20];//存储关键字的数组
     int num;//关键字长度
 }KeysType;
 //定时结点结构
@@ -276,7 +278,7 @@ TrieTree SearchTrie(TrieTree T, KeysType K){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 62;
-window.arcId = "c0d820mxldSqG/4KyZ3PvQUIRSENavQsj7/PWVGvoFgqS+ZnuPQa5XL1";
+window.arcId = "23f98dDc/J9GbBzCS3QguQN9+Cdy/aLw/O+2toWKpxnu4x68+jUUP0eL";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

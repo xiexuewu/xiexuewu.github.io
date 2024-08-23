@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -53,7 +55,7 @@
 				<span class="channel-num">3</span>
 				<a href='/c/variable_datatype/'>变量和数据类型</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,101 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/436.html";window.nextPageURL = "/view/438.html";</script>
-			<div id="arc-body">初学编程的读者，肯定很想编写出一个游戏来秀一下，贪吃蛇就是C语言小游戏中经典的一个，本教程的目标也是带着大家做出这款游戏，你可以猛击《<a href="/view/601.html" target="_blank">C语言贪吃蛇游戏演示和说明</a>》了解更多。<br />
-<br />
-编写游戏的第一步就是搞定光标定位问题，这样你的程序就可以随心所欲、按任意顺序、在任意位置输出了。但是，C语言本身并不支持该功能，我们必须使用 Windows 提供的接口，所以要引入 windows.h 头文件。
-<blockquote>
-	因为用到了 Windows 操作系统的功能，所以本节的代码不能在 Linux 和 Mac OS 下运行。</blockquote>
-所谓 Windows 接口，就是 Windows 这个操作系统本身提供的函数，它们都是以C语言的形式呈现的，只要我们引入了 windows.h 头文件，就可以调用这些函数，使用 Windows 提供的强大功能了。
-<blockquote>
-	因为涉及到了 Windows 编程，所以本节的内容不要求大家深入理解，能按照葫芦画瓢就可以，以后如果决定专攻 Windows 编程了，再来深入研究也不迟。</blockquote>
-光标定位需要使用 windows.h 头文件中的<code>SetConsoleCursorPosition</code>函数，它的使用方式为：
-<pre class="info-box">
-SetConsoleCursorPosition(HANDLE hConsoleOutput, COORD  dwCursorPosition);</pre>
-<code>hConsoleOutput</code>表示控制台缓冲区句柄，可通过<code>GetStdHandle(STD_OUTPUT_HANDLE)</code>来获得；<code>dwCursorPosition</code>是光标位置，也就是第几行第几列，它是 COORD 类型的结构体。<br />
-<br />
-看不懂是吧？嗯，没关系，我知道大部分读者都看不懂，所以，照着葫芦画瓢吧。<br />
-<br />
-例如，将光标定位到控制台的第3行第3列：
-<pre class="c">
-//定义光标位置
-COORD coord;
-coord.X = 3;  //第3行
-coord.Y = 3;  //第3列
-//获取控制台缓冲区句柄，固定写法
-HANDLE ConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-//设置光标位置，固定写法
-SetConsoleCursorPosition(ConsoleHandle, coord);</pre>
-这样，程序就可以从第3行第3列开始输出了。<br />
-<br />
-将代码补充完整：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;windows.h&gt;
-
-int main(){
-    //定义光标位置
-    COORD coord;
-    coord.X = 3;  //第3行
-    coord.Y = 3;  //第3列
-    //获取控制台缓冲区句柄
-    HANDLE ConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-    //设置光标位置
-    SetConsoleCursorPosition(ConsoleHandle, coord);
-   
-    printf(&quot;https://xiexuewu.github.io\n&quot;);
-
-    return 0;
-}</pre>
-运行结果：<br />
-<br />
-<img alt="" src="/uploads/allimg/240820/2-240R0195619448.gif" /><br />
-<blockquote>
-	注意：窗口的左上角是第 0 行第 0 列，而不是我们通常所认为的第 1 行第 1 列。编程语言中的很多计数都是从 0 开始的，而不是从 1 开始。</blockquote>
-搞定了光标重定位，你就可以将输出顺序打乱了，想在哪里输出就在哪里输出。例如：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;windows.h&gt;
-
-//设置光标位置
-void setCursorPosition(int x, int y);
-//设置文字颜色
-void setColor(int color);
-
-int main(){
-    setColor(3);
-    setCursorPosition(3, 3);
-    puts(&quot;★&quot;);
-
-    setColor(0XC);
-    setCursorPosition(1, 1);
-    puts(&quot;◆&quot;);
-
-    setColor(6);
-    setCursorPosition(6, 6);
-    puts(&quot;■&quot;);
-
-    return 0;
-}
-
-//自定义的光标定位函数
-void setCursorPosition(int x, int y){
-    COORD coord;
-    coord.X = x;
-    coord.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
-//自定义的文字颜色函数
-void setColor(int color){
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color) ;
-}</pre>
-运行结果：<br />
-<img alt="" src="/uploads/allimg/240820/195140C58-1.png" style="height: 230px; width: 372px" /><br />
-<br />
-可以发现，先输出的字符位置不一定靠前，后输出的字符位置不一定靠后，它们都可以在任意位置。
-<blockquote>
-	看到这里，很多初学者会不懂，甚至一头雾水，不过没关系，这里仅仅是演示，引起你对C语言的兴趣，待学完C语言的基本语法后会恍然大悟。</blockquote>
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="437"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></span>
                     <span class="next right"><a href="/view/438.html">使用scanf读取从键盘输入的数据</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -244,7 +152,7 @@ void setColor(int color){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 437;
-window.arcId = "a8a3JW2ylMIx4vBkRUby3vGj+yv/UBPBshTbYxqpcawwHFYnQ4wCJ59pKw";
+window.arcId = "0aedMxkDUkp9Gv2L2xkiDrkeybzNEWs6EjI/AuLREpztIdE3Sz/w5Ni+Ig";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

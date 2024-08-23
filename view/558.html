@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -93,15 +95,15 @@
 				<span class="channel-num">11</span>
 				<a href='/c/file/'>文件操作</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a></dd></dl>
+		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,60 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/557.html";window.nextPageURL = "/view/559.html";</script>
-			<div id="arc-body">设置了断点，就可以观察程序的运行情况了，其中很重要的一点就是查看相关变量的值，这足以发现大部分逻辑错误。<br />
-<br />
-将下面的代码复制到源文件中：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main(){
-    int value_int, array_int[3];
-    float value_float;
-    char* value_char_pointer;
-    //在这里插入断点
-    value_int = 1048576;
-    value_float = 2.0;
-    value_char_pointer = &quot;Hello World&quot;;
-    array_int[0] = 379; array_int[1] = 94;
-    //在这里插入断点
-    return 0;
-}</pre>
-在第 7 行和第 12 行插入断点。运行到第一个断点时，在<code>局部变量</code>窗口可以看到各个变量的值：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R11942551L.gif" /></div>
-<br />
-可以看到，未经初始化的局部变量和<u><a href='/view/181.html' target='_blank'>数组</a></u>的值都是垃圾值，是随机的，没有意义。双击变量的值，可以进行修改。<br />
-<br />
-点击&ldquo;继续&rdquo;按钮或按<code>F5</code>键，程序会运行到下一个断点位置，在<code>局部变量</code>窗口可以看到各个值的变化：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R119432UC.gif" /></div>
-<h2>
-	更加快捷的方式</h2>
-除了在窗口中查看变量，还有一种更加便捷的方法：在调试模式下，把鼠标移动到要查看的变量的上方，即可看它的值。如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1194354619.png" /></div>
-<br />
-如果是数组、指针、结构体等还可以展开，如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1194412562.png" /></div>
-这种查看变量的方式在实际开发中使用很多。
-<h2>
-	添加监视</h2>
-如果你希望长时间观测某个变量，还可以将该变量添加到监视窗口。在要监视的变量处单击鼠标右键，弹出如下菜单：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R119442Q16.gif" /></div>
-<br />
-选择&ldquo;添加监视&rdquo;，在 VS 下方的<code>监视</code>窗口就可以看到当前变量：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R119444a61.gif" /></div>
-<br />
-这样，每次变量的值被改变都会反映到该窗口中，无需再将鼠标移动到变量上方查看其值。尤其是当程序稍大时，往往需要同时观测多个变量的值，添加监视的方式就会显得非常方便。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="558"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/557.html">设置断点，开始调试</a></span>
                     <span class="next right"><a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -203,7 +152,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 558;
-window.arcId = "9bd5sWSQ4tcGRn/HA9RZFt1yay/0Y+hvlmZpUZ4aTGpIhKX2pxwfUmOJqg";
+window.arcId = "1a59NOL2iEvgekPGGp3iNa6gUVyKvBVIdCQbucgsaybwe8J8xJLvAXQ1xQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

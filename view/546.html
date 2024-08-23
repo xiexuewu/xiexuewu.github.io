@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -88,7 +90,7 @@
 				<span class="channel-num">10</span>
 				<a href='/c/struct/'>结构体</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,40 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/545.html";window.nextPageURL = "/view/547.html";</script>
-			<div id="arc-body">在学习了 fopen()&nbsp;函数后，我们知道它的第二个参数是一个字符<u><a href='/view/175.html' target='_blank'>串</a></u>，用来表示文件打开方式。如果字符串中出现<code>b</code>，则表示以二进制方式打开文件；如果字符串中出现<code>t</code>，或者两者都不出现，则表示以文本方式打开文件。<br />
-<h2>
-	文本文件和二进制文件的区别</h2>
-根据我们以往的经验，文本文件通常用来保存肉眼可见的字符，比如<code>.txt</code>文件、<code>.c</code>文件、<code>.dat</code>文件等，用文本编辑器打开这些文件，我们能够顺利看懂文件的内容。<br />
-<br />
-二进制文件通常用来保存视频、图片、程序等不可阅读的内容，用文本编辑器打开这些文件，会看到一堆乱码，根本看不懂。<br />
-<br />
-但是从物理上讲，二进制文件和字符文件并没有什么区别，它们都是以二进制的形式保存在磁盘上的数据。<br />
-<br />
-我们之所以能看懂文本文件的内容，是因为文本文件中采用的是 ASCII、UTF-8、GBK 等字符编码，文本编辑器可以识别出这些编码格式，并将编码值转换成字符展示出来。<br />
-<br />
-而二进制文件使用的是 mp4、gif、exe 等特殊编码格式，文本编辑器并不认识这些编码格式，只能按照字符编码格式胡乱解析，所以就成了一堆乱七八糟的字符，有的甚至都没见过。<br />
-<br />
-如果我们新建一个 mp4 文件，给它写入一串字符，然后再用文本编辑器打开，你一样可以读得懂，有兴趣的读者可以自己试试。<br />
-<br />
-总起来说，不同类型的文件有不同的编码格式，必须使用对应的程序（软件）才能正确解析，否则就是一堆乱码，或者无法使用。<br />
-<h2>
-	fopen() 中的文本方式和二进制方式</h2>
-在C语言中，二进制方式很简单，读取文件时，会原封不动的读出文件的全部內容，写入数据时，也是把缓冲区中的內容原封不动的写到文件中。<br />
-<br />
-<span style="color:#a52a2a;">文本方式和二进制方式并没有本质上的区别，只是对于换行符的处理不同。</span><br />
-<br />
-C语言程序将<code>\n</code>作为换行符，类 UNIX/Linux 系统在处理文本文件时也将<code>\n</code>作为换行符，所以程序中的数据会原封不动地写入文本文件中，反之亦然。<br />
-<br />
-但是 Windows 系统却不同，它将<code>\r\n</code>作为文本文件的换行符。<br />
-<br />
-在 Windows 系统中，如果以文本方式打开文件，当读取文件时，程序会将文件中所有的<code>\r\n</code>转换成一个字符<code>\n</code>。也就是说，如果文本文件中有连续的两个字符是<code>\r\n</code>，则程序会丢弃前面的<code>\r</code>，只读入<code>\n</code>。<br />
-<br />
-当写入文件时，程序会将<code>\n</code>转换成<code>\r\n</code>写入。也就是说，如果要写入的内容中有字符<code>\n</code>，则在写入该字符前，程序会自动先写入一个<code>\r</code>。<br />
-<br />
-因此，如果用文本方式打开二进制文件进行读写，读写的内容就可能和文件的内容有出入。<br />
-<br />
-<span style="color:#b22222;">总起来说，对于 Windows 平台，为了保险起见，我们最好用<code>&quot;t&quot;</code>来打开文本文件，用<code>&quot;b&quot;</code>来打开二进制文件。对于 Linux 平台，使用<code>&quot;r&quot;</code>还是<code>&quot;b&quot;</code>都无所谓，既然默认是<code>&quot;r&quot;</code>，那我们什么都不写就行了。</span><br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="546"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/545.html">C语言打开文件</a></span>
                     <span class="next right"><a href="/view/547.html">以字符形式读写文件</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -183,7 +152,7 @@ C语言程序将<code>\n</code>作为换行符，类 UNIX/Linux 系统在处理�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 546;
-window.arcId = "577eB62Osf9dTzyM0XTDKDNBYmJDdSmELGaCkfrWbBJvAtKSWWNMu1gaWw";
+window.arcId = "64b8NxTomcVLiGmHrNR1+K+RgkM8giudoaVgKt2lq7TtyPB0J0Q4JmDCmw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -68,7 +70,7 @@
 				<span class="channel-num">6</span>
 				<a href='/c/array/'>C语言数组</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
 			<dd>
 				<span class="channel-num">8</span>
 				<a href='/c/preprocess/'>预处理命令</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,7 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/c/function/";window.nextPageURL = "/view/490.html";</script>
-			<div id="arc-body">从表面上看，函数在使用时必须带上括号，有必要的话还要传递参数，函数的执行结果也可以赋值给其它变量。例如，strcmp() 是一个用来比较字符<u><a href='/view/175.html' target='_blank'>串</a></u>大小的函数，它的用法如下：
+			<div id="arc-body">从表面上看，函数在使用时必须带上括号，有必要的话还要传递参数，函数的执行结果也可以赋值给其它变量。例如，strcmp() 是一个用来比较字符串大小的函数，它的用法如下：
 <pre class="cpp">
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -205,7 +207,7 @@ int main(){
 <br />
 你看它们是何其相似，都是通过一定的操作或规则，由一份数据得到另一份数据。<br />
 <br />
-不过从本质上看，将 Function 理解为&ldquo;功能&rdquo;或许更恰当，C语言中的函数往往是独立地实现了某项功能。一个程序由多个函<u><a href='/view/181.html' target='_blank'>数组</a></u>成，可以理解为「一个程序由多个小的功能叠加而成」。<br />
+不过从本质上看，将 Function 理解为&ldquo;功能&rdquo;或许更恰当，C语言中的函数往往是独立地实现了某项功能。一个程序由多个函数组成，可以理解为「一个程序由多个小的功能叠加而成」。<br />
 <br />
 本教程重在实践，不咬文嚼字，不死扣概念，大家理解即可，不必在此深究。<br />
 <h2>
@@ -260,7 +262,7 @@ strlen() 的处理结果是字符串 str1 的长度，是一个整数，我们�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 489;
-window.arcId = "7fbfK3erLFqyux5VcZPZWiDXRaSWT89AhbmthFjyl0zS9uPr64n3IneptA";
+window.arcId = "3183a5/pDhdDoYDX3nffEgLD4w8LXfNCR87UcBCFtlwvF6OvezTxGyt5aA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -63,7 +65,7 @@
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
 			<dd>
 				<span class="channel-num">7</span>
 				<a href='/c/function/'>C语言函数</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,7 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/481.html";window.nextPageURL = "/view/483.html";</script>
-			<div id="arc-body">其实在《<a href="/c/io/" target="_blank">C语言输入输出</a>》一章中我们已经提到了如何输入输出字符<u><a href='/view/175.html' target='_blank'>串</a></u>，但是那个时候我们还没有讲解字符串，大家理解的可能不透彻，所以本节我们有必要再深入和细化一下。
+			<div id="arc-body">其实在《<a href="/c/io/" target="_blank">C语言输入输出</a>》一章中我们已经提到了如何输入输出字符串，但是那个时候我们还没有讲解字符串，大家理解的可能不透彻，所以本节我们有必要再深入和细化一下。
 <h2>
 	字符串的输出</h2>
 在C语言中，有两个函数可以在控制台（显示器）上输出字符串，它们分别是：
@@ -207,7 +209,7 @@ int main(){
 	str3: JavaScript</p>
 第一次输入的字符串被 gets() 全部读取，并存入 str1 中。第二次输入的字符串，前半部分被第一个 scanf() 读取并存入 str2 中，后半部分被第二个 scanf() 读取并存入 str3 中。<br />
 <br />
-注意，scanf() 在读取数据时需要的是数据的地址，这一点是恒定不变的，所以对于 int、char、float 等类型的变量都要在前边添加<code>&amp;</code>以获取它们的地址。但是在本段代码中，我们只给出了字符串的名字，却没有在前边添加<code>&amp;</code>，这是为什么呢？因为字符串名字或者<u><a href='/view/181.html' target='_blank'>数组</a></u>名字在使用的过程中一般都会转换为地址，所以再添加<code>&amp;</code>就是多此一举，甚至会导致错误了。<br />
+注意，scanf() 在读取数据时需要的是数据的地址，这一点是恒定不变的，所以对于 int、char、float 等类型的变量都要在前边添加<code>&amp;</code>以获取它们的地址。但是在本段代码中，我们只给出了字符串的名字，却没有在前边添加<code>&amp;</code>，这是为什么呢？因为字符串名字或者数组名字在使用的过程中一般都会转换为地址，所以再添加<code>&amp;</code>就是多此一举，甚至会导致错误了。<br />
 <br />
 <span style="color: rgb(178, 34, 34);">就目前学到的知识而言，int、char、float 等类型的变量用于 scanf() 时都要在前面添加<code>&amp;</code>，而数组或者字符串用于 scanf() 时不用添加<code>&amp;</code>，它们本身就会转换为地址。读者一定要谨记这一点。</span><br />
 <br />
@@ -253,7 +255,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 482;
-window.arcId = "af3bCOE3QxK4AjpWJpvYEcYXAvZknxXvEKhvl456+kdY8J/3eqy232oRgg";
+window.arcId = "196cPSsboiygukGTGMPTjyLc9fkOE3b8o8jS4wB9zg8Jd8e1dyMh+4ACEA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

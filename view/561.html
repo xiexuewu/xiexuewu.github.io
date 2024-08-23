@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -93,15 +95,15 @@
 				<span class="channel-num">11</span>
 				<a href='/c/file/'>文件操作</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a></dd></dl>
+		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,132 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/560.html";window.nextPageURL = "/view/562.html";</script>
-			<div id="arc-body">在 Visual Studio 的调试过程中，有时候我们可能需要对程序的运行内存进行查看，修改该怎么办？Visual Studio 也为我们提供了很好的解决方案。那就是使用 Visual Studio 自带的内存查看窗口。<br />
-<br />
-首先我们通过内存窗口查看变量的值，我们启动 Visual Studio，创建一个工程，输入如下代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int testNumber = 5678;
-    printf(&quot;testNumber 的内存地址为 %p \n&quot;, &amp;testNumber);
-    //输出内存地址
-    //TODO:在这里插入断点
-    return 0;
-}</pre>
-我们在第七行设置好断点，然后按<code>F5</code>启动调试，等待触发断点。触发断点后，我们发现，IDE 中并没有显示内存窗口（默认设置下），这时，我们点击菜单 -&gt; 调试(D) -&gt; 窗口 (W) -&gt; 内存 (M) -&gt; 内存1(1)，就可以调出内存窗口了，如图：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1195PLS.gif" /></div>
-<br />
-我们看到，内存窗口里面显示着一大堆乱七八糟的数据，这里面的这些就是我们内存中的数据啦，我们可以通过变量 testNumber 的内存地址跳转到器对应的内存空间，我们看到 testNumber 的地址为 0x6BD78F774 （在不同的进程是不一样的），我们把这个地址输入到我们的内存窗口的地址栏。如图：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1195UX38.gif" /></div>
-<br />
-我们看到，尽管我们已经输入了正确地地址，但是我们还是没有看到正确的数据显示，其实原因非常简单，我们来回顾一下 C 语言的一些入门知识：我们知道，在我们的源代码中，我们的 testNumber 变量被定义为 int 整形，我们再想想 int 整形在内存中占几个字节？没错，是 4 个字节。所以我们应该以四字节的形式格式化这些内存数据，这是我们在内存窗口中单击我们的鼠标右键，在弹出的菜单中选择&ldquo;4 字节整数(4)&rdquo;，如下图所示：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1195941A4.gif" /></div>
-<br />
-就能正确地显示相关的数据了，如图：<br />
-<br />
-<img alt="" src="/uploads/allimg/240821/2-240R12000262H.gif" /><br />
-<br />
-没错，查看内存就是这么的简单。接下来我们就来查看与修改浮点数的内存数据，我们看下面这段代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main()
-{
-    double pi = 3.141592653589;
-    printf(&quot;pi 的内存地址为 %p \n&quot;, &amp;pi);
-    //输出内存地址
-    //TODO:在这里插入断点
-    return 0;
-}</pre>
-同样的，我们在第 7 行设置断点，按<code>F5</code>启动调试，等待断点被触发：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1200103514.gif" /></div>
-<br />
-根据输出的内存地址，我们在内存窗口找到 pi 的值：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/2-240R1200144M8.gif" /></div>
-<br />
-我们发现，现在显示的数据依然是错误的，因为查看器还在使用先前设置的&ldquo;4位整形格式&rdquo;格式化我们的内存数据呢。double 属于 64 位浮点数，所以我们在查看窗口点击鼠标右键，在弹出的菜单中选择&ldquo;64位浮点(6)&rdquo;，就能看到它正确地输出数据了。<br />
-<br />
-<img alt="" src="/uploads/allimg/240821/2-240R120025O21.gif" /><br />
-<br />
-注意，在我们设置的变量 pi 的值的基础上，内存窗口里显示的数据多了几个 0，这些 0 所代表的就是 double 型数据的最高精度。接下来我们尝试在内存窗口修改变量 pi 的值，为其补齐精度。现在我们用鼠标右键点击我们的 pi 的内存数据，在弹出的菜单中选择编辑值 (E)，在显示的输入框中我们输入 3.1415926535897931，按回车即可保存。我们看看效果：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/2-240R120032H25.gif" /></div>
-<br />
-怎么样，内存的查看与修改是不是很简单呢？其实我们只要记住下面的几个对应关系，常用的数值数据类型的内存查看与修改都不在话下：<br />
-<br />
-<table>
-	<tbody>
-		<tr>
-			<th>
-				类型名</th>
-			<th>
-				变量类型</th>
-			<th>
-				内存查看窗口中应选择的数据格式</th>
-		</tr>
-		<tr>
-			<td>
-				short</td>
-			<td>
-				16&nbsp;位整形</td>
-			<td>
-				2&nbsp;字节整数</td>
-		</tr>
-		<tr>
-			<td>
-				int</td>
-			<td>
-				32&nbsp;位整形</td>
-			<td>
-				4&nbsp;字节整数</td>
-		</tr>
-		<tr>
-			<td>
-				long</td>
-			<td>
-				32&nbsp;位整形</td>
-			<td>
-				4&nbsp;字节整数</td>
-		</tr>
-		<tr>
-			<td>
-				long&nbsp;long</td>
-			<td>
-				64&nbsp;位整形</td>
-			<td>
-				8&nbsp;字节整数</td>
-		</tr>
-		<tr>
-			<td>
-				float</td>
-			<td>
-				32&nbsp;位(4字节)单精度浮点数</td>
-			<td>
-				32&nbsp;位浮点</td>
-		</tr>
-		<tr>
-			<td>
-				double</td>
-			<td>
-				64&nbsp;位(8字节)双精度浮点数</td>
-			<td>
-				64&nbsp;位浮点</td>
-		</tr>
-	</tbody>
-</table>
-&nbsp;<br />
-内存新手常用的内存窗口操作就到这里了，其实关于内存操作还有很多高级用法，不过那不在我们初级调试教程的范围之内。我们在修改内存的时候要注意安全，防止随意修改导致的程序崩溃，甚至是无法结束进程！</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="561"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/560.html">即时窗口的使用</a></span>
                     <span class="next right"><a href="/view/562.html">有条件断点的设置</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -275,7 +152,7 @@ int main()
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 561;
-window.arcId = "7cc7qru76J0wAR8AKJ6/PcXV0IRoKrrhLRiy+h/juL8NzXbDYfEWptU6Mg";
+window.arcId = "f5b3SBulcm9eyuYuE6Jd5Pi7QbRRGA74P/G9KU5YbyRbJ+gBadQDaHG8lQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

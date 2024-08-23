@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -88,7 +90,7 @@
 				<span class="channel-num">10</span>
 				<a href='/c/struct/'>结构体</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -127,7 +129,7 @@
 <br />
 对于 Windows 系统，使用 fread() 和 fwrite() 时应该以二进制的形式打开文件，具体原因我们已在《<a href="/view/546.html" target="_blank">文本文件和二进制文件到底有什么区别</a>》一文中进行了说明。<br />
 <br />
-fread() 函数用来从指定文件中读取块数据。所谓块数据，也就是若干个字节的数据，可以是一个字符，可以是一个字符<u><a href='/view/175.html' target='_blank'>串</a></u>，可以是多行数据，并没有什么限制。fread() 的原型为：
+fread() 函数用来从指定文件中读取块数据。所谓块数据，也就是若干个字节的数据，可以是一个字符，可以是一个字符串，可以是多行数据，并没有什么限制。fread() 的原型为：
 <pre class="info-box">
 size_t fread ( void *ptr, size_t size, size_t count, FILE *fp );</pre>
 fwrite() 函数用来向文件中写入块数据，它的原型为：
@@ -136,7 +138,7 @@ size_t fwrite ( void * ptr, size_t size, size_t count, FILE *fp );</pre>
 对参数的说明：
 <ul>
 	<li>
-		ptr 为内存区块的指针，它可以是<u><a href='/view/181.html' target='_blank'>数组</a></u>、变量、结构体等。fread()&nbsp;中的&nbsp;ptr 用来存放读取到的数据，fwrite()&nbsp;中的 ptr 用来存放要写入的数据。</li>
+		ptr 为内存区块的指针，它可以是数组、变量、结构体等。fread()&nbsp;中的&nbsp;ptr 用来存放读取到的数据，fwrite()&nbsp;中的 ptr 用来存放要写入的数据。</li>
 	<li>
 		size：表示每个数据块的字节数。</li>
 	<li>
@@ -276,7 +278,7 @@ Hua  1  14  99.000000</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 549;
-window.arcId = "605cU3DzaGQ1/BnfSg3CmVxSH1SKC1Kh8c51mGThrzb5JOZaFNwRunZirA";
+window.arcId = "59b5fFXPs/6qh5dqgsDcv4KFWMIQxE/7n3hqdEO4/o2oa+hrEn973sFYuA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

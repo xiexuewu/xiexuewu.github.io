@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -88,7 +90,7 @@
 				<span class="channel-num">10</span>
 				<a href='/c/struct/'>结构体</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -180,7 +182,7 @@
 	文件流</h2>
 在《<a href="/view/367.html" target="_blank">载入内存，让程序运行起来</a>》一文中提到，所有的文件（保存在磁盘）都要载入内存才能处理，所有的数据必须写入文件（磁盘）才不会丢失。数据在文件和内存之间传递的过程叫做<span style="color: #008000">文件流</span>，类似水从一个地方流动到另一个地方。数据从文件复制到内存的过程叫做<span style="color: #008000">输入流</span>，从内存保存到文件的过程叫做<span style="color: #008000">输出流</span>。<br />
 <br />
-文件是数据源的一种，除了文件，还有数据库、网络、键盘等；数据传递到内存也就是保存到C语言的变量（例如整数、字符<u><a href='/view/175.html' target='_blank'>串</a></u>、<u><a href='/view/181.html' target='_blank'>数组</a></u>、缓冲区等）。我们把数据在数据源和程序（内存）之间传递的过程叫做<span style="color: #008000">数据流(Data Stream)</span>。相应的，数据从数据源到程序（内存）的过程叫做<span style="color: #008000">输入流(Input Stream)</span>，从程序（内存）到数据源的过程叫做<span style="color: #008000">输出流(Output Stream)</span>。<br />
+文件是数据源的一种，除了文件，还有数据库、网络、键盘等；数据传递到内存也就是保存到C语言的变量（例如整数、字符串、数组、缓冲区等）。我们把数据在数据源和程序（内存）之间传递的过程叫做<span style="color: #008000">数据流(Data Stream)</span>。相应的，数据从数据源到程序（内存）的过程叫做<span style="color: #008000">输入流(Input Stream)</span>，从程序（内存）到数据源的过程叫做<span style="color: #008000">输出流(Output Stream)</span>。<br />
 <br />
 输入输出（Input output，IO）是指程序（内存）与外部设备（键盘、显示器、磁盘、其他计算机等）进行交互的操作。几乎所有的程序都有输入与输出操作，如从键盘上读取数据，从本地或网络上的文件读取数据或写入数据等。通过输入和输出操作可以从外界接收信息，或者是把信息传递给外界。<br />
 <br />
@@ -212,7 +214,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 544;
-window.arcId = "e7d7wc/WOaihSY+xJ+Sw0XUDy1OMLElbKmyn+l0w33Vc2Lkf+r6hdbSk0A";
+window.arcId = "0d947gauo5iRnMHzF8hyP1/0Ae6LVfPsAY2UaGNVN0OjQclCjg4ncKTFAQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

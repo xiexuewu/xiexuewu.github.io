@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -83,7 +85,7 @@
 				<span class="channel-num">9</span>
 				<a href='/c/pointer/'>指针</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">10</span> <a href="/c/struct/">结构体</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/532.html">C语言结构体</a></dd><dd>10.2 <a href="/view/533.html">C语言结构体数组</a></dd><dd>10.3 <a href="/view/534.html">C语言结构体指针</a></dd><dd>10.4 <a href="/view/535.html">C语言枚举类型</a></dd><dd>10.5 <a href="/view/536.html">C语言共用体</a></dd><dd>10.6 <a href="/view/541.html">typedef的用法</a></dd><dd>10.7 <a href="/view/537.html">大端小端以及判别方式</a></dd><dd>10.8 <a href="/view/538.html">C语言位域</a></dd><dd>10.9 <a href="/view/539.html">C语言位运算</a></dd><dd>10.10 <a href="/view/540.html">使用位运算对数据或文件内容进行加密</a></dd></dl>
+		<dd class="this"> <span class="channel-num">10</span> <a href="/c/struct/">结构体</a> </dd><dl class="dl-sub"><dd>10.1 <a href="/view/532.html">C语言结构体</a></dd><dd>10.2 <a href="/view/533.html">C语言结构体数组</a></dd><dd>10.3 <a href="/view/534.html">C语言结构体指针</a></dd><dd>10.4 <a href="/view/535.html">C语言枚举类型</a></dd><dd>10.5 <a href="/view/536.html">C语言共用体</a></dd><dd>10.6 <a href="/view/541.html">typedef的用法</a></dd><dd>10.7 <a href="/view/537.html">大端小端以及判别方式</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="/view/538.html">C语言位域</a></dd><dd>10.9 <a href="/view/539.html">C语言位运算</a></dd><dd>10.10 <a href="/view/540.html">使用位运算对数据或文件内容进行加密</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">11</span>
 				<a href='/c/file/'>文件操作</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,54 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/539.html";window.nextPageURL = "/c/file/";</script>
-			<div id="arc-body">数据加密解密是一个常用的功能，如果你不希望让别人看到文件中的内容，可以通过密钥（也称&rdquo;密码&ldquo;）将文件的内容加密。比如文本文件(.txt)，加密前的内容是能够读懂的，加密后的内容是&rdquo;乱码&ldquo;，都是一些奇怪的字符，根本无法阅读。<br />
-<br />
-数据加密解密的原理也很简单，就是使用异或运算。请先看下面的代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-int main(){
-    char plaintext = &#39;a&#39;;  // 明文
-    char secretkey = &#39;!&#39;;  // 密钥
-    char ciphertext = plaintext ^ secretkey;  // 密文
-    char decodetext = ciphertext ^ secretkey;  // 解密后的字符
-    char buffer[9];
-
-    printf(&quot;            char    ASCII\n&quot;);
-    // itoa()用来将数字转换为字符<u><a href='/view/175.html' target='_blank'>串</a></u>，可以设定转换时的进制（基数）
-    // 这里将字符对应的ascii码转换为二进制
-    printf(&quot; plaintext   %c     %7s\n&quot;, plaintext, itoa(plaintext, buffer, 2));
-    printf(&quot; secretkey   %c     %7s\n&quot;, secretkey, itoa(secretkey, buffer, 2));
-    printf(&quot;ciphertext   %c     %7s\n&quot;, ciphertext, itoa(ciphertext, buffer, 2));
-    printf(&quot;decodetext   %c     %7s\n&quot;, decodetext, itoa(decodetext, buffer, 2));
-
-    return 0;
-}</pre>
-运行结果：
-<pre class="info-box">
-            char    ASCII
- plaintext   a     1100001
- secretkey   !      100001
-ciphertext   @     1000000
-decodetext   a     1100001</pre>
-看到了吗，plaintext 与&nbsp;decodetext相同，也就是说，两次异或运算后还是原来的结果。<br />
-<br />
-这就是加密的关键技术：
-<ul>
-	<li>
-		通过一次异或运算，生成密文，密文没有可读性，与原文风马牛不相及，这就是加密；</li>
-	<li>
-		密文再经过一次异或运算，就会还原成原文，这就是解密的过程；</li>
-	<li>
-		加密和解密需要相同的密钥，如果密钥不对，是无法成功解密的。</li>
-</ul>
-<br />
-上面的加密算法称为对称加密算法，加密和解密使用同一个密钥。<br />
-<br />
-如果加密和解密的密钥不同，则称为非对称加密算法。在非对称算法中，加密的密钥称为公钥，解密的密钥称为私钥，只知道公钥是无法解密的，还必须知道私钥。<br />
-<br />
-注意：程序中的 itoa() 位于 stdlib.h 头文件，它并不是一个标准的C函数，只有Windows下有。</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="540"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/539.html">C语言位运算</a></span>
                     <span class="next right"><a href="/c/file/">文件操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -197,7 +152,7 @@ decodetext   a     1100001</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 540;
-window.arcId = "b351W2XHt7TAGr7JHfWv1YpAGd3LYyriOULkCMHvBuSetk6Z5RnARaF6Pw";
+window.arcId = "d809OBltDrzLF4jQk/HFO3A8drRGE7KuXn/yd907PnfiOoMKvkESR7I7Ow";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

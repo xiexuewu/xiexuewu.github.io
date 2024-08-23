@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -107,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>KMP算法（快速模式匹配算法）C语言详解</h1>
-			<div id="arc-body"><span style="color:#008000;">快速模式匹配算法</span>，简称&nbsp;<span style="color:#008000;">KMP 算法</span>，是在 <u><a href='/view/179.html' target='_blank'>BF 算法</a></u>基础上改进得到的算法。学习 BF 算法我们知道，该算法的实现过程就是 &quot;傻瓜式&quot; 地用模式<u><a href='/view/175.html' target='_blank'>串</a></u>（假定为子串的串）与主串中的字符一一匹配，算法执行效率不高。<br />
+			<div id="arc-body"><span style="color:#008000;">快速模式匹配算法</span>，简称&nbsp;<span style="color:#008000;">KMP 算法</span>，是在 <u><a href='/view/179.html' target='_blank'>BF 算法</a></u>基础上改进得到的算法。学习 BF 算法我们知道，该算法的实现过程就是 &quot;傻瓜式&quot; 地用模式串（假定为子串的串）与主串中的字符一一匹配，算法执行效率不高。<br />
 <br />
 KMP 算法不同，它的实现过程接近人为进行模式匹配的过程。例如，对主串 A（&quot;ABCABCE&quot;）和模式串 B（&quot;ABCE&quot;）进行模式匹配，如果人为去判断，仅需匹配两次。
 <div style="text-align: center;">
@@ -150,7 +152,7 @@ KMP 算法不同，它的实现过程接近人为进行模式匹配的过程。�
 	<img alt="模式串后移等价于 j 前移" src="/uploads/allimg/181212/2-1Q212223I41Z.gif" /><br />
 	图 4 模式串后移等价于 j 前移</div>
 <br />
-因此，我们可以给每个模式串配备一个<u><a href='/view/181.html' target='_blank'>数组</a></u>（例如 next[]），用于存储模式串中每个字符对应指针 j 重定向的位置（也就是存储模式串的数组下标），比如 j=3，则该字符匹配失败后指针 j 指向模式串中第 3 个字符。<br />
+因此，我们可以给每个模式串配备一个数组（例如 next[]），用于存储模式串中每个字符对应指针 j 重定向的位置（也就是存储模式串的数组下标），比如 j=3，则该字符匹配失败后指针 j 指向模式串中第 3 个字符。<br />
 <br />
 模式串中各字符对应 next 值的计算方式是，取该字符前面的字符串（不包含自己），其前缀字符串和后缀字符串相同字符的最大个数再 +1 就是该字符对应的 next 值。<br />
 <p class="info-box">
@@ -392,7 +394,7 @@ KMP 算法优秀文章推荐：<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 180;
-window.arcId = "6efb1hepxJ89OqHIfYlfqXiuWgp+jWB9It5pgq7E91nE85nGjqydVdZkWg";
+window.arcId = "7dbeSaCoojhQfGBPHfclG0EKsO9+DM/lMubgnZy29rdaIGbKqAfmOdw4uA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

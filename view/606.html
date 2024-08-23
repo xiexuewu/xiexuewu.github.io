@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -101,14 +103,14 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">15</span> <a href="/c/practice/">C语言项目实战案例</a> </dd><dl class="dl-sub"><dd>15.1 <a href="/view/599.html">C语言学生信息管理系统（文件版）</a></dd><dd>15.2 <a href="/view/600.html">学生信息管理系统源码下载和思路解析（文件版）</a></dd><dd>15.3 <a href="/view/601.html">C语言贪吃蛇小游戏</a></dd><dd>15.4 <a href="/view/602.html">贪吃蛇小游戏源码下载和思路解析</a></dd><dd>15.5 <a href="/view/603.html">C语言2048小游戏</a></dd><dd>15.6 <a href="/view/604.html">2048小游戏源码下载和思路解析</a></dd><dd>15.7 <a href="/view/605.html">C语言推箱子小游戏</a></dd><dd>15.8 <a href="/view/606.html">推箱子小游戏源码下载和思路解析</a></dd><dd>15.9 <a href="/view/607.html">C语言扫雷小游戏</a></dd><dd>15.10 <a href="/view/608.html">扫雷小游戏源码下载和思路解析</a></dd></dl>
+		<dd class="this"> <span class="channel-num">15</span> <a href="/c/practice/">C语言项目实战案例</a> </dd><dl class="dl-sub"><dd>15.1 <a href="/view/599.html">C语言学生信息管理系统（文件版）</a></dd><dd>15.2 <a href="/view/600.html">学生信息管理系统源码下载和思路解析（文件版）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>15.3 <a href="/view/601.html">C语言贪吃蛇小游戏</a></dd><dd>15.4 <a href="/view/602.html">贪吃蛇小游戏源码下载和思路解析</a><span class="glyphicon glyphicon-usd"></span></dd><dd>15.5 <a href="/view/603.html">C语言2048小游戏</a></dd><dd>15.6 <a href="/view/604.html">2048小游戏源码下载和思路解析</a><span class="glyphicon glyphicon-usd"></span></dd><dd>15.7 <a href="/view/605.html">C语言推箱子小游戏</a></dd><dd>15.8 <a href="/view/606.html">推箱子小游戏源码下载和思路解析</a><span class="glyphicon glyphicon-usd"></span></dd><dd>15.9 <a href="/view/607.html">C语言扫雷小游戏</a></dd><dd>15.10 <a href="/view/608.html">扫雷小游戏源码下载和思路解析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 	</div>
 </div>
 	<div id="article-wrap">
@@ -123,118 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/605.html";window.nextPageURL = "/view/607.html";</script>
-			<div id="arc-body">在 《<a href="/view/605.html" target="_blank">C语言推箱子游戏演示和说明</a>》一节中，我们对推箱子游戏的玩法进行了介绍和演示，这节就来分析一下它的源码。<br />
-<br />
-推箱子源代码百度网盘下载地址：<a href="https://pan.quark.cn/s/026885e98951" target="_blank">https://pan.quark.cn/s/026885e98951</a><br />
-<br />
-各位读者不妨先将源码下载下来浏览一遍，记住关键的几个函数，整理一下不了解的知识点，做到心中有数。
-<h2>
-	关键知识点</h2>
-下面请各位读者先学习一下该游戏中涉及到的几个关键知识点，有了这些必备条件，我们才好讲解贪吃蛇的设计思路。
-<h3>
-	1) 改变输出文本的颜色</h3>
-推箱子游戏中的边框是灰色的，小人是湖蓝色的，箱子是淡红色的，星星是黄色的，等等这些涉及到如何改变文本的输出颜色，请大家猛击《<a href="/view/412.html" target="_blank">彩色版的C语言，让文字更漂亮</a>》了解详情。
-<h3>
-	2) 键盘监听</h3>
-推箱子游戏中，人在移动过程中，必须能够及时捕获用户按下的方向键，并改变移动方向，具体是如何做到的，请大家猛击《<a href="/view/445.html" target="_blank">C语言非阻塞式键盘监听</a>》了解详情。
-<h2>
-	设置游戏地图</h2>
-推箱子游戏的地图，由于是二维结构，所以采用二维<u><a href='/view/181.html' target='_blank'>数组</a></u>进行存储，再合适不过。<br />
-<br />
-具体方案是<span style="color:#b22222;">采用整形数组设计地图，地图中不同的道具，用不同的数字表示</span>：
-<ul>
-	<li>
-		箱子所在的位置，用数字 2 表示；</li>
-	<li>
-		人所在的位置，用数字 3 表示；</li>
-	<li>
-		边框的位置，用数字 1 表示；</li>
-	<li>
-		箱子最终需到达的位置，用数字 4 表示；</li>
-	<li>
-		地图中可行的道路，可用数字 0 表示；</li>
-</ul>
-<br />
-如下的 map_1 这个二维数组，记录的就是第一关卡地图所对应的初始数据：
-<pre class="cpp">
-int map_1[10][10] = {
-{ 0,0,1,1,1,0,0,0 },
-{ 0,0,1,4,1,0,0,0 },
-{ 0,0,1,0,1,1,1,1 },
-{ 1,1,1,0,0,2,4,1 },
-{ 1,4,2,2,0,1,1,1 },
-{ 1,1,1,3,2,1,0,0 },
-{ 0,0,0,1,4,1,0,0 },
-{ 0,0,0,1,1,1,0,0 }
-};</pre>
-地图中的道具分别用不同的数字表示完成后，当输出到窗口上时，可对二维数组进行加工，即用适当的字符代替不同的数字：
-<ul>
-	<li>
-		1 表示边框，可用 &ldquo;■&rdquo; 代替；</li>
-	<li>
-		3 表示人物，可用 &rdquo;♀&rdquo; 代替；</li>
-	<li>
-		2 表示箱子，可用 &ldquo;■&rdquo; 代替；</li>
-	<li>
-		4 表示箱子要去的目标位置，可用 &rdquo;☆&rdquo; 代替；</li>
-	<li>
-		0 表示道路，可用 &ldquo;空格&rdquo; 代替；</li>
-</ul>
-<blockquote>
-	<p>
-		<span style="color: rgb(178, 34, 34);">需要说明的是：</span>所有的字符都不是普通字符，都为特殊字符，每个特殊字符占用 2 个普通字符的位置（一个特殊&ldquo;空格&rdquo;可用两个普通空格来表示）。</p>
-</blockquote>
-除了以上几种情况外，在游戏过程中，还有可能出现以下几种情况，仍需要使用不同的数字表示：
-<ol>
-	<li>
-		箱子到达目标位置 &rdquo;☆&rdquo;&nbsp; 时，需要用不同的标志显示出来，证明箱子已经达到目标位置，程序中用&ldquo;★&rdquo;表示，对应的数字为 5；</li>
-	<li>
-		人物到达有&rdquo;☆&rdquo; 的位置时，此时需要特殊标记，程序中用数字 6 表示这个特殊位置（图标没变）。人物移动后，此处再恢复成 &rdquo;☆&rdquo;；</li>
-</ol>
-综上所述，实现代码可见分享给大家的源码中的 <span style="color:#b22222;">render() </span>函数。<br />
-<br />
-代码中，设定地图的最大规格为 10*10，在显示时，只需遍历整个二维数组，不同的数字采用不同的字符表示，同时赋予每个字符不同的颜色（color() 函数的作用就是赋予字符颜色），最终的效果如图所示：
-<div style="text-align: center;">
-	<br />
-	<img alt="" src="/uploads/allimg/240822/11155644B-0.png" /></div>
-<h2>
-	人物和箱子的移动</h2>
-整个游戏过程中，<span style="color:#b22222;">玩家时刻都是在控制人物的移动</span>，所以，程序中应为人物为出发点，采用穷举法罗列出所有由于人物移动而导致的情况。<br />
-<br />
-<span style="color:#008000;">另外，人物在移动过程中，无论人物是向哪个方向移动，程序中都可归为一种情况，那就是：</span><span style="color:#b22222;">人物在向前移动</span>。<br />
-<br />
-当人物向前移动之前，首先根据人物当前所在的位置不同，分为两种情况：
-<ol>
-	<li>
-		当前人物位于道路上（即空格上），则当人物移动后，此位置应恢复为空格；</li>
-	<li>
-		当前人物位于箱子要去的目标位置上，则当人物移动后，此位置要恢复为目标位置，而不是空格；</li>
-</ol>
-<br />
-如下图所示，即使是在第 1 种情况下，由于人物前方道路状况不同，处理方案也不一样：
-<div style="text-align: center;">
-	<br />
-	<img alt="" src="/uploads/allimg/240822/11155B354-1.png" style="height: 276px; width: 600px;" /><br />
-	&nbsp;</div>
-<ul>
-	<li>
-		第 1 种情况处理方案：<span style="color:#008000;">人物移动后，原位置恢复为空格（即数字0）</span>，人物移动后位于空格上，所以该位置对应的数字为 3，箱子也向前一步，此时箱子位于空格上，所有该位置对应的数字为2。</li>
-	<li>
-		第 2 种情况处理方案：<span style="color:#008000;">人物移动后，原位置恢复为空格</span>，人物站在空格上，该位置对应的数字为 3，箱子向前一步，恰好对于目标位置处，对应的数字为 5。</li>
-	<li>
-		第 3 种情况处理方案：<span style="color:#008000;">人物移动后，原位置恢复为空格</span>，人物位于箱子的目标位置上，此位置对应的数字为 6，箱子向前一步，位于空格上，该位置对应的数字为 2。</li>
-	<li>
-		第 4 种情况处理方案：<span style="color:#008000;">人物移动后，原位置恢复为空格</span>，人物位于箱子的目标位置上，此位置对应的数字为 6，箱子向前一步，还是位于目标位置处，对应的数字还是 5。</li>
-	<li>
-		第 5 种情况处理方案：<span style="color:#008000;">人物移动后，原位置恢复为空格</span>，移动后的人物位于空格处，该位置对应的数字为 3。</li>
-	<li>
-		第 6 种情况处理方案：<span style="color:#008000;">人物移动后，原位置恢复为空格</span>，移动后的人物位于箱子的目标位置上，此位置对应的数字为 6。</li>
-</ul>
-<br />
-以上仅是第一种情况下，面临的 6 种可能。当人物位于箱子的目标位置时，也同样面临以上 6 种情况。每种情况的处理方案中，同第一种情况不同的是，<span style="color:#008000;">人物移动后，原位置应恢复为箱子的目标位置，对应的数字为 4。</span><br />
-<br />
-以上 12 种情况，及各自的处理方案的具体实现，可见源码中的 move() 函数，其中附带有详细的代码注释。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="606"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/605.html">C语言推箱子小游戏</a></span>
                     <span class="next right"><a href="/view/607.html">C语言扫雷小游戏</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -261,7 +152,7 @@ int map_1[10][10] = {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 606;
-window.arcId = "15bafP7DNfDEGA4AYvAL0eKV4eSiLB9p7iasS+3VIv2K8uqwXbZkKW/Ubg";
+window.arcId = "6a06Gd8d1ZtX/aiLsCzPZomRGRglL8rUIXXqoCwrgt6r4QMouPAAfZOJhQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

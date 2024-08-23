@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -53,7 +55,7 @@
 				<span class="channel-num">3</span>
 				<a href='/c/variable_datatype/'>变量和数据类型</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -126,7 +128,7 @@
 			<div id="arc-body">在 C语言中，有三个函数可以用来在显示器上输出数据，它们分别是：
 <ul>
 	<li>
-		<span style="color: #008000">puts()</span>：只能输出字符<u><a href='/view/175.html' target='_blank'>串</a></u>，并且输出结束后会自动换行，在《<a href="/view/374.html" target="_blank">第一个C语言程序</a>》中已经进行了介绍。</li>
+		<span style="color: #008000">puts()</span>：只能输出字符串，并且输出结束后会自动换行，在《<a href="/view/374.html" target="_blank">第一个C语言程序</a>》中已经进行了介绍。</li>
 	<li>
 		<span style="color: #008000">putchar()</span>：只能输出单个字符，在《<a href="/view/423.html" target="_blank">在C语言中使用英文字符</a>》中已经进行了介绍。</li>
 	<li>
@@ -311,7 +313,7 @@ int main(){
 	<li>
 		f 的指定输出宽度为 12，9.800000 的宽度为 8，所以前边要补上 4 个空格。</li>
 	<li>
-		str 的指定输出宽度为 8，&quot;http://c.biancheng.net&quot; 的宽度为 22，超过了 8，所以指定输出宽度不再起作用，而是按照 str 的实际宽度输出。</li>
+		str 的指定输出宽度为 8，&quot;https://xiexuewu.github.io&quot; 的宽度为 26，超过了 8，所以指定输出宽度不再起作用，而是按照 str 的实际宽度输出。</li>
 </ul>
 <br />
 3) .precision 表示输出精度，也就是小数的位数。
@@ -523,7 +525,7 @@ printf() 的这些格式规范不是&ldquo;小把戏&rdquo;，优美的输出格
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 436;
-window.arcId = "788eOQlRywQXGJL9GAKVyJzczmCj8f8UNg0EdEGDmY9DS5HPvbM3V+dV2Q";
+window.arcId = "ba84LjUnPEVAoPhtQL8/PV3o7qj9cScqGBLmu7zVe4fIUO6QxTpFM5wWRQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

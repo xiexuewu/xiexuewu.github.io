@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -98,12 +100,12 @@
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
 			</dd>
-		
+		<dd class="this"> <span class="channel-num">13</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>13.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>13.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.5 <a href="/view/590.html">符号——链接的粘合剂</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.6 <a href="/view/591.html">强符号和弱符号</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.7 <a href="/view/592.html">强引用和弱引用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.8 <a href="/view/593.html">C语言模块化编程中的头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.9 <a href="/view/594.html">C语言标准库以及标准头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.10 <a href="/view/595.html">细说C语言头文件的路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.11 <a href="/view/596.html">防止C语言头文件被重复包含</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.12 <a href="/view/597.html">C语言static变量和函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
-				<span class="channel-num">13</span>
+				<span class="channel-num">14</span>
 				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">14</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>14.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>14.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a></dd><dd>14.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a></dd><dd>14.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a></dd><dd>14.5 <a href="/view/590.html">符号——链接的粘合剂</a></dd><dd>14.6 <a href="/view/591.html">强符号和弱符号</a></dd><dd>14.7 <a href="/view/592.html">强引用和弱引用</a></dd><dd>14.8 <a href="/view/593.html">C语言模块化编程中的头文件</a></dd><dd>14.9 <a href="/view/594.html">C语言标准库以及标准头文件</a></dd><dd>14.10 <a href="/view/595.html">细说C语言头文件的路径</a></dd><dd>14.11 <a href="/view/596.html">防止C语言头文件被重复包含</a></dd><dd>14.12 <a href="/view/597.html">C语言static变量和函数</a></dd><dd>14.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a></dd></dl>
+		
 			<dd>
 				<span class="channel-num">15</span>
 				<a href='/c/practice/'>C语言项目实战案例</a>
@@ -123,86 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/586.html";window.nextPageURL = "/view/588.html";</script>
-			<div id="arc-body">对于平常应用程序的开发，很少有人会关注编译和链接的过程，因为我们使用的工具一般都是流行的集成开发环境（IDE），比如 Visual Studio、Dev C++、C-Free 等。这些功能强大的 IDE 通常将编译和链接合并到一起，也就是<span style="color: #008000">构建（Build）</span>或<span style="color: #008000">运行（Run）</span>。即使在 Linux 下使用命令行来编译一个源文件，简单的一句<code>$gcc demo.c</code>也包含了非常复杂的过程。<br />
-<br />
-虽然 IDE 提供的默认配置、编译和链接参数对于大部分应用程序来说已经足够使用了，但是作为学习者，我们还是要刨根问底，弄清从源代码生成可执行文件的内部机理，不要被 IDE 提供的强大功能所迷惑。<br />
-<br />
-C语言经典的&ldquo;Hello World&rdquo;小程序几乎是每个程序员闭着眼睛都能写出来的，基本成了入门教程和开发环境的默认标准，代码如下：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main(){
-    printf(&quot;Hello World\n&quot;);
-    return 0;
-}</pre>
-如果在 Windows 下使用 Visual Studio 来编译，那么可以直接点击<code>运行（Run）按钮</code>或者<code>构建（Build）按钮</code>，在工程目录下就会看到生成的 .exe 程序。<br />
-<br />
-如果在 Linux 下使用 GCC 来编译，使用最简单的<code>$gcc demo.c</code>命令，就可以在当前目录下看到 a.out。<br />
-<br />
-<span style="color: #b22222">事实上，从源代码生成可执行文件可以分为四个步骤，分别是预处理（Preprocessing）、编译（Compilation）、汇编（Assembly）和链接（Linking）。</span>下图是 GCC 生成 a.out 的过程：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240822/092Q4F15-0.jpg" style="height: 185px; width: 724px" /></div>
-<h2>
-	预处理（Preprocessing）</h2>
-预处理过程主要是处理那些源文件和头文件中以<code>#</code>开头的命令，比如&nbsp;#include、#define、#ifdef&nbsp;等。预处理的规则一般如下：
-<ul>
-	<li>
-		将所有的<code>#define</code>删除，并展开所有的宏定义。</li>
-	<li>
-		处理所有条件编译命令，比如&nbsp;#if、#ifdef、#elif、#else、#endif&nbsp;等。</li>
-	<li>
-		处理<code>#include</code>命令，将被包含文件的内容插入到该命令所在的位置，这与复制粘贴的效果一样。注意，这个过程是递归进行的，也就是说被包含的文件可能还会包含其他的文件。</li>
-	<li>
-		删除所有的注释<code>//</code>和<code>/* ... */</code>。</li>
-	<li>
-		添加行号和文件名标识，便于在调试和出错时给出具体的代码位置。</li>
-	<li>
-		保留所有的<code>#pragma</code>命令，因为编译器需要使用它们。</li>
-</ul>
-<br />
-预处理的结果是生成<code>.i</code>文件。<code>.i</code>文件也是包含C语言代码的源文件，只不过所有的宏已经被展开，所有包含的文件已经被插入到当前文件中。当你无法判断宏定义是否正确，或者文件包含是否有效时，可以查看<code>.i</code>文件来确定问题。<br />
-<br />
-在 GCC 中，可以通过下面的命令生成<code>.i</code>文件：
-<p class="info-box">
-	$gcc -E demo.c -o demo.i</p>
-<code>-E</code>表示只进行预编译。<br />
-<br />
-在 Visual Studio 中，在当前工程的属性面板中将&ldquo;预处理到文件&rdquo;设置为&ldquo;是&rdquo;，如下图所示：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240822/092Q45A8-1.png" style="height: 507px; width: 728px" /></div>
-<br />
-然后点击&ldquo;运行（Run）&rdquo;或者&ldquo;构建（Build）&rdquo;按钮，就能在当前工程目录中看到 demo.i 。
-<h2>
-	编译（Compilation）</h2>
-编译就是把预处理完的文件进行一些列的词法分析、语法分析、语义分析以及优化后生成相应的汇编代码文件。编译是整个程序构建的核心部分，也是最复杂的部分之一，涉及到的算法较多，我们并不打算深入讨论，有兴趣的读者请查看《<a href="http://product.dangdang.com/20427584.html" target="_blank">编译原理</a>》。<br />
-<br />
-在 GCC 中，可以使用下面的命令生成<code>.s</code>文件：
-<p class="info-box">
-	$gcc -S demo.i -o demo.s</p>
-或者
-<p class="info-box">
-	$gcc -S demo.c -o demo.s</p>
-<br />
-在 Visual Studio 中，不用进行任何设置就可以在工程目录下看到 demo.asm 文件。
-<h2>
-	汇编（Assembly）</h2>
-汇编的过程就是将汇编代码转换成可以执行的机器指令。大部分汇编语句对应一条机器指令，有的汇编语句对应多条机器指令，我们在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》中的《<a href="/view/566.html" target="_blank">一个程序在计算机中到底是如何运行的</a>》一节对汇编语言进行了简单的解释。<br />
-<br />
-汇编过程相对于编译来说比较简单，没有复杂的语法，也没有语义，也不需要做指令优化，只是根据汇编语句和机器指令的对照表一一翻译就可以了。<br />
-<br />
-汇编的结果是产生目标文件，在 GCC 下的后缀为<code>.o</code>，在 Visual Studio 下的后缀为<code>.obj</code>。<br />
-<h2>
-	链接（Linking）</h2>
-目标文件已经是二进制文件，与可执行文件的组织形式类似，只是有些函数和全局变量的地址还未找到，程序不能执行。链接的作用就是找到这些目标地址，将所有的目标文件组织成一个可以执行的二进制文件。<br />
-<br />
-预处理和汇编的过程都比较简单，有了上面的介绍，相信大家很容易理解。<br />
-<br />
-编译的过程最为复杂，可以细分为词法分析、语法分析、语义分析和指令优化，这里涉及到诸多算法以及正则表达式，我们并不打算深入分析，也没必要，有兴趣的读者请自行查阅《<a href="http://product.dangdang.com/20427584.html" target="_blank">编译原理</a>》。<br />
-<br />
-<span style="color: #b22222">而目标文件的结构、可执行文件的结构、链接的过程是我们要重点研究的，它能够让我们明白多文件编程以及模块化开发的原理，这是大型项目开发的基石。</span><br />
-<br />
-最后需要说明的是：汇编的过程非常简单，仅仅是查表翻译，我们通常把它作为编译过程的一部分，不再单独提及。这样，源文件经过预处理、编译和链接就生成了可执行文件。</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="587"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/586.html">从extern关键字开始谈多文件编程</a></span>
                     <span class="next right"><a href="/view/588.html">目标文件和可执行文件里面都有什么？</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -229,7 +152,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 587;
-window.arcId = "f600UXAaB5R5C27RwECZuC7vZc6wGgegit/JQSg4MSEqVqXGWCyFCyw6nA";
+window.arcId = "c5f1eF39wSig7NJu71HXyIiUBtomCcF4ZsaMI1sSSV9W8wYPGW9P4tBvuA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -63,7 +65,7 @@
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
 			<dd>
 				<span class="channel-num">7</span>
 				<a href='/c/function/'>C语言函数</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,81 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/484.html";window.nextPageURL = "/view/486.html";</script>
-			<div id="arc-body"><h2>
-	<u><a href='/view/181.html' target='_blank'>数组</a></u>越界</h2>
-C语言数组是静态的，不能自动扩容，当下标小于零或大于等于数组长度时，就发生了<span style="color: #008000">越界（Out Of Bounds）</span>，访问到数组以外的内存。如果下标小于零，就会发生<span style="color: #008000">下限越界（Off Normal Lower）</span>；如果下标大于等于数组长度，就会发生<span style="color: #008000">上限越界（Off Normal Upper）</span>。<br />
-<br />
-<span style="color:#b22222;">C语言为了提高效率，保证操作的灵活性，并不会对越界行为进行检查，即使越界了，也能够正常编译，只有在运行期间才可能会发生问题。</span>请看下面的代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int a[3] = {10, 20, 30}, i;
-    for(i=-2; i&lt;=4; i++){
-        printf(&quot;a[%d]=%d\n&quot;, i, a[i]);
-    }
-
-    return 0;
-}</pre>
-运行结果：<br />
-a[-2]=-858993460<br />
-a[-1]=-858993460<br />
-a[0]=10<br />
-a[1]=20<br />
-a[2]=30<br />
-a[3]=-858993460<br />
-a[4]=-858993460<br />
-<br />
-越界访问的数组元素的值都是不确定的，没有实际的含义，因为数组之外的内存我们并不知道是什么，可能是其它变量的值，可能是函数参数，可能是一个地址，这些都是不可控的。<br />
-<br />
-<span style="color: #b22222">由于C语言的&rdquo;放任&ldquo;，我们访问数组时必须非常小心，要确保不会发生越界。每个C语言程序员的生涯中都遇到过越界错误，我拿项上人头作保证，所以千万不要大意，因为越界错误有时候不容易发现，也不容易复现。</span><br />
-<br />
-当发生数组越界时，如果我们对该内存有使用权限，那么程序将正常运行，但会出现不可控的结果（如上例所示）；如果我们对该内存没有使用权限，或者该内存压根就没有被分配，那么程序将会崩溃。请看下面的例子：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int a[3];
-    printf(&quot;%d&quot;, a[10000]);
-    return 0;
-}</pre>
-在 VS 下运行，会出现运行时错误：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/2-240R1113512617.gif" /></div>
-<br />
-在 C-Free 5.0 下运行，会弹出程序停止工作的对话框：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/112A92960-1.png" /></div>
-<br />
-每个程序能使用的内存都是有限的，该程序要访问 4*10000 字节处的内存，显然太远了，超出了程序的访问范围。这个地方的内存可能没有被分配，可能是系统本身占用的内存，可能是其它数据的内存，如果放任这种行为，将带来非常危险的后果，操作系统只能让程序停止运行。
-<h2>
-	数组溢出</h2>
-当赋予数组的元素个数超过数组长度时，就会发生<span style="color: #008000">溢出（Overflow）</span>。如下所示：
-<pre class="info-box">
-int a[3] = {1, 2, 3, 4, 5};</pre>
-数组长度为 3，初始化时却赋予 5 个元素，超出了数组容量，所以只能保存前 3 个元素，后面的元素被丢弃。<br />
-<br />
-一般情况下数组溢出不会有什么问题，顶多是丢失多余的元素。但是当以字符<u><a href='/view/175.html' target='_blank'>串</a></u>的形式输出字符数组时，就会产生不可控的情况，请看下面的代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main()
-{
-    char str[10] = &quot;https://xiexuewu.github.io&quot;;
-    puts(str);
-
-    return 0;
-}</pre>
-在 VS 下的运行结果：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/2-240R111295BF.gif" /></div>
-<br />
-字符串的长度大于数组长度，数组只能容纳字符串的前面一部分，也就是<code>&quot;https://xi&quot;</code>，即使编译器在最后添加了<code>&#39;\0&#39;</code>，它也保存不到数组里面，所以 printf() 扫描数组时不会遇到结束符<code>&#39;\0&#39;</code>，只能继续向后扫描。而后面内存中的数据我们不知道是什么，字符能否识别，何时遇到<code>&#39;\0&#39;</code>，这些都是不确定的。当字符无法识别时，就会出现乱码，显示奇怪的字符。<br />
-<br />
-<span style="color: #b22222">由此可见，在用字符串给字符数组赋值时，要保证数组长度大于字符串长度，以容纳结束符<code>&#39;\0&#39;</code>。</span><br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="485"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></span>
                     <span class="next right"><a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -224,7 +152,7 @@ int main()
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 485;
-window.arcId = "1b1d+Ja+6iIFbQ3yun+K6+yzQ1UFs8GhgbI3Kmec2HVI38fOjtIjttOw2A";
+window.arcId = "1de0V1CjR/o8eM0iDAtPwuFqCCoZuz1LMC1Ty+PuTSgC8oWqIKcLYit6eA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -88,7 +90,7 @@
 				<span class="channel-num">10</span>
 				<a href='/c/struct/'>结构体</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,45 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/552.html";window.nextPageURL = "/view/554.html";</script>
-			<div id="arc-body">在C语言中，用一个指针变量指向一个文件，这个指针称为文件指针。通过文件指针就可对它所指的文件进行各种操作。<br />
-<br />
-定义文件指针的一般形式为：
-<pre class="info-box">
-FILE  *fp;</pre>
-这里的 FILE，实际上是在 stdio.h 中定义的一个结构体，该结构体中含有文件名、文件状态和文件当前位置等信息，fopen 返回的就是 FILE 类型的指针。<br />
-<br />
-注意：FILE 是文件缓冲区的结构，fp 也是指向文件缓冲区的指针。<br />
-<br />
-不同编译器 stdio.h 头文件中对 FILE 的定义略有差异，这里以标准C举例说明：
-<pre class="c">
-typedef struct _iobuf {
-    int cnt;  // 剩余的字符，如果是输入缓冲区，那么就表示缓冲区中还有多少个字符未被读取
-    char *ptr;  // 下一个要被读取的字符的地址
-    char *base;  // 缓冲区基地址
-    int flag;  // 读写状态标志位
-    int fd;  // 文件描述符
-    // 其他成员
-} FILE;
-</pre>
-下面说一下如果控制缓冲区。<br />
-<br />
-我们知道，当我们从键盘输入数据的时候，数据并不是直接被我们得到，而是放在了缓冲区中，然后我们从缓冲区中得到我们想要的数据 。如果我们通过 setbuf() 或 setvbuf() 函数将缓冲区设置 10 个字节的大小，而我们从键盘输入了 20 个字节大小的数据，这样我们输入的前 10 个数据会放在缓冲区中，因为我们设置的缓冲区的大小只能够装下 10 个字节大小的数据，装不下 20 个字节大小的数据。那么剩下的那 10 个字节大小的数据怎么办呢？暂时放在了输入流中。请看下图：<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/1A340H26-0.png" style="height: 77px; width: 260px" /></div>
-<br />
-上面的箭头表示的区域就相当是一个输入流，红色的地方相当于一个开关，这个开关可以控制往深绿色区域（标注的是缓冲区）里放进去的数据，输入 20 个字节的数据只往缓冲区中放进去了 10 个字节，剩下的 10 个字节的数据就被停留在了输入流里！等待下去往缓冲区中放入！接下来系统是如何来控制这个缓冲区呢？<br />
-<br />
-再说一下 FILE 结构体中几个相关成员的含义：<br />
-&nbsp; &nbsp; cnt &nbsp;// 剩余的字符，如果是输入缓冲区，那么就表示缓冲区中还有多少个字符未被读取<br />
-&nbsp; &nbsp; ptr &nbsp;// 下一个要被读取的字符的地址<br />
-&nbsp; &nbsp; base &nbsp;// 缓冲区基地址<br />
-<br />
-在上面我们向缓冲区中放入了 10 个字节大小的数据，FILE 结构体中的 cnt 变为了 10 ，说明此时缓冲区中有 10 个字节大小的数据可以读，同时我们假设缓冲区的基地址也就是 base 是 0x00428e60 ，它是不变的 ，而此时 ptr 的值也为 0x00428e60 ，表示从 0x00428e60 这个位置开始读取数据，当我们从缓冲区中读取 5 个数据的时候，cnt 变为了 5 ，表示缓冲区还有 5 个数据可以读，ptr 则变为了 0x0042e865 表示下次应该从这个位置开始读取缓冲区中的数据 ，如果接下来我们再读取 5 个数据的时候，cnt 则变为了 0 ，表示缓冲区中已经没有任何数据了，ptr 变为了 0x0042869 表示下次应该从这个位置开始从缓冲区中读取数据，但是此时缓冲区中已经没有任何数据了，所以要将输入流中的剩下的那 10 个数据放进来，这样缓冲区中又有了 10 个数据，此时 cnt 变为了 10 ，注意了刚才我们讲到 ptr 的值是 0x00428e69 ，而当缓冲区中重新放进来数据的时候这个 ptr 的值变为了 0x00428e60 ，这是因为当缓冲区中没有任何数据的时候要将 ptr 这个值进行一下刷新，使其指向缓冲区的基地址也就是 0x0042e860 这个值！因为下次要从这个位置开始读取数据！<br />
-<br />
-在这里有点需要说明：当我们从键盘输入字符<u><a href='/view/175.html' target='_blank'>串</a></u>的时候需要敲一下回车键才能够将这个字符串送入到缓冲区中，那么敲入的这个回车键（\r）会被转换为一个换行符 \n，这个换行符\n也会被存储在缓冲区中并且被当成一个字符来计算！比如我们在键盘上敲下了 123456 这个字符串，然后敲一下回车键（\r）将这个字符串送入了缓冲区中，那么此时缓冲区中的字节个数是 7 ，而不是 6。<br />
-<br />
-<span style="color: #b22222">缓冲区的刷新就是将指针 ptr 变为缓冲区的基地址 ，同时 cnt 的值变为 0 ，因为缓冲区刷新后里面是没有数据的！</span></div>
+			<div id="arc-body"><div id="buy-course-tip" aid="553"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/552.html">C语言实现文件复制功能</a></span>
                     <span class="next right"><a href="/view/554.html">获取文件大小（长度）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -188,7 +152,7 @@ typedef struct _iobuf {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 553;
-window.arcId = "c39fWS3lQC6zR2Ex6ETAqZp5vjnHM2lW7gv4LhnSE5cRX1bpSnrBX/4v6w";
+window.arcId = "0a8a3KULpkO7HVLq0io2vXixW7EkPJzyMR7MTRtufdO4Sk9yKibYHNo6NA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

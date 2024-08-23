@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -98,12 +100,12 @@
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
 			</dd>
-		
+		<dd class="this"> <span class="channel-num">13</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>13.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>13.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.5 <a href="/view/590.html">符号——链接的粘合剂</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.6 <a href="/view/591.html">强符号和弱符号</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.7 <a href="/view/592.html">强引用和弱引用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.8 <a href="/view/593.html">C语言模块化编程中的头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.9 <a href="/view/594.html">C语言标准库以及标准头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.10 <a href="/view/595.html">细说C语言头文件的路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.11 <a href="/view/596.html">防止C语言头文件被重复包含</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.12 <a href="/view/597.html">C语言static变量和函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
-				<span class="channel-num">13</span>
+				<span class="channel-num">14</span>
 				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">14</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>14.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>14.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a></dd><dd>14.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a></dd><dd>14.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a></dd><dd>14.5 <a href="/view/590.html">符号——链接的粘合剂</a></dd><dd>14.6 <a href="/view/591.html">强符号和弱符号</a></dd><dd>14.7 <a href="/view/592.html">强引用和弱引用</a></dd><dd>14.8 <a href="/view/593.html">C语言模块化编程中的头文件</a></dd><dd>14.9 <a href="/view/594.html">C语言标准库以及标准头文件</a></dd><dd>14.10 <a href="/view/595.html">细说C语言头文件的路径</a></dd><dd>14.11 <a href="/view/596.html">防止C语言头文件被重复包含</a></dd><dd>14.12 <a href="/view/597.html">C语言static变量和函数</a></dd><dd>14.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a></dd></dl>
+		
 			<dd>
 				<span class="channel-num">15</span>
 				<a href='/c/practice/'>C语言项目实战案例</a>
@@ -123,92 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/590.html";window.nextPageURL = "/view/592.html";</script>
-			<div id="arc-body">我们在编写代码的过程中经常会遇到一种叫做<span style="color: #008000">符号重复定义（Multiple Definition）</span>的错误，这是因为在多个源文件中定义了名字相同的全局变量，并且都将它们初始化了。<br />
-<br />
-例如，在 a.c 中定义了全局变量 global：
-<p class="info-box">
-	int global = 10;</p>
-在 b.c 中又对 global 进行了定义：
-<p class="info-box">
-	int global = 20;</p>
-那么在链接时就会出现下面的错误：
-<p class="info-box">
-	b.o: multiple definition of `global&#39;<br />
-	a.o: first defined here</p>
-这种符号的定义可以被称为强符号。<br />
-<br />
-<span style="color: rgb(178,34,34)">在C语言中，编译器默认函数和初始化了的全局变量为</span><span style="color: rgb(0,128,0)">强符号（Strong Symbol）</span><span style="color: rgb(178,34,34)">，未初始化的全局变量为</span><span style="color: rgb(0,128,0)">弱符号（Weak Symbol）</span><span style="color: rgb(178,34,34)">。</span>强符号之所以强，是因为它们拥有确切的数据，变量有值，函数有函数体；弱符号之所以弱，是因为它们还未被初始化，没有确切的数据。<br />
-<br />
-链接器会按照如下的规则处理被多次定义的强符号和弱符号：<br />
-1) 不允许强符号被多次定义，也即不同的目标文件中不能有同名的强符号；如果有多个强符号，那么链接器会报符号重复定义错误。<br />
-<br />
-2) 如果一个符号在某个目标文件中是强符号，在其他文件中是弱符号，那么选择强符号。<br />
-<br />
-3) 如果一个符号在所有的目标文件中都是弱符号，那么选择其中占用空间最大的一个。<br />
-<br />
-比如目标文件 a.o 定义全局变量 global 为 int 类型，占用 4 个字节，目标文件 b.o 定义 global 为 double 类型，占用 8 个字节，那么被链接后，符号 global 占用 8 个字节。请尽量不要使用多个不同类型的弱符号，否则有时候很难发现程序错误。<br />
-<br />
-在 GCC 中，可以通过<code>__attribute__((weak))</code>来强制定义任何一个符号为弱符号。假设现在有下面的一段代码：
-<pre class="c">
-extern int ext;
-int weak1;
-int strong = 100;
-__attribute__((weak)) weak2 = 2;
-
-int main(){
-    return 0;
-}</pre>
-weak1 和 weak2 是弱符号，strong 和 main 是强符号，而 ext 既非强符号也非弱符号，它是一个对外部变量的引用（使用）。<br />
-<br />
-为了加深理解，我们不妨再来看一个多文件编程的例子。<br />
-<br />
-main.c 源码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-
-//弱符号
-__attribute__((weak)) int a = 20;
-__attribute__((weak)) void func(){
-    printf(&quot;C Language\n&quot;);
-}
-
-int main(){
-    printf(&quot;a = %d\n&quot;, a);
-    func();
-    return 0;
-}</pre>
-module.c 源码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-
-//强符号
-int a = 9999;
-void func(){
-    printf(&quot;https://xiexuewu.github.io\n&quot;);
-}</pre>
-在 GCC 中，使用下面的命令来运行程序：
-<p class="info-box">
-	$gcc main.c module.c<br />
-	$./a.out<br />
-	a = 9999<br />
-	https://xiexuewu.github.io</p>
-在 main.c 中，a 和 func 都是弱符号，在 module.c 中，a 和 func 都是强符号，强符号会覆盖弱符号，所以链接器最终会使用 module.c 中的符号，输出结果也印证了这一点。<br />
-<br />
-需要注意的是，<code>__attribute__((weak))</code>只对链接器有效，对编译器不起作用，编译器不区分强符号和弱符号，只要在一个源文件中定义两个相同的符号，不管它们是强是弱，都会报&ldquo;重复定义&rdquo;错误。请看下面代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-
-__attribute__((weak)) int a = 20;
-int a = 9999;
-
-int main(){
-    printf(&quot;a = %d\n&quot;, a);
-    return 0;
-}</pre>
-这段代码在编译阶段就会报错，编译器会认为变量 a 被定义了两次，属于重复定义。<br />
-<br />
-弱符号对于库来说十分有用，我们在开发库时，可以将某些符号定义为弱符号，这样就能够被用户定义的强符号覆盖，从而使得程序可以使用自定义版本的函数，增加了很大的灵活性。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="591"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/590.html">符号——链接的粘合剂</a></span>
                     <span class="next right"><a href="/view/592.html">强引用和弱引用</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -235,7 +152,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 591;
-window.arcId = "2278finAjk9MMSzLmsTHhzLdo/r56bptC/kzHAn89vc7LwkFPQlZNK/DWw";
+window.arcId = "df44H6sA3UZfjQLRjV4SHGxeufXdpjxZSYOK6WR7BBoA9M0XcSWqDw34NA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

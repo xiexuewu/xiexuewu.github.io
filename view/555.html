@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -88,7 +90,7 @@
 				<span class="channel-num">10</span>
 				<a href='/c/struct/'>结构体</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,140 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/554.html";window.nextPageURL = "/c/debug/";</script>
-			<div id="arc-body">我们平时所见的文件，例如 txt、doc、mp4 等，文件内容是按照从头到尾的顺序依次存储在磁盘上的，就像排起一条长长的队伍，称为<span style="color: rgb(178,34,34)">顺序文件</span>。<br />
-<br />
-除了顺序文件，还有索引文件、散列文件等，一般用于特殊领域，例如数据库、高效文件系统等。<br />
-<br />
-顺序文件的存储结构决定了它能够高效读取内容，但不能够随意插入、删除和修改内容。例如在文件开头插入 100 个字节的数据，那么原来文件的所有内容都要向后移动 100 个字节，这不仅是非常低效的操作，而且还可能覆盖其他文件。因此C语言没有提供插入、删除、修改文件内容的函数，要想实现这些功能，只能自己编写函数。<br />
-<br />
-以插入数据为例，假设原来文件的大小为 1000 字节，现在要求在 500 字节处插入用户输入的字符<u><a href='/view/175.html' target='_blank'>串</a></u>，那么可以这样来实现：<br />
-1) 创建一个临时文件，将后面 500 字节的内容复制到临时文件；<br />
-2) 将原来文件的内部指针调整到 500 字节处，写入字符串；<br />
-3) 再将临时文件中的内容写入到原来的文件（假设字符串的长度为 100，那么此时文件内部指针在 600 字节处）。<br />
-<br />
-删除数据时，也是类似的思路。假设原来文件大小为 1000 字节，名称为 demo.mp4，现在要求在 500 字节处往后删除 100 字节的数据，那么可以这样来实现：<br />
-1) 创建一个临时文件，先将前 500 字节的数据复制到临时文件，再将 600 字节之后的所有内容复制到临时文件；<br />
-2) 删除原来的文件，并创建一个新文件，命名为 demo.mp4；<br />
-3) 将临时文件中的所有数据复制到 demo.mp4。<br />
-<br />
-修改数据时，如果新数据和旧数据长度相同，那么设置好内部指针，直接写入即可；如果新数据比旧数据长，相当于增加新内容，思路和插入数据类似；如果新数据比旧数据短，相当于减少内容，思路和删除数据类似。实际开发中，我们往往会保持新旧数据长度一致，以减少编程的工作量，所以我们不再讨论新旧数据长度不同的情况。<br />
-<br />
-总起来说，本节重点讨论数据的插入和删除。
-<h2>
-	文件复制函数</h2>
-在数据的插入删除过程中，需要多次复制文件内容，我们有必要将该功能实现为一个函数，如下所示：
-<pre class="c">
-/**
- * 文件复制函数
- * @param  fSource       要复制的原文件
- * @param  offsetSource  原文件的位置偏移（相对文件开头），也就是从哪里开始复制
- * @param  len           要复制的内容长度，小于0表示复制offsetSource后边的所有内容
- * @param  fTarget       目标文件，也就是将文件复制到哪里
- * @param  offsetTarget  目标文件的位置偏移，也就是复制到目标文件的什么位置
- * @return  成功复制的字节数
-**/
-long fcopy(FILE *fSource, long offsetSource, long len, FILE *fTarget, long offsetTarget){
-    int bufferLen = 1024*4;  // 缓冲区长度
-    char *buffer = (char*)malloc(bufferLen);  // 开辟缓存
-    int readCount;  // 每次调用fread()读取的字节数
-    long nBytes = 0;  //总共复制了多少个字节
-    int n = 0;  //需要调用多少次fread()函数
-    int i;  //循环控制变量
-
-    fseek(fSource, offsetSource, SEEK_SET);
-    fseek(fTarget, offsetTarget, SEEK_SET);
-
-    if(len&lt;0){  //复制所有内容
-        while( (readCount=fread(buffer, 1, bufferLen, fSource)) &gt; 0 ){
-            nBytes += readCount;
-            fwrite(buffer, readCount, 1, fTarget);
-        }
-    }else{  //复制len个字节的内容
-        n = (int)ceil((double)((double)len/bufferLen));
-        for(i=1; i&lt;=n; i++){
-            if(len-nBytes &lt; bufferLen){ bufferLen = len-nBytes; }
-            readCount = fread(buffer, 1, bufferLen, fSource);
-            fwrite(buffer, readCount, 1, fTarget);
-            nBytes += readCount;
-        }
-    }
-    fflush(fTarget);
-    free(buffer);
-    return nBytes;
-}</pre>
-该函数可以将原文件任意位置的任意长度的内容复制到目标文件的任意位置，非常灵活。如果希望实现《<a href="/view/552.html" target="_blank">C语言实现文件复制功能(包括文本文件和二进制文件)</a>》一节中的功能，那么可以像这面这样调用：
-<pre class="info-box">
-fcopy(fSource, 0, -1, fTarget, 0);</pre>
-<h2>
-	文件内容插入函数</h2>
-请先看代码：
-<pre class="c">
-/**
- * 向文件中插入内容
- * @param  fp      要插入内容的文件
- * @param  buffer  缓冲区，也就是要插入的内容
- * @param  offset  偏移量（相对文件开头），也就是从哪里开始插入
- * @param  len     要插入的内容长度
- * @return  成功插入的字节数
-**/
-int finsert(FILE *fp, long offset, void *buffer, int len){
-    long fileSize = fsize(fp);
-    FILE *fpTemp;  //临时文件
-
-    if(offset&gt;fileSize || offset&lt;0 || len&lt;0){  //插入错误
-        return -1;
-    }
-
-    if(offset == fileSize){  //在文件末尾插入
-        fseek(fp, offset, SEEK_SET);
-        if(!fwrite(buffer, len, 1, fp)){
-            return -1;
-        }
-    }
-
-    if(offset &lt; fileSize){  //从开头或者中间位置插入
-        fpTemp = tmpfile();
-        fcopy(fp, 0, offset, fpTemp, 0);
-        fwrite(buffer, len, 1, fpTemp);
-        fcopy(fp, offset, -1, fpTemp, offset+len);
-        freopen(FILENAME, &quot;wb+&quot;, fp );
-        fcopy(fpTemp, 0, -1, fp, 0);
-        fclose(fpTemp);
-    }
-   
-    return 0;
-}</pre>
-代码说明：<br />
-1) fsize() 是在《<a href="/view/554.html" target="_blank">C语言获取文件大小（长度）</a>》自定义的函数，用来获取文件大小（以字节计）。<br />
-<br />
-2) 第 17 行判断数据的插入位置，如果是在文件末尾，就非常简单了，直接用 fwrite() 写入即可。<br />
-<br />
-3) 如果从文件开头或中间插入，就得创建临时文件。<br />
-<br />
-tmpfile() 函数用来创建一个临时的二进制文件，可以读取和写入数据，相当于 fopen() 函数以&quot;wb+&quot;方式打开文件。该临时文件不会和当前已存在的任何文件重名，并且会在调用 fclose() 后或程序结束后自动删除。
-<h2>
-	文件内容删除函数</h2>
-请看下面的代码：
-<pre class="c">
-int fdelete(FILE *fp, long offset, int len){
-    long fileSize = getFileSize(fp);
-    FILE *fpTemp;
-
-    if(offset&gt;fileSize || offset&lt;0 || len&lt;0){  //错误
-        return -1;
-    }
-
-    fpTemp = tmpfile();
-    fcopy(fp, 0, offset, fpTemp, 0);  //将前offset字节的数据复制到临时文件
-    fcopy(fp, offset+len, -1, fpTemp, offset);  //将offset+len之后的所有内容都复制到临时文件
-    freopen(FILENAME, &quot;wb+&quot;, fp );  //重新打开文件
-    fcopy(fpTemp, 0, -1, fp, 0);
-
-    fclose(fpTemp);
-    return 0;
-}</pre>
-文件第5~7行用来判断传入的参数是否合法。freopen() 以&quot;w+&quot;方式打开文件时，如果有同名的文件存在，那么先将文件内容删除，作为一个新文件对待。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="555"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/554.html">获取文件大小（长度）</a></span>
                     <span class="next right"><a href="/c/debug/">C语言调试</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -283,7 +152,7 @@ int fdelete(FILE *fp, long offset, int len){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 555;
-window.arcId = "7002bybu0Kf53eUvyz5NyxuD2JUYDi45wdtkHDagoQW/j5W4uOqwgGQYyw";
+window.arcId = "4b3flVsg9/zenlKlxCETVYwDtd0ynhoxeQPmwcwxbcE5MEoYs3scytN5Qw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

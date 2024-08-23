@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -88,7 +90,7 @@
 				<span class="channel-num">10</span>
 				<a href='/c/struct/'>结构体</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,71 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/553.html";window.nextPageURL = "/view/555.html";</script>
-			<div id="arc-body">实际开发中，有时候需要先获取文件大小再进行下一步操作。C语言没有提供获取文件大小的函数，要想实现该功能，必须自己编写函数。
-<h2>
-	ftell()函数</h2>
-ftell() 函数用来获取文件内部指针（位置指针）距离文件开头的字节数，它的原型为：
-<pre class="info-box">
-long int ftell ( FILE * fp );</pre>
-注意：fp 要以二进制方式打开，如果以文本方式打开，函数的返回值可能没有意义。<br />
-<br />
-先使用 fseek() 将文件内部指针定位到文件末尾，再使用 ftell() 返回内部指针距离文件开头的字节数，这个返回值就等于文件的大小。请看下面的代码：
-<pre class="c">
-long fsize(FILE *fp){
-    fseek(fp, 0, SEEK_END);
-    return ftell(fp);
-}</pre>
-这段代码并不健壮，它移动了文件内部指针，可能会导致接下来的文件操作错误。例如：
-<pre class="info-box">
-long size = fsize(fp);
-fread(buffer, 1, 1, fp);</pre>
-fread() 函数将永远读取不到内容。<br />
-<br />
-所以，获取到文件大小后还需要恢复文件内部指针，请看下面的代码：
-<pre class="c">
-long fsize(FILE *fp){
-    long n;
-    fpos_t fpos;  //当前位置
-    fgetpos(fp, &amp;fpos);  //获取当前位置
-    fseek(fp, 0, SEEK_END);
-    n = ftell(fp);
-    fsetpos(fp,&amp;fpos);  //恢复之前的位置
-    return n;
-}</pre>
-fpos_t 是在 stdio.h 中定义的结构体，用来保存文件的内部指针。fgetpos() 用来获取文件内部指针，fsetpos() 用来设置文件内部指针。<br />
-<br />
-完整的示例：
-<pre class="c">
-#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;conio.h&gt;
-
-long fsize(FILE *fp);
-
-int main(){
-    long size = 0;
-    FILE *fp = NULL;
-    char filename[30] = &quot;D:\\1.mp4&quot;;
-    if( (fp = fopen(filename, &quot;rb&quot;)) == NULL ){  //以二进制方式打开文件
-        printf(&quot;Failed to open %s...&quot;, filename);
-        getch();
-        exit(EXIT_SUCCESS);
-    }
-   
-    printf(&quot;%ld\n&quot;, fsize(fp));
-    return 0;
-}
-
-long fsize(FILE *fp){
-    long n;
-    fpos_t fpos;  //当前位置
-    fgetpos(fp, &amp;fpos);  //获取当前位置
-    fseek(fp, 0, SEEK_END);
-    n = ftell(fp);
-    fsetpos(fp,&amp;fpos);  //恢复之前的位置
-    return n;
-}</pre>
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="554"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></span>
                     <span class="next right"><a href="/view/555.html">插入、删除、更改文件内容</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -214,7 +152,7 @@ long fsize(FILE *fp){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 554;
-window.arcId = "7f22VUtnMcaB4HwdQ/o9DLOE5ggr1pWSV7szA9OLpHaf0SwoQkhrsCdUpg";
+window.arcId = "ffc4PbXFoLGtrKv70pMEu7xTg8RR6/tCyKrGQrr1qCYg/be2RCF1YoDmgA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

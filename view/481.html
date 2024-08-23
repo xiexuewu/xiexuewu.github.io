@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -63,7 +65,7 @@
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
 			<dd>
 				<span class="channel-num">7</span>
 				<a href='/c/function/'>C语言函数</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,13 +125,13 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/480.html";window.nextPageURL = "/view/482.html";</script>
-			<div id="arc-body">用来存放字符的<u><a href='/view/181.html' target='_blank'>数组</a></u>称为<span style="color:#008000;"><strong>字符数组</strong></span>，例如：
+			<div id="arc-body">用来存放字符的数组称为<span style="color:#008000;"><strong>字符数组</strong></span>，例如：
 <pre class="c">
 char a[10];  //一维字符数组
 char b[5][10];  //二维字符数组
 char c[20]={&#39;c&#39;, &#39;  &#39;, &#39;p&#39;, &#39;r&#39;, &#39;o&#39;, &#39;g&#39;, &#39;r&#39;, &#39;a&#39;,&#39;m&#39;};  // 给部分数组元素赋值
 char d[]={&#39;c&#39;, &#39; &#39;, &#39;p&#39;, &#39;r&#39;, &#39;o&#39;, &#39;g&#39;, &#39;r&#39;, &#39;a&#39;, &#39;m&#39; };  //对全体元素赋值时可以省去长度</pre>
-字符数组实际上是一系列字符的集合，也就是<strong><span style="color: #008000">字符<u><a href='/view/175.html' target='_blank'>串</a></u>（String）</span></strong>。在 C语言中，没有专门的字符串变量，没有 string 类型，通常就用一个字符数组来存放一个字符串。<br />
+字符数组实际上是一系列字符的集合，也就是<strong><span style="color: #008000">字符串（String）</span></strong>。在 C语言中，没有专门的字符串变量，没有 string 类型，通常就用一个字符数组来存放一个字符串。<br />
 <br />
 C语言规定，可以将字符串直接赋值给字符数组，例如：<br />
 <pre class="c">
@@ -294,7 +296,7 @@ The lenth of the string is 29.<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 481;
-window.arcId = "1297m6JH6pmjzixNQEgNkB9vxXa81wG6wccsxFp3acX3WoLatEseknqbFA";
+window.arcId = "1f79FUrEgCEJVbZg4pVqbAGl1aj5UiQ2W3eXGAxdHKaBD4M+SYwA2LYMUQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

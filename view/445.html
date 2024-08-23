@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -53,7 +55,7 @@
 				<span class="channel-num">3</span>
 				<a href='/c/variable_datatype/'>变量和数据类型</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,67 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/444.html";window.nextPageURL = "/c/branch_loop/";</script>
-			<div id="arc-body">所谓键盘监听，就是用户按下某个键时系统做出相应的处理，本章讲到的输入输出函数也是键盘监听函数的一种，例如 getchar()、getche()、getch() 等。下面的代码演示了 getche() 函数的使用：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;conio.h&gt;
-int main(){
-    char ch;
-    int i = 0;
-    //循环监听，直到按Esc键退出
-    while(ch = getch()){
-        if(ch == 27){
-            break;
-        }else{
-            printf(&quot;Number: %d\n&quot;, ++i);
-        }
-    }
-    return 0;
-}</pre>
-在 Windows 下的运行结果：<br />
-Number: 1 &nbsp;//按下任意键<br />
-Number: 2&nbsp;&nbsp;//按下任意键<br />
-Number: 3&nbsp; //按下任意键<br />
-Number: 4&nbsp; //按下任意键<br />
-Number: 5&nbsp;&nbsp;//按下Esc键退出<br />
-<br />
-这段代码虽然达到了监听键盘的目的，但是每次都必须按下一个键才能执行 getch() 后面的代码，也就是说，getch() 后面的代码被阻塞了。<br />
-<br />
-阻塞式键盘监听用于用户输入时一般没有任何问题，用户输入完数据再执行后面的代码往往也符合逻辑。然而在很多小游戏中，阻塞式键盘监听会带来很大的麻烦，用户要不停按键游戏才能进行，这简直就是灾难，所以在小游戏中一般采用非阻塞式键盘监听：用户输入数据后程序可以捕获，用户不输入数据程序也可以继续执行。<br />
-<br />
-在 Windows 系统中，<code>conio.h</code>头文件中的<code>kbhit()</code>函数就可以用来实现非阻塞式键盘监听。
-<blockquote>
-	conio.h 是 Windows 下特有的头文件，所以 kbhit() 也只适用于 Windows，不适用于 Linux 和 Mac OS。</blockquote>
-用户每按下一个键，都会将对应的字符放到输入缓冲区中，kbhit() 函数会检测缓冲区中是否有数据，如果有的话就返回非 0 值，没有的话就返回 0 值。但是 kbhit() 不会读取数据，数据仍然留在缓冲区，所以一般情况下我们还要结合输入函数将缓冲区种的数据读出。请看下面的例子：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;windows.h&gt;
-#include &lt;conio.h&gt;
-int main(){
-    char ch;
-    int i = 0;
-    //循环监听，直到按Esc键退出
-    while(1){
-        if(kbhit()){  //检测缓冲区中是否有数据
-            ch = getch();  //将缓冲区中的数据以字符的形式读出
-            if(ch == 27){
-                break;
-            }
-        }
-        printf(&quot;Number: %d\n&quot;, ++i);
-        Sleep(1000);  //暂停1秒
-    }
-    return 0;
-}</pre>
-运行结果：<br />
-Number: 1<br />
-Number: 2<br />
-Number: 3<br />
-Number: 4<br />
-Number: 5 &nbsp;//按下Esc键<br />
-<br />
-每次循环，kbhit() 会检测用户是否按下某个键（也就是检测缓冲区中是否有数据），没有的话继续执行后面的语句，有的话就通过 getch() 读取，并判断是否是 Esc，是的话就退出循环，否则继续循环。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="445"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></span>
                     <span class="next right"><a href="/c/branch_loop/">循环结构和选择结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -210,7 +152,7 @@ Number: 5 &nbsp;//按下Esc键<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 445;
-window.arcId = "dd64RqvbAWv1i2YfIsbv3vx8aQPIdDkWNUDYK8rGRwgaQ7J5tzpUq5Y6Xw";
+window.arcId = "d61afBvoUYBXZd0qGL8ilC2/vj3GXxknqDniRsz9PVT7+CcLkgICqcps/w";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

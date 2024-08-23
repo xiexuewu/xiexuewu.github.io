@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -93,15 +95,15 @@
 				<span class="channel-num">11</span>
 				<a href='/c/file/'>文件操作</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a></dd></dl>
+		<dd class="this"> <span class="channel-num">12</span> <a href="/c/debug/">C语言调试</a> </dd><dl class="dl-sub"><dd>12.1 <a href="/view/556.html">调试的概念以及调试器的选择</a></dd><dd>12.2 <a href="/view/557.html">设置断点，开始调试</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.3 <a href="/view/558.html">查看和修改变量的值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.4 <a href="/view/559.html">单步调试（逐语句调试和逐过程调试）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.5 <a href="/view/560.html">即时窗口的使用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.6 <a href="/view/561.html">查看、修改运行时的内存</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.7 <a href="/view/562.html">有条件断点的设置</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.8 <a href="/view/563.html">assert断言函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.9 <a href="/view/564.html">调试信息的输出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.10 <a href="/view/565.html">VS调试的总结以及技巧</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,60 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/561.html";window.nextPageURL = "/view/563.html";</script>
-			<div id="arc-body">在此之前，我们已经了解了无条件断点、跟踪点这两种断点，事实上在 Visual Studio 中还有几种常用的断点，在本节我们将一一为大家介绍。<br />
-<br />
-大家有没有碰到这样的情况，在一个循环体中设置断点，假设有一千次循环，我们想在第五百次循环中设置断点，这该怎么办？反正设置断点不断按 F5 继续运行四百九十九次是不可能的。那该怎么办呢？其实我们的断点是可以设置各种各样的条件的，对于上述情况，我们可以对断点的命中次数做一个限制。<br />
-<br />
-我们首先在 Visual Studio 中创建一个工程，并且输入如下代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-int main(){
-    for ( int i=1 ; i &lt;= 1000 ; i++ ) {
-        //TODO:插入计次断点
-        printf(&quot;我真行!\n&quot;);
-    }
-}</pre>
-首先，我们在第 4 行插入断点，分析代码，我们不难得出它会输出 1000 行&ldquo;我真行！&rdquo;，那么我们思考一下，在不修改代码的情况下，如何才能让他输出 1499 行&ldquo;我真行！&rdquo;呢，其实很简单，我们只要在 i 等于 500 的时候暂停程序，再将变量 i 的值修改为 1 即可，思路很简单，接下来我们就来实现这个命中条件的限制吧。<br />
-<br />
-首先我们用鼠标右键单击第 4 行的断点图标，在弹出的菜单中选择&ldquo;条件(C)&rdquo; ，接下来会弹出如下图的一个对话框，我们在左侧的选择框中选择&ldquo;命中次数&rdquo;，中间的选择框中选择&ldquo;=&rdquo;，在右边的编辑框输入 500。
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/2-240R1200643923.gif" /></div>
-<br />
-然后关闭这个对话框，断点就设置到位了，接下来我们按 F5 运行调试。<br />
-<br />
-<div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/2-240R1200G2V5.gif" /></div>
-<br />
-我们看到，在输出四百九十九行&ldquo;我真行！&rdquo;后，程序进入了中断状态，这时自动窗口中的变量 i 的值为 500。接下来我们把这个 i 的值改为 1，点击&ldquo;继续&rdquo;继续程序的运行，这样程序就再输出了一千行&ldquo;我真行！&rdquo;，然后退出。没错，命中次数限制的使用就是这么简单。<br />
-<br />
-接下来我们来了解一下断点触发条件的使用，在 Visual Studio 的调试器中，我们可以对断点设置断点触发条件，这个条件可以引用我们程序中的变量，比如我们程序中有两个变量 a、b ，我们的命中条件可以是 a == b 、 a &gt;= b 、 a != b 甚至是 (a - b)*(a*2 - b) &gt; 0 这样的复杂条件。<br />
-<br />
-下面我们就来试试在 Visual Studio 中插入条件断点吧。我们首先创建一个工程，输入如下代码：<br />
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;time.h&gt; //time函数所在头文件
-int main()
-{
-    int a, b;
-    int randNumber;
-    srand((unsigned)time(NULL));
-    //设置随机数种子，以产生不同随机数
-    for (int i = 0; i&lt;50; i++)
-    {
-        a = rand() % 7; //产生0-6的随机数
-        b = rand() % 7; //产生0-6的随机数
-        //TODO:在这里插入条件断点: a == b
-    }
-    return 0;
-}</pre>
-我们让程序运行过程中 a 等于 b 的时候触发断点。首先，我们在第 14 行插入断点，然后我们鼠标右键单击左侧的断点图标，在弹出的菜单中选择&ldquo;条件(C)&rdquo;，IDE 会弹出如下对话框，我们在条件输入框中输入 a==b，然后中间选择&ldquo;为 true&rdquo;，然后点击&ldquo;关闭&rdquo;即可。<br />
-<img alt="" src="/uploads/allimg/240821/2-240R1200T4556.gif" />
-<blockquote>
-	<p>
-		大家如果有兴趣的话，可以试试选择框中其他的条件选项，这里不再赘述。</p>
-</blockquote>
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="562"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/561.html">查看、修改运行时的内存</a></span>
                     <span class="next right"><a href="/view/563.html">assert断言函数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -203,7 +152,7 @@ int main()
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 562;
-window.arcId = "e8656ynIeCnP1vqvoWNQNWdMwzO+o7cQCiqkWTF1mNf0BsKd35O+vqmZqQ";
+window.arcId = "8f19apHwJqW3xyI8GOqaNYDcIHu0rzIde+PiW0xoPtxo+dFaJItSnD8tJw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

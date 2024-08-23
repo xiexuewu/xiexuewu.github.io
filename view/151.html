@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -136,7 +138,7 @@ typedef struct tagVertexNode {
 <br />
 工程中一个活动何时开始依赖于其前驱活动何时结束，只有所有的前驱活动都结束后这个活动才可以开始，前驱活动都结束的时间就是这个活动的最早开始时间。与此同时，在不影响工程完工时间的前提下，有些活动的开始时间存在一些余量，在时间余量允许的范围之内推迟一段时间开始活动也不会影响工程的最终完成时间，活动的最早开始时间加上这个时间余量就是活动的最晚开始时间。活动不能在最早开始时间之前开始，当然，也不能在最晚开始时间之后开始，否则会导致工期延误。<br />
 <br />
-如果一个活动的时间余量为 0，即该活动的最早开始时间和最晚开始时间相同，则这个活动就是关键活动，由这些关键活动<u><a href='/view/175.html' target='_blank'>串</a></u>起来的一个工程活动路径就是关键路径。根据关键路径的定义，一个工程中的关键路径可能不止一个，我们常说的关键路径指的是工程时间最长的那条路径，也就是从源点到汇点之间最长的那条活动路径。<br />
+如果一个活动的时间余量为 0，即该活动的最早开始时间和最晚开始时间相同，则这个活动就是关键活动，由这些关键活动串起来的一个工程活动路径就是关键路径。根据关键路径的定义，一个工程中的关键路径可能不止一个，我们常说的关键路径指的是工程时间最长的那条路径，也就是从源点到汇点之间最长的那条活动路径。<br />
 <h2>
 	计算关键路径的算法</h2>
 计算关键路径的基础是先找出工程中的所有关键活动，确定一个活动是否是关键活动的依据就是活动的最早开始时间和最晚开始时间，因此需要先介绍如何计算活动的最早开始时间和最晚开始时间。<br />
@@ -358,7 +360,7 @@ bool CriticalPath(GRAPH *g)
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 151;
-window.arcId = "72ecKbnbJr0lG54QaRTuVuMm2BMnc6h3TyRb4arfNKf2b5E1mX+hCy/RnA";
+window.arcId = "c4d77s3eSAcl7hOxmT5Z+AQLvQ8mTmTC0Mh3QWPw1i4DZy/MXXzPCxoePQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

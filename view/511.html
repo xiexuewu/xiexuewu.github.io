@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -73,7 +75,7 @@
 				<span class="channel-num">7</span>
 				<a href='/c/function/'>C语言函数</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">8</span> <a href="/c/preprocess/">预处理命令</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/503.html">什么是预处理命令？</a></dd><dd>8.2 <a href="/view/504.html">#include的用法</a></dd><dd>8.3 <a href="/view/505.html">C语言宏定义</a></dd><dd>8.4 <a href="/view/506.html">C语言带参数的宏定义</a></dd><dd>8.5 <a href="/view/507.html">带参宏定义和函数的区别</a></dd><dd>8.6 <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a></dd><dd>8.7 <a href="/view/509.html">C语言中几个预定义宏</a></dd><dd>8.8 <a href="/view/510.html">C语言条件编译</a></dd><dd>8.9 <a href="/view/511.html">#error命令，阻止程序编译</a></dd><dd>8.10 <a href="/view/512.html">C语言预处理命令总结</a></dd></dl>
+		<dd class="this"> <span class="channel-num">8</span> <a href="/c/preprocess/">预处理命令</a> </dd><dl class="dl-sub"><dd>8.1 <a href="/view/503.html">什么是预处理命令？</a></dd><dd>8.2 <a href="/view/504.html">#include的用法</a></dd><dd>8.3 <a href="/view/505.html">C语言宏定义</a></dd><dd>8.4 <a href="/view/506.html">C语言带参数的宏定义</a></dd><dd>8.5 <a href="/view/507.html">带参宏定义和函数的区别</a></dd><dd>8.6 <a href="/view/508.html">宏参数的字符串化和宏参数的连接</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.7 <a href="/view/509.html">C语言中几个预定义宏</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.8 <a href="/view/510.html">C语言条件编译</a></dd><dd>8.9 <a href="/view/511.html">#error命令，阻止程序编译</a><span class="glyphicon glyphicon-usd"></span></dd><dd>8.10 <a href="/view/512.html">C语言预处理命令总结</a></dd></dl>
 			<dd>
 				<span class="channel-num">9</span>
 				<a href='/c/pointer/'>指针</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,36 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/510.html";window.nextPageURL = "/view/512.html";</script>
-			<div id="arc-body">#error 指令用于在编译期间产生错误信息，并阻止程序的编译，其形式如下：
-<pre class="info-box">
-#error error_message</pre>
-例如，我们的程序针对 Linux 编写，不保证兼容 Windows，那么可以这样做：<br />
-<pre class="c">
-#ifdef WIN32
-#error This programme cannot compile at Windows Platform
-#endif</pre>
-WIN32 是 Windows 下的预定义宏。当用户在 Windows 下编译该程序时，由于定义了 WIN32 这个宏，所以会执行&nbsp;<code>#error&nbsp;</code>命令，提示用户发生了编译错误，错误信息是：
-<p class="info-box">
-	This programme cannot compile at Windows Platform</p>
-这和发生语法错误的效果是一样的，程序编译失败。请看下面的截图：<br />
-<br />
-<div style="text-align: center">
-	<img alt="VS2015 下的错误信息" src="/uploads/allimg/240821/1325145236-0.gif" /><br />
-	VS2015 下的错误信息</div>
-<br />
-需要注意的是：报错信息不需要加引号<code>&quot; &quot;</code>，如果加上，引号会被一起输出。例如将上面的 #error 命令改为：
-<pre class="info-box">
-#error &quot;This programme cannot compile at Windows Platform&quot;</pre>
-那么错误信息如下：<br />
-<br />
-<img alt="" src="/uploads/allimg/240821/132514K57-1.png" style="height: 228px; width: 778px" /><br />
-<br />
-再如，当我们希望以 C++ 的方式来编译程序时，可以这样做：
-<pre class="c">
-#ifndef __cplusplus
-#error 当前程序必须以C++方式编译
-#endif</pre>
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="511"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/510.html">C语言条件编译</a></span>
                     <span class="next right"><a href="/view/512.html">C语言预处理命令总结</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -179,7 +152,7 @@ WIN32 是 Windows 下的预定义宏。当用户在 Windows 下编译该程序�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 511;
-window.arcId = "68016e36dGjWyA4LGGrJ76N/eDjxFPV2zSJIcLTSHteY2H4n7TkcOUhRjw";
+window.arcId = "fb4fLDwHXGMC35hxfp3Xp+jHPOu8CIs+LuCuqUSYfWrDZV5AoS57/tkw3g";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

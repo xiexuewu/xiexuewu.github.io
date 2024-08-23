@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -68,7 +70,7 @@
 				<span class="channel-num">6</span>
 				<a href='/c/array/'>C语言数组</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
 			<dd>
 				<span class="channel-num">8</span>
 				<a href='/c/preprocess/'>预处理命令</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,167 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/500.html";window.nextPageURL = "/view/543.html";</script>
-			<div id="arc-body">递归函数是一种强有力的技巧，用来解决某些问题很顺手，比如前面提到的求阶乘、求菲波那契数；但是和其他技巧一样，递归函数也是有缺陷的，而且这种缺陷是致命性的。
-<h2>
-	递归函数的空间开销</h2>
-在程序占用的整个内存中，有一块内存区域叫做<span style="color:#008000;"><u><a href='/view/169.html' target='_blank'>栈</a></u>（Stack）</span>，它是专门用来给函数分配内存的，每次调用函数，都会将相关数据压入栈中，包括局部变量、局部<u><a href='/view/181.html' target='_blank'>数组</a></u>、形参、寄存器、冗余数据等。<br />
-<br />
-栈是针对线程来说的，每个线程都拥有一个栈，如果一个程序包含了多个线程，那么它就拥有多个栈。目前我们编写的程序都是单线程的，所以不必考虑多线程的情况。<br />
-<br />
-对每个线程来说，栈能使用的内存是有限的，一般是 1M~8M，这在编译时就已经决定了，程序运行期间不能再改变。如果程序使用的栈内存超出最大值，就会发生<span style="color:#008000;">栈溢出（Stack Overflow）</span>错误。<br />
-<br />
-栈内存的大小和编译器有关，编译器会为栈内存指定一个最大值，在 VC/VS 下，默认是 1M，在 C-Free 下，默认是 2M，在 Linux GCC 下，默认是 8M。当然，我们也可以通过参数来修改栈内存的大小。<br />
-<br />
-发生函数调用时会将相关数据压入栈中，函数调用结束会释放这一部分内存，对于一般的函数来说，这不会有任何问题，但是对于递归函数，这会导致严重的问题！<br />
-<br />
-<span style="color:#b22222;">递归函数内部嵌套了对自身的调用，除非等到最内层的函数调用结束，否则外层的所有函数都不会调用结束。通俗地讲，外层函数被卡主了，它要等待所有的内层函数调用完成后，它自己才能调用完成。</span><br />
-<br />
-每一层的递归调用都会在栈上分配一块内存，有多少层递归调用就分配多少块相似的内存，所有内存加起来的总和是相当恐怖的，很容易超过栈内存的大小限制，这个时候就会导致程序崩溃。<br />
-<br />
-例如，一个递归函数需要递归 10000 次，每次需要 1KB 的内存，那么最终就需要 10MB 的内存。<br />
-<br />
-为了演示由于栈溢出而导致程序崩溃的情形，下面我们用递归的方式来求 1+2+3+ ...... + (n-1) + n 的值：
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-
-long sum(int n) {
-    //为了增加每次函数调用的内存，额外增加了一个无用的数组，它占用 1KB 的内存
-    int arr[250];
-
-    if (n &lt;= 1) {
-        return n;
-    } else {
-        return  n + sum(n-1);
-    }
-}
-
-int main() {
-    printf(&quot;从1加到1000的值为 %ld\n&quot;, sum(1000));
-    return 0;
-}</pre>
-在 Visul Studio 下运行该程序，稍等片刻后就看到程序崩溃了，如下图所示：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/1301331218-0.gif" /></div>
-<br />
-这是因为，每次递归调用都需要超过 1KB 的内存（仅仅数组就占用了 1KB 内存），而要得到最终的结果需要 1000 次递归调用，这样一来，所有内存的总和就超过了 1MB。<br />
-<br />
-上面我们说过，Visual Studio 默认的栈内存只有 1MB，超过这个界限程序就无法运行了，只能让它崩溃。使用其它的编译器也许程序不会崩溃，读者可以亲自尝试。<br />
-<h2>
-	递归函数的时间开销</h2>
-每次调用函数都会在栈上分配内存，函数调用结束后再释放这一部分内存，内存的分配和释放都是需要时间的。<br />
-<br />
-每次调用函数还会多次修改寄存器的值，函数调用结束后还需要找到上层函数的位置再继续执行，这也是需要时间的。<br />
-<br />
-所有的这些时间加在一起是非常恐怖的。<br />
-<br />
-下面我们以「求斐波那契数」为例来演示双层递归的时间开销。
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-#include &lt;time.h&gt;
-
-// 递归计算斐波那契数
-long fib(int n) {
-    if (n &lt;= 2) {
-        return 1;
-    }
-    else {
-        return fib(n - 1) + fib(n - 2);
-    }
-}
-
-int main() {
-    int a;
-    clock_t time_start, time_end;
-
-    printf(&quot;Input a number: &quot;);
-    scanf(&quot;%d&quot;, &amp;a);
-    time_start = clock();
-    printf(&quot;Fib(%d) = %ld\n&quot;, a, fib(a));
-    time_end = clock();
-    printf(&quot;run time: %lfs\n&quot;, (double)(time_end - time_start)/ CLOCKS_PER_SEC );
-
-    return 0;
-}</pre>
-运行结果：<br />
-Input a number: 42↙<br />
-Fib(42) = 267914296<br />
-run time: 13.137000s<br />
-<br />
-可以看到，为了求 42 的斐波那契数程序竟然运行了 13 秒，简直让人发指。
-<h2>
-	使用迭代来替换递归函数</h2>
-既然递归函数的解决方案存在巨大的内存开销和时间开销，那么我们如何进行优化呢？优化个毛，这是函数实现原理层面的缺陷，无法优化。<br />
-<br />
-其实，大部分能用递归解决的问题也能用迭代来解决。所谓迭代，就是循环。<br />
-<br />
-许多问题是以递归的形式进行解释的，这只是因为它比非递归形式更为清晰。但是，这些问题的迭代实现往往比递归实现效率更高，虽然代码的可读性可能稍差一些。<br />
-<br />
-与递归函数相比，迭代不但没有额外的内存开销，也没有额外的时间开销。<br />
-<br />
-下面我们分别用递归和迭代的方案来求斐波那契数，看看它们究竟孰快孰慢。
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-#include &lt;time.h&gt;
-
-//递归计算斐波那契数
-long fib_recursion(int n) {
-    if (n &lt;= 2) {
-        return 1;
-    }
-    else {
-        return fib_recursion(n - 1) + fib_recursion(n - 2);
-    }
-}
-
-//迭代计算斐波那契数
-long fib_iteration(int n){
-    long result;
-    long previous_result;
-    long next_older_result;
-    result = previous_result = 1;
-    while (n &gt; 2) {
-        n -= 1;
-        next_older_result = previous_result;
-        previous_result = result;
-        result = previous_result + next_older_result;
-    }
-    return result;
-}
-
-int main() {
-    int a;
-    clock_t time_start_recursion, time_end_recursion;
-    clock_t time_start_iteration, time_end_iteration;
-
-    printf(&quot;Input a number: &quot;);
-    scanf(&quot;%d&quot;, &amp;a);
-
-    //递归的时间
-    time_start_recursion = clock();
-    printf(&quot;Fib_recursion(%d) = %ld\n&quot;, a, fib_recursion(a));
-    time_end_recursion = clock();
-    printf(&quot;run time with recursion: %lfs\n&quot;, (double)(time_end_recursion - time_start_recursion)/ CLOCKS_PER_SEC );
-
-    //迭代的时间
-    time_start_iteration = clock();
-    printf(&quot;Fib_iteration(%d) = %ld\n&quot;, a, fib_iteration(a));
-    time_end_iteration = clock();
-    printf(&quot;run time with iteration: %lfs\n&quot;, (double)(time_end_iteration - time_start_iteration) / CLOCKS_PER_SEC);
-
-    return 0;
-}</pre>
-运行结果：<br />
-Input a number: 42↙<br />
-Fib_recursion(42) = 267914296<br />
-run time with recursion: 13.173000s<br />
-Fib_iteration(42) = 267914296<br />
-run time with iteration: 0.000000s<br />
-<br />
-你看，递归用了 13 秒，迭代几乎瞬间完成（接近0秒），迭代比递归快成千上万倍，这个差异是巨大的。
-<h2>
-	总结</h2>
-函数调用本来就存在内存开销和时间开销，递归一次这种开销就增加一倍，如果有成千上万次的递归，那么所有开销的总和就是巨大的。这是递归的致命缺陷，无法优化。所以建议大家尽量少用递归，能用迭代就用迭代吧。</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="501"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></span>
                     <span class="next right"><a href="/view/543.html">C语言随机数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -310,7 +152,7 @@ run time with iteration: 0.000000s<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 501;
-window.arcId = "323dJBMhEoOPWC8OIe9ety3WysNJ13YWVJ4s5Q8HFJH/h1YgXRaoztx/6w";
+window.arcId = "4fafImPdUmu1mn4YvCn0nfNas90McIJ0g96bYEQVKFZi9F0YNyPQazA28g";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

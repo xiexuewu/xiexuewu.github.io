@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -98,12 +100,12 @@
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
 			</dd>
-		
+		<dd class="this"> <span class="channel-num">13</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>13.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>13.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.5 <a href="/view/590.html">符号——链接的粘合剂</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.6 <a href="/view/591.html">强符号和弱符号</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.7 <a href="/view/592.html">强引用和弱引用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.8 <a href="/view/593.html">C语言模块化编程中的头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.9 <a href="/view/594.html">C语言标准库以及标准头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.10 <a href="/view/595.html">细说C语言头文件的路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.11 <a href="/view/596.html">防止C语言头文件被重复包含</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.12 <a href="/view/597.html">C语言static变量和函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
-				<span class="channel-num">13</span>
+				<span class="channel-num">14</span>
 				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">14</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>14.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>14.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a></dd><dd>14.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a></dd><dd>14.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a></dd><dd>14.5 <a href="/view/590.html">符号——链接的粘合剂</a></dd><dd>14.6 <a href="/view/591.html">强符号和弱符号</a></dd><dd>14.7 <a href="/view/592.html">强引用和弱引用</a></dd><dd>14.8 <a href="/view/593.html">C语言模块化编程中的头文件</a></dd><dd>14.9 <a href="/view/594.html">C语言标准库以及标准头文件</a></dd><dd>14.10 <a href="/view/595.html">细说C语言头文件的路径</a></dd><dd>14.11 <a href="/view/596.html">防止C语言头文件被重复包含</a></dd><dd>14.12 <a href="/view/597.html">C语言static变量和函数</a></dd><dd>14.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a></dd></dl>
+		
 			<dd>
 				<span class="channel-num">15</span>
 				<a href='/c/practice/'>C语言项目实战案例</a>
@@ -123,94 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/596.html";window.nextPageURL = "/view/598.html";</script>
-			<div id="arc-body">我们知道，全局变量和函数的作用域默认是整个程序，也就是所有的源文件，这给程序的模块化开发带来了很大方便，让我们能够在模块 A 中调用模块 B 中定义的变量和函数，而不用把所有的代码都集中到一个模块。<br />
-<br />
-但这有时候也会引发命名冲突的问题，例如在 a.c 中定义了一个变量 n，在 b.c 中又定义了一次，链接时就会发生重复定义错误，原因很简单，变量只能定义一次。<br />
-<br />
-如果两个文件都是我们自己编写的或者其中一个是，遇到这样的情况还比较好处理，修改变量的名字即可；如果两个文件都是其他程序员编写的，或者是第三方的库，修改起来就颇费精力了。<br />
-<br />
-实际开发中，我们通常将不需要被其他模块调用的全局变量或函数用 <span style="color: #008000"><strong>static</strong></span> 关键字来修饰，static 能够将全局变量和函数的作用域限制在当前文件中，在其他文件中无效。下面我们通过一个实例来演示。<br />
-<br />
-module.c 源码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-
-static int n = 999;
-
-static void say(){
-    printf(&quot;Hello World!\n&quot;);
-}</pre>
-main.c 源码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-
-int n = 100;
-
-void say(){
-    printf(&quot;https://xiexuewu.github.io\n&quot;);
-}
-
-int main(){
-    say();
-    printf(&quot;n = %d\n&quot;, n);
-    return 0;
-}</pre>
-运行结果：<br />
-https://xiexuewu.github.io<br />
-n = 100<br />
-<br />
-我们在 module.c 中定义了变量 n 和函数 say()，它们都被 static 修饰，所以只在 module.c 中有效，在 main.c 中是不可见的。从输出结果也可以看出，main.c 使用了自己的变量和函数，而没有使用 module.c 中的。<br />
-<br />
-使用 static 修饰的变量或函数的作用域仅限于当前模块，对其他模块隐藏，利用这一特性可以在不同的文件中定义同名的变量或函数，而不必担心命名冲突。
-<h2>
-	static 局部变量</h2>
-static 除了可以修饰全局变量，还可以修饰局部变量，被 static 修饰的变量统称为<span style="color: #008000">静态变量（Static Variable）</span>。<br />
-<br />
-不管是全局变量还是局部变量，只要被 static 修饰，都会存储在全局数据区（全局变量本来就存储在全局数据区，即使不加 static）。<br />
-<br />
-全局数据区的数据在程序启动时就被初始化，一直到程序运行结束才会被操作系统回收内存；对于函数中的静态局部变量，即使函数调用结束，内存也不会销毁。<br />
-<br />
-<span style="color: #b22222">注意：全局数据区的变量只能被初始化（定义）一次，以后只能改变它的值，不能再被初始化，即使有这样的语句，也无效。</span><br />
-<br />
-请看下面的代码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-
-int func(){
-    // 也可以不赋初值 0，静态数据区的变量默认初始化为 0
-    static int n = 0;
-    n++;
-    printf(&quot;Function is called %d times.\n&quot;, n);
-    return n;
-}
-
-int main(){
-    int i, n = 0;
-    for(i = 1; i&lt;=5; i++){
-        func();
-    }
-    printf(&quot;n = %d\n&quot;, n);
-    return 0;
-}</pre>
-运行结果：<br />
-Function is called 1 times.<br />
-Function is called 2 times.<br />
-Function is called 3 times.<br />
-Function is called 4 times.<br />
-Function is called 5 times.<br />
-n = 0<br />
-<br />
-我们在 func() 中定义了一个静态局部变量 n，它存储在全局数据区，func() 函数执行结束不会被销毁，下次调用继续有效。全局数据区的变量只能初始化一次，第一次调用 func() 时已经对 n 进行了初始化，所以再次调用时就不会重复初始化了，也就是说<code>static int result = 0;</code>语句无效。<br />
-<br />
-静态局部变量虽然存储在全局数据区，但是它的作用域仅限于函数内部，func() 中的 n 在函数外无效，与 main() 中的 n 不冲突，除了变量名一样，没有任何关系。<br />
-<br />
-总结起来，static 变量主要有两个作用：
-<h4>
-	1) 隐藏</h4>
-程序有多个模块时，将全局变量或函数的作用范围限制在当前模块，对其他模块隐藏。
-<h4>
-	2) 保持变量内容的持久化</h4>
-将局部变量存储到全局数据区，使它不会随着函数调用结束而被销毁。</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="597"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/596.html">防止C语言头文件被重复包含</a></span>
                     <span class="next right"><a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -237,7 +152,7 @@ n = 0<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 597;
-window.arcId = "a2507nwbgRWGJ9Veljl731my+J7RHmA7EBN+zqU/lRR4v3px6LOV4mBc/A";
+window.arcId = "1107nosqY2tWmunucf+OMOEFzuqocpnP5UBW2YYcJnlqbxJZbsG0rzBCKg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

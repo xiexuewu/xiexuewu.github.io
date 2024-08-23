@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -63,7 +65,7 @@
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
 			<dd>
 				<span class="channel-num">7</span>
 				<a href='/c/function/'>C语言函数</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,76 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/485.html";window.nextPageURL = "/view/487.html";</script>
-			<div id="arc-body">在《<a href="/view/405.html" target="_blank">C语言的三套标准：C89、C99和C11</a>》一节中我们讲到，目前经常使用的C语言有三个版本，分别是 C89、C99 和 C11。C89（也称 ANSI C）是较早的版本，也是最经典的版本，国内大学几乎都是以该版本为基础进行授课。C99 和 C11 是后来对 C89 的升级，增添了一些新内容（不多），语法更加灵活了，同时兼容 C89。<br />
-<br />
-各种编译器都能很好地支持 C89 标准，但对 C99 的支持却不同：开源组织的 GCC 和 Xcode 使用的 LLVM/Clang 已经支持了大部分（几乎全部）的 C99 标准，而微软的 VC、VS 对 C99 却不感兴趣，直到后来的 VS2013、VS2015、VS2017 才慢慢支持，而且支持得还不好。<br />
-<br />
-为什么要讨论这个问题呢？因为 C89 和 C99 对<u><a href='/view/181.html' target='_blank'>数组</a></u>做出了不同的规定：
-<ul>
-	<li>
-		在 C89 中，必须使用常量表达式指明数组长度；也就是说，数组长度中不能包含变量，不管该变量有没有初始化。</li>
-	<li>
-		而在 C99 中，可以使用变量指明数组长度。</li>
-</ul>
-<br />
-下面的代码使用常量表达式指明数组长度，在任何编译器下都能编译通过：
-<pre class="c">
-int a[10];  //长度为10
-int b[3*5];  //长度为15
-int c[4+8];  //长度为12</pre>
-下面的代码使用变量指明数组长度，在 GCC 和 Xcode 下能够编译通过，而在 VC 和 VS（包括 VC 6.0、VS2022、VS2019、VS2017 等）下都会报错：
-<pre class="c">
-int m = 10, n;
-scanf(&quot;%d&quot;, &amp;n);
-int a[m], b[n];</pre>
-<br />
-在实际编程中，有时数组的长度不能提前确定，如果这个变化范围小，那么使用常量表达式定义一个足够大的数组就可以，如果这个变化范围很大，就可能会浪费内存，这时就可以使用变长数组。请看下面的代码：
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int n;
-    printf(&quot;Input string length: &quot;);
-    scanf(&quot;%d&quot;, &amp;n);
-    scanf(&quot;%*[^\n]&quot;); scanf(&quot;%*c&quot;);  //清空输入缓冲区
-    char str[n];
-    printf(&quot;Input a string: &quot;);
-    gets(str);
-    puts(str);
-
-    return 0;
-}</pre>
-在 GCC 和 Xcode 下的运行结果：<br />
-Input string length: 100↙<br />
-Input a string: https://xiexuewu.github.io↙<br />
-https://xiexuewu.github.io<br />
-<br />
-变量的值在编译期间并不能确定，只有等到程序运行后，根据计算结果才能知道它的值到底是什么，所以数组长度中一旦包含了变量，那么数组长度在编译期间就不能确定了，也就不能为数组分配内存了，只有等到程序运行后，得到了变量的值，确定了具体的长度，才能给数组分配内存，我们将这样的数组称为<span style="color:#008000;">变长数组(VLA,&nbsp;</span><span style="color:#008000;">Variable Length Array)</span>。<br />
-<br />
-<span style="color:#b22222;">普通数组（固定长度的数组）是在编译期间分配内存的，而变长数组是在运行期间分配内存的。</span>
-<h2>
-	变长数组仍然是静态数组</h2>
-注意，变长数组是说数组的长度在<strong>定义之前</strong>可以改变，一旦定义了，就不能再改变了，所以变长数组的容量也是不能扩大或缩小的，它仍然是静态数组。以上面的代码为例，第 8 行代码是数组定义，此时就确定了数组的长度，在此之前长度可以随意改变，在此之后长度就固定了。
-<h2>
-	一种&ldquo;自欺欺人&rdquo;的写法</h2>
-有些初学者在使用变长数组时会像下面一样书写代码：
-<pre class="cpp">
-int n;
-int arr[n];
-scanf(&quot;%d&quot;, &amp;n);</pre>
-先定义一个变量 n 和一个数组 arr，然后用 scanf() 读入 n 的值。有些初学者认为，scanf() 输入结束后，n 的值就确认下来了，数组 arr 的长度也随即确定了。这种想法看似合理，其实是蛮不讲理，毫无根据。<br />
-<br />
-从你定义数组的那一刻起（也就是第二行代码），数组的长度就确定下来了，以后再也不会改变了；改变 n 的值并不会影响数组长度，它们之间没有任何&ldquo;联动&rdquo;关系。用 scanf() 读入 n 的值，影响的也仅仅是 n 本身，不会影响数组。<br />
-<br />
-那么，上面代码中数组的长度究竟是什么呢？鬼知道！n 是未初始化的局部变量，它的值是未知的。<br />
-<br />
-修改上面的代码，将数组的定义放到最后就没问题了：
-<pre class="cpp">
-int n;
-scanf(&quot;%d&quot;, &amp;n);
-int arr[n];</pre>
-在定义数组之前就输入 n 的值，这样输入的值才有用武之地。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="486"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/485.html">C语言数组的越界和溢出</a></span>
                     <span class="next right"><a href="/view/487.html">对数组元素进行排序</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -219,7 +152,7 @@ int arr[n];</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 486;
-window.arcId = "b71fMOO5cO6a4tO0pNR24R+wvojY8vIPWwxknqXcTIybOtEXSc/506fRRw";
+window.arcId = "3c8bCozrx9zNrcqg2a9bijzvAMxTeLNgVQOXMdmOe+DSrb5Ao5Z69H+nmg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

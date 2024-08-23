@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -68,7 +70,7 @@
 				<span class="channel-num">6</span>
 				<a href='/c/array/'>C语言数组</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
 			<dd>
 				<span class="channel-num">8</span>
 				<a href='/c/preprocess/'>预处理命令</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,59 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/498.html";window.nextPageURL = "/view/500.html";</script>
-			<div id="arc-body">所谓中间递归，就是发生递归的位置在函数体的中间，而不是末尾。<br />
-<br />
-尾递归在逐层退出时除了 return 语句，一般不再执行其他操作；而中间递归在逐层退出时还要执行一些其他的操作，所以比较复杂。<br />
-<br />
-下面我们以字符<u><a href='/view/175.html' target='_blank'>串</a></u>反转（逆置）函数为例来讲解中间递归：
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-
-//反转（逆置）字符串
-char *reverse(char *str) {
-    int len = strlen(str);
-    if (len &gt; 1) {
-        char ctemp = str[0];
-        str[0] = str[len - 1];
-        str[len - 1] = &#39;\0&#39;;  //最后一个字符在下次递归时不再处理
-        reverse(str + 1);  //递归调用
-        str[len - 1] = ctemp;
-    }
-
-    return str;
-}
-
-int main() {
-    char str[20] = &quot;123456789&quot;;
-    printf(&quot;%s\n&quot;, reverse(str));
-    return 0;
-}</pre>
-运行结果：<br />
-987654321<br />
-<br />
-每次调用函数，都会把字符串的第 0 个字符保存到 ctemp 变量，并把最后一个字符填充到第 0 个字符的位置，同时用<code>&#39;\0&#39;</code>来填充最后一个字符的位置。<br />
-<br />
-读者要注意第 11 行代码，调用&nbsp;reverse() 的实参为<code>str+1</code>，这会导致形参 str 的指向发生改变，每次递归调用时 str 都会向后移动一个字符的位置。<br />
-<br />
-通过以上<b>带有下划线的两点</b>可以得出一个结论：每次递归调用都会处理一个新的子串，这个新的子串是在原来字符串的基础上&ldquo;掐头去尾&rdquo;形成的。<br />
-<br />
-下图演示了递归函数的整个流程：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="中间递归的流程" src="/uploads/allimg/240821/125H01150-0.gif" /></div>
-<br />
-reverse() 的整体思路是，每次调用函数只交换字符串开头和末尾的两个字符，其它字符一律不管，并且这个交换过程也是分两个阶段完成的：
-<ul>
-	<li>
-		在逐层进入递归的阶段，reverse() 只是把字符串的最后一个字符移动到最前边，但是并没有把最前边一个字符移动到最后边，而是把最前边的字符保存到 ctemp 变量。</li>
-	<li>
-		在逐层退出递归的阶段，reverse() 才把 ctemp 变量中保存的字符放到字符串的最前边。</li>
-</ul>
-<br />
-两个阶段相互合作，才能最终完成两个字符的交换。<br />
-<br />
-<span style="color:#b22222;">你看，对于中间递归来说，它在进入和退出递归的两个阶段都会进行一些操作，而对于尾递归，它只会在进入递归的阶段进行一些操作，退出递归的阶段不进行任何操作，这就是中间递归和尾递归的不同。</span></div>
+			<div id="arc-body"><div id="buy-course-tip" aid="499"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/498.html">C语言递归函数（带实例演示）</a></span>
                     <span class="next right"><a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -202,7 +152,7 @@ reverse() 的整体思路是，每次调用函数只交换字符串开头和末�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 499;
-window.arcId = "9925Bw1R3NyD7znDIiwuSWzO6evElqxADW2WDO58sbxB0oaA5nOfEmJITg";
+window.arcId = "a545gC2y37gEINLZICx6uYV02yWbvcxBosYW3FS2NjJvZlbvSKwq02F84A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

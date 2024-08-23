@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -88,7 +90,7 @@
 				<span class="channel-num">10</span>
 				<a href='/c/struct/'>结构体</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a></dd></dl>
+		<dd class="this"> <span class="channel-num">11</span> <a href="/c/file/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="/view/544.html">C语言中的文件是什么？</a></dd><dd>11.2 <a href="/view/545.html">C语言打开文件</a></dd><dd>11.3 <a href="/view/546.html">文本文件和二进制文件到底有什么区别？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.4 <a href="/view/547.html">以字符形式读写文件</a></dd><dd>11.5 <a href="/view/548.html">以字符串的形式读写文件</a></dd><dd>11.6 <a href="/view/549.html">以数据块的形式读写文件</a></dd><dd>11.7 <a href="/view/550.html">格式化读写文件</a></dd><dd>11.8 <a href="/view/551.html">随机读写文件</a></dd><dd>11.9 <a href="/view/552.html">C语言实现文件复制功能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.10 <a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.11 <a href="/view/554.html">获取文件大小（长度）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.12 <a href="/view/555.html">插入、删除、更改文件内容</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,94 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/551.html";window.nextPageURL = "/view/553.html";</script>
-			<div id="arc-body">文件的复制是常用的功能，要求写一段代码，让用户输入要复制的文件以及新建的文件，然后对文件进行复制。能够复制的文件包括文本文件和二进制文件，你可以复制 1G 的电影，也可以复制 1Byte 的 txt 文档。<br />
-<br />
-实现文件复制的主要思路是：开辟一个缓冲区，不断从原文件中读取内容到缓冲区，每读取完一次就将缓冲区中的内容写入到新建的文件，直到把原文件的内容读取完。<br />
-<br />
-这里有两个关键的问题需要解决：<br />
-1) 开辟多大的缓冲区合适？缓冲区过小会造成读写次数的增加，过大也不能明显提高效率。目前大部分磁盘的扇区都是 4K 对齐的，如果读写的数据不是 4K 的整数倍，就会跨扇区读取，降低效率，所以我们开辟 4K 的缓冲区。<br />
-<br />
-2) 缓冲区中的数据是没有结束标志的，如果缓冲区填充不满，如何确定写入的字节数？最好的办法就是每次读取都能返回读取到的字节数。<br />
-<br />
-fread() 的原型为：
-<pre class="info-box">
-size_t fread ( void *ptr, size_t size, size_t count, FILE *fp );</pre>
-它返回成功读写的块数，该值小于等于 count。如果我们让参数 size 等于1，那么返回的就是读取的字节数。<br />
-<br />
-注意：fopen() 一定要以二进制的形式打开文件，不能以文本形式打开，否则系统会对文件进行一些处理，如果是文本文件，像 .txt 等，可能没有问题，但如果是其他格式的文件，像 .mp4, .rmvb, .jpg 等，复制后就会出错，无法读取。<br />
-<br />
-代码实现：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-int copyFile(char *fileRead, char *fileWrite);
-
-int main(){
-    char fileRead[100];  // 要复制的文件名
-    char fileWrite[100];  // 复制后的文件名
-   
-    // 获取用户输入
-    printf(&quot;要复制的文件：&quot;);
-    scanf(&quot;%s&quot;, fileRead);
-    printf(&quot;将文件复制到：&quot;);
-    scanf(&quot;%s&quot;, fileWrite);
-
-    // 进行复制操作
-    if( copyFile(fileRead, fileWrite) ){
-        printf(&quot;恭喜你，文件复制成功！\n&quot;);
-    }else{
-        printf(&quot;文件复制失败！\n&quot;);
-    }
-
-    return 0;
-}
-
-/**
-* 文件复制函数
-* @param    fileRead    要复制的文件
-* @param    fileWrite   复制后文件的保存路径
-* @return   int         1: 复制成功；2: 复制失败
-**/
-int copyFile(char *fileRead, char *fileWrite){
-    FILE *fpRead;  // 指向要复制的文件
-    FILE *fpWrite;  // 指向复制后的文件
-    int bufferLen = 1024*4;  // 缓冲区长度
-    char *buffer = (char*)malloc(bufferLen);  // 开辟缓存
-    int readCount;  // 实际读取的字节数
-
-    if( (fpRead=fopen(fileRead, &quot;rb&quot;)) == NULL || (fpWrite=fopen(fileWrite, &quot;wb&quot;)) == NULL ){
-        printf(&quot;Cannot open file, press any key to exit!\n&quot;);
-        getch();
-        exit(1);
-    }
-
-    // 不断从fileRead读取内容，放在缓冲区，再将缓冲区的内容写入fileWrite
-    while( (readCount=fread(buffer, 1, bufferLen, fpRead)) &gt; 0 ){
-        fwrite(buffer, readCount, 1, fpWrite);
-    }
-
-    free(buffer);
-    fclose(fpRead);
-    fclose(fpWrite);
-
-    return 1;
-}</pre>
-运行结果：
-<pre class="info-box">
-要复制的文件：d://1.mp4
-将文件复制到：d://2.mp4
-恭喜你，文件复制成功！</pre>
-如果文件不存在，会给出提示，并终止程序：
-<pre class="info-box">
-要复制的文件：d://123.mp4
-将文件复制到：d://333.mp4
-d://cyuyan.txt: No such file or directory</pre>
-<br />
-第 46 行是文件复制的核心代码。通过 fread() 函数，每次从 fileRead 文件中读取 bufferLen 个字节，放到缓冲区，再通过 fwrite() 函数将缓冲区的内容写入 fileWrite 文件。<br />
-<br />
-正常情况下，每次会读取 bufferLen 个字节，即 readCount=bufferLen；如果文件大小不足 bufferLen 个字节，或者读取到文件末尾，实际读取到的字节就会小于 bufferLen，即readCount&lt;bufferLen。所以通过 fwrite() 写入文件时，应该以 readCount 为准。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="552"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/551.html">随机读写文件</a></span>
                     <span class="next right"><a href="/view/553.html">FILE结构体以及缓冲区深入探讨</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -237,7 +152,7 @@ d://cyuyan.txt: No such file or directory</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 552;
-window.arcId = "1f34CQwx1DTIJFGBb2XNrm3zcEtOLc4IK/6DyxudropsV8haldwosZmxFw";
+window.arcId = "1172K9tXd2yfliGk1vKhcZWsJjWgBV8THr8FXoqgQ+bImQSyXXnV6zGY/g";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

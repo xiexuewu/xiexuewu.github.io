@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -58,7 +60,7 @@
 				<span class="channel-num">4</span>
 				<a href='/c/io/'>C语言输入输出</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a></dd></dl>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">6</span>
 				<a href='/c/array/'>C语言数组</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -265,7 +267,7 @@ int main(){
 Input a character:e↙<br />
 This is a small letter<br />
 <br />
-本例要求判别键盘输入字符的类别。可以根据输入字符的 ASCII 码来判别类型。由 ASCII 码表可知 ASCII 值小于 32 的为控制字符。在&ldquo;0&rdquo;和&ldquo;9&rdquo;之间的为数字，在&ldquo;A&rdquo;和&ldquo;Z&rdquo;之间为大写字母， 在&ldquo;a&rdquo;和&ldquo;z&rdquo;之间为小写字母，其余则为其它字符。这是一个多分支选择的问题，用多个 if else 语句编程，判断输入字符 ASCII 码所在的范围，分别给出不同的输出。例如输入为&ldquo;e&rdquo;，输出显示它为小写字符。<br />
+本例要求判别键盘输入字符的类别。可以根据输入字符的 ASCII 码来判别类型。由 <a href="/view/424.html" target="_blank">ASCII 码表</a>可知 ASCII 值小于 32 的为控制字符。在&ldquo;0&rdquo;和&ldquo;9&rdquo;之间的为数字，在&ldquo;A&rdquo;和&ldquo;Z&rdquo;之间为大写字母， 在&ldquo;a&rdquo;和&ldquo;z&rdquo;之间为小写字母，其余则为其它字符。这是一个多分支选择的问题，用多个 if else 语句编程，判断输入字符 ASCII 码所在的范围，分别给出不同的输出。例如输入为&ldquo;e&rdquo;，输出显示它为小写字符。<br />
 <br />
 在使用 if 语句时还应注意以下两点：
 <ul>
@@ -328,7 +330,7 @@ else printf(&quot;a&lt;b\n&quot;);  // ③</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 446;
-window.arcId = "e153kMPaxYpe6rodFypOgfrcaqc2xNDb+CGG5VMQhdepG/CYn66dYAOCfw";
+window.arcId = "f6a9eFAEx+0R8NQq5EnWuHDYbZL4EDmbGZ/OIcFO03GOpSNqmzLNpPqQLg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

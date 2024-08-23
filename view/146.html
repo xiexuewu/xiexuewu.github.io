@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -146,12 +148,12 @@
 第一个问题是单个数字的转换，这个并不难，因为阿拉伯数字 0〜9 与相应的中文数字是一一对应的。对这个转换设计算法非常简单，可以定义中文数字表：<br />
 <pre class="cpp">
 const char *chnNumChar[CHN_NUM_CHAR_COUNT] = {&quot;零&quot;,&quot;一&quot;,&quot;二&quot;,&quot;三&quot;,&quot;四&quot;,&quot;五&quot;,&quot;六&quot;,&quot;七&quot;,&quot;八&quot;,&quot;九&quot;};</pre>
-待转换的阿拉伯数字作为<u><a href='/view/181.html' target='_blank'>数组</a></u>下标，比如 chnNumChar[5] 就是阿拉伯数字 5 对应的中文数字。<br />
+待转换的阿拉伯数字作为数组下标，比如 chnNumChar[5] 就是阿拉伯数字 5 对应的中文数字。<br />
 <br />
 第二个需要解决的问题是节与权位的识别。节的划分很简单，以&ldquo;万&rdquo;为单位截断即可。节权位的定义也釆用一维表，可以利用数组下标直接定位出节权的中文名称：<br />
 <pre class="cpp">
 const char *chnUnitSection[] = {&quot;万&quot;,&quot;亿&quot;,&quot;万亿&quot;};</pre>
-对于 32 位正数能表达的最大数来说，最大节权是&ldquo;万亿&rdquo;己经足够了，如果要转换更大的数，可以延伸这个节权表的定义，比如增加&ldquo;亿亿&rdquo;。数字中最低的节没有节权，使用空字符<u><a href='/view/175.html' target='_blank'>串</a></u>作为占位符也是一个算法设计常用的一致性处理的技巧：对最低的节不做特殊处理，<br />
+对于 32 位正数能表达的最大数来说，最大节权是&ldquo;万亿&rdquo;己经足够了，如果要转换更大的数，可以延伸这个节权表的定义，比如增加&ldquo;亿亿&rdquo;。数字中最低的节没有节权，使用空字符串作为占位符也是一个算法设计常用的一致性处理的技巧：对最低的节不做特殊处理，<br />
 <br />
 和其他节一样指定节权位，只不过节权位是空字符串，对转换出的中文数字最终结果没有影响。每个节内的数字对应的权位也采用这种方式定义：<br />
 <pre class="cpp">
@@ -243,7 +245,7 @@ void SectionToChinese(unsigned int section, std::string&amp; chnStr)
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 146;
-window.arcId = "2a8crqM0Am23XeAoPECiLKLFO8E5+SfpJBDChvNGlY+Yrp22d2Cwujkn0w";
+window.arcId = "cf30Bpo+jzqjNClvs0zy/u4BUMBPPYu8aNZzvOJ5XjB3XQQJqBYk1dBjtw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -107,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>KMP算法(快速模式匹配算法)详解以及C语言实现</h1>
-			<div id="arc-body">通过上一节的介绍，学习了<u><a href='/view/175.html' target='_blank'>串</a></u>的<a href="/view/12.html" target="_blank">普通模式匹配算法</a>，大体思路是：模式串从主串的第一个字符开始匹配，每匹配失败，主串中记录匹配进度的指针 i 都要进行 i-j+1 的回退操作（这个过程称为<span style="color:#008000;">&ldquo;指针回溯&rdquo;</span>），同时模式串向后移动一个字符的位置。一次次的循环，直到匹配成功或者程序结束。<br />
+			<div id="arc-body">通过上一节的介绍，学习了串的<a href="/view/12.html" target="_blank">普通模式匹配算法</a>，大体思路是：模式串从主串的第一个字符开始匹配，每匹配失败，主串中记录匹配进度的指针 i 都要进行 i-j+1 的回退操作（这个过程称为<span style="color:#008000;">&ldquo;指针回溯&rdquo;</span>），同时模式串向后移动一个字符的位置。一次次的循环，直到匹配成功或者程序结束。<br />
 <br />
 <span style="color:#008000;">&quot;KMP&quot;算法</span>相比于&quot;BF&quot;算法，优势在于：
 <ul>
@@ -127,7 +129,7 @@
 <br />
 对于一个给定的模式串，其中每个字符都有可能会遇到匹配失败，这时对应的 j 指针都需要回溯，具体回溯的位置其实还是由模式串本身来决定的，和主串没有关系。<br />
 <br />
-<span style="color:#b22222;">模式串中的每个字符所对应 j 指针回溯的位置，可以通过算法得出，得到的结果相应地存储在一个<u><a href='/view/181.html' target='_blank'>数组</a></u>中（默认数组名为 next ）。</span><br />
+<span style="color:#b22222;">模式串中的每个字符所对应 j 指针回溯的位置，可以通过算法得出，得到的结果相应地存储在一个数组中（默认数组名为 next ）。</span><br />
 <br />
 计算方法是：对于模式串中的某一字符来说，提取它前面的字符串，分别从字符串的两端查看连续相同的字符串的个数，在其基础上 +1 ，结果就是该字符对应的值。
 <div class="info-box">
@@ -352,7 +354,7 @@ KMP 算法，之所以比 <u><a href='/view/179.html' target='_blank'>BF 算法<
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 13;
-window.arcId = "132fY9E/10g4rDeW/v6BJnZbXAMKGQ37hdQvewDqNj9KOPGo/1KHwZA4";
+window.arcId = "c46fbA4Tfa0eTJrJcUKcox4mY0JEAtYIxPerWauD9FgIhlmMQMITGHY3";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

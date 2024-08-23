@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -101,12 +103,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -127,7 +129,7 @@
 	分析</h2>
 对于要判定的数 n 计算出其平方后（存于 a），按照&ldquo;回文数&rdquo;的定义要将最高位与最低位、次高位与次低位&hellip;&hellip;进行比较，若彼此相等则为回文数。此算法需要知道平方数的位数，再一一将每一位分解、比较，此方法对于位数已知且位数不是太多的数来说比较适用。<br />
 <br />
-此问题可借助<u><a href='/view/181.html' target='_blank'>数组</a></u>来解决。将平方后的（a 的）每一位进行分解，按从低位到高位的顺序依次暂存到数组中，再将数组中的元素按照下标从大到小的顺序重新将其组合成一个数众（如 n=15，则 a=225 且 k=522），若 k 等于 n&times;n 则可判定 n 为回文数。
+此问题可借助数组来解决。将平方后的（a 的）每一位进行分解，按从低位到高位的顺序依次暂存到数组中，再将数组中的元素按照下标从大到小的顺序重新将其组合成一个数众（如 n=15，则 a=225 且 k=522），若 k 等于 n&times;n 则可判定 n 为回文数。
 <h2>
 	实现</h2>
 从低位到高位将某一整数拆分。对于一个整数（设变量名为 a）无论其位数多少，若欲将最低位拆分，只需对 10 进行求模运算 a%10，拆分次低位首先要想办法将原来的次低位作为最低位来处理，用原数对 10 求商可得到由除最低位之外的数形成的新数，且新数的最低位是原数的次低位，根据拆分最低位的方法将次低位求出 a/10、a%10，对于其他位上的数算法相同。<br />
@@ -207,7 +209,7 @@ int main()
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 470;
-window.arcId = "25446j8OD377biB/Gj6y9fZieOEtdtj3AzaLSlT8Rlp1VksrLqz9CPsLDg";
+window.arcId = "c676b3T5SUO5SPTSGJpQsC9fSwZ9FGazuvLRyXScayaVTJfTaX5/7TLPYw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -98,12 +100,12 @@
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
 			</dd>
-		
+		<dd class="this"> <span class="channel-num">13</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>13.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>13.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.5 <a href="/view/590.html">符号——链接的粘合剂</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.6 <a href="/view/591.html">强符号和弱符号</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.7 <a href="/view/592.html">强引用和弱引用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.8 <a href="/view/593.html">C语言模块化编程中的头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.9 <a href="/view/594.html">C语言标准库以及标准头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.10 <a href="/view/595.html">细说C语言头文件的路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.11 <a href="/view/596.html">防止C语言头文件被重复包含</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.12 <a href="/view/597.html">C语言static变量和函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
-				<span class="channel-num">13</span>
+				<span class="channel-num">14</span>
 				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">14</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>14.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>14.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a></dd><dd>14.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a></dd><dd>14.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a></dd><dd>14.5 <a href="/view/590.html">符号——链接的粘合剂</a></dd><dd>14.6 <a href="/view/591.html">强符号和弱符号</a></dd><dd>14.7 <a href="/view/592.html">强引用和弱引用</a></dd><dd>14.8 <a href="/view/593.html">C语言模块化编程中的头文件</a></dd><dd>14.9 <a href="/view/594.html">C语言标准库以及标准头文件</a></dd><dd>14.10 <a href="/view/595.html">细说C语言头文件的路径</a></dd><dd>14.11 <a href="/view/596.html">防止C语言头文件被重复包含</a></dd><dd>14.12 <a href="/view/597.html">C语言static变量和函数</a></dd><dd>14.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a></dd></dl>
+		
 			<dd>
 				<span class="channel-num">15</span>
 				<a href='/c/practice/'>C语言项目实战案例</a>
@@ -123,67 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/592.html";window.nextPageURL = "/view/594.html";</script>
-			<div id="arc-body">前面我们在演示多文件编程时创建了&nbsp;main.c 和 module.c 两个源文件，并在 module.c 中定义了一个函数和一个全局变量，然后在 main.c 中进行了声明。<br />
-<br />
-不过实际开发中很少这样做，一般是将函数和变量的声明放到头文件，再在当前源文件中 #include 进来。如果变量的值是固定的，最好使用宏来代替。下面的例子是改进后的代码。<br />
-<br />
-main.c 源码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-#include &quot;module.h&quot;
-
-int main(){
-    printf(&quot;a = %d\n&quot;, a);
-    func();
-    printf(&quot;OS: %s\n&quot;, OS);
-    return 0;
-}</pre>
-module.c 源码：
-<pre class="c">
-#include &lt;stdio.h&gt;
-
-int a = 100;
-
-void func(){
-    printf(&quot;https://xiexuewu.github.io\n&quot;);
-}</pre>
-module.h 源码：
-<pre class="c">
-#define OS &quot;Windows 7&quot;
-
-extern int a;
-extern void func();</pre>
-在 Visual Studio 中，将上面的文件全部添加到工程，点击&ldquo;运行（Run）&rdquo;就可以看到输出结果。<br />
-<br />
-在 GCC 中，使用下面的命令来编译和运行：
-<p class="info-box">
-	$gcc main.c module.c<br />
-	$./a.out</p>
-程序最终的输出结果为：
-<p class="info-box">
-	a = 100<br />
-	https://xiexuewu.github.io<br />
-	OS: Windows 7</p>
-<code>.c</code>和<code>.h</code>文件都是源文件，除了后缀不一样便于区分外和管理外，其他的都是相同的，在<code>.c</code>中编写的代码同样也可以写在<code>.h</code>中，包括函数定义、变量定义、预处理等。<br />
-<br />
-但是，.h&nbsp;和&nbsp;.c&nbsp;在项目中承担的角色不一样：.c 文件主要负责实现，也就是定义函数和变量；.h 文件主要负责声明（包括变量声明和函数声明）、宏定义、类型定义等。这些不是 C语法规定的内容，而是约定成俗的规范，或者说是长期形成的事实标准。<br />
-<br />
-根据这份规范，头文件可以包含如下的内容：
-<ul>
-	<li>
-		可以声明函数，但不可以定义函数。</li>
-	<li>
-		可以声明变量，但不可以定义变量。</li>
-	<li>
-		可以定义宏，包括带参的宏和不带参的宏。</li>
-	<li>
-		结构体的定义、自定义数据类型一般也放在头文件中。</li>
-</ul>
-<br />
-在项目开发中，我们可以将一组相关的变量和函数定义在一个 .c 文件中，并用一个同名的 .h 文件（头文件）进行声明，其他模块如果需要使用某个变量或函数，那么引入这个头文件就可以。<br />
-<br />
-这样做的另外一个好处是可以保护版权，我们在发布相关模块之前，可以将它们都编译成目标文件，或者打包成静态库，只要向用户提供头文件，用户就可以将这些模块链接到自己的程序中。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="593"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/592.html">强引用和弱引用</a></span>
                     <span class="next right"><a href="/view/594.html">C语言标准库以及标准头文件</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -210,7 +152,7 @@ extern void func();</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 593;
-window.arcId = "5d73SALLv8lKMTVPXwA7gTX/2n4r7U5xDcAa95mmJJMsnYsbAsKmtFdkEg";
+window.arcId = "ca0d8rUfpQHzskFou7zI3JhuOUFPxA3vGtDUBRH9nMgXymnueDoqpr2lsg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

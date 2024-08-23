@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -101,14 +103,14 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">15</span> <a href="/c/practice/">C语言项目实战案例</a> </dd><dl class="dl-sub"><dd>15.1 <a href="/view/599.html">C语言学生信息管理系统（文件版）</a></dd><dd>15.2 <a href="/view/600.html">学生信息管理系统源码下载和思路解析（文件版）</a></dd><dd>15.3 <a href="/view/601.html">C语言贪吃蛇小游戏</a></dd><dd>15.4 <a href="/view/602.html">贪吃蛇小游戏源码下载和思路解析</a></dd><dd>15.5 <a href="/view/603.html">C语言2048小游戏</a></dd><dd>15.6 <a href="/view/604.html">2048小游戏源码下载和思路解析</a></dd><dd>15.7 <a href="/view/605.html">C语言推箱子小游戏</a></dd><dd>15.8 <a href="/view/606.html">推箱子小游戏源码下载和思路解析</a></dd><dd>15.9 <a href="/view/607.html">C语言扫雷小游戏</a></dd><dd>15.10 <a href="/view/608.html">扫雷小游戏源码下载和思路解析</a></dd></dl>
+		<dd class="this"> <span class="channel-num">15</span> <a href="/c/practice/">C语言项目实战案例</a> </dd><dl class="dl-sub"><dd>15.1 <a href="/view/599.html">C语言学生信息管理系统（文件版）</a></dd><dd>15.2 <a href="/view/600.html">学生信息管理系统源码下载和思路解析（文件版）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>15.3 <a href="/view/601.html">C语言贪吃蛇小游戏</a></dd><dd>15.4 <a href="/view/602.html">贪吃蛇小游戏源码下载和思路解析</a><span class="glyphicon glyphicon-usd"></span></dd><dd>15.5 <a href="/view/603.html">C语言2048小游戏</a></dd><dd>15.6 <a href="/view/604.html">2048小游戏源码下载和思路解析</a><span class="glyphicon glyphicon-usd"></span></dd><dd>15.7 <a href="/view/605.html">C语言推箱子小游戏</a></dd><dd>15.8 <a href="/view/606.html">推箱子小游戏源码下载和思路解析</a><span class="glyphicon glyphicon-usd"></span></dd><dd>15.9 <a href="/view/607.html">C语言扫雷小游戏</a></dd><dd>15.10 <a href="/view/608.html">扫雷小游戏源码下载和思路解析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 	</div>
 </div>
 	<div id="article-wrap">
@@ -123,69 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/607.html";window.nextPageURL = "/view/608.html";</script>
-			<div id="arc-body">在 《<a href="/view/607.html" target="_blank">C语言扫雷游戏演示和说明</a>》一节中，我们对扫雷游戏的玩法进行了介绍和演示，这节就来分析一下它的源代码。<br />
-<br />
-扫雷游戏源代码百度网盘下载地址：<a href="https://pan.quark.cn/s/52156a3eef26" target="_blank">https://pan.quark.cn/s/52156a3eef26</a><br />
-<br />
-各位读者不防先将源代码下载浏览一遍，记住关键的几个函数，整理一下不了解的知识点，做到心中有数。
-<h2>
-	一、关键知识点</h2>
-下面请各位读者先学习一下该游戏中涉及到的几个关键知识点，有了这些必备条件，我们才好讲解扫雷的设计思路。
-<h3>
-	1) 改变输出文本的颜色</h3>
-扫雷游戏的整个界面，都是由特殊字符组成，小方块 <span style="color:#808080;">■</span> 是灰色的，方框 □ 是白色的，炸弹<span style="color:#ffff00;"> ● </span>是黄色的，等等。这就涉及到如何改变文本的输出颜色，请大家猛击《<a href="/view/412.html" target="_blank">彩色版的C语言，让文字更漂亮</a>》了解详情。
-<h3>
-	2) 键盘监听</h3>
-在扫雷游戏中，当用户输入是否开始游戏的 Y/N 时，程序能够自动监听，当用户输入完成后，不用回车，程序立即做出反应，这就用到了键盘监听。请大家猛击《<a href="/view/445.html" target="_blank">C语言非阻塞式键盘监听</a>》了解详情。
-<h3>
-	3) 获取随机数</h3>
-扫雷游戏中，雷区会随机出现在整个区域的任意位置，没有任何规律，这就要求程序能够生成随机数值，由随机数设置雷区的位置。有关随机数的产生请大家猛击《<a href="/view/543.html" target="_blank">C语言获取随机数</a>》了解详情。
-<h2>
-	二、扫雷游戏初始化</h2>
-扫雷游戏初始化过程中，我们使用到了 3 个二维<u><a href='/view/181.html' target='_blank'>数组</a></u>：mine、show、mineDow：
-<ul>
-	<li>
-		mine 数组用于初始化扫雷游戏。具体做法是：首先默认整个二维数组中没有雷区，全部设为安全区域（用 0 表示），然后在二维数组中随机安插一定数量的雷区；</li>
-	<li>
-		show 数组用于每次将结果输出给用户。当用户输入完成后，show 数组会根据用户的输入对存储的数据做适当的更新，然后输出给用户；</li>
-	<li>
-		mineDow 数组中每个数据表示的，该位置相邻的周围雷区的数量，此数组的建立为的是实现&ldquo;点击一个位置，开出一片安全区域&rdquo;的效果</li>
-</ul>
-<blockquote>
-	<p>
-		<span style="color:#b22222;">提示：</span>在源代码的 game 函数中，在 mine_sweep() 函数之前的所有工作，都是初始化工作。</p>
-</blockquote>
-<h2>
-	三、扫雷功能的实现</h2>
-扫雷功能的实现，整体思路是：
-<ol>
-	<li>
-		判断用户输入坐标处是否是雷区；</li>
-	<li>
-		更新 show 数组：如果是雷区，将 show 数组中该坐标位置上由字符 &lsquo;*&rsquo;&nbsp;改为表示雷区的字符 &lsquo;o&rsquo;；如果不是雷区，借助 mineDow数组中存储的信息，使用递归的方式，找到其他符合条件的非雷区区域（<span style="color:#008000;">show_deal 函数的作用</span>），将找到的所有区域一并更新到 show 数组中；</li>
-	<li>
-		将新的 show 数组以一定的格式输出，反馈给用户；</li>
-</ol>
-<blockquote>
-	<p>
-		<span style="color:#b22222;">提示：</span>show_deal 函数找的是该区域既不是雷区，其周围也没有雷区的区域，将其全部更新到 show 数组中。一旦遇到周围有雷区的区域（这部分区域也会被更新到 show 数组中），则递归结束。</p>
-</blockquote>
-扫雷功能的具体实现，可见源代码中的 <span style="color:#008000;">mine_sweep 函数</span>。
-<h2>
-	四 扫雷界面的优化</h2>
-<span style="color:#008000;">扫雷界面，实际上是将 show 数组中存储的数据换了一种方式输出出来。</span><br />
-例如，show 数组中存储有字符 &lsquo;*&rsquo;，在输出时，统一换为&ldquo;■&rdquo;；表示雷区的字符 &lsquo;o&rsquo;，统一换为 &lsquo;●&rsquo;，等等。
-<blockquote>
-	<p>
-		<span style="color:#b22222;">注意：</span>用于替换的字符，并不是普通的字符，它们并不在 ASCII 码范围内，是<span style="color:#008000;">宽字符</span>，占用两个字节。</p>
-</blockquote>
-采用此种方式，再配以合适的颜色<span style="color:#008000;">（采用Windows API）</span>，可以将二维数组以如下的这种形式反馈给用户：
-<div style="text-align: center;">
-	<br />
-	<img alt="" src="/uploads/allimg/240822/1125511008-0.png" /><br />
-	&nbsp;</div>
-扫雷界面的详细优化代码，可见原代码中的 <span style="color:#008000;">display_board() 函数</span>的实现。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="608"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/607.html">C语言扫雷小游戏</a></span>
                     <span class="next right"><a href="/view/608.html">扫雷小游戏源码下载和思路解析</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -212,7 +152,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 608;
-window.arcId = "aff6cCut8qQ1cigyGLZjWzG+hx5W/MR5zZaTSJvMmwRVvTCnrBhHNe70kA";
+window.arcId = "f586IYULhRW/Q+MkcBOttu7OXEyD75HfK/Ji5XLhFUY2xj6bFdT/0Z8/UQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

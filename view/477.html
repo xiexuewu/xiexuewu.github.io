@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -58,7 +60,7 @@
 				<span class="channel-num">4</span>
 				<a href='/c/io/'>C语言输入输出</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a></dd></dl>
+		<dd class="this"> <span class="channel-num">5</span> <a href="/c/branch_loop/">循环结构和选择结构</a> </dd><dl class="dl-sub"><dd>5.1 <a href="/view/446.html">C语言if else语句</a></dd><dd>5.2 <a href="/view/447.html">C语言关系运算符</a></dd><dd>5.3 <a href="/view/448.html">C语言逻辑运算符</a></dd><dd>5.4 <a href="/view/449.html">C语言switch case语句</a></dd><dd>5.5 <a href="/view/450.html">C语言条件运算符</a></dd><dd>5.6 <a href="/view/451.html">C语言while循环</a></dd><dd>5.7 <a href="/view/452.html">C语言for循环</a></dd><dd>5.8 <a href="/view/453.html">C语言跳出循环</a></dd><dd>5.9 <a href="/view/454.html">C语言循环嵌套</a></dd><dd>5.10 <a href="/view/456.html">对选择结构和循环结构的总结</a></dd><dd>5.11 <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>5.12 <a href="/view/477.html">写一个内存泄露的例子，让计算机内存爆满</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">6</span>
 				<a href='/c/array/'>C语言数组</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,30 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/457.html";window.nextPageURL = "/c/array/";</script>
-			<div id="arc-body">操作系统允许程序自己分配内存，并自由使用，使用完了还可以再释放掉，将内存归还给计算机。<br />
-<br />
-所谓分配内存，就是程序向计算机申请一块内存空间，然后自己使用；所谓释放内存，就是程序告诉计算机不再使用之前的内存空间了，需要归还给计算机，让其它程序使用。<br />
-<br />
-如果一个程序不停地分配内存，而不释放内存，那么拥有的内存就会越来越多，计算机内存就会被消耗殆尽，其它程序能够使用的内存越来越少，整台计算机就会都变得缓慢，甚至卡死，这就是<span style="color:#008000;">内存泄露（Memory leak）</span>。<br />
-<br />
-下面我们就用 while 循环来写一个内存泄漏的例子：
-<pre class="c">
-#include &lt;stdlib.h&gt;
-#include &lt;stdio.h&gt;
-int main(){
-    while(1){  //死循环
-        malloc(1024);  //分配1024个字节的内存
-    }
-
-    return 0;
-}</pre>
-while 循环的条件是 1，始终成立，循环会一直进行下去，永无休止，所以是一个&ldquo;死循环&rdquo;。<br />
-<br />
-每次循环，程序都会向计算机申请 1024 个字节（1KB）的内存，并且不会释放；循环到第 1024 次时，程序就占用了 1024*1024 个字节（1MB）的内存；循环到 1024*1024 次时，程序就占用了 1024*1024*1024 个字节（1GB）的内存。<br />
-<br />
-不要害怕，亲自跑一下试试，打开 Windows 下的任务管理器，可以看到内存的使用率会飙升，稍等片刻后程序会被终止。Windows 的内存管理机制发现我们的程序占用内存太多，会让它崩溃，防止系统卡死（其它的操作系统也有相应的措施）。<br />
-<br />
-内存泄漏是C语言程序很常见的一个问题，当程序规模比较大时，有时候找到这个 Bug 就变得很困难，所以大家一定要养成良好的内存使用习惯，及时释放不再使用的内存。本节仅仅是一个简单的演示，我们还会在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题中深入讲解。</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="477"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/457.html">谈编程思维的培养，初学者如何实现自我突破（非常重要）</a></span>
                     <span class="next right"><a href="/c/array/">C语言数组</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -173,7 +152,7 @@ while 循环的条件是 1，始终成立，循环会一直进行下去，永无
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 477;
-window.arcId = "8c9c6EajHLVDVj5diciqFYoaYAcduzCJGKyST9eKjBqNhIV3uOQsUavQGg";
+window.arcId = "12937aUI25v6dK0t9ywXw0JGt4aAzGr1DK4P9kB0D3BWhJy/l2lchnjd8w";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -98,12 +100,12 @@
 				<span class="channel-num">12</span>
 				<a href='/c/debug/'>C语言调试</a>
 			</dd>
-		
+		<dd class="this"> <span class="channel-num">13</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>13.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>13.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.5 <a href="/view/590.html">符号——链接的粘合剂</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.6 <a href="/view/591.html">强符号和弱符号</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.7 <a href="/view/592.html">强引用和弱引用</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.8 <a href="/view/593.html">C语言模块化编程中的头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.9 <a href="/view/594.html">C语言标准库以及标准头文件</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.10 <a href="/view/595.html">细说C语言头文件的路径</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.11 <a href="/view/596.html">防止C语言头文件被重复包含</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.12 <a href="/view/597.html">C语言static变量和函数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>13.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
-				<span class="channel-num">13</span>
+				<span class="channel-num">14</span>
 				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">14</span> <a href="/c/module/">多文件编程</a> </dd><dl class="dl-sub"><dd>14.1 <a href="/view/586.html">从extern关键字开始谈多文件编程</a></dd><dd>14.2 <a href="/view/587.html">那些被编译器隐藏了的过程</a></dd><dd>14.3 <a href="/view/588.html">目标文件和可执行文件里面都有什么？</a></dd><dd>14.4 <a href="/view/589.html">到底什么是链接，它起到了什么作用？</a></dd><dd>14.5 <a href="/view/590.html">符号——链接的粘合剂</a></dd><dd>14.6 <a href="/view/591.html">强符号和弱符号</a></dd><dd>14.7 <a href="/view/592.html">强引用和弱引用</a></dd><dd>14.8 <a href="/view/593.html">C语言模块化编程中的头文件</a></dd><dd>14.9 <a href="/view/594.html">C语言标准库以及标准头文件</a></dd><dd>14.10 <a href="/view/595.html">细说C语言头文件的路径</a></dd><dd>14.11 <a href="/view/596.html">防止C语言头文件被重复包含</a></dd><dd>14.12 <a href="/view/597.html">C语言static变量和函数</a></dd><dd>14.13 <a href="/view/598.html">一个比较规范的C语言多文件编程的例子</a></dd></dl>
+		
 			<dd>
 				<span class="channel-num">15</span>
 				<a href='/c/practice/'>C语言项目实战案例</a>
@@ -123,45 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/593.html";window.nextPageURL = "/view/595.html";</script>
-			<div id="arc-body">源文件通过编译可以生成目标文件（例如 GCC 下的 .o 和 Visual Studio 下的 .obj），并提供一个头文件向外暴露接口，除了保护版权，还可以将散乱的文件打包，便于发布和使用。<br />
-<br />
-实际上我们一般不直接向用户提供目标文件，而是将多个相关的目标文件打包成一个<span style="color: #008000">静态链接库（Static Link Library）</span>，例如 Linux 下的 .a 和 Windows 下的 .lib。<br />
-<br />
-打包静态库的过程很容易理解，就是将多个目标文件捆绑在一起形成一个新的文件，然后再加上一些索引，方便链接器找到，这和压缩文件的过程非常类似。<br />
-<br />
-C语言在发布的时候已经将标准库打包到了静态库，并提供了相应的头文件，例如 stdio.h、stdlib.h、string.h 等。<br />
-<br />
-Linux 一般将静态库和头文件放在<code>/lib</code>和<code>/user/lib</code>目录下，C语言标准库的名字是<code>libc.a</code>，大家可以通过<code>locate</code>命令来查找它的路径：
-<pre class="info-box">
-$ locate libc.a
-/usr/lib/x86_64-redhat-linux6E/lib64/libc.a
-
-$ locate stdio.h
-/usr/include/stdio.h
-/usr/include/bits/stdio.h
-/usr/include/c++/4.8.2/tr1/stdio.h
-/usr/lib/x86_64-redhat-linux6E/include/stdio.h
-/usr/lib/x86_64-redhat-linux6E/include/bits/stdio.h</pre>
-<br />
-在 Windows 下，标准库由 IDE 携带，如果你使用的是 Visual Studio，那么在安装目录下的<code>\VC\include</code>文件夹中会看到很多头文件，包括我们常用的 stdio.h、stdlib.h 等；在<code>\VC\lib</code>文件夹中有很多 .lib 文件，这就是链接器要用到的静态库。<br />
-<br />
-大家也可以在当前工程的属性面板（在工程名处单击鼠标右键选择&ldquo;属性&rdquo;）中查看路径：<br />
-<br />
-<img alt="" src="/uploads/allimg/240822/0940505042-0.png" style="height: 510px; width: 728px" /><br />
-<br />
-ANSI C 标准共定义了 15 个头文件，称为&ldquo;C标准库&rdquo;，所有的编译器都必须支持，如何正确并熟练的使用这些标准库，可以反映出一个程序员的水平：<br />
-<ul>
-	<li>
-		合格程序员：&lt;stdio.h&gt;、&lt;ctype.h&gt;、&lt;stdlib.h&gt;、&lt;string.h&gt;</li>
-	<li>
-		熟练程序员：&lt;assert.h&gt;、&lt;limits.h&gt;、&lt;stddef.h&gt;、&lt;time.h&gt;</li>
-	<li>
-		优秀程序员：&lt;float.h&gt;、&lt;math.h&gt;、&lt;error.h&gt;、&lt;locale.h&gt;、&lt;setjmp.h&gt;、&lt;signal.h&gt;、&lt;stdarg.h&gt;</li>
-</ul>
-<blockquote>
-	C语言共有两套标准，也就是 ANSI C 和 C99。ANSI C 是较早的标准，各种编译器都能很好的支持，C99 是后来的标准，编译器对它的支持不尽相同，请大家阅读《<a href="/view/405.html" target="_blank">C语言的三套标准：C89、C99和C11</a>》了解更多细节。</blockquote>
-除了C标准库，编译器一般也会附带自己的库，以增加功能，方便用户开发，争夺市场份额。这些库中的每一个函数都在对应的头文件中声明，可以通过 #include 预处理命令导入，编译时会被合并到当前文件。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="594"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/593.html">C语言模块化编程中的头文件</a></span>
                     <span class="next right"><a href="/view/595.html">细说C语言头文件的路径</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -188,7 +152,7 @@ ANSI C 标准共定义了 15 个头文件，称为&ldquo;C标准库&rdquo;，所
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 594;
-window.arcId = "4d58Mji8vdLJpzPrOneTF0Lgzmgo/YvmWvV2pcMTUebX6qcmdsULFnzeTA";
+window.arcId = "6c0atToQt0FYdtlatnKJzwebZu1oCCl7+l6+CwRyiNoMUheLWyhMQnxznA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

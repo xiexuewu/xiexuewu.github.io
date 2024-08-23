@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -53,7 +55,7 @@
 				<span class="channel-num">3</span>
 				<a href='/c/variable_datatype/'>变量和数据类型</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a></dd></dl>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.6 <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/444.html">C语言模拟密码输入(显示星号)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="/view/445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,140 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/441.html";window.nextPageURL = "/view/443.html";</script>
-			<div id="arc-body">缓冲区的优点很明显，它加快了程序的运行速度，减少了硬件的读写次数，让整个计算机变得流畅起来；但是，缓冲区也带来了一些负面影响，经过前面几节的学习相信读者也见识到了。<br />
-<br />
-那么，该如何消除这些负面影响呢？思路其实也很简单，在输入输出之前清空（刷新）缓冲区即可：
-<ul>
-	<li>
-		对于输出操作，清空缓冲区会使得缓冲区中的所有数据立即显示到屏幕上；很明显，这些数据没有地方存放了，只能输出了。</li>
-	<li>
-		对于输入操作，清空缓冲区就是丢弃残留字符，让程序直接等待用户输入，避免引发奇怪的行为。</li>
-</ul>
-<blockquote>
-	本节的代码用到了一些暂时没有学到的知识，估计很多初学者会不理解，没关系，那就先记住吧，记不住就复制吧，总之，按照葫芦画瓢就完了。</blockquote>
-<h2>
-	清空输出缓冲区</h2>
-清空输出缓冲区很简单，使用下面的语句即可：
-<p class="info-box">
-	fflush(stdout);</p>
-fflush() 是一个专门用来清空缓冲区的函数，stdout 是 standard output 的缩写，表示标准输出设备，也即显示器。整个语句的意思是，清空标准输出缓冲区，或者说清空显示器的缓冲区。<br />
-<br />
-Windows 平台下的 printf()、puts()、putchar() 等输出函数都是不带缓冲区的，所以不用清空，下面的代码演示了如何在 Linux 和 Mac OS 平台下清空缓冲区：
-<pre class="cpp">
-#include&lt;stdio.h&gt;
-#include&lt;unistd.h&gt;
-int main()
-{
-    printf(&quot;C语言&quot;);
-    fflush(stdout);  //本次输出结束后立即清空缓冲区
-    sleep(5);
-    printf(&quot;https://xiexuewu.github.io\n&quot;);
-   
-    return 0;
-}</pre>
-程序运行后，第一个 pirntf() 立即输出，等待 5 秒以后，第二个 printf() 才输出，这就符合我们的惯性思维了。如果不加<code>fflush(stdout)</code>语句，程序运行后，第一个 printf() 并不会立即输出，而是等待 5 秒以后和第二个 scanf() 一起输出（已在《<a href="/view/436.html" target="_blank">C语言数据输出大汇总以及轻量进阶</a>》中进行了演示），这有点不符合我们的思维习惯。
-<h2>
-	清空输入缓冲区</h2>
-首先，很遗憾地说，没有一种既简洁明了又适用于所有平台的清空输入缓冲区的方案。只有一种很蹩脚的方案能适用于所有平台，那就是将输入缓冲区中的数据都读取出来，但是却不使用。<br />
-<br />
-大家不要以为我很轻松地就能说出这句话，我翻墙查阅了很多英文资料，又测试了很多平台和编译器才敢说的。<br />
-<br />
-我们先说两种通用的方案，虽然它很蹩脚，但是却行之有效。
-<h4>
-	1) 使用 getchar() 清空缓冲区</h4>
-getchar() 是带有缓冲区的，每次从缓冲区中读取一个字符，包括空格、制表符、换行符等空白符，只要我们让 getchar() 不停地读取，直到读完缓冲区中的所有字符，就能达到清空缓冲区的效果。请看下面的代码：<br />
-<pre class="c">
-int c;
-while((c = getchar()) != &#39;\n&#39; &amp;&amp; c != EOF);</pre>
-该代码不停地使用 getchar() 获取缓冲区中的字符，直到遇见换行符<code>\n</code>或者到达文件结尾才停止。由于大家所学知识不足，这段代码暂时无法理解，我也就不细说了，在实际开发中，大家按照下面的形式使用即可：
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int a = 1, b = 2;
-    char c;
-
-    scanf(&quot;a=%d&quot;, &amp;a);
-    while((c = getchar()) != &#39;\n&#39; &amp;&amp; c != EOF); //在下次读取前清空缓冲区
-    scanf(&quot;b=%d&quot;, &amp;b);
-    printf(&quot;a=%d, b=%d\n&quot;, a, b);
-   
-    return 0;
-}</pre>
-输入示例：
-<p class="info-box">
-	a=100↙<br />
-	b=200↙<br />
-	a=100, b=200</p>
-按下第一个回车键后，只有第一个 scanf() 读取成功了，第二个 scanf() 并没有开始读取，等我们再次输入并按下回车键后，第二个 scanf() 才开始读取，这就符合我们的操作习惯了。如果没有清空缓冲区的语句，按下第一个回车键后，两个 scanf() 都读取了，只是第二个 scanf() 读取失败了，让人觉得很怪异，这点已在《<a href="/view/438.html" target="_blank">使用scanf从键盘输入数据</a>》中进行了演示。<br />
-<br />
-改变输入方式，再次尝试一下：
-<p class="info-box">
-	a=100b=200↙<br />
-	b=300↙<br />
-	a=100, b=300</p>
-你看，第一次输入的多余内容并没有起作用，就是因为它们在第二个 scanf() 之前被清空了。<br />
-<br />
-<span style="color:#b22222;">这种方案的关键之处在于，getchar() 是带有缓冲区的，并且一切字符通吃，或者说一切字符都会读取，不会忽略。不过这种方案有个缺点，就是要额外定义一个变量 c，对于有强迫症的读者来说可能有点难受。</span>&nbsp;
-<h4>
-	2) 使用 scanf() 清空缓冲区</h4>
-scanf() 还有一种高级用法，就是使用类似于正则表达式的通配符，这样它就可以读取所有的字符了，包括空格、换行符、制表符等空白符，不会再忽略它们了。并且，scanf() 还允许把读取到的数据直接丢弃，不用赋值给变量。<br />
-<br />
-请看下面的语句：
-<p class="info-box">
-	scanf(&quot;%*[^\n]&quot;); scanf(&quot;%*c&quot;);</p>
-第一个 scanf() 将逐个读取缓冲区中<code>\n</code>之前的其它字符，% 后面的 * 表示将读取的这些字符丢弃，遇到<code>\n</code>字符时便停止读取。此时，缓冲区中尚有一个<code>\n</code>遗留，第二个 scanf() 再将这个<code>\n</code>读取并丢弃，这里的星号和第一个 scanf() 的星号作用相同。由于所有从键盘的输入都是以回车结束的，而回车会产生一个<code>\n</code>字符，所以将<code>\n</code>连同它之前的字符全部读取并丢弃之后，也就相当于清除了输入缓冲区。<br />
-<br />
-相信很多读者都不明白这种写法，没关系，下节我们在讲解 <a href="/view/443.html" target="_blank">scanf() 的高级用法</a>时还会再解释。<br />
-<br />
-我们来演示这种方案的效果：
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-int main()
-{
-    int a = 1, b = 2;
-   
-    scanf(&quot;a=%d&quot;, &amp;a);
-    scanf(&quot;%*[^\n]&quot;); scanf(&quot;%*c&quot;); //在下次读取前清空缓冲区
-    scanf(&quot;b=%d&quot;, &amp;b);
-    printf(&quot;a=%d, b=%d\n&quot;, a, b);
-   
-    return 0;
-}</pre>
-输入示例 ①：
-<p class="info-box">
-	a=100↙<br />
-	b=200↙<br />
-	a=100, b=200</p>
-输入示例 ②：
-<p class="info-box">
-	a=100b=200↙<br />
-	b=300↙<br />
-	a=100, b=300</p>
-相比使用 getchar()，这种方案不用额外定义一个变量，看起来更加整洁。<br />
-<h2>
-	两种不通用、不建议的方案</h2>
-以上两种清空输入缓冲区的方案是通用的，在任何平台、任何编译器、任何情景下都奏效。除此以外，有些教材和老师可能还讲解过其它的方案，常见的有两种，分别是<code>fflush(stdin)</code>和<code>rewind(stdin)</code>。
-<h4>
-	1) fflush(stdin)</h4>
-fflush(stdin) 常用于 Windows 平台，在 VC 6.0、VS2010 等较老的编译器下确实能够清空缓冲区。<br />
-<br />
-C语言标准规定，当 fflush() 用于 stdout 时，必须要有清空输出缓冲区的作用；但是C语言标准并没有规定 fflush() 用于 stdin 时的作用，编译器的实现者可以自由决定，所以它的行为是未定义的。<br />
-<br />
-较老的微软编译器进行了扩展，赋予了 fflush(stdin) 清空输入缓冲区的功能，例如 VC 6.0、VS2010 等；但是，较新的微软编译器又取消了这种扩展，不再支持 fflush(stdin)，例如 VS2015、VS2017 等，在这些版本的编译器下，fflush() 是无效的。<br />
-<br />
-较老的 GCC 是不支持 fflush(stdin) 的，但是最新的 GCC 又开始支持 fflush(stdin) 了。<br />
-<br />
-LLVM/Clang 编译器始终不支持 fflush(stdin)。<br />
-<br />
-<span style="color:#b22222;">总之，fflush(stdin) 这种不标准的写法只适用于一部分编译器，通用性非常差，所以不建议使用。如果你由于个人习惯坚持使用，请测试你的编译器是否支持。</span>
-<h4>
-	2) rewind(stdin)</h4>
-rewind() 函数并没有清空缓冲区的功能，但是 rewind(stdin) 偏偏在某些编译器下会导致清空缓冲区的假象，例如 VS2015、LLVM/Clang。在 GCC 下，rewind(stdin) 是没有任何效果的。
-<h2>
-	总结</h2>
-最靠谱、最通用、最有效的清空输入缓冲区的方案就是使用 getchar() 或者 scanf() 将缓冲区中的数据逐个读取出来，其它方案都有或多或少的问题。<br />
-</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="442"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a></span>
                     <span class="next right"><a href="/view/443.html">scanf的高级用法，原来scanf还有这么多新技能</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -283,7 +152,7 @@ rewind() 函数并没有清空缓冲区的功能，但是 rewind(stdin) 偏偏�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 442;
-window.arcId = "0a74eRXTo24QQJt5MhL+iUvP50ZepKUteV/vFHWuq6NzKLLRsLGqhUQ5ig";
+window.arcId = "52c1V7wWTy2xhRiSe2ZpTQi4sND8nqAgpYS31hBae49xXVisfsTO4+NzMg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

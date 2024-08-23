@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -68,7 +70,7 @@
 				<span class="channel-num">6</span>
 				<a href='/c/array/'>C语言数组</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
+		<dd class="this"> <span class="channel-num">7</span> <a href="/c/function/">C语言函数</a> </dd><dl class="dl-sub"><dd>7.1 <a href="/view/489.html">什么是函数？</a></dd><dd>7.2 <a href="/view/490.html">C语言函数定义</a></dd><dd>7.3 <a href="/view/491.html">C语言函数的形参和实参</a></dd><dd>7.4 <a href="/view/492.html">C语言函数的返回值</a></dd><dd>7.5 <a href="/view/493.html">C语言函数的调用（从中发现程序运行的秘密）</a></dd><dd>7.6 <a href="/view/494.html">函数声明以及函数原型</a></dd><dd>7.7 <a href="/view/495.html">全局变量和局部变量</a></dd><dd>7.8 <a href="/view/496.html">C语言变量的作用域</a></dd><dd>7.9 <a href="/view/497.html">C语言块级变量</a></dd><dd>7.10 <a href="/view/498.html">C语言递归函数（带实例演示）</a></dd><dd>7.11 <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="/view/500.html">多层递归函数（最烧脑的一种递归）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.13 <a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.14 <a href="/view/543.html">C语言随机数</a></dd><dd>7.15 <a href="/view/502.html">忽略语法细节，从整体上理解函数</a></dd></dl>
 			<dd>
 				<span class="channel-num">8</span>
 				<a href='/c/preprocess/'>预处理命令</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,53 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/499.html";window.nextPageURL = "/view/501.html";</script>
-			<div id="arc-body">&ldquo;多层递归&rdquo;是我自己起的名字，意思是在一个函数里面多次调用自己。<br />
-<br />
-多层递归的调用关系比较复杂，整体上看起来像一颗倒立的<u><a href='/view/23.html' target='_blank'>树</a></u>：对于双层递归，树的每个节点有两个分叉；对于三层递归，树的每个节点有三个分叉；以此类推&hellip;&hellip;<br />
-<br />
-下面我们以「求菲波那契数」为例来演示双层递归，更多层次的递归请读者自己探索。<br />
-<br />
-菲波那契数就是一个数列，数列中每个数的值就是它前面两个数的和，这种关系常常用以下形式进行描述：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240821/1300131395-0.gif" /></div>
-<br />
-这种形式很容易让人使用递归，下面给出C语言代码实现：
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-
-//递归计算斐波那契数
-long fib(int n) {
-    if (n &lt;= 2) {
-        return 1;
-    }
-    else {
-        return fib(n - 1) + fib(n - 2);
-    }
-}
-
-int main() {
-    int a;
-    printf(&quot;Input a number: &quot;);
-    scanf(&quot;%d&quot;, &amp;a);
-    printf(&quot;Fib(%d) = %ld\n&quot;, a, fib(a));
-
-    return 0;
-}</pre>
-运行结果：<br />
-Input a number: 7↙<br />
-Fib(7) = 13<br />
-<br />
-当 n&ge;2 时，每次调用 fib(n) 都要等待 fib(n-1) 和 fib(n-2) 的结果，这种调用关系看起来就像一棵倒立的<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，如下图所示：<br />
-<br />
-<div style="text-align: center;">
-	<img alt="多层递归调用演示图" src="/uploads/allimg/240821/1300135H4-1.gif" /></div>
-<br />
-双层递归的调用关系和数据结构中二叉树的结构完全吻合，所以双层递归常用于二叉树的遍历。<br />
-<br />
-单层递归每次只等待一个函数的结果，双层递归每次要等待两个函数的结果，这就是它们之间最本质的区别。<br />
-<br />
-如果你觉得这还不够复杂，还可以将双层递归和尾递归结合起来，我相信这足够杀死你的一片脑细胞了，有兴趣的话可以自己探索，我就不奉陪了 ^_^。</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="500"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/499.html">中间递归函数（比较复杂的一种递归）</a></span>
                     <span class="next right"><a href="/view/501.html">递归函数的致命缺陷：巨大的时间开销和内存开销</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -196,7 +152,7 @@ Fib(7) = 13<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 500;
-window.arcId = "6eb59J5K4scBVdU9ZkuMG4KWYZ0t4QD6QPC/o41PEgfD15VPKWkn11IC3g";
+window.arcId = "812auph3e2lNjh7nQ8czxWJBHtlOjIOd5bOsah/4ctPb8vkhsij83d1n+A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

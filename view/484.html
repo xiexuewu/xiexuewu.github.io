@@ -22,7 +22,9 @@
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构与算法教程Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">教程首页</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
 		<li><a href="/view/212.html">购买教程</a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
@@ -63,7 +65,7 @@
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
 			<dd>
 				<span class="channel-num">7</span>
 				<a href='/c/function/'>C语言函数</a>
@@ -96,12 +98,12 @@
 		
 			<dd>
 				<span class="channel-num">13</span>
-				<a href='/c/memory/'>C语言内存精讲</a>
+				<a href='/c/module/'>多文件编程</a>
 			</dd>
 		
 			<dd>
 				<span class="channel-num">14</span>
-				<a href='/c/module/'>多文件编程</a>
+				<a href='/c/memory/'>C语言内存精讲</a>
 			</dd>
 		
 			<dd>
@@ -123,86 +125,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/483.html";window.nextPageURL = "/view/485.html";</script>
-			<div id="arc-body">在C语言中，<u><a href='/view/181.html' target='_blank'>数组</a></u>一旦被定义后，占用的内存空间就是固定的，容量就是不可改变的，既不能在任何位置插入元素，也不能在任何位置删除元素，只能读取和修改元素，我们将这样的数组称为<span style="color: rgb(0, 128, 0);">静态数组</span>。<br />
-<br />
-反过来说，如果数组在定义后可以改变容量，允许在任意位置插入或者删除元素，那么这样的数组称为<span style="color: rgb(0, 128, 0);">动态数组</span>。<br />
-<br />
-PHP、JavaScript 等解释型的脚本语言一般都支持动态数组，而 C、C++ 等编译型的语言一般不支持动态数组。<br />
-<br />
-<span style="color: rgb(178, 34, 34);">总之，C语言中的数组是静态的，一旦定义后长度就不能改变了，大家要注意这一点，不要尝试去插入或删除元素。</span><br />
-<br />
-如果由于项目要求，必须要在数组中插入或者删除元素，该怎么办呢？没办法，只能再造一个新数组！<br />
-<br />
-下面的代码演示了数组元素的插入和删除操作：
-<pre class="cpp">
-#include &lt;stdio.h&gt;
-
-//自定义函数，用来输出数组元素
-void display_array(int arr[], int len){
-    int i;
-    for(i=0; i&lt;len; i++){
-        printf(&quot;%d &quot;, arr[i]);
-    }
-    printf(&quot;\n&quot;);
-}
-
-int main()
-{
-    int nums[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int nums_new1[9];
-    int nums_new2[11];
-    int i;
-   
-    //删除nums第6个元素
-    for(i=0; i&lt;10; i++){
-        //i等于6时直接跳过，不进行任何操作
-        if(i &lt; 6){
-            nums_new1[i] = nums[i];
-        }else if(i &gt; 6){
-            nums_new1[i-1] = nums[i];
-        }
-    }
-    display_array(nums_new1, 9);
-   
-    //在nums第6个元素后面插入一个整数 55
-    for(i=0; i&lt;10; i++){
-        if(i &lt; 7){
-            nums_new2[i] = nums[i];
-        }else if(i &gt; 7){
-            nums_new2[i+1] = nums[i];
-        }else {  //i等于7
-            nums_new2[i] = 55;
-            nums_new2[i+1] = nums[i];
-        }
-    }
-    display_array(nums_new2, 11);
-   
-    return 0;
-}</pre>
-运行结果：<br />
-1 2 3 4 5 6 8 9 10<br />
-1 2 3 4 5 6 7 55 8 9 10<br />
-<br />
-display_array() 是一个自己定义的函数，用来输出数组的所有元素；使用&nbsp;display_array() 时，需要将数组名和数组长度传递给它。读者暂时知道这些即可，之后我们将在《<a href="/c/function/" target="_blank">C语言函数</a>》一章中详细讲解。<br />
-<br />
-这段代码总体的思路是使用 for 循环遍历所有的数组元素，并逐个给新的数组元素赋值。这种方法比较简单粗暴，更加高效和简洁的做法是直接复制数组内存，不过由于大家的知识还不充足，所以暂时无法讲解，等大家学了<a href="/c/pointer/" target="_blank">指针</a>以后可以尝试使用&nbsp;memcpy()&nbsp;函数来解决。
-<h2>
-	C语言数组为什么是静态的</h2>
-不能插入和删除数组元素有时候会非常麻烦，比如一个数组保存了某个班级的学生学号，现在有一名学生退学了，就得把 TA 从数组中剔除，但是C语言并不支持这么做，这就给编程带来了不小的麻烦。<br />
-<br />
-数组元素都是紧挨着排布的，中间没有空隙，不管是插入元素还是删除元素，都得移动该元素后面的内存：
-<ul>
-	<li>
-		在第 i 个元素后面插入一个新元素时，第 i 个元素后面的所有元素都要往后移动一个元素的位置，从而给新元素腾出位置来。如果该数组后面紧跟的是其它有用数据，那么为了防止覆盖有用数据，还不敢直接往后移动元素，必须得重新开辟一块内存，把所有的元素都复制过去。</li>
-	<li>
-		删除第 i 个元素就比较简单了，不管三七二十一，把第 i 个元素后面的所有元素都向前移动即可。</li>
-</ul>
-<br />
-插入和删除数组元素都要移动内存，甚至重新开辟一块内存，这是相当消耗资源的。如果一个程序中有大量的此类操作，那么程序的性能将堪忧，这有悖于「C语言非常高效」的初衷，所以C语言并不支持动态数组。<br />
-<br />
-另外，很多时候我们需要把数组的地址保存到一个变量里面（等大家学到<a href="/c/pointer/" target="_blank">指针</a>时就会见到这种情况），如果数组重新开辟了内存，而变量里面的地址不跟着改变的话，后续再使用该变量就会导致错误。让C语言本身去维护这些变量的值，以保持同步更新，这又是不可能做到的，所以这个矛盾无法从根本上解决。<br />
-<br />
-总之，为了保证程序执行效率，为了防止操作错误，C语言只支持静态数组，不支持动态数组。</div>
+			<div id="arc-body"><div id="buy-course-tip" aid="484"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/483.html">C语言字符串处理函数</a></span>
                     <span class="next right"><a href="/view/485.html">C语言数组的越界和溢出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -229,7 +152,7 @@ display_array() 是一个自己定义的函数，用来输出数组的所有元�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 484;
-window.arcId = "f4c8XIeqa54Lt8FYXg1thW1Im0aX1a9yCPxh6k26diTkgiqX+CC+vs7kKw";
+window.arcId = "c49ddCAONWaAECjnnMEBd6vsj6KmM9fmYq4CYeVOYUcHJLas7I5FV42aYg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
