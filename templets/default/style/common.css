@@ -137,6 +137,10 @@ blockquote{
 #main{
 	min-width: 100%;
 }
+#main-no-course{
+	width: 60%;
+	margin: 0px auto 40px auto;
+}
 #sidebar{
 	float: left;
 	padding-bottom: 40px;
@@ -497,6 +501,9 @@ pre{
 
 /*----------------自适应处理-------------------*/
 @media all and (max-width: 1250px){
+	#main-no-course{
+		width: 70%;
+	}
 	#sidebar{
 		width: 27%;
 	}
@@ -563,6 +570,9 @@ pre{
 	}
 }
 @media all and (max-width: 1100px){
+	#main-no-course{
+		width: 80%;
+	}
 	#sidebar{
 		width: 25%;
 	}
@@ -574,6 +584,9 @@ pre{
 	}
 }
 @media all and (max-width: 768px){  /* 移动端 */
+	#main-no-course{
+		width: 100%;
+	}
 	/*******布局*******/
 	body{
 		font-size: 16px;

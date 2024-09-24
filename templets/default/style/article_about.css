@@ -1,0 +1,65 @@
+.text-center{
+	text-align: center;
+}
+h1{
+	padding: 30px 0px;
+	font-size: 42px;
+	font-weight: lighter;
+	text-align: center;
+	color: #666;
+}
+
+#arc-body{
+	font-size: 16px;
+}
+#arc-body .h1-info{
+	text-align: center;
+	font-size: 14px;
+	color: #999;
+}
+#arc-body .h1-info a{
+	color: #D33428;
+}
+#arc-body .profile{
+	font-size: 20px;
+	line-height: 1.8em;
+	text-align: center;
+}
+#arc-body h2 {
+	padding:10px 0px;
+	text-align: center;
+}
+#arc-body h2.with-info{
+	padding:20px 0px 0px 0px;
+	margin-bottom: 0px;
+}
+#arc-body h2 span {
+	display: inline-block;
+	padding: 10px 18px;
+	font-size: 26px;
+	font-weight: lighter;
+	color: #555;
+	border: 2px solid #777;
+	border-radius: 5px;
+}
+#arc-body p.h2-info {
+	padding: 10px 0px 30px 0px;
+	text-align: center;
+	font-size: 14px;
+	color: #999;
+}
+
+#arc-body .tip-box{
+	font-size: 16px;
+	color: #666;
+}
+
+#arc-body .table-box{
+	display: table;
+}
+#arc-body .table-row{
+	display: table-row;
+}
+#arc-body .table-cell{
+	display: table-cell;
+}

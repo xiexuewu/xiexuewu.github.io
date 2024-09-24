@@ -10,6 +10,18 @@
 	font-weight: normal;
 }
 
+#arc-body-sitmap{
+    margin: 10px 12px;
+    line-height: 1.6em;
+}
+
+#arc-info-sitmap {
+	line-height: 1em;
+    font-size: 14px;
+    color: #555;
+    margin-top: 18px;
+    margin-left: 12px;
+}
 /**************教程列表**************/
 #tutorial-title{
 	margin-top: 25px;
@@ -117,6 +129,16 @@
 	}
 	#recent-update{
 		margin: auto;
+	}
+	#arc-body-sitmap{
+		overflow-x: scroll;
+		margin:auto;
+		padding: 0px 10px 5px 10px;
+	}
+	#arc-info-sitmap {
+    	padding: 18px 10px 0px 10px;
+    	margin: auto;
+
 	}
 }
 @media all and (max-width: 600px){
