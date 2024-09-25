@@ -109,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>二叉树后序遍历（递归与非递归）算法及C语言实现</h1>
-			<div id="arc-body"><u><a href='/view/192.html' target='_blank'>二叉树</a></u>后序遍历的实现思想是：从根节点出发，依次遍历各节点的左右子<u><a href='/view/23.html' target='_blank'>树</a></u>，直到当前节点左右子树遍历完成后，才访问该节点元素。<br />
+			<div id="arc-body"><u><a href='/view/326.html' target='_blank'>二叉树</a></u>后序遍历的实现思想是：从根节点出发，依次遍历各节点的左右子<u><a href='/view/325.html' target='_blank'>树</a></u>，直到当前节点左右子树遍历完成后，才访问该节点元素。<br />
 <div style="text-align: center;">
 	<br />
 	<img alt="" src="/uploads/allimg/170830/2-1FS01325394F.png" style="text-align: center; width: 274px; height: 186px;" /><br style="text-align: center;" />
@@ -204,7 +204,7 @@ int main() {
 	4 5 2 6 7 3 1</div>
 <h2>
 	非递归实现</h2>
-递归算法底层的实现使用的是<u><a href='/view/169.html' target='_blank'>栈</a></u>存储结构，所以可以直接使用栈写出相应的非递归算法。<br />
+递归算法底层的实现使用的是<u><a href='/view/300.html' target='_blank'>栈</a></u>存储结构，所以可以直接使用栈写出相应的非递归算法。<br />
 <br />
 后序遍历是在遍历完当前结点的左右孩子之后，才调用操作函数，所以需要在操作结点进栈时，为每个结点配备一个标志位。当遍历该结点的左孩子时，设置当前结点的标志位为 0，进栈；当要遍历该结点的右孩子时，设置当前结点的标志位为 1，进栈。<br />
 <br />
@@ -269,7 +269,7 @@ void postpush(SNode *a,SNode sdata){
 }
 //后序遍历函数
 void PostOrderTraverse(BiTree Tree){
-    SNode a[20];//定义一个<u><a href='/view/170.html' target='_blank'>顺序栈</a></u>
+    SNode a[20];//定义一个<u><a href='/view/301.html' target='_blank'>顺序栈</a></u>
     BiTNode * p;//临时指针
     int tag;
     SNode sdata;
@@ -328,7 +328,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 145;
-window.arcId = "bcafglaEtXRDQFD5GN/XZF1k91E3UCkgByvn8YtCe99UeUbxwvx94umtXw";
+window.arcId = "8500W27s9mKvKOMV3dsGBgKFgAi6zvMgN2WcJ6d1ysGQBllzKmXccZKXxw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

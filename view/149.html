@@ -213,9 +213,9 @@ else
 Gale-Shapley 算法原来如此简单，你是不是为沙普利能获得诺贝尔奖愤愤不平？其实不然，算法原理的简单并不等于其解决的问题也简单，小算法解决大问题。<br />
 <h2>
 	改进优化：空间换时间</h2>
-Gale_Shapley() 函数给出的算法还有点问题，主要是 GetPerfectPosition() 函数的策略，这个函数每次都要遍历 partner 的偏爱舞伴列表才能确定 bid 的位罝，很可能导致理论上<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为的算法在实际实现时变成的时间复杂度。为了避免算法在多轮选择过程中频繁遍历每个 partner 的偏爱舞伴列表，需要对 partner 到底更偏爱哪个舞伴的判断策略进行改进。<br />
+Gale_Shapley() 函数给出的算法还有点问题，主要是 GetPerfectPosition() 函数的策略，这个函数每次都要遍历 partner 的偏爱舞伴列表才能确定 bid 的位罝，很可能导致理论上<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>为的算法在实际实现时变成的时间复杂度。为了避免算法在多轮选择过程中频繁遍历每个 partner 的偏爱舞伴列表，需要对 partner 到底更偏爱哪个舞伴的判断策略进行改进。<br />
 <br />
-改进的原则就是&ldquo;以空间换时间&rdquo;。简单来讲，以空间换时间的方法就是用一张事先初始化好的表存储这些位罝关系，在使用个过程中，以 <code>O(1)</code> 时间复杂度的方式直接查表确定偏爱舞伴的关系。这样的表可以是<u><a href='/view/157.html' target='_blank'>线性表</a></u>，也可以是<u><a href='/view/63.html' target='_blank'>哈希表</a></u>这样的映射表。<br />
+改进的原则就是&ldquo;以空间换时间&rdquo;。简单来讲，以空间换时间的方法就是用一张事先初始化好的表存储这些位罝关系，在使用个过程中，以 <code>O(1)</code> 时间复杂度的方式直接查表确定偏爱舞伴的关系。这样的表可以是<u><a href='/view/287.html' target='_blank'>线性表</a></u>，也可以是<u><a href='/view/63.html' target='_blank'>哈希表</a></u>这样的映射表。<br />
 <br />
 对于这个问题，我们选择使用二维表来存储这些位置关系。假设存在二维表 priority[n][n]，我们用 priority[w][m] 表示在 w 的偏爱列表中的位置，这个值越小，表示 m 在 w 的偏爱列表中的位置越靠前。在算法开始之前，首先初始化这个关系表：<br />
 <pre class="cpp">
@@ -256,7 +256,7 @@ if(priority[gid][bpid] &gt; priority[gid][bid])</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 149;
-window.arcId = "b657RzIba9wpiOI9tHSl7ONblht2rDXwZ4sc3HfX6fbL29vTBE0mo2KkJw";
+window.arcId = "9d71EEZvfncqJgWwxDezfuiW3DRnU1B+toYVc92bVwWpHzOw/DyUXSKZbw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

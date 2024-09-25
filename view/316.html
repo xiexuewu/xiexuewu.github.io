@@ -117,9 +117,9 @@
 <br />
 所谓串的模式匹配算法，是一种专门定位子串在主串中位置的方法（方案、思想），整个定位的过程称为模式匹配。此外，在模式匹配的过程中，子串通常又被称为&ldquo;模式串&rdquo;。<br />
 <br />
-串模式匹配的实现方法有很多种，本节先给大家讲一种最容易理解、最简单的方法，称为 <u><a href='/view/179.html' target='_blank'>BF 算法</a></u>。
+串模式匹配的实现方法有很多种，本节先给大家讲一种最容易理解、最简单的方法，称为 BF 算法。
 <h2>
-	<u><a href='/view/179.html' target='_blank'>BF算法</a></u>的实现过程</h2>
+	BF算法的实现过程</h2>
 采用 BF 算法定位模式串在主串中的位置，就是简单粗暴的从主串的起始位置开始，不断地将模式串中的字符和主串中的字符进行对比。<br />
 <br />
 具体来讲，假设对模式串 A（&quot;abcac&quot;）和主串 B（&quot;ababcabacabab&quot;）进行模式匹配，BF 算法的执行过程如下：<br />
@@ -198,7 +198,7 @@ int main() {
 	6</p>
 程序中，借助 i-strlen(A)+1 就可以得到成功模式匹配的次数，也就是模式串在主串中的位置。<br />
 <h2>
-	BF算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u></h2>
+	BF算法的<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u></h2>
 BF 算法执行效率最高的理想情况是第一次模式匹配就成功了，While 循环只执行 n 次（n 为模式串的长度），对应的时间复杂度为<code>O(n)</code>。<br />
 <br />
 BF 算法最坏情况下的时间复杂度为&nbsp;<code style="font-size: 14px;">O(n*m)</code>。举个简单的例子，假设模式串 A 为 &quot;01&quot;，它的长度为 2；主串 B 为 &quot;000000001&quot;，它的长度为 9,两个串模式匹配时，while 循环共执行了 2*8 次，近似等于 n*m 次。<br />
@@ -232,7 +232,7 @@ BF 算法的实现过程很 &quot;无脑&quot;，不包含任何技巧。实际�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 316;
-window.arcId = "efafQNp5bT/Bl63RVEAdlmxxYcoUkwjwiKA6DklAQF2/aAJnuwc4lRKH6Q";
+window.arcId = "383duFeR7TFIugtfRD/uZz8/SPO/k18K3F9z0o1vLyBwQSNWjgbFaB2MsA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

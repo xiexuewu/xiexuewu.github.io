@@ -109,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>红黑树算法和应用(更高级的二叉查找树)</h1>
-			<div id="arc-body"><span style="color:#b22222;">红黑<u><a href='/view/23.html' target='_blank'>树</a></u></span>（R-B TREE，全称：Red-Black Tree），本身是一棵<u><a href='/view/58.html' target='_blank'>二叉查找树</a></u>，在其基础上附加了两个要求：
+			<div id="arc-body"><span style="color:#b22222;">红黑<u><a href='/view/325.html' target='_blank'>树</a></u></span>（R-B TREE，全称：Red-Black Tree），本身是一棵<u><a href='/view/353.html' target='_blank'>二叉查找树</a></u>，在其基础上附加了两个要求：
 <ol>
 	<li>
 		树中的每个结点增加了一个用于存储颜色的标志域；</li>
@@ -118,7 +118,7 @@
 </ol>
 <blockquote>
 	<p>
-		这里所指的<span style="color:#b22222;">路径</span>，指的是从任何一个结点开始，一直到其子孙的叶子结点的长度；<span style="color:#b22222;">接近于平衡：</span>红黑树并不是<u><a href='/view/59.html' target='_blank'>平衡二叉树</a></u>，只是由于对各路径的长度之差有限制，所以近似于平衡的状态。</p>
+		这里所指的<span style="color:#b22222;">路径</span>，指的是从任何一个结点开始，一直到其子孙的叶子结点的长度；<span style="color:#b22222;">接近于平衡：</span>红黑树并不是<u><a href='/view/354.html' target='_blank'>平衡二叉树</a></u>，只是由于对各路径的长度之差有限制，所以近似于平衡的状态。</p>
 </blockquote>
 <span style="color:#b22222;">红黑树对于结点的颜色设置不是任意的，需满足以下性质的二叉查找树才是红黑树：</span>
 <ul>
@@ -146,7 +146,7 @@
 <span style="color:#b22222;">对于一棵具有 n 个结点的红黑树，树的高度至多为：2lg(n+1)。</span>
 <blockquote>
 	<p>
-		由此可推出红黑树进行查找操作时的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为<code>O(lgn)</code>，因为对于高度为 h 的二叉查找树的运行时间为<code>O(h)</code>，而包含有 n 个结点的红黑树本身就是最高为&nbsp;lgn（简化之后）的查找树（h=lgn），所以红黑树的时间复杂度为<code>O(lgn)</code>。</p>
+		由此可推出红黑树进行查找操作时的<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>为<code>O(lgn)</code>，因为对于高度为 h 的二叉查找树的运行时间为<code>O(h)</code>，而包含有 n 个结点的红黑树本身就是最高为&nbsp;lgn（简化之后）的查找树（h=lgn），所以红黑树的时间复杂度为<code>O(lgn)</code>。</p>
 </blockquote>
 红黑树本身作为一棵二叉查找树，所以其任务就是用于动态表中数据的插入和删除的操作。在进行该操作时，避免不了会破坏红黑树的结构，此时就需要进行适当的调整，使其重新成为一棵红黑树，可以从两个方面着手对树进行调整：
 <ul>
@@ -159,7 +159,7 @@
 	红黑树的旋转</h2>
 当使用红黑树进行插入或者删除结点的操作时，可能会破坏红黑树的 5 条性质，从而变成了一棵普通树，此时就可以通过对树中的某些子树进行旋转，从而使整棵树重新变为一棵红黑树。<br />
 <br />
-<span style="color:#b22222;">旋转操作</span>分为<span style="color:#008000;">左旋</span>和<span style="color:#008000;">右旋</span>，同<u><a href='/view/58.html' target='_blank'>二叉排序树</a></u>转平衡<u><a href='/view/192.html' target='_blank'>二叉树</a></u>的旋转原理完全相同。例如图 2 表示的是对一棵二叉查找树中局部子树进行左旋和右旋操作：
+<span style="color:#b22222;">旋转操作</span>分为<span style="color:#008000;">左旋</span>和<span style="color:#008000;">右旋</span>，同<u><a href='/view/353.html' target='_blank'>二叉排序树</a></u>转平衡<u><a href='/view/326.html' target='_blank'>二叉树</a></u>的旋转原理完全相同。例如图 2 表示的是对一棵二叉查找树中局部子树进行左旋和右旋操作：
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/171206/2-1G2061613253H.png" style="width: 323px; height: 152px;" /><br />
 	图 2 旋转操作</div>
@@ -876,7 +876,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 85;
-window.arcId = "80d8AMZC43z6F4cGGBnwBPzFlFOe9c9gVe7A/msYOR8VDtYD1lFcLTI/";
+window.arcId = "0c44Jsui5nqNOKx56bSkiVxtx6IZVmFFfTrh31YxQNy1eeE4LAhxEIAv";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

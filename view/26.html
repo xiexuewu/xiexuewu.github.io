@@ -109,16 +109,16 @@
 	作者：解学武
 </div>
 			<h1>二叉树前序遍历、中序遍历和后序遍历及C语言非递归实现</h1>
-			<div id="arc-body">递归算法底层的实现使用的是<u><a href='/view/169.html' target='_blank'>栈</a></u>存储结构，所以可以直接使用栈写出相应的非递归算法。
+			<div id="arc-body">递归算法底层的实现使用的是<u><a href='/view/300.html' target='_blank'>栈</a></u>存储结构，所以可以直接使用栈写出相应的非递归算法。
 <h2>
 	先序遍历的非递归算法</h2>
-从<u><a href='/view/23.html' target='_blank'>树</a></u>的根结点出发，遍历左孩子的同时，先将每个结点的右孩子压栈。当遇到结点没有左孩子的时候，取栈顶的右孩子。重复以上过程。<br />
+从<u><a href='/view/325.html' target='_blank'>树</a></u>的根结点出发，遍历左孩子的同时，先将每个结点的右孩子压栈。当遇到结点没有左孩子的时候，取栈顶的右孩子。重复以上过程。<br />
 <br />
 实现代码函数：
 <pre class="cpp">
 //先序遍历非递归算法
 void PreOrderTraverse(BiTree Tree){
-    BiTNode* a[20];//定义一个<u><a href='/view/170.html' target='_blank'>顺序栈</a></u>
+    BiTNode* a[20];//定义一个<u><a href='/view/301.html' target='_blank'>顺序栈</a></u>
     BiTNode * p;//临时指针
     push(a, Tree);//根结点进栈
     while (top!=-1) {
@@ -420,7 +420,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 26;
-window.arcId = "ad91hdhEgwJr9AqtWSEEj1imXrnT3BWOKrMpsyav0hrgXd2w3ny161N2";
+window.arcId = "dba9idJhVikymmi+pIhF1tfdhjEgCjqQVuCDm9IrgN1FPyeI3pCVETam";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

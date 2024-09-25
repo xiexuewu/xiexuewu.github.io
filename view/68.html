@@ -113,7 +113,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/67.html";window.nextPageURL = "/view/vip_259.html";</script>
-			<div id="arc-body">前面章节中所介绍到的三种<u><a href='/view/65.html' target='_blank'>插入排序算法</a></u>，其基本结构都采用数组的形式进行存储，因而无法避免排序过程中产生的数据移动的问题。如果想要从根本上解决只能改变数据的存储结构，改用<u><a href='/view/160.html' target='_blank'>链表</a></u>存储。<br />
+			<div id="arc-body">前面章节中所介绍到的三种<u><a href='/view/65.html' target='_blank'>插入排序算法</a></u>，其基本结构都采用数组的形式进行存储，因而无法避免排序过程中产生的数据移动的问题。如果想要从根本上解决只能改变数据的存储结构，改用<u><a href='/view/290.html' target='_blank'>链表</a></u>存储。<br />
 <br />
 <span style="color:#008000;">表插入排序</span>，<span style="color:#b22222;">即使用链表的存储结构对数据进行插入排序。</span>在对记录按照其关键字进行排序的过程中，不需要移动记录的存储位置，只需要更改结点间指针的指向。<br />
 <br />
@@ -174,10 +174,10 @@ typedef struct {
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/171031/2-1G0311055305c.png" style="width: 183px; height: 230px;" /><br />
 	&nbsp;</div>
-从表插入排序的实现过程上分析，与直接插入排序相比只是避免了移动记录的过程（修改各记录结点中的指针域即可），而插入过程中同其它关键字的比较次数并没有改变，所以表插入排序算法的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>仍是<code>O(n<sup>2</sup>)</code>。
+从表插入排序的实现过程上分析，与直接插入排序相比只是避免了移动记录的过程（修改各记录结点中的指针域即可），而插入过程中同其它关键字的比较次数并没有改变，所以表插入排序算法的<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>仍是<code>O(n<sup>2</sup>)</code>。
 <h2>
 	对链表进行再加工</h2>
-在表插入排序算法求得的有序表是用链表表示的，也就注定其只能进行<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>。而如果想用<u><a href='/view/55.html' target='_blank'>折半查找</a></u>的算法，就需要对链表进行再加工，即对链表中的记录进行重新排列，<span style="color:#b22222;">具体做法为：遍历链表，将链表中第 i 个结点移动至数组的第 i 个下标位置中</span>。<br />
+在表插入排序算法求得的有序表是用链表表示的，也就注定其只能进行<u><a href='/view/351.html' target='_blank'>顺序查找</a></u>。而如果想用<u><a href='/view/352.html' target='_blank'>折半查找</a></u>的算法，就需要对链表进行再加工，即对链表中的记录进行重新排列，<span style="color:#b22222;">具体做法为：遍历链表，将链表中第 i 个结点移动至数组的第 i 个下标位置中</span>。<br />
 <br />
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/171031/2-1G031105ISb.png" style="width: 378px; height: 72px;" /><br />
@@ -303,7 +303,7 @@ int main(int argc, const char * argv[]) {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 68;
-window.arcId = "43bdMTM+2p4H6TaPcuFTfMjU4T92J6+oDyVteAsAQ8D/SuCw+zywku9T";
+window.arcId = "e7a0bNjgEuoZEvF8cJQ07Rc8LJ4MoRkCsjfCeLfNJpWNs9Hm7sUQp8FV";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

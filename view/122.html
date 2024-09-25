@@ -111,9 +111,9 @@
 			<h1>二分查找（折半查找）算法（原理、实现及时间复杂度）</h1>
 			<div id="arc-body">查找也是有特殊情况的，比如数列本身是有序的。这个有序数列是怎么产生的呢？有时它可能本身就是有序的，也有可能是我们通过之前所学的排序算法得到的。<br />
 <br />
-不管怎么说，我们现在已经得到了有序数列了并需要查找。这时<u><a href='/view/55.html' target='_blank'>二分查找</a></u>该出场了。<br />
+不管怎么说，我们现在已经得到了有序数列了并需要查找。这时<u><a href='/view/352.html' target='_blank'>二分查找</a></u>该出场了。<br />
 <br />
-<span style="color:#008000;">二分查找（Binary Search）</span>也叫作<span style="color:#008000;"><u><a href='/view/55.html' target='_blank'>折半查找</a></u></span>。<span style="color:#b22222;">二分查找有两个要求，一个是数列有序，另一个是数列使用顺序存储结构（比如数组）。</span><br />
+<span style="color:#008000;">二分查找（Binary Search）</span>也叫作<span style="color:#008000;"><u><a href='/view/352.html' target='_blank'>折半查找</a></u></span>。<span style="color:#b22222;">二分查找有两个要求，一个是数列有序，另一个是数列使用顺序存储结构（比如数组）。</span><br />
 <h2>
 	二分查找的原理及实现</h2>
 二分查找的实现原理非常简单，首先要有一个有序的列表。但是如果没有，则该怎么办？可以使用排序算法进行排序。<br />
@@ -229,7 +229,7 @@ public static void main(String[] args) {
 <br />
 发散一下思维，在查字典的时候，如果要查以a开头的单词，则你会怎么翻字典？肯定是从最前面开始翻；如果要查以 z 开头的单词，则应该会从最后开始翻。显而易见，你不会采用二分查找的方式去查这个单词在哪，因为这样你会很累。<br />
 <br />
-同样，假设数据的范围是 1~10000，让你找 10，你会怎么样？简单来说，我觉得干脆用<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>好了，因为数列是升序的，没必要用二分查找，用顺序查找比二分查找的比较次数少。<br />
+同样，假设数据的范围是 1~10000，让你找 10，你会怎么样？简单来说，我觉得干脆用<u><a href='/view/351.html' target='_blank'>顺序查找</a></u>好了，因为数列是升序的，没必要用二分查找，用顺序查找比二分查找的比较次数少。<br />
 <br />
 所以经过这样的考虑，我们可以优化一下二分查找，并不一定要从正中间开始分，而是尽量找到一个更接近我们要找的那个数字的地方，这样能够减少很多查找次数。<br />
 <br />
@@ -242,7 +242,7 @@ public static void main(String[] args) {
 	二分查找的特点及性能分析</h2>
 二分查找的平均查找长度 ASL 为 ((n+1)log<sub>2</sub>(n+1))/n-1，有的书上写的是 log<sub>2</sub>(n+1)-1，或者是 log<sub>2</sub>n，具体计算比较麻烦，这里就不讨论了。<br />
 <br />
-二分查找有个很重要的特点，就是不会查找数列的全部元素，而查找的数据量其实正好符合元素的对数，正常情况下每次查找的元素都在一半一半地减少。所以二分查找的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>为 <code>O(log<sub>2</sub>n)</code> 是毫无疑问的。当然，最好的情况是只查找一次就能找到，但是在最坏和一般情况下的确要比顺序查找好了很多。<br />
+二分查找有个很重要的特点，就是不会查找数列的全部元素，而查找的数据量其实正好符合元素的对数，正常情况下每次查找的元素都在一半一半地减少。所以二分查找的<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>为 <code>O(log<sub>2</sub>n)</code> 是毫无疑问的。当然，最好的情况是只查找一次就能找到，但是在最坏和一般情况下的确要比顺序查找好了很多。<br />
 <h2>
 	二分查找的适用场景</h2>
 二分查找要求数列本身有序，所以在选择的时候需要确认数列是否本身有序，如果无序，则还需要进行排序，确认这样的代价是否符合实际需求。<br />
@@ -269,7 +269,7 @@ public static void main(String[] args) {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 122;
-window.arcId = "e7c93tp/Vw9LgVsNhQ6cGXBBeHTAqU1L1IA3MZ9csHvZZvayrWF/6vhHJQ";
+window.arcId = "4f0bsC16uR24uqDcgi846LgUa5FdLU2loFqXLz8eH6Ye8CPj8Q/fw8D8Qw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

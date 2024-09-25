@@ -111,13 +111,13 @@
 			<h1>顺序查找算法及C语言实现</h1>
 			<div id="arc-body">通过前面对静态查找表的介绍，静态查找表即为只做查找操作的查找表。<br />
 <br />
-<span style="color:#b22222;">静态查找表既可以使用<u><a href='/view/158.html' target='_blank'>顺序表</a></u>表示，也可以使用<u><a href='/view/160.html' target='_blank'>链表</a></u>结构表示</span>。虽然一个是数组、一个链表，但两者在做查找操作时，基本上大同小异。
+<span style="color:#b22222;">静态查找表既可以使用<u><a href='/view/288.html' target='_blank'>顺序表</a></u>表示，也可以使用<u><a href='/view/290.html' target='_blank'>链表</a></u>结构表示</span>。虽然一个是数组、一个链表，但两者在做查找操作时，基本上大同小异。
 <blockquote>
 	<p>
 		本节以静态查找表的顺序存储结构为例做详细的介绍。</p>
 </blockquote>
 <h2>
-	顺序查找的实现</h2>
+	<u><a href='/view/351.html' target='_blank'>顺序查找</a></u>的实现</h2>
 静态查找表用顺序存储结构表示时，顺序查找的查找过程为：从表中的最后一个数据元素开始，逐个同记录的关键字做比较，如果匹配成功，则查找成功；反之，如果直到表中第一个关键字查找完也没有成功匹配，则查找失败。<br />
 <br />
 顺序查找的具体实现代码为：
@@ -189,7 +189,7 @@ int main(int argc, const char * argv[]) {
 放置好监视哨之后，顺序表遍历从没有监视哨的一端依次进行，如果查找表中有用户需要的数据，则程序输出该位置；反之，程序会运行至监视哨，此时匹配成功，程序停止运行，但是结果是查找失败。
 <h2>
 	顺序查找的性能分析</h2>
-查找操作的性能分析主要考虑其<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>，而整个查找过程其实大部分时间花费在关键字和查找表中的数据进行比较上。<br />
+查找操作的性能分析主要考虑其<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>，而整个查找过程其实大部分时间花费在关键字和查找表中的数据进行比较上。<br />
 <br />
 <span style="color:#b22222;">所以查找算法衡量好坏的依据为：查找成功时，查找的关键字和查找表中的数据元素中进行过比较的个数的平均值，称为</span><span style="color:#008000;">平均查找长度（Average Search Length，用 ASL 表示）</span>。<br />
 <br />
@@ -231,7 +231,7 @@ int main(int argc, const char * argv[]) {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 54;
-window.arcId = "b8fauOvpihw+FPhupT007Wr64AyA6AUjfyyLUG6XF53y1ABkyMOLR9qz";
+window.arcId = "d7226M/n37n7+6m/2G/pWe3kvuhvnFreVvAxozsaeyIvxhjlEk2W99Tl";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

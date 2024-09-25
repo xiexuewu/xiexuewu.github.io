@@ -292,14 +292,14 @@ int main(){
 	入口到出口的最短路径为(逆序):<br />
 	(2,2) (1,2) (1,1) (0,1) (0,0)</div>
 <h2>
-	<u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>解决最短路径问题</h2>
+	<u><a href='/view/343.html' target='_blank'>广度优先搜索</a></u>解决最短路径问题</h2>
 除了以上两种可以称得上是直接求最短路径的方法，还可以应用本章的<span style="color:#b22222;">广度优先搜索算法</span>查找最短路径，该算法的实现可以直接在二维数组中完成，没有必要转化为图的形式。
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/171128/2-1G12QI0441b.png" style="width: 300px; height: 274px;" /></div>
 例如拿上图中的迷宫举例，骑士一开始只能选择向右走，当走到坐标为 (2,2) 的位置，骑士有两个选择：向上走或者向下走。<br />
 <blockquote>
 	<p>
-		对于广度优先搜索来说，其实现使用的数据存储结构为<u><a href='/view/172.html' target='_blank'>队列</a></u>，在搜索的过程中，将每种可选情况都入队，然后一轮一轮的对队列中的可选情况进行尝试，知道尝试出想要的结果为止。</p>
+		对于广度优先搜索来说，其实现使用的数据存储结构为<u><a href='/view/305.html' target='_blank'>队列</a></u>，在搜索的过程中，将每种可选情况都入队，然后一轮一轮的对队列中的可选情况进行尝试，知道尝试出想要的结果为止。</p>
 </blockquote>
 对于此时的骑士来说，结合对广度优先算法的理解，就相当于骑士会分身术，一分为二，一个往上，一个往下，每个人每次只能走一步（你走一步然后我走一步）。<br />
 <br />
@@ -308,7 +308,7 @@ int main(){
 <span style="color:#b22222;">在这种情况下，当只要有一个骑士找到出口时，他所走的路径就绝对是最短路径。</span><br />
 <blockquote>
 	<p>
-		对于广度优先搜索来说，使用的是队列的数据结构，等同于在遍历一棵<u><a href='/view/192.html' target='_blank'>二叉树</a></u>时，一层一层的遍历（从上往下，从左往右），可以看做是，对于每种情况，轮流去试探，每次只走一步。</p>
+		对于广度优先搜索来说，使用的是队列的数据结构，等同于在遍历一棵<u><a href='/view/326.html' target='_blank'>二叉树</a></u>时，一层一层的遍历（从上往下，从左往右），可以看做是，对于每种情况，轮流去试探，每次只走一步。</p>
 </blockquote>
 在实际编程实现时，使用广度优先搜索查找最短路径时，只能求得最短路径的长度，如果想要获取最短路径的具体路线，还需要结合其他算法。<br />
 <br />
@@ -442,7 +442,7 @@ bool judgeValue(int x,int y,int n,int m){
 }
 //在输出时，由于最短路径中从入口开始，一直到出口，所经过的顶点的 value 值逐渐 +1，所以采用回溯法查找所有可能的最短路径
 void displayRoad(check a[][110],int entryx,int entryy,int n,int m,int value){
-    //设置静态数组，实现<u><a href='/view/169.html' target='_blank'>栈</a></u>的作用
+    //设置静态数组，实现<u><a href='/view/300.html' target='_blank'>栈</a></u>的作用
     static check stack[1000];
     static int top=-1;//栈的栈顶
     //对于每个当前的顶点，首先需要判断其是否符合最基本的要求，由于在前期二维数组中的通路都变成了&lsquo;#&rsquo;，这里采用另一个关键字 ，value的值为主关键字进行搜索
@@ -539,7 +539,7 @@ int main(int argc, const char * argv[]) {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 82;
-window.arcId = "550307IPZPrmU38mGzqbuJHRB6kWrnkm1XTfCZJczgqeJMh5uC+Ij6YZ";
+window.arcId = "28b0jXkN0xGoIdoJHMlHqs1y6lyjvsp2VQSZub/JcuWDT2sVc6nIencL";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

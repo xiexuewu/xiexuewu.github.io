@@ -109,12 +109,12 @@
 	作者：解学武
 </div>
 			<h1>二叉树先序遍历（递归与非递归）及C语言实现</h1>
-			<div id="arc-body"><u><a href='/view/192.html' target='_blank'>二叉树</a></u>先序遍历的实现思想是：
+			<div id="arc-body"><u><a href='/view/326.html' target='_blank'>二叉树</a></u>先序遍历的实现思想是：
 <ol>
 	<li>
 		访问根节点；</li>
 	<li>
-		访问当前节点的左子<u><a href='/view/23.html' target='_blank'>树</a></u>；</li>
+		访问当前节点的左子<u><a href='/view/325.html' target='_blank'>树</a></u>；</li>
 	<li>
 		若当前节点无左子树，则访问当前节点的右子树；</li>
 </ol>
@@ -209,7 +209,7 @@ int main() {
 	1 2 4 5 3 6 7</div>
 <h2>
 	非递归实现</h2>
-而递归的底层实现依靠的是<u><a href='/view/169.html' target='_blank'>栈</a></u>存储结构，因此，二叉树的先序遍历既可以直接采用递归思想实现，也可以使用栈的存储结构模拟递归的思想实现，其 C 语言实现代码为：<br />
+而递归的底层实现依靠的是<u><a href='/view/300.html' target='_blank'>栈</a></u>存储结构，因此，二叉树的先序遍历既可以直接采用递归思想实现，也可以使用栈的存储结构模拟递归的思想实现，其 C 语言实现代码为：<br />
 <pre class="cpp">
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -266,7 +266,7 @@ BiTNode* getTop(BiTNode**a){
 }
 //先序遍历非递归算法
 void PreOrderTraverse(BiTree Tree){
-    BiTNode* a[20];//定义一个<u><a href='/view/170.html' target='_blank'>顺序栈</a></u>
+    BiTNode* a[20];//定义一个<u><a href='/view/301.html' target='_blank'>顺序栈</a></u>
     BiTNode * p;//临时指针
     push(a, Tree);//根结点进栈
     while (top!=-1) {
@@ -310,7 +310,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 143;
-window.arcId = "65adKPZniy6+fw/xOmKsLRpVIXI5+2ECivDoDPVkT2f+ojTCG5gSqUYC6w";
+window.arcId = "328cAWYqcIM0ZLBVkCFUyIVW3fLpFIBBE6gwc4eAqC97B9pg4t5mLPr04A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

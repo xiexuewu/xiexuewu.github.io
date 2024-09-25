@@ -113,7 +113,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/vip_246.html";window.nextPageURL = "/view/vip_247.html";</script>
-			<div id="arc-body"><u><a href='/view/201.html' target='_blank'>连通图</a></u>中，如果任意两个顶点之间都存在不止一条通路，这样的图就称为<span style="color: rgb(0, 128, 0);"><u><a href='/view/42.html' target='_blank'>重连通图</a></u></span>。<br />
+			<div id="arc-body"><u><a href='/view/201.html' target='_blank'>连通图</a></u>中，如果任意两个顶点之间都存在不止一条通路，这样的图就称为<span style="color: rgb(0, 128, 0);">重连通图</span>。<br />
 <br />
 举个简单的例子：<br />
 <br />
@@ -155,11 +155,11 @@
 	重连通图的判断方法</h2>
 了解了什么是重连通图之后，如何判断一个连通图是否为重连通图呢？<br />
 <br />
-对于任意一个连通图来说，都可以通过<u><a href='/view/39.html' target='_blank'>深度优先搜索</a></u>算法获得一棵<u><a href='/view/45.html' target='_blank'>深度优先生成树</a></u>。例如，图 2 通过深度优先搜索获得的深度优先<u><a href='/view/202.html' target='_blank'>生成树</a></u>为：
+对于任意一个连通图来说，都可以通过<u><a href='/view/342.html' target='_blank'>深度优先搜索</a></u>算法获得一棵<u><a href='/view/344.html' target='_blank'>深度优先生成树</a></u>。例如，图 2 通过深度优先搜索获得的深度优先<u><a href='/view/202.html' target='_blank'>生成树</a></u>为：
 <div style="text-align: center;">
 	<br />
 	<img alt="深度优先生成树" src="/uploads/allimg/240114/1506442U7-3.gif" /><br />
-	图 4 深度优先生成<u><a href='/view/23.html' target='_blank'>树</a></u></div>
+	图 4 深度优先生成<u><a href='/view/325.html' target='_blank'>树</a></u></div>
 <br />
 <span style="color: rgb(178, 34, 34);">虚线表示遍历生成树时没有用到的边，简称</span><span style="color: rgb(0, 128, 0);">&ldquo;回边&rdquo;</span>。<br />
 <br />
@@ -221,10 +221,10 @@ typedef struct ArcNode {
 typedef struct VNode {
     VertexType data;   //顶点的数据域
     ArcNode* firstarc; //指向下一个结点
-}VNode, AdjList[MAX_VERTEX_NUM]; //存储各<u><a href='/view/160.html' target='_blank'>链表</a></u>首元结点的数组
+}VNode, AdjList[MAX_VERTEX_NUM]; //存储各<u><a href='/view/290.html' target='_blank'>链表</a></u>首元结点的数组
 
 typedef struct {
-    AdjList vertices;   //存储图的<u><a href='/view/203.html' target='_blank'>邻接表</a></u>
+    AdjList vertices;   //存储图的<u><a href='/view/339.html' target='_blank'>邻接表</a></u>
     int vexnum, arcnum; //图中顶点数以及弧数
 }ALGraph;
 
@@ -273,7 +273,7 @@ void CreateGraph(ALGraph* graph) {
 
 //判断 G.vertices[v].data 是否为关结点
 //函数执行结束时，会找到 v 结点（或其孩子结点）相连的祖先结点的访问次序号，如果有多个祖先结点，找到的是值最小的次序号，并存储在 low[v] 的位置
-void <u><a href='/view/39.html' target='_blank'>DFS</a></u>Articul(ALGraph G, int v) {
+void <u><a href='/view/342.html' target='_blank'>DFS</a></u>Articul(ALGraph G, int v) {
     int min, w;
     //假设当前结点不是关结点
     bool isAritcul = false;
@@ -432,7 +432,7 @@ DFSArticul() 函数对各个非叶子结点是否为关结点进行了判断，�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 347;
-window.arcId = "f8323yHfeWpoeR0mGEdo9Z1ykcM1ENYhNLbewgpFbG+zyznQmViMqYe0EA";
+window.arcId = "6cd3FYW/UB7y7y09srcXeG3CXOffpLS0ppVUqVblhVsldGbUhl4rQWjP7A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

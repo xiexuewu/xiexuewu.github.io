@@ -113,12 +113,12 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/344.html";window.nextPageURL = "/view/346.html";</script>
-			<div id="arc-body">我们知道，遍历<u><a href='/view/201.html' target='_blank'>连通图</a></u>可以得到一棵<u><a href='/view/202.html' target='_blank'>生成树</a></u>，遍历非连通图可以得到多棵生成<u><a href='/view/23.html' target='_blank'>树</a></u>（又称生成森林）。
+			<div id="arc-body">我们知道，遍历<u><a href='/view/201.html' target='_blank'>连通图</a></u>可以得到一棵<u><a href='/view/202.html' target='_blank'>生成树</a></u>，遍历非连通图可以得到多棵生成<u><a href='/view/325.html' target='_blank'>树</a></u>（又称生成森林）。
 <blockquote>
 	<p>
 		关于生成树和生成森林，读者可以猛击《<a href="/view/202.html" target="_blank">生成树（森林）</a>》做系统的了解。</p>
 </blockquote>
-所谓<u><a href='/view/45.html' target='_blank'>广度优先生成树</a></u>，指的就是用<u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>算法遍历连通图得到的生成树。同样的道理，用广度优先搜索算法遍历非连通图得到的生成森林又称广度优先生成森林。<br />
+所谓广度优先生成树，指的就是用<u><a href='/view/343.html' target='_blank'>广度优先搜索</a></u>算法遍历连通图得到的生成树。同样的道理，用广度优先搜索算法遍历非连通图得到的生成森林又称广度优先生成森林。<br />
 <br />
 那么，对于给定的一张（非）连通图，如何获得它对应的广度优先生成树（森林）呢？
 <h2>
@@ -132,7 +132,7 @@
 	<p>
 		图 1a) 对应的广度优先生成树有很多棵，图 1b) 只是其中的一棵。</p>
 </blockquote>
-注意，对连通图进行广度优先搜索，得到的生成树往往是一棵普通树，而非<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，例如：<br />
+注意，对连通图进行广度优先搜索，得到的生成树往往是一棵普通树，而非<u><a href='/view/326.html' target='_blank'>二叉树</a></u>，例如：<br />
 <br />
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/240114/145UA310-1.gif" /><br />
@@ -169,7 +169,7 @@ typedef struct CSNode {
 }*CSTree, CSNode;
 
 typedef struct Queue {
-    CSTree data;//<u><a href='/view/172.html' target='_blank'>队列</a></u>中存放的为树结点
+    CSTree data;//<u><a href='/view/305.html' target='_blank'>队列</a></u>中存放的为树结点
     struct Queue* next;
 }Queue;
 
@@ -287,7 +287,7 @@ void DelQueue(Queue* Q) {
 }
 
 //构建广度优先生成树
-void Create<u><a href='/view/39.html' target='_blank'>BFS</a></u>Tree(MGraph G, CSTree* T) {
+void Create<u><a href='/view/343.html' target='_blank'>BFS</a></u>Tree(MGraph G, CSTree* T) {
     int v, w;
     CSTree q = NULL;
     Queue* Q = NULL;
@@ -736,7 +736,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 345;
-window.arcId = "0e2egRI47rm8a6hxSHoduftnd+XyxllZjb70e4CxNLxcExysai4RutY+5w";
+window.arcId = "1abcAhIWYcHbgvmo8G4jkdSs1yb4Esgs9VCnsv74/b/B+jilttWceHVxPA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -109,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>分块查找算法（索引顺序查找）及C语言实现</h1>
-			<div id="arc-body"><span style="color:#b22222;">本节介绍一种在<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>的基础上对其进行改进的算法</span>&mdash;&mdash;<span style="color:#008000;">分块查找算法</span>。<br />
+			<div id="arc-body"><span style="color:#b22222;">本节介绍一种在<u><a href='/view/351.html' target='_blank'>顺序查找</a></u>的基础上对其进行改进的算法</span>&mdash;&mdash;<span style="color:#008000;">分块查找算法</span>。<br />
 <br />
 <span style="color:#008000;">分块查找</span>，也叫<span style="color:#008000;">索引顺序查找</span>，算法实现除了需要查找表本身之外，还需要根据查找表建立一个索引表。例如图 1，给定一个查找表，其对应的索引表如图所示：<br />
 <br />
@@ -140,7 +140,7 @@
 由于索引表中显示第二子表的起始位置在查找表的第 7 的位置上，所以从该位置开始进行顺序查找，一直查找到该子表最后一个关键字（一般将查找表进行等分，具体子表个数根据实际情况而定）。结果在第 10 的位置上确定该关键字即为所找。<br />
 <blockquote>
 	<p>
-		<span style="color:#b22222;">提示：</span>在第一步确定块（子表）时，由于索引表中按照关键字有序，所有可以采用<u><a href='/view/55.html' target='_blank'>折半查找</a></u>算法。而在第二步中，由于各子表中关键字没有严格要求有序，所以只能采用顺序查找的方式。</p>
+		<span style="color:#b22222;">提示：</span>在第一步确定块（子表）时，由于索引表中按照关键字有序，所有可以采用<u><a href='/view/352.html' target='_blank'>折半查找</a></u>算法。而在第二步中，由于各子表中关键字没有严格要求有序，所以只能采用顺序查找的方式。</p>
 </blockquote>
 <p>
 	具体实现代码:</p>
@@ -235,7 +235,7 @@ int search(int key, int a[]){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 56;
-window.arcId = "f658PQ0Ae9wGGC7C+bmdLAPWqzs09Qu5tevsJY8UvuvKQHNCsHP398Jw";
+window.arcId = "1309Gw7TsVXvwL2TuXtkt4NRYjRqxdDfrbyhWxVWl/RCw9jIm2vkwf2v";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

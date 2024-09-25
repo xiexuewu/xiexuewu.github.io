@@ -167,9 +167,9 @@
 	图 3 稀疏矩阵&nbsp;</div>
 <h2>
 	矩阵压缩存储的方式</h2>
-矩阵压缩存储的方式有 3 种，分别为：<span style="color:#008000;"><u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u></span>、<span style="color:#008000;"><u><a href='/view/185.html' target='_blank'>行逻辑链接的顺序表</a></u></span>和<span style="color:#008000;"><u><a href='/view/186.html' target='_blank'>十字链表</a></u></span>。
+矩阵压缩存储的方式有 3 种，分别为：<span style="color:#008000;"><u><a href='/view/321.html' target='_blank'>三元组顺序表</a></u></span>、<span style="color:#008000;"><u><a href='/view/322.html' target='_blank'>行逻辑链接的顺序表</a></u></span>和<span style="color:#008000;"><u><a href='/view/323.html' target='_blank'>十字链表</a></u></span>。
 <h2>
-	三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u></h2>
+	三元组<u><a href='/view/288.html' target='_blank'>顺序表</a></u></h2>
 在存储稀疏矩阵时，除了要存储非 0 元素的值之外，还需要存储元素所在矩阵中的行标 i 和列标 j ，三个元素构成三元组（行标，列标，元素值）。<br />
 <br />
 所以，表示三元组结构需要使用结构体进行自定义：
@@ -209,7 +209,7 @@ typedef struct {
     int n,m,num;
 }TSMatrix;</pre>
 <h2>
-	十字<u><a href='/view/160.html' target='_blank'>链表</a></u></h2>
+	十字<u><a href='/view/290.html' target='_blank'>链表</a></u></h2>
 以上两种存储稀疏矩阵的方法，说到底，还是操作数组，在进行矩阵运算过程中，如果有插入非 0 元素或者删除某一个元素的操作，可能需要大量的移动数组中的三元组。这时，就要考虑使用链表的存储结构。<br />
 <br />
 例如在进行&ldquo;将矩阵 B 加到矩阵 A 上&rdquo;的操作时，矩阵 A 中的数据元素会发生很大的变化，之前的 0 元素可能变成非 0 元素，非 0 元素也可能变成 0 （正负数相加为 0）。<span style="color:#b22222;">在这种情况下，就需要使用链表的存储结构来存储矩阵，这种存储方式称为：十字链表法。</span><br />
@@ -273,7 +273,7 @@ typedef struct {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 15;
-window.arcId = "aecad9qzAuM3BJuqF2D3cCtJlZhR3zwE9QJoFPCSUhtRiFFMKrMmc0LU";
+window.arcId = "484fU+bXTk08fycr/RKzNN8627YU77EAmjWCReU1LX/2QUnZhBspEqUH";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

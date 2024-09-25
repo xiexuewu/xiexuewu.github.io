@@ -206,7 +206,7 @@ public class SortTest {
 	希尔排序的特点及性能</h2>
 其实希尔排序只使用了一种增量的方式去改进插入排序，从上述对该算法的描述及实例中，我们能够清楚地知道实际上希尔排序在内部还是使用插入排序进行处理的。但是这个增量确实有它的意义，不管数列有多长，刚开始时增量会很大，所以每一组待排序的数列的规模会很小，排序会很快。尽管后来数列的规模慢慢变大，但是数列整体已经开始趋于有序了，所以插入排序的速度还是越来越快的。<br />
 <br />
-在<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>上，由于增量的序列不一定，所以时间复杂度也不确定。这在数学上还无法给出确切的结果。我们在上面采用的是每次除以 2 的方式，但是据研究，有以下几种可推荐的序列：<br />
+在<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>上，由于增量的序列不一定，所以时间复杂度也不确定。这在数学上还无法给出确切的结果。我们在上面采用的是每次除以 2 的方式，但是据研究，有以下几种可推荐的序列：<br />
 <ul>
 	<li>
 		N/3+1，N/3^2+1，N/3^3+1&hellip;&hellip;（据说在序列数 N&lt;100 000 时最优）；</li>
@@ -220,7 +220,7 @@ public class SortTest {
 <br />
 但是一般认为希尔排序的平均时间复杂度是 <code>O(n<sup>1.3</sup>)</code>。当然，希尔排序的时间复杂度与其增量序列有关，我们知道，一般来说希尔排序会比插入排序快一些，这就足够了。<br />
 <br />
-在希尔排序的实现中仍然使用了插入排序，只是进行了分组，并没有使用其他空间，所以希尔排序的<u><a href='/view/2.html' target='_blank'>空间复杂度</a></u>同样是 <code>O(1)</code>，是常量级的。<br />
+在希尔排序的实现中仍然使用了插入排序，只是进行了分组，并没有使用其他空间，所以希尔排序的<u><a href='/view/vip_284.html' target='_blank'>空间复杂度</a></u>同样是 <code>O(1)</code>，是常量级的。<br />
 <br />
 在希尔排序中会进行分组、排序，所以同样值的元素，其相对位置有可能会发生变化，这是因为同样值的元素若不在一个组中，则有可能后面的元素会被移动到前面。所以希尔排序是不稳定的算法。<br />
 <h2>
@@ -245,7 +245,7 @@ public class SortTest {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 119;
-window.arcId = "cdadR5y1KknIEccH5dSExADahU1JeWtURlBxdS04HC2VkwDzsLDjHSG2gQ";
+window.arcId = "9ae2RJrfH0oLWQYYuedzu7CKPomDskEPlhmJ4hr9Tp0z0NcjoDQf//03ww";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

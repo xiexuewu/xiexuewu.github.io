@@ -115,7 +115,7 @@
                 <script type="text/javascript">window.prePageURL = "/search/";window.nextPageURL = "/view/351.html";</script>
 			<div id="arc-body">在数据结构中，数据之间的逻辑关系归纳为 4 种，分别是无关系、&ldquo;一对一&rdquo;、&ldquo;一对多&rdquo;和&ldquo;多对多&rdquo;。<br />
 <br />
-通过前面章节的学习，我们掌握了用线性结构（<u><a href='/view/157.html' target='_blank'>线性表</a></u>）存储&ldquo;一对一&rdquo;关系的数据，用<u><a href='/view/23.html' target='_blank'>树</a></u>结构存储&ldquo;一对多&rdquo;关系的数据，用图结构存储&ldquo;多对多&rdquo;关系的数据。那么，该如何存储无逻辑关系的数据呢？<br />
+通过前面章节的学习，我们掌握了用线性结构（<u><a href='/view/287.html' target='_blank'>线性表</a></u>）存储&ldquo;一对一&rdquo;关系的数据，用<u><a href='/view/325.html' target='_blank'>树</a></u>结构存储&ldquo;一对多&rdquo;关系的数据，用图结构存储&ldquo;多对多&rdquo;关系的数据。那么，该如何存储无逻辑关系的数据呢？<br />
 <br />
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/240114/1522055307-0.gif" /><br />
@@ -133,7 +133,7 @@
 <br />
 对于无逻辑关系的数据，做的最多的操作就是从中查找某个特定的元素。和有逻辑关系的数据相比，在无逻辑关系的数据中查找特定元素的难度更大。例如，同样是查找一个电话号，在杂乱无章的电话簿中查找既费时又费力，在有序的电话簿中很快就能找到。<br />
 <br />
-原本没有逻辑关系的数据，为了提高查找效率，会人为地给数据赋予一种逻辑关系，继而选用线性表、树或者图结构来存储数据。比如说，为电话簿中的电话号赋予&ldquo;一对一&rdquo;的关系，就可以用线性表（<u><a href='/view/158.html' target='_blank'>顺序表</a></u>或者单<u><a href='/view/160.html' target='_blank'>链表</a></u>）存储电话号。<br />
+原本没有逻辑关系的数据，为了提高查找效率，会人为地给数据赋予一种逻辑关系，继而选用线性表、树或者图结构来存储数据。比如说，为电话簿中的电话号赋予&ldquo;一对一&rdquo;的关系，就可以用线性表（<u><a href='/view/288.html' target='_blank'>顺序表</a></u>或者单<u><a href='/view/290.html' target='_blank'>链表</a></u>）存储电话号。<br />
 <br />
 从名称上看，查找表是一种新的存储结构，但实际上它指的就是用线性表、树或者图结构来存储数据，只不过数据间的逻辑关系是人为赋予的。
 <blockquote>
@@ -163,7 +163,7 @@
 	查找算法的性能分析</h2>
 用不同的存储结构表示查找表，查找特定元素使用的算法会有所区别。哪怕在同一个查找表中，也可以选用不同的查找算法。<br />
 <br />
-一个算法的好坏，可以从<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>和<u><a href='/view/2.html' target='_blank'>空间复杂度</a></u>两个维度衡量。对于查找算法来说，查找过程中只需要极少量的辅助存储空间，所以各个查找算法的空间复杂度区别不大。多数情况下，我们通过时间复杂度衡量查找算法的好坏。<br />
+一个算法的好坏，可以从<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>和<u><a href='/view/vip_284.html' target='_blank'>空间复杂度</a></u>两个维度衡量。对于查找算法来说，查找过程中只需要极少量的辅助存储空间，所以各个查找算法的空间复杂度区别不大。多数情况下，我们通过时间复杂度衡量查找算法的好坏。<br />
 <br />
 除了时间复杂度之外，还有一种衡量查找算法好坏的方法。<br />
 <br />
@@ -185,7 +185,7 @@
 <br />
 ASL 值越大，表明查找算法的性能越差，执行效率越低。<br />
 <br />
-接下来，我会系统讲解多种查找算法，包括<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>算法、<u><a href='/view/55.html' target='_blank'>折半查找</a></u>算法、分块查找算法等。待讲到具体的查找算法时，会详细介绍这个公式的用法。</div>
+接下来，我会系统讲解多种查找算法，包括<u><a href='/view/351.html' target='_blank'>顺序查找</a></u>算法、<u><a href='/view/352.html' target='_blank'>折半查找</a></u>算法、分块查找算法等。待讲到具体的查找算法时，会详细介绍这个公式的用法。</div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/search/">查找算法</a></span>
                     <span class="next right"><a href="/view/351.html">顺序查找算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -212,7 +212,7 @@ ASL 值越大，表明查找算法的性能越差，执行效率越低。<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 350;
-window.arcId = "e292FkvKbhBw3HUFs1S00KuQBDCe7TMDzMdFYlOReFEydx7UaM0jlYfwQQ";
+window.arcId = "3694McR8pUXw2lEP6mz14OmrMk5PrJq8CMH5vQy4H6pQx4hy5ZFPJbAVvg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

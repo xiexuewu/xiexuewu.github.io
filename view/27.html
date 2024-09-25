@@ -109,9 +109,9 @@
 	作者：解学武
 </div>
 			<h1>二叉树层次遍历及其C语言实现</h1>
-			<div id="arc-body">前边介绍了<u><a href='/view/192.html' target='_blank'>二叉树</a></u>的先序、中序和后序的遍历算法，运用了<u><a href='/view/169.html' target='_blank'>栈</a></u>的数据结构，主要思想就是按照先左子<u><a href='/view/23.html' target='_blank'>树</a></u>后右子树的顺序依次遍历树中各个结点。<br />
+			<div id="arc-body">前边介绍了<u><a href='/view/326.html' target='_blank'>二叉树</a></u>的先序、中序和后序的遍历算法，运用了<u><a href='/view/300.html' target='_blank'>栈</a></u>的数据结构，主要思想就是按照先左子<u><a href='/view/325.html' target='_blank'>树</a></u>后右子树的顺序依次遍历树中各个结点。<br />
 <br />
-本节介绍另外一种遍历方式：按照二叉树中的层次从左到右依次遍历每层中的结点。具体的实现思路是：通过使用<u><a href='/view/172.html' target='_blank'>队列</a></u>的数据结构，从树的根结点开始，依次将其左孩子和右孩子入队。而后每次队列中一个结点出队，都将其左孩子和右孩子入队，直到树中所有结点都出队，出队结点的先后顺序就是层次遍历的最终结果。
+本节介绍另外一种遍历方式：按照二叉树中的层次从左到右依次遍历每层中的结点。具体的实现思路是：通过使用<u><a href='/view/305.html' target='_blank'>队列</a></u>的数据结构，从树的根结点开始，依次将其左孩子和右孩子入队。而后每次队列中一个结点出队，都将其左孩子和右孩子入队，直到树中所有结点都出队，出队结点的先后顺序就是层次遍历的最终结果。
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/170830/2-1FS0143134W9.png" style="width: 326px; height: 186px;" /><br />
 	图1 二叉树</div>
@@ -187,7 +187,7 @@ int main() {
     //初始化二叉树
     CreateBiTree(&amp;tree);
     BiTNode * p;
-    //采用<u><a href='/view/173.html' target='_blank'>顺序队列</a></u>，初始化创建队列数组
+    //采用<u><a href='/view/306.html' target='_blank'>顺序队列</a></u>，初始化创建队列数组
     BiTree a[20];
     //根结点入队
     EnQueue(a, tree);
@@ -227,7 +227,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 27;
-window.arcId = "12a2QEapJdWwbG12yUCL3Jd+HncjeJGaKhesBr8mbFWlLEBxlnPp5a4T";
+window.arcId = "812bO7NK6BWoi8k6QNIL/hsTkLpdmLYzsJVAxOVh+bemFWDNWnaPYd+0";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

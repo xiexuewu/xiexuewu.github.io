@@ -113,7 +113,7 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/342.html";window.nextPageURL = "/view/344.html";</script>
-			<div id="arc-body"><u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>（Breadth First Search）简称广搜或者 <u><a href='/view/39.html' target='_blank'>BFS</a></u>，是遍历图存储结构的一种算法，既适用于无向图（网），也适用于有向图（网）。
+			<div id="arc-body">广度优先搜索（Breadth First Search）简称广搜或者 BFS，是遍历图存储结构的一种算法，既适用于无向图（网），也适用于有向图（网）。
 <blockquote>
 	<p>
 		所谓图的遍历，简单理解就是逐个访问图中的顶点，确保每个顶点都只访问一次。</p>
@@ -185,7 +185,7 @@
 <br />
 当从某个顶点出发，所有和它连通的顶点都访问完之后，广度优先搜索算法会重新选择一个尚未访问的顶点（非连通图中就存在这样的顶点），继续以同样的思路寻找未访问的其它顶点。直到图中所有顶点都被访问，广度优先搜索算法才会结束执行。<br />
 <br />
-图的存储结构有很多种，大体上可以分为顺序存储和链式存储（又细分为<u><a href='/view/203.html' target='_blank'>邻接表</a></u>结构、<u><a href='/view/186.html' target='_blank'>十字链表</a></u>结构和邻接多重表结构），各个存储结构有自己的特点。选用不同的存储结构，广度优先搜索算法的具体实现不同，但算法的思想是不变的。<br />
+图的存储结构有很多种，大体上可以分为顺序存储和链式存储（又细分为<u><a href='/view/339.html' target='_blank'>邻接表</a></u>结构、<u><a href='/view/323.html' target='_blank'>十字链表</a></u>结构和邻接多重表结构），各个存储结构有自己的特点。选用不同的存储结构，广度优先搜索算法的具体实现不同，但算法的思想是不变的。<br />
 <br />
 这里以图的顺序存储结构为例，广度优先搜索算法的 C 语言实现代码如下：
 <pre class="cpp">
@@ -197,7 +197,7 @@
 typedef enum { false, true }bool;           //定义bool型常量
 bool visited[MAX_VERtEX_NUM];               //设置全局数组，记录每个顶点是否被访问过
 
-//<u><a href='/view/172.html' target='_blank'>队列</a></u><u><a href='/view/160.html' target='_blank'>链表</a></u>中的结点类型
+//<u><a href='/view/305.html' target='_blank'>队列</a></u><u><a href='/view/290.html' target='_blank'>链表</a></u>中的结点类型
 typedef struct Queue {
     VertexType data;
     struct Queue* next;
@@ -398,7 +398,7 @@ int main() {
 	1 2 3 4 5 6 7 8</p>
 <blockquote>
 	<p>
-		实现图的遍历，除了使用本节讲解的广度优先搜索算法外，还可以使用<u><a href='/view/39.html' target='_blank'>深度优先搜索</a></u>算法，感兴趣的小伙伴可以猛击《<a href="/view/342.html" target="_blank">深度优先搜索（DFS）算法</a>》详细了解。</p>
+		实现图的遍历，除了使用本节讲解的广度优先搜索算法外，还可以使用<u><a href='/view/342.html' target='_blank'>深度优先搜索</a></u>算法，感兴趣的小伙伴可以猛击《<a href="/view/342.html" target="_blank">深度优先搜索（DFS）算法</a>》详细了解。</p>
 </blockquote>
 </div>
 			<div class="pre-next-page pre-next-detail clearfix">
@@ -427,7 +427,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 343;
-window.arcId = "1d1dNe7AwMBM97LyP8+9Qc2935ohxSU/HooRN8vPdbdNdJhhxedHMT7D+g";
+window.arcId = "8af6CZ6XKKCafn5kCqHqQgZvFjgTY045nz1LUWRY5FNra3ugGLglI13X2Q";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

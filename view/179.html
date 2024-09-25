@@ -123,7 +123,7 @@
 <br />
 本节，先来学习<span style="color:#008000;">普通模式匹配（BF）算法</span>的实现。<br />
 <h2>
-	BF算法原理</h2>
+	<u><a href='/view/316.html' target='_blank'>BF算法</a></u>原理</h2>
 普通模式匹配算法，其实现过程没有任何技巧，就是简单粗暴地拿一个串同另一个串中的字符一一比对，得到最终结果。<br />
 <br />
 例如，使用普通模式匹配算法判断串 A（&quot;abcac&quot;）是否为串 B（&quot;ababcabacabab&quot;）子串的判断过程如下：<br />
@@ -157,7 +157,7 @@
 接下来，我们要编写代码实现两个串的模式匹配（图 1 ~图 4）。<br />
 <h2>
 	BF算法实现</h2>
-BF 算法的实现思想是：将用户指定的两个串 A 和串 B，使用串的定长顺序存储结构存储起来，然后循环实现两个串的模式匹配过程，C 语言实现代码如下：<br />
+<u><a href='/view/316.html' target='_blank'>BF 算法</a></u>的实现思想是：将用户指定的两个串 A 和串 B，使用串的定长顺序存储结构存储起来，然后循环实现两个串的模式匹配过程，C 语言实现代码如下：<br />
 <pre class="cpp">
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -190,7 +190,7 @@ int main() {
 	6</p>
 注意，在实现过程中，我们借助 i-strlen(A)+1 就可以得到成功模式匹配所用的次数，也就是串 A 移动的总次数。<br />
 <h2>
-	BF算法<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u></h2>
+	BF算法<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u></h2>
 该算法最理想的时间复杂度 <code>O(n)</code>，n 表示串 A 的长度，即第一次匹配就成功。<br />
 <br />
 BF 算法最坏情况的时间复杂度为 <code>O(n*m)</code>，n 为串 A 的长度，m 为串 B 的长度。例如，串 B 为 &quot;0000000001&quot;，而串 A 为 &quot;01&quot;，这种情况下，两个串每次匹配，都必须匹配至串 A 的最末尾才能判断匹配失败，因此运行了 n*m 次。<br />
@@ -216,7 +216,7 @@ BF 算法的实现过程很 &quot;无脑&quot;，不包含任何技巧，在对�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 179;
-window.arcId = "b835MtzYjXXcqtQtxO2Kte2bBaFxPr5yKHIle5cznMb71+HIo2VpkGAKog";
+window.arcId = "f75ec7ptu9AvqKrSaVBLvIiAvIY0YcH+508ucaYVlLxNepxsNz1wOds4Pw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

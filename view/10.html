@@ -109,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>队列（Queue）：“先进先出”的数据结构</h1>
-			<div id="arc-body"><u><a href='/view/172.html' target='_blank'>队列</a></u>是<a href="/view/3.html" target="_blank">线性表</a>的一种，在操作数据元素时，和<u><a href='/view/169.html' target='_blank'>栈</a></u>一样，有自己的规则：<span style="color:#b22222;">使用队列存取数据元素时，数据元素只能从表的一端进入队列，另一端出队列</span>，如图1。
+			<div id="arc-body"><u><a href='/view/305.html' target='_blank'>队列</a></u>是<a href="/view/3.html" target="_blank">线性表</a>的一种，在操作数据元素时，和<u><a href='/view/300.html' target='_blank'>栈</a></u>一样，有自己的规则：<span style="color:#b22222;">使用队列存取数据元素时，数据元素只能从表的一端进入队列，另一端出队列</span>，如图1。
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/170719/2-1FG91032244Y.png" style="width: 500px; height: 155px;" /></div>
 <div style="text-align: center;">
@@ -131,7 +131,7 @@
 <div class="info-box">
 	两者的区别同样在于数据元素在物理存储结构上的不同。</div>
 <h2>
-	队列的<u><a href='/view/158.html' target='_blank'>顺序表</a></u>示和实现</h2>
+	队列的<u><a href='/view/288.html' target='_blank'>顺序表</a></u>示和实现</h2>
 使用顺序存储结构表示队列时，首先申请足够大的内存空间建立一个数组，除此之外，为了满足队列从队尾存入数据元素，从队头删除数据元素，还需要定义两个指针分别作为头指针和尾指针。<br />
 <br />
 当有数据元素进入队列时，将数据元素存放到队尾指针指向的位置，然后队尾指针增加 1；当删除对头元素（即使想删除的是队列中的元素，也必须从队头开始一个个的删除）时，只需要移动头指针的位置就可以了。<br />
@@ -171,7 +171,7 @@ int main() {
 }</pre>
 <h2>
 	顺序存储存在的问题</h2>
-当使用<u><a href='/view/157.html' target='_blank'>线性表</a></u>的顺序表示实现队列时，由于按照先进先出的原则，队列的队尾一直不断的添加数据元素，队头不断的删除数据元素。由于数组申请的空间有限，到某一时间点，就会出现 rear 队列尾指针到了数组的最后一个存储位置，如果继续存储，由于 rear 指针无法后移，就会出错。<br />
+当使用<u><a href='/view/287.html' target='_blank'>线性表</a></u>的顺序表示实现队列时，由于按照先进先出的原则，队列的队尾一直不断的添加数据元素，队头不断的删除数据元素。由于数组申请的空间有限，到某一时间点，就会出现 rear 队列尾指针到了数组的最后一个存储位置，如果继续存储，由于 rear 指针无法后移，就会出错。<br />
 <div class="info-box">
 	在数组中做删除数据元素的操作，只是移动了队头指针而没有释放所占空间。</div>
 <span style="color:#b22222;">数组真的满了吗？</span>队头由于删除元素，front 后移， front 前边还会有可以使用的空间。所以为了充分利用这部分空间，可以考虑使用下面这种方式。
@@ -241,8 +241,8 @@ int main() {
 		要将空队列和队列满的情况区分开，办法是：牺牲掉数组中的一个存储空间，判断数组满员的条件是：尾指针的下一个位置和头指针相遇，就说明数组满了。</p>
 </blockquote>
 <h2>
-	队列的链式表示和实现（简称为&ldquo;<u><a href='/view/174.html' target='_blank'>链队列</a></u>&rdquo;）</h2>
-<span style="color:#b22222;">队列的链式存储是在<u><a href='/view/160.html' target='_blank'>链表</a></u>的基础上，按照&ldquo;先进先出&rdquo;的原则操作数据元素。</span><br />
+	队列的链式表示和实现（简称为&ldquo;<u><a href='/view/308.html' target='_blank'>链队列</a></u>&rdquo;）</h2>
+<span style="color:#b22222;">队列的链式存储是在<u><a href='/view/290.html' target='_blank'>链表</a></u>的基础上，按照&ldquo;先进先出&rdquo;的原则操作数据元素。</span><br />
 <br />
 例如，将队列（1，2，3，4）依次入队，然后再依次出队。<br />
 <br />
@@ -334,7 +334,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 10;
-window.arcId = "8125ekZn829hxBvSSe/406RNihndMvIZ7upjwq07NROHFMw0GLE88GN1";
+window.arcId = "96c1x+f9kLd29vc3GNYXDbZW8HDc/BeK/XBUmWaCa8WownIxKV5u9ife";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

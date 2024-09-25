@@ -113,9 +113,9 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/321.html";window.nextPageURL = "/view/323.html";</script>
-			<div id="arc-body">前面学习了如何使用<u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u>存储稀疏矩阵，其实现过程就是将矩阵中各个非 0 元素的行标、列标和元素值以三元组的形式存储到一维数组中。通过研究实现代码你会发现，三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u>每次提取指定元素都需要遍历整个数组，运行效率很低。<br />
+			<div id="arc-body">前面学习了如何使用<u><a href='/view/321.html' target='_blank'>三元组顺序表</a></u>存储稀疏矩阵，其实现过程就是将矩阵中各个非 0 元素的行标、列标和元素值以三元组的形式存储到一维数组中。通过研究实现代码你会发现，三元组<u><a href='/view/288.html' target='_blank'>顺序表</a></u>每次提取指定元素都需要遍历整个数组，运行效率很低。<br />
 <br />
-本节将学习另一种存储矩阵的方法&mdash;&mdash;<span style="color: rgb(0, 128, 0);"><u><a href='/view/185.html' target='_blank'>行逻辑链接的顺序表</a></u></span>。<span style="color: rgb(178, 34, 34);">它可以看作是三元组顺序表的升级版，在三元组顺序表的基础上提高了查找某一行非 0 数据的效率。</span><br />
+本节将学习另一种存储矩阵的方法&mdash;&mdash;<span style="color: rgb(0, 128, 0);">行逻辑链接的顺序表</span>。<span style="color: rgb(178, 34, 34);">它可以看作是三元组顺序表的升级版，在三元组顺序表的基础上提高了查找某一行非 0 数据的效率。</span><br />
 <br />
 行逻辑链接的顺序表和三元组顺序表的实现过程类似，它们存储矩阵的过程完全相同，都是将矩阵中非 0 元素的三元组（行标、列标和元素值）存储在一维数组中。但为了提高提取查找指定行非 0 元素的效率，前者在存储矩阵时比后者多使用了一个数组，专门记录矩阵中每行第一个非 0 元素在一维数组中的位置。
 <div style="text-align: center;">
@@ -284,7 +284,7 @@ int main(int argc, char* argv[])
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 322;
-window.arcId = "eb1b9jUcXI70JidpvSK+gvVwr6/3gZFfJsdtR3cNTHwtnE936TpR4VqnHQ";
+window.arcId = "fe06V/5XCtvrR7SnEnsbOI59Z4TXAQc68C1CxsyWRr+UHbD6eBvXTkvvfA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

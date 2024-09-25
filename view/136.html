@@ -119,9 +119,9 @@
 <div>
 	该矩阵中非 0 元素的数量比较少，与其使用普通方式将矩阵中的所有数据元素一一存储，不如只存储非 0 元素更节省内存空间，拿图 1 中矩阵来说，只需存储元素 3、4、5 即可（此类存储方式被称为<span style="color:#008000;">稀疏矩阵的压缩存储</span>）。<br />
 	&nbsp;</div>
-稀疏矩阵（压缩）存储的方式有 3 种，分别为：<span style="color: rgb(0, 128, 0);"><u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u></span>、<span style="color: rgb(0, 128, 0);"><u><a href='/view/185.html' target='_blank'>行逻辑链接的顺序表</a></u></span>和<span style="color: rgb(0, 128, 0);"><u><a href='/view/186.html' target='_blank'>十字链表</a></u></span>。
+稀疏矩阵（压缩）存储的方式有 3 种，分别为：<span style="color: rgb(0, 128, 0);"><u><a href='/view/321.html' target='_blank'>三元组顺序表</a></u></span>、<span style="color: rgb(0, 128, 0);"><u><a href='/view/322.html' target='_blank'>行逻辑链接的顺序表</a></u></span>和<span style="color: rgb(0, 128, 0);"><u><a href='/view/323.html' target='_blank'>十字链表</a></u></span>。
 <h2>
-	三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u></h2>
+	三元组<u><a href='/view/288.html' target='_blank'>顺序表</a></u></h2>
 存储稀疏矩阵，需记录矩阵中每个非 0 元素的 3 个要素：非 0 元素的值、所在行标（用 i 表示）以及所在列标（用 j 表示），每个非 0 元素的 3 要素都可以用一个三元组（行标、列标、元素值）来表示，矩阵中所有非 0 元素的三元组可以通过顺序表来存储。此方法也被称为<span style="color:#008000;">稀疏矩阵的三元组表示法</span>。<br />
 <br />
 因此，每个非 0 元素的三元组需要使用结构体进行自定义：
@@ -159,7 +159,7 @@ typedef struct {
     int n,m,num;
 }TSMatrix;</pre>
 <h2>
-	十字<u><a href='/view/160.html' target='_blank'>链表</a></u></h2>
+	十字<u><a href='/view/290.html' target='_blank'>链表</a></u></h2>
 以上两种存储稀疏矩阵的方法，说到底，还是操作数组，在进行矩阵运算过程中，如果有插入非 0 元素或者删除某一个元素的操作，可能需要大量的移动数组中的三元组。这时，就要考虑使用链表的存储结构。<br />
 <br />
 例如在进行&ldquo;将矩阵 B 加到矩阵 A 上&rdquo;的操作时，矩阵 A 中的数据元素会发生很大的变化，之前的 0 元素可能变成非 0 元素，非 0 元素也可能变成 0 （正负数相加为 0）。<span style="color: rgb(178, 34, 34);">在这种情况下，就需要使用链表的存储结构来存储矩阵，这种存储方式称为：十字链表法。</span><br />
@@ -223,7 +223,7 @@ typedef struct {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 136;
-window.arcId = "06c0+CyHGPqKW87NzHt3pIKCaobJshU6FU2nwT2na6mqamQRMGRa2uOUlQ";
+window.arcId = "0e2egRI47rm8a6hxSH1BtvlicOGgzQJf3+/2Ko6xNL5bEBysai4RutY+5w";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

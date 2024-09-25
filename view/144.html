@@ -109,10 +109,10 @@
 	作者：解学武
 </div>
 			<h1>二叉树中序遍历（递归和非递归）算法及C语言实现</h1>
-			<div id="arc-body"><u><a href='/view/192.html' target='_blank'>二叉树</a></u>中序遍历的实现思想是：
+			<div id="arc-body"><u><a href='/view/326.html' target='_blank'>二叉树</a></u>中序遍历的实现思想是：
 <ol>
 	<li>
-		访问当前节点的左子<u><a href='/view/23.html' target='_blank'>树</a></u>；</li>
+		访问当前节点的左子<u><a href='/view/325.html' target='_blank'>树</a></u>；</li>
 	<li>
 		访问根节点；</li>
 	<li>
@@ -215,7 +215,7 @@ int main() {
 	4 2 5 1 6 3 7</div>
 <h2>
 	非递归实现</h2>
-而递归的底层实现依靠的是<u><a href='/view/169.html' target='_blank'>栈</a></u>存储结构，因此，二叉树的先序遍历既可以直接采用递归思想实现，也可以使用栈的存储结构模拟递归的思想实现。<br />
+而递归的底层实现依靠的是<u><a href='/view/300.html' target='_blank'>栈</a></u>存储结构，因此，二叉树的先序遍历既可以直接采用递归思想实现，也可以使用栈的存储结构模拟递归的思想实现。<br />
 <br />
 中序遍历的非递归方式实现思想是：从根结点开始，遍历左孩子同时压栈，当遍历结束，说明当前遍历的结点没有左孩子，从栈中取出来调用操作函数，然后访问该结点的右孩子，继续以上重复性的操作。<br />
 <br />
@@ -278,7 +278,7 @@ BiTNode* getTop(BiTNode**a){
 }
 //中序遍历非递归算法
 void InOrderTraverse1(BiTree Tree){
-    BiTNode* a[20];//定义一个<u><a href='/view/170.html' target='_blank'>顺序栈</a></u>
+    BiTNode* a[20];//定义一个<u><a href='/view/301.html' target='_blank'>顺序栈</a></u>
     BiTNode * p;//临时指针
     push(a, Tree);//根结点进栈
     while (top!=-1) {//top!=-1说明栈内不为空，程序继续运行
@@ -347,7 +347,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 144;
-window.arcId = "e6c2Zfd9mulF1pbgGIjmAeb5pAjpMdSy1FUidne7Yujdp1sCuL+O1wirxQ";
+window.arcId = "c5408qH7X37L+7Z3eIj5FHqn6JzHglSylxHvbhtC4M8xby9Z/jwUlmLzzQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

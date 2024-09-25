@@ -109,9 +109,9 @@
 	作者：解学武
 </div>
 			<h1>行逻辑链接的顺序表（压缩存储稀疏矩阵）详解</h1>
-			<div id="arc-body">前面学习了如何使用<u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u>存储稀疏矩阵，其实现过程就是将矩阵中各个非 0 元素的行标、列标和元素值以三元组的形式存储到一维数组中。通过研究实现代码你会发现，三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u>每次提取指定元素都需要遍历整个数组，运行效率很低。<br />
+			<div id="arc-body">前面学习了如何使用<u><a href='/view/321.html' target='_blank'>三元组顺序表</a></u>存储稀疏矩阵，其实现过程就是将矩阵中各个非 0 元素的行标、列标和元素值以三元组的形式存储到一维数组中。通过研究实现代码你会发现，三元组<u><a href='/view/288.html' target='_blank'>顺序表</a></u>每次提取指定元素都需要遍历整个数组，运行效率很低。<br />
 <br />
-本节将学习另一种存储矩阵的方法&mdash;&mdash;<span style="color:#008000;">行逻辑链接的顺序表</span>。<span style="color:#b22222;">它可以看作是三元组顺序表的升级版，即在三元组顺序表的基础上改善了提取数据的效率。</span><br />
+本节将学习另一种存储矩阵的方法&mdash;&mdash;<span style="color:#008000;"><u><a href='/view/322.html' target='_blank'>行逻辑链接的顺序表</a></u></span>。<span style="color:#b22222;">它可以看作是三元组顺序表的升级版，即在三元组顺序表的基础上改善了提取数据的效率。</span><br />
 <br />
 行逻辑链接的顺序表和三元组顺序表的实现过程类似，它们存储矩阵的过程完全相同，都是将矩阵中非 0 元素的三元组（行标、列标和元素值）存储在一维数组中。但为了提高提取数据的效率，前者在存储矩阵时比后者多使用了一个数组，专门记录矩阵中每行第一个非 0 元素在一维数组中的位置。
 <div style="text-align: center;">
@@ -260,7 +260,7 @@ int main(int argc, char* argv[])
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 185;
-window.arcId = "c075tM4cuCJanyopxYmr9N+OrdsvEJ1YcxtxIIfjEJvKspjGa9GJiYRClQ";
+window.arcId = "3c03UIwIzAnurD9h4lDPq6TKAFhzPDSdlEb8jD+BPURIMAHeyzYcd7KtNA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

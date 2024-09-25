@@ -153,7 +153,7 @@
 	如果顶点之间只是具有偏序关系，那么拓扑排序的结果肯定不唯一；如果顶点之间是全序关系，那么拓扑排序得到的序列唯一。</div>
 <h2>
 	拓扑排序的C语言实现</h2>
-在编写程序解决拓扑排序的问题时，大致思路为：首先通过<u><a href='/view/203.html' target='_blank'>邻接表</a></u>将 AOV 网进行存储，由于拓扑排序的整个过程中，都是以顶点的入度为依据进行排序，所以需要根据建立的邻接表统计出各顶点的入度。<br />
+在编写程序解决拓扑排序的问题时，大致思路为：首先通过<u><a href='/view/339.html' target='_blank'>邻接表</a></u>将 AOV 网进行存储，由于拓扑排序的整个过程中，都是以顶点的入度为依据进行排序，所以需要根据建立的邻接表统计出各顶点的入度。<br />
 <br />
 在得到各顶点的入度后，首先找到入度为 0 的顶点作为拓扑排序的起始点，然后查找以该顶点为起始点的所有顶点，如果入度为 1，说明如果删除前一个顶点后，该顶点的入度为 0，为拓扑排序的下一个对象。<br />
 <br />
@@ -172,7 +172,7 @@ typedef struct ArcNode{
 typedef struct VNode{
     VertexType data;//顶点的数据域
     ArcNode * firstarc;//指向邻接点的指针
-}VNode,AdjList[MAX_VERTEX_NUM];//存储各<u><a href='/view/160.html' target='_blank'>链表</a></u>头结点的数组
+}VNode,AdjList[MAX_VERTEX_NUM];//存储各<u><a href='/view/290.html' target='_blank'>链表</a></u>头结点的数组
 
 typedef struct {
     AdjList vertices;//图中顶点及各邻接点数组
@@ -209,7 +209,7 @@ void CreateAOV(ALGraph **G){
         (*G)-&gt;vertices[locate].firstarc=p;
     }
 }
-//结构体定义<u><a href='/view/169.html' target='_blank'>栈</a></u>结构
+//结构体定义<u><a href='/view/300.html' target='_blank'>栈</a></u>结构
 typedef struct stack{
     VertexType data;
     struct stack * next;
@@ -337,7 +337,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 43;
-window.arcId = "64f5HpBDV2A7YTpjlWWaWkWRDQ1fKhVZnsK7e5cQyp/9YbjxRYgYZh2J";
+window.arcId = "c8dd4GUco4v8FVYCZfQvgdK4xeZetPK1TeePIgjjAZPY7i5fsIvHAyle";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

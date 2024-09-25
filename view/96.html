@@ -116,14 +116,14 @@
 <span style="color:#008000;">问农夫采取什么方案才能将所有的东西运过河？</span><br />
 <h2>
 	解题思路</h2>
-<span style="color:#b22222;">农夫过河问题的求解方法是使用</span><span style="color:#008000;"><u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>（<u><a href='/view/39.html' target='_blank'>BFS</a></u>）</span>，即在搜索过程中总是最先搜索下面一步的所有可能状态，然后再进行考虑更后面的各种情况。<br />
+<span style="color:#b22222;">农夫过河问题的求解方法是使用</span><span style="color:#008000;"><u><a href='/view/343.html' target='_blank'>广度优先搜索</a></u>（<u><a href='/view/343.html' target='_blank'>BFS</a></u>）</span>，即在搜索过程中总是最先搜索下面一步的所有可能状态，然后再进行考虑更后面的各种情况。<br />
 <br />
-<span style="color:#b22222;">要实现广度优先搜索，一般采用<u><a href='/view/172.html' target='_blank'>队列</a></u>结构。</span>把下一步所有可能达到的状态都列举出来，放在这个队列中，然后顺序取出来分别对其进行处理，处理过程中再把下一步的状态放在队列里。<br />
+<span style="color:#b22222;">要实现广度优先搜索，一般采用<u><a href='/view/305.html' target='_blank'>队列</a></u>结构。</span>把下一步所有可能达到的状态都列举出来，放在这个队列中，然后顺序取出来分别对其进行处理，处理过程中再把下一步的状态放在队列里。<br />
 <br />
 在采用编程解决农夫过河的问题时，首先需要考虑以下几个问题：
 <ul>
 	<li>
-		程序中为了方便描述农夫过河过程中几个角色的位置（位于南岸还是北岸），最好的方法是用 4 个二进制数，分别<u><a href='/view/158.html' target='_blank'>顺序表</a></u>示农夫、狼、白菜和羊的位置。在本节程序中，用二进制 0 表示某角色在河的南岸，用 1 表示某角色在河的北岸。例如，整数 5（其二进制为 0101），表示农夫和白菜在河的南岸，而狼和羊在北岸。</li>
+		程序中为了方便描述农夫过河过程中几个角色的位置（位于南岸还是北岸），最好的方法是用 4 个二进制数，分别<u><a href='/view/288.html' target='_blank'>顺序表</a></u>示农夫、狼、白菜和羊的位置。在本节程序中，用二进制 0 表示某角色在河的南岸，用 1 表示某角色在河的北岸。例如，整数 5（其二进制为 0101），表示农夫和白菜在河的南岸，而狼和羊在北岸。</li>
 	<li>
 		为了方便获取各个角色当前所在的位置，程序中设置了如下 4 个函数。其中，函数返回值为 1，反之则表示角色在河的北岸：</li>
 </ul>
@@ -320,7 +320,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 96;
-window.arcId = "425aVCjBYLR7YVH+2WUH0J6i/AMTmt7dklPsUjEckEuqcehclXktWXGS";
+window.arcId = "cdb0Xi+fNLwSNpB85YZEAvbZde+h6SZib0ue0clvDNadTw4gVj/AlfPr";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

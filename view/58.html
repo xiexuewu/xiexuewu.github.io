@@ -113,10 +113,10 @@
 <br />
 <span style="color:#b22222;">动态查找表中做查找操作时，若查找成功可以对其进行删除；如果查找失败，即表中无该关键字，可以将该关键字插入到表中。</span><br />
 <br />
-动态查找表的表示方式有多种，本节介绍一种使用<u><a href='/view/23.html' target='_blank'>树</a></u>结构表示动态查找表的实现方法&mdash;&mdash;<span style="color:#008000;">二叉排序树</span>（又称为<span style="color:#008000;">&ldquo;二叉查找树&rdquo;</span>）。
+动态查找表的表示方式有多种，本节介绍一种使用<u><a href='/view/325.html' target='_blank'>树</a></u>结构表示动态查找表的实现方法&mdash;&mdash;<span style="color:#008000;"><u><a href='/view/353.html' target='_blank'>二叉排序树</a></u></span>（又称为<span style="color:#008000;">&ldquo;<u><a href='/view/353.html' target='_blank'>二叉查找树</a></u>&rdquo;</span>）。
 <h2>
 	什么是二叉排序树？</h2>
-二叉排序树要么是空<u><a href='/view/192.html' target='_blank'>二叉树</a></u>，要么具有如下特点：
+二叉排序树要么是空<u><a href='/view/326.html' target='_blank'>二叉树</a></u>，要么具有如下特点：
 <ul>
 	<li>
 		二叉排序树中，如果其根结点有左子树，那么左子树上所有结点的值都小于根结点的值；</li>
@@ -391,7 +391,7 @@ int main()
 	2 4 5 9</div>
 <h2>
 	总结</h2>
-使用二叉排序树在查找表中做查找操作的<u><a href='/view/2.html' target='_blank'>时间复杂度</a></u>同建立的二叉树本身的结构有关。即使查找表中各数据元素完全相同，但是不同的排列顺序，构建出的二叉排序树大不相同。<br />
+使用二叉排序树在查找表中做查找操作的<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>同建立的二叉树本身的结构有关。即使查找表中各数据元素完全相同，但是不同的排列顺序，构建出的二叉排序树大不相同。<br />
 例如：查找表 <code>{45，24，53，12，37，93}</code> 和表 <code>{12，24，37，45，53，93}</code> 各自构建的二叉排序树图下图所示：
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/171016/2-1G0161532523G.png" style="width: 507px; height: 323px;" /><br />
@@ -399,7 +399,7 @@ int main()
 <br />
 使用二叉排序树实现动态查找操作的过程，实际上就是从二叉排序树的根结点到查找元素结点的过程，所以时间复杂度同被查找元素所在的树的深度（层次数）有关。<br />
 <br />
-为了弥补二叉排序树构造时产生如图 5 右侧所示的影响算法效率的因素，需要对二叉排序树做&ldquo;平衡化&rdquo;处理，使其成为一棵<u><a href='/view/59.html' target='_blank'>平衡二叉树</a></u>。
+为了弥补二叉排序树构造时产生如图 5 右侧所示的影响算法效率的因素，需要对二叉排序树做&ldquo;平衡化&rdquo;处理，使其成为一棵<u><a href='/view/354.html' target='_blank'>平衡二叉树</a></u>。
 <div class="info-box">
 	<span style="color:#b22222;">平衡二叉树是动态查找表的另一种实现方式</span>，下一节做重点介绍。</div>
 </div>
@@ -420,7 +420,7 @@ int main()
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 58;
-window.arcId = "487ePv7bGxckvMmLX59SHaa0jTPYmEe47NsreiaH3/V0aY12olJFmreD";
+window.arcId = "8da2nHS6BaZLmboQJNATZY6BrNPT8wXt3qITNVLQy1HUACa3Jg2EVi0Q";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -109,23 +109,23 @@
 	作者：解学武
 </div>
 			<h1>深度优先生成树和广度优先生成树</h1>
-			<div id="arc-body">本章的第一节中，介绍了有关<u><a href='/view/202.html' target='_blank'>生成树</a></u>和生成森林的有关知识，本节来解决对于给定的无向图，如何构建它们相对应的生成<u><a href='/view/23.html' target='_blank'>树</a></u>或者生成森林。<br />
+			<div id="arc-body">本章的第一节中，介绍了有关<u><a href='/view/202.html' target='_blank'>生成树</a></u>和生成森林的有关知识，本节来解决对于给定的无向图，如何构建它们相对应的生成<u><a href='/view/325.html' target='_blank'>树</a></u>或者生成森林。<br />
 <br />
 其实在对无向图进行遍历的时候，遍历过程中所经历过的图中的顶点和边的组合，就是图的生成树或者生成森林。
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/170912/2-1F912163410958.png" style="width: 420px; height: 263px;" /><br />
 	图 1 无向图<br />
 	&nbsp;</div>
-例如，图 1 中的无向图是由 V1～V7 的顶点和编号分别为 a～i 的边组成。当使用<u><a href='/view/39.html' target='_blank'>深度优先搜索</a></u>算法时，假设 V1 作为遍历的起始点，涉及到的顶点和边的遍历顺序为（不唯一）：<br />
+例如，图 1 中的无向图是由 V1～V7 的顶点和编号分别为 a～i 的边组成。当使用<u><a href='/view/342.html' target='_blank'>深度优先搜索</a></u>算法时，假设 V1 作为遍历的起始点，涉及到的顶点和边的遍历顺序为（不唯一）：<br />
 <img alt="" src="/uploads/allimg/170912/2-1F912163444395.png" style="width: 418px; height: 34px;" /><br />
 <br />
 此种遍历顺序构建的生成树为：
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/170912/2-1F912163502E8.png" style="width: 303px; height: 285px;" /><br />
 	<br />
-	图 2 深度优先生成树</div>
+	图 2 <u><a href='/view/344.html' target='_blank'>深度优先生成树</a></u></div>
 <br />
-由深度优先搜索得到的树为<span style="color:#008000;">深度优先生成树</span>。同理，<u><a href='/view/39.html' target='_blank'>广度优先搜索</a></u>生成的树为<span style="color:#008000;">广度优先生成树</span>，图 1 无向图以顶点 V1 为起始点进行广度优先搜索遍历得到的树，如图 3 所示：
+由深度优先搜索得到的树为<span style="color:#008000;">深度优先生成树</span>。同理，<u><a href='/view/343.html' target='_blank'>广度优先搜索</a></u>生成的树为<span style="color:#008000;"><u><a href='/view/345.html' target='_blank'>广度优先生成树</a></u></span>，图 1 无向图以顶点 V1 为起始点进行广度优先搜索遍历得到的树，如图 3 所示：
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/170912/2-1F912163551311.png" style="width: 331px; height: 264px;" /><br />
 	图 3 广度优先生成树</div>
@@ -143,7 +143,7 @@
 例如，对图 4 中的非连通图 （a） 采用深度优先搜索算法遍历时，得到的深度优先生成森林（由 3 个深度优先生成树构成）如 （b） 所示（不唯一）。<br />
 <blockquote>
 	<p>
-		非连通图在遍历生成森林时，可以采用<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>将森林转化为一整棵<u><a href='/view/192.html' target='_blank'>二叉树</a></u>进行存储。</p>
+		非连通图在遍历生成森林时，可以采用<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>将森林转化为一整棵<u><a href='/view/326.html' target='_blank'>二叉树</a></u>进行存储。</p>
 </blockquote>
 <br />
 具体实现的代码：
@@ -165,7 +165,7 @@ typedef struct {
     AdjMatrix arcs;                         //二维数组，记录顶点之间的关系
     int vexnum,arcnum;                      //记录图的顶点数和弧（边）数
 }MGraph;
-//孩子兄弟表示法的<u><a href='/view/160.html' target='_blank'>链表</a></u>结点结构
+//孩子兄弟表示法的<u><a href='/view/290.html' target='_blank'>链表</a></u>结点结构
 typedef struct CSNode{
     VertexType data;
     struct CSNode * lchild;//孩子结点
@@ -232,7 +232,7 @@ int NextAdjVex(MGraph G,int v,int w)
     }
     return -1;
 }
-void <u><a href='/view/39.html' target='_blank'>DFS</a></u>Tree(MGraph G,int v,CSTree*T){
+void <u><a href='/view/342.html' target='_blank'>DFS</a></u>Tree(MGraph G,int v,CSTree*T){
     //将正在访问的该顶点的标志位设为true
     visited[v]=true;
     bool first=true;
@@ -387,7 +387,7 @@ typedef struct CSNode{
 }*CSTree,CSNode;
 
 typedef struct Queue{
-    CSTree data;//<u><a href='/view/172.html' target='_blank'>队列</a></u>中存放的为树结点
+    CSTree data;//<u><a href='/view/305.html' target='_blank'>队列</a></u>中存放的为树结点
     struct Queue * next;
 }Queue;
 
@@ -484,7 +484,7 @@ bool QueueEmpty(Queue *Q){
     return false;
 }
 
-void <u><a href='/view/39.html' target='_blank'>BFS</a></u>Tree(MGraph G,int v,CSTree*T){
+void <u><a href='/view/343.html' target='_blank'>BFS</a></u>Tree(MGraph G,int v,CSTree*T){
     CSTree q=NULL;
     Queue * Q;
     InitQueue(&amp;Q);
@@ -623,7 +623,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 45;
-window.arcId = "e9a6iLswHctPS+jsz0CnPOdfdScZnsa9hoYx8hBhbftFtWIYVkK7VnUR";
+window.arcId = "585d8XB7qqVVEd6kHf01iNhUNzyw5EGe42FwN4aths8ctxNqkA1ybuLp";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

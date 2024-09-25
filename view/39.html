@@ -109,14 +109,14 @@
 	作者：解学武
 </div>
 			<h1>深度优先搜索（DFS、深搜）和广度优先搜索（BFS、广搜）</h1>
-			<div id="arc-body">前边介绍了有关图的 4 种存储方式，本节介绍如何对存储的图中的顶点进行遍历。常用的遍历方式有两种：<span style="color:#008000;">深度优先搜索</span>和<span style="color:#008000;">广度优先搜索</span>。
+			<div id="arc-body">前边介绍了有关图的 4 种存储方式，本节介绍如何对存储的图中的顶点进行遍历。常用的遍历方式有两种：<span style="color:#008000;"><u><a href='/view/342.html' target='_blank'>深度优先搜索</a></u></span>和<span style="color:#008000;"><u><a href='/view/343.html' target='_blank'>广度优先搜索</a></u></span>。
 <h2>
-	深度优先搜索（简称&ldquo;深搜&rdquo;或DFS）</h2>
+	深度优先搜索（简称&ldquo;深搜&rdquo;或<u><a href='/view/342.html' target='_blank'>DFS</a></u>）</h2>
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/170905/2-1FZ51I14M57.png" style="width: 339px; height: 212px;" /><br />
 	图 1 无向图</div>
 <br />
-深度优先搜索的过程类似于<u><a href='/view/23.html' target='_blank'>树</a></u>的先序遍历，首先从例子中体会深度优先搜索。例如图 1 是一个无向图，采用深度优先算法遍历这个图的过程为：
+深度优先搜索的过程类似于<u><a href='/view/325.html' target='_blank'>树</a></u>的先序遍历，首先从例子中体会深度优先搜索。例如图 1 是一个无向图，采用深度优先算法遍历这个图的过程为：
 <ol>
 	<li>
 		首先任意找一个未被遍历过的顶点，例如从 V1 开始，由于 V1 率先访问过了，所以，需要标记 V1 的状态为访问过；</li>
@@ -294,7 +294,7 @@ int main() {
 <div class="info-box">
 	V1 -&gt; V2 -&gt; v3 -&gt; V4 -&gt; V5 -&gt; V6 -&gt; V7 -&gt; V8</div>
 <br />
-广度优先搜索的实现需要借助<u><a href='/view/172.html' target='_blank'>队列</a></u>这一特殊数据结构，实现代码为：
+广度优先搜索的实现需要借助<u><a href='/view/305.html' target='_blank'>队列</a></u>这一特殊数据结构，实现代码为：
 <pre class="cpp">
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -412,7 +412,7 @@ bool QueueEmpty(Queue *Q){
     return false;
 }
 //广度优先搜索
-void BFSTraverse(MGraph G){//
+void <u><a href='/view/343.html' target='_blank'>BFS</a></u>Traverse(MGraph G){//
     int v;
     //将用做标记的visit数组初始化为false
     for( v = 0; v &lt; G.vexnum; ++v){
@@ -520,7 +520,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 39;
-window.arcId = "656fnuAMrD9QbI2f+VwB9uNIh3yTC6wANgKDsUPr7RUrZFtq9fSzsNWU";
+window.arcId = "65adKPZniy6+fw/xOjD9K0kDcn1r/TUC26K9A/JkT2Xz7TDDVJYcp0gM";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

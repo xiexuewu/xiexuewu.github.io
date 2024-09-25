@@ -109,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>B+树及插入和删除操作详解</h1>
-			<div id="arc-body">本节介绍一种应文件系统所需而生的一种 B-<u><a href='/view/23.html' target='_blank'>树</a></u>的变型树&mdash;&mdash;<span style="color:#008000;">B+树</span>。前面介绍了B-树，B+树其实同B-树有许多相同之处，本节将用B-树同B+树通过对比两者的差异来介绍B+树。
+			<div id="arc-body">本节介绍一种应文件系统所需而生的一种 B-<u><a href='/view/325.html' target='_blank'>树</a></u>的变型树&mdash;&mdash;<span style="color:#008000;">B+树</span>。前面介绍了B-树，B+树其实同B-树有许多相同之处，本节将用B-树同B+树通过对比两者的差异来介绍B+树。
 <h2>
 	什么是B+树？</h2>
 一颗 m 阶的 B+树和 m 阶的 B-树的差异在于：
@@ -131,9 +131,9 @@
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/171024/2-1G0241402324A.png" style="width: 624px; height: 317px;" /><br />
 	图 1 3阶B+树</div>
-如图 1 所示，B+树中含有两个头指针，一个指向整棵树的根结点，另一个指向关键字最小的叶子结点。同时所有的叶子结点依据其关键字的大小自小而大顺序链接，所有的叶子结点构成了一个 sqt 指针为头指针的<u><a href='/view/160.html' target='_blank'>链表</a></u>。<br />
+如图 1 所示，B+树中含有两个头指针，一个指向整棵树的根结点，另一个指向关键字最小的叶子结点。同时所有的叶子结点依据其关键字的大小自小而大顺序链接，所有的叶子结点构成了一个 sqt 指针为头指针的<u><a href='/view/290.html' target='_blank'>链表</a></u>。<br />
 <br />
-所有，B+树可以进行两种查找运算：一种是利用 sqt 链表做<u><a href='/view/54.html' target='_blank'>顺序查找</a></u>，另一种是从树的根结点开始，进行类似于<u><a href='/view/55.html' target='_blank'>二分查找</a></u>的查找方式。<br />
+所有，B+树可以进行两种查找运算：一种是利用 sqt 链表做<u><a href='/view/351.html' target='_blank'>顺序查找</a></u>，另一种是从树的根结点开始，进行类似于<u><a href='/view/352.html' target='_blank'>二分查找</a></u>的查找方式。<br />
 <br />
 在 B+树中，所有非终端结点都相当于是终端结点的索引，而所有的关键字都存放在终端结点中，所有在从根结点出发做查找操作时，如果非终端结点上的关键字恰好等于给定值，此时并不算查找完成，而是要继续向下直到叶子结点。
 <blockquote>
@@ -244,7 +244,7 @@ B+树中做插入关键字的操作，有以下 3 种情况：<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 61;
-window.arcId = "b3ffrrw+PUDDjWAHenRQxZHBKn5b2FS9QoU9FxvcBY/s5y2Gm1QAO7CK";
+window.arcId = "2be7bjc5xGZI/7iGdpg/WwhtScZplqoxXz62OcJa8jRI4mCqWHRE+cCf";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

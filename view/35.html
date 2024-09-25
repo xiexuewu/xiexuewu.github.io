@@ -109,12 +109,12 @@
 	作者：解学武
 </div>
 			<h1>n个结点构造多少种树</h1>
-			<div id="arc-body">本节要讨论的是当给定 n（n&gt;=0）个结点时，可以构建多少种形态不同的<u><a href='/view/23.html' target='_blank'>树</a></u>。<br />
+			<div id="arc-body">本节要讨论的是当给定 n（n&gt;=0）个结点时，可以构建多少种形态不同的<u><a href='/view/325.html' target='_blank'>树</a></u>。<br />
 <blockquote>
 	<p>
 		如果两棵树中各个结点的位置都一一对应，可以说这两棵树相似。如果两棵树不仅相似，而且对应结点上的数据也相同，就可以说这两棵树等价。本节中，形态不同的树指的是互不相似的树。</p>
 </blockquote>
-前面介绍过，对于任意一棵普通树，通过<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>的转化，都可以找到唯一的一棵<u><a href='/view/192.html' target='_blank'>二叉树</a></u>与之对应。所以本节研究的题目也可以转化成：n 个结点可以构建多少种形态不同的二叉树。<br />
+前面介绍过，对于任意一棵普通树，通过<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>的转化，都可以找到唯一的一棵<u><a href='/view/326.html' target='_blank'>二叉树</a></u>与之对应。所以本节研究的题目也可以转化成：n 个结点可以构建多少种形态不同的二叉树。<br />
 <br />
 每一棵普通树对应的都是一棵没有右子树的二叉树，所以对于 n 个结点的树来说，树的形态改变是因为除了根结点之外的其它结点改变形态得到的，所以，<span style="color:#b22222;">n 个结点构建的形态不同的树与之对应的是 n-1 个结点构建的形态不同的二叉树</span>。<br />
 <br />
@@ -163,7 +163,7 @@
 <br />
 如图 3 所示为前序序列（1，2，3）构建的不同形态的二叉树，他们的中序序列各不相同。所以不同形态二叉树的数目恰好就是前序序列一定的情况下，所能得到的不同的中序序列的个数。<br />
 <br />
-中序序列是对二叉树进行中序遍历获得的，遍历的过程实质上就是结点数据进<u><a href='/view/169.html' target='_blank'>栈</a></u>出栈的过程。所以，中序序列的个数就是数列（1，2，3）按1-2-3的顺序进栈，<br />
+中序序列是对二叉树进行中序遍历获得的，遍历的过程实质上就是结点数据进<u><a href='/view/300.html' target='_blank'>栈</a></u>出栈的过程。所以，中序序列的个数就是数列（1，2，3）按1-2-3的顺序进栈，<br />
 各元素选择在不同的时间点出栈，所获的的不同的出栈顺序即为中序序列，而中序序列的数目，也就是不同形态的二叉树的个数。
 <div style="text-align: center;">
 	<img alt="" src="/uploads/allimg/170905/2-1FZ510442J59.png" style="width: 600px; height: 343px;" /><br />
@@ -190,7 +190,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 35;
-window.arcId = "e617ebo54eD0swiIvTd77vRkMLIyDpHW/mQvQqhS3mRWS2hU1HheR0UE";
+window.arcId = "6ff0rIVMNYrvj+1bC92EEnPieTYCdRtWi4uoFNg+DEuUPU4yTfOOi3xY";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

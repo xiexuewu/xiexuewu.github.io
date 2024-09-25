@@ -109,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>B-树及其基本操作（插入和删除）详解</h1>
-			<div id="arc-body">前面介绍了<u><a href='/view/58.html' target='_blank'>二叉排序树</a></u>和<u><a href='/view/59.html' target='_blank'>平衡二叉树</a></u>，本节开始介绍两种用于查找功能的<u><a href='/view/23.html' target='_blank'>树</a></u>数据结构&mdash;&mdash;<span style="color:#b22222;">B-树</span>和<span style="color:#b22222;">B+树</span>。
+			<div id="arc-body">前面介绍了<u><a href='/view/353.html' target='_blank'>二叉排序树</a></u>和<u><a href='/view/354.html' target='_blank'>平衡二叉树</a></u>，本节开始介绍两种用于查找功能的<u><a href='/view/325.html' target='_blank'>树</a></u>数据结构&mdash;&mdash;<span style="color:#b22222;">B-树</span>和<span style="color:#b22222;">B+树</span>。
 <h2>
 	什么是B-树？</h2>
 <span style="color:#008000;">B-树</span>，有时又写为<span style="color:#008000;">B_树</span><span style="color:#b22222;">（其中的&ldquo;-&rdquo;或者&ldquo;_&rdquo;只是连字符，并不读作&ldquo;B减树&rdquo;）</span>，一颗 m 阶的 B-树，或者本身是空树，否则必须满足以下特性：
@@ -157,7 +157,7 @@
 </blockquote>
 <h2>
 	B-树中插入关键字（构建B-树）</h2>
-B-树也是从空树开始，通过不断地插入新的数据元素构建的。但是 B-树构建的过程同前面章节的二叉排序树和平衡<u><a href='/view/192.html' target='_blank'>二叉树</a></u>不同，B-树在插入新的数据元素时并不是每次都向树中插入新的结点。<br />
+B-树也是从空树开始，通过不断地插入新的数据元素构建的。但是 B-树构建的过程同前面章节的二叉排序树和平衡<u><a href='/view/326.html' target='_blank'>二叉树</a></u>不同，B-树在插入新的数据元素时并不是每次都向树中插入新的结点。<br />
 <br />
 因为对于 m 阶的 B-树来说，在定义中规定所有的非终端结点（<span style="color:#b22222;">终端结点即叶子结点，其关键字个数为 0</span>）中包含关键字的个数的范围是<code>[&lceil;m/2&rceil;-1,m-1]</code>，所以在插入新的数据元素时，首先向最底层的某个非终端结点中添加，如果该结点中的关键字个数没有超过 m-1，则直接插入成功，否则还需要继续对该结点进行处理。<br />
 <br />
@@ -280,7 +280,7 @@ B-树也是从空树开始，通过不断地插入新的数据元素构建的。
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 60;
-window.arcId = "e5b30ER9d0ONdohyIE62TrBIxdjTBwU2s1iO0VjQ94NYr6n1XsGRmAAj";
+window.arcId = "6d1dNhck/RbiyPQkTyt5aGAtGY9Vo/MUjELoK3TXZuOqhOsdZ0BGrDyh";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

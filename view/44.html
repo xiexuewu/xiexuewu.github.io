@@ -109,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>关键路径法及C语言实现</h1>
-			<div id="arc-body">在学习拓扑排序一节时讲到拓扑排序只适用于 AOV 网，本节所介绍的求关键路径针对的是和 AOV 网相近的 AOE 网。
+			<div id="arc-body">在学习拓扑排序一节时讲到拓扑排序只适用于 AOV 网，本节所介绍的求<u><a href='/view/vip_348.html' target='_blank'>关键路径</a></u>针对的是和 AOV 网相近的 AOE 网。
 <h2>
 	AOE网</h2>
 AOE 网是在 AOV 网的基础上，其中每一个边都具有各自的权值，是一个有向无环网。其中权值表示活动持续的时间。
@@ -196,13 +196,13 @@ typedef struct ArcNode{
 typedef struct VNode{
     VertexType data;//顶点的数据域
     ArcNode * firstarc;//指向邻接点的指针
-}VNode,AdjList[MAX_VERTEX_NUM];//存储各<u><a href='/view/160.html' target='_blank'>链表</a></u>头结点的数组
+}VNode,AdjList[MAX_VERTEX_NUM];//存储各<u><a href='/view/290.html' target='_blank'>链表</a></u>头结点的数组
 
 typedef struct {
     AdjList vertices;//图中顶点及各邻接点数组
     int vexnum,arcnum;//记录图中顶点数和边或弧数
 }ALGraph;
-//找到顶点对应在<u><a href='/view/203.html' target='_blank'>邻接表</a></u>数组中的位置下标
+//找到顶点对应在<u><a href='/view/339.html' target='_blank'>邻接表</a></u>数组中的位置下标
 int LocateVex(ALGraph G,VertexType u){
     for (int i=0; i&lt;G.vexnum; i++) {
         if (G.vertices[i].data==u) {
@@ -234,7 +234,7 @@ void CreateAOE(ALGraph **G){
         (*G)-&gt;vertices[locate].firstarc=p;
     }
 }
-//结构体定义<u><a href='/view/169.html' target='_blank'>栈</a></u>结构
+//结构体定义<u><a href='/view/300.html' target='_blank'>栈</a></u>结构
 typedef struct stack{
     VertexType data;
     struct stack * next;
@@ -426,7 +426,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 44;
-window.arcId = "6b1bNaZwxqcX8TrHDl/jhlGifY2Q6ow1zdSQgBACWWHNm3YkVCgZHhMD";
+window.arcId = "ca5dWpwmRw2sm6/en53bZtzmqKJ9XJfEUqXecyMINWmE73ZYKJTPNkYu";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -109,7 +109,7 @@
 	作者：解学武
 </div>
 			<h1>关键路径算法详解</h1>
-			<div id="arc-body">对于工程管理，人们最关注的两个问题分别是工程是否能顺利进行，以及估算整个工程完成所需要的最短时间和影响工程时间的关键活动。前一个问题可用拓扑排序解决，后一个问题则需要找出工程进行的<u><a href='/view/44.html' target='_blank'>关键路径</a></u>，关键路径上的活动完成所需要的时间就是工程完成所需要的最短时间。<br />
+			<div id="arc-body">对于工程管理，人们最关注的两个问题分别是工程是否能顺利进行，以及估算整个工程完成所需要的最短时间和影响工程时间的关键活动。前一个问题可用拓扑排序解决，后一个问题则需要找出工程进行的<u><a href='/view/vip_348.html' target='_blank'>关键路径</a></u>，关键路径上的活动完成所需要的时间就是工程完成所需要的最短时间。<br />
 <p class="info-box">
 	关键路径通常是所有工程活动中最长的路径，关键路径上的活动如果延期将直接导致工程延期。</p>
 利用 AOV 网表示有向图，可以对活动进行拓扑排序，根据排序结果对工程中活动的先后顺序做出安排。但是寻找关键路径，估算工程活动的结束时间，则需要使用 AOE 网表示有向图。<br />
@@ -118,7 +118,7 @@ AOE 网中用顶点表示事件，有向边表示活动，边上的权值表示�
 <br />
 AOE 网只有一个入度为0的顶点（源点）和一个出度为 0 的顶点（汇点），分别代表开始事件和结束事件，其他的顶点则表示两个意义，其一是此点之前的所有活动都己经结束，其二是此点之后的活动可以开始了。<br />
 <br />
-计算关键路径的算法需要根据AOE网的特征调整图的数据结构定义，本节介绍的算法仍然使用<u><a href='/view/203.html' target='_blank'>邻接表</a></u>来表示图，但是需要重新定义顶点和边的数据结构。因为 AOE 网的边代表具体的活动，需要在数据结构中明确体现&ldquo;边&rdquo;的定义，调整后的边和顶点的定义如下所示：<br />
+计算关键路径的算法需要根据AOE网的特征调整图的数据结构定义，本节介绍的算法仍然使用<u><a href='/view/339.html' target='_blank'>邻接表</a></u>来表示图，但是需要重新定义顶点和边的数据结构。因为 AOE 网的边代表具体的活动，需要在数据结构中明确体现&ldquo;边&rdquo;的定义，调整后的边和顶点的定义如下所示：<br />
 <pre class="cpp">
 typedef struct tagEdgeNode {
     int vertexlndex; //活动边终点顶点索引 std::string name; //活动边的名称
@@ -360,7 +360,7 @@ bool CriticalPath(GRAPH *g)
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 151;
-window.arcId = "730dYGtsFPiv7B1u50rZn6Vzsl1uLajLpGric+2MwzqzcbCycdVdVrLoSw";
+window.arcId = "ca7avk7O1IkcmY7S9sWH1T6rdxDcfnqY5wutMR3c8JnmfC81De2Oa68glQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

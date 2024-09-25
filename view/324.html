@@ -159,7 +159,7 @@ int main() {
 		稀疏矩阵在转置过程中，会有很多的 0 元素执行第 13 行代码存放到新矩阵中，而新矩阵中原本就都是 0 元素，所以这些赋值操作是没有意义的。</li>
 </ol>
 <br />
-为了避免以上两个问题，可以考虑用<u><a href='/view/184.html' target='_blank'>三元组顺序表</a></u>来存储稀疏矩阵，如下图所示：<br />
+为了避免以上两个问题，可以考虑用<u><a href='/view/321.html' target='_blank'>三元组顺序表</a></u>来存储稀疏矩阵，如下图所示：<br />
 <div style="text-align: center;">
 	<br />
 	<img alt="" src="/uploads/allimg/240114/13113361C-1.gif" /><br />
@@ -180,7 +180,7 @@ int main() {
 </ol>
 <blockquote>
 	<p>
-		有读者会问，前两步就可以实现稀疏矩阵的转置，为什么还要执行第 3 步呢？通常情况下，存储稀疏矩阵的三元组<u><a href='/view/158.html' target='_blank'>顺序表</a></u>中，各个三元组会以行标做升序排序，行标相同的三元组以列标做升序排序。</p>
+		有读者会问，前两步就可以实现稀疏矩阵的转置，为什么还要执行第 3 步呢？通常情况下，存储稀疏矩阵的三元组<u><a href='/view/288.html' target='_blank'>顺序表</a></u>中，各个三元组会以行标做升序排序，行标相同的三元组以列标做升序排序。</p>
 </blockquote>
 转置稀疏矩阵的实现思路是：<span style="color:#b22222;">从头</span><span style="color: rgb(178, 34, 34);">遍历三元组顺序表，每次找到表中 j 列最小的三元组，</span><span style="color: rgb(178, 34, 34);">互换行标和列标的值，然后</span><span style="color: rgb(178, 34, 34);">存储到一个新三元组表中。</span><br />
 <br />
@@ -319,7 +319,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 324;
-window.arcId = "5423Zscp/f/FM6eqGA84uKyPErKHIoTey2xlCNJqjecJD01jp6Nt80W2bw";
+window.arcId = "7de5/MhljMelFX2ISrqrXu/Kxb/appJ5mg8C0k/WiT+7EgNFn1UfAzUqmA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
