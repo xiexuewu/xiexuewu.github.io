@@ -120,6 +120,53 @@ h1{
 #contents-detail dl dd.vip, #contents-detail dl dd.vip a{
 	color: #D33428;
 }
+
+/*----------------sitemap-------------------*/
+.section-title{
+	text-align: center;
+	font-size: 24px;
+	font-weight: normal;
+}
+
+#arc-body-sitmap{
+    margin: 10px 12px;
+    line-height: 1.6em;
+}
+
+#recent-update-title{
+	margin: 25px auto 15px auto;
+}
+#recent-update{
+	margin: auto 12px;
+	border-top: 1px solid #ddd;
+}
+#recent-update li{
+	display: table;
+	padding: 10px 0px;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+}
+#recent-update li span.table-cell{
+	display: table-cell;
+}
+#recent-update li span.table-cell:first-child{
+	padding-left: 12px;
+	text-align: left;
+}
+#recent-update li span.table-cell:last-child{
+	min-width: 100px;
+	padding-right: 12px;
+	vertical-align: middle;
+	text-align: right;
+}
+#recent-update li a{
+	color: #444;
+}
+#recent-update li span.time{
+	color: #777;
+}
+
+
 /*----------------自适应处理-------------------*/
 @media all and (max-width: 1400px){
 	#main-index{
@@ -150,6 +197,20 @@ h1{
 	#note-update ul{
 		margin-left: 12px;
 		margin-right: 12px;
+	}
+
+	#recent-update{
+		margin: auto;
+	}
+	#arc-body-sitmap{
+		overflow-x: scroll;
+		margin:auto;
+		padding: 0px 10px 5px 10px;
+	}
+	#arc-info-sitmap {
+    	padding: 18px 10px 0px 10px;
+    	margin: auto;
+
 	}
 }
 @media all and (max-width: 660px){
