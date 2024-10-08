@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>一文彻底搞懂栈和队列（超级肝，新手必看）</title>
+<meta name="keywords" content="一文,彻底,搞懂,栈,和,队列,超级,肝,新手,​," />
+<meta name="description" content="​ 栈和队列存储的都是逻辑关系为一对一的数据，本质上它们也属于线性存储结构。 栈存储数据，讲究先进后出，即最先进栈的数据，最后出栈；队列存储数据，讲究先进先出，即最先" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="数据结构和算法教程（C语言版）Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>视频教程推荐</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>一文彻底搞懂栈和队列（超级肝，新手必看）</h1>
+			<div id="arc-body">​<u><a href='/view/300.html' target='_blank'>栈</a></u>和<u><a href='/view/305.html' target='_blank'>队列</a></u>存储的都是逻辑关系为&ldquo;一对一&rdquo;的数据，本质上它们也属于线性存储结构。<br />
+<br />
+栈存储数据，讲究&ldquo;先进后出&rdquo;，即最先进栈的数据，最后出栈；队列存储数据，讲究&quot;先进先出&quot;，即最先进队列的数据，也最先出队列。<br />
+<br />
+根据数据在物理内存中的存储状态，栈分为<u><a href='/view/301.html' target='_blank'>顺序栈</a></u>和<u><a href='/view/302.html' target='_blank'>链栈</a></u>，队列分为<u><a href='/view/306.html' target='_blank'>顺序队列</a></u>和链式队列。<br />
+<h2 style="text-align: center;">
+	数据结构中的栈</h2>
+<h2>
+	1、栈是什么</h2>
+栈是一种&ldquo;特殊&rdquo;的线性存储结构，它的特殊之处体现在以下两个地方：<br />
+1) 元素进栈和出栈的操作只能从一端完成，另一端是封闭的，如下图所示：<br />
+&nbsp;
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/11031Sa0-0.gif" style="text-align: center;" /><br />
+	图 1 栈存储结构示意图</div>
+<br />
+通常，我们将元素进栈的过程简称为&ldquo;入栈&rdquo;、&ldquo;进栈&rdquo;或者&ldquo;压栈&rdquo;；将元素出栈的过程简称为&ldquo;出栈&rdquo;或者&ldquo;弹栈&rdquo;。<br />
+<br />
+2) 栈中无论存数据还是取数据，都必须遵循&ldquo;先进后出&rdquo;的原则，即最先入栈的元素最先出栈。以图 1 的栈为例，很容易可以看出是元素 1 最先入栈，然后依次是元素 2、3、4 入栈。在此基础上，如果想取出元素 1，根据&ldquo;先进后出&rdquo;的原则，必须先依次将元素 4、3、2 出栈，最后才能轮到元素 1 出栈。<br />
+<br />
+我们习惯将栈的开口端称为<span style="color:#008000;">栈顶</span>，封口端称为<span style="color:#008000;">栈底</span>。例如在图 1 中，元素 4 一侧为栈顶，元素 1 一侧为栈底，如图 2 所示。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/11031R148-1.gif" /><br />
+	图 2 栈顶和栈底</div>
+<br />
+由此我们可以对栈存储结构下一个定义：栈一种&ldquo;只能从一端存取元素，且存取过程必须遵循&lsquo;先进后出&rsquo;原则&rdquo;的线性存储结构。<br />
+<h3>
+	栈的实际应用</h3>
+对于刚刚接触栈存储结构的读者来说，可能很难理解为什么会设计出&ldquo;栈&rdquo;这种存储结构，它有什么用？栈是一种特殊的线性存储结构，借助它的&ldquo;特殊性&rdquo;，可以解决很多实际问题。<br />
+<br />
+<strong>① 实现浏览器的&ldquo;回退&rdquo;功能</strong><br />
+<br />
+所谓浏览器的&ldquo;回退&rdquo;功能，比如您用浏览器打开 A 页面，然后从 A 页面跳转到 B 页面，然后再从 B 页面跳转到 C 页面。这种情况下，如果想回到 A 页面，有两种方法：
+<ul>
+	<li>
+		重新搜索找到 A 页面；</li>
+	<li>
+		借助浏览器的&ldquo;回退&rdquo;功能，先从 C 页面回退到 B 页面，再从 B 页面回退到 A 页面。</li>
+</ul>
+<blockquote>
+	<p>
+		很多浏览器的&ldquo;回退&rdquo;功能就位于工具栏中，图标是一个类似<code>&larr;</code>的箭头。</p>
+</blockquote>
+浏览器的&ldquo;回退&rdquo;功能底层就是用栈存储结构实现的，当从 A 页面跳转到 B 页面时，浏览器会执行入栈操作，A 页面信息会存入栈中；同样，从 B 页面跳转到 C 页面时，B 页面信息会存入栈中。当点击浏览器的&ldquo;回退&rdquo;按钮时，浏览器会执行&ldquo;出栈&rdquo;操作，根据&ldquo;先进后出&rdquo;的原则，B 页面先出栈，然后 A 页面出栈，这样就实现了&ldquo;回退&rdquo;的功能。<br />
+<br />
+<strong>② 实现 C 语言函数的相互调用</strong><br />
+<br />
+C语言程序中，函数间的相互调用过程也是用栈存储结构实现的。<br />
+<br />
+举个简单的例子：
+<pre class="cpp">
+void func(){
+    printf(&quot;Hello,World!&quot;);
+}
+int main(){
+    func();
+    return 0;
+}</pre>
+这段 C 语言程序中有两个函数，分别是 main() 函数和 func() 函数，其中 main() 函数内部调用了 func() 函数。<br />
+<br />
+程序执行时，main() 函数会最先入栈，执行到第 5 行代码时，需要执行 func() 函数，此时会将 func() 函数入栈。等待 func() 函数执行完后，func() 函数会出栈，此时 main() 函数中的剩余代码会继续执行，直至 main() 函数执行完毕，做出栈操作，整个程序就执行结束了。<br />
+<br />
+<strong>③ 解决一些实际问题</strong><br />
+<br />
+借助栈存储结构，可以快速解决类似&ldquo;进制转换&rdquo;、&ldquo;括号匹配&rdquo;等问题，具体的解决过程会在后续文章中做详细讲解。
+<h3>
+	栈的具体实现</h3>
+和<u><a href="/view/287.html" target="_blank">线性表</a></u>类似，栈存储结构也有两种具体的实现方案：
+<ul>
+	<li>
+		<u><a href="/view/301.html" target="_blank">顺序栈</a></u>：用<u><a href='/view/288.html' target='_blank'>顺序表</a></u>存储数据，数据存取的过程严格遵循栈结构的规定；</li>
+	<li>
+		<u><a href="/view/302.html" target="_blank">链栈</a></u>：用<u><a href='/view/290.html' target='_blank'>链表</a></u>存储数据，数据存储的过程严格遵循栈结构的规定。</li>
+</ul>
+<br />
+显然，顺序栈和链栈两种实现方案，本质的区别仍然是顺序表和链表之间的区别，即顺序栈是将所有数据集中存储，而链栈是将数据分散存放，元素之间的逻辑关系靠指针维系。<br />
+<h2>
+	2、顺序栈的基本操作（入栈和出栈）</h2>
+顺序栈指的是用<u><a href="/view/288.html" target="_blank">顺序表</a></u>实现的栈存储结构，接下来讲解如何用顺序表模拟栈结构，以及实现元素的入栈和出栈操作。<br />
+<br />
+顺序表和栈存储数据的方式高度相似，只不过栈对数据的存取过程有特殊的限制，而顺序表没有。例如，我们使用顺序表（用 a 数组表示）存储&nbsp;<code style="font-size: 14px;">{1,2,3,4}</code>，存储状态如图 3 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="顺序表存储 {1,2,3,4}" src="/uploads/allimg/240114/1106034345-0.gif" /><br />
+	图 3 顺序表存储 {1,2,3,4}</div>
+<br />
+使用栈存储结构存储&nbsp;<code style="font-size: 14px;">{1,2,3,4}</code>，存储状态如图 4 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="栈结构存储 {1,2,3,4}" src="/uploads/allimg/240114/1106035595-1.gif" /><br />
+	图 4 栈结构存储 {1,2,3,4}</div>
+<br />
+对比图3 和图 4 不难看出，用顺序表模拟栈结构很简单，只要将数据从数组下标为 0 的位置依次存储即可。<br />
+<p class="info-box">
+	从数组下标为 0 的模拟栈存储数据是常用的方法，从其他数组下标处存储数据也完全可以，这里只是为了方便初学者理解。</p>
+了解了顺序表模拟实现栈存储结构之后，接下来学习如何实现元素入栈和出栈的操作。<br />
+<br />
+栈中存取元素，必须遵循&ldquo;先进后出&rdquo;的原则，因此若想将图 3 中存储的元素 1 从栈中取出，需依次先将元素 4、元素 3 和元素 2 从栈中取出，最后才能取出元素 1。<br />
+<br />
+这里给出一种顺序表模拟入栈和出栈的实现思路：定义一个实时记录栈顶位置的变量（假设命名为 top），初始状态下栈内无任何元素，整个栈是&quot;空栈&quot;，top 的值为 -1。一旦有数据元素进栈，则 top 就做 +1 操作；反之，如果数据元素出栈，top 就做 -1 操作。<br />
+<h3>
+	顺序栈元素&quot;入栈&quot;</h3>
+比如，还是模拟栈存储&nbsp;<code style="font-size: 14px;">{1,2,3,4}</code>&nbsp;的过程。最初栈是&quot;空栈&quot;，top 的值为 -1，如图 5 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="空栈示意图" src="/uploads/allimg/240114/11060350R-2.gif" /><br />
+	图 5 空栈示意图</div>
+<br />
+将元素 1 入栈，默认数组下标为 0 一端表示栈底，元素 1 存储在数组 a[0] 处，同时 top 值 +1，如图 6 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="模拟栈存储元素 1" src="/uploads/allimg/240114/1106034N7-3.gif" /><br />
+	图 6 模拟栈存储元素 1</div>
+<br />
+采用同样的方式，依次将元素 2、3 和 4 入栈，最终 top 的值变成 3，如图 7 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="模拟栈存储{1,2,3,4}" src="/uploads/allimg/240114/11060364B-4.gif" /><br />
+	图 7 模拟栈存储{1,2,3,4}</div>
+<br />
+因此，C 语言实现代码为：<br />
+<pre class="cpp">
+//元素elem进栈，a为数组，top值为当前栈的栈顶位置
+int push(int* a,int top,int elem){
+    a[++top]=elem;
+    return top;
+}</pre>
+代码中的 a[++top]=elem，等价于先执行 ++top，再执行 a[top]=elem。<br />
+<h3>
+	顺序栈元素&quot;出栈&quot;</h3>
+实际上，top 变量的设置对模拟数据的 &quot;入栈&quot; 操作没有帮助，它是为实现数据的 &quot;出栈&quot; 操作做准备的。<br />
+<br />
+比如，将图 7 中的元素 2 出栈，则需要先将元素 4 和元素 3 依次出栈。需要注意的是，当有数据出栈时，要将 top 做 -1 操作。因此，元素 4 和元素 3 出栈的过程分别如图 8a) 和 8b) 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="数据元素出栈" src="/uploads/allimg/240114/1106034O0-5.gif" /><br />
+	图 8 数据元素出栈</div>
+<br />
+元素 4 和元素 3 全部出栈后，元素 2 才能出栈。因此，使用顺序表模拟数据出栈操作的 C 语言实现代码为：
+<pre class="cpp">
+//数据元素出栈
+int pop(int * a,int top){
+    if (top == -1) {
+        printf(&quot;空栈&quot;);
+        return -1;
+    }
+    printf(&quot;弹栈元素：%d\n&quot;,a[top]);
+    top--;
+    return top;
+}</pre>
+代码中的 if 语句是为了防止用户做 &quot;栈中已无数据却还要做出栈操作&quot; 的错误操作。细心的读者还可能发现，出栈操作只是将 top 的值减 1，并没有像图 6 那样将出栈元素从数组中手动删除。这是因为，当有新的元素入栈后，新元素会将出栈元素覆盖掉，所以不删除出栈元素，也不会影响栈的正常使用，何必多此一举。<br />
+<h3>
+	总结</h3>
+通过学习顺序表模拟栈中数据入栈和出栈的操作，初学者完成了对顺序栈的学习，这里给出顺序栈及对数据基本操作的 C 语言完整代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+//元素elem进栈
+int push(int* a, int top, int elem) {
+    a[++top] = elem;
+    return top;
+}
+//数据元素出栈
+int pop(int* a, int top) {
+    if (top == -1) {
+        printf(&quot;空栈&quot;);
+        return -1;
+    }
+    printf(&quot;弹栈元素：%d\n&quot;, a[top]);
+    top--;
+    return top;
+}
+int main() {
+    int a[100];
+    int top = -1;
+    top = push(a, top, 1);
+    top = push(a, top, 2);
+    top = push(a, top, 3);
+    top = push(a, top, 4);
+    top = pop(a, top);
+    top = pop(a, top);
+    top = pop(a, top);
+    top = pop(a, top);
+    top = pop(a, top);
+    return 0;
+}</pre>
+程序输出结果为：
+<p class="info-box">
+	弹栈元素：4<br />
+	弹栈元素：3<br />
+	弹栈元素：2<br />
+	弹栈元素：1<br />
+	空栈</p>
+<h2>
+	3、链栈的基本操作（入栈和出栈）</h2>
+链<u><a href="/view/300.html" target="_blank">栈</a></u>是栈的一种实现方法，特指用<u><a href="/view/290.html" target="_blank">链表</a></u>实现栈存储结构。<br />
+<br />
+链栈的实现思路和<u><a href="/view/301.html" target="_blank">顺序栈</a></u>类似，顺序栈是将<u><a href="/view/288.html" target="_blank">顺序表</a></u>（数组）的一端做栈底，另一端做栈顶；链栈也是如此，我们通常将链表的头部做栈顶，尾部做栈底，如图 9 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="链栈示意图" src="/uploads/allimg/240114/110I94949-0.gif" /><br />
+	图 9 链栈示意图</div>
+<br />
+以链表的头部做栈顶，最大的好处是：可以避免在实现元素 &quot;入栈&quot; 和 &quot;出栈&quot; 时做大量遍历链表的耗时操作。有元素入栈时，只需要将其插入到链表的头部；有元素出栈时，只需要从链表的头部依次摘取结点。<br />
+<br />
+<span style="color: rgb(165, 42, 42);">因此，链栈实际上是一个采用头插法插入或删除数据的链表。</span><br />
+<h3>
+	链栈元素入栈</h3>
+例如，依次将 1、2、3、4 存储到栈中，每个元素的入栈过程如图 10 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="链栈元素依次入栈过程示意图" src="/uploads/allimg/240114/110I915b-1.gif" /><br />
+	图 10 链栈元素依次入栈过程示意图</div>
+<br />
+C语言实现代码为：
+<pre class="cpp">
+//链表中的节点结构
+typedef struct lineStack {
+    int data;
+    struct lineStack* next;
+}LineStack;
+//stack为当前的链栈，a表示入栈元素
+LineStack* push(LineStack* stack, int a) {
+    //创建存储新元素的节点
+    LineStack* line = (LineStack*)malloc(sizeof(LineStack));
+    line-&gt;data = a;
+    //新节点与头节点建立逻辑关系
+    line-&gt;next = stack;
+    //更新头指针的指向
+    stack = line;
+    return stack;
+}</pre>
+<h3>
+	链栈元素出栈</h3>
+在图 10e) 所示链表的基础上，假设将元素 3 从栈中取出，根据&quot;先进后出&quot;的原则，要先将元素 4 出栈，然后元素 3 才能出栈，整个操作过程如图 11 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="链栈元素出栈示意图" src="/uploads/allimg/240114/110Ia200-2.gif" /><br />
+	图 11 链栈元素出栈示意图</div>
+<br />
+实现栈顶元素出栈的 C 语言代码为：
+<pre class="cpp">
+//栈顶元素出链栈的实现函数
+LineStack* pop(LineStack* stack) {
+    if (stack) {
+        //声明一个新指针指向栈顶节点
+        LineStack* p = stack;
+        //更新头指针
+        stack = stack-&gt;next;
+        printf(&quot;出栈元素：%d &quot;, p-&gt;data);
+        if (stack) {
+            printf(&quot;新栈顶元素：%d\n&quot;, stack-&gt;data);
+        }
+        else {
+            printf(&quot;栈已空\n&quot;);
+        }
+        free(p);
+    }
+    else {
+        printf(&quot;栈内没有元素&quot;);
+        return stack;
+    }
+    return stack;
+}</pre>
+代码中通过使用 if 判断语句，避免了用户执行&quot;栈已空却还要数据出栈&quot;错误操作。<br />
+<h3>
+	总结</h3>
+本节，通过采用头插法操作数据的单链表实现了链栈结构，这里给出链栈及基本操作的 C语言完整代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+//链表中的节点结构
+typedef struct lineStack {
+    int data;
+    struct lineStack* next;
+}LineStack;
+//stack为当前的链栈，a表示入栈元素
+LineStack* push(LineStack* stack, int a) {
+    //创建存储新元素的节点
+    LineStack* line = (LineStack*)malloc(sizeof(LineStack));
+    line-&gt;data = a;
+    //新节点与头节点建立逻辑关系
+    line-&gt;next = stack;
+    //更新头指针的指向
+    stack = line;
+    return stack;
+}
+
+//栈顶元素出链栈的实现函数
+LineStack* pop(LineStack* stack) {
+    if (stack) {
+        //声明一个新指针指向栈顶节点
+        LineStack* p = stack;
+        //更新头指针
+        stack = stack-&gt;next;
+        printf(&quot;出栈元素：%d &quot;, p-&gt;data);
+        if (stack) {
+            printf(&quot;新栈顶元素：%d\n&quot;, stack-&gt;data);
+        }
+        else {
+            printf(&quot;栈已空\n&quot;);
+        }
+        free(p);
+    }
+    else {
+        printf(&quot;栈内没有元素&quot;);
+        return stack;
+    }
+    return stack;
+}
+
+int main() {
+    LineStack* stack = NULL;
+    stack = push(stack, 1);
+    stack = push(stack, 2);
+    stack = push(stack, 3);
+    stack = push(stack, 4);
+    stack = pop(stack);
+    stack = pop(stack);
+    stack = pop(stack);
+    stack = pop(stack);
+    stack = pop(stack);
+    return 0;
+}</pre>
+程序运行结果为：
+<p class="info-box">
+	弹栈元素：4 栈顶元素：3<br />
+	弹栈元素：3 栈顶元素：2<br />
+	弹栈元素：2 栈顶元素：1<br />
+	弹栈元素：1 栈已空<br />
+	栈内没有元素</p>
+<h2>
+	4、栈的实操</h2>
+学到这里，读者已经掌握了栈的基本操作（入栈和出栈），接下来可以完成一些和栈相关的题目，用栈解决一些实际问题。<br />
+<br />
+这里给大家列举了 4 个题目，大家可以先尝试独立实现：
+<ul>
+	<li>
+		<a href="/view/vip_303.html">实现栈的逆序</a>；</li>
+	<li>
+		<a href="/view/vip_221.html">用栈实现进制转换器</a>；</li>
+	<li>
+		<a href="/view/vip_222.html">用栈解决括号匹配问题</a>；</li>
+	<li>
+		<a href="/view/vip_304.html">用栈求表达式的值</a>。</li>
+</ul>
+<h2 style="text-align: center;">
+	数据结构中的队列</h2>
+<h2>
+	1、队列是什么</h2>
+队列用来存储逻辑关系为&ldquo;一对一&rdquo;的数据，是一种&ldquo;特殊&rdquo;的线性存储结构。<br />
+<br />
+和<u><a href="/view/288.html" target="_blank">顺序表</a></u>、<u><a href="/view/290.html" target="_blank">链表</a></u>相比，队列的特殊性体现在以下两个方面：<br />
+1、元素只能从队列的一端进入，从另一端出去，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1115294M7-0.gif" /><br />
+	图 12 队列存储结构</div>
+<br />
+通常，我们将元素进入队列的一端称为&ldquo;队尾&rdquo;，进入队列的过程称为&ldquo;入队&rdquo;；将元素从队列中出去的一端称为&ldquo;队头&rdquo;，出队列的过程称为&ldquo;出队&rdquo;。<br />
+<br />
+2、队列中各个元素的进出必须遵循&ldquo;先进先出&rdquo;的原则，即最先入队的元素必须最先出队。<br />
+<br />
+以图 12 所示的队列为例，从各个元素在队列中的存储状态不难判定，元素 1 最先入队，然后是元素 2 入队，最后是元素 3 入队。如果此时想将元素 3 出队，根据&ldquo;先进先出&rdquo;原则，必须先将元素 1 和 2&nbsp; 依次出队，最后才能轮到元素 3 出队。<br />
+<blockquote>
+	<p>
+		强调：<u><a href="/view/300.html" target="_blank">栈</a></u>和队列不要混淆，栈是一端开口、另一端封口，元素入栈和出栈遵循&ldquo;先进后出&rdquo;原则；队列是两端都开口，但元素只能从一端进，从另一端出，且进出队列遵循&ldquo;先进先出&rdquo;的原则。</p>
+</blockquote>
+<h3>
+	队列的实际应用</h3>
+队列在操作系统中应用的十分广泛，比如用它解决 CPU 资源的竞争问题。<br />
+<br />
+对于一台计算机来说，CPU 通常只有 1 个，是非常重要的资源。如果在很短的时间内，有多个程序向操作系统申请使用 CPU，就会出现竞争 CPU 资源的现象。不同的操作系统，解决这一问题的方法是不一样的，有一种方法就用到了队列这种存储结构。<br />
+<br />
+假设在某段时间里，有&nbsp;A、B、C 三个程序向操作系统申请 CPU 资源，操作系统会根据它们的申请次序，将它们排成一个队列。根据&ldquo;先进先出&rdquo;原则，最先进队列的程序出队列，并获得 CPU 的使用权。待该程序执行完或者使用 CPU 一段时间后，操作系统会将 CPU 资源分配给下一个出队的程序，以此类推。如果该程序在获得 CPU 资源的时间段内没有执行完，则只能重新入队，等待操作系统再次将 CPU 资源分配给它。<br />
+&nbsp;<br />
+队列还可以用来解决一些实际问题，比如实现一个简单的停车场管理系统、实现一个推小车卡牌游戏等，后续会做详细讲解。
+<h3>
+	队列的具体实现</h3>
+和栈的实现方案一样，队列的实现也有两种方式，分别是：
+<ul>
+	<li>
+		<u><a href="/view/306.html" target="_blank">顺序队列</a></u>：用顺序表模拟实现队列存储结构；</li>
+	<li>
+		<u><a href="/view/308.html" target="_blank">链队列</a></u>：用链表模拟实现队列存储结构。</li>
+</ul>
+<br />
+两者的区别仅是顺序表和链表的区别，即顺序队列集中存储数据，而<u><a href='/view/308.html' target='_blank'>链队列</a></u>分散存储数据，元素之间的逻辑关系靠指针维系。
+<h2>
+	2、顺序队列的基本操作（入队和出队）</h2>
+顺序<u><a href="/view/305.html" target="_blank">队列</a></u>指的是用<u><a href="/view/288.html" target="_blank">顺序表</a></u>模拟实现的队列存储结构。<br />
+<br />
+我们知道，队列具有以下两个特点：
+<ol>
+	<li>
+		数据从队列的一端进，从另一端出；</li>
+	<li>
+		数据的入队和出队遵循&quot;先进先出&quot;的原则；</li>
+</ol>
+<br />
+在顺序表的基础上，只要元素进出的过程遵循以上两个规则，就能实现队列结构。<br />
+<br />
+通常情况下，我们采用 C 语言中的数组实现顺序表。既然用顺序表模拟实现队列，必然要先定义一个足够大的数组。不仅如此，为了遵守队列中数据从 &quot;队尾进，队头出&quot; 且 &quot;先进先出&quot; 的规则，还需要定义两个变量（top 和 rear）分别记录队头和队尾的具体位置，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="顺序队列实现示意图" src="/uploads/allimg/240114/11164C027-0.gif" /><br />
+	图 13 顺序队列实现示意图</div>
+<br />
+初始状态下，顺序队列中没有任何元素，因此 top 和 rear 重合，都位于 a[0] 处。
+<h3>
+	实现入队</h3>
+在图 13 的基础上，当有新元素入队时，依次执行以下两步操作：
+<ol>
+	<li>
+		将新元素存储在 rear 记录的位置；</li>
+	<li>
+		更新 rear 的值（rear+1），记录下一个空闲空间的位置，为下一个新元素入队做好准备。</li>
+</ol>
+<br />
+例如，在图 13 基础上将&nbsp;<code style="font-size: 14px;">{1,2,3,4}</code>&nbsp;用顺序队列存储的实现操作如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/240114/1116461Q8-1.gif" /><br />
+	图 14 数据进顺序队列的过程实现示意图</div>
+<br />
+入队操作的 C 语言实现代码如下：
+<pre class="cpp">
+int enQueue(int* a, int rear, int data) {
+    //如果 rear 超出数组下标范围，队列将无法继续添加元素
+    if (rear == MAX_LEN) {
+        printf(&quot;队列已满，添加元素失败\n&quot;);
+        return rear;
+    }
+    a[rear] = data;
+    rear++;
+    return rear;
+}</pre>
+<h3>
+	实现出队</h3>
+当有元素出队时，根据&ldquo;先进先出&rdquo;的原则，目标元素以及在它之前入队的元素要依次从队头出队。<br />
+<br />
+出队操作的实现方法很简单，就是更新 top 的值（top+1）。例如，在图 14 基础上，顺序队列中元素逐个队列的过程如图 15 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="数据出顺序队列的过程示意图" src="/uploads/allimg/240114/11164631S-2.gif" style="width: 550px; height: 201px;" /><br />
+	图 15 数据出顺序队列的过程示意图</div>
+<blockquote>
+	<p>
+		注意，虽然数组中仍保存着 1、2、3、4 这些元素，但队列中的元素是依靠 top 和 rear 来判别的，因此图 15b) 显示的队列中确实不存在任何元素。</p>
+</blockquote>
+出队操作的 C 语言实现代码为：
+<pre class="cpp">
+int deQueue(int* a, int top, int rear) {
+    //如果 top==rear，表示队列为空
+    if (top== rear) {
+        printf(&quot;队列已空，出队执行失败\n&quot;);
+        return top;
+    }
+    printf(&quot;出队元素：%d\n&quot;, a[top]);
+    top++;
+    return top;
+}</pre>
+<h3>
+	完整实现代码</h3>
+使用顺序表模拟实现顺序队列的 C 语言代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#define MAX_LEN 100 //规定数组的长度
+//实现入队操作
+int enQueue(int* a, int rear, int data) {
+    //如果 rear 超出数组下标范围，队列将无法继续添加元素
+    if (rear == MAX_LEN) {
+        printf(&quot;队列已满，添加元素失败\n&quot;);
+        return rear;
+    }
+    a[rear] = data;
+    rear++;
+    return rear;
+}
+//实现出队操作
+int deQueue(int* a, int top, int rear) {
+    //如果 top==rear，表示队列为空
+    if (top == rear) {
+        printf(&quot;队列已空，出队执行失败\n&quot;);
+        return top;
+    }
+    printf(&quot;出队元素：%d\n&quot;, a[top]);
+    top++;
+    return top;
+}
+int main() {
+    int a[MAX_LEN];
+    int top, rear;
+    //设置队头指针和队尾指针，当队列中没有元素时，队头和队尾指向同一块地址
+    top = rear = 0;
+    //入队
+    rear = enQueue(a, rear, 1);
+    rear = enQueue(a, rear, 2);
+    rear = enQueue(a, rear, 3);
+    rear = enQueue(a, rear, 4);
+    //出队
+    top = deQueue(a, top, rear);
+    top = deQueue(a, top, rear);
+    top = deQueue(a, top, rear);
+    top = deQueue(a, top, rear);
+    top = deQueue(a, top, rear);
+    return 0;
+}</pre>
+程序输出结果：
+<p class="info-box">
+	出队元素：1<br />
+	出队元素：2<br />
+	出队元素：3<br />
+	出队元素：4<br />
+	队列已空，出队执行失败</p>
+<h3>
+	顺序队列的缺陷</h3>
+图 14b) 是所有数据入队成功的示意图，图 15b) 是所有数据出队后的示意图，对比两张图会发现，top 和 rear 重合位置变成了&nbsp; a[4] 而不再是 a[0]。<br />
+<br />
+也就是说，在元素不断入队、出队的过程中，顺序队列会整体向顺序表的尾部移动。整个实现方案存在的缺陷是：
+<ul>
+	<li>
+		顺序队列前面的空闲空间无法再被使用，会造成空间浪费；</li>
+	<li>
+		当顺序队列移动至顺序表尾部时，即便顺序表中有空闲空间，新元素也无法成功入队，我们习惯将这种现象称为&ldquo;假溢出&rdquo;。</li>
+</ul>
+<br />
+在《<a href="/view/307.html" target="_blank">循环队列完全攻略</a>》一节中，我会教大家顺序队列的另一种实现方案，可以彻底弥补以上两个缺陷。
+<h2>
+	3、链式队列的基本操作（入队和出队）</h2>
+<span style="color: rgb(0, 128, 0);">链式<u><a href="/view/305.html" target="_blank">队列</a></u></span>，简称&quot;<span style="color: rgb(0, 128, 0);">链队列</span>&quot;，<span style="color: rgb(178, 34, 34);">即使用<u><a href="/view/290.html" target="_blank">链表</a></u>实现的队列存储结构。</span><br />
+<br />
+链式队列的实现思想同<u><a href="/view/306.html" target="_blank">顺序队列</a></u>类似，创建两个指针（命名为 top 和 rear）分别指向链表中队列的队头元素和队尾元素，如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="链式队列的初始状态" src="/uploads/allimg/240114/11202430R-0.gif" /><br />
+	图 16 链式队列的初始状态</div>
+<br />
+图 16 所示为链式队列的初始状态，此时队列中没有存储任何数据元素，因此 top 和 rear 指针都同时指向头节点。<br />
+<p class="info-box">
+	在创建链式队列时，强烈建议初学者创建一个带有头节点的链表，这样实现链式队列会更简单。</p>
+由此，我们可以编写出创建链式队列的 C 语言实现代码为：
+<pre class="cpp">
+//链表中的节点结构
+typedef struct qnode{
+    int data;
+    struct qnode * next;
+}QNode;
+//创建链式队列的函数
+QNode * initQueue(){
+    //创建一个头节点
+    QNode * queue=(QNode*)malloc(sizeof(QNode));
+    //对头节点进行初始化
+    queue-&gt;next=NULL;
+    return queue;
+}</pre>
+<h3>
+	链式队列数据入队</h3>
+链队队列中，当有新的数据元素入队，只需进行以下 3 步操作：
+<ol>
+	<li>
+		将该数据元素用节点包裹，例如新节点名称为 elem；</li>
+	<li>
+		与 rear 指针指向的节点建立逻辑关系，即执行 rear-&gt;next=elem；</li>
+	<li>
+		最后移动 rear 指针指向该新节点，即 rear=elem；</li>
+</ol>
+<br />
+由此，新节点就入队成功了。<br />
+<br />
+例如，在图 16 的基础上，我们依次将&nbsp;<code style="font-size: 14px;">{1,2,3}</code>&nbsp;依次入队，各个数据元素入队的过程如图 17 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="{1,2,3} 入链式队列" src="/uploads/allimg/240114/11202431B-1.gif" /><br />
+	图 17 {1,2,3} 入链式队列</div>
+<blockquote>
+	<p>
+		如图 17 中，我们将链表的头部作为队列的队头，将链表的尾部作为队列的队尾。当然，也可以反过来，将链表的头部（尾部）作为队列的队尾（队头），两种存储方式都可以。</p>
+</blockquote>
+数据元素入链式队列的 C 语言实现代码为：<br />
+<pre class="cpp">
+QNode* enQueue(QNode * rear,int data){
+    //1、用节点包裹入队元素
+    QNode * enElem=(QNode*)malloc(sizeof(QNode));
+    enElem-&gt;data=data;
+    enElem-&gt;next=NULL;
+    //2、新节点与rear节点建立逻辑关系
+    rear-&gt;next=enElem;
+    //3、rear指向新节点
+    rear=enElem;
+    //返回新的rear，为后续新元素入队做准备
+    return rear;
+}</pre>
+<h3>
+	链式队列数据出队</h3>
+当链式队列中有元素需要出队时，按照 &quot;先进先出&quot; 的原则，需要先将在它之前入队的元素依次出队，然后该目标元素才能出队。<br />
+<br />
+我们知道，队列中的元素只能从队头出队。在图 17 中，队列的队头位于链表的头部。因此队列中元素出队的过程，其实是链表中摘除首元结点的过程，需要做以下 3 步操作：
+<ol>
+	<li>
+		通过 top 指针直接找到队头节点，创建一个新指针 p 指向此即将出队的节点；</li>
+	<li>
+		将 top 所指结点的 next 指针，指向 p 结点的直接后继结点；</li>
+	<li>
+		释放节点 p 占用的内存空间；</li>
+</ol>
+<br />
+例如，在图 17b) 的基础上，我们将元素 1 和 2 出队，则操作过程如图 18 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="链式队列中数据元素出队" src="/uploads/allimg/240114/1120245W1-2.gif" /><br />
+	图 18 链式队列中数据元素出队</div>
+<br />
+链式队列中队头元素出队的 C 语言实现代码为：
+<pre class="cpp">
+QNode* DeQueue(QNode* top, QNode* rear) {
+    QNode* p = NULL;
+    if (top-&gt;next == NULL) {
+        printf(&quot;\n队列为空\n&quot;);
+        return rear;
+    }
+    // 1、创建新指针 p 指向目标结点
+    p = top-&gt;next;
+    printf(&quot;%d &quot;, p-&gt;data);
+    //2、将目标结点从链表上摘除
+    top-&gt;next = p-&gt;next;
+    if (rear == p) {
+        rear = top;
+    }
+    //3、释放结点 p 占用的内存
+    free(p);
+    return rear;
+}</pre>
+注意，将队头元素做出队操作时，需提前判断队列中是否还有元素，如果没有，要提示用户无法做出队操作，保证程序的健壮性。此外，程序中要判断被摘除的目标结点是否是 rear 队头队尾，如果是的话，要及时更新 rear 指针的指向。<br />
+<h3>
+	总结</h3>
+通过学习链式队列最基本的数据入队和出队操作，我们可以就实际问题，对以上代码做适当的修改。<br />
+<br />
+前面在学习顺序队列时，由于<u><a href="/view/288.html" target="_blank">顺序表</a></u>的局限性，我们在顺序队列中实现数据入队和出队的基础上，又对实现代码做了改进，令其能够充分利用数组中的空间。链式队列就不需要考虑空间利用的问题，因为链式队列本身就是实时申请空间。因此，这可以算作是链式队列相比顺序队列的一个优势。<br />
+<br />
+这里给出链式队列入队和出队的完整 C 语言代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+//链表中的节点结构
+typedef struct qnode {
+    int data;
+    struct qnode* next;
+}QNode;
+//创建链式队列的函数
+QNode* initQueue() {
+    //创建一个头节点
+    QNode* queue = (QNode*)malloc(sizeof(QNode));
+    //对头节点进行初始化
+    queue-&gt;next = NULL;
+    return queue;
+}
+
+QNode* enQueue(QNode* rear, int data) {
+    //1、用节点包裹入队元素
+    QNode* enElem = (QNode*)malloc(sizeof(QNode));
+    enElem-&gt;data = data;
+    enElem-&gt;next = NULL;
+    //2、新节点与rear节点建立逻辑关系
+    rear-&gt;next = enElem;
+    //3、rear指向新节点
+    rear = enElem;
+    //返回新的rear，为后续新元素入队做准备
+    return rear;
+}
+
+QNode* deQueue(QNode* top, QNode* rear) {
+    QNode* p = NULL;
+    if (top-&gt;next == NULL) {
+        printf(&quot;\n队列为空\n&quot;);
+        return rear;
+    }
+    // 1、创建新指针 p 指向目标结点
+    p = top-&gt;next;
+    printf(&quot;%d &quot;, p-&gt;data);
+    //2、将目标结点从链表上摘除
+    top-&gt;next = p-&gt;next;
+    if (rear == p) {
+        rear = top;
+    }
+    //3、释放结点 p 占用的内存
+    free(p);
+    return rear;
+}
+
+int main() {
+    QNode* queue = NULL, * top = NULL, * rear = NULL;
+    queue = top = rear = initQueue();//创建头结点
+    //向链队列中添加结点，使用尾插法添加的同时，队尾指针需要指向链表的最后一个元素
+    rear = enQueue(rear, 1);
+    rear = enQueue(rear, 2);
+    rear = enQueue(rear, 3);
+    rear = enQueue(rear, 4);
+    //入队完成，所有数据元素开始出队列
+    rear = deQueue(top, rear);
+    rear = deQueue(top, rear);
+    rear = deQueue(top, rear);
+    rear = deQueue(top, rear);
+    rear = deQueue(top, rear);
+    return 0;
+}</pre>
+程序运行结果为：
+<p class="info-box">
+	1 2 3 4<br />
+	队列为空</p>
+<h2>
+	4、队列的实操</h2>
+学到这里，读者已经掌握了队列的基本操作（出队和入队），接下来可以完成一些和队列相关的题目，用队列解决一些实际问题。<br />
+<br />
+这里给大家列举了 4 个题目，大家可以先尝试独立实现：
+<ul>
+	<li>
+		<a href="/view/vip_220.html">队列实现停车场管理系统</a>；</li>
+	<li>
+		<a href="/view/vip_223.html">队列实现&ldquo;推小车&rdquo;扑克牌游戏</a>；</li>
+	<li>
+		<a href="/view/vip_309.html">两个栈实现一个队列</a>；</li>
+	<li>
+		<a href="/view/vip_310.html">两个队列实现一个栈</a>。</li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 612;
+window.arcId = "be2dTC4rtR8ltvf0+n7Bm+ETMzEBUhKXlfA58KHn7ROMvwsQ8hS8Y5h0XQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
