@@ -323,7 +323,7 @@ h1{
 }
 #nav-bottom li{
 	float: left;
-	margin-right: 20px;
+	margin: 3px 20px 3px 0px;
 }
 #nav-bottom li a {
 	color: #666;
@@ -520,7 +520,7 @@ pre{
 		right: auto;
 		top: auto;
 		left: 0px;
-		height: 50px;
+		height: 56px;
 		padding:5px 0px 6px 0px;
 		bottom: -1px;
 		background-color: #f6f6f6;
