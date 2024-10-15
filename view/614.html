@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>C语言标识符、关键字、注释、表达式和语句</title>
-<meta name="keywords" content="语言,标识符,、,关键字,注释,表达式,和,语句," />
-<meta name="description" content="这一节主要讲解C语言中的几个基本概念。 标识符 定义变量时，我们使用了诸如 a、abc、mn123 这样的名字，它们都是程序员自己起的，一般能够表达出变量的作用，这叫做 标识符（Iden" />
+<title>一文搞清楚C语言布尔类型（bool）</title>
+<meta name="keywords" content="一文,搞,清楚,语言,布尔,类型,bool,有些,场景," />
+<meta name="description" content="有些场景中，变量的取值只有两种情况。比如说，用变量 sex 存储人的性别，它的值就只有两种情况，分别是男和女。 通过前面的学习，读者已经掌握了很多种数据类型，比如 char、sh" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -115,119 +115,89 @@
 </div>
 	<div id="article-wrap">
 		<div id="article">
-			<h1>C语言标识符、关键字、注释、表达式和语句</h1>
-			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/427.html">C语言转义字符</a></span>
-                    <span class="next right"><a href="/view/430.html">C语言加减乘除运算</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <div class="pre-next-page pre-next-brief clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
-                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <script type="text/javascript">window.prePageURL = "/view/427.html";window.nextPageURL = "/view/430.html";</script>
-			<div id="arc-body">这一节主要讲解C语言中的几个基本概念。
+			<h1>一文搞清楚C语言布尔类型（bool）</h1>
+			
+			<div id="arc-body">有些场景中，变量的取值只有两种情况。比如说，用变量 sex 存储人的性别，它的值就只有两种情况，分别是&ldquo;男&rdquo;和&ldquo;女&rdquo;。<br />
+<br />
+通过前面的学习，读者已经掌握了很多种数据类型，比如 char、short、int、long、float、double 等。那么，变量 sex 的类型应该是什么呢？<br />
+<br />
+在 C99 标准发布之前，对于只有两种取值的变量，没有完全适配的数据类型，退而求其次，通常选择 int 作为此变量的类型。对于 int 类型的 sex 来说，可以设定 sex 的值为 0 时表示女性，值为非 0 数时表示男性。<br />
+<br />
+为了解决这个历史遗留问题，C99 标准新引入了 _Bool 类型，中文叫做布尔类型。
 <h2>
-	标识符</h2>
-定义变量时，我们使用了诸如 a、abc、mn123 这样的名字，它们都是程序员自己起的，一般能够表达出变量的作用，这叫做<span style="color: #008000">标识符（Identifier）</span>。<br />
-<br />
-标识符就是程序员自己起的名字，除了变量名，后面还会讲到函数名、宏名、结构体名等，它们都是标识符。不过，名字也不能随便起，要遵守规范；C语言规定，标识符只能由字母（A~Z, a~z）、数字（0~9）和下划线（_）组成，并且第一个字符必须是字母或下划线，不能是数字。<br />
-<br />
-以下是合法的标识符：<br />
-a, x,&nbsp; x3, BOOK_1, sum5<br />
-<br />
-以下是非法的标识符：
-<ul>
-	<li>
-		3s&nbsp; &nbsp; 不能以数字开头</li>
-	<li>
-		s*T&nbsp;&nbsp;&nbsp; 出现非法字符*</li>
-	<li>
-		-3x &nbsp; &nbsp;不能以减号（-）开头</li>
-	<li>
-		bowy-1&nbsp;&nbsp;&nbsp; 出现非法字符减号（-）</li>
-</ul>
-<br />
-在使用标识符时还必须注意以下几点：
-<ul>
-	<li>
-		C语言虽然不限制标识符的长度，但是它受到不同编译器的限制，同时也受到操作系统的限制。例如在某个编译器中规定标识符前128位有效，当两个标识符前128位相同时，则被认为是同一个标识符。</li>
-	<li>
-		在标识符中，大小写是有区别的，例如 BOOK 和 book 是两个不同的标识符。</li>
-	<li>
-		标识符虽然可由程序员随意定义，但标识符是用于标识某个量的符号，因此，命名应尽量有相应的意义，以便于阅读和理解，作到&ldquo;顾名思义&rdquo;。</li>
-</ul>
-<h2>
-	关键字</h2>
-<span style="color: #008000">关键字（Keywords）</span>是由C语言规定的具有特定意义的字符串，通常也称为保留字，例如 int、char、long、float、unsigned 等。我们定义的标识符不能与关键字相同，否则会出现错误。
-<blockquote>
-	你也可以将关键字理解为具有特殊含义的标识符，它们已经被系统使用，我们不能再使用了。</blockquote>
-标准C语言中一共规定了32个关键字，大家可以参考<a href="/view/429.html" target="_blank">C语言关键字及其解释[共32个]</a>，后续我们会一一讲解。
-<h2>
-	注释</h2>
-<span style="color: #008000">注释（Comments）</span>可以出现在代码中的任何位置，用来向用户提示或解释代码的含义。程序编译时，会忽略注释，不做任何处理，就好像它不存在一样。<br />
-<br />
-C语言支持单行注释和多行注释：
-<ul>
-	<li>
-		单行注释以<code>//</code>开头，直到本行末尾（不能换行）；</li>
-	<li>
-		多行注释以<code>/*</code>开头，以<code>*/</code>结尾，注释内容可以有一行或多行。</li>
-</ul>
-<br />
-一个使用注释的例子：
+	C语言_Bool类型</h2>
+C语言标准规定，布尔类型的变量只能存储 0 和 1 这两个值。例如：<br />
 <pre class="c">
-/*
-  Powered by: xiexuewu.github.io
-*/
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    _Bool sex = 0;
+    printf(&quot;sex = %d\n&quot;, sex);
+    sex = 1;
+    printf(&quot;sex = %d\n&quot;, sex);
+    return 0;
+}</pre>
+执行结果为：
+<p class="info-box">
+	sex = 0<br />
+	sex = 1</p>
+<blockquote>
+	<p>
+		printf() 函数输出 _Bool 变量的值，通常使用 %d 作为格式控制符。</p>
+</blockquote>
+<br />
+程序里允许手动为布尔变量赋值除 1 以外的非 0 数，但变量的值为 1。例如：<br />
+<pre class="c">
+_Bool sex = 123;
+printf(&quot;sex = %d\n&quot;, sex);</pre>
+执行结果为：
+<p class="info-box">
+	sex1 = 1</p>
+<h2>
+	布尔类型的长度</h2>
+Bool 类型的长度可以用 sizeof 操作符查看：<br />
+<pre class="c">
 #include &lt;stdio.h&gt;
 int main()
 {
-    /* puts 会在末尾自动添加换行符 */
-    puts(&quot;https://xiexuewu.github.io&quot;);
-    printf(&quot;C语言\n&quot;);  //printf要手动添加换行符
+    printf(&quot;%ld&quot;, sizeof(_Bool));
     return 0;
 }</pre>
-运行结果：<br />
-https://xiexuewu.github.io<br />
-C语言<br />
-<br />
-在调试程序的过程中可以将暂时将不使用的语句注释掉，使编译器跳过不作处理，待调试结束后再去掉注释。<br />
-<br />
-需要注意的是，多行注释不能嵌套使用。例如下面的注释是错误的：
-<pre class="info-box">
-/*C语言/*xie*/xuewu*/</pre>
-而下面的注释是正确的：
-<pre class="info-box">
-/*C语言*/  /*xiexuewu.github.io*/</pre>
+执行结果为：
+<p class="info-box">
+	1</p>
+显然，_Bool 类型的长度和 char 相同，只占用 1 个字节。<br />
 <h2>
-	表达式（Expression）和语句（Statement）</h2>
-其实前面我们已经多次提到了「表达式」和「语句」这两个概念，相信读者在耳濡目染之中也已经略知一二了，本节我们不妨再重点介绍一下。<br />
+	C99 bool类型</h2>
+布尔类型（_Bool）以下划线_开头，首字母还要大写，这和我们之前掌握的类型（char、float、int、float）相比，写法上有较大的出路，初学者多少会觉得别扭。<br />
 <br />
-表达式（Expression）和语句（Statement）的概念在C语言中并没有明确的定义：
-<ul>
-	<li>
-		表达式可以看做一个计算的公式，往往由数据、变量、运算符等组成，例如<code>3*4+5</code>、<code>a=c=d</code>等，表达式的结果必定是一个值；</li>
-	<li>
-		语句的范围更加广泛，不一定是计算，不一定有值，可以是某个操作、某个函数、选择结构、循环等。</li>
-</ul>
+其实除了C语言，很多编程语言都提供了布尔类型，比如 C++、Java、C# 等，它们中的绝大部分都采用&ldquo;bool&rdquo;作为布尔类型的名称，并且布尔类型的两种取值分别用&ldquo;假（false）&rdquo;和&ldquo;真（true）&rdquo;表示，false 代指 0，true 代指 1。<br />
 <br />
-赶紧划重点：
-<ul>
-	<li>
-		表达式必须有一个执行结果，这个结果必须是一个值，例如<code>3*4+5</code>的结果 17，<code>a=c=d=10</code>的结果是 10，<code>printf(&quot;hello&quot;)</code>的结果是 5（printf 的返回值是成功打印的字符的个数）。</li>
-	<li>
-		以分号<code>;</code>结束的往往称为语句，而不是表达式，例如<code>3*4+5;</code>、<code>a=c=d;</code>等。</li>
-</ul>
-</div>
-			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/427.html">C语言转义字符</a></span>
-                    <span class="next right"><a href="/view/430.html">C语言加减乘除运算</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <div class="pre-next-page pre-next-brief clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
-                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <script type="text/javascript">window.prePageURL = "/view/427.html";window.nextPageURL = "/view/430.html";</script>
+或许是受其它编程语言的影响，又或许是考虑到初学者的感受，C语言标准委员会决定引入 _Bool 类型的同时，添加 bool 作为 _Bool 类型的别名，并且布尔类型的取值可以用 true 和 false 表示。<br />
+<br />
+也就是说在C语言程序中，布尔类型可以用 _Bool 表示，也可以用 bool 表示。<br />
+<br />
+需要注意的点，使用 bool 类型之前，必须先引入<code>&lt;stdbool.h&gt;</code>头文件。例如：<br />
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;   // bool、true、false
+
+int main()
+{
+    bool sex = true;
+    printf(&quot;%d&quot;, sex);
+    return 0;
+}</pre>
+执行结果为：
+<p class="info-box">
+	1</p>
+<h2>
+	总结</h2>
+对于仅有两个值的变量，C99 标准建议将变量的类型设定为布尔类型，可以用 _Bool 或者 bool 表示。如果编译器不支持布尔类型，退而求其次，通常选用 int 类型。<br />
+<br />
+在 C99 标准中，想用 bool 表示布尔类型，想用 true 和 false 表示布尔类型的两种取值，必须先引入<code>&lt;stdbool.h&gt;</code>头文件。</div>
+			
 		</div>
 		
 	</div>
@@ -244,8 +214,8 @@ C语言<br />
 </div>
 <script type="text/javascript">
 // 当前文章ID
-window.arcIdRaw = 'a_' + 428;
-window.arcId = "986epwgRWYoIuyyDSyobqaxK2OpdFZmBYxV1PSq4g9iHzHukQHytIdQmOg";
+window.arcIdRaw = 'a_' + 614;
+window.arcId = "532cCEhKjESrZoJQRkbRLIw168g59mWCVVMLS+9WcNNu8DwmCfhh5uRcZw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
