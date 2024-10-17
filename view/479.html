@@ -65,7 +65,7 @@
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.4 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.5 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.6 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.7 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.8 <a href="/view/485.html">C语言数组的越界和溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.9 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.10 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.11 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
+		<dd class="this"> <span class="channel-num">6</span> <a href="/c/array/">C语言数组</a> </dd><dl class="dl-sub"><dd>6.1 <a href="/view/478.html">什么是数组</a></dd><dd>6.2 <a href="/view/479.html">C语言二维数组</a></dd><dd>6.3 <a href="/view/616.html">数组的指定初始化（C99新增语法）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.4 <a href="/view/480.html">判断数组中是否包含某个元素</a></dd><dd>6.5 <a href="/view/481.html">C语言字符数组和字符串</a></dd><dd>6.6 <a href="/view/482.html">字符串的输入和输出</a></dd><dd>6.7 <a href="/view/483.html">C语言字符串处理函数</a></dd><dd>6.8 <a href="/view/484.html">C语言数组是静态的，不能插入或删除元素</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.9 <a href="/view/485.html">C语言数组的越界和溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.10 <a href="/view/486.html">C语言变长数组：使用变量指明数组的长度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>6.11 <a href="/view/487.html">对数组元素进行排序</a></dd><dd>6.12 <a href="/view/488.html">对C语言数组的总结</a></dd></dl>
 			<dd>
 				<span class="channel-num">7</span>
 				<a href='/c/function/'>C语言函数</a>
@@ -118,13 +118,13 @@
 			<h1>C语言二维数组的定义、初始化、赋值</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/478.html">什么是数组</a></span>
-                    <span class="next right"><a href="/view/480.html">判断数组中是否包含某个元素</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="next right"><a href="/view/616.html">数组的指定初始化（C99新增语法）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/478.html";window.nextPageURL = "/view/480.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/478.html";window.nextPageURL = "/view/616.html";</script>
 			<div id="arc-body">上节讲解的数组可以看作是一行连续的数据，只有一个下标，称为<span style="color: #008000">一维数组</span>。在实际问题中有很多数据是二维的或多维的，因此 C语言允许构造多维数组。多维数组元素有多个下标，以确定它在数组中的位置。本节只介绍<span style="color:#008000;">二维数组</span>，多维数组可由二维数组类推而得到。
 <h3>
 	二维数组的定义</h3>
@@ -329,13 +329,13 @@ int a[][3] = {1, 2, 3, 4, 5, 6, 7, 8, 9};</pre>
 这三个一维数组可以直接拿来使用。这三个一维数组都有 4 个元素，比如，一维数组 a[0] 的元素为 a[0][0]、a[0][1]、a[0][2]、a[0][3]。</div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/478.html">什么是数组</a></span>
-                    <span class="next right"><a href="/view/480.html">判断数组中是否包含某个元素</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="next right"><a href="/view/616.html">数组的指定初始化（C99新增语法）</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/478.html";window.nextPageURL = "/view/480.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/478.html";window.nextPageURL = "/view/616.html";</script>
 		</div>
 		
 	</div>
@@ -353,7 +353,7 @@ int a[][3] = {1, 2, 3, 4, 5, 6, 7, 8, 9};</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 479;
-window.arcId = "3c589B2N99OxaV0HLHLQtToW/SS4lcHDIvh4uKuLZj6o2Q5h0/TuBFb3Dw";
+window.arcId = "5ff489RT27PrRJU1u/NnCxjBWexw8aaeD4XxdBCmn+i9ihuQj3YNQ30gzg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

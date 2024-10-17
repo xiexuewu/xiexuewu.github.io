@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>大白话聊数据结构到底是什么（干货满满）</title>
+<meta name="keywords" content="大,白话,聊,数据结构,到底,是什么,干货,满满," />
+<meta name="description" content="程序员编写的每一个程序，本质上都是对数据进行有效地整合、加工，最终再把处理结果展示给用户。例如，学生信息管理系统是用来管理学生信息的，每一条学生信息都是一个个的数" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>视频教程推荐</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>大白话聊数据结构到底是什么（干货满满）</h1>
+			<div id="arc-body">程序员编写的每一个程序，本质上都是对数据进行有效地整合、加工，最终再把处理结果展示给用户。例如，学生信息管理系统是用来管理学生信息的，每一条学生信息都是一个个的数据。<br />
+<br />
+程序运行过程中用到的数据，全部位于计算机的内存中。所有数据在内存中的存储状态，比如是集中存放还是分散存放，需要开发者提前做好规划，而这就属于数据结构的研究范畴。<br />
+<br />
+说白了，数据结构是一门研究如何存储数据的学科。<br />
+<br />
+有读者可能会问，存数据还需要研究吗，少量的数据用变量（对象）存储，大量的数据用数组存储，不就行了吗？too young too simple，答案是否定的，接下来通过一个实例展开讲解。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/2-240Q9112Z01W.gif" /><br />
+	图 1 道路分布图</div>
+<br />
+图 1 是一张道路分布图，记录着 V1、V2、V3 和 V4 之间的道路分布，比如 V1 可以直达 V2 和 V3，V3 可以直达 V4，V4 可以直达 V1。图中的每条路都是单行路，比如 V1 可以直达 V2，但 V2 无法到达 V1。<br />
+<br />
+试想一下，如果编写一个道路管理系统，如何将图 1 中的道路信息存储到内存中呢？首先，要想将图 1 存储到内存中，我们需要存储的内容包括：
+<ol>
+	<li>
+		4 个地点：V1、V2、V3 和 V4；</li>
+	<li>
+		道路信息：V1-&gt;V2、V1-&gt;V3、V3-&gt;V4、V4-&gt;V1。</li>
+</ol>
+<br />
+将以上两份数据都存储到内存中，就成功的将图 1 存储到了内存里。<br />
+<br />
+如果读者尚未学习数据结构，很可能想不出可行的存储方案。反之如果学过数据结构，这个问题很容易解决，因为数据结构中专门讨论了图 1 这类数据的存储方案，将这类存储方案统称为&ldquo;图&rdquo;。<br />
+<br />
+例如，下图是数据结构中的一种存储方案，叫做<u><a href='/view/339.html' target='_blank'>邻接表</a></u>，它是图的存储方案之一：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/2-240Q91214204D.gif" /><br />
+	图 2 邻接表存储结构</div>
+<br />
+图 2 中，左侧是一个数组，用于存储 4 个地点；每一行是一个<u><a href='/view/290.html' target='_blank'>链表</a></u>，用来存储地点之间的道路信息。如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/2-240Q912152JW.gif" /><br />
+	图 3 邻接表存储道路信息</div>
+<br />
+数组下标 0 的位置存储的是 V1，后续箭头指向的 2 也是数组下标，由此找到了 V3，说明 V1 能直达 V3；同理，通过后续箭头指向的数组下标 1，说明 V1 能直达 V2。<br />
+<br />
+类似图 3 这种稍复杂的存储方案，除非系统地学习数据结构，否则是不容易想到的。<br />
+<br />
+<span style="color: rgb(178, 34, 34);">学习数据结构，就是学习各种数据的存储方案。</span>对于同一份数据，存储方案通常有很多种，选择好的存储方案，后续编码过程中可以更高效地使用内存中的数据，为后续编码提供便利，大幅提高开发效率。<br />
+<h2 style="text-align: center;">
+	数据结构要学哪些知识?</h2>
+数据结构里囊括了各种数据的存储方案，并将它们进行了分门别类，分别是<u><a href='/view/287.html' target='_blank'>线性表</a></u>、<u><a href='/view/300.html' target='_blank'>栈</a></u>和<u><a href='/view/305.html' target='_blank'>队列</a></u>、串、数组和<u><a href='/view/189.html' target='_blank'>广义表</a></u>、<u><a href='/view/325.html' target='_blank'>树</a></u>、图、查找表。<br />
+<br />
+这里给读者分享一张我精心整理的思维导图，图中罗列了数据结构几乎所有的知识点（猛击<a href="/uploads/allimg/240819/2-240Q912364O37.png" target="_blank">这里</a>查看超清大图）：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240819/2-240Q9123605Z7.gif" /><br />
+	图 4 数据结构思维导图</div>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 617;
+window.arcId = "ded0az0XC0Xo+SEysoEjCEC5mMexzTgW95FZ9QMB1g3bs1YFNccbn7PBhQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

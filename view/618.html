@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>大白话带你玩转链表（超级肝，新手必看）</title>
+<meta name="keywords" content="大,白话,带你,玩转,链表,超级,肝,新手,必看," />
+<meta name="description" content="如果你掌握了 C 语言，正在学习数据结构中的链表，那么这篇文章非常适合你，认真看完这篇文章，你就能玩转链表。 在这篇文章里，我将带你搞清楚以下几个问题： 链表是什么 链表" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/video/'>视频教程推荐</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>大白话带你玩转链表（超级肝，新手必看）</h1>
+			<div id="arc-body">如果你掌握了 C 语言，正在学习数据结构中的<u><a href='/view/290.html' target='_blank'>链表</a></u>，那么这篇文章非常适合你，认真看完这篇文章，你就能玩转链表。<br />
+<br />
+在这篇文章里，我将带你搞清楚以下几个问题：<br />
+<ul>
+	<li>
+		链表是什么</li>
+	<li>
+		链表的基本操作（增删查改）</li>
+	<li>
+		<u><a href='/view/294.html' target='_blank'>双向链表</a></u>是什么</li>
+	<li>
+		双向链表基本操作</li>
+	<li>
+		循环链表是什么</li>
+	<li>
+		双向循环链表是什么</li>
+</ul>
+<h2 style="text-align: center;">
+	1、链表是什么？</h2>
+​链表又称单链表、链式存储结构，用于存储逻辑关系为&ldquo;一对一&rdquo;的数据。<br />
+<br />
+和<u><a href="/view/288.html" target="_blank">顺序表</a></u>不同，使用链表存储数据，不强制要求数据在内存中集中存储，各个元素可以分散存储在内存中。例如，使用链表存储 {1,2,3}，各个元素在内存中的存储状态可能是：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/10215a621-0.gif" /><br />
+	图 1 数据分散存储在内存中</div>
+<br />
+可以看到，数据不仅没有集中存放，在内存中的存储次序也是混乱的。那么，链表是如何存储数据间逻辑关系的呢？<br />
+<br />
+链表存储数据间逻辑关系的实现方案是：为每一个元素配置一个指针，每个元素的指针都指向自己的直接后继元素，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1021593W3-1.gif" /><br />
+	图 2 链表的实现方案</div>
+<br />
+显然，我们只需要记住元素 1 的存储位置，通过它的指针就可以找到元素 2，通过元素 2 的指针就可以找到元素 3，以此类推，各个元素的先后次序一目了然。<br />
+<br />
+像图 2 这样，数据元素随机存储在内存中，通过指针维系数据之间&ldquo;一对一&rdquo;的逻辑关系，这样的存储结构就是<span style="color:#008000;">链表</span>。
+<h2>
+	结点（节点）</h2>
+<blockquote>
+	<p>
+		很多教材中，也将&ldquo;结点&rdquo;写成&ldquo;节点&rdquo;，它们是一个意思。</p>
+</blockquote>
+在链表中，每个数据元素都配有一个指针，这意味着，链表上的每个&ldquo;元素&rdquo;都长下图这个样子：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1021591144-2.gif" /><br />
+	图 3 链表中的结点结构</div>
+<br />
+数据域用来存储元素的值，指针域用来存放指针。数据结构中，通常将图 3 这样的整体称为结点。<br />
+<br />
+也就是说，链表中实际存放的是一个一个的结点，数据元素存放在各个结点的数据域中。举个简单的例子，图 2 中 {1,2,3} 的存储状态用链表表示，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/102159B29-3.gif" /><br />
+	图 4 链表中的结点</div>
+<br />
+在 C 语言中，可以用结构体表示链表中的结点，例如：
+<pre class="cpp">
+typedef struct link{
+    char elem; //代表数据域
+    struct link * next; //代表指针域，指向直接后继元素
+}Link;</pre>
+<blockquote>
+	<p>
+		我们习惯将结点中的指针命名为 next，因此指针域又常称为&ldquo;Next 域&rdquo;。&nbsp;</p>
+</blockquote>
+<h2>
+	头结点、头指针和首元结点</h2>
+图 4 所示的链表并不完整，一个完整的链表应该由以下几部分构成：
+<ol>
+	<li>
+		头指针：一个和结点类型相同的指针，它的特点是：永远指向链表中的第一个结点。上文提到过，我们需要记录链表中第一个元素的存储位置，就是用头指针实现。</li>
+	<li>
+		结点：链表中的节点又细分为头结点、首元结点和其它结点：
+		<ul>
+			<li>
+				头结点：某些场景中，为了方便解决问题，会故意在链表的开头放置一个空结点，这样的结点就称为头结点。也就是说，头结点是位于链表开头、数据域为空（不利用）的结点。</li>
+			<li>
+				首元结点：指的是链表开头第一个存有数据的结点。</li>
+			<li>
+				其他节点：链表中其他的节点。</li>
+		</ul>
+	</li>
+</ol>
+<br />
+也就是说，一个完整的链表是由头指针和诸多个结点构成的。每个链表都必须有头指针，但头结点不是必须的。<br />
+<br />
+例如，创建一个包含头结点的链表存储 {1,2,3}，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/10215924J-4.gif" /><br />
+	图 5 完整的链表示意图</div>
+<br />
+再次强调，头指针永远指向链表中的第一个结点。换句话说，如果链表中包含头结点，那么头指针指向的是头结点，反之头指针指向首元结点。
+<h2>
+	链表的创建</h2>
+创建一个链表，实现步骤如下：
+<ol>
+	<li>
+		定义一个头指针；</li>
+	<li>
+		创建一个头结点或者首元结点，让头指针指向它；</li>
+	<li>
+		每创建一个结点，都令其直接前驱结点的指针指向它。</li>
+</ol>
+<br />
+例如，创建一个存储 {1,2,3,4} 且无头节点的链表，C 语言实现代码为：
+<pre class="cpp">
+Link* initLink() {
+    int i;
+    //1、创建头指针
+    Link* p = NULL;
+    //2、创建首元结点
+    Link* temp = (Link*)malloc(sizeof(Link));
+    temp-&gt;elem = 1;
+    temp-&gt;next = NULL;
+    //头指针指向首元结点
+    p = temp;
+    //3、每创建一个结点，都令其直接前驱结点的指针指向它
+    for (i = 2; i &lt; 5; i++) {
+        //创建一个结点
+        Link* a = (Link*)malloc(sizeof(Link));
+        a-&gt;elem = i;
+        a-&gt;next = NULL;
+        //每次 temp 指向的结点就是 a 的直接前驱结点
+        temp-&gt;next = a;
+        //temp指向下一个结点（也就是a),为下次添加结点做准备
+        temp = temp-&gt;next;
+    }
+    return p;
+}</pre>
+<br />
+再比如，创建一个存储 {1,2,3,4} 且含头节点的链表，则 C 语言实现代码为：
+<pre class="cpp">
+Link* initLink() {
+    int i;
+    //1、创建头指针
+    Link* p = NULL;
+    //2、创建头结点
+    Link* temp = (Link*)malloc(sizeof(Link));
+    temp-&gt;elem = 0;
+    temp-&gt;next = NULL;
+    //头指针指向头结点
+    p = temp;
+    //3、每创建一个结点，都令其直接前驱结点的指针指向它
+    for (i = 1; i &lt; 5; i++) {
+        //创建一个结点
+        Link* a = (Link*)malloc(sizeof(Link));
+        a-&gt;elem = i;
+        a-&gt;next = NULL;
+        //每次 temp 指向的结点就是 a 的直接前驱结点
+        temp-&gt;next = a;
+        //temp指向下一个结点（也就是a),为下次添加结点做准备
+        temp = temp-&gt;next;
+    }
+    return p;
+}</pre>
+<h2>
+	链表的使用</h2>
+对于创建好的链表，我们可以依次获取链表中存储的数据，例如：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+//链表中节点的结构
+typedef struct link {
+    int  elem;
+    struct link* next;
+}Link;
+Link* initLink() {
+    int i;
+    //1、创建头指针
+    Link* p = NULL;
+    //2、创建头结点
+    Link* temp = (Link*)malloc(sizeof(Link));
+    temp-&gt;elem = 0;
+    temp-&gt;next = NULL;
+    //头指针指向头结点
+    p = temp;
+    //3、每创建一个结点，都令其直接前驱结点的指针指向它
+    for (i = 1; i &lt; 5; i++) {
+        //创建一个结点
+        Link* a = (Link*)malloc(sizeof(Link));
+        a-&gt;elem = i;
+        a-&gt;next = NULL;
+        //每次 temp 指向的结点就是 a 的直接前驱结点
+        temp-&gt;next = a;
+        //temp指向下一个结点（也就是a),为下次添加结点做准备
+        temp = temp-&gt;next;
+    }
+    return p;
+}
+void display(Link* p) {
+    Link* temp = p;//temp指针用来遍历链表
+    //只要temp指向结点的next值不是NULL，就执行输出语句。
+    while (temp) {
+        Link* f = temp;//准备释放链表中的结点
+        printf(&quot;%d &quot;, temp-&gt;elem);
+        temp = temp-&gt;next;
+        free(f);
+    }
+    printf(&quot;\n&quot;);
+}
+int main() {
+    Link* p = NULL;
+    printf(&quot;初始化链表为：\n&quot;);
+    //创建链表{1,2,3,4}
+    p = initLink();
+    //输出链表中的数据
+    display(p);
+    return 0;
+}</pre>
+程序中创建的是带头结点的链表，头结点的数据域存储的是元素 0，因此最终的输出结果为：
+<p class="info-box">
+	0 1 2 3 4</p>
+如果不想输出头结点的值，可以将 p-&gt;next 作为实参传递给 display() 函数。<br />
+<br />
+如果程序中创建的是不带头结点的链表，最终的输出结果应该是：
+<p class="info-box">
+	1 2 3 4</p>
+<h2 style="text-align: center;">
+	2、链表的基本操作（增删查改）</h2>
+接下来继续讲解链表的一些基本操作，包括向链表中添加数据、删除链表中的数据、查找和更改链表中的数据。<br />
+<br />
+首先，创建一个带头结点的链表，链表中存储着 {1,2,3,4}：
+<pre class="cpp">
+//链表中节点的结构
+typedef struct link {
+    int  elem;
+    struct link* next;
+}Link;
+Link* initLink() {
+    int i;
+    //1、创建头指针
+    Link* p = NULL;
+    //2、创建头结点
+    Link* temp = (Link*)malloc(sizeof(Link));
+    temp-&gt;elem = 0;
+    temp-&gt;next = NULL;
+    //头指针指向头结点
+    p = temp;
+    //3、每创建一个结点，都令其直接前驱结点的指针指向它
+    for (i = 1; i &lt; 5; i++) {
+        //创建一个结点
+        Link* a = (Link*)malloc(sizeof(Link));
+        a-&gt;elem = i;
+        a-&gt;next = NULL;
+        //每次 temp 指向的结点就是 a 的直接前驱结点
+        temp-&gt;next = a;
+        //temp指向下一个结点（也就是a),为下次添加结点做准备
+        temp = temp-&gt;next;
+    }
+    return p;
+}</pre>
+<h2>
+	链表插入元素</h2>
+同<u><a href="/view/288.html" target="_blank">顺序表</a></u>一样，向链表中增添元素，根据添加位置不同，可分为以下 3 种情况：
+<ul>
+	<li>
+		插入到链表的头部，作为首元节点；</li>
+	<li>
+		插入到链表中间的某个位置；</li>
+	<li>
+		插入到链表的最末端，作为链表中最后一个结点；</li>
+</ul>
+<br />
+对于有头结点的链表，3 种插入元素的实现思想是相同的，具体步骤是：<br />
+<ol>
+	<li>
+		将新结点的 next 指针指向插入位置后的结点；</li>
+	<li>
+		将插入位置前结点的 next 指针指向插入结点；</li>
+</ol>
+例如，在链表&nbsp;<code>{1,2,3,4}</code>&nbsp;的基础上分别实现在头部、中间、尾部插入新元素 5，其实现过程如图 1 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/102350OQ-0.gif" /><br />
+	图 1 带头结点链表插入元素的 3 种情况</div>
+<br />
+从图中可以看出，虽然新元素的插入位置不同，但实现插入操作的方法是一致的，都是先执行步骤 1 ，再执行步骤 2。实现代码如下：
+<pre class="cpp">
+void insertElem(Link* p, int elem, int add) {
+    int i;
+    Link* c = NULL;
+    Link* temp = p;//创建临时结点temp
+    //首先找到要插入位置的上一个结点
+    for (i = 1; i &lt; add; i++) {
+        temp = temp-&gt;next;
+        if (temp == NULL) {
+            printf(&quot;插入位置无效\n&quot;);
+            return;
+        }
+    }
+    //创建插入结点c
+    c = (Link*)malloc(sizeof(Link));
+    c-&gt;elem = elem;
+    //① 将新结点的 next 指针指向插入位置后的结点
+    c-&gt;next = temp-&gt;next;
+    //② 将插入位置前结点的 next 指针指向插入结点；
+    temp-&gt;next = c;
+}</pre>
+<p class="info-box">
+	注意：链表插入元素的操作必须是先步骤 1，再步骤 2；反之，若先执行步骤 2，除非再添加一个指针，作为插入位置后续链表的头指针，否则会导致插入位置后的这部分链表丢失，无法再实现步骤 1。</p>
+<br />
+对于没有头结点的链表，在头部插入结点比较特殊，需要单独实现。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/102350K61-1.gif" /><br />
+	图 2 不带头结点链表插入元素的 3 种情况</div>
+<br />
+和 2)、3) 种情况相比，由于链表没有头结点，在头部插入新结点，此结点之前没有任何结点，实现的步骤如下：
+<ol>
+	<li>
+		将新结点的指针指向首元结点；</li>
+	<li>
+		将头指针指向新结点。</li>
+</ol>
+<br />
+实现代码如下：
+<pre class="cpp">
+Link* insertElem(Link* p, int elem, int add) {
+    if (add == 1) {
+        //创建插入结点c
+        Link* c = (Link*)malloc(sizeof(Link));
+        c-&gt;elem = elem;
+        c-&gt;next = p;
+        p = c;
+        return p;
+    }
+    else {
+        int i;
+        Link* c = NULL;
+        Link* temp = p;//创建临时结点temp
+        //首先找到要插入位置的上一个结点
+        for (i = 1; i &lt; add-1; i++) {
+            temp = temp-&gt;next;
+            if (temp == NULL) {
+                printf(&quot;插入位置无效\n&quot;);
+                return p;
+            }
+        }
+        //创建插入结点c
+        c = (Link*)malloc(sizeof(Link));
+        c-&gt;elem = elem;
+        //向链表中插入结点
+        c-&gt;next = temp-&gt;next;
+        temp-&gt;next = c;
+        return p;
+    }
+}</pre>
+<blockquote>
+	<p>
+		注意当 add==1 成立时，形参指针 p 的值会发生变化，因此需要它的新值作为函数的返回值返回。</p>
+</blockquote>
+<h2>
+	链表删除元素</h2>
+从链表中删除指定数据元素时，实则就是将存有该数据元素的节点从链表中摘除。<br />
+<br />
+对于有头结点的链表来说，无论删除头部（首元结点）、中部、尾部的结点，实现方式都一样，执行以下三步操作：<br />
+<ol>
+	<li>
+		找到目标元素所在结点的直接前驱结点；</li>
+	<li>
+		将目标结点从链表中摘下来;</li>
+	<li>
+		手动释放结点占用的内存空间；</li>
+</ol>
+<br />
+从链表上摘除目标节点，只需找到该节点的直接前驱节点 temp，执行如下操作：
+<pre class="cpp" shownum="false">
+temp-&gt;next=temp-&gt;next-&gt;next;</pre>
+例如，从存有&nbsp;<code>{1,2,3,4}</code>&nbsp;的链表中删除存储元素 3 的结点，则此代码的执行效果如图 3 所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1023502296-2.gif" /><br />
+	图 3 带头结点链表删除元素</div>
+<br />
+实现代码如下：
+<pre class="cpp">
+//p为原链表，elem 为要删除的目标元素
+int delElem(Link* p, int elem) {
+    Link* del = NULL, *temp = p;
+    int find = 0;
+    //1、找到目标元素的直接前驱结点
+    while (temp-&gt;next) {
+        if (temp-&gt;next-&gt;elem == elem) {
+            find = 1;
+            break;
+        }
+        temp = temp-&gt;next;
+    }
+    if (find == 0) {
+        return -1;//删除失败
+    }
+    else
+    {
+        //标记要删除的结点
+        del = temp-&gt;next;
+        //2、将目标结点从链表上摘除
+        temp-&gt;next = temp-&gt;next-&gt;next;
+        //3、释放目标结点
+        free(del);
+        return 1;
+    }
+}</pre>
+<br />
+对于不带头结点的链表，需要单独考虑删除首元结点的情况，删除其它结点的方式和图 3 完全相同，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/1023501549-3.gif" /><br />
+	图 4 不带头结点链表删除结点</div>
+<br />
+实现代码如下：
+<pre class="cpp">
+//p为原链表，elem 为要删除的目标元素
+int delElem(Link** p, int elem) {
+    Link* del = NULL, *temp = *p;
+    //删除首元结点需要单独考虑
+    if (temp-&gt;elem == elem) {
+        (*p) = (*p)-&gt;next;
+        free(temp);
+        return 1;
+    }
+    else
+    {
+        int find = 0;
+        //1、找到目标元素的直接前驱结点
+        while (temp-&gt;next) {
+            if (temp-&gt;next-&gt;elem == elem) {
+                find = 1;
+                break;
+            }
+            temp = temp-&gt;next;
+        }
+        if (find == 0) {
+            return -1;//删除失败
+        }
+        else
+        {
+            //标记要删除的结点
+            del = temp-&gt;next;
+            //2、将目标结点从链表上摘除
+            temp-&gt;next = temp-&gt;next-&gt;next;
+            //3、释放目标结点
+            free(del);
+            return 1;
+        }
+    }
+}</pre>
+函数返回 1 时，表示删除成功；返回 -1，表示删除失败。注意，该函数的形参 p 为二级指针，调用时需要传递链表头指针的地址。
+<h2>
+	链表查找元素</h2>
+在链表中查找指定数据元素，最常用的方法是：从首元结点开始依次遍历所有节点，直至找到存储目标元素的结点。如果遍历至最后一个结点仍未找到，表明链表中没有存储该元素。<br />
+<br />
+因此，链表中查找特定数据元素的 C 语言实现代码为：
+<pre class="cpp">
+//p为原链表，elem表示被查找元素
+int selectElem(Link* p, int elem) {
+    int i = 1;
+    //带头结点，p 指向首元结点
+    p = p-&gt;next;
+    while (p) {
+        if (p-&gt;elem == elem) {
+            return i;
+        }
+        p = p-&gt;next;
+        i++;
+    }
+    return -1;//返回-1，表示未找到
+}</pre>
+注意第 5 行代码，对于有结点的链表，需要先将 p 指针指向首元结点；反之，对于不带头结点的链表，注释掉第 5 行代码即可。<br />
+<h2>
+	链表更新元素</h2>
+更新链表中的元素，只需通过遍历找到存储此元素的节点，对节点中的数据域做更改操作即可。<br />
+<br />
+直接给出链表中更新数据元素的 C 语言实现代码：
+<pre class="cpp">
+//p 为有头结点的链表，oldElem 为旧元素，newElem 为新元素
+int amendElem(Link* p, int oldElem, int newElem) {
+    p = p-&gt;next;
+    while (p) {
+        if (p-&gt;elem == oldElem) {
+            p-&gt;elem = newElem;
+            return 1;
+        }
+        p = p-&gt;next;
+    }
+    return -1;
+}</pre>
+函数返回 1，表示更改成功；返回数字 -1，表示更改失败。如果是没有头结点的链表，直接删除第 3 行代码即可。<br />
+<h2>
+	总结</h2>
+以上内容详细介绍了对链表中数据元素做&quot;增删查改&quot;的实现过程及 C 语言代码，最后给大家一段完整的代码，实现对有头结点链表的&ldquo;增删查改&rdquo;：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+//链表中节点的结构
+typedef struct link {
+    int  elem;
+    struct link* next;
+}Link;
+Link* initLink() {
+    int i;
+    //1、创建头指针
+    Link* p = NULL;
+    //2、创建头结点
+    Link* temp = (Link*)malloc(sizeof(Link));
+    temp-&gt;elem = 0;
+    temp-&gt;next = NULL;
+    //头指针指向头结点
+    p = temp;
+    //3、每创建一个结点，都令其直接前驱结点的指针指向它
+    for (i = 1; i &lt; 5; i++) {
+        //创建一个结点
+        Link* a = (Link*)malloc(sizeof(Link));
+        a-&gt;elem = i;
+        a-&gt;next = NULL;
+        //每次 temp 指向的结点就是 a 的直接前驱结点
+        temp-&gt;next = a;
+        //temp指向下一个结点（也就是a),为下次添加结点做准备
+        temp = temp-&gt;next;
+    }
+    return p;
+}
+//p为链表，elem为目标元素，add为要插入的位置
+void insertElem(Link* p, int elem, int add) {
+    int i;
+    Link* c = NULL;
+    Link* temp = p;//创建临时结点temp
+    //首先找到要插入位置的上一个结点
+    for (i = 1; i &lt; add; i++) {
+        temp = temp-&gt;next;
+        if (temp == NULL) {
+            printf(&quot;插入位置无效\n&quot;);
+            return;
+        }
+    }
+    //创建插入结点c
+    c = (Link*)malloc(sizeof(Link));
+    c-&gt;elem = elem;
+    //① 将新结点的 next 指针指向插入位置后的结点
+    c-&gt;next = temp-&gt;next;
+    //② 将插入位置前结点的 next 指针指向插入结点；
+    temp-&gt;next = c;
+}
+//p为原链表，elem 为要删除的目标元素
+int delElem(Link* p, int elem) {
+    Link* del = NULL, *temp = p;
+    int find = 0;
+    //1、找到目标元素的直接前驱结点
+    while (temp-&gt;next) {
+        if (temp-&gt;next-&gt;elem == elem) {
+            find = 1;
+            break;
+        }
+        temp = temp-&gt;next;
+    }
+    if (find == 0) {
+        return -1;//删除失败
+    }
+    else
+    {
+        //标记要删除的结点
+        del = temp-&gt;next;
+        //2、将目标结点从链表上摘除
+        temp-&gt;next = temp-&gt;next-&gt;next;
+        //3、释放目标结点
+        free(del);
+        return 1;
+    }
+}
+//p为原链表，elem表示被查找元素
+int selectElem(Link* p, int elem) {
+    int i = 1;
+    //带头结点，p 指向首元结点
+    p = p-&gt;next;
+    while (p) {
+        if (p-&gt;elem == elem) {
+            return i;
+        }
+        p = p-&gt;next;
+        i++;
+    }
+    return -1;//返回-1，表示未找到
+}
+//p 为有头结点的链表，oldElem 为旧元素，newElem 为新元素
+int amendElem(Link* p, int oldElem, int newElem) {
+    p = p-&gt;next;
+    while (p) {
+        if (p-&gt;elem == oldElem) {
+            p-&gt;elem = newElem;
+            return 1;
+        }
+        p = p-&gt;next;
+    }
+    return -1;
+}
+//输出链表中各个结点的元素
+void display(Link* p) {
+    p = p-&gt;next;
+    while (p) {
+        printf(&quot;%d &quot;, p-&gt;elem);
+        p = p-&gt;next;
+    }
+    printf(&quot;\n&quot;);
+}
+//释放链表
+void Link_free(Link* p) {
+    Link* fr = NULL;
+    while (p-&gt;next)
+    {
+        fr = p-&gt;next;
+        p-&gt;next = p-&gt;next-&gt;next;
+        free(fr);
+    }
+    free(p);
+}
+int main() {
+    Link* p = initLink();
+    printf(&quot;初始化链表为：\n&quot;);
+    display(p);
+    printf(&quot;在第 3 的位置上添加元素 6：\n&quot;);
+    insertElem(p, 6, 3);
+    display(p);
+    printf(&quot;删除元素4：\n&quot;);
+    delElem(p, 4);
+    display(p);
+    printf(&quot;查找元素 2：\n&quot;);
+    printf(&quot;元素 2 的位置为：%d\n&quot;, selectElem(p, 2));
+    printf(&quot;更改元素 1 的值为 6：\n&quot;);
+    amendElem(p, 1, 6);
+    display(p);
+    Link_free(p);
+    return 0;
+}</pre>
+执行结果为：
+<p class="info-box">
+	初始化链表为：<br />
+	1 2 3 4<br />
+	在第 3 的位置上添加元素 6：<br />
+	1 2 6 3 4<br />
+	删除元素4：<br />
+	1 2 6 3<br />
+	查找元素 2：<br />
+	元素 2 的位置为：2<br />
+	更改元素 1 的值为 6：<br />
+	6 2 6 3</p>
+<h2 style="text-align: center;">
+	3、双向链表是什么</h2>
+目前我们所学到的<u><a href="/view/290.html" target="_blank">链表</a></u>，各个节点都只包含一个指针（游标），且都统一指向直接后继节点，这类链表又统称为<span style="color:#008000;">单向链表</span>或<span style="color: rgb(0, 128, 0);">单链表</span>。<br />
+<br />
+虽然单链表能 100% 存储逻辑关系为 &quot;一对一&quot; 的数据，但在解决某些实际问题时，单链表的执行效率并不高。例如，若实际问题中需要频繁地查找某个结点的前驱结点，使用单链表存储数据显然没有优势，因为单链表的强项是从前往后查找目标元素，不擅长从后往前查找元素。<br />
+<br />
+解决此类问题，可以建立<span style="color: rgb(0, 128, 0);">双向链表</span>（简称<span style="color: rgb(0, 128, 0);">双链表</span>）。
+<h2>
+	双向链表是什么</h2>
+从名字上理解双向链表，即链表是 &quot;双向&quot; 的，如图 1 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="双向链表结构示意图" src="/uploads/allimg/240114/1034036436-0.gif" /><br />
+	图 1 双向链表结构示意图</div>
+<p class="info-box">
+	&ldquo;双向&rdquo;指的是各节点之间的逻辑关系是双向的，头指针通常只设置一个。</p>
+从图 1 中可以看到，双向链表中各节点包含以下 3 部分信息（如图 2 所示）：
+<ol>
+	<li>
+		<span style="color: rgb(0, 128, 0);">指针域</span>：用于指向当前节点的直接前驱节点；</li>
+	<li>
+		<span style="color: rgb(0, 128, 0);">数据域</span>：用于存储数据元素。</li>
+	<li>
+		<span style="color: rgb(0, 128, 0);">指针域</span>：用于指向当前节点的直接后继节点；</li>
+</ol>
+<div style="text-align: center;">
+	<br />
+	<img alt="双向链表的节点构成" src="/uploads/allimg/240114/1034035164-1.gif" style="width: 272px; height: 55px;" /><br />
+	图 2 双向链表的节点构成</div>
+<br />
+因此，双链表的节点结构用 C 语言实现为：
+<pre class="cpp">
+typedef struct line{
+    struct line * prior; //指向直接前趋
+    int data;
+    struct line * next; //指向直接后继
+}Line;</pre>
+<h2>
+	双向链表的创建</h2>
+同单链表相比，双链表仅是各节点多了一个用于指向直接前驱的指针域。因此，我们可以在单链表的基础轻松实现对双链表的创建。<br />
+<br />
+需要注意的是，与单链表不同，双链表创建过程中，每创建一个新节点都要与其前驱节点建立两次联系，分别是：
+<ul>
+	<li>
+		将新节点的 prior 指针指向直接前驱节点；</li>
+	<li>
+		将直接前驱节点的 next 指针指向新节点；</li>
+</ul>
+<br />
+这里给出创建双向链表的 C 语言实现代码：
+<pre class="cpp">
+Line* initLine(Line* head) {
+    Line* list = NULL;
+    head = (Line*)malloc(sizeof(Line));//创建链表第一个结点（首元结点）
+    head-&gt;prior = NULL;
+    head-&gt;next = NULL;
+    head-&gt;data = 1;
+    list = head;
+    for (int i = 2; i &lt;= 5; i++) {
+        //创建并初始化一个新结点
+        Line* body = (Line*)malloc(sizeof(Line));
+        body-&gt;prior = NULL;
+        body-&gt;next = NULL;
+        body-&gt;data = i;
+        //直接前趋结点的next指针指向新结点
+        list-&gt;next = body;
+        //新结点指向直接前趋结点
+        body-&gt;prior = list;
+        list = list-&gt;next;
+    }
+    return head;
+}</pre>
+<br />
+我们可以尝试着在 main 函数中输出创建的双链表，C 语言代码如下：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct line {
+    struct line* prior; //指向直接前趋
+    int data;
+    struct line* next; //指向直接后继
+}Line;
+
+Line* initLine(Line* head) {
+    int i;
+    Line* list = NULL;
+    head = (Line*)malloc(sizeof(Line));//创建链表第一个结点（首元结点）
+    head-&gt;prior = NULL;
+    head-&gt;next = NULL;
+    head-&gt;data = 1;
+    list = head;
+    for (i = 2; i &lt;= 5; i++) {
+        //创建并初始化一个新结点
+        Line* body = (Line*)malloc(sizeof(Line));
+        body-&gt;prior = NULL;
+        body-&gt;next = NULL;
+        body-&gt;data = i;
+        //直接前趋结点的next指针指向新结点
+        list-&gt;next = body;
+        //新结点指向直接前趋结点
+        body-&gt;prior = list;
+        list = list-&gt;next;
+    }
+    return head;
+}
+//输出链表中的数据
+void display(Line* head) {
+    Line* temp = head;
+    while (temp) {
+        //如果该节点无后继节点，说明此节点是链表的最后一个节点
+        if (temp-&gt;next == NULL) {
+            printf(&quot;%d\n&quot;, temp-&gt;data);
+        }
+        else {
+            printf(&quot;%d &lt;-&gt; &quot;, temp-&gt;data);
+        }
+        temp = temp-&gt;next;
+    }
+}
+//释放链表中结点占用的空间
+void free_line(Line* head) {
+    Line* temp = head;
+    while (temp) {
+        head = head-&gt;next;
+        free(temp);
+        temp = head;
+    }
+}
+
+int main()
+{
+    //创建一个头指针
+    Line* head = NULL;
+    //调用链表创建函数
+    head = initLine(head);
+    //输出创建好的链表
+    display(head);
+    //显示双链表的优点
+    printf(&quot;链表中第 4 个节点的直接前驱是：%d&quot;, head-&gt;next-&gt;next-&gt;next-&gt;prior-&gt;data);
+    free_line(head);
+    return 0;
+}</pre>
+程序运行结果：
+<p class="info-box">
+	1 &lt;-&gt; 2 &lt;-&gt; 3 &lt;-&gt; 4 &lt;-&gt; 5<br />
+	链表中第 4 个节点的直接前驱是：3</p>
+<h2 style="text-align: center;">
+	4、双向链表基本操作</h2>
+前面学习了如何创建一个<u><a href="/view/294.html" target="_blank">双向链表</a></u>，本节学习有关双向<u><a href="/view/290.html" target="_blank">链表</a></u>的一些基本操作，即如何在双向链表中添加、删除、查找或更改数据元素。<br />
+<br />
+本节知识基于已熟练掌握双向链表创建过程的基础上，我们继续上节所创建的双向链表来学习本节内容，创建好的双向链表如图 1 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="双向链表示意图" src="/uploads/allimg/240114/103Q91292-0.gif" /><br />
+	图 1 双向链表示意图</div>
+<h2>
+	双向链表添加节点</h2>
+根据数据添加到双向链表中的位置不同，可细分为以下 3 种情况：<br />
+<h4>
+	1) 添加至表头</h4>
+将新数据元素添加到表头，只需要将该元素与表头元素建立双层逻辑关系即可。<br />
+<br />
+换句话说，假设新元素节点为 temp，表头节点为 head，则需要做以下 2 步操作即可：
+<ol>
+	<li>
+		temp-&gt;next=head; head-&gt;prior=temp;</li>
+	<li>
+		将 head 移至 temp，重新指向新的表头；</li>
+</ol>
+<br />
+例如，将新元素 7 添加至双链表的表头，则实现过程如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="添加元素至双向链表的表头" src="/uploads/allimg/240114/103Q911V-1.gif" /><br />
+	图 2 添加元素至双向链表的表头</div>
+<h4>
+	2) 添加至表的中间位置</h4>
+同单链表添加数据类似，双向链表中间位置添加数据需要经过以下 2 个步骤，如图 3 所示：
+<ol>
+	<li>
+		新节点先与其直接后继节点建立双层逻辑关系；</li>
+	<li>
+		新节点的直接前驱节点与之建立双层逻辑关系；</li>
+</ol>
+<div style="text-align: center;">
+	<br />
+	<img alt="双向链表中间位置添加数据元素" src="/uploads/allimg/240114/103Qa960-2.gif" /><br />
+	图 3 双向链表中间位置添加数据元素</div>
+<h4>
+	3) 添加至表尾</h4>
+与添加到表头是一个道理，实现过程如下（如图 4 所示）：
+<ol>
+	<li>
+		找到双链表中最后一个节点；</li>
+	<li>
+		让新节点与最后一个节点进行双层逻辑关系；</li>
+</ol>
+<div style="text-align: center;">
+	<br />
+	<img alt="双向链表尾部添加数据元素" src="/uploads/allimg/240114/103QaK0-3.gif" /><br />
+	图 4 双向链表尾部添加数据元素</div>
+<br />
+因此，我们可以试着编写双向链表添加数据的 C 语言代码，参考代码如下：
+<pre class="cpp">
+Line* insertLine(Line* head, int data, int add) {
+    //新建数据域为data的结点
+    Line* temp = (Line*)malloc(sizeof(Line));
+    temp-&gt;data = data;
+    temp-&gt;prior = NULL;
+    temp-&gt;next = NULL;
+    //插入到链表头，要特殊考虑
+    if (add == 1) {
+        temp-&gt;next = head;
+        head-&gt;prior = temp;
+        head = temp;
+    }
+    else {
+        int i;
+        Line* body = head;
+        //找到要插入位置的前一个结点
+        for (i = 1; i &lt; add - 1; i++) {
+            body = body-&gt;next;
+            //只要 body 不存在，表明插入位置输入错误
+            if (!body) {
+                printf(&quot;插入位置有误！\n&quot;);
+                return head;
+            }
+        }
+        //判断条件为真，说明插入位置为链表尾，实现第 2 种情况
+        if (body &amp;&amp; (body-&gt;next == NULL)) {
+            body-&gt;next = temp;
+            temp-&gt;prior = body;
+        }
+        else {
+            //第 2 种情况的具体实现
+            body-&gt;next-&gt;prior = temp;
+            temp-&gt;next = body-&gt;next;
+            body-&gt;next = temp;
+            temp-&gt;prior = body;
+        }
+    }
+    return head;
+}</pre>
+<h2>
+	双向链表删除节点</h2>
+和添加结点的思想类似，在双向链表中删除目标结点也分为 3 种情况。<br />
+<h4>
+	1) 删除表头结点</h4>
+删除表头结点的过程如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/103Q93260-4.gif" /><br />
+	图 5 删除双链表表头元素</div>
+<br />
+删除表头结点的实现过程是：
+<ol>
+	<li>
+		新建一个指针指向表头结点；</li>
+	<li>
+		断开表头结点和其直接后续结点之间的关联，更改 head 头指针的指向，同时将其直接后续结点的 prior 指针指向 NULL；</li>
+	<li>
+		释放表头结点占用的内存空间。</li>
+</ol>
+<h4>
+	2) 删除表中结点</h4>
+删除表中结点的过程如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="双链表删除元素操作示意图" src="/uploads/allimg/240114/103QaY5-5.gif" style="text-align: center;" /><br />
+	图 6 删除表中结点</div>
+删除表中结点的实现过程是：
+<ol>
+	<li>
+		找到目标结点，新建一个指针指向改结点；</li>
+	<li>
+		将目标结点从链表上摘除；</li>
+	<li>
+		释放该结点占用的内存空间。</li>
+</ol>
+<h4>
+	3) 删除表尾结点</h4>
+删除表尾结点的过程如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/240114/103Q919E-6.gif" /><br />
+	图 7 删除表尾结点</div>
+<br />
+删除表尾结点的实现过程是：
+<ol>
+	<li>
+		找到表尾结点，新建一个指针指向该结点；</li>
+	<li>
+		断点表尾结点和其直接前驱结点的关联，并将其直接前驱结点的 next 指针指向 NULL；</li>
+	<li>
+		释放表尾结点占用的内存空间。</li>
+</ol>
+<br />
+双向链表删除节点的 C 语言实现代码如下：
+<pre class="cpp">
+//删除结点的函数，data为要删除结点的数据域的值
+Line* delLine(Line* head, int data) {
+    Line* temp = head;
+    while (temp) {
+        if (temp-&gt;data == data) {
+            //删除表头结点
+            if (temp-&gt;prior == NULL) {
+                head = head-&gt;next;
+                if (head) {
+                    head-&gt;prior = NULL;
+                    temp-&gt;next = NULL;
+                }
+                free(temp);
+                return head;
+            }
+            //删除表中结点
+            if (temp-&gt;prior &amp;&amp; temp-&gt;next) {
+                temp-&gt;next-&gt;prior = temp-&gt;prior;
+                temp-&gt;prior-&gt;next = temp-&gt;next;
+                free(temp);
+                return head;
+            }
+            //删除表尾结点
+            if (temp-&gt;next == NULL) {
+                temp-&gt;prior-&gt;next = NULL;
+                temp-&gt;prior = NULL;
+                free(temp);
+                return head;
+            }
+        }
+        temp = temp-&gt;next;
+    }
+    printf(&quot;表中没有目标元素，删除失败\n&quot;);
+    return head;
+}</pre>
+<h2>
+	双向链表查找节点</h2>
+通常情况下，双向链表和单链表一样都仅有一个头指针。因此，双链表查找指定元素的实现同单链表类似，也是从表头依次遍历表中元素。<br />
+<br />
+C 语言实现代码为：
+<pre class="cpp">
+//head为原双链表，elem表示被查找元素
+int selectElem(line * head,int elem){
+//新建一个指针t，初始化为头指针 head
+    line * t=head;
+    int i=1;
+    while (t) {
+        if (t-&gt;data==elem) {
+            return i;
+        }
+        i++;
+        t=t-&gt;next;
+    }
+    //程序执行至此处，表示查找失败
+    return -1;
+}</pre>
+<h2>
+	双向链表更改节点</h2>
+更改双链表中指定结点数据域的操作是在查找的基础上完成的。实现过程是：通过遍历找到存储有该数据元素的结点，直接更改其数据域即可。<br />
+<br />
+实现此操作的 C 语言实现代码如下：
+<pre class="cpp">
+//更新函数，其中，add 表示要修改的元素，newElem 为新数据的值
+void amendElem(Line* p, int oldElem, int newElem) {
+    Line* temp = p;
+    int find = 0;
+    //找到要修改的目标结点
+    while (temp)
+    {
+        if (temp-&gt;data == oldElem) {
+            find = 1;
+            break;
+        }
+        temp = temp-&gt;next;
+    }
+    //成功找到，则进行更改操作
+    if (find == 1) {
+        temp-&gt;data = newElem;
+        return;
+    }
+    //查找失败，输出提示信息
+    printf(&quot;链表中未找到目标元素，更改失败\n&quot;);
+}</pre>
+<h2>
+	总结</h2>
+这里给出双链表中对数据进行 &quot;增删查改&quot; 操作的完整实现代码：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct line {
+    struct line* prior; //指向直接前趋
+    int data;
+    struct line* next; //指向直接后继
+}Line;
+
+Line* initLine(Line* head) {
+    int i;
+    Line* list = NULL;
+    head = (Line*)malloc(sizeof(Line));//创建链表第一个结点（首元结点）
+    head-&gt;prior = NULL;
+    head-&gt;next = NULL;
+    head-&gt;data = 1;
+    list = head;
+    for (i = 2; i &lt;= 5; i++) {
+        //创建并初始化一个新结点
+        Line* body = (Line*)malloc(sizeof(Line));
+        body-&gt;prior = NULL;
+        body-&gt;next = NULL;
+        body-&gt;data = i;
+        //直接前趋结点的next指针指向新结点
+        list-&gt;next = body;
+        //新结点指向直接前趋结点
+        body-&gt;prior = list;
+        list = list-&gt;next;
+    }
+    return head;
+}
+
+void display(Line* head) {
+    Line* temp = head;
+    while (temp) {
+        //如果该节点无后继节点，说明此节点是链表的最后一个节点
+        if (temp-&gt;next == NULL) {
+            printf(&quot;%d\n&quot;, temp-&gt;data);
+        }
+        else {
+            printf(&quot;%d &lt;-&gt; &quot;, temp-&gt;data);
+        }
+        temp = temp-&gt;next;
+    }
+}
+
+//删除结点的函数，data为要删除结点的数据域的值
+Line* delLine(Line* head, int data) {
+    Line* temp = head;
+    while (temp) {
+        if (temp-&gt;data == data) {
+            //删除表头结点
+            if (temp-&gt;prior == NULL) {
+                head = head-&gt;next;
+                if (head) {
+                    head-&gt;prior = NULL;
+                    temp-&gt;next = NULL;
+                }
+                free(temp);
+                return head;
+            }
+            //删除表中结点
+            if (temp-&gt;prior &amp;&amp; temp-&gt;next) {
+                temp-&gt;next-&gt;prior = temp-&gt;prior;
+                temp-&gt;prior-&gt;next = temp-&gt;next;
+                free(temp);
+                return head;
+            }
+            //删除表尾结点
+            if (temp-&gt;next == NULL) {
+                temp-&gt;prior-&gt;next = NULL;
+                temp-&gt;prior = NULL;
+                free(temp);
+                return head;
+            }
+        }
+        temp = temp-&gt;next;
+    }
+    printf(&quot;表中没有目标元素，删除失败\n&quot;);
+    return head;
+}
+
+//head为原双链表，elem表示被查找元素
+int selectElem(Line* head, int elem) {
+    //新建一个指针t，初始化为头指针 head
+    Line* t = head;
+    int i = 1;
+    while (t) {
+        if (t-&gt;data == elem) {
+            return i;
+        }
+        i++;
+        t = t-&gt;next;
+    }
+    //程序执行至此处，表示查找失败
+    return -1;
+}
+
+//更新函数，其中，add 表示要修改的元素，newElem 为新数据的值
+void amendElem(Line* p, int oldElem, int newElem) {
+    Line* temp = p;
+    int find = 0;
+    //找到要修改的目标结点
+    while (temp)
+    {
+        if (temp-&gt;data == oldElem) {
+            find = 1;
+            break;
+        }
+        temp = temp-&gt;next;
+    }
+    //成功找到，则进行更改操作
+    if (find == 1) {
+        temp-&gt;data = newElem;
+        return;
+    }
+    //查找失败，输出提示信息
+    printf(&quot;链表中未找到目标元素，更改失败\n&quot;);
+}
+//释放链表中结点占用的内存空间
+void free_line(Line* head) {
+    Line* temp = head;
+    while (temp) {
+        head = head-&gt;next;
+        free(temp);
+        temp = head;
+    }
+}
+
+int main()
+{
+    //创建一个头指针
+    Line* head = NULL;
+    //调用链表创建函数
+    head = initLine(head);
+    printf(&quot;创建好的双向链表为:\n&quot;);
+    display(head);
+
+    printf(&quot;删除元素 2:\n&quot;);
+    head = delLine(head, 2);
+    display(head);
+
+    printf(&quot;元素 3 的位置是：%d\n&quot;, selectElem(head, 3));
+  
+    printf(&quot;表中的元素 3 改为 6:\n&quot;);
+    amendElem(head, 3, 6);
+    display(head);
+
+    free_line(head);
+    return 0;
+}</pre>
+程序执行结果为：
+<p class="info-box">
+	创建好的双向链表为:<br />
+	1 &lt;-&gt; 2 &lt;-&gt; 3 &lt;-&gt; 4 &lt;-&gt; 5<br />
+	删除元素 2:<br />
+	1 &lt;-&gt; 3 &lt;-&gt; 4 &lt;-&gt; 5<br />
+	元素 3 的位置是：2<br />
+	表中的元素 3 改为 6:<br />
+	1 &lt;-&gt; 6 &lt;-&gt; 4 &lt;-&gt; 5</p>
+<h2 style="text-align: center;">
+	5、循环链表是什么</h2>
+无论是<u><a href="/view/163.html" target="_blank">静态链表</a></u>还是动态<u><a href="/view/290.html" target="_blank">链表</a></u>，有时在解决具体问题时，需要我们对其结构进行稍微地调整。比如，可以把链表的两头连接，使其成为了一个环状链表，通常称为<span style="color:#008000;">循环链表</span><span style="color:#b22222;">。</span><br />
+<br />
+和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，链表就能成环儿，如图 1 所示。
+<div style="text-align: center;">
+	<br />
+	<img alt="" src="/uploads/allimg/170718/2-1FGQ54T3422.png" /></div>
+<div style="text-align: center;">
+	图1 循环链表</div>
+<div>
+	&nbsp;</div>
+<p class="info-box">
+	需要注意的是，虽然循环链表成环状，但本质上还是链表，因此在循环链表中，依然能够找到头指针和首元节点等。循环链表和普通链表相比，唯一的不同就是循环链表首尾相连，其他都完全一样。</p>
+<h2>
+	循环链表实现约瑟夫环</h2>
+约瑟夫环问题，是一个经典的循环链表问题，题意是：已知 n 个人（分别用编号 1，2，3，&hellip;，n 表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的下一个人又从 1 开始，还是顺时针开始报数，数到 m 的那个人又出列；依次重复下去，直到圆桌上剩余一个人。<br />
+<br />
+如图 2 所示，假设此时圆周周围有 5 个人，要求从编号为 3 的人开始顺时针数数，数到 2 的那个人出列：
+<div style="text-align: center;">
+	<br />
+	<img alt="循环链表实现约瑟夫环" src="/uploads/allimg/170718/2-1FGQ54403413.png" /><br />
+	图 2 循环链表实现约瑟夫环</div>
+<br />
+出列顺序依次为：<br />
+<ul>
+	<li>
+		编号为 3 的人开始数 1，然后 4 数 2，所以 4 先出列；</li>
+	<li>
+		4 出列后，从 5 开始数 1，1 数 2，所以 1 出列；</li>
+	<li>
+		1 出列后，从 2 开始数 1，3 数 2，所以 3 出列；</li>
+	<li>
+		3 出列后，从 5 开始数 1，2 数 2，所以 2 出列；</li>
+	<li>
+		最后只剩下 5 自己，所以 5 胜出。</li>
+</ul>
+<p class="info-box">
+	约瑟夫环问题有多种变形，比如顺时针转改为逆时针等，虽然问题的细节有多种变数，但解决问题的中心思想是一样的，即使用循环链表。</p>
+通过以上的分析，我们可以尝试编写 C 语言代码，完整代码如下所示：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct node {
+    int number;
+    struct node * next;
+}person;
+person * initLink(int n) {
+    int i = 0;
+    person * head = NULL, *cyclic = NULL;
+    head = (person*)malloc(sizeof(person));
+    head-&gt;number = 1;
+    head-&gt;next = NULL;
+    cyclic = head;
+    for (i = 2; i &lt;= n; i++) {
+        person * body = (person*)malloc(sizeof(person));
+        body-&gt;number = i;
+        body-&gt;next = NULL;
+        cyclic-&gt;next = body;
+        cyclic = cyclic-&gt;next;
+    }
+    cyclic-&gt;next = head;//首尾相连
+    return head;
+}
+
+void findAndKillK(person * head, int k, int m) {
+    person * p = NULL;
+    person * tail = head;
+    //找到链表第一个结点的上一个结点，为删除操作做准备
+    while (tail-&gt;next != head) {
+        tail = tail-&gt;next;
+    }
+    p = head;
+    //找到编号为k的人
+    while (p-&gt;number != k) {
+        tail = p;
+        p = p-&gt;next;
+    }
+    //从编号为k的人开始，只有符合p-&gt;next==p时，说明链表中除了p结点，所有编号都出列了，
+    while (p-&gt;next != p) {
+        int i = 0;
+        //找到从p报数1开始，报m的人，并且还要知道数m-1de人的位置tail，方便做删除操作。
+        for (i = 1; i &lt; m; i++) {
+            tail = p;
+            p = p-&gt;next;
+        }
+        tail-&gt;next = p-&gt;next;//从链表上将p结点摘下来
+        printf(&quot;出列人的编号为:%d\n&quot;, p-&gt;number);
+        free(p);
+        p = tail-&gt;next;//继续使用p指针指向出列编号的下一个编号，游戏继续
+    }
+    printf(&quot;出列人的编号为:%d\n&quot;, p-&gt;number);
+    free(p);
+}
+
+int main() {
+    int n = 0, k = 0, m = 0;
+    person * head = NULL;
+    printf(&quot;输入圆桌上的人数:&quot;);
+    scanf(&quot;%d&quot;, &amp;n);
+    head = initLink(n);
+    printf(&quot;从第几个人开始报数(k&gt;1且k&lt;%d)：&quot;, n);
+    scanf(&quot;%d&quot;, &amp;k);
+    printf(&quot;数到几的人出列：&quot;);
+    scanf(&quot;%d&quot;, &amp;m);
+    findAndKillK(head, k, m);
+    return 0;
+}</pre>
+输出结果：
+<p class="info-box">
+	输入圆桌上的人数:5<br />
+	从第几个人开始报数(k&gt;1且k&lt;5)：3<br />
+	数到几的人出列：2<br />
+	出列人的编号为:4<br />
+	出列人的编号为:1<br />
+	出列人的编号为:3<br />
+	出列人的编号为:2<br />
+	出列人的编号为:5</p>
+最后出列的人，即为胜利者。当然，你也可以改进程序，令查找出最后一个人时，输出此人胜利的信息。
+<h2>
+	总结</h2>
+循环链表和动态链表唯一不同在于它的首尾连接，这也注定了在使用循环链表时，附带最多的操作就是遍历链表。<br />
+<br />
+在遍历的过程中，尤其要注意循环链表虽然首尾相连，但并不表示该链表没有第一个节点和最后一个结点。所以，不要随意改变头指针的指向。
+<h2 style="text-align: center;">
+	6、双向循环链表是什么</h2>
+我们知道，单链表通过首尾连接可以构成单向循环链表，如图 1 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="单向循环链表示意图" src="/uploads/allimg/240114/154P14091-0.gif" /><br />
+	图 1 单向循环链表示意图</div>
+<br />
+同样，双向链表也可以进行首尾连接，构成<span style="color: rgb(0, 128, 0);">双向循环链表</span>。如图 2 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="双向循环链表示意图" src="/uploads/allimg/240114/154P122E-1.gif" /><br />
+	图 2 双向循环链表示意图</div>
+<br />
+解决某些问题，可能既需要正向遍历数据，又需要逆向遍历数据，这时就可以考虑使用双向循环链表。<br />
+<h2>
+	双向循环链表的创建</h2>
+创建双向循环链表，只需在创建完成双向链表的基础上，将其首尾节点进行双向连接即可。<br />
+<br />
+C 语言实现代码如下：
+<pre class="cpp">
+//创建双向循环链表
+Line* initLine(Line* head) {
+    int i;
+    Line* list = NULL;
+    head = (Line*)malloc(sizeof(Line));//创建链表第一个结点（首元结点）
+    head-&gt;prior = NULL;
+    head-&gt;next = NULL;
+    head-&gt;data = 1;
+    list = head;
+    for (i = 2; i &lt;= 3; i++) {
+        //创建并初始化一个新结点
+        Line* body = (Line*)malloc(sizeof(Line));
+        body-&gt;prior = NULL;
+        body-&gt;next = NULL;
+        body-&gt;data = i;
+        //直接前趋结点的next指针指向新结点
+        list-&gt;next = body;
+        //新结点指向直接前趋结点
+        body-&gt;prior = list;
+        list = list-&gt;next;
+    }
+    //通过以上代码，已经创建好双线链表，接下来将链表的首尾节点进行双向连接
+    list-&gt;next=head;
+    head-&gt;prior=list;
+    return head;
+}</pre>
+<br />
+通过向 main 函数中调用 initLine 函数，就可以成功创建一个存储有&nbsp;<code style="font-size: 14px;">{1,2,3}</code>&nbsp;数据的双向循环链表，其完整的 C 语言实现代码为：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+typedef struct line {
+    struct line* prior; //指向直接前趋
+    int data;
+    struct line* next; //指向直接后继
+}Line;
+//创建双向循环链表
+Line* initLine(Line* head) {
+    int i;
+    Line* list = NULL;
+    head = (Line*)malloc(sizeof(Line));//创建链表第一个结点（首元结点）
+    head-&gt;prior = NULL;
+    head-&gt;next = NULL;
+    head-&gt;data = 1;
+    list = head;
+    for (i = 2; i &lt;= 3; i++) {
+        //创建并初始化一个新结点
+        Line* body = (Line*)malloc(sizeof(Line));
+        body-&gt;prior = NULL;
+        body-&gt;next = NULL;
+        body-&gt;data = i;
+        //直接前趋结点的next指针指向新结点
+        list-&gt;next = body;
+        //新结点指向直接前趋结点
+        body-&gt;prior = list;
+        list = list-&gt;next;
+    }
+    //通过以上代码，已经创建好双线链表，接下来将链表的首尾节点进行双向连接
+    list-&gt;next = head;
+    head-&gt;prior = list;
+    return head;
+}
+//输出链表中的数据
+void display(Line* head) {
+    Line* temp = head;
+    //由于是循环链表，所以当遍历指针temp指向的下一个节点是head时，证明此时已经循环至链表的最后一个节点
+    while (temp-&gt;next != head) {
+        if (temp-&gt;next == NULL) {
+            printf(&quot;%d\n&quot;, temp-&gt;data);
+        }
+        else {
+            printf(&quot;%d-&gt;&quot;, temp-&gt;data);
+        }
+        temp = temp-&gt;next;
+    }
+    //输出循环链表中最后一个节点的值
+    printf(&quot;%d&quot;, temp-&gt;data);
+}
+//释放链表中结点占用的空间
+void free_line(Line* head) {
+    Line* temp = NULL;
+    //切断循环
+    head-&gt;prior-&gt;next = NULL;
+    //从第一个结点开始，依次 free
+    temp = head;
+    while (temp) {
+        head = head-&gt;next;
+        free(temp);
+        temp = head;
+    }
+}
+
+int main()
+{
+    //创建一个头指针
+    Line* head = NULL;
+    //调用链表创建函数
+    head = initLine(head);
+    //输出创建好的链表
+    display(head);
+    //手动释放链表占用的内存
+    free_line(head);
+    return 0;
+}</pre>
+程序输出结果如下：
+<p class="info-box">
+	1-&gt;2-&gt;3</p>
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 618;
+window.arcId = "eb40/vOBJgfalEwcUrSyj+4v3I6E+DWSJR0CzHLw1W9Dyl22+VRNZ3noXA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
