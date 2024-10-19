@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C/C++ Windows客户端开发学习路线（超级肝）</title>
+<meta name="keywords" content="C++,Windows,客户端,开发,学习,路线,超级,肝," />
+<meta name="description" content="和 Mac OS、Linux 操作系统相比，Windows 系统的市场占用率一直遥遥领先。据 Statcounter 统计的数据显示，截止到 2021 年 7 月份，Windows 系统的市场占用率为 74.79%，远高于其它操作系统。 Wi" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C/C++ Windows客户端开发学习路线（超级肝）</h1>
+			<div id="arc-body">和 Mac OS、Linux 操作系统相比，Windows 系统的市场占用率一直遥遥领先。据 Statcounter 统计的数据显示，截止到 2024 年 10 月份，Windows 系统的市场占用率为 70%，远高于其它操作系统。<br />
+<br />
+Windows 客户端开发又称 Windows 桌面程序开发或者 Windows GUI 开发，指的是开发和维护在 Windows 系统上运行的应用程序，例如 Microsoft Office、Adobe PhotoShop、QQ、迅雷、微信等。<br />
+<br />
+很多小伙伴都对 Windows GUI 开发感兴趣，期望做出一款炫酷拉风的软件，但是又不知道具体的学习路线，比如：
+<ul>
+	<li>
+		需要掌握哪些技能，每种技能都需要掌握到什么程度？</li>
+	<li>
+		先学什么，再学什么，具体学习顺序是怎样的？</li>
+	<li>
+		哪些技能可以暂时跳过，哪些技能可以浅尝辄止，哪些技能必须深入学习？</li>
+	<li>
+		自己玩该怎么学习，找工作该怎么学习？</li>
+</ul>
+<br />
+如果你也有这些困惑，请一定要耐心读完这篇文章，我将帮你梳理出一个完整的 Windows GUI 开发学习路线。<br />
+<br />
+和互联网上其他博主分享的学习路线相比，这套学习路线不仅更加完整和详细，而且还会帮你做出选择和取舍，让你尽快学有所成，找到成就感和满足感。<br />
+<br />
+注意，拥有选择权是一件非常重要的事情！<br />
+<br />
+Windows GUI 开发涉及到的技能板块非常繁杂，短期内不可能全部都掌握，为了加快学习进度，尽早开发出一款实用的软件，我们需要暂时先舍弃一些技能，或者对一些技能浅尝辄止，等到以后有余力了再回来学习。<br />
+<br />
+这套学习路线就肩负了这个使命，它将告诉你各种技能在不同场景下的重要程度，让你知道如何选择，避免折腾和踩坑。<br />
+<h2 style="text-align: center;">
+	Windows GUI 开发前景</h2>
+学习 Windows GUI 编程之前，你肯定也想了解一下它的发展前景，但是这里不得不泼一盆冷水，当下 Windows GUI 开发算是一个比较冷门的方向。<br />
+<br />
+虽然 Windows 系统的用户基数很大，但是随着云计算和浏览器的不断发展，很多常见功能都可以通过网站来提供了。网站的一个巨大优势是可以跨平台，只需一次开发，就能够在不同操作系统、不同硬件设备上使用，节省了大量的时间和成本。<br />
+<br />
+客户端程序已经不再是各个互联网公司率先考虑的平台，只有那些运算量大、数据量大的软件，才会考虑开发客户端程序。<br />
+<br />
+因此从整体上看，现阶段 Windows 客户端开发的岗位需求并不大，很多岗位都是负责现有客户端程序的维护和更新工作，只有少数的一些公司有开发全新 Windows 客户端软件的需求。<br />
+<h2 style="text-align: center;">
+	Windows GUI 主流技术</h2>
+虽然这篇文章我主要梳理 C/C++ 开发 Windows GUI 程序的学习路线，但你也需要知道，很多编程语言都可以开发 Windows GUI 程序，包括 C/C++、C#、JavaScript、Java、Python、易语言等。<br />
+<br />
+目前主流的 Windows GUI 开发方案有三种，分别是：<br />
+<ul>
+	<li>
+		使用 C/C++ 语言开发，需要用到&nbsp;Qt、MFC、WTL 等框架；</li>
+	<li>
+		使用 C#（CSharp）开发，需要用到&nbsp;Winform 和 WPF 框架；</li>
+	<li>
+		基于 Chromium 和 Node.js 的 Electron，让你可以使用 HTML、CSS 和 JavaScript 开发 Windows GUI 程序，微软发布的 Visual Studio Code 就是用此技术开发的。</li>
+</ul>
+<br />
+这些方案各有优缺点，例如：
+<ul>
+	<li>
+		C/C++ 程序的运行效率高，但开发效率不如 C# 和 Electron；</li>
+	<li>
+		Electron 具有很好的跨平台特性，但编写的软件安装包通常比较大，程序第一次启动时较慢。</li>
+</ul>
+<br />
+开发不同的 Windows 客户端产品，公司会基于成本、开发效率等因素综合考虑选用最合适的开发方案。
+<h2 style="text-align: center;">
+	Windows GUI 学习路线</h2>
+<h2>
+	1. C/C++</h2>
+既然用 C/C++ 开发 Windows GUI 程序，首先要掌握的必然是C语言和 C++。<br />
+<br />
+事实上，只学习 C语言也能进行 Windows GUI 开发，也能做出类似 QQ、迅雷等待界面的程序，但C语言开发效率低，第三方库较少，实际项目中没有程序员会这样做，大家都转向了 C++。<br />
+<br />
+我强烈建议先学习 <a href="/c/" target="_blank">C语言</a>，然后再学习 C++。
+<h4>
+	C语言和 C++</h4>
+C++ 和 C语言虽然是两种编程语言，但它们的关系非常密切。您可以这样理解，C++ 是在 C语言的基础上发展来的，C++ 在 C语言的基础上增加了很多新的特性，玩出了新花样，大大提高了开发效率。因此学习了 C语言也就学习了 C++ 的一半，从 C语言转向 C++ 时，不需要再从头开始，接着 C语言往下学就可以。<br />
+<br />
+如果你没有任何编程基础，我建议先从 C语言学起，等熟悉了 C语言，能编写上百行的代码了，这个时候再去了解 C++ 究竟在 C语言基础上增加了什么，你就站在了一定的高度。<br />
+<br />
+有人可能会问，能不能跳过 C语言直接学习 C++ 呢？原则上是可以的，但是初学者直接学习 C++ 会比较吃力，尤其在对计算机底层知识不太理解的情况下，C++ 是很难学懂的，所以不建议你直接学习 C++。<br />
+<br />
+另外，就算你直接学习 C++，也要先学习 C语言部分，然后才能学习 C++ 的新增特性。
+<h4>
+	注意</h4>
+编程语言是一种工具，是为项目服务的，我们应该尽快着手开发自己想要的软件，而不是陷在编程语言的泥潭里拔不出来，纠缠于各种语法细节。<br />
+<br />
+初学者花费两个月左右的时间就能掌握 C/C++ 常用语法，并初步建立起编程思维，做出类似学生信息管理系统这样的&ldquo;小玩意&rdquo;，此时你的 C/C++ 水平就足够支撑后续的学习了。<br />
+<br />
+当然，如果你想找一份 GUI 开发工作，尤其是进大厂，C/C++ 一定要玩得非常溜。这个可以在后续的实际项目开发中逐步深入，并在找工作之前进行一下突击。<br />
+<br />
+只有亲自做过项目，才能知道哪里是重点，才能有的放矢，才能节省学习时间；如果一开始就陷进编程语言的沼泽中，捣鼓那些万年不用的&ldquo;语法糖&rdquo;，那么只会让自己越学越吐血，逐渐消磨掉兴趣和热情。<br />
+<h2>
+	2. 数据结构和算法</h2>
+<a href="/ds/" target="_blank">数据结构和算法</a>本质上是两门课程，但是它们之间又相互依赖，有时候很难分得一清二楚，所以很多教材喜欢将它们掺杂到一起，讲解数据结构的时候也会涉及一些常见算法。<br />
+<br />
+数据结构研究数据的存储和读取方式，算法研究解决问题的方法和步骤；在不同的开发场景中，需要采用不同的数据结构和算法。<br />
+<br />
+数据结构和算法的选择会极大影响程序的运行效率和资源占用，一种高效的数据结构和算法的组合，有时候能让程序的综合性能提升一个数量级。<br />
+<br />
+数据结构和算法设计极其考验一个程序员的逻辑思维能力和问题解决能力，一个强者往往胜过十个臭皮匠。那些在大厂搞算法的程序员，工资往往都比那些搞软件开发/应用开发的程序员高一截，年薪百万都司空见惯。<br />
+<br />
+总起来说，数据结构和算法是一个程序员最硬核的能力之一。<br />
+<br />
+在实际开发中，常见的数据结构和算法其实都已经被编程语言/库/框架封装好了，很多时候你不用自己手撸代码去实现，只需要调用一下 API（接口）就行。但是，调用 API 之前你需要知道它的优势和劣势，明确它能够胜任的具体场景，此时就需要你了解数据结构和算法的底层原理。<br />
+<br />
+也就是说，学习数据结构和算法的目的并不一定是手写代码，而是知道如何使用现有的 API，让自己掌握选择权。
+<h4>
+	需要学到什么程度？</h4>
+如果你想找一份靠谱的工作，尤其是进大厂/独角兽，那么就要认真研究一下常用的数据结构和算法，并亲自手撸代码去实现一遍。<br />
+<br />
+当然，为了尽快做出软件并找到成就感，你可以暂时先简单了解一下常用的数据结构和算法，然后就准备着手开发，等到找工作之前再回来恶补。想进大厂的小伙伴要辛苦一点啦，需要多刷一些算法题。<br />
+<br />
+如果你只是想自己捣鼓一些 GUI 程序，那么只需要简单地了解一下常用的数据结构和算法，不用自己手撸代码去实现。<br />
+<br />
+好吧，不得不承认，即使你不学习数据结构和算法，很多时候也不影响程序的使用。<br />
+<h2>
+	3. 链接库</h2>
+中大型程序往往都需要以模块化的方式进行开发，对于 C/C++ 而言，所谓的模块就是链接库，具体来说包括动态链接库和静态链接库。
+<ul>
+	<li>
+		Windows 下的动态链接库文件后缀是.dll，静态链接库文件后缀是.lib。Linux 下的动态链接库文件后缀是.so，静态链接库文件后缀是.a。</li>
+	<li>
+		动态链接库在程序运行阶段被加载，静态链接库在程序编译阶段被合并，它们各有优缺点，适用于不同的场景。</li>
+</ul>
+<br />
+实际开发中我们会经常和各种库打交道，包括 C/C++ 标准库、系统库、第三方库和自己编写的库。不管你是找工作还是自己捣鼓软件，都需要学习链接库，即使你不自己开发链接库，也需要调用别人的链接库。<br />
+<br />
+学习链接库，重点是掌握两种库的使用方法和制作方法，并搞清楚它们的优缺点和适用场景。<br />
+<h2>
+	4. 并发编程</h2>
+现阶段，计算机 CPU 频率的增长速率已经趋于平缓，正在往多核的方向发展。并发编程指的就是充分利用 CPU 多核的计算能力，让计算机同时执行多个任务，提高程序的整体性能。<br />
+<br />
+并发编程的实现方式主要有两种，分别是多进程编程和多线程编程，两种方式各有优缺点。一般情况下，并发编程通常采用多线程编程来实现。<br />
+<br />
+多进程/线程编程不仅是笔试面试的必考知识点，也是实际开发中常用的技术，每个程序员都必须熟练掌握，尤其是多线程编程。<br />
+<br />
+并发编程的实现方式有多种，可以调用 Windows API，也可以调用 C/C++ 标准库或者第三方库。<br />
+<br />
+如果你想找一份靠谱的工作，最好先从 Windows API 开始学习，然后再熟悉 C/C++ 标准库或者第三方库的使用方法。多线程是 Windows 系统内核提供的功能，学习 Windows API 能够从底层搞明白多线程的工作原理。<br />
+<br />
+如果你只是想自己捣鼓一个软件，那就看着办吧，怎么方便怎么来，多线程的底层原理貌似没有那么重要。<br />
+<h2>
+	5. 网络编程</h2>
+网络编程有时候也称 Socket 编程，是一种联网计算机之间交换数据的技术。
+<blockquote>
+	<p>
+		如果你没有听说过 Socket 编程，那你肯定听说过 TCP/IP 协议，它们基本上是一个东西。</p>
+</blockquote>
+也就是说，学习网络编程就是学习计算机之间如何通信，并用编程语言来实现它。只有掌握了网络编程，才能开发出连接互联网的程序。<br />
+<br />
+每个程序员都需要学习网络编程，并了解它的底层原理。对于用户数量众多的软件，网络通信至关重要，扛不住高并发可能会导致服务器宕机。<br />
+<br />
+越是大型的互联网公司就越是重视网络编程，如果你想进大厂，我建议你一定要好好研究一下。<br />
+<br />
+目前流行的网络库也有很多，但是大部分都是针对服务器端的，比如著名的 C++ 网络编程三剑客&mdash;&mdash;Libevent、libev 和 Libuv，以及 Boost 库内置的 Asio 模块。<br />
+<br />
+对于客户端程序来说，这些库有点过于庞大了，所以往往使用一些轻量级的库来替代，比如&nbsp;libcurl、WebSocket++ 等。<br />
+<br />
+另外，如果你的项目中使用的库/框架恰好包含了网络模块，那么也可以使用这些内置模块，比如 Boost 中的 Asio 模块、Qt 中的&nbsp;Network 模块。<br />
+<br />
+没有哪种网络库能够一统江湖，实际开发中需要根据具体场景做出正确的选择。<br />
+<br />
+网络通信由 Windows 内置的 TCP/IP 协议<u><a href='/view/300.html' target='_blank'>栈</a></u>提供支持，如果你想找一份靠谱的工作，我建议先从 Windows API 学起，把底层原理吃透，然后再学习一两个常见的网络库，或者某个库内置的网络模块。<br />
+<br />
+如果你只是想自己开发一款软件玩玩，那就看着办吧，怎么方便就怎么来吧。<br />
+<h2>
+	6. 设计模式</h2>
+设计模式（Design Pattern）是前辈们对代码开发经验的总结，是解决某些特定问题的成熟套路。<br />
+<br />
+设计模式一共有 23 种，可以简单地了解一下它们，做到心中有数。初学者不需要把它们全部搞懂，先学会常用的几个即可，包括单例模式、工厂模式、代理模式。<br />
+<h2>
+	7. 数据库</h2>
+数据存储方式通常有两种：
+<ul>
+	<li>
+		如果数据量较小，可以存储到文件中；</li>
+	<li>
+		如果数据量较大，通常使用数据库来存储。</li>
+</ul>
+<br />
+小型客户端软件在本地存储数据时一般使用文件足以，只有那些大型或者复杂的软件才会用到数据库。<br />
+<br />
+服务器端存储数据需要使用大型数据库，比如 Oracle、MySQL、SQL Server、MongoDB 等；而客户端存储数据往往只需要一些小型的或者嵌入式的数据库，最常用的是 SQLite。<br />
+<br />
+数据库编程是后端程序员必备的硬核技能，GUI 程序员一般不需要深入研究，只要能够熟练地对数据进行&ldquo;增删改查&rdquo;即可。<br />
+<br />
+SQLite 是关系型数据库，需要先学习 SQL 语言，然后再通过 C/C++ 代码执行 SQL 语句来控制数据库。<br />
+<h2>
+	8. Windows GUI 开发框架</h2>
+虽然 Windows 系统本身也提供了 GUI 开发的接口（API），但是它非常晦涩和难用，简直让人吐血，所以实际开发中没人直接使用 Windows API，而是基于某个框架进行开发。<br />
+<br />
+所谓框架，其实就是别人编写并封装好的一堆代码，这些代码往往具备很好的通用性，能够提高软件开发效率，避免重复造轮子。<br />
+<br />
+当我们编写程序时，可以直接调用框架中的类和函数。<br />
+<br />
+具备 C/C++ 基础之后，就可以开始学习 Windows GUI 框架了，比如：<br />
+<ul>
+	<li>
+		MFC：微软发布的一款&nbsp;C++ 框架，专门用来开发 Windows 平台上的 GUI 程序。从某种程度上说，MFC 就是使用面向对象的方式对 Windows API 进行了封装，所以学习 MFC 之前必须对 Windows API 有所了解，否则是学不会 MFC 的。</li>
+	<li>
+		wxWidgets（简称 wx）：一款开源、免费、跨平台的 GUI 库，还支持多线程编程、网络编程等。wx&nbsp;和 MFC 很接近，有 MFC 基础很容易可以学会 wx 的用法。</li>
+	<li>
+		Qt：一款支持跨平台的 GUI 开发框架，和其它 GUI 库相比，Qt 可以制作更精美的界面，还支持多线程、网络通信、图像处理、数据库、多媒体等。</li>
+	<li>
+		DUILIB：一款轻量级的 Windows GUI 库，制作出的界面外观和 Qt 一样美观，代码结构简单、体积小。</li>
+	<li>
+		WTL：一款专门开发 Windows GUI 程序的 C++ 库，它的功能没有 MFC 完善（支持的控件比 MFC 少），但写起来比 MFC 更简单，开发效率更高。</li>
+</ul>
+<br />
+这些 GUI 框架各有优缺点，没有哪一个能够独霸 Windows GUI 编程。学会任何一个框架，都可以开发 Windows GUI 程序。有些公司基于自身业务考虑，会要求掌握多种框架，或者开发自己的 GUI 框架。<br />
+<br />
+对于初学者，我建议先学习 Qt，它不但容易上手，而且界面漂亮，还能跨平台。
+<h2>
+	9. 绘图技术</h2>
+我们在屏幕上看到的各种元素，包括按钮、菜单、输入框、边框、阴影、工具栏等，本质上都是图像，在底层都是通过绘图函数画出来的。<br />
+<br />
+这些绘图函数隐藏在了 Windows API 或者框架的背后，我们在进行 GUI 编程时往往不容易感受到，但实际上它们才是真正的幕后英雄。<br />
+<br />
+常见的绘图技术/工具包有 GDI（增强版叫做 GDI+）、OpenGL 和 DirectX。<br />
+<br />
+基于 2D 的 GUI 程序一般使用 GDI 和 GDI+ 就足够，只有在面向 3D、多媒体、游戏开发时往往才需要更加高级的 OpenGL 和 Direct X。<br />
+<br />
+如果你只是想自己开发一个软件玩玩，那么基本不用了解这些背后的技术；如果你想进大厂，或者想成为大咖，那么就得关注一下这些技术了，你可以尝试自己用 GDI 绘制一个控件，并给它绑定事件。<br />
+<br />
+对于客户端程序员来说，了解 2D 绘图技术即可；只有那些搞游戏开发或者多媒体渲染的程序员，才需要了解 3D 绘图技术。<br />
+<h2>
+	10. 其它知识</h2>
+以上罗列的这些知识，足以支撑你开发出一款靠谱的 Windows GUI 程序，找到一份满意的工作。<br />
+<br />
+如果你还想继续提升自己的编程能力，在 Windows GUI 开发领域深耕，可以接着学习以下知识。
+<h4>
+	1) C# 及相关开发框架</h4>
+实际开发中，有些 GUI 项目并不只是使用 C/C++，而是同时使用 C/C++ 和 C# 进行混合开发：用 C# 制作精美的界面，用 C/C++ 实现一些底层算法和逻辑。<br />
+<br />
+使用 C# 开发 Windows GUI 界面，可以借助 WPF 和 WinFrom 两种框架实现，最好是两种框架都达到&ldquo;会用&rdquo;的程度。<br />
+<h4>
+	2) COM、ATL</h4>
+COM 是微软提出的一种软件开发技术，与面向过程、面向对象编程类似，COM 并不是一个大的 API，而是一种编程思想。<br />
+<br />
+微软的很多技术都是基于 COM 建立起来的，比如 ActiveX、DirectX、OLE 等，微软的开发人员也大量使用 COM 组件来定制他们的应用程序。<br />
+<br />
+ATL 是一套制作 COM 组件的开发工具（C++ 模板类库），它可以简化 COM 组件的开发流程，提高开发效率。<br />
+<br />
+有些公司基于业务的需要，招聘要求中会注明要了解 ATL，学习 ATL 之前要先掌握 COM。
+<h2 style="text-align: center;">
+	总结</h2>
+以上学习路线可能比较混乱，为了让读者有一个更加直观的印象，我特地制作了一份简明扼要的汇总表格。<br />
+<br />
+对于不同的学习场景，我也标注了各个知识板块的重要程序：
+<ul>
+	<li>
+		☆☆ 表示可以跳过或者放弃，以后有需要的话再来学习；</li>
+	<li>
+		★☆ 表示需要进行了解，但是不需要深度学习；</li>
+	<li>
+		★★ 表示非常重要，需要深度学习。</li>
+</ul>
+<br />
+<table>
+	<caption>
+		表：Windows GUI 开发学习路线</caption>
+	<tbody>
+		<tr>
+			<th>
+				序号</th>
+			<th>
+				技术栈</th>
+			<th>
+				说 明</th>
+			<th>
+				找工作</th>
+			<th>
+				自制软件</th>
+		</tr>
+		<tr>
+			<td>
+				01</td>
+			<td>
+				C/C++</td>
+			<td>
+				建议先学习C语言，再学习 C++。</td>
+			<td>
+				★★</td>
+			<td>
+				★☆</td>
+		</tr>
+		<tr>
+			<td>
+				02</td>
+			<td>
+				数据结构和算法</td>
+			<td>
+				可以不用，但不能不了解。</td>
+			<td>
+				★★</td>
+			<td>
+				☆☆</td>
+		</tr>
+		<tr>
+			<td>
+				03</td>
+			<td>
+				链接库</td>
+			<td>
+				掌握静态链接库和动态链接库的制作方法和使用方法。</td>
+			<td>
+				★☆</td>
+			<td>
+				★☆</td>
+		</tr>
+		<tr>
+			<td>
+				04</td>
+			<td>
+				多线程编程</td>
+			<td>
+				多线程是最常用的并发编程方式。</td>
+			<td>
+				★★</td>
+			<td>
+				★☆</td>
+		</tr>
+		<tr>
+			<td>
+				05</td>
+			<td>
+				网络编程</td>
+			<td>
+				先学习&nbsp;TCP/IP 协议栈，接着了解 Windows API，然后学习一两个常用的网络库，或者某个库内置的网络模块。</td>
+			<td>
+				★★</td>
+			<td>
+				★☆</td>
+		</tr>
+		<tr>
+			<td>
+				06</td>
+			<td>
+				设计模式</td>
+			<td>
+				只需要重点了解几种常见的设计模式，比如单例模式、工厂模式和代理模式。</td>
+			<td>
+				★☆</td>
+			<td>
+				☆☆</td>
+		</tr>
+		<tr>
+			<td>
+				07</td>
+			<td>
+				数据库</td>
+			<td>
+				推荐学习 SQLite，能够对数据进行&ldquo;增删改查&rdquo;即可。</td>
+			<td>
+				★☆</td>
+			<td>
+				☆☆</td>
+		</tr>
+		<tr>
+			<td>
+				08</td>
+			<td>
+				GUI 框架</td>
+			<td>
+				常用的开发框架有 MFC、Qt、wxWidgets、WTL 等，初学者建议从 Qt 入手。</td>
+			<td>
+				★☆</td>
+			<td>
+				★☆</td>
+		</tr>
+		<tr>
+			<td>
+				09</td>
+			<td>
+				绘图技术</td>
+			<td>
+				涉及 GDI、GDI+、DirectX 和 OpenGL 等。</td>
+			<td>
+				★☆</td>
+			<td>
+				☆☆</td>
+		</tr>
+		<tr>
+			<td>
+				10</td>
+			<td>
+				其它知识</td>
+			<td>
+				包括 C#（WPF 和 WinFrom）、COM 组件技术、ATL 等。</td>
+			<td>
+				☆☆</td>
+			<td>
+				☆☆</td>
+		</tr>
+	</tbody>
+</table></div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 620;
+window.arcId = "6fedvO40q0/0uQyxrGD3Jp5n9r7P+41VES0p1Y6lAg7aGrg9RzTzF8nSZQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
