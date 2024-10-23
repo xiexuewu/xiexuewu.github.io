@@ -156,61 +156,61 @@ printf() 是最灵活、最复杂、最常用的输出函数，完全可以替�
 		</tr>
 		<tr>
 			<td>
-				%hd、%d、%ld</td>
+				<span style="color:#008000;">%hhd</span>、%hd、%d、%ld、<span style="color:#008000;">%lld</span></td>
 			<td>
-				以十进制、有符号的形式输出 short、int、long 类型的整数</td>
+				以十进制、有符号的形式输出 char、short、int、long、long long 类型的整数</td>
 		</tr>
 		<tr>
 			<td>
-				%hu、%u、%lu</td>
+				<span style="color:#008000;">%hhu</span>、%hu、%u、%lu、<span style="color:#008000;">%llu</span></td>
 			<td>
-				以十进制、无符号的形式输出 short、int、long 类型的整数</td>
+				以十进制、无符号（unsigned）的形式输出 char、short、int、long、long long&nbsp;类型的整数</td>
 		</tr>
 		<tr>
 			<td>
-				%ho、%o、%lo</td>
+				<span style="color:#008000;">%hho</span>、%ho、%o、%lo、<span style="color:#008000;">%llo</span></td>
 			<td>
-				以八进制、不带前缀、无符号的形式输出 short、int、long 类型的整数</td>
+				以八进制、不带前缀、无符号的形式输出 char、short、int、long、long long 类型的整数</td>
 		</tr>
 		<tr>
 			<td>
-				%#ho、%#o、%#lo</td>
+				<span style="color:#008000;">%#hho</span>、%#ho、%#o、%#lo、<span style="color:#008000;">%#llo</span></td>
 			<td>
-				以八进制、带前缀、无符号的形式输出 short、int、long 类型的整数</td>
+				以八进制、带前缀、无符号的形式输出 char、short、int、long、long long 类型的整数</td>
 		</tr>
 		<tr>
 			<td>
-				%hx、%x、%lx<br />
-				%hX、%X、%lX</td>
+				<span style="color:#008000;">%hhx</span>、%hx、%x、%lx、<span style="color:#008000;">%llx</span><br />
+				<span style="color:#008000;">%hhX</span>、%hX、%X、%lX、<span style="color:#008000;">%llX</span></td>
 			<td>
-				以十六进制、不带前缀、无符号的形式输出 short、int、long 类型的整数。如果 x 小写，那么输出的十六进制数字也小写；如果 X 大写，那么输出的十六进制数字也大写。</td>
+				以十六进制、不带前缀、无符号的形式输出 char、short、int、long、long long 类型的整数。如果 x 小写，那么输出的十六进制数字也小写；如果 X 大写，那么输出的十六进制数字也大写。</td>
 		</tr>
 		<tr>
 			<td>
-				%#hx、%#x、%#lx<br />
-				%#hX、%#X、%#lX</td>
+				<span style="color:#008000;">%#hhx</span>、%#hx、%#x、%#lx、<span style="color:#008000;">%#llx</span><br />
+				<span style="color:#008000;">%#hhX</span>、%#hX、%#X、%#lX、<span style="color:#008000;">%#llX</span></td>
 			<td>
-				以十六进制、带前缀、无符号的形式输出 short、int、long 类型的整数。如果 x 小写，那么输出的十六进制数字和前缀都小写；如果 X 大写，那么输出的十六进制数字和前缀都大写。</td>
+				以十六进制、带前缀、无符号的形式输出 char、short、int、long、long long 类型的整数。如果 x 小写，那么输出的十六进制数字和前缀都小写；如果 X 大写，那么输出的十六进制数字和前缀都大写。</td>
 		</tr>
 		<tr>
 			<td>
-				%f、%lf</td>
+				%f、%lf、%Lf</td>
 			<td>
-				以十进制的形式输出 float、double 类型的小数</td>
+				以十进制的形式输出 float、double、long double 类型的小数</td>
 		</tr>
 		<tr>
 			<td>
-				%e、%le<br />
-				%E、%lE</td>
+				%e、%le、%Le<br />
+				%E、%lE、%LE</td>
 			<td>
-				以指数的形式输出 float、double 类型的小数。如果 e 小写，那么输出结果中的 e 也小写；如果 E 大写，那么输出结果中的 E&nbsp;也大写。</td>
+				以指数的形式输出 float、double、long double 类型的小数。如果 e 小写，那么输出结果中的 e 也小写；如果 E 大写，那么输出结果中的 E&nbsp;也大写。</td>
 		</tr>
 		<tr>
 			<td>
-				%g、%lg<br />
-				%G、%lG</td>
+				%g、%lg、%Lg<br />
+				%G、%lG、%LG</td>
 			<td>
-				以十进制和指数中较短的形式输出 float、double 类型的小数，并且小数部分的最后不会添加多余的 0。如果 g 小写，那么当以指数形式输出时 e 也小写；如果 G 大写，那么当以指数形式输出时 E 也大写。</td>
+				以十进制和指数中较短的形式输出 float、double、long double 类型的小数，并且小数部分的最后不会添加多余的 0。如果 g 小写，那么当以指数形式输出时 e 也小写；如果 G 大写，那么当以指数形式输出时 E 也大写。</td>
 		</tr>
 		<tr>
 			<td>
@@ -220,6 +220,10 @@ printf() 是最灵活、最复杂、最常用的输出函数，完全可以替�
 		</tr>
 	</tbody>
 </table>
+<blockquote>
+	<p>
+		表格中<span style="color:#008000;">飘绿</span>的格式控制符，都是 C99 标准新引入的。</p>
+</blockquote>
 <h2>
 	printf() 的高级用法</h2>
 通过前面的学习，相信你已经熟悉了 printf() 的基本用法，但是这还不足以把它发挥到极致，printf() 可以有更加炫酷、更加个性、更加整齐的输出形式。<br />
@@ -525,7 +529,7 @@ printf() 的这些格式规范不是&ldquo;小把戏&rdquo;，优美的输出格
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 436;
-window.arcId = "6dfctEmWUln2qjn5Wo9rp3yZHKohWEo0RwT9P0+I9u3/8evO0tIKuwoRkg";
+window.arcId = "9977Q1MH9J2gvyPc8dLpi032VUHkDtxfQ+Ba2TE1+m7Se/NQCthKwWxfFQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

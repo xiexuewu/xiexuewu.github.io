@@ -12,7 +12,7 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>C语言中的整数（short,int,long）</title>
+<title>C语言中的整数（short,int,long,long long）</title>
 <meta name="keywords" content="语言,中的,整数,short,int,long,整数,是,编" />
 <meta name="description" content="整数是编程中常用的一种数据，C语言通常使用 int 来定义整数（int 是 integer 的简写），这在《 大话C语言变量和数据类型 》中已经进行了详细讲解。 在现代操作系统中，int 一般 占用" />
 </head>
@@ -50,7 +50,7 @@
 				<span class="channel-num">2</span>
 				<a href='/c/begin/'>C语言初探</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">3</span> <a href="/c/variable_datatype/">变量和数据类型</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/414.html">大话C语言变量和数据类型</a></dd><dd>3.2 <a href="/view/415.html">在屏幕上输出各种类型的数据</a></dd><dd>3.3 <a href="/view/416.html">C语言中的整数（short,int,long）</a></dd><dd>3.4 <a href="/view/417.html">二进制数、八进制数和十六进制数</a></dd><dd>3.5 <a href="/view/418.html">C语言中的正负数及其输出</a></dd><dd>3.6 <a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.7 <a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/421.html">C语言中的小数（float,double）</a></dd><dd>3.9 <a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/view/423.html">在C语言中使用英文字符</a></dd><dd>3.11 <a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.12 <a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/614.html">C99新增加了布尔类型（bool）！</a></dd><dd>3.14 <a href="/view/427.html">C语言转义字符</a></dd><dd>3.15 <a href="/view/428.html">C语言中的几个重要概念</a></dd><dd>3.16 <a href="/view/430.html">C语言加减乘除运算</a></dd><dd>3.17 <a href="/view/431.html">C语言自增(++)和自减(--)</a></dd><dd>3.18 <a href="/view/432.html">变量的定义位置以及初始值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.19 <a href="/view/433.html">运算符的优先级和结合性</a></dd><dd>3.20 <a href="/view/435.html">C语言数据类型转换</a></dd></dl>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/c/variable_datatype/">变量和数据类型</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/414.html">大话C语言变量和数据类型</a></dd><dd>3.2 <a href="/view/415.html">在屏幕上输出各种类型的数据</a></dd><dd>3.3 <a href="/view/416.html">C语言中的整数（short,int,long,long long）</a></dd><dd>3.4 <a href="/view/417.html">二进制数、八进制数和十六进制数</a></dd><dd>3.5 <a href="/view/418.html">C语言中的正负数及其输出</a></dd><dd>3.6 <a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.7 <a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/421.html">C语言中的小数（float,double,long double）</a></dd><dd>3.9 <a href="/view/622.html">C语言数字后缀大全（一览表）</a></dd><dd>3.10 <a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.11 <a href="/view/423.html">在C语言中使用英文字符</a></dd><dd>3.12 <a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.14 <a href="/view/614.html">C99新增加了布尔类型（bool）！</a></dd><dd>3.15 <a href="/view/427.html">C语言转义字符</a></dd><dd>3.16 <a href="/view/428.html">C语言中的几个重要概念</a></dd><dd>3.17 <a href="/view/430.html">C语言加减乘除运算</a></dd><dd>3.18 <a href="/view/431.html">C语言自增(++)和自减(--)</a></dd><dd>3.19 <a href="/view/432.html">变量的定义位置以及初始值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.20 <a href="/view/433.html">运算符的优先级和结合性</a></dd><dd>3.21 <a href="/view/435.html">C语言数据类型转换</a></dd></dl>
 			<dd>
 				<span class="channel-num">4</span>
 				<a href='/c/io/'>C语言输入输出</a>
@@ -115,7 +115,7 @@
 </div>
 	<div id="article-wrap">
 		<div id="article">
-			<h1>C语言中的整数（short,int,long）</h1>
+			<h1>C语言中的整数（short,int,long,long long）</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/415.html">在屏幕上输出各种类型的数据</a></span>
                     <span class="next right"><a href="/view/417.html">二进制数、八进制数和十六进制数</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -129,56 +129,63 @@
 <br />
 在现代操作系统中，int <b>一般</b>占用 4 个字节（Byte）的内存，共计 32 位（Bit）。如果不考虑正负数，当所有的位都为 1 时它的值最大，为 2<sup>32</sup>-1 = 4,294,967,295 &asymp; 43亿，这是一个很大的数，实际开发中很少用到，而诸如 1、99、12098 等较小的数使用频率反而较高。<br />
 <br />
-使用 4 个字节保存较小的整数绰绰有余，会空闲出两三个字节来，这些字节就白白浪费掉了，不能再被其他数据使用。现在个人电脑的内存都比较大了，配置低的也有 2G，浪费一些内存不会带来明显的损失；而在C语言被发明的早期，或者在单片机和嵌入式系统中，内存都是非常稀缺的资源，所有的程序都在尽力节省内存。<br />
+使用 4 个字节保存较小的整数绰绰有余，会空闲出两三个字节来，这些字节就白白浪费掉了，不能再被其他数据使用。现在个人电脑的内存都比较大了，配置低的也有 2G，浪费一些内存不会带来明显的损失；而在 C语言被发明的早期，或者在单片机和嵌入式系统中，内存都是非常稀缺的资源，所有的程序都在尽力节省内存。<br />
 <br />
 反过来说，43 亿虽然已经很大，但要表示全球人口数量还是不够，必须要让整数占用更多的内存，才能表示更大的值，比如占用 6 个字节或者 8 个字节。<br />
 <br />
-让整数占用更少的内存可以在 int 前边加&nbsp;<span style="color: #008000"><strong>short</strong></span>，让整数占用更多的内存可以在 int 前边加 <span style="color: #008000"><strong>long</strong></span>，例如：
+让整数占用更少的内存可以在 int 前边加&nbsp;<span style="color: #008000"><strong>short</strong></span>，让整数占用更多的内存可以在 int 前边加 <span style="color: #008000"><strong>long</strong></span>，不够的话可以在 int 前面加 <span style="color:#008000;"><strong>long long</strong></span>（<span style="color:#b22222;">C99 新增的</span>）。例如：
 <p class="info-box">
 	short int a = 10;<br />
 	short int b, c = 99;<br />
 	long int m = 102023;<br />
-	long int n, p = 562131;</p>
-<span style="color: #b22222">这样 a、b、c 只占用 2 个字节的内存，而 m、n、p <strong>可能</strong>会占用 8 个字节的内存。</span><br />
+	long int n, p = 562131;<br />
+	long long int x = 12233720;<br />
+	long long int y, z = 92949685;</p>
+<span style="color: #b22222">这样 a、b、c 各自占用 2 个字节的内存，m、n、p <strong>可能</strong>占用 8 个字节的内存，x、y、z 各自占用 8 个字节。</span><br />
 <br />
-也可以将 int 省略，只写 short 和 long，如下所示：
+也可以将 int 省略，只写 short、long 和 long long，如下所示：
 <p class="info-box">
 	short a = 10;<br />
 	short b, c = 99;<br />
 	long m = 102023;<br />
-	long n, p = 562131;</p>
+	long n, p = 562131;<br />
+	long long x = 12233720;<br />
+	long long y, z = 92949685;</p>
 这样的写法更加简洁，实际开发中常用。<br />
 <br />
-int 是基本的整数类型，short 和 long 是在 int 的基础上进行的扩展，short 可以节省内存，long 可以容纳更大的值。<br />
+int 是基本的整数类型，short、long 和 long long 是在 int 的基础上进行的扩展，short 可以节省内存，long 和 long long 可以容纳更大的值。<br />
 <br />
-<span style="color:#b22222;">short、int、long 是C语言中常见的整数类型，其中 int 称为整型，short 称为短整型，long 称为长整型。</span><br />
+<span style="color:#b22222;">short、int、long 是 C语言中常见的整数类型，long long 在一些场景中也会用到 。其中 int 称为</span><span style="color:#008000;">整型</span><span style="color:#b22222;">，short 称为</span><span style="color:#008000;">短整型</span><span style="color:#b22222;">，long 称为</span><span style="color:#008000;">长整型</span><span style="color:#b22222;">，long long 称为</span><span style="color:#008000;">超长整形</span><span style="color:#b22222;">。</span><br />
 <h2>
 	整型的长度</h2>
-细心的读者可能会发现，上面我们在描述 short、int、long 类型的长度时，只对 short 使用肯定的说法，而对 int、long 使用了&ldquo;一般&rdquo;或者&ldquo;可能&rdquo;等不确定的说法。这种描述的言外之意是，只有 short 的长度是确定的，是两个字节，而 int 和 long 的长度无法确定，在不同的环境下有不同的表现。
+细心的读者可能会发现，上面我们在描述各种整数类型的长度时，只对 short 和 long long 使用肯定的说法，而对 int、long 使用了&ldquo;一般&rdquo;或者&ldquo;可能&rdquo;等不确定的说法。这种描述的言外之意是，short 和 long long 的长度是确定的，分别是 2 和 8 个字节，而 int 和 long 的长度无法确定，在不同的环境下有不同的表现。
 <blockquote>
 	一种数据类型占用的字节数，称为该数据类型的长度。例如，short 占用 2 个字节的内存，那么它的长度就是 2。</blockquote>
-实际情况也确实如此，C语言并没有严格规定 short、int、long 的长度，只做了宽泛的限制：
+实际情况也确实如此，C语言并没有严格规定 short、int、long 和 long long 的长度，只做了宽泛的限制：
 <ul>
 	<li>
 		short 至少占用 2 个字节。</li>
 	<li>
 		int 建议为一个机器字长。32 位环境下机器字长为 4 字节，64 位环境下机器字长为 8 字节。</li>
 	<li>
-		short 的长度不能大于 int，long 的长度不能小于 int。</li>
+		short 的长度不能大于 int，long 的长度不能小于 int，long long 不能小于 long。</li>
 </ul>
 <br />
 总结起来，它们的长度（所占字节数）关系为：
 <p class="info-box">
-	2 &le; short &le; int &le; long</p>
-<span style="color: #a52a2a">这就意味着，short 并不一定真的&rdquo;短&ldquo;，long 也并不一定真的&rdquo;长&ldquo;，它们有可能和 int 占用相同的字节数。</span><br />
+	2 &le; short &le; int &le; long &le; long long</p>
+<span style="color: #a52a2a">这就意味着，short 并不一定真的&rdquo;短&ldquo;，long 也并不一定真的&rdquo;长&ldquo;，它们有可能和 int 占用相同的字节数。同理，long long 不一定真的比 long 长（可能都是 8 个字节）。</span><br />
 <br />
-在 16 位环境下，short 的长度为 2 个字节，int 也为 2 个字节，long 为 4 个字节。16 位环境多用于单片机和低级嵌入式系统，在PC和服务器上已经见不到了。<br />
-<br />
-对于 32 位的 Windows、Linux 和 Mac OS，short 的长度为 2 个字节，int 为 4 个字节，long 也为 4 个字节。PC和服务器上的 32 位系统占有率也在慢慢下降，嵌入式系统使用 32 位越来越多。<br />
+在 16 位环境下，short 的长度为 2 个字节，int 也为 2 个字节，long 为 4 个字节。16 位环境多用于单片机和低级嵌入式系统，在 PC 和服务器上已经见不到了。
+<blockquote>
+	<p>
+		long long 在 16 位环境中通常为 8 个字节，但它在 16 位系统中非常罕见，在 32 位或 64 位系统中更常见。</p>
+</blockquote>
+对于 32 位的 Windows、Linux 和 Mac OS，short 的长度为 2 个字节，int 为 4 个字节，long 也为 4 个字节，long long 为 8 个字节。PC 和服务器上的 32 位系统占有率也在慢慢下降，基本上都被 64 位替代了，而单片机/嵌入式系统使用 32 位越来越多。<br />
 <br />
 在 64 位环境下，不同的操作系统会有不同的结果，如下所示：<br />
 <br />
-<table border="0">
+<table>
 	<tbody>
 		<tr>
 			<th>
@@ -189,6 +196,8 @@ int 是基本的整数类型，short 和 long 是在 int 的基础上进行的�
 				int</th>
 			<th>
 				long</th>
+			<th>
+				long long</th>
 		</tr>
 		<tr>
 			<td>
@@ -199,6 +208,8 @@ int 是基本的整数类型，short 和 long 是在 int 的基础上进行的�
 				4</td>
 			<td>
 				4</td>
+			<td>
+				8</td>
 		</tr>
 		<tr>
 			<td>
@@ -209,11 +220,13 @@ int 是基本的整数类型，short 和 long 是在 int 的基础上进行的�
 				4</td>
 			<td>
 				8</td>
+			<td>
+				8</td>
 		</tr>
 	</tbody>
 </table>
 <br />
-目前我们使用较多的PC系统为 Win XP、Win 7、Win 8、Win 10、Mac OS、Linux，在这些系统中，short 和 int 的长度都是固定的，分别为 2 和 4，大家可以放心使用，只有 long 的长度在 Win64 和类 Unix 系统下会有所不同，使用时要注意移植性。
+目前我们使用较多的 PC 系统为 Win 7/8/10/11、Mac OS、Linux，在这些系统中，short、int 和 long long 的长度都是固定的，分别为 2、4 和 8，大家可以放心使用，只有 long 的长度在 Win64 和类 Unix 系统下会有所不同，使用时要注意移植性。
 <h2>
 	sizeof 操作符</h2>
 获取某个数据类型的长度可以使用 sizeof 操作符，如下所示：
@@ -227,22 +240,22 @@ int main()
     int short_length = sizeof a;
     int int_length = sizeof(b);
     int long_length = sizeof(long);
-    int char_length = sizeof(char);
+    int long_long_length = sizeof(long long);
    
-    printf(&quot;short=%d, int=%d, long=%d, char=%d\n&quot;, short_length, int_length, long_length, char_length);
+    printf(&quot;short=%d, int=%d, long=%d, long long=%d\n&quot;, short_length, int_length, long_length, long_long_length);
    
     return 0;
 }</pre>
 在 32 位环境以及 Win64 环境下的运行结果为：
 <p class="info-box">
-	short=2, int=4, long=4, char=1</p>
+	short=2, int=4, long=4, longlong=8</p>
 在 64 位 Linux 和 Mac OS 下的运行结果为：
 <p class="info-box">
-	short=2, int=4, long=8, char=1</p>
+	short=2, int=4, long=8, longlong=8</p>
 <br />
 sizeof 用来获取某个数据类型或变量所占用的字节数，如果后面跟的是变量名称，那么可以省略<code>( )</code>，如果跟的是数据类型，就必须带上<code>( )</code>。<br />
 <br />
-需要注意的是，sizeof 是C语言中的操作符，不是函数，所以可以不带<code>( )</code>，后面会详细讲解。
+需要注意的是，sizeof 是 C语言中的操作符，不是函数，所以可以不带<code>( )</code>，后面会详细讲解。
 <h2>
 	不同整型的输出</h2>
 使用不同的格式控制符可以输出不同类型的整数，它们分别是：
@@ -252,7 +265,9 @@ sizeof 用来获取某个数据类型或变量所占用的字节数，如果后�
 	<li>
 		<code>%d</code>用来输出 int 类型，d 是&nbsp;decimal 的简写；</li>
 	<li>
-		<code>%ld</code>用来输出 long int 类型，ld 是 long&nbsp;decimal 的简写。</li>
+		<code>%ld</code>用来输出 long int 类型，ld 是 long&nbsp;decimal 的简写;</li>
+	<li>
+		<code>%lld</code>用来输出 long long int 类型，lld 是 long long decimal 的简写；</li>
 </ul>
 <br />
 下面的例子演示了不同整型的输出：
@@ -263,12 +278,14 @@ int main()
     short a = 10;
     int b = 100;
     long c = 9437;
+    long long d = 123456;
 
-    printf(&quot;a=%hd, b=%d, c=%ld\n&quot;, a, b, c);
+    printf(&quot;a=%hd, b=%d, c=%ld, d=%lld\n&quot;, a, b, c,d);
     return 0;
 }</pre>
-运行结果：<br />
-a=10, b=100, c=9437<br />
+运行结果：
+<p class="info-box">
+	a=10, b=100, c=9437, d=123456</p>
 <br />
 在编写代码的过程中，我建议将格式控制符和数据类型严格对应起来，养成良好的编程习惯。当然，如果你不严格对应，一般也不会导致错误，例如，很多初学者都使用<code>%d</code>输出所有的整数类型，请看下面的例子：
 <pre class="cpp">
@@ -278,16 +295,17 @@ int main()
     short a = 10;
     int b = 100;
     long c = 9437;
-   
-    printf(&quot;a=%d, b=%d, c=%d\n&quot;, a, b, c);
+    long long d = 123456;
+    printf(&quot;a=%d, b=%d, c=%d, d=%d\n&quot;, a, b, c, d);
     return 0;
 }</pre>
-运行结果仍然是：<br />
-a=10, b=100, c=9437<br />
+运行结果仍然是：
+<p class="info-box">
+	a=10, b=100, c=9437, d=102023</p>
 <br />
-当使用<code>%d</code>输出 short，或者使用<code>%ld</code>输出 short、int 时，不管值有多大，都不会发生错误，因为格式控制符足够容纳这些值。<br />
+当使用<code>%d</code>输出 short，或者使用<code>%ld</code>输出 short、int，又或者使用<code>%lld</code>输出 short、int 和 long 时，不管值有多大，都不会发生错误，因为格式控制符足够容纳这些值。<br />
 <br />
-当使用<code>%hd</code>输出 int、long，或者使用<code>%d</code>输出 long 时，如果要输出的值比较小（就像上面的情况），一般也不会发生错误，如果要输出的值比较大，就很有可能发生错误，例如：
+当使用<code>%hd</code>输出 int、long、long long，或者使用<code>%d</code>输出 long 和 long long，又或者使用<code>%ld</code>输出 long long 时，如果要输出的值比较小（就像上面的情况），一般也不会发生错误，如果要输出的值比较大，就很有可能发生错误，例如：
 <pre class="cpp">
 #include &lt;stdio.h&gt;
 int main()
@@ -299,15 +317,16 @@ int main()
 
     return 0;
 }</pre>
-在 64 位 Linux 和 Mac OS 下（long 的长度为 8）的运行结果为：<br />
-m=-21093, n=4556<br />
-n=-1898311220<br />
+在 64 位 Linux 和 Mac OS 下（long 的长度为 8）的运行结果为：
+<p class="info-box">
+	m=-21093, n=4556<br />
+	n=-1898311220</p>
 <br />
 输出结果完全是错误的，这是因为<code>%hd</code>容纳不下 m 和 n 的值，<code>%d</code>也容纳不下 n 的值。<br />
 <br />
 读者需要注意，当格式控制符和数据类型不匹配时，编译器会给出警告，提示程序员可能会存在风险。
 <blockquote>
-	编译器的警告是分等级的，不同程度的风险被划分成了不同的警告等级，而使用<code>%d</code>输出 short 和 long 类型的风险较低，如果你的编译器设置只对较高风险的操作发出警告，那么此处你就看不到警告信息。</blockquote>
+	编译器的警告是分等级的，不同程度的风险被划分成了不同的警告等级，而使用<code>%d</code>输出 short、long 和 long long 类型的风险较低，如果你的编译器设置只对较高风险的操作发出警告，那么此处你就看不到警告信息。</blockquote>
 </div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/415.html">在屏幕上输出各种类型的数据</a></span>
@@ -335,7 +354,7 @@ n=-1898311220<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 416;
-window.arcId = "e4364dxnro9oJMcus9Kei8sLFOyfv0NIHwYNpngOKmrBOywod0RE7TPxuw";
+window.arcId = "894bV1W5Vu9d/xNrj3eLsVPPhpAV3G0xI/nF7F3k6JcIpVNlwKomEMAHXw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>整数在内存中是如何存储的，为什么它堪称天才般的设计</title>
-<meta name="keywords" content="整数,在,内存,中,是,如何,存储,的,为什么,它," />
-<meta name="description" content="加法和减法是计算机中最基本的运算，计算机时时刻刻都离不开它们，所以它们由硬件直接支持。为了提高加减法的运算效率，硬件电路要设计得尽量简单。 对于有符号数，内存要区分" />
+<title>C语言数字后缀大全（一览表）</title>
+<meta name="keywords" content="语言,数字,的,后缀,大全,一个,数字,是有,默认," />
+<meta name="description" content="一个数字，是有默认类型的：对于整数，默认是 int 类型；对于小数，默认是 double 类型。 请看下面的例子： long a = 100;int b = 294;float x = 52.55;double y = 18.6; 100 和 294 这两个数字默认都是" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -115,26 +115,189 @@
 </div>
 	<div id="article-wrap">
 		<div id="article">
-			<h1>整数在内存中是如何存储的，为什么它堪称天才般的设计</h1>
+			<h1>C语言数字后缀大全（一览表）</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/418.html">C语言中的正负数及其输出</a></span>
-                    <span class="next right"><a href="/view/420.html">整数的取值范围以及数值溢出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/421.html">C语言中的小数（float,double,long double）</a></span>
+                    <span class="next right"><a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/418.html";window.nextPageURL = "/view/420.html";</script>
-			<div id="arc-body"><div id="buy-course-tip" aid="419"><p>您好，您正在阅读付费教程，请<a href="/view/212.html" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div></div>
+                <script type="text/javascript">window.prePageURL = "/view/421.html";window.nextPageURL = "/view/422.html";</script>
+			<div id="arc-body">在 C语言中，一个数字是有默认类型的：对于整数，默认是 int 类型；对于小数，默认是 double 类型。<br />
+<br />
+请看下面的例子：
+<pre class="cpp">
+long a = 100;
+int b = 294;
+
+float x = 52.55;
+double y = 18.6;</pre>
+100 和 294 这两个数字默认都是 int 类型的，将 100 赋值给 a，必须先将 int 类型的 100 转换为 long 类型后才能赋值，而 294 和 b 的类型相同，将 294 赋值给 b 就不用转换了。<br />
+<br />
+52.55 和 18.6 这两个数字默认都是 double 类型的，将 52.55 赋值给 x，必须先从 double 类型转换为 float 类型，而将 18.6 赋值给 y 就不用转换了。<br />
+<br />
+如果不想让数字使用默认的类型，那么可以给数字加上后缀，手动指明类型，比如：
+<ul>
+	<li>
+		在整数后面紧跟 l 或者 L（不区分大小写）表明该数字是 long 类型；</li>
+	<li>
+		在小数后面紧跟 f 或者 F（不区分大小写）表明该数字是 float 类型。</li>
+</ul>
+<br />
+请看下面的代码：
+<pre class="c">
+long a = 100l;
+int b = 294;
+short c = 32L;
+   
+float x = 52.55f;
+double y = 18.6F;
+float z = 0.02;</pre>
+加上后缀，虽然数字的类型变了，但这并不意味着该数字只能赋值给指定的类型，它仍然能够赋值给其他的类型，只要进行了一下类型转换就可以了。
+<blockquote>
+	关于数据类型的转换，我们将在《<a href="/view/435.html" target="_blank">C语言数据类型转换</a>》一节中深入探讨。</blockquote>
+<h2>
+	C语言数字后缀一览表</h2>
+经过前面的学习，我们已经掌握了 C 语言众多的数据类型，为了帮助大家快速的记忆，也方便大家回顾，本文将 C 语言常用的各种数据类型，以及它们各自对应的后缀，整理成了一张表格。<br />
+<br />
+<table>
+	<caption>
+		表 1 C语言数字类型后缀</caption>
+	<tbody>
+		<tr>
+			<th>
+				数字类型</th>
+			<th>
+				后 缀</th>
+			<th>
+				举 例</th>
+		</tr>
+		<tr>
+			<th colspan="3">
+				整数类型</th>
+		</tr>
+		<tr>
+			<td>
+				int</td>
+			<td>
+				默认的整数类型，没有后缀</td>
+			<td>
+				100</td>
+		</tr>
+		<tr>
+			<td>
+				short</td>
+			<td>
+				没有后缀</td>
+			<td>
+				// 将 int 类型的 100 赋值给 num<br />
+				short num = 100;</td>
+		</tr>
+		<tr>
+			<td>
+				long</td>
+			<td>
+				紧跟 l（小写的 L）或者 L</td>
+			<td>
+				100l 或者&nbsp;100L</td>
+		</tr>
+		<tr>
+			<td>
+				long long</td>
+			<td>
+				紧跟 ll（小写的 LL）或者 LL</td>
+			<td>
+				100ll 或者&nbsp;100LL</td>
+		</tr>
+		<tr>
+			<td>
+				unsigned int</td>
+			<td>
+				紧跟 u 或者 U</td>
+			<td>
+				100u&nbsp;或者 100U</td>
+		</tr>
+		<tr>
+			<td>
+				unsigned short</td>
+			<td>
+				没有后缀</td>
+			<td>
+				// 将 int 类型的 100 赋值给 num<br />
+				unsigned short num = 100;</td>
+		</tr>
+		<tr>
+			<td>
+				unsigned long</td>
+			<td>
+				紧跟 ul 或者 UL</td>
+			<td>
+				100ul 或者 100UL</td>
+		</tr>
+		<tr>
+			<td>
+				unsigned long long</td>
+			<td>
+				紧跟 ull 或者 ULL</td>
+			<td>
+				100ull 或者 100ULL</td>
+		</tr>
+		<tr>
+			<th colspan="3">
+				浮点类型</th>
+		</tr>
+		<tr>
+			<td>
+				float</td>
+			<td>
+				紧跟 f 或者 F</td>
+			<td>
+				1.23f 或者 1.23F</td>
+		</tr>
+		<tr>
+			<td>
+				double</td>
+			<td>
+				默认的浮点类型，没有后缀</td>
+			<td>
+				1.23</td>
+		</tr>
+		<tr>
+			<td>
+				long double</td>
+			<td>
+				紧跟 l（小写的 L）或者 L</td>
+			<td>
+				1.23l 或者 1.23L</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+举几个简单的例子：
+<pre class="c">
+short a = 10; // 10 是 int 类型
+int b = 100; // 100 是 int 类型
+long c = 9437L; // 9437 是 long 类型
+long long d = 123456LL; // 123456 是 long long 类型
+
+float f = 1.234f; // 1.234 是 float 类型
+long double e = 1.23456L; // 1.23456 是 long double 类型</pre>
+<blockquote>
+	<p>
+		对于初学者，很少会用到数字的后缀，加不加往往没有什么区别，也不影响实际编程，但是既然学了C语言，还是要知道这个知识点的，万一看到别人的代码这么用了，而你却不明白怎么回事，那就尴尬了。</p>
+</blockquote>
+</div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/418.html">C语言中的正负数及其输出</a></span>
-                    <span class="next right"><a href="/view/420.html">整数的取值范围以及数值溢出</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/421.html">C语言中的小数（float,double,long double）</a></span>
+                    <span class="next right"><a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/418.html";window.nextPageURL = "/view/420.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/421.html";window.nextPageURL = "/view/422.html";</script>
 		</div>
 		
 	</div>
@@ -151,8 +314,8 @@
 </div>
 <script type="text/javascript">
 // 当前文章ID
-window.arcIdRaw = 'a_' + 419;
-window.arcId = "563c6ulehyorc3ngE8sNnmdlW2NhhglD3mMDbi2fzK8HiOUiHi8jicTWqg";
+window.arcIdRaw = 'a_' + 622;
+window.arcId = "b93dGsYRv53lBeJyi3zuQEMQNievC3oE4EJJThHL4z3LQp6V9KAOllJ2Fw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

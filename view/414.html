@@ -50,7 +50,7 @@
 				<span class="channel-num">2</span>
 				<a href='/c/begin/'>C语言初探</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">3</span> <a href="/c/variable_datatype/">变量和数据类型</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/414.html">大话C语言变量和数据类型</a></dd><dd>3.2 <a href="/view/415.html">在屏幕上输出各种类型的数据</a></dd><dd>3.3 <a href="/view/416.html">C语言中的整数（short,int,long）</a></dd><dd>3.4 <a href="/view/417.html">二进制数、八进制数和十六进制数</a></dd><dd>3.5 <a href="/view/418.html">C语言中的正负数及其输出</a></dd><dd>3.6 <a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.7 <a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/421.html">C语言中的小数（float,double）</a></dd><dd>3.9 <a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.10 <a href="/view/423.html">在C语言中使用英文字符</a></dd><dd>3.11 <a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.12 <a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/614.html">C99新增加了布尔类型（bool）！</a></dd><dd>3.14 <a href="/view/427.html">C语言转义字符</a></dd><dd>3.15 <a href="/view/428.html">C语言中的几个重要概念</a></dd><dd>3.16 <a href="/view/430.html">C语言加减乘除运算</a></dd><dd>3.17 <a href="/view/431.html">C语言自增(++)和自减(--)</a></dd><dd>3.18 <a href="/view/432.html">变量的定义位置以及初始值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.19 <a href="/view/433.html">运算符的优先级和结合性</a></dd><dd>3.20 <a href="/view/435.html">C语言数据类型转换</a></dd></dl>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/c/variable_datatype/">变量和数据类型</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/414.html">大话C语言变量和数据类型</a></dd><dd>3.2 <a href="/view/415.html">在屏幕上输出各种类型的数据</a></dd><dd>3.3 <a href="/view/416.html">C语言中的整数（short,int,long,long long）</a></dd><dd>3.4 <a href="/view/417.html">二进制数、八进制数和十六进制数</a></dd><dd>3.5 <a href="/view/418.html">C语言中的正负数及其输出</a></dd><dd>3.6 <a href="/view/419.html">整数在内存中是如何存储的，为什么它堪称天才般的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.7 <a href="/view/420.html">整数的取值范围以及数值溢出</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/421.html">C语言中的小数（float,double,long double）</a></dd><dd>3.9 <a href="/view/622.html">C语言数字后缀大全（一览表）</a></dd><dd>3.10 <a href="/view/422.html">小数在内存中是如何存储的，揭秘诺贝尔奖级别的设计</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.11 <a href="/view/423.html">在C语言中使用英文字符</a></dd><dd>3.12 <a href="/view/425.html">在C语言中使用中文字符</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/426.html">C语言到底使用什么编码？谁说C语言使用ASCII码，真是荒谬！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.14 <a href="/view/614.html">C99新增加了布尔类型（bool）！</a></dd><dd>3.15 <a href="/view/427.html">C语言转义字符</a></dd><dd>3.16 <a href="/view/428.html">C语言中的几个重要概念</a></dd><dd>3.17 <a href="/view/430.html">C语言加减乘除运算</a></dd><dd>3.18 <a href="/view/431.html">C语言自增(++)和自减(--)</a></dd><dd>3.19 <a href="/view/432.html">变量的定义位置以及初始值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.20 <a href="/view/433.html">运算符的优先级和结合性</a></dd><dd>3.21 <a href="/view/435.html">C语言数据类型转换</a></dd></dl>
 			<dd>
 				<span class="channel-num">4</span>
 				<a href='/c/io/'>C语言输入输出</a>
@@ -188,43 +188,68 @@ int abc=999;</pre>
 也就是说，内存中的数据有多种解释方式，使用之前必须要确定；上面的<code>int a;</code>就表明，这份数据是整数，不能理解为像素、声音等。int 有一个专业的称呼，叫做<span style="color:#008000;">数据类型（Data Type）</span>。<br />
 <br />
 <span style="color:#b22222;">顾名思义，数据类型用来说明数据的类型，确定了数据的解释方式，让计算机和程序员不会产生歧义。</span>在 C语言中，有多种数据类型，例如：<br />
+<br />
 <table>
 	<tbody>
 		<tr>
 			<th>
-				说 &nbsp;明</th>
-			<td>
-				字符型</td>
-			<td>
-				短整型</td>
-			<td>
-				整型</td>
-			<td>
-				长整型</td>
-			<td>
-				单精度浮点型</td>
-			<td>
-				双精度浮点型</td>
-			<td>
-				无类型</td>
-		</tr>
-		<tr>
+				数据类型</th>
+			<th>
+				说明</th>
 			<th>
 				数据类型</th>
+			<th>
+				说明</th>
+		</tr>
+		<tr>
+			<td>
+				_Bool</td>
+			<td>
+				布尔型（C99）</td>
+			<td>
+				long long</td>
+			<td>
+				超长整形（C99）</td>
+		</tr>
+		<tr>
 			<td>
 				char</td>
 			<td>
-				short</td>
-			<td>
-				int</td>
-			<td>
-				long</td>
+				字符型</td>
 			<td>
 				float</td>
 			<td>
+				单精度浮点型</td>
+		</tr>
+		<tr>
+			<td>
+				short</td>
+			<td>
+				短整型</td>
+			<td>
 				double</td>
 			<td>
+				双精度浮点型</td>
+		</tr>
+		<tr>
+			<td>
+				int</td>
+			<td>
+				整型</td>
+			<td>
+				long double</td>
+			<td>
+				长双精度浮点型</td>
+		</tr>
+		<tr>
+			<td>
+				long</td>
+			<td>
+				长整型</td>
+			<td>
 				void</td>
+			<td>
+				无类型</td>
 		</tr>
 	</tbody>
 </table>
@@ -247,53 +272,86 @@ char p, q = &#39;@&#39;;</pre>
 所以，在定义变量时还要指明数据的长度。而这恰恰是数据类型的另外一个作用。数据类型除了指明数据的解释方式，还指明了数据的长度。<span style="color:#b22222;">因为在C语言中，每一种数据类型所占用的字节数都是固定的，知道了数据类型，也就知道了数据的长度。</span><br />
 <br />
 在 32 位环境中，各种数据类型的长度一般如下：<br />
+<br />
 <table>
 	<tbody>
 		<tr>
 			<th>
-				说 &nbsp;明</th>
-			<td>
-				字符型</td>
-			<td>
-				短整型</td>
-			<td>
-				整型</td>
-			<td>
-				长整型</td>
-			<td>
-				单精度浮点型</td>
-			<td>
-				双精度浮点型</td>
+				数据类型</th>
+			<th>
+				说明</th>
+			<th>
+				长度（字节）</th>
 		</tr>
 		<tr>
-			<th>
-				数据类型</th>
+			<td>
+				_Bool</td>
+			<td>
+				布尔型（C99）</td>
+			<td>
+				1</td>
+		</tr>
+		<tr>
 			<td>
 				char</td>
 			<td>
+				字符型</td>
+			<td>
+				1</td>
+		</tr>
+		<tr>
+			<td>
 				short</td>
+			<td>
+				短整型</td>
+			<td>
+				2</td>
+		</tr>
+		<tr>
 			<td>
 				int</td>
 			<td>
+				整型</td>
+			<td>
+				4</td>
+		</tr>
+		<tr>
+			<td>
 				long</td>
+			<td>
+				长整型</td>
+			<td>
+				4</td>
+		</tr>
+		<tr>
+			<td>
+				long long</td>
+			<td>
+				超长整形（C99）</td>
+			<td>
+				8</td>
+		</tr>
+		<tr>
 			<td>
 				float</td>
 			<td>
-				double</td>
+				单精度浮点型</td>
+			<td>
+				4</td>
 		</tr>
 		<tr>
-			<th>
-				长 &nbsp;度</th>
 			<td>
-				1</td>
+				double</td>
 			<td>
-				2</td>
+				双精度浮点型</td>
 			<td>
-				4</td>
+				8</td>
+		</tr>
+		<tr>
 			<td>
-				4</td>
+				long double</td>
 			<td>
-				4</td>
+				长双精度浮点型</td>
 			<td>
 				8</td>
 		</tr>
@@ -340,7 +398,7 @@ C语言提供的多种数据类型让程序更加灵活和高效，同时也增�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 414;
-window.arcId = "33d8RXI4nj8NBGojPY8+b194Alf+7XDUhkZEw+WXJW4xhxHONeB4uu7m7g";
+window.arcId = "d069iMbZeyYUNbkkMAuT+2O6y4FC2w5WEHckRFuTWAKhgVmS06nu7Vrt2A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
