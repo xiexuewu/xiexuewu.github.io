@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言break用法详解</title>
+<meta name="keywords" content="语言,break,用法,详解,在,语,言中,break,关键" />
+<meta name="description" content="在 C语言中，break 关键字是一个非常重要的控制流语句，它主要用于提前终止循环或跳出 switch 语句。 本文将详细讲解 break 的用法，并通过多个实例来加深理解，实例由简到难，逐步深" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言break用法详解</h1>
+			<div id="arc-body">在 C语言中，break 关键字是一个非常重要的控制流语句，它主要用于提前终止循环或跳出 switch 语句。<br />
+<br />
+本文将详细讲解 break 的用法，并通过多个实例来加深理解，实例由简到难，逐步深入。<br />
+<h2>
+	C语言break基本用法</h2>
+当 break 关键字用于 while、for 循环或 switch 语句中时，它会立即终止当前的循环或 switch 语句，并跳出到循环或 switch 语句之后的代码继续执行。
+<h4>
+	【示例 1】基本循环终止</h4>
+<pre class="c">
+#include &lt;stdio.h&gt; 
+int main() { 
+    int i = 0; 
+    while (1) { // 无限循环 
+        printf(&quot;i = %d\n&quot;, i); 
+        i++; 
+        if (i == 5) break; // 当i等于5时，跳出循环 
+    } 
+    printf(&quot;循环结束\n&quot;); 
+    return 0; 
+}</pre>
+运行结果：<br />
+<p class="info-box">
+	i = 0&nbsp;<br />
+	i = 1&nbsp;<br />
+	i = 2&nbsp;<br />
+	i = 3&nbsp;<br />
+	i = 4&nbsp;<br />
+	循环结束</p>
+在这个例子中，当 i 等于 5 时，break 语句被执行，循环被终止，程序继续执行循环之后的代码。<br />
+<h4>
+	【示例 2】嵌套循环中的break</h4>
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main() {
+    int i, j;
+    for (i = 1; i &lt;= 3; i++) {
+        for (j = 1; j &lt;= 3; j++) {
+            if (j == 2) break; // 当j等于2时，跳出内层循环
+            printf(&quot;i = %d, j = %d\n&quot;, i, j);
+        }
+    }
+    printf(&quot;循环结束\n&quot;);
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	i = 1, j = 1&nbsp;<br />
+	i = 2, j = 1&nbsp;<br />
+	i = 3, j = 1&nbsp;<br />
+	循环结束</p>
+在这个例子中，当 j 等于 2 时，内层循环的 break 语句被执行，跳出内层循环，但外层循环仍然继续。<br />
+<h4>
+	【示例 3】结合条件判断使用break</h4>
+<pre class="c">
+#include &lt;stdio.h&gt; 
+int main() { 
+    int num; 
+    printf(&quot;请输入一个1到10之间的数字：\n&quot;); 
+    scanf(&quot;%d&quot;, &amp;num); 
+     
+    while (1) { 
+        if (num &gt;= 1 &amp;&amp; num &lt;= 10) break; // 如果输入的数字在1到10之间，跳出循环 
+        printf(&quot;输入的数字不在1到10之间，请重新输入：\n&quot;); 
+        scanf(&quot;%d&quot;, &amp;num); 
+    } 
+     
+    printf(&quot;你输入的数字是：%d\n&quot;, num); 
+    return 0; 
+}</pre>
+在这个例子中，程序会不断提示用户输入一个1到10之间的数字，直到用户输入符合条件的数字为止，然后跳出循环并输出用户输入的数字。<br />
+<h4>
+	【示例 4】在switch语句中使用break</h4>
+<pre class="c">
+#include &lt;stdio.h&gt; 
+int main() { 
+    int day; 
+    printf(&quot;请输入星期几（1-7）：\n&quot;); 
+    scanf(&quot;%d&quot;, &amp;day); 
+     
+    switch (day) { 
+        case 1: printf(&quot;星期一\n&quot;); break; 
+        case 2: printf(&quot;星期二\n&quot;); break; 
+        case 3: printf(&quot;星期三\n&quot;); break; 
+        case 4: printf(&quot;星期四\n&quot;); break; 
+        case 5: printf(&quot;星期五\n&quot;); break; 
+        case 6: printf(&quot;星期六\n&quot;); break; 
+        case 7: printf(&quot;星期日\n&quot;); break; 
+        default: printf(&quot;输入无效\n&quot;); 
+    } 
+     
+    return 0; 
+}</pre>
+在这个例子中，根据用户输入的星期几的数字，程序会输出对应的中文星期几。每个 case 语句后面都有一个 break 语句，用于跳出 switch 语句，防止执行到下一个 case 语句。
+<h4>
+	【示例 5】查找数组中的特定元素</h4>
+<pre class="c">
+#include &lt;stdio.h&gt; 
+int main() { 
+    int arr[] = {1, 3, 5, 7, 9, 11, 13}; 
+    int target = 7; 
+    int found = 0; 
+     
+    for (int i = 0; i &lt; sizeof(arr) / sizeof(arr[0]); i++) { 
+        if (arr[i] == target) { 
+            printf(&quot;找到了元素 %d，位置在索引 %d\n&quot;, target, i); 
+            found = 1; 
+            break; // 找到元素后跳出循环 
+        } 
+    } 
+     
+    if (!found) { 
+        printf(&quot;未找到元素 %d\n&quot;, target); 
+    } 
+     
+    return 0; 
+}</pre>
+运行结果：
+<p class="info-box">
+	找到了元素 7，位置在索引 3</p>
+在这个例子中，程序在一个整数数组中查找特定的元素。如果找到了该元素，就输出其位置和值，并使用break语句跳出循环。如果循环结束后仍未找到元素，则输出未找到的信息。
+<h2>
+	总结</h2>
+通过以上实例，我们可以更加深入地理解 break 关键字在 C 语言中的用法。无论是在基本循环、嵌套循环、条件判断还是 switch 语句中，break 都能发挥重要的作用，帮助我们实现更加灵活和高效的程序控制。</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 623;
+window.arcId = "6ca2BS63LJqMFGzQGCGO2QSgGTX7155ewNih/LwoRIFSpfnhq5nRvndsNw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

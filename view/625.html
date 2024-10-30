@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>什么是变量，C语言变量详解（新手必看）</title>
+<meta name="keywords" content="什么,是,变量,语言,详解,新手,必看,变量,是," />
+<meta name="description" content="变量是 C 语言编程中的一个基本概念，用于存储数据值，并且这个值可以在程序运行期间改变。 本节重点讲解 C 语言变量的概念，以及如何使用变量。 什么是变量 现实生活中我们会找" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>什么是变量，C语言变量详解（新手必看）</h1>
+			<div id="arc-body">变量是 C 语言编程中的一个基本概念，用于存储数据值，并且这个值可以在程序运行期间改变。<br />
+<br />
+本节重点讲解 C 语言变量的概念，以及如何使用变量。<br />
+<h2>
+	什么是变量</h2>
+现实生活中我们会找一个小箱子来存放物品，一来显得不那么凌乱，二来方便以后找到。计算机也是这个道理，我们需要先在内存中找一块区域，规定用它来存放整数，并起一个好记的名字，方便以后查找。这块区域就是&ldquo;小箱子&rdquo;，我们可以把整数放进去了。<br />
+<br />
+C语言中这样在内存中找一块区域：
+<pre class="info-box">
+int a;</pre>
+<code>int</code>又是一个新单词，它是&nbsp;Integer 的简写，意思是整数。a 是我们给这块区域起的名字；当然也可以叫其他名字，例如 abc、mn123 等。<br />
+<br />
+这个语句的意思是：在内存中找一块区域，命名为 a，用它来存放整数。
+<blockquote>
+	注意 int 和 a 之间是有空格的，它们是两个词。也注意最后的分号，<code>int a</code>表达了完整的意思，是一个语句，要用分号来结束。</blockquote>
+不过<code>int a;</code>仅仅是在内存中找了一块可以保存整数的区域，那么如何将 123、100、999 这样的数字放进去呢？<br />
+<br />
+C语言中这样向内存中放整数：
+<pre class="info-box">
+a=123;</pre>
+<code>=</code>是一个新符号，它在数学中叫&ldquo;等于号&rdquo;，例如 1+2=3，但在 C语言中，这个过程叫做<span style="color:#008000;">赋值（Assign）</span>。<span style="color:#b22222;">赋值是指把数据放到内存的过程。</span><br />
+<br />
+把上面的两个语句连起来：
+<pre class="info-box">
+int a;
+a=123;</pre>
+就把 123 放到了一块叫做 a 的内存区域。你也可以写成一个语句：
+<pre class="info-box">
+int a=123;</pre>
+a 中的整数不是一成不变的，只要我们需要，随时可以更改。更改的方式就是再次赋值，例如：
+<pre class="info-box">
+int a=123;
+a=1000;
+a=9999;</pre>
+第二次赋值，会把第一次的数据覆盖（擦除）掉，也就是说，a 中最后的值是 9999，123、1000 已经不存在了，再也找不回来了。<br />
+<br />
+因为 a 的值可以改变，所以我们给它起了一个形象的名字，叫做<span style="color:#008000;">变量（Variable）</span>。<br />
+<br />
+<code>int a;</code>创造了一个变量 a，我们把这个过程叫做<span style="color:#008000;">变量定义</span>。<code>a=123;</code>把 123 交给了变量 a，我们把这个过程叫做<span style="color:#008000;">给变量赋值</span>；又因为是第一次赋值，也称<span style="color:#008000;">变量的初始化</span>，或者<span style="color:#008000;">赋初值</span>。<br />
+<br />
+你可以先定义变量，再初始化，例如：
+<pre class="info-box">
+int abc;
+abc=999;</pre>
+也可以在定义的同时进行初始化，例如：
+<pre class="info-box">
+int abc=999;</pre>
+这两种方式是等价的。
+<h2>
+	C语言数据类型（Data Type）</h2>
+数据是放在内存中的，变量是给这块内存起的名字，有了变量就可以找到并使用这份数据。但问题是，该如何使用呢？<br />
+<br />
+我们知道，诸如数字、文字、符号、图形、音频、视频等数据都是以二进制形式存储在内存中的，它们并没有本质上的区别，那么，00010000 该理解为数字 16 呢，还是图像中某个像素的颜色呢，还是要发出某个声音呢？如果没有特别指明，我们并不知道。<br />
+<br />
+也就是说，内存中的数据有多种解释方式，使用之前必须要确定；上面的<code>int a;</code>就表明，这份数据是整数，不能理解为像素、声音等。int 有一个专业的称呼，叫做<span style="color:#008000;">数据类型（Data Type）</span>。<br />
+<br />
+<span style="color:#b22222;">顾名思义，数据类型用来说明数据的类型，确定了数据的解释方式，让计算机和程序员不会产生歧义。</span>在 C语言中，有多种数据类型，例如：<br />
+<br />
+<table>
+	<tbody>
+		<tr>
+			<th>
+				数据类型</th>
+			<th>
+				说明</th>
+			<th>
+				数据类型</th>
+			<th>
+				说明</th>
+		</tr>
+		<tr>
+			<td>
+				_Bool</td>
+			<td>
+				布尔型（C99）</td>
+			<td>
+				long long</td>
+			<td>
+				超长整形（C99）</td>
+		</tr>
+		<tr>
+			<td>
+				char</td>
+			<td>
+				字符型</td>
+			<td>
+				float</td>
+			<td>
+				单精度浮点型</td>
+		</tr>
+		<tr>
+			<td>
+				short</td>
+			<td>
+				短整型</td>
+			<td>
+				double</td>
+			<td>
+				双精度浮点型</td>
+		</tr>
+		<tr>
+			<td>
+				int</td>
+			<td>
+				整型</td>
+			<td>
+				long double</td>
+			<td>
+				长双精度浮点型</td>
+		</tr>
+		<tr>
+			<td>
+				long</td>
+			<td>
+				长整型</td>
+			<td>
+				void</td>
+			<td>
+				无类型</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+这些是最基本的数据类型，是C语言自带的，如果我们需要，还可以通过它们组成更加复杂的数据类型，后面我们会一一讲解。
+<h2>
+	连续定义多个变量</h2>
+为了让程序的书写更加简洁，C语言支持多个变量的连续定义，例如：
+<pre class="c">
+int a, b, c;
+float m = 10.9, n = 20.56;
+char p, q = &#39;@&#39;;</pre>
+连续定义的多个变量以逗号<code>,</code>分隔，并且要拥有相同的数据类型；变量可以初始化，也可以不初始化。
+<h2>
+	最后的总结</h2>
+数据是放在内存中的，在内存中存取数据要明确三件事情：数据存储在哪里、数据的长度以及数据的处理方式。<br />
+<br />
+变量名不仅仅是为数据起了一个好记的名字，还告诉我们数据存储在哪里，使用数据时，只要提供变量名即可；而数据类型则指明了数据的长度和处理方式。所以诸如<code>int n;</code>、<code>char c;</code>、<code>float money;</code>这样的形式就确定了数据在内存中的所有要素。<br />
+<br />
+C语言提供的多种数据类型让程序更加灵活和高效，同时也增加了学习成本。而有些编程语言，例如 PHP、JavaScript 等，在定义变量时不需要指明数据类型，编译器会根据赋值情况自动推演出数据类型，更加智能。<br />
+<br />
+除了 C语言，Java、C++、C# 等在定义变量时也必须指明数据类型，这样的编程语言称为<span style="color:#008000;">强类型语言</span>。而 PHP、JavaScript 等在定义变量时不必指明数据类型，编译系统会自动推演，这样的编程语言称为<span style="color:#008000;">弱类型语言</span>。<br />
+<br />
+强类型语言一旦确定了数据类型，就不能再赋给其他类型的数据，除非对数据类型进行转换。弱类型语言没有这种限制，一个变量，可以先赋给一个整数，然后再赋给一个字符串。<br />
+<br />
+<span style="color:#b22222;">最后需要说明的是：数据类型只在定义变量时指明，而且必须指明；使用变量时无需再指明，因为此时的数据类型已经确定了。</span></div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 625;
+window.arcId = "2df9Cgy3rC700d76hzDwMFt4jivES2lJwKHXjXGARWCnpK/g945oVlLK1g";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">最近更新</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
