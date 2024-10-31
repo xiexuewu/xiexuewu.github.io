@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言常见编译器汇总（一览表，新手必看）</title>
+<meta name="keywords" content="语言,常见,编译器,汇总,一览表,新手,必看,在," />
+<meta name="description" content="在 C 语言的编程世界里，有着各种各样的编程软件可供选择。这些软件包括编译器和集成开发环境（IDE），它们各有特点，能满足不同开发者的需求。 编译器和 IDE 的区别 首先，编译器" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言常见编译器汇总（一览表，新手必看）</h1>
+			<div id="arc-body">在 C 语言的编程世界里，有着各种各样的编程软件可供选择。这些软件包括编译器和集成开发环境（IDE），它们各有特点，能满足不同开发者的需求。
+<h2>
+	编译器和IDE的区别</h2>
+编译器主要专注于将我们编写的 C 语言代码转换为计算机能够直接执行的机器码，它的核心任务是进行代码的语法检查和优化，并生成可执行文件。<br />
+<br />
+集成开发环境（IDE，Integrated Development Environment ）是一个综合性的开发平台，除了包含编译器的功能外，还提供了代码编辑、调试、项目管理、版本控制等一系列工具，为开发者提供了一个完整的开发环境，大大提高了开发效率。<br />
+<br />
+编译器通常比较轻量级，使用相对简单，只需要输入相关的命令和参数即可完成编译过程。而 IDE 则通常具有更友好的用户界面和交互方式，适合初学者和大型项目的开发。<br />
+<br />
+编译器的可定制性较强，可以根据具体的需求进行配置和优化。IDE 则更多地提供了一套预设的配置和功能，对于一些特定的需求可能需要进行额外的设置或扩展。
+<h2>
+	C语言常用编译器（一览表）</h2>
+<table>
+	<tbody>
+		<tr>
+			<th>
+				软件名称</th>
+			<th>
+				类型</th>
+			<th>
+				优点</th>
+			<th>
+				缺点</th>
+		</tr>
+		<tr>
+			<td>
+				Visual Studio</td>
+			<td>
+				IDE</td>
+			<td>
+				功能极其强大，提供了丰富的调试工具和智能提示，支持多种编程语言和框架。</td>
+			<td>
+				安装体积较大，对系统资源要求较高，学习成本相对较高。</td>
+		</tr>
+		<tr>
+			<td>
+				Code::Blocks</td>
+			<td>
+				IDE</td>
+			<td>
+				开源免费，跨平台，轻量级，适合初学者。</td>
+			<td>
+				界面相对简洁，某些高级功能可能不如其他大型 IDE 完善。</td>
+		</tr>
+		<tr>
+			<td>
+				Dev-C++</td>
+			<td>
+				IDE</td>
+			<td>
+				操作简单，容易上手，适合 C 语言入门学习。</td>
+			<td>
+				更新较慢，对新的 C 语言标准支持可能不够及时。</td>
+		</tr>
+		<tr>
+			<td>
+				GCC</td>
+			<td>
+				编译器</td>
+			<td>
+				广泛应用于各种操作系统，性能优秀，开源免费。</td>
+			<td>
+				配置和使用相对复杂，需要一定的命令行操作知识。</td>
+		</tr>
+		<tr>
+			<td>
+				Clang</td>
+			<td>
+				编译器</td>
+			<td>
+				编译速度快，错误提示友好，对现代 C 语言特性支持较好。</td>
+			<td>
+				某些平台的支持可能不如 GCC 广泛。</td>
+		</tr>
+		<tr>
+			<td>
+				Turbo C</td>
+			<td>
+				IDE</td>
+			<td>
+				在早期较为流行，简单易用。</td>
+			<td>
+				界面老旧，对新的操作系统和硬件支持不佳。</td>
+		</tr>
+		<tr>
+			<td>
+				VC6.0</td>
+			<td>
+				IDE</td>
+			<td>
+				曾经广泛使用，资源占用相对较少。</td>
+			<td>
+				对新的 C 语言标准支持不足，兼容性问题较多。</td>
+		</tr>
+		<tr>
+			<td>
+				VS Code</td>
+			<td>
+				IDE</td>
+			<td>
+				轻量级，扩展性强，拥有丰富的插件生态。</td>
+			<td>
+				需要手动配置编译环境，对初学者有一定门槛。</td>
+		</tr>
+		<tr>
+			<td>
+				CLion</td>
+			<td>
+				IDE</td>
+			<td>
+				智能代码补全和分析功能强大，对 C/C++ 支持良好。</td>
+			<td>
+				商业软件，需要付费使用。</td>
+		</tr>
+		<tr>
+			<td>
+				Sublime Text</td>
+			<td>
+				编辑器（需配置编译环境）</td>
+			<td>
+				界面简洁美观，响应速度快。</td>
+			<td>
+				本身不具备完整的编译和调试功能，需要额外配置。</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+对于在 Windows 环境中学习 C 语言的读者，推荐使用 VS；Linux 环境中学习 C 语言的用户，推荐使用 GCC；Mac OS 上学习 C 语言的用户，推荐用 Xcode。<br />
+<blockquote>
+	<p>
+		为了方便读者下载各种 C 语言编译器，我专门创作了下载、安装和使用各种编译器的教程，感兴趣的读者可猛击《<a href="/compiler/">C语言编译器（C语言编程软件）完全攻略</a>》一章了解。</p>
+</blockquote>
+<h2>
+	C语言为什么有那么多编译器？</h2>
+C 语言之所以拥有如此众多的编译器，原因是多方面的。<br />
+<br />
+首先，C 语言具有广泛的应用领域和悠久的历史。从操作系统开发到嵌入式系统，从高性能计算到小型应用程序，C 语言无处不在。不同的应用场景对编译器有着不同的要求。例如，在嵌入式系统中，编译器需要能够生成高效的、占用资源少的代码；而在高性能计算领域，编译器则需要能够充分利用硬件的特性进行优化。<br />
+<br />
+不同的操作系统和硬件架构也导致了对编译器的多样化需求。不同的操作系统有着不同的系统调用和库函数，编译器需要能够适配这些差异。而且，不同的硬件架构（如 x86、ARM 等）具有不同的指令集和特性，编译器需要能够针对这些特点生成最优的代码。<br />
+<br />
+技术的不断进步和发展也促使了新的编译器的出现。新的编译器可能采用了更先进的算法和技术，能够提供更好的性能、更准确的错误检测和更友好的开发体验。同时，开源运动的兴起也使得更多的开发者能够参与到编译器的开发中，从而推动了编译器的多样化和创新。<br />
+<br />
+不同的编译器开发者和组织有着不同的理念和目标。有些编译器注重兼容性和稳定性，有些则更侧重于性能和创新。这种多样性使得开发者可以根据自己的偏好和项目的需求选择最适合的编译器。<br />
+<br />
+总之，C 语言众多编译器的存在反映了其在编程领域的重要地位和广泛应用，也为开发者提供了更多的选择和可能性。
+<h2>
+	总结</h2>
+本文详细介绍了 C 语言常用的编程软件，包括它们的类型、优点和缺点。同时，阐述了编译器和 IDE 的区别，以及 C 语言拥有众多编译器的原因。希望能帮助您在 C 语言编程的道路上选择到适合自己的工具。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 626;
+window.arcId = "811aKB7VO08a9s4931LTW+3JTxoGEC0HHxkeg0kysEqENPkNtAWM2iav8Q";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
