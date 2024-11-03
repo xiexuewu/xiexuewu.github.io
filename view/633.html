@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C++和C语言的区别（超级肝）</title>
+<meta name="keywords" content="C++,和,语言,的,区别,超级,肝,语,言和,C++,是," />
+<meta name="description" content="C 语言和 C++ 是两门备受关注且应用广泛的编程语言，尽管它们有着紧密的联系，但在诸多方面存在显著的区别。接下来，我们将深入探讨这些差异，帮助您更好地理解和选择适合的语言" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C++和C语言的区别（超级肝）</h1>
+			<div id="arc-body">C 语言和 C++ 是两门备受关注且应用广泛的编程语言，尽管它们有着紧密的联系，但在诸多方面存在显著的区别。接下来，我们将深入探讨这些差异，帮助您更好地理解和选择适合的语言。<br />
+<h2>
+	编程范式</h2>
+C 语言是一种面向过程的编程语言。这意味着它侧重于将程序分解为一系列的函数，通过函数之间的调用和数据传递来完成任务。在 C 语言中，程序的流程是线性的，按照函数的执行顺序依次进行。<br />
+<pre class="c">
+#include &lt;stdio.h&gt;<stdio.h>
+void function1(int num) {
+    printf(&quot;Function 1: %d\n&quot;, num);
+}
+void function2() {
+    printf(&quot;Function 2\n&quot;);
+}
+int main() {
+    int num = 10;
+    function1(num);
+    function2();
+    return 0;
+}
+</stdio.h></pre>
+C++ 则支持多种编程范式，包括面向过程、面向对象和泛型编程。面向对象编程的引入是 C++ 的一个重要特性，它将数据和对数据的操作封装在一个类中，通过对象之间的交互来实现程序的功能。<br />
+<pre class="cpp">
+#include &lt;iostream&gt;<iostream>
+class MyClass {
+public:
+    void method1(int num) {
+        std::cout &lt;&lt; &quot;Method 1: &quot; &lt;&lt; num &lt;&lt; std::endl;
+    }
+    void method2() {
+        std::cout &lt;&lt; &quot;Method 2&quot; &lt;&lt; std::endl;
+    }
+};
+int main() {
+    MyClass obj;
+    obj.method1(10);
+    obj.method2();
+    return 0;
+}
+</iostream></pre>
+<h2>
+	数据封装和抽象</h2>
+C 语言中数据和函数是分离的，缺乏数据的封装和抽象机制。这可能导致数据的安全性和代码的可维护性受到一定影响。<br />
+<br />
+而 C++ 通过类和对象实现了数据的封装和抽象。可以将数据成员设置为私有，通过公有成员函数来访问和修改，从而更好地控制数据的访问权限和保证数据的一致性。<br />
+<h2>
+	内存管理</h2>
+C 语言使用手动内存管理，通过 malloc()、calloc() 和 free() 等函数来分配和释放内存。这要求程序员对内存的使用有清晰的理解，否则容易出现内存泄漏和非法访问等问题。<br />
+<pre class="c">
+<stdio.h><stdlib.h>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main() {
+    int* ptr = (int*)malloc(sizeof(int));
+    *ptr = 10;
+    // 记得释放内存
+    free(ptr);
+    return 0;
+}
+</stdlib.h></stdio.h></pre>
+C++提供了自动内存管理的机制，如使用 new 和 delete 操作符，同时还有智能指针等高级特性来帮助管理内存，降低了内存管理的复杂性和出错的可能性。<br />
+<pre class="cpp">
+<iostream><memory>#include &lt;iostream&gt;
+#include &lt;memory&gt;
+int main() {
+    // 使用智能指针 shared_ptr 来管理内存
+    std::shared_ptr<int> ptr = std::make_shared<int>(10);
+    // 无需手动调用 delete 释放内存，智能指针会自动处理
+    return 0;
+}
+</int></int></memory></iostream></pre>
+<h2>
+	函数重载</h2>
+C 语言不支持函数重载，即不能有多个同名但参数不同的函数。<br />
+<br />
+C++ 允许函数重载，这意味着可以定义多个同名但参数类型或参数个数不同的函数，编译器会根据实际调用时的参数来选择正确的函数版本。<br />
+<pre class="cpp">
+#include &lt;iostream&gt;<iostream>
+void print(int num) {
+    std::cout &lt;&lt; &quot;Integer: &quot; &lt;&lt; num &lt;&lt; std::endl;
+}
+void print(double num) {
+    std::cout &lt;&lt; &quot;Double: &quot; &lt;&lt; num &lt;&lt; std::endl;
+}
+int main() {
+    print(10);
+    print(3.14);
+    return 0;
+}
+</iostream></pre>
+<h2>
+	异常处理</h2>
+C 语言通常通过返回错误码来处理错误情况，程序员需要在每个函数调用后检查返回值来判断是否发生错误。<br />
+<br />
+C++ 引入了异常处理机制，使用 try-catch 块来捕获和处理异常，使错误处理更加结构化和清晰。<br />
+<pre class="cpp">
+#include &lt;iostream&gt;<iostream>
+void mayThrowException() {
+    throw &quot;Exception occurred!&quot;;
+}
+int main() {
+    try {
+        mayThrowException();
+    }
+    catch (const char* exceptionMessage) {
+        std::cout &lt;&lt; &quot;Caught exception: &quot; &lt;&lt; exceptionMessage &lt;&lt; std::endl;
+    }
+    return 0;
+}
+</iostream></pre>
+<h2>
+	模板和泛型编程</h2>
+C 语言没有模板和泛型编程的概念。<br />
+<br />
+C++ 中的模板使得可以编写通用的代码，适用于不同的数据类型，提高了代码的复用性和灵活性。<br />
+<pre class="cpp">
+<iostream><typename t="">#include &lt;iostream&gt;
+template &lt;typename T&gt;
+T add(T a, T b) {
+    return a + b;
+}
+int main() {
+    std::cout &lt;&lt; add(10, 20) &lt;&lt; std::endl;
+    std::cout &lt;&lt; add(3.14, 2.71) &lt;&lt; std::endl;
+    return 0;
+}
+</typename></iostream></pre>
+<h2>
+	输入输出方式</h2>
+C 语言主要使用 printf() 和 scanf() 函数进行输入输出，格式控制相对复杂。<br />
+<pre class="c">
+#include &lt;stdio.h&gt;<stdio.h>
+int main() {
+    int num;
+    printf(&quot;Enter a number: &quot;);
+    scanf(&quot;%d&quot;, &amp;num);
+    printf(&quot;You entered: %d\n&quot;, num);
+    return 0;
+}
+</stdio.h></pre>
+C++ 则使用<iostream>库中的 cout 和 cin 对象，提供了更类型安全和直观的输入输出方式。<br />
+<pre class="cpp">
+#include &lt;iostream&gt;<iostream>
+int main() {
+    int num;
+    std::cout &lt;&lt; &quot;Enter a number: &quot;;
+    std::cin &gt;&gt; num;
+    std::cout &lt;&lt; &quot;You entered: &quot; &lt;&lt; num &lt;&lt; std::endl;
+    return 0;
+}
+</iostream></pre>
+<h2>
+	总结</h2>
+C 语言和 C++ 虽然有密切的关系，但在编程范式、数据封装、内存管理、函数特性、错误处理、模板等方面存在明显的区别。<br />
+<br />
+C 语言简洁高效，适用于系统编程和对性能要求苛刻的场景。C++ 功能强大，面向对象和泛型编程等特性使其在大型项目和复杂应用中更具优势。</iostream></div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 633;
+window.arcId = "e5c68ob9DdK+G0iUeYWXGl3LMuzsg0v/hg160+i+R2dlY2YHzRy6kT7cxA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

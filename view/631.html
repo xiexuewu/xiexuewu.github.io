@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>bool在C语言中的用法详解（超级肝）</title>
+<meta name="keywords" content="bool,在,语言,中的,用法,详解,超级,肝,作为," />
+<meta name="description" content="作为一种专门用于表示逻辑值（真或者假）的数据类型，bool 类型（布尔类型）为我们处理条件判断和逻辑运算提供了更为清晰和直观的方式。对于初学者而言，熟练掌握 bool 类型的用法" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>bool在C语言中的用法详解（超级肝）</h1>
+			<div id="arc-body">作为一种专门用于表示逻辑值（真或者假）的数据类型，bool 类型（布尔类型）为我们处理条件判断和逻辑运算提供了更为清晰和直观的方式。对于初学者而言，熟练掌握 bool 类型的用法对于掌握 C 语言编程的精髓具有重要意义。<br />
+<br />
+bool 类型是在 C99 标准中被引入到 C 语言中的，它的取值只有两种情况，要么为真，要么为假。<br />
+<br />
+在 C99 标准之前，C 语言中并没有专门的布尔类型，开发者通常使用 int 类型来表示布尔值，0 表示假，非 0 表示真，这种方式存在诸多潜在问题。首先，它缺乏明确的语义表达，容易导致代码的理解和维护变得复杂。其次，由于没有明确的布尔类型，开发者在进行逻辑运算和条件判断时，可能会因为对整数的不当使用而引入难以察觉的错误。<br />
+<br />
+为了增强代码的可读性、可维护性以及减少潜在的逻辑错误，C99 标准引入了 bool 类型。这一改进使得逻辑判断在代码中更加清晰和直观，大大提高了代码的质量和可理解性。<br />
+<h2>
+	C语言_Bool类型</h2>
+_Bool 是 C99 标准中定义的布尔类型，其取值只有 0 和 1，分别表示假和真。<br />
+<br />
+下面是一个使用 _Bool 类型的示例代码：
+<pre class="c">
+#include &lt;stdio.h&gt;
+int main() {
+    // 定义 _Bool 类型的变量 isTrue
+    _Bool isTrue = 1; // 1 表示真
+    // 输出 _Bool 类型变量的值
+    if (isTrue) {
+        printf(&quot;isTrue 为真 \n&quot;); // 如果 isTrue 为真，输出此语句
+    }
+    else {
+        printf(&quot;isTrue 为假 \n&quot;);
+    }
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	isTrue 为真</p>
+在上述代码中，定义了一个 _Bool 类型的变量 isTrue，并将其初始化为 1，代表真。在后续的条件判断中，根据 isTrue 的值输出相应的结果。<br />
+<h2>
+	C语言bool类型</h2>
+布尔类型（_Bool）以下划线_开头，首字母还要大写，这和我们之前掌握的类型（char、float、int、float）相比，写法上有较大的出路，初学者多少会觉得别扭。<br />
+<br />
+其实除了 C语言，很多编程语言都提供了布尔类型，比如 C++、Java、C# 等，它们中的绝大部分都采用&ldquo;bool&rdquo;作为布尔类型的名称，并且布尔类型的两种取值分别用&ldquo;假（false）&rdquo;和&ldquo;真（true）&rdquo;表示，false 代指 0，true 代指 1。<br />
+<br />
+或许是受其它编程语言的影响，又或许是考虑到初学者的感受，C语言标准委员会决定引入 _Bool 类型的同时，添加 bool 作为 _Bool 类型的别名，并且布尔类型的取值可以用 true 和 false 表示。<br />
+<br />
+也就是说在 C语言程序中，布尔类型可以用 _Bool 表示，也可以用 bool 表示。<br />
+<br />
+需要注意的是，在 C 语言中使用 bool 类型，需要包含<code>&lt;stdbool.h&gt;</code>头文件。
+<pre class="c">
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt; // 包含此头文件才能使用 bool 类型
+int main() {
+    // 定义 bool 类型的变量 isTrue
+    bool isTrue = true; //true 表示真
+    // 输出 bool 类型变量的值
+    if (isTrue) {
+        printf(&quot;bool 类型: isTrue 为真 \n&quot;); // 输出此语句，因为 isTrue 为真
+    }
+    else {
+        printf(&quot;bool 类型: isTrue 为假 \n&quot;);
+    }
+    bool isFalse = false; //false 表示假
+    if (isFalse) {
+        printf(&quot;bool 类型: isFalse 为真 \n&quot;);
+    }
+    else {
+        printf(&quot;bool 类型: isFalse 为假 \n&quot;); // 输出此语句，因为 isFalse 为假
+    }
+    return 0;
+}</pre>
+运行结果：
+<p class="info-box">
+	bool 类型: isTrue 为真<br />
+	bool 类型: isFalse 为假</p>
+<h2>
+	总结</h2>
+自 C99 标准之后，C语言引入了布尔类型，可以使用 _Bool 或者 &lt;stdbool.h&gt; 头文件的 bool 表示布尔类型。<br />
+<br />
+对于仅有两个值的变量，C99 标准建议将变量的类型设定为布尔类型。注意，如果编译器不支持布尔类型，退而求其次，通常选用 int 类型。</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 631;
+window.arcId = "967aZV3cHmQAHpDIIzCTS/K5cUg/GF54QE0JtuFiYgWrFeKIZQ3MFhDLOw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

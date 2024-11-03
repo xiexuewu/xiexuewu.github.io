@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言和C++的区别和联系，彻底讲清楚了！</title>
+<meta name="keywords" content="语,言和,C++,的,区别,和,联系,彻底,讲清楚,了," />
+<meta name="description" content="C++，通常被读作C 加加，即C Plus Plus。就像这名字所暗示的，C++ 是在 C语言的基础上发展起来的，不断增添了各种新特性，就如同 iPhone 系列中新一代相较于旧款的升级，或者 Windows 系统" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言和C++的区别和联系，彻底讲清楚了！</h1>
+			<div id="arc-body">C++，通常被读作&ldquo;C 加加&rdquo;，即&ldquo;C Plus Plus&rdquo;。就像这名字所暗示的，C++ 是在 C语言的基础上发展起来的，不断增添了各种新特性，就如同 iPhone 系列中新一代相较于旧款的升级，或者 Windows 系统不同版本间的演进。<br />
+<br />
+C语言诞生于 1972 年，由美国贝尔实验室成功研制。在那个时候，它可是高级语言里的&ldquo;明星&rdquo;，好多新特性让汇编程序员们眼馋得不行，跟今天一出现就备受欢迎的 Go 语言有得一拼。C语言在当时引领了编程领域的潮流，众多知名软件，如 Windows、Linux 等，都以其为基石构建而成。<br />
+<br />
+但时代在进步，计算机的性能跟几十年前相比，简直是天差地别。硬件配置越来越强，软件的规模也变得超级大，好多软件体积都超过 1G 了，比如说 PhotoShop、Visual Studio 这些。这时候，用 C语言来开发这样的大软件，就有点费劲啦，于是 C++ 就闪亮登场了。<br />
+<br />
+C++ 主要在 C语言的基础上引入了关键的面向对象和泛型编程机制。面向对象编程使得代码的组织和复用更加高效，而泛型编程则增强了代码的通用性和灵活性，这些特性极大地提升了开发效率，为开发大中型软件提供了更强大的工具。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="C++与C语言的关系" src="/uploads/allimg/240819/1639364616-0.jpg" style="text-align: center;" /><br />
+	图 C++与C语言的关系</div>
+<h2>
+	C语言与C++的历史渊源</h2>
+早期，C++ 并不叫这个名字，而是被称为&ldquo;带类的 C&rdquo;。它起初是作为 C语言的扩展与补充而出现，旨在提升开发效率。若您具有 Java Web 开发经验，不妨将 C 与 C++ 的关系类比为 Java 和 JSP 之间的关系。<br />
+<br />
+在这一初始阶段，C++ 尚处于萌芽状态，功能相对简陋，仅支持较为基础的面向对象编程特性，并且没有专属的编译器。当时，需要借助一个名为 cfront 的预处理程序，先将 C++ 代码转换为 C语言代码，再借助 C语言编译器来生成最终的可执行程序。<br />
+<br />
+随着 C++ 的日益流行，其语法不断丰富强大，已能完善地支持面向对象编程和泛型编程。但新的独立 C++编译器始终未诞生，而是对原有的 C 编译器持续扩展，使其能够支持 C++的新特性。正因如此，我们常提及的 C/C++编译器，如 Windows 下的微软编译器（cl.exe）和 Linux 下的 GCC 编译器，实际上是同时支持 C 和 C++的。<br />
+<br />
+这意味着，无论是 C语言代码还是 C++ 代码，都经由同一个编译器进行编译。以至于难以确切界定 C++ 究竟是一门独立的语言，还是对 C 的单纯扩展。<br />
+<h2>
+	C语言和C++在语法和应用场景上的差异</h2>
+从学术和理论的角度来看，C++ 的编程模式更为丰富，它支持面向过程编程、面向对象编程和泛型编程，而 C语言的主要编程模式是面向过程编程。在面向过程编程方面，C++ 与 C 的确存在诸多相似之处。这意味着，学习了 C语言后，在一定程度上可以说已经掌握了 C++ 的部分基础，大约占据了 C++ 知识体系的一半。<br />
+<br />
+具体而言，C语言在系统编程、底层驱动开发以及对性能要求极高的场景中表现出色。由于其简洁高效的特性，能够直接与硬件进行交互，因此在操作系统内核、嵌入式系统等领域广泛应用。<br />
+<br />
+相比之下，C++ 凭借其面向对象和泛型编程的强大能力，在大型应用程序、游戏开发、图形界面设计等复杂项目中更具优势。例如，在开发具有复杂逻辑和交互性的游戏时，面向对象的特性能够更好地组织和管理代码；在构建通用的库和框架时，泛型编程能够提高代码的复用性和通用性。<br />
+<h2>
+	C++的学习路径</h2>
+对于学习 C++，可以这样安排。先好好学习 C 语言，如果有的朋友只是想学 C 语言，不想深入 C++，那到这里就可以停下了。<br />
+<br />
+对于有意进一步探索 C++ 的读者，在熟悉 C语言的基础上再学习 C++ 是较为明智的选择。这一阶段的学习重点应放在 C++ 与 C 的差异上，包括新增的语法特性、面向对象编程的概念和实践，以及泛型编程的运用等方面。<br />
+<br />
+对于毫无编程基础的新手，从 C语言入门是非常不错的选择。避免一开始就贪多求全，专注于掌握 C语言的基础知识和编程思维。当能够熟练编写一定规模的 C语言代码，例如上百行的程序，并对编程概念有了较为清晰的理解后，再涉足 C++ 的学习，此时将能够站在更高的起点，更深入地理解 C++ 在 C语言基础上的创新和扩展。<br />
+<br />
+而对于已经具备一定编程基础的读者，凭借已有的经验和知识积累，可以根据自身的需求和项目特点，自主决定是否学习和在实际项目中使用 C++。<br />
+<h2>
+	总结</h2>
+总的来说，C 语言和 C++ 关系密切又各有特点。<br />
+<br />
+了解 C语言和 C++ 的关系和区别，有助于我们根据具体的项目需求和开发目标，合理选择编程语言，充分发挥各自的优势，从而更高效地完成软件开发任务。</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 632;
+window.arcId = "850aAzYVMpzNb8AGv0sTYOpDlrbFKzml/k4QCzjgt7ERdi8JVcSx+0gvRg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

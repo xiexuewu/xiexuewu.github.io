@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C++和C语言有什么区别（新手必看）</title>
+<meta name="keywords" content="C++,和,语言,有,什么,区别,新手,必看,语,言和," />
+<meta name="description" content="C 语言和 C++ 是两种具有重要地位的编程语言，虽然存在一定的关联，但在多个方面有着显著的区别。 接下来，我们将从应用领域、特性、语法差异以及诞生原因等方面阐述 C语言和 C+" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C++和C语言有什么区别（新手必看）</h1>
+			<div id="arc-body">C语言和 C++ 是两种具有重要地位的编程语言，虽然存在一定的关联，但在多个方面有着显著的区别。<br />
+<br />
+接下来，我们将从应用领域、特性、语法差异以及诞生原因等方面阐述 C语言和 C++ 的区别。<br />
+<h2>
+	诞生的原因</h2>
+C语言诞生于 20 世纪 70 年代，当时计算机硬件资源有限，需要一种高效、简洁且能够直接操作硬件的编程语言。C语言的设计目标是提供一种能够高效编写系统软件的工具，其简洁的语法和高效的执行效率使其迅速成为系统编程的首选语言。<br />
+<br />
+C++ 是 20 世纪 80 年代诞生的，随着软件规模的不断扩大，对代码的复用性、可维护性和可扩展性提出了更高的要求。C++ 在 C语言的基础上引入了面向对象编程等特性，旨在解决 C语言在大规模软件开发中面临的挑战，提高开发效率和代码质量。<br />
+<h2>
+	应用领域</h2>
+C 语言因其高效、简洁以及对硬件的直接操作能力，在以下领域得到广泛应用：
+<ul>
+	<li>
+		系统编程：C 语言常被用于编写操作系统内核、驱动程序等与底层硬件紧密交互的系统级软件。例如，Unix 和 Linux 操作系统的部分内核就是用 C 语言编写的。</li>
+	<li>
+		嵌入式系统：在资源受限的嵌入式设备中，如智能家电、汽车电子控制单元等，C 语言的高效性和精简性使其成为首选。</li>
+	<li>
+		基础软件库：许多基础的软件库，如网络库、加密库等，由于对性能要求较高，也常使用 C 语言开发。</li>
+	<li>
+		编译器开发：编译器本身需要对代码进行高效的解析和优化，C 语言在这方面表现出色。</li>
+</ul>
+<br />
+C++ 的应用领域则更加广泛：
+<ul>
+	<li>
+		大型游戏开发：C++ 的高性能和面向对象特性使得复杂的游戏逻辑和图形渲染能够高效实现。像《使命召唤》、《古墓丽影》等大型游戏的核心部分往往使用 C++编写。</li>
+	<li>
+		桌面应用程序：如 Adobe 系列软件（Photoshop、Premiere 等）、Microsoft Office 等大型桌面应用，利用 C++ 的强大功能来提供丰富的功能和良好的用户体验。</li>
+	<li>
+		金融交易系统：在高频交易和金融数据处理中，C++ 的速度和稳定性至关重要。</li>
+	<li>
+		科学计算和工程软件：例如 MATLAB 的部分核心算法、CAD 软件等，需要处理大量数据和复杂计算，C++ 能够满足其性能要求。</li>
+</ul>
+<h2>
+	特性</h2>
+C 语言是一种面向过程的编程语言，注重程序的流程和函数的调用。<br />
+<br />
+C++ 不仅支持面向过程编程，还具有以下重要特性：
+<ul>
+	<li>
+		面向对象：通过类和对象的概念，实现封装、继承和多态，提高代码的复用性和可维护性。</li>
+	<li>
+		模块：有助于将大型项目分解为独立的模块，提高代码的组织性和可扩展性。</li>
+	<li>
+		泛型编程：使用模板实现通用的算法和数据结构，适用于不同的数据类型。</li>
+	<li>
+		命名空间：避免命名冲突，提高代码的模块化和可维护性。</li>
+	<li>
+		异常处理：提供了更结构化和灵活的错误处理机制。</li>
+</ul>
+<h2>
+	语法差异</h2>
+<table>
+	<tbody>
+		<tr>
+			<th>
+				语法层面</th>
+			<th>
+				C语言</th>
+			<th>
+				C++</th>
+		</tr>
+		<tr>
+			<td>
+				输入输出</td>
+			<td>
+				使用 printf&nbsp;和 scanf&nbsp;函数，格式控制需手动指定。</td>
+			<td>
+				使用 cin&nbsp;和 cout&nbsp;对象，操作更直观，类型自动推断。</td>
+		</tr>
+		<tr>
+			<td>
+				函数重载</td>
+			<td>
+				不支持，函数名必须唯一。</td>
+			<td>
+				支持函数重载，可根据参数类型和数量的不同定义多个同名函数。</td>
+		</tr>
+		<tr>
+			<td>
+				默认参数</td>
+			<td>
+				不支持。</td>
+			<td>
+				支持为函数参数设置默认值。</td>
+		</tr>
+		<tr>
+			<td>
+				头文件</td>
+			<td>
+				使用 .h&nbsp;扩展名，如 stdio.h&nbsp;。</td>
+			<td>
+				通常使用没有扩展名或 .hpp&nbsp;扩展名，如 iostream&nbsp;。</td>
+		</tr>
+		<tr>
+			<td>
+				引用</td>
+			<td>
+				不支持。</td>
+			<td>
+				支持引用，提供了更安全的变量别名方式。</td>
+		</tr>
+		<tr>
+			<td>
+				异常处理</td>
+			<td>
+				通常通过返回值或全局变量来指示错误。</td>
+			<td>
+				支持 try-catch&nbsp;机制，更明确和结构化地处理异常。</td>
+		</tr>
+		<tr>
+			<td>
+				模板</td>
+			<td>
+				不支持。</td>
+			<td>
+				支持函数模板和类模板，实现泛型编程。</td>
+		</tr>
+		<tr>
+			<td>
+				类和对象</td>
+			<td>
+				不支持，数据和操作分离。</td>
+			<td>
+				支持类和对象，实现封装、继承和多态。</td>
+		</tr>
+		<tr>
+			<td>
+				命名空间</td>
+			<td>
+				不支持。</td>
+			<td>
+				支持命名空间，避免命名冲突。</td>
+		</tr>
+	</tbody>
+</table>
+<h2>
+	总结</h2>
+总的来说，C 语言和 C++ 在应用领域、特性和语法等方面存在明显的差异。<br />
+<br />
+C 语言适合对性能要求极高、与硬件交互密切的场景，而 C++ 则更适用于大型、复杂的软件项目开发。在实际编程中，应根据具体的需求和项目特点选择合适的语言，以达到最佳的开发效果。<br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 634;
+window.arcId = "1c6aW41Ecpw2JOoSm2QYoL/6NiEkqZxx7uCPNvGAwItwCnumgr+SCI41Sg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

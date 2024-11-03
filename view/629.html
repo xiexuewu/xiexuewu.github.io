@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言基本数据类型有哪几种（一览表，新手必看）</title>
+<meta name="keywords" content="语言,基本,数据,类型,有,哪,几种,一览表,新手," />
+<meta name="description" content="对于刚踏入 C语言编程世界的新手们，学会输出Hello,World!，紧接着就是学习 C语言数据类型和变量的使用。 本节我将带领大家详细了解 C语言中的各种基本数据类型。 C语言基本数据类型" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>C语言基本数据类型有哪几种（一览表，新手必看）</h1>
+			<div id="arc-body">对于刚踏入 C语言编程世界的新手们，学会了输出&ldquo;Hello,World!&rdquo;，紧接着就是学习 C语言基本数据类型和变量的使用，首当其冲是系统了解 C 语言所有的基本数据类型。<br />
+<br />
+本节我将带领大家详细了解 C语言中的各种基本数据类型，文末还总结成了表格，方便大家记忆回顾。<br />
+<h2>
+	C语言基本数据类型</h2>
+<h3>
+	1、C语言整形（Integer Types）</h3>
+<h4>
+	1) int（整型）</h4>
+int（整数类型，简称整形）这是最常见的整型数据类型，在 32 位编译环境中，通常占用 4 个字节，能表示的数值范围大致在<code>[-2147483648, 2147483647]</code>。<br />
+<pre class="c">
+int num1 = 100; // 示例
+</pre>
+num1 是 int 类型的整形变量，它存储的数值是 100。 初学者要注意 int 类型的取值范围，避免出现超出范围导致的错误。
+<h4>
+	2) short（短整型）</h4>
+short 占用的存储空间比 int 少，一般为 2 个字节，能表示的整数范围是<code>[-32768, 32767]</code>。
+<pre class="c">
+short num2 = 20; // 示例
+</pre>
+使用 short 类型时，若预计数值可能超出其范围，应选择更合适的数据类型，比如 int、long 甚至 long long。<br />
+<h4>
+	3) long（长整型）</h4>
+long（长整型）常用于需要更大数值范围的情况，在 32 位系统中一般占用 4 个字节，在 64 位系统中可能占用 8 个字节。<br />
+<pre class="c">
+long num3 = 10000L; // 注意 L 后缀
+</pre>
+后缀 L 表示 10000 是 long 类型的整数，如果省略 L，那么 10000 默认是 int 类型的整数。<br />
+<h4>
+	4) long long（超长整型，C99 新增）</h4>
+long long 是 C99 标准新增的整数类型，它能够表示极大的整数，通常占用 8 个字节。<br />
+<pre class="c">
+long long num4 = 9223372036854775807LL; // 注意 LL 后缀
+</pre>
+<blockquote>
+	<p>
+		关于 C 语言整形更详细的讲解，请阅读《<a href="/view/416.html" target="_blank">C语言整数类型（short,int,long,long long）详解</a>》一文，以及它后续的文章。</p>
+</blockquote>
+<h3>
+	2、C语言字符型（Character Type）</h3>
+char（字符类型）用于存储单个字符，通常占用 1 个字节。<br />
+<pre class="c">
+char ch = &#39;A&#39;; 
+</pre>
+字符常量 &#39;A&#39; 要用单引号括起来，双引号会导致错误。<br />
+<br />
+char 类型可以通过字符常量直接赋值，也可以通过 ASCII 码值进行赋值，例如：
+<pre class="c">
+char digit = 48;</pre>
+digit 存储的字符就是 &#39;0&#39;，因为 &#39;0&#39; 的 <a href="/view/368.html" target="_blank">ASCII 码</a>值是 48 。
+<h3>
+	3、C语言浮点型（Floating-Point Types）</h3>
+<h4>
+	1) float（单精度浮点型）</h4>
+float 一般占用 4 个字节，能表示带有小数的数值，但精度相对较低，只能提供大约 6 到 7 位的有效数字精度。 。<br />
+<pre class="c">
+float fnum = 3.14f; // 注意 f 后缀
+</pre>
+<h4>
+	2) double（双精度浮点型）</h4>
+double 是默认的小数类型，通常占用 8 个字节，精度比 float 高，能够提供大约 15 到 16 位的有效数字精度。<br />
+<pre class="c">
+double dnum = 3.1415926; // 示例
+</pre>
+<h4>
+	3) long double（扩展精度浮点型）</h4>
+long double 占用的字节数和精度会因编译器和系统的不同而有所差异。一般来说，它比 `double` 提供更高的精度和更大的数值范围。<br />
+<pre class="c">
+long double lfnum = 1.234567890123456789L; // 注意 L 后缀，示例
+</pre>
+不同的浮点类型精度和范围不同，根据需求选择合适的类型，避免精度损失。
+<blockquote>
+	<p>
+		有关 C 语言浮点类型更详细的讲解，请阅读《<a href="/view/421.html" target="_blank">C语言小数类型（float,double,long double）详解</a>》一文阅读。</p>
+</blockquote>
+<h3>
+	4、C语言布尔型（Boolean Type，C99 新增）</h3>
+_Bool 类型变量只有两个值，0 表示假，非 0 表示真，通常占用 1 个字节。<br />
+<pre class="c">
+_Bool flag = 1; // 示例
+</pre>
+除了 _Bool，C语言中还可以使用 bool 作为布尔类型。bool 可以看做是 _Bool 类型的别名，取值除了 0 和 1 以外，还可以用 true（为 1）和 false（为 0）表示。<br />
+<br />
+需要注意的一点是，使用 bool 类型之前，必须先引入<code>&lt;stdbool.h&gt;</code><stdbool.h>头文件。 例如：
+<pre class="c">
+bool isTrue = true;</pre>
+<blockquote>
+	<p>
+		关于布尔类型，更详细的讲解请阅读《<a href="/view/614.html" target="_blank">一文搞清楚C语言布尔类型（bool）</a>》一文。</p>
+</blockquote>
+<h2>
+	C 语言基本数据类型一览表</h2>
+<table>
+	<tbody>
+		<tr>
+			<th>
+				数据类型</th>
+			<th>
+				占用字节数</th>
+			<th>
+				取值范围</th>
+		</tr>
+		<tr>
+			<td>
+				int</td>
+			<td>
+				4（通常）</td>
+			<td>
+				-2147483648 到 2147483647</td>
+		</tr>
+		<tr>
+			<td>
+				short</td>
+			<td>
+				2</td>
+			<td>
+				-32768 到 32767</td>
+		</tr>
+		<tr>
+			<td>
+				long</td>
+			<td>
+				4 或 8（取决于系统）</td>
+			<td>
+				因系统而异</td>
+		</tr>
+		<tr>
+			<td>
+				long long</td>
+			<td>
+				8</td>
+			<td>
+				因系统而异</td>
+		</tr>
+		<tr>
+			<td>
+				char</td>
+			<td>
+				1</td>
+			<td>
+				-128 到 127</td>
+		</tr>
+		<tr>
+			<td>
+				float</td>
+			<td>
+				4</td>
+			<td>
+				约 6 - 7 位有效数字</td>
+		</tr>
+		<tr>
+			<td>
+				double</td>
+			<td>
+				8</td>
+			<td>
+				约 15 - 16 位有效数字</td>
+		</tr>
+		<tr>
+			<td>
+				long double</td>
+			<td>
+				因编译器和系统而异</td>
+			<td>
+				因编译器和系统而异</td>
+		</tr>
+		<tr>
+			<td>
+				_Bool</td>
+			<td>
+				1</td>
+			<td>
+				0 或 1</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+希望通过以上详细的介绍和示例，新手朋友们能对 C 语言的基本数据类型有更清晰的认识和理解，为今后的编程之路打下坚实的基础。</stdbool.h><br />
+</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip">添加管理员微信<br/>免费领视频教程</span>
+			<span class="wap-tip">加管理员微信免费领视频教程<br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 629;
+window.arcId = "5688My59TgSbQKRBA1xxz5uwDT3cvrvXc1Vp19/vT6j/KrcuFQlxmIdB9A";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<span style="display:none;"><script src="https://s22.cnzz.com/z_stat.php?id=1273514649&web_id=1273514649" language="JavaScript"></script></span>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
