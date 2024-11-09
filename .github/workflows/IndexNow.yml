@@ -1,0 +1,22 @@
+name: "IndexNow"
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # 每3天的 UTC 时间 04:00 运行一次
+    - cron: '0 4 */3 * *'
+jobs:
+  check-and-submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: submit-to-bing
+        uses: bojieyang/indexnow-action@v2
+        with:
+          sitemap-location: "https://xiexuewu.github.io/sitemap.xml"
+          endpoint: "www.bing.com"
+          since: 3
+          since-unit: "day"
+          limit: 10
+          key: ${{ secrets.INDEXNOW_KEY }}
+          key-location: ${{ secrets.INDEXNOW_KEY_LOCATION }}
