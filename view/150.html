@@ -217,7 +217,7 @@ bool Hungary_Match(GRAPH_MATCH *match)
 每完成一个顶点的搜索，需要重置 Y 集合中相关顶点的 on_path 标志，ClearOnPathSign() 函数就负责干这个事情。
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/181111/1-1Q111131943a0.gif" /><br />
+	<img alt="二部图" src="/uploads/allimg/181111/1-1Q111131943a0.gif" /><br />
 	图 1 二部图</div>
 <br />
 我们用图 1 中的二部图数据初始化 GRAPH_MATCH 中的顶点关系表 edge，然后调用 Hungary_Match() 函数得到一组匹配：
@@ -230,12 +230,13 @@ bool Hungary_Match(GRAPH_MATCH *match)
 结果与图 2 一致，因为这个最大匹配没有未覆盖点，所以是完美匹配。
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/181111/1-1Q11113203X64.gif" /><br />
-	图 2</div>
+	<img alt="完美匹配" src="/uploads/allimg/181111/1-1Q11113203X64.gif" /><br />
+	图 2&nbsp; 完美匹配</div>
 <br />
 匈牙利算法的实现以顶点集合 V 为基础，每次 X 集合中选一个顶点 X<sub>i</sub> 做增广路径的起点搜索增广路径。搜索增广路径需要遍历边集 E 内的所有边，遍历方法可以采用深度优先遍历（<u><a href='/view/342.html' target='_blank'>DFS</a></u>），也可以采用广度优先遍历（<u><a href='/view/343.html' target='_blank'>BFS</a></u>），无论什么方法，其<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>都是 <code>O(E)</code>。<br />
 <br />
-匈牙利算法每个顶点 V<sub>i</sub> 只能选择一次，因此算法的整体时间复杂度是 <code>O(V*E)</code>，总的来说，是一个相当高效的算法。<br /><br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+匈牙利算法每个顶点 V<sub>i</sub> 只能选择一次，因此算法的整体时间复杂度是 <code>O(V*E)</code>，总的来说，是一个相当高效的算法。<br />
+<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
 		</div>
 		
 	</div>
@@ -253,7 +254,7 @@ bool Hungary_Match(GRAPH_MATCH *match)
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 150;
-window.arcId = "8c14At3j9x+PHuAYnOfGS420w0AJBh7OsVdPb4dN1HBsQQ3RdaFg5FlMNw";
+window.arcId = "491eu6wyM/8fW8H4LkxvZQBLnd18AB6seeEIyb918xh9ogIiLo10zL05+Q";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

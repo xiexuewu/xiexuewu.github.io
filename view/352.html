@@ -126,55 +126,55 @@
 例如，在升序的查找表 {10, 14, 19, 26, 27, 31, 33, 35, 42, 44} 中查找元素 33。初始状态下，搜索区域为整个查找表，用 low 记录搜索区域内第一个元素的位置，用 high 记录搜索区域内最后一个元素的位置。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/152600M34-0.gif" /><br />
+	<img alt="搜索区域是整个查找表" src="/uploads/allimg/240114/152600M34-0.gif" /><br />
 	图 1 搜索区域是整个查找表</div>
 <br />
 二分查找算法的查找过程是：<br />
 1) 借助 &lfloor;(low+high)/2&rfloor; 公式，找到搜索区域内的中间元素。图 1 中，搜索区域内中间元素的位置是&nbsp;&lfloor;(1+10)/2&rfloor;=5，因此中间元素是 27，此元素显然不是要找的目标元素。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/15260023b-1.gif" /><br />
+	<img alt="中间元素 27 不是目标元素" src="/uploads/allimg/240114/15260023b-1.gif" /><br />
 	图 2 中间元素 27 不是目标元素</div>
 <br />
 整个查找表为升序序列，根据 27&lt;33，可以判定 33 位于 27 右侧的区域，更新搜索区域为元素 27 右侧的区域。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1526003142-2.gif" /><br />
+	<img alt="更新搜索区域为 {31, 33, 35, 42, 44}" src="/uploads/allimg/240114/1526003142-2.gif" /><br />
 	图 3 更新搜索区域为 {31, 33, 35, 42, 44}</div>
 <br />
 2) 图 3 中，搜索区域内中间元素的位置是 &lfloor;(6+10)/2&rfloor;=8，因此中间元素是 35，此元素不是要找的目标元素。<br />
 <br />
 <div style="text-align: center;">
-	&nbsp;<img alt="" src="/uploads/allimg/240114/152600A10-3.gif" /><br />
+	&nbsp;<img alt="中间元素 35 不是目标元素" src="/uploads/allimg/240114/152600A10-3.gif" /><br />
 	图 4 中间元素 35 不是目标元素</div>
 <br />
 根据 35&gt;33，可以判定 33 位于 35 左侧的区域，更新搜索区域。
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1526003R3-4.gif" /><br />
+	<img alt="更新搜索区域 {31, 33}" src="/uploads/allimg/240114/1526003R3-4.gif" /><br />
 	图 5 更新搜索区域 {31, 33}</div>
 <br />
 3) 图 5 中，搜索区域内中间元素的位置是 &lfloor;(6+7)/2&rfloor;=6，因此中间元素是 31，此元素不是要找的目标元素。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1526002339-5.gif" /><br />
+	<img alt="中间元素 31 不是目标元素" src="/uploads/allimg/240114/1526002339-5.gif" /><br />
 	图 6&nbsp;中间元素 31 不是目标元素</div>
 <br />
 根据 31&lt;33，可以判定 33 位于 31 右侧的区域，更新搜索区域。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1526004234-6.gif" /><br />
+	<img alt="更新搜索区域 {33}" src="/uploads/allimg/240114/1526004234-6.gif" /><br />
 	图 7 更新搜索区域 {33}</div>
 <br />
 4) 图 7 中，搜索区域内中间元素的位置是 &lfloor;(7+7)/2&rfloor;=7，因此中间元素是 33，此元素就是要找的目标元素。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/152600H02-7.gif" /><br />
+	<img alt="成功找到目标元素" src="/uploads/allimg/240114/152600H02-7.gif" /><br />
 	图 8 成功找到目标元素</div>
 <br />
 找到了目标元素 33，二分查找算法执行结束。下面的动画演示了整个二分查找算法的执行过程：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1526004611-8.gif" /><br />
+	<img alt="二分查找算法" src="/uploads/allimg/240114/1526004611-8.gif" /><br />
 	图 9 二分查找算法</div>
 <br />
 所谓二分查找算法，其实就是不断地将有序查找表&ldquo;一分为二&rdquo;，逐渐缩小搜索区域，进而找到目标元素。当查找表中没有目标元素时（比如图 8 中的元素 33 为 32），最终会出现 low&gt;high 的情况，此时就表明查找表中没有目标元素，查找失败。<br />
@@ -270,14 +270,14 @@ int main() {
 计算二分查找算法的平均查找长度，可以借助《什么是查找表》一节给出的公式：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/15260051C-9.gif" /></div>
+	<img alt="二分查找算法的平均查找长度公式" src="/uploads/allimg/240114/15260051C-9.gif" /></div>
 <br />
 默认情况下，表中各个元素被查找到的概率是相同的，都是 1/n（n 为查找表中元素的数量），所以各个元素对应的 Pi 都是 1/n。<br />
 <br />
 二分查找过程中，各个元素对应的查找次数 C<sub>i</sub> 可以借助一棵<u><a href='/view/326.html' target='_blank'>二叉树</a></u>直观地看出来，通常称为&ldquo;判定<u><a href='/view/325.html' target='_blank'>树</a></u>&rdquo;。例如图 9 对应的判定树为：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/152600F35-10.gif" /><br />
+	<img alt="描述二叉查找过程的二叉树" src="/uploads/allimg/240114/152600F35-10.gif" /><br />
 	图 10 描述二叉查找过程的二叉树</div>
 <br />
 查找元素 33 的过程，恰好走了一条从根结点到结点 33 的路径，一共比较了 4 次。同样地，采用二分查找算法查找元素 19，整个过程需要比较 3 次。也就是说，查找表中各个元素对应的比较次数，恰好等于该元素所在判定树中的层数（元素 33 位于二叉树的第 4 层）。<br />
@@ -288,7 +288,7 @@ int main() {
 假设有序查找表的长度恰好为 n = 2<sup>h</sup>-1，对应的判定树是一棵满二叉树，树中层数为 1（C<sub>1</sub>=1）的结点有 1 个，层数为 2（C<sub>2</sub>=2）的结点有 2 个，......，层数为 h（C<sub>h</sub>=h）的结点有 2<sup>h-1</sup> 个。则二分查找算法对应的 ASL 值为：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/152600E29-11.gif" /></div>
+	<img alt="二分查找算法对应的 ASL 值" src="/uploads/allimg/240114/152600E29-11.gif" /></div>
 <blockquote>
 	<p>
 		数学基础好的读者可自行推导，基础不好的读者也没必要纠结，知道结论即可，本节的重点是搞清楚二分查找算法的具体实现。</p>
@@ -328,7 +328,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 352;
-window.arcId = "bed0EOGyp98kVEEY8vz0yiDB6ANni/ZvqYcm50NeKs/XndTOEGZNhsBApA";
+window.arcId = "f8b8uTSKKovrgGl2oV0TR00hmncIX4c5sukRBDS+yCvtHWJBfsQn//98yQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -118,7 +118,7 @@
 和<u><a href='/view/288.html' target='_blank'>顺序表</a></u>不同，使用链表存储数据，不强制要求数据在内存中集中存储，各个元素可以分散存储在内存中。例如，使用链表存储 {1,2,3}，各个元素在内存中的存储状态可能是：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/10215a621-0.gif" /><br />
+	<img alt="数据分散存储在内存中" src="/uploads/allimg/240114/10215a621-0.gif" /><br />
 	图 1 数据分散存储在内存中</div>
 <br />
 可以看到，数据不仅没有集中存放，在内存中的存储次序也是混乱的。那么，链表是如何存储数据间逻辑关系的呢？<br />
@@ -126,7 +126,7 @@
 链表存储数据间逻辑关系的实现方案是：为每一个元素配置一个指针，每个元素的指针都指向自己的直接后继元素，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1021593W3-1.gif" /><br />
+	<img alt="链表的实现方案" src="/uploads/allimg/240114/1021593W3-1.gif" /><br />
 	图 2 链表的实现方案</div>
 <br />
 显然，我们只需要记住元素 1 的存储位置，通过它的指针就可以找到元素 2，通过元素 2 的指针就可以找到元素 3，以此类推，各个元素的先后次序一目了然。<br />
@@ -141,7 +141,7 @@
 在链表中，每个数据元素都配有一个指针，这意味着，链表上的每个&ldquo;元素&rdquo;都长下图这个样子：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1021591144-2.gif" /><br />
+	<img alt="链表中的结点结构" src="/uploads/allimg/240114/1021591144-2.gif" /><br />
 	图 3 链表中的结点结构</div>
 <br />
 数据域用来存储元素的值，指针域用来存放指针。数据结构中，通常将图 3 这样的整体称为结点。<br />
@@ -149,7 +149,7 @@
 也就是说，链表中实际存放的是一个一个的结点，数据元素存放在各个结点的数据域中。举个简单的例子，图 2 中 {1,2,3} 的存储状态用链表表示，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/102159B29-3.gif" /><br />
+	<img alt="链表中的结点" src="/uploads/allimg/240114/102159B29-3.gif" /><br />
 	图 4 链表中的结点</div>
 <br />
 在 C 语言中，可以用结构体表示链表中的结点，例如：
@@ -186,7 +186,7 @@ typedef struct link{
 例如，创建一个包含头结点的链表存储 {1,2,3}，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/10215924J-4.gif" /><br />
+	<img alt="完整的链表示意图" src="/uploads/allimg/240114/10215924J-4.gif" /><br />
 	图 5 完整的链表示意图</div>
 <br />
 再次强调，头指针永远指向链表中的第一个结点。换句话说，如果链表中包含头结点，那么头指针指向的是头结点，反之头指针指向首元结点。
@@ -342,7 +342,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 290;
-window.arcId = "8a20Siwdr+ybIGQzc2Ab+AqfKeQTcAV1uYHbeqJHyXn/xzmQBEn2JbzNSg";
+window.arcId = "48e5w35NLev+r0MV7fZI+g87rZgdGte2uamT0Ycw6wuQ/LUOFz3oQcTjWg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -130,19 +130,19 @@
 1) 假设从元素 10 开始向右逐个查找。显然，元素 10 不是要找的目标元素：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1523432B0-0.gif" /><br />
+	<img alt="查看 10 是否为目标元素" src="/uploads/allimg/240114/1523432B0-0.gif" /><br />
 	图 1 查看 10 是否为目标元素</div>
 <br />
 2) 继续查看表中的下一个元素 14，也不是要找的目标元素：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/15234333A-1.gif" /><br />
+	<img alt="查看 14 是否为目标元素" src="/uploads/allimg/240114/15234333A-1.gif" /><br />
 	图 2 查看 14 是否为目标元素</div>
 <br />
 3) 采用同样的方法，逐个查看表中的各个元素是否为目标元素，整个查找过程如下图的动画所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1523435K8-2.gif" /><br />
+	<img alt="顺序查找目标元素的过程" src="/uploads/allimg/240114/1523435K8-2.gif" /><br />
 	图 3 顺序查找目标元素的过程</div>
 <br />
 成功找到目标元素后，顺序查找随即结束。当表中不包含目标元素时，顺序查找算法会比对至最后一个元素，然后停止执行。<br />
@@ -156,7 +156,7 @@
 <p>
 	&nbsp;</p>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/15234331V-3.gif" /><br />
+	<img alt="顺序查找目标元素失败" src="/uploads/allimg/240114/15234331V-3.gif" /><br />
 	图 4 顺序查找目标元素失败</div>
 <br />
 这样做的好处是，查找过程中不必判断整张表是否查找完毕，因为无论查找能否成功，顺序查找算法都能正常执行结束。数据结构中，将在查找表一端添加的目标元素称为<span style="color:#008000;">监视哨</span>。<br />
@@ -244,7 +244,7 @@ int main() {
 计算顺序查找算法的平均查找长度，可以借助《<a href="/view/350.html">什么是查找表</a>》一节给出的公式：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/15234331J-4.gif" style="width: 250px; height: 95px;" /></div>
+	<img alt="计算顺序查找算法的平均查找长度公式" src="/uploads/allimg/240114/15234331J-4.gif" style="width: 250px; height: 95px;" /></div>
 <br />
 默认情况下，表中各个元素被查找到的概率是相同的，都是 1/n（n 为查找表中元素的数量），所以各个元素对应的 P<sub>i</sub>&nbsp;就是 1/n。<br />
 <br />
@@ -253,7 +253,7 @@ int main() {
 将 P<sub>i</sub>=1/n 和 C<sub>i</sub>=i 带入公式，求得的 ASL 为：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1523433522-5.gif" /></div>
+	<img alt="ASL值" src="/uploads/allimg/240114/1523433522-5.gif" /></div>
 <br />
 顺序查找算法对应的 ASL 值为 (n+1)/2，几乎为查找表长度的一半。这也就意味着，查找表中包含的元素越多，顺序查找算法的 ASL 值越大，查找性能越差，执行效率越低。<br />
 <h2>
@@ -288,7 +288,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 351;
-window.arcId = "e7f6Ah72Es7Ibd0saqk9wd1OCMIJuewtHeyG73SifzR9zdUpCTPJTiB8Ig";
+window.arcId = "fa58b2xc6QpEIDop0I9Xc1JSukSB7Smk9sPkkfo6sLqik4S+oh5MSwE+sg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

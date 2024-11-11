@@ -167,7 +167,7 @@ Link* initLink() {
 例如，在链表&nbsp;<code>{1,2,3,4}</code>&nbsp;的基础上分别实现在头部、中间、尾部插入新元素 5，其实现过程如图 1 所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/102350OQ-0.gif" /><br />
+	<img alt="带头结点链表插入元素的 3 种情况" src="/uploads/allimg/240114/102350OQ-0.gif" /><br />
 	图 1 带头结点链表插入元素的 3 种情况</div>
 <br />
 从图中可以看出，虽然新元素的插入位置不同，但实现插入操作的方法是一致的，都是先执行步骤 1 ，再执行步骤 2。实现代码如下：
@@ -198,7 +198,7 @@ void insertElem(Link* p, int elem, int add) {
 对于没有头结点的链表，在头部插入结点比较特殊，需要单独实现。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/102350K61-1.gif" /><br />
+	<img alt="不带头结点链表插入元素的 3 种情况" src="/uploads/allimg/240114/102350K61-1.gif" /><br />
 	图 2 不带头结点链表插入元素的 3 种情况</div>
 <br />
 和 2)、3) 种情况相比，由于链表没有头结点，在头部插入新结点，此结点之前没有任何结点，实现的步骤如下：
@@ -265,7 +265,7 @@ temp-&gt;next=temp-&gt;next-&gt;next;</pre>
 例如，从存有&nbsp;<code>{1,2,3,4}</code>&nbsp;的链表中删除存储元素 3 的结点，则此代码的执行效果如图 3 所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1023502296-2.gif" /><br />
+	<img alt="带头结点链表删除元素" src="/uploads/allimg/240114/1023502296-2.gif" /><br />
 	图 3 带头结点链表删除元素</div>
 <br />
 实现代码如下：
@@ -300,7 +300,7 @@ int delElem(Link* p, int elem) {
 对于不带头结点的链表，需要单独考虑删除首元结点的情况，删除其它结点的方式和图 3 完全相同，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1023501549-3.gif" /><br />
+	<img alt="不带头结点链表删除结点" src="/uploads/allimg/240114/1023501549-3.gif" /><br />
 	图 4 不带头结点链表删除结点</div>
 <br />
 实现代码如下：
@@ -565,7 +565,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 291;
-window.arcId = "b765mtJplj1n2BvuS/Z4fLyi2veZ4HO8NS+xINAuExQfkBx4A+UajQLCUw";
+window.arcId = "e470zKmQSjHUmXDoAk6eFIoInVs4T++O6MRdPcj+Mlzp3M7jHfO0urxDOg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
