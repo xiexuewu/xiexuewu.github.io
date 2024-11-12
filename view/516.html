@@ -128,12 +128,15 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/515.html";window.nextPageURL = "/view/517.html";</script>
-			<div id="arc-body">数组（Array）是一系列具有相同类型的数据的集合，每一份数据叫做一个数组元素（Element）。数组中的所有元素在内存中是连续排列的，整个数组占用的是一块内存。以<code>int arr[] = { 99, 15, 100, 888, 252 };</code>为例，该数组在内存中的分布如下图所示：
+			<div id="arc-body">数组（Array）是一系列具有相同类型的数据的集合，每一份数据叫做一个数组元素（Element）。数组中的所有元素在内存中是连续排列的，整个数组占用的是一块内存。以<code>int arr[] = { 99, 15, 100, 888, 252 };</code>为例，该数组在内存中的分布如下图所示：<br />
+<br />
 <div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/1525405452-0.jpg" style="height: 36px; width: 176px" /></div>
-定义数组时，要给出数组名和数组长度，数组名可以认为是一个指针，它指向数组的第 0 个元素。<span style="color: #b22222">在C语言中，我们将第 0 个元素的地址称为数组的首地址。</span>以上面的数组为例，下图是 arr 的指向：
+	<img alt="arr数组在内存中的分布" src="/uploads/allimg/240821/1525405452-0.jpg" style="height: 36px; width: 176px" /></div>
+<br />
+定义数组时，要给出数组名和数组长度，数组名可以认为是一个指针，它指向数组的第 0 个元素。<span style="color: #b22222">在C语言中，我们将第 0 个元素的地址称为数组的首地址。</span>以上面的数组为例，下图是 arr 的指向：<br />
+<br />
 <div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/1525403335-1.jpg" style="height: 77px; width: 185px" /></div>
+	<img alt="arr 的指向" src="/uploads/allimg/240821/1525403335-1.jpg" style="height: 77px; width: 185px" /></div>
 <blockquote>
 	数组名的本意是表示整个数组，也就是表示多份数据的集合，但在使用过程中经常会转换为指向数组第 0 个元素的指针，所以上面使用了&ldquo;认为&rdquo;一词，表示数组名和数组首地址并不总是等价。初学者可以暂时忽略这个细节，把数组名当做指向第 0 个元素的指针使用即可，我们将在VIP教程《<a href="/view/523.html" target="_blank">数组和指针绝不等价，数组是另外一种类型</a>》和《<a href="/view/524.html" target="_blank">数组到底在什么时候会转换为指针</a>》中再深入讨论这一细节。</blockquote>
 下面的例子演示了如何以指针的方式遍历数组元素：
@@ -269,7 +272,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 516;
-window.arcId = "0125HabcgqzLo538mvp+guOEBT5wb5xovu5fW7+8hOmo7u0lIzO1qIj86w";
+window.arcId = "74a9bbSmaFnk5++aEPs0wYL4ETYYgtJu71cxAT1e8vzg24774f1Y6esscA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

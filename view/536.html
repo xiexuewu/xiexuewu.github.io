@@ -195,11 +195,11 @@ int main(){
 这段代码不但验证了共用体的长度，还说明共用体成员之间会相互影响，修改一个成员的值会影响其他成员。<br />
 <br />
 要想理解上面的输出结果，弄清成员之间究竟是如何相互影响的，就得了解各个成员在内存中的分布。以上面的 data 为例，各个成员在内存中的分布如下：<br />
-<img alt="" src="/uploads/allimg/240821/1622023262-0.jpg" style="height: 176px; width: 711px" /><br />
+<img alt="data成员在内存中的分布" src="/uploads/allimg/240821/1622023262-0.jpg" style="height: 176px; width: 711px" /><br />
 成员 n、ch、m 在内存中&ldquo;对齐&rdquo;到一头，对 ch 赋值修改的是前一个字节，对 m 赋值修改的是前两个字节，对 n 赋值修改的是全部字节。也就是说，ch、m 会影响到 n 的一部分数据，而 n 会影响到 ch、m 的全部数据。<br />
 <br />
 上图是在绝大多数 PC 机上的内存分布情况，如果是 51 单片机，情况就会有所不同：<br />
-<img alt="" src="/uploads/allimg/240821/1622021206-1.jpg" style="height: 176px; width: 711px" /><br />
+<img alt="51 单片机各成员在内存中的分布" src="/uploads/allimg/240821/1622021206-1.jpg" style="height: 176px; width: 711px" /><br />
 为什么不同的机器会有不同的分布情况呢？这跟机器的存储模式有关，我们将在VIP教程《<a href="/view/537.html" target="_blank">大端小端以及判别方式</a>》一节中展开探讨。
 <h2>
 	共用体的应用</h2>
@@ -397,7 +397,7 @@ ZhaoFeiYan      982     m       s               95.000000</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 536;
-window.arcId = "d851VK4Mz9N/8hY6qSqHGEzdcrGhny7PjM/Nz/4UYYgDJsBti3lFJMt3aQ";
+window.arcId = "1548vyHzusoShIKOfzteJdA0jQa7/9NQAUYIYXjyHDxq0BF6EhrqiA7q9g";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

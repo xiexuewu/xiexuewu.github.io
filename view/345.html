@@ -126,7 +126,7 @@
 图 1a) 是一个连通图，用广度优先搜索算法遍历它，得到的广度优先生成树如图 1b) 所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145UBP2-0.gif" /><br />
+	<img alt="连通图和它对应的广度优先生成树" src="/uploads/allimg/240114/145UBP2-0.gif" /><br />
 	图 1 连通图和它对应的广度优先生成树</div>
 <blockquote>
 	<p>
@@ -135,7 +135,7 @@
 注意，对连通图进行广度优先搜索，得到的生成树往往是一棵普通树，而非<u><a href='/view/326.html' target='_blank'>二叉树</a></u>，例如：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145UA310-1.gif" /><br />
+	<img alt="广度优先生成树不是二叉树" src="/uploads/allimg/240114/145UA310-1.gif" /><br />
 	图 2 广度优先生成树不是二叉树</div>
 <br />
 和普通树相比，二叉树更容易存储，操作起来也更简单，比如二叉树有现成的四种遍历算法。实际场景中，我们通常先借助<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>将普通树转换为二叉树，然后再操作二叉树实现自己想要的功能。<br />
@@ -380,7 +380,7 @@ int main() {
 以图 1a) 的连通图为例，程序最终构建出的广度优先生成树为：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145U64612-2.gif" /><br />
+	<img alt="程序构建的广度优先生成树" src="/uploads/allimg/240114/145U64612-2.gif" /><br />
 	图 3 程序构建的广度优先生成树</div>
 <br />
 程序的执行结果为：
@@ -409,19 +409,19 @@ int main() {
 图 4a) 是一张非连通图，它可以分为图 4b) 所示的 3 个连通分量：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145U64046-3.gif" /><br />
+	<img alt="非连通图和它的连通分量" src="/uploads/allimg/240114/145U64046-3.gif" /><br />
 	图 4 非连通图和它的连通分量</div>
 <br />
 对图 4a) 进行广度优先搜索，其本质是依次遍历 3 个连通分量，最终得到 3 棵生成树，如下图所示<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145UB135-4.gif" /><br />
+	<img alt="广度优先生成森林" src="/uploads/allimg/240114/145UB135-4.gif" /><br />
 	图 5 广度优先生成森林</div>
 <br />
 借助孩子兄弟表示法，可以将森林中的每一棵生成树都转换为二叉树，然后再将多棵二叉树合并为一整颗二叉树。比如将图 5 的生成森林转换为一整棵二叉树，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145U61425-5.gif" /><br />
+	<img alt="生成森林转换为一整棵二叉树" src="/uploads/allimg/240114/145U61425-5.gif" /><br />
 	图 6 生成森林转换为一整棵二叉树</div>
 <br />
 对于给定的一张非连通图，如果我们想获得它对应的广度优先生成森林，并且是经过孩子兄弟表示法转换后的一整棵二叉树，该如何编码实现呢？这里给大家提供一种实现思路：
@@ -736,7 +736,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 345;
-window.arcId = "599cA8+tjHVnUHTX08+Fd4kgS13zXFweTaz1x4ycSyfPprq0DnkqSBmpOg";
+window.arcId = "4f55SzZwKoFzuQyScZt0+pGGiATRN1C3Ijkx91IvMZbeWlxNnmUmUrbypw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -134,7 +134,7 @@
 <br />
 现在假设有一个 char 类型的变量 c，它存储了字符 &#39;K&#39;（ASCII码为十进制数 75），并占用了地址为 0X11A 的内存（地址通常用十六进制表示）。另外有一个指针变量 p，它的值为 0X11A，正好等于变量 c 的地址，这种情况我们就称 p 指向了 c，或者说 p 是指向变量 c 的指针。
 <div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/15233613X-0.png" style="height: 68px; width: 121px" /></div>
+	<img alt="p 指向了 c" src="/uploads/allimg/240821/15233613X-0.png" style="height: 68px; width: 121px" /></div>
 <h2>
 	定义指针变量</h2>
 定义指针变量与定义普通变量非常类似，不过要在变量名前面加星号<code>*</code>，格式为：
@@ -165,9 +165,11 @@ p1 = &amp;b;
 p2 = &amp;d;</pre>
 <code>*</code>是一个特殊符号，表明一个变量是指针变量，定义 p1、p2 时必须带<code>*</code>。而给 p1、p2 赋值时，因为已经知道了它是一个指针变量，就没必要多此一举再带上<code>*</code>，后边可以像使用普通变量一样来使用指针变量。<span style="color: #b22222">也就是说，定义指针变量时必须带<code>*</code>，给指针变量赋值时不能带<code>*</code>。</span><br />
 <br />
-假设变量 a、b、c、d 的地址分别为 0X1000、0X1004、0X2000、0X2004，下面的示意图很好地反映了 p1、p2 指向的变化：
+假设变量 a、b、c、d 的地址分别为 0X1000、0X1004、0X2000、0X2004，下面的示意图很好地反映了 p1、p2 指向的变化：<br />
+<br />
 <div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/15233BL4-1.jpg" style="height: 383px; width: 483px" /></div>
+	<img alt="p1、p2 指向的变化" src="/uploads/allimg/240821/15233BL4-1.jpg" style="height: 383px; width: 483px" /></div>
+<br />
 需要强调的是，p1、p2 的类型分别是<code>float*</code>和<code>char*</code>，而不是<code>float</code>和<code>char</code>，它们是完全不同的数据类型，读者要引起注意。<br />
 <br />
 指针变量也可以连续定义，例如：
@@ -198,9 +200,11 @@ int main(){
 <br />
 上节我们说过，CPU 读写数据必须要知道数据在内存中的地址，普通变量和指针变量都是地址的助记符，虽然通过 *p 和 a 获取到的数据一样，但它们的运行过程稍有不同：a 只需要一次运算就能够取得数据，而 *p 要经过两次运算，多了一层&ldquo;间接&rdquo;。<br />
 <br />
-假设变量 a、p 的地址分别为 0X1000、0XF0A0，它们的指向关系如下图所示：
+假设变量 a、p 的地址分别为 0X1000、0XF0A0，它们的指向关系如下图所示：<br />
+<br />
 <div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/15233B431-2.jpg" style="height: 115px; width: 264px" /></div>
+	<img alt="变量 a、p 的地址分别为 0X1000、0XF0A0" src="/uploads/allimg/240821/15233B431-2.jpg" style="height: 115px; width: 264px" /></div>
+<br />
 程序被编译和链接后，a、p 被替换成相应的地址。使用 *p 的话，要先通过地址 0XF0A0 取得变量 p 本身的值，这个值是变量 a 的地址，然后再通过这个值取得变量 a 的数据，前后共有两次运算；而使用 a 的话，可以通过地址 0X1000 直接取得它的数据，只需要一步运算。<br />
 <br />
 <span style="color: #b22222">也就是说，使用指针是间接获取数据，使用变量名是直接获取数据，前者比后者的代价要高。</span><br />
@@ -311,7 +315,7 @@ a=999, b=100<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 514;
-window.arcId = "16edFzdH31K+lKXEwmjyi5bEvTPXaU9gpEo+HIXwBRpEVKWnjVYBocEaRQ";
+window.arcId = "7943xTZzn+93ISv2A+Y4+c0GZy3ozm4w2KB+vJnkbiYjLo2iyLZxW4X9xg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

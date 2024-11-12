@@ -118,7 +118,7 @@
 对于一个动态查找表而言，表中元素的位置不同，最终构建出的<u><a href='/view/353.html' target='_blank'>二叉排序树</a></u>也不一样。换句话说，一个动态查找表可能对应着多棵二叉排序树。例如：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533533226-0.gif" /><br />
+	<img alt="二叉排序树" src="/uploads/allimg/240114/1533533226-0.gif" /><br />
 	图 1 二叉排序树</div>
 <br />
 图 1 中，左侧二叉排序树表示的是 {45，24，53，12，37，93}，右侧二叉排序树表示的是 {12，24，37，45，53，93}。由于查找表中存储的是无关系的数据，所以它们其实是同一个查找表。<br />
@@ -149,7 +149,7 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 所谓【树的深度】，可以简单理解成【树的高度】。举个简单的例子：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/153353H15-1.gif" /><br />
+	<img alt="平衡二叉树" src="/uploads/allimg/240114/153353H15-1.gif" /><br />
 	图 1 平衡二叉树</div>
 <br />
 图 1 整棵树的高度是 3，以结点 25 为根结点的子树高度是 2，以结点 12 为根结点的子树高度是 1，以此类推。<br />
@@ -157,7 +157,7 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 在数据结构中，一个结点左子树和右子树的深度差，叫做这个结点的<span style="color: rgb(0, 128, 0);">平衡因子</span>（Balance Factor，简称 BF）。例如，图 1 中各个结点的平衡因子分别是：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533536148-2.gif" style="text-align: center;" /><br />
+	<img alt="平衡因子" src="/uploads/allimg/240114/1533536148-2.gif" style="text-align: center;" /><br />
 	图 2 平衡因子</div>
 <br />
 比如结点 53 左子树的高度为 0，右子树高度为 1，所以平衡因子为 -1（0 - 1 = -1）。再比如，结点 45 左子树的高度为 2，右子树的高度也为 2，所以平衡因子值为 0（2 - 2 = 0）。&nbsp;<br />
@@ -170,13 +170,13 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 1) 下图是一棵二叉树，但结点 37 的右孩子 25 比 37 小，所以它不是二叉排序树，更不是平衡二叉树：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/153353H01-3.gif" /><br />
+	<img alt="非二叉排序树，也非平衡二叉树" src="/uploads/allimg/240114/153353H01-3.gif" /><br />
 	图 2 非二叉排序树，也非平衡二叉树</div>
 <br />
 2) 下图的两棵二叉树都是二叉排序树，但树中存在左、右子树深度差超过 1 的结点，所以它们不是平衡二叉树：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533534250-4.gif" /><br />
+	<img alt="是二叉排序树，但非平衡二叉树" src="/uploads/allimg/240114/1533534250-4.gif" /><br />
 	图 3 是二叉排序树，但非平衡二叉树</div>
 <h2>
 	平衡二叉树的构建</h2>
@@ -192,13 +192,13 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 1) 初始状态下，整棵树是一棵空树。将元素 12 和 24 插入到树中，整棵树是一棵平衡二叉树：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533535048-5.gif" /><br />
+	<img alt="插入元素 12 和 24" src="/uploads/allimg/240114/1533535048-5.gif" /><br />
 	图 4 插入元素 12 和 24</div>
 <br />
 2) 继续插入元素 37，新的二叉排序树如图 5a) 所示，树的平衡性被破坏了，需要调整树的姿态：将结点 24 作为新的根结点，12 作为 24 的左孩子，37 仍作为 24 的右孩子。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533531091-6.gif" /><br />
+	<img alt="插入元素 37" src="/uploads/allimg/240114/1533531091-6.gif" /><br />
 	图 5 插入元素 37</div>
 <br />
 当二叉排序树的平衡性被打破时，就如同&ldquo;一边重，另一边轻&rdquo;的扁担（如图 5a)），只需要调整扁担的支撑点（调整根结点），就能重新恢复平衡。实际上，将图 5a) 以结点 24 为支撑点向左逆时针旋转，就能得到图 5b)。<br />
@@ -206,7 +206,7 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 3）在图 5b) 的基础上，继续插入元素 90，它将作为结点 37 的右孩子，整棵树依然是一棵平衡二叉树，如图 6 所示。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533535196-7.gif" /><br />
+	<img alt="插入元素 90" src="/uploads/allimg/240114/1533535196-7.gif" /><br />
 	图 6 插入元素 90</div>
 <br />
 4）在图 6 的基础上，继续插入元素 53，它将作为结点 90 的左孩子，此时树的平衡性再次被打破（如图 7a) 所示），需要对树的姿态做出调整，需要做两步操作：
@@ -218,7 +218,7 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 </ul>
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533535016-8.gif" /><br />
+	<img alt="插入元素 53" src="/uploads/allimg/240114/1533535016-8.gif" /><br />
 	图 7 插入元素 53</div>
 <br />
 由此，我们就得到了图 7c) 这棵平衡二叉树。
@@ -232,7 +232,7 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 如图 8 所示，在以 A 的左孩子为根结点的子树 B 中，若插入结点位于 B 的左子树上，导致 A 的平衡因子从 1 变成 2，可以将 A 子树向右顺时针旋转，整棵树就能重新平衡。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/15335312M-9.gif" /><br />
+	<img alt="单向右旋" src="/uploads/allimg/240114/15335312M-9.gif" /><br />
 	图 8 单向右旋</div>
 <blockquote>
 	<p>
@@ -252,7 +252,7 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 如图 9 所示，在以 A 的右孩子为根结点的子树 B 中，若插入结点位于 B 的右子树上，导致 A 的平衡因子从 -1 变成 -2，可以将 A 子树向左逆时针旋转，整棵树就能重新平衡。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533532550-10.gif" /><br />
+	<img alt="单向左旋" src="/uploads/allimg/240114/1533532550-10.gif" /><br />
 	图 9 单向左旋</div>
 <blockquote>
 	<p>
@@ -272,7 +272,7 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 如图 10 所示，在以 A 的左孩子为根结点的子树 B 中，若插入结点位于 B 的右子树上，导致 A 的平衡因子从 1 变成 2，则需要进行两次旋转操作，整棵树才能重新平衡。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533533541-11.gif" /><br />
+	<img alt="先左旋，再右旋" src="/uploads/allimg/240114/1533533541-11.gif" /><br />
 	图 10 先左旋，再右旋</div>
 <blockquote>
 	<p>
@@ -286,7 +286,7 @@ ASL 值越小，查找的性能就越高。显然，图 1 左侧二叉排序树�
 如图 11 所示，在以 A 的右孩子为根结点的子树 B 中，若插入结点位于 B 的左子树上，导致 A 的平衡因子从 -1 变成 -2，则也需要进行两次旋转操作，整棵树才能重新平衡。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1533532643-12.gif" /><br />
+	<img alt="先右旋，再左旋" src="/uploads/allimg/240114/1533532643-12.gif" /><br />
 	图 11 先右旋，再左旋</div>
 <br />
 图中，BR 和 AL 高度相同，CL 和 CR 高度相同，BR（AL）比 CL（CR）高度相差 1。<br />
@@ -573,7 +573,7 @@ int main()
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 354;
-window.arcId = "ea6bCEZVAHhyvRxvQJPNO7lDQ//FQbhbz6TpSahSrcepts1glFPxoCUddQ";
+window.arcId = "ea99xhuDxGWCqhhyJKVt9UE22tM0sf43hIzyrwCPkN7Q5hB+K4UNwAPH+w";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

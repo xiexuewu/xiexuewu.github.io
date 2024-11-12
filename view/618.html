@@ -133,7 +133,7 @@
 和<u><a href="/view/288.html" target="_blank">顺序表</a></u>不同，使用链表存储数据，不强制要求数据在内存中集中存储，各个元素可以分散存储在内存中。例如，使用链表存储 {1,2,3}，各个元素在内存中的存储状态可能是：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/10215a621-0.gif" /><br />
+	<img alt="数据分散存储在内存中" src="/uploads/allimg/240114/10215a621-0.gif" /><br />
 	图 1 数据分散存储在内存中</div>
 <br />
 可以看到，数据不仅没有集中存放，在内存中的存储次序也是混乱的。那么，链表是如何存储数据间逻辑关系的呢？<br />
@@ -141,7 +141,7 @@
 链表存储数据间逻辑关系的实现方案是：为每一个元素配置一个指针，每个元素的指针都指向自己的直接后继元素，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1021593W3-1.gif" /><br />
+	<img alt="链表的实现方案" src="/uploads/allimg/240114/1021593W3-1.gif" /><br />
 	图 2 链表的实现方案</div>
 <br />
 显然，我们只需要记住元素 1 的存储位置，通过它的指针就可以找到元素 2，通过元素 2 的指针就可以找到元素 3，以此类推，各个元素的先后次序一目了然。<br />
@@ -156,7 +156,7 @@
 在链表中，每个数据元素都配有一个指针，这意味着，链表上的每个&ldquo;元素&rdquo;都长下图这个样子：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1021591144-2.gif" /><br />
+	<img alt="链表中的结点结构" src="/uploads/allimg/240114/1021591144-2.gif" /><br />
 	图 3 链表中的结点结构</div>
 <br />
 数据域用来存储元素的值，指针域用来存放指针。数据结构中，通常将图 3 这样的整体称为结点。<br />
@@ -164,7 +164,7 @@
 也就是说，链表中实际存放的是一个一个的结点，数据元素存放在各个结点的数据域中。举个简单的例子，图 2 中 {1,2,3} 的存储状态用链表表示，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/102159B29-3.gif" /><br />
+	<img alt="链表中的结点" src="/uploads/allimg/240114/102159B29-3.gif" /><br />
 	图 4 链表中的结点</div>
 <br />
 在 C 语言中，可以用结构体表示链表中的结点，例如：
@@ -201,7 +201,7 @@ typedef struct link{
 例如，创建一个包含头结点的链表存储 {1,2,3}，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/10215924J-4.gif" /><br />
+	<img alt="完整的链表示意图" src="/uploads/allimg/240114/10215924J-4.gif" /><br />
 	图 5 完整的链表示意图</div>
 <br />
 再次强调，头指针永远指向链表中的第一个结点。换句话说，如果链表中包含头结点，那么头指针指向的是头结点，反之头指针指向首元结点。
@@ -386,7 +386,7 @@ Link* initLink() {
 例如，在链表&nbsp;<code>{1,2,3,4}</code>&nbsp;的基础上分别实现在头部、中间、尾部插入新元素 5，其实现过程如图 1 所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/102350OQ-0.gif" /><br />
+	<img alt="带头结点链表插入元素的 3 种情况" src="/uploads/allimg/240114/102350OQ-0.gif" /><br />
 	图 1 带头结点链表插入元素的 3 种情况</div>
 <br />
 从图中可以看出，虽然新元素的插入位置不同，但实现插入操作的方法是一致的，都是先执行步骤 1 ，再执行步骤 2。实现代码如下：
@@ -417,7 +417,7 @@ void insertElem(Link* p, int elem, int add) {
 对于没有头结点的链表，在头部插入结点比较特殊，需要单独实现。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/102350K61-1.gif" /><br />
+	<img alt="不带头结点链表插入元素的 3 种情况" src="/uploads/allimg/240114/102350K61-1.gif" /><br />
 	图 2 不带头结点链表插入元素的 3 种情况</div>
 <br />
 和 2)、3) 种情况相比，由于链表没有头结点，在头部插入新结点，此结点之前没有任何结点，实现的步骤如下：
@@ -484,7 +484,7 @@ temp-&gt;next=temp-&gt;next-&gt;next;</pre>
 例如，从存有&nbsp;<code>{1,2,3,4}</code>&nbsp;的链表中删除存储元素 3 的结点，则此代码的执行效果如图 3 所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1023502296-2.gif" /><br />
+	<img alt="带头结点链表删除元素" src="/uploads/allimg/240114/1023502296-2.gif" /><br />
 	图 3 带头结点链表删除元素</div>
 <br />
 实现代码如下：
@@ -519,7 +519,7 @@ int delElem(Link* p, int elem) {
 对于不带头结点的链表，需要单独考虑删除首元结点的情况，删除其它结点的方式和图 3 完全相同，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1023501549-3.gif" /><br />
+	<img alt="不带头结点链表删除结点" src="/uploads/allimg/240114/1023501549-3.gif" /><br />
 	图 4 不带头结点链表删除结点</div>
 <br />
 实现代码如下：
@@ -1008,7 +1008,7 @@ Line* insertLine(Line* head, int data, int add) {
 删除表头结点的过程如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/103Q93260-4.gif" /><br />
+	<img alt="删除双链表表头元素" src="/uploads/allimg/240114/103Q93260-4.gif" /><br />
 	图 5 删除双链表表头元素</div>
 <br />
 删除表头结点的实现过程是：
@@ -1041,7 +1041,7 @@ Line* insertLine(Line* head, int data, int add) {
 删除表尾结点的过程如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/103Q919E-6.gif" /><br />
+	<img alt="删除表尾结点" src="/uploads/allimg/240114/103Q919E-6.gif" /><br />
 	图 7 删除表尾结点</div>
 <br />
 删除表尾结点的实现过程是：
@@ -1309,7 +1309,7 @@ int main()
 和它名字的表意一样，只需要将表中最后一个结点的指针指向头结点，链表就能成环儿，如图 1 所示。
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/170718/2-1FGQ54T3422.png" /></div>
+	<img alt="循环链表" src="/uploads/allimg/170718/2-1FGQ54T3422.png" /></div>
 <div style="text-align: center;">
 	图1 循环链表</div>
 <div>
@@ -1572,7 +1572,7 @@ int main()
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 618;
-window.arcId = "4c42XvxTz3jhLt7x5en6kY+/xYUW11+KJjmf/7SM3s/VSa4pYY1FvAb73A";
+window.arcId = "6c53lcBv+L4a7fHBqJ1jLoTyoArCfg8eDp90+8RPuVIDZzwIWtYyi8ru+A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -121,7 +121,7 @@
 首先通过一个样例，给大家讲解深度优先搜索算法是如何实现图的遍历的。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1453441531-0.gif" /><br />
+	<img alt="深度优先搜索算法遍历无向图" src="/uploads/allimg/240114/1453441531-0.gif" /><br />
 	图 1 深度优先搜索算法遍历无向图</div>
 <br />
 深度优先搜索算法遍历图 1 无向图的整个过程是：<br />
@@ -130,31 +130,31 @@
 假设从 V1 顶点开始，先访问 V1 顶点，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/14534412J-1.gif" /><br />
+	<img alt="访问顶点 1" src="/uploads/allimg/240114/14534412J-1.gif" /><br />
 	图 2 访问顶点 1</div>
 <br />
 2) 紧邻 V1 的顶点有两个，分别是 V2 和 V3，它们都没有被访问过，从它们中任选一个，比如访问 V2，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1453442154-2.gif" /><br />
+	<img alt="访问顶点 V2" src="/uploads/allimg/240114/1453442154-2.gif" /><br />
 	图 3 访问顶点 V2</div>
 <br />
 3) 紧邻 V2 的顶点有三个，分别是 V1、V4 和 V5，尚未被访问的有 V4 和 V5，从它们中任选一个，比如访问 V4，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145344I38-3.gif" /><br />
+	<img alt="访问顶点 V4" src="/uploads/allimg/240114/145344I38-3.gif" /><br />
 	图 4 访问顶点 V4</div>
 <br />
 4) 紧邻 V4 的顶点有两个，分别是 V2 和 V8，只有 V8 尚未被访问，因此访问 V8，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1453441D7-4.gif" /><br />
+	<img alt="访问顶点 V8" src="/uploads/allimg/240114/1453441D7-4.gif" /><br />
 	图 5 访问顶点 V8</div>
 <br />
 5) 紧邻 V8 的顶点有两个，分别是 V4 和 V5，只有 V5 尚未被访问，因此访问 V5，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145344H34-5.gif" /><br />
+	<img alt="访问顶点 V5" src="/uploads/allimg/240114/145344H34-5.gif" /><br />
 	图 6 访问顶点 V5</div>
 <br />
 6) 和 V5 相邻的顶点有两个，分别是 V2 和 V8，它们都已经访问过了。也就是说，此时从 V5 出发，找不到任何未被访问的顶点了。<br />
@@ -174,19 +174,19 @@
 于是，下一个要访问的顶点就是 V3，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1453442645-6.gif" /><br />
+	<img alt="访问顶点 V3" src="/uploads/allimg/240114/1453442645-6.gif" /><br />
 	图 7 访问顶点 V3</div>
 <br />
 7) 紧邻 V3 的顶点有三个，分别是 V1、V6 和 V7，尚未访问的有 V6 和 V7，因此从它们中任选一个，比如访问 V6，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/1453445J6-7.gif" /><br />
+	<img alt="访问顶点 V6" src="/uploads/allimg/240114/1453445J6-7.gif" /><br />
 	图 8 访问顶点 V6</div>
 <br />
 8) 紧邻 V6 的顶点有两个，分别是 V3 和 V7，只有 V7 还没有访问，因此访问 V7，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145344L50-8.gif" /><br />
+	<img alt="访问顶点 V7" src="/uploads/allimg/240114/145344L50-8.gif" /><br />
 	图 9 访问顶点 V7</div>
 <br />
 9) 紧邻 V7 顶点有 V6 和 V3，但它们都已经访问过了，此时面临的情况和第 6 步完全一样，深度优先搜索算法的解决方法也是一样的：<br />
@@ -399,7 +399,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 342;
-window.arcId = "cd007Dbfpw/cNNVqN53ZY1OMAE2f3pBVdsPerbqo7Hbe8OwOuT37X9b63A";
+window.arcId = "e147rmECHwzqag0T+ooJUPbclV6sTmxeVLKOC6FAITdsCtcpW3kmitIkCA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

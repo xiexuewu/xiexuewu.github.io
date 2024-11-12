@@ -184,12 +184,12 @@ struct{  //没有写 stu
 理论上讲结构体的各个成员在内存中是连续存储的，和数组非常类似，例如上面的结构体变量 stu1、stu2 的内存分布如下图所示，共占用 4+4+4+1+4 = 17 个字节。<br />
 <br />
 <div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/1619146461-0.jpg" style="height: 32px; width: 446px" /></div>
+	<img alt="stu1、stu2 的内存分布" src="/uploads/allimg/240821/1619146461-0.jpg" style="height: 32px; width: 446px" /></div>
 <br />
 但是在编译器的具体实现中，各个成员之间可能会存在缝隙，对于 stu1、stu2，成员变量 group 和 score 之间就存在 3 个字节的空白填充（见下图）。这样算来，stu1、stu2 其实占用了 17 + 3 = 20 个字节。<br />
 <br />
 <div style="text-align: center">
-	<img alt="" src="/uploads/allimg/240821/1619142941-1.jpg" style="height: 32px; width: 485px" /></div>
+	<img alt="成员变量 group 和 score 之间就存在 3 个字节的空白填充" src="/uploads/allimg/240821/1619142941-1.jpg" style="height: 32px; width: 485px" /></div>
 <br />
 关于成员变量之间存在&ldquo;裂缝&rdquo;的原因，我们将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题中的《<a href="/view/569.html" target="_blank">C语言内存对齐，提高寻址效率</a>》一节中详细讲解。
 <h2>
@@ -262,7 +262,7 @@ struct{
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 532;
-window.arcId = "a0dahv+Z8tEfH8EvXY3pcVOXuCo2jSpcBWmWZcrzziBrafPbHYUKkksdWg";
+window.arcId = "ae18hpkUiQJsNveWs9ZpMiWfjkjDeVgzkED3wPYjx9C6ujBasKynf7gyWg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

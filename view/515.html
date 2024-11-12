@@ -165,15 +165,24 @@ pa=0X28FF40, pb=0X28FF28, pc=0X28FF2A
 这很奇怪，指针变量加减运算的结果跟数据类型的长度有关，而不是简单地加 1 或减 1，这是为什么呢？<br />
 <br />
 以 a 和 pa 为例，a 的类型为 int，占用 4 个字节，pa 是指向 a 的指针，如下图所示：<br />
-<img alt="" src="/uploads/allimg/240821/15243IG0-0.jpg" style="height: 96px; width: 289px" /><br />
+<br />
+<div style="text-align: center;">
+	<img alt="pa 是指向 a 的指针" src="/uploads/allimg/240821/15243IG0-0.jpg" style="height: 96px; width: 289px" /></div>
+<br />
 刚开始的时候，pa 指向 a 的开头，通过 *pa 读取数据时，从 pa 指向的位置向后移动 4 个字节，把这 4 个字节的内容作为要获取的数据，这 4 个字节也正好是变量 a 占用的内存。<br />
 <br />
 如果<code>pa++;</code>使得地址加 1 的话，就会变成如下图所示的指向关系：<br />
-<img alt="" src="/uploads/allimg/240821/15243GM6-1.jpg" style="height: 117px; width: 289px" /><br />
+<br />
+<div style="text-align: center;">
+	<img alt="pa++使地址加 1 " src="/uploads/allimg/240821/15243GM6-1.jpg" style="height: 117px; width: 289px" /></div>
+<br />
 这个时候 pa 指向整数 a 的中间，*pa 使用的是<span style="color: rgb(178,34,34)">红色虚线</span>画出的 4 个字节，其中前 3 个是变量 a 的，后面 1 个是其它数据的，把它们&ldquo;搅和&rdquo;在一起显然没有实际的意义，取得的数据也会非常怪异。<br />
 <br />
 如果<code>pa++;</code>使得地址加 4 的话，正好能够完全跳过整数 a，指向它后面的内存，如下图所示：<br />
-<img alt="" src="/uploads/allimg/240821/15243K402-2.jpg" style="height: 101px; width: 289px" /><br />
+<br />
+<div style="text-align: center;">
+	<img alt="pa++使地址加 4" src="/uploads/allimg/240821/15243K402-2.jpg" style="height: 101px; width: 289px" /></div>
+<br />
 我们知道，数组中的所有元素在内存中是连续排列的，如果一个指针指向了数组中的某个元素，那么加 1 就表示指向下一个元素，减 1 就表示指向上一个元素，这样指针的加减运算就具有了现实的意义，我们将在《<a href="/view/516.html" target="_blank">C语言数组指针</a>》一节中深入探讨。<br />
 <br />
 不过C语言并没有规定变量的存储方式，如果连续定义多个变量，它们有可能是挨着的，也有可能是分散的，这取决于变量的类型、编译器的实现以及具体的编译模式，所以对于指向普通变量的指针，我们往往不进行加减运算，虽然编译器并不会报错，但这样做没有意义，因为不知道它后面指向的是什么数据。<br />
@@ -227,7 +236,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 515;
-window.arcId = "f76f8Owexi87ya+TCLWPwtoqqa90ft0ZBsiTCPOfKyTlg0CaiFXiwtQxvg";
+window.arcId = "e47fmXcYdFVvypCTDOuoBqiB9zpQAcSzOgiieS9kTPYVI5CtjMKjSeKJIA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

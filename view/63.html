@@ -149,18 +149,22 @@
 	H（key）= key 或者 H（key）=a * key + b</div>
 其中 H（key）表示关键字为 key 对应的哈希地址，a 和 b 都为常数。<br />
 <br />
-例如有一个从 1 岁到 100 岁的人口数字统计表，如表 1 所示：
+例如有一个从 1 岁到 100 岁的人口数字统计表，如表 1 所示：<br />
+<br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171024/2-1G024153J2E8.png" style="width: 397px; height: 105px;" /><br />
+	<img alt="人口统计表" src="/uploads/allimg/171024/2-1G024153J2E8.png" style="width: 397px; height: 105px;" /><br />
 	表 1 人口统计表</div>
+<br />
 假设其哈希函数为第一种形式，其关键字的值表示最终的存储位置。若需要查找年龄为 25 岁的人口数量，将年龄 25 带入哈希函数中，直接求得其对应的哈希地址为 25（求得的哈希地址表示该记录的位置在查找表的第 25 位）。<br />
 <br />
 <span style="color:#008000;">数字分析法:</span>如果关键字由多位字符或者数字组成，就可以考虑抽取其中的 2 位或者多位作为该关键字对应的哈希地址，在取法上尽量选择变化较多的位，避免冲突发生。<br />
 <br />
-例如表 2 中列举的是一部分关键字，每个关键字都是有 8 位十进制数组成：
+例如表 2 中列举的是一部分关键字，每个关键字都是有 8 位十进制数组成：<br />
+<br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171024/2-1G024153U04I.png" style="width: 163px; height: 196px;" /><br />
+	<img alt="每个关键字都是有 8 位十进制数组成" src="/uploads/allimg/171024/2-1G024153U04I.png" style="width: 163px; height: 196px;" /><br />
 	表 2</div>
+<br />
 通过分析关键字的构成，很明显可以看到关键字的第 1 位和第 2 位都是固定不变的，而第 3 位不是数字 3 就是 4，最后一位只可能取 2、7 和 5，只有中间的 4 位其取值近似随机，所以为了避免冲突，可以从 4 位中任意选取 2 位作为其哈希地址。<br />
 <br />
 <span style="color:#008000;">平方取中法</span>是对关键字做平方操作，取中间得几位作为哈希地址。此方法也是比较常用的构造哈希函数的方法。<br />
@@ -179,8 +183,9 @@
 		间界折叠是从一端向另一端沿分割线来回折叠，如图 1（b）。</li>
 </ul>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171024/2-1G024155921910.png" style="width: 372px; height: 266px;" /><br />
+	<img alt="移位折叠和间界折叠" src="/uploads/allimg/171024/2-1G024155921910.png" style="width: 372px; height: 266px;" /><br />
 	图 1 移位折叠和间界折叠</div>
+<br />
 <span style="color:#008000;">除留余数法：</span>若已知整个哈希表的最大长度 m，可以取一个不大于 m 的数 p，然后对该关键字 key 做取余运算，即：<code>H（key）= key % p</code>。<br />
 <blockquote>
 	<p>
@@ -227,7 +232,7 @@
 <div style="margin-left: 40px;">
 	例如，在长度为 11 的哈希表中已填写好 17、60 和 29 这 3 个数据（如图 2（a） 所示），其中采用的哈希函数为：H（key）=key MOD 11，现有第 4 个数据 38 ，当通过哈希函数求得的哈希地址为 5，与 60 冲突，则分别采用以上 3 种方式求得插入位置如图 2（b）所示：</div>
 <div style="text-align: center; margin-left: 40px;">
-	<img alt="" src="/uploads/allimg/171024/2-1G02415435M53.png" style="width: 331px; height: 422px;" /></div>
+	<img alt="开放定址法" src="/uploads/allimg/171024/2-1G02415435M53.png" style="width: 331px; height: 422px;" /></div>
 <div style="text-align: center;">
 	图 2 开放定址法</div>
 <div class="info-box" style="margin-left: 40px;">
@@ -245,7 +250,7 @@
 <div style="margin-left: 40px;">
 	将所有产生冲突的关键字所对应的数据全部存储在同一个线性<u><a href='/view/290.html' target='_blank'>链表</a></u>中。例如有一组关键字为<code>{19,14,23,01,68,20,84,27,55,11,10,79}</code>，其哈希函数为：<code>H(key)=key MOD 13</code>，使用链地址法所构建的哈希表如图 3 所示：</div>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171024/2-1G02415452NG.png" style="width: 360px; height: 364px;" /><br />
+	<img alt="链地址法构建的哈希表" src="/uploads/allimg/171024/2-1G02415452NG.png" style="width: 360px; height: 364px;" /><br />
 	图 3 链地址法构建的哈希表</div>
 <ul>
 	<li>
@@ -287,7 +292,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 63;
-window.arcId = "ae99nMKoS+eHp8v7GMOztjKY0MrSYari51D9OrAydm/l8bVe/5xstCU0";
+window.arcId = "f172tIRW4vJfi/0fOZo2VTUJdkMJPjHOJCJAehDgsuMKvw9zXrsxd6SR";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

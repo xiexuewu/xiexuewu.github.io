@@ -126,7 +126,7 @@
 图 1a) 是一个连通图，用深度优先搜索算法遍历它，得到的深度优先生成树如图 1b) 所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145H11456-0.gif" /><br />
+	<img alt="连通图和它对应的生成树" src="/uploads/allimg/240114/145H11456-0.gif" /><br />
 	图 1 连通图和它对应的生成树</div>
 <blockquote>
 	<p>
@@ -135,7 +135,7 @@
 注意，对连通图进行深度优先搜索，得到的生成树往往是一棵普通树，而非<u><a href='/view/326.html' target='_blank'>二叉树</a></u>，例如：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145H1KT-1.gif" /><br />
+	<img alt="生成树是一棵普通树" src="/uploads/allimg/240114/145H1KT-1.gif" /><br />
 	图 2 生成树是一棵普通树</div>
 <br />
 和普通树相比，二叉树更容易存储，操作起来也更容易，比如二叉树有现成的四种遍历算法。实际场景中，我们通常先借助<u><a href='/view/198.html' target='_blank'>孩子兄弟表示法</a></u>将普通树转换为二叉树，然后再操作二叉树实现自己想要的功能。<br />
@@ -323,7 +323,7 @@ int main() {
 以图 1a) 的连通图为例，程序最终构建的深度优先生成树为：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145H14502-2.gif" /><br />
+	<img alt="连通图和它对应的深度优先生成树" src="/uploads/allimg/240114/145H14502-2.gif" /><br />
 	图 3 连通图和它对应的深度优先生成树</div>
 <br />
 程序的执行结果为：
@@ -352,13 +352,13 @@ int main() {
 图 4a) 是一张非连通图，它可以分为图 4b) 所示的 3 个连通分量：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145H1JA-3.gif" /><br />
+	<img alt="非连通图和它的连通分量" src="/uploads/allimg/240114/145H1JA-3.gif" /><br />
 	图 4 非连通图和它的连通分量</div>
 <br />
 对图 4a) 进行深度优先搜索，其本质是依次遍历 3 个连通分量，最终得到 3 棵生成树，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145H15154-4.gif" /><br />
+	<img alt="深度优先生成森林" src="/uploads/allimg/240114/145H15154-4.gif" /><br />
 	图 5 深度优先生成森林</div>
 <br />
 使用深度优先搜索算法遍历非连通图，得到的生成森林就称为深度优先生成森林。<br />
@@ -366,7 +366,7 @@ int main() {
 借助孩子兄弟表示法，可以将森林中的每一棵生成树都转换为二叉树，然后再将多棵二叉树合并为一整颗二叉树。比如将图 5 的生成森林转换为一整棵二叉树，如下图所示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240114/145H1A32-5.gif" /><br />
+	<img alt="生成森林转换为一整棵二叉树" src="/uploads/allimg/240114/145H1A32-5.gif" /><br />
 	图 6 生成森林转换为一整棵二叉树</div>
 <br />
 对于给定的一张非连通图，如果我们想获得它对应的深度优先生成森林，并且是经过孩子兄弟表示法转换后的一整棵二叉树，该如何编码实现呢？这里给大家提供一种实现思路：
@@ -619,7 +619,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 344;
-window.arcId = "b4darV1mL3INGPcfOVz8iiPEAvUfKvi+dhf7wuXPYbla+ZD3pnRy+JNE0g";
+window.arcId = "1327TzOZZ7WjDh8nGCYQmXUcUjCYc05x6v6RdJen79EaS7F90PM1019wZg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -124,25 +124,25 @@
 		第一次遍历时，从下标为 1 的位置即 56 开始，找出关键字值最小的记录 12，同下标为 0 的关键字 56 交换位置：</li>
 </ul>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171107/2-1G10G11033T5.png" style="width: 201px; height: 41px;" /></div>
+	<img alt="第一次遍历" src="/uploads/allimg/171107/2-1G10G11033T5.png" style="width: 201px; height: 41px;" /></div>
 <ul>
 	<li>
 		第二次遍历时，从下标为 2 的位置即 56 开始，找出最小值 20，同下标为 2 的关键字 56 互换位置：</li>
 </ul>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171107/2-1G10G1105KP.png" style="width: 201px; height: 41px;" /></div>
+	<img alt="第二次遍历" src="/uploads/allimg/171107/2-1G10G1105KP.png" style="width: 201px; height: 41px;" /></div>
 <ul>
 	<li>
 		第三次遍历时，从下标为 3 的位置即 80 开始，找出最小值 56，同下标为 3 的关键字 80 互换位置：</li>
 </ul>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171107/2-1G10G11112303.png" style="width: 201px; height: 41px;" /></div>
+	<img alt="第三次遍历" src="/uploads/allimg/171107/2-1G10G11112303.png" style="width: 201px; height: 41px;" /></div>
 <ul>
 	<li>
 		第四次遍历时，从下标为 4 的位置即 91 开始，找出最小是 80，同下标为 4 的关键字 91 互换位置：</li>
 </ul>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171107/2-1G10G1112A61.png" style="width: 201px; height: 41px;" /></div>
+	<img alt="第四次遍历" src="/uploads/allimg/171107/2-1G10G1112A61.png" style="width: 201px; height: 41px;" /></div>
 <ul>
 	<li>
 		到此简单选择排序算法完成，无序表变为有序表。</li>
@@ -222,14 +222,14 @@ int main() {
 		首先将无序表中的记录采用两两分组，筛选出各组中的较小值（如图 1 中的（a）过程）；然后将筛选出的较小值两两分组，筛选出更小的值，以此类推（如图 1 中的（b）（c）过程），最终整棵树的根结点中的关键字即为最小关键字：</li>
 </ul>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171107/2-1G10G11310U9.png" style="width: 600px; height: 238px;" /><br />
+	<img alt="树形选择排序（一）" src="/uploads/allimg/171107/2-1G10G11310U9.png" style="width: 600px; height: 238px;" /><br />
 	图 1 树形选择排序（一）</div>
 <ul>
 	<li>
 		筛选出关键字 13 之后，继续重复此方式找到剩余记录中的最小值，此时由于关键字 13 已经筛选完成，需要将关键字 13 改为&ldquo;最大值&rdquo;，继续重复此过程，如图 2 所示：</li>
 </ul>
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171107/2-1G10G11341338.png" style="width: 600px; height: 238px;" /><br />
+	<img alt="树形选择排序（二）" src="/uploads/allimg/171107/2-1G10G11341338.png" style="width: 600px; height: 238px;" /><br />
 	图 2 树形选择排序（二）</div>
 <br />
 通过不断地重复此过程，可依次筛选出从小到大的所有关键字。该算法的<u><a href='/view/vip_284.html' target='_blank'>时间复杂度</a></u>为<code>O(nlogn)</code>，同简单选择排序相比，该算法减少了不同记录之间的比较次数，但是程序运行所需要的空间较多。
@@ -248,7 +248,7 @@ int main() {
 <br />
 以无序表<code>{49，38，65，97，76，13，27，49}</code>来讲，其对应的堆用完全二叉树来表示为：
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171107/2-1G10G11P3256.png" style="width: 273px; height: 250px;" /><br />
+	<img alt="无序表对应的堆" src="/uploads/allimg/171107/2-1G10G11P3256.png" style="width: 273px; height: 250px;" /><br />
 	图 3 无序表对应的堆</div>
 <blockquote>
 	<p>
@@ -264,46 +264,48 @@ int main() {
 		在输出堆顶元素之后（完全二叉树的树根结点），如何调整剩余元素构建一个新的堆？</li>
 </ol>
 首先先解决第 2 个问题。图 3 所示为一个完全二叉树，若去除堆顶元素，即删除二叉树的树根结点，此时用二叉树中最后一个结点 97 代替，如下图所示：<br />
+<br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/171107/2-1G10G1192WU.png" style="width: 239px; height: 187px;" /></div>
+	<img alt="删除二叉树的树根结点，用最后一个结点 97 代替" src="/uploads/allimg/171107/2-1G10G1192WU.png" style="width: 239px; height: 187px;" /></div>
+<br />
 此时由于结点 97 比左右孩子结点的值都大，破坏了堆的结构，所以需要进行调整：首先以 堆顶元素 97 同左右子树比较，同值最小的结点交换位置，即 27 和 97 交换位置：
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/171107/2-1G10G1194A41.png" style="width: 239px; height: 187px;" /><br />
+	<img alt="27 和 97 交换位置" src="/uploads/allimg/171107/2-1G10G1194A41.png" style="width: 239px; height: 187px;" /><br />
 	&nbsp;</div>
 由于替代之后破坏了根结点右子树的堆结构，所以需要进行和上述一样的调整，即令 97 同 49 进行交换位置：
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/171107/2-1G10G12003264.png" style="width: 239px; height: 187px;" /><br />
+	<img alt="97 同 49 进行交换位置" src="/uploads/allimg/171107/2-1G10G12003264.png" style="width: 239px; height: 187px;" /><br />
 	&nbsp;</div>
 通过上述的调整，之前被破坏的堆结构又重新建立。<span style="color:#b22222;">从根结点到叶子结点的整个调整的过程，被称为</span><span style="color:#008000;">&ldquo;筛选&rdquo;</span>。<br />
 <br />
 解决第一个问题使用的就是不断筛选的过程，如下图所示，无序表<code>{49，38，65，97，76，13，27，49}</code>初步建立的完全二叉树，如下图所示：
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/171107/2-1G10G12041N3.png" style="width: 268px; height: 267px;" /><br />
+	<img alt="完全二叉树" src="/uploads/allimg/171107/2-1G10G12041N3.png" style="width: 268px; height: 267px;" /><br />
 	&nbsp;</div>
 在对上图做筛选工作时，规律是从底层结点开始，一直筛选到根结点。对于具有 n 个结点的完全二叉树，筛选工作开始的结点为第 &lfloor;n/2&rfloor;个结点（此结点后序都是叶子结点，无需筛选）。<br />
 <br />
 所以，对于有 9 个结点的完全二叉树，筛选工作从第 4 个结点 97 开始，由于 97 &gt; 49 ,所以需要相互交换，交换后如下图所示：
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/171107/2-1G10G1212b35.png" style="width: 268px; height: 267px;" /><br />
+	<img alt="97和49相互交换" src="/uploads/allimg/171107/2-1G10G1212b35.png" style="width: 268px; height: 267px;" /><br />
 	&nbsp;</div>
 然后再筛选第 3 个结点 65 ，由于 65 比左右孩子结点都大，则选择一个最小的同 65 进行交换，交换后的结果为：
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/171107/2-1G10G1214J09.png" style="width: 268px; height: 267px;" /><br />
+	<img alt="13和65交换位置" src="/uploads/allimg/171107/2-1G10G1214J09.png" style="width: 268px; height: 267px;" /><br />
 	&nbsp;</div>
 然后筛选第 2 个结点，由于其符合要求，所以不用筛选；最后筛选根结点 49 ，同 13 进行交换，交换后的结果为：
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/171107/2-1G10G12204617.png" style="width: 268px; height: 267px;" /><br />
+	<img alt="49和13交换位置" src="/uploads/allimg/171107/2-1G10G12204617.png" style="width: 268px; height: 267px;" /><br />
 	&nbsp;</div>
 交换后，发现破坏了其右子树堆的结构，所以还需要调整，最终调整后的结果为：
 <div style="text-align: center;">
 	<br />
-	<img alt="" src="/uploads/allimg/171107/2-1G10G12221A8.png" style="width: 268px; height: 267px;" /></div>
+	<img alt="最终调整后的结果" src="/uploads/allimg/171107/2-1G10G12221A8.png" style="width: 268px; height: 267px;" /></div>
 所以实现堆排序的完整代码为：
 <pre class="cpp">
 #include &lt;stdio.h&gt;
@@ -413,7 +415,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 72;
-window.arcId = "2121Tj9X9ud6MpnIYHXidj+B2aJXeP9b2VYlh/dnNw8pLdwysU7vm1P8";
+window.arcId = "fc41eKGuPsZCl/u6Ek8Wca11WthNW0TgcBN57bLS0COdz9QBcbDrMNCQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

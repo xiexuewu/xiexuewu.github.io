@@ -146,9 +146,10 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/399.html";window.nextPageURL = "/view/400.html";</script>
-			<div id="arc-body">有时候，我们使用 VS（Visual Studio）编译程序时会出现&ldquo;无法查找或打开PDB文件&rdquo;的提示，并且此时程序会生成失败，无法运行，如下图所示：
+			<div id="arc-body">有时候，我们使用 VS（Visual Studio）编译程序时会出现&ldquo;无法查找或打开PDB文件&rdquo;的提示，并且此时程序会生成失败，无法运行，如下图所示：<br />
+<br />
 <div style="text-align: center;">
-	<img src="/uploads/allimg/240820/10320G609-0.png" /></div>
+	<img alt="出现“无法查找或打开PDB文件”的提示" src="/uploads/allimg/240820/10320G609-0.png" /></div>
 <br />
 大家不要惊慌，出现这种提示并不是代码写错了，而是编译器设置的问题，改一下设置就 OK 了。
 <h2>
@@ -162,21 +163,25 @@ pdb 文件主要用于调试程序，多用于当VS中有多个项目，且项�
 	如何修复这个错误</h2>
 我们可以通过对 VS 做适当的设置，使之能够查找到相应的 PDB 文件，具体步骤如下（这里我们以 VS2017 为例进行说明，其它版本的 VS 操作步骤也一样）。<br />
 <br />
-1) 选择菜单栏中的&ldquo;调试&nbsp; --&gt; 选项&rdquo;，如下图所示：
-<div style="text-align: center;">
-	<img src="/uploads/allimg/240820/10320L050-1.png" /></div>
+1) 选择菜单栏中的&ldquo;调试&nbsp; --&gt; 选项&rdquo;，如下图所示：<br />
 <br />
-2) 弹出&ldquo;选项&rdquo;对话框后，选择&ldquo;调试 --&gt; 常规&rdquo;，在右侧选项栏中勾选&ldquo;启用源服务器支持&rdquo;（包含的 3 个子选项不用勾选），此时会弹出一个安全警报框，选择&ldquo;是&rdquo;即可，如下图所示：
 <div style="text-align: center;">
-	<img src="/uploads/allimg/240820/10320K560-2.png" /></div>
+	<img alt="选择菜单栏中的“调试  --&gt; 选项”" src="/uploads/allimg/240820/10320L050-1.png" /></div>
 <br />
-3) 还是在&ldquo;选项&rdquo;对话框中，选择&ldquo;调试 --&gt; 符号&rdquo;，在右侧选项栏中勾选&ldquo;Microsoft符号服务器&rdquo;，此时会弹出一个提示对话框，点击&ldquo;确定&rdquo;即可。同时，对于缓存符号的目录，选择图示中的目录即可：
-<div style="text-align: center;">
-	<img src="/uploads/allimg/240820/10320L1Y-3.png" /></div>
+2) 弹出&ldquo;选项&rdquo;对话框后，选择&ldquo;调试 --&gt; 常规&rdquo;，在右侧选项栏中勾选&ldquo;启用源服务器支持&rdquo;（包含的 3 个子选项不用勾选），此时会弹出一个安全警报框，选择&ldquo;是&rdquo;即可，如下图所示：<br />
 <br />
-4) 确定之后，重新运行你的程序，首次运行时，由于编译器会加载所有动态链接库的pdb文件，可能会等到几秒钟。程序运行后，之前输出窗口中的&ldquo;无法查找或打开pdb文件&rdquo;的提示不见了，如下图所示：
 <div style="text-align: center;">
-	<img src="/uploads/allimg/240820/10320G224-4.png" /></div>
+	<img alt="“选项”对话框" src="/uploads/allimg/240820/10320K560-2.png" /></div>
+<br />
+3) 还是在&ldquo;选项&rdquo;对话框中，选择&ldquo;调试 --&gt; 符号&rdquo;，在右侧选项栏中勾选&ldquo;Microsoft符号服务器&rdquo;，此时会弹出一个提示对话框，点击&ldquo;确定&rdquo;即可。同时，对于缓存符号的目录，选择图示中的目录即可：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="在“选项”对话框中选择“调试 --&gt; 符号”" src="/uploads/allimg/240820/10320L1Y-3.png" /></div>
+<br />
+4) 确定之后，重新运行你的程序，首次运行时，由于编译器会加载所有动态链接库的pdb文件，可能会等到几秒钟。程序运行后，之前输出窗口中的&ldquo;无法查找或打开pdb文件&rdquo;的提示不见了，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="pdb文件成功加载" src="/uploads/allimg/240820/10320G224-4.png" /></div>
 <br />
 如上图所示，由于pdb文件，又名&ldquo;符号文件&rdquo;，所以&ldquo;已加载符号&rdquo;，也就是成功加载了动态链接库对应的pdb文件。<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
 			<div class="pre-next-page pre-next-detail clearfix">
@@ -205,7 +210,7 @@ pdb 文件主要用于调试程序，多用于当VS中有多个项目，且项�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 400;
-window.arcId = "1c04JDm/yTgRx+baGAUTZAXYUvRvrA8iA5Z8rmtArb5bCLCuviz0GQipvg";
+window.arcId = "b101Wr7+Y2fcBD7XsMiRevKde1+Sg2MFWSIGUmGLLFwdSkcXPkDXpgifXw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

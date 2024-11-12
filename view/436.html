@@ -457,7 +457,7 @@ int main()
 在 Linux 或者 Mac OS 下运行该程序，会发现第一个 printf() 并没有立即输出，而是等待 5 秒以后，和第二个 printf() 一起输出了，请看下面的动图演示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240822/2-240R2212634F1.gif" /></div>
+	<img alt="等待 5 秒以后和第二个 printf() 一起输出" src="/uploads/allimg/240822/2-240R2212634F1.gif" /></div>
 <br />
 我们不妨修改一下代码，在第一个 printf() 的最后添加一个换行符，如下所示：
 <p class="info-box">
@@ -465,7 +465,7 @@ int main()
 再次编译并运行程序，发现第一个 printf() 首先输出（程序运行后立即输出），等待 5 秒以后，第二个 printf() 才输出，请看下面的动图演示：<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240822/2-240R221325S15.gif" /></div>
+	<img alt="等待 5 秒以后第二个 printf() 才输出" src="/uploads/allimg/240822/2-240R221325S15.gif" /></div>
 <br />
 为什么一个换行符<code>\n</code>就能让程序的表现有天壤之别呢？按照通常的逻辑，程序运行后第一个 printf() 应该立即输出，而不是等待 5 秒以后再和第二个 printf() 一起输出，也就是说，第二种情形才符合我们的惯性思维。然而，第一种情形该如何理解呢？<br />
 <br />
@@ -490,7 +490,7 @@ int main()
 编译并运行程序，会发现第一个 printf() 首先输出（程序运行后立即输出），等待 5 秒以后，第二个 printf() 才输出。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240822/2-240R2214501D2.gif" /></div>
+	<img alt="等待 5 秒以后第二个 printf() 才输出" src="/uploads/allimg/240822/2-240R2214501D2.gif" /></div>
 <br />
 在第一个 printf() 的最后添加一个换行符，情况也是一样的，第一个 printf() 从来不会和第二个 printf() 一起输出。<br />
 <br />
@@ -504,7 +504,7 @@ int main()
 printf() 的这些格式规范不是&ldquo;小把戏&rdquo;，优美的输出格式随处可见，例如，dos 下的 dir 命令，会整齐地列出当前目录下的文件，这明显使用了右对齐，还指定了宽度。<br />
 <br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/240820/1Z9462424-3.png" style="height: 190px; width: 380px" /></div>
+	<img alt="dos 下的 dir 命令使用了右对齐" src="/uploads/allimg/240820/1Z9462424-3.png" style="height: 190px; width: 380px" /></div>
 <br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/c/io/">C语言输入输出</a></span>
@@ -532,7 +532,7 @@ printf() 的这些格式规范不是&ldquo;小把戏&rdquo;，优美的输出格
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 436;
-window.arcId = "9b11Ro2DiPt2/+Azj4ik3bewcZuPZg31ta/sBezGHJ3pDYi7EVapw0piQw";
+window.arcId = "6695Jb4mFYg8jM4wlgb4xmVmJocH+ILq1lDH0mLbxPzlf0LgoIRf7q/Wxw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
