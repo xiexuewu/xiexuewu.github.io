@@ -17,6 +17,6 @@ jobs:
           endpoint: "www.bing.com"
           since: 3
           since-unit: "day"
-          limit: 10
+          limit: 20
           key: ${{ secrets.INDEXNOW_KEY }}
           key-location: ${{ secrets.INDEXNOW_KEY_LOCATION }}
