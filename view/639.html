@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>如何选择编程语言和开发方向？（初学者避坑指南） - 玩转C语言和数据结构</title>
+<meta name="keywords" content="如何,选择,编程语,言和,开发,方向,初学者," />
+<meta name="description" content="全世界的编程语言有 600 多种，TIOBE 统计的有 100 种，参与排名的有 50 种，前 20 种是常用的，它们目前正在流行，或者曾经非常流行。 图1：2024 年 12 月份编程语言排名 TOP 20 TIOBE 是全球" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>如何选择编程语言和开发方向？（初学者避坑指南）</h1>
+			<div id="arc-body">全世界的编程语言有 600 多种，TIOBE 统计的有 100 种，参与排名的有 50 种，前 20 种是常用的，它们目前正在流行，或者曾经非常流行。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="2024 年 12 月份编程语言排名 TOP 20" src="/uploads/allimg/241115/2-2411152025553K.gif" /><br />
+	图1：2024 年 12 月份编程语言排名 TOP 20</div>
+<p class="info-box">
+	TIOBE 是全球最著名的编程语言排行榜，它根据互联网上有经验的程序员、课程和第三方厂商的数量，并使用搜索引擎、Wikipedia、Amazon、YouTube 等统计出排名数据。TIOBE 只是反映某个编程语言的热门程度，并不能说明一门编程语言好不好，或者一门语言所编写的代码数量多少。<br />
+	<br />
+	TIOBE 排行榜每月更新一次，你可以转到&nbsp;<a href="https://www.tiobe.com/tiobe-index/" target="_blank">https://www.tiobe.com/tiobe-index/</a> 查看编程语言的最新排名。</p>
+我一直在负责网站教程的编写和<a href="/view/212.html" target="_blank">答疑</a>工作，有很多同学问我，该如何从这么多编程语言中选择一门适合自己的呢？选择标准又是什么呢？很早我就想写一篇文章来回答这个问题了，现在终于如愿以偿了。<br />
+<br />
+要想选择编程语言，首先得确定开发方向，比如网站开发、APP 开发、机器学习、大数据、嵌入式、GUI 软件、算法设计等。编程语言不是万能的，一门编程语言只能胜任一个或者几个开发方向，一个开发方向往往也有多种编程语言可以选择。<br />
+<br />
+我们首先谈一下开发方向的选择，然后再说编程语言的选择。
+<h2>
+	1. 选择开发方向</h2>
+选择大于努力，只有切入一个适合自己的开发方向，才能持续进步。关于开发方向，我有以下两个选择标准。<br />
+<h4>
+	1) 兴趣</h4>
+学习编程是一个非常枯燥的过程，内容多，时间长，成本高，就算参加全职培训班，至少也得学习半年才能入门，做出一点小玩意来。要想成为别人眼中的大神，或者编程专家，没有三五年的功夫肯定是不行的。<br />
+<br />
+学习编程的过程是比较艰苦的，没有兴趣很难硬抗下来，即使报名了培训班也学不会，所以，我们首先要选择自己感兴趣的一个开发方向，这样不但能快速学习，以后还能持续进步。<br />
+<br />
+比如我就对网站感兴趣，所以大学我毫不犹豫地选择了网站开发这个方向。我在选择开发方向的时候没有任何纠结，我知道自己必须选择网站开发。网站开发完全是我自学的，我也是凭借兴趣坚持下来的，一直到现在我还在运营网站，还不止 1 个，把兴趣变成了职业。<br />
+<br />
+兴趣是最好的老师，没有之一。遗憾的是，对某个事物有强烈兴趣的人很少，大部分人都是被动选择。<br />
+<br />
+此处我说的兴趣，是指别人无法撼动的热爱，是工作之余让你放松的事情。如果你只是有过某种想法，别人告诉你这个想法不靠谱，你就放弃了，这顶多是一时的鸡血。
+<h4>
+	2) 未来发展</h4>
+如果你学习编程不是因为兴趣，只是想选择一份职业，那我希望你切入一个有发展潜力的开发方向。<br />
+<br />
+每个产业的发展规律都是类似的，都要经历以下几个周期：
+<p class="info-box">
+	拓荒期 -&gt; 发展期 -&gt; 成熟期 -&gt; 衰落期</p>
+我希望你在发展期切入一个产业，然后持续努力和积累，让产业的发展带着你起飞。站在风口上，猪都能飞起来。<br />
+<br />
+你应该听说过很多没啥背景的人，突然之间一夜暴富了，惹得别人羡慕嫉妒恨吧，这些人，大都是在一个爆发式增长的行业里面翻了身，比如十年前的包工头、持续火热的程序员。
+<p class="info-box">
+	注意，最好不要在拓荒期切入一个产业，你很有可能坚持不到曙光到来之时就已经转行或者年老色衰了，成为了别人谈笑中的&ldquo;烈士&rdquo;。</p>
+对于软件开发产业来说，GUI 桌面软件已经是过去式了，APP 和网站也已经进入成熟期，我推荐机器学习（人工智能）和大数据两个方向，它们都是国家重点扶植的细分产业，而且写入了十四五规划，未来至少还有十年的发展时间。<br />
+<br />
+机器学习需要大数据提供原料，反过来，大数据分析也依赖机器学习模型，它们是相辅相成的，很难隔离开。<br />
+<br />
+以上是我基于 10 年的编程经验和 7 年的创业过程给出的建议，如果你觉得不对，就当做耳旁风吧，毕竟我也才三十出头，阅历还不是很丰富，难免有偏颇。<br />
+<br />
+另外，选择产业方向也是有风险的，也是一次命运赌博，谁也不能确定这个产业能不能发展起来，就算发展起来，又需要多少年呢？又有多大的产值呢？<br />
+<h2>
+	2. 选择编程语言</h2>
+确定了开发方向，接下来就可以选择编程语言了。有的开发方向比较纯粹，只有一两种编程语言，有的开发方向鱼龙混杂，有五六种编程语言，选择编程语言也是一个让人纠结的过程。<br />
+<br />
+以下是部分开发方向可以选择的编程语言：
+<h4>
+	1) GUI 桌面软件</h4>
+能开发 GUI 软件的编程语言众多，既有传统的 C++、C#、VB、Delphi、Java，也有新晋选手 Python、Node.js（JavaScript），还有小众的易语言（中文编程语言）。<br />
+<br />
+如果你只是想玩玩，那么你随意，适合自己的就行，其中 Python 上手比较简单。<br />
+<br />
+如果你想找一份工作，建议学习 C++ 或者 C#。C# 虽然比 C++ 简单一点，但是它只适用于 Windows 平台；而 C++ 是一种通用语言，它可以应用于 Windows、Linux 以及嵌入式平台，就业选择较多。
+<h4>
+	2)&nbsp;网站开发</h4>
+网站开发分为前端和后台，前端就是用户在浏览器中看到的界面，后台就是放在服务器上的程序。<br />
+<br />
+前端开发需要学习 HTML、CSS 和 JavaScript，没得选，而且必须都学习。<br />
+<br />
+后台发开语言则多如牛毛，有走进坟墓的 ASP、Ruby on Rails，也有常用的 PHP、Java（JSP）、C#（ASP.NET），还有新晋选手 Python、Node.js（JavaScript）、Go 语言。<br />
+<br />
+如果你想自己玩玩或者创业，建议选择 PHP，上手非常简单。<br />
+<br />
+如果你想找一份工作，那么已经走近坟墓的 ASP、Ruby on Rails 就不要选了，没人用了。C# 也不要选了，只适用于 Windows 平台，而大量的服务器都是 Linux。Python 也不要选，实际应用场景不多。Go 语言主要用作 Web 底层开发，而不是应用层开发。<br />
+<br />
+剩下的 PHP、Java、Node.js 你自己看着办吧，没法说哪种语言一定有优势，它们只是适用于不同的场景。<br />
+<br />
+值得一提的是，这里我们将 Node.js 和 JavaScript 看做是等价的，如果你选择了 JavaScript，那么你既能开发网站前端，也能开发网站后台，就不用学习多种编程语言了。
+<h4>
+	3)&nbsp;APP 开发</h4>
+这个开发方向比较简单，Android APP 开发使用 Java 或者&nbsp;Kotlin，iOS APP 开发使用 Objective-C 或者 Swift。<br />
+<br />
+每种操作系统都有两种编程语言，一种是传统的，一种是新晋的，选择好了操作系统，把两种语言都学了吧。
+<h4>
+	4) 嵌入式开发</h4>
+一般使用汇编、C语言和 C++，近年来也有开发板支持 JavaScript 和 Python。<br />
+<br />
+自己玩的话，可以选择 Python，上手简单。<br />
+<br />
+想找工作的话，还是走传统路线吧，把汇编、C语言和 C++ 都学了吧。<br />
+<br />
+只有那些有 Web 开发基础的程序员才会选择 JavaScript。
+<h4>
+	5) 机器学习</h4>
+这是一个比较综合的开发方向，初学者一般从 Python、MATLAB 开始搭建模型，实际工程应用中可能需要使用 C++、Java 等其它语言去实现。<br />
+<br />
+Python 是必学的，MATLAB 最好也要掌握，C++ 和 Java 视情况而定。<br />
+<h4>
+	6) 大数据</h4>
+这也是一个比较综合的开发方向，相关语言有 Python、R语言、Java、Scala。把 Python 和R语言学习一下，剩下的看情况吧。
+<p class="tip-box">
+	由于我的能力所限，我无法对所有开发方向做深入的分析，有说的不到位的地方，大家可以反馈给我。</p>
+以上说的仅仅是编程语言，除了编程语言，大家还需要学习某些框架或者库，比如：
+<ul>
+	<li>
+		Java 网站开发需要掌握 Servlet、JSP 技术，以及 Spring、Spring MVC、Spring Boot、Spring Cloud、Mybatis、Hibernate 框架；</li>
+	<li>
+		Python 机器学习需要掌握&nbsp;PyTorch、TensorFlow、Caffe 等框架，以及&nbsp;sklearn、NumPy 等模块。</li>
+</ul>
+<br />
+除了编程语言和框架/库，你当然还要掌握一两种数据库，常用的有 MySQL、Oracle、MongoDB、Redis、Sqlite 等，这里不再展开讨论。
+<h2>
+	总结</h2>
+软件开发是一个大产业，其中有很多细分方向，每个方向使用的技术<u><a href='/view/300.html' target='_blank'>栈</a></u>都不一样，而且要经过长期学习才能掌握，所以大部分程序员都只擅长某个开发方向，那些多面手，要么是学艺不精，要么是技术大咖。<br />
+<br />
+人们之所以迷茫，就是不知道如何选择，这篇文章虽然不一定能让你做出最终的决定，但是可以给你一种不同的视角和标准，帮助你打开思路。<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 639;
+window.arcId = "6ffe8Z6mMpY/+o331NWU3ePAbFRDUv1KsWEV+YapjX1WSHrB0Jj6H981nQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p style="
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+">Copyright ©2024 解学武. All rights reserved.</p >
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oxaqcuz255");
+</script>
+</body>
+</html>

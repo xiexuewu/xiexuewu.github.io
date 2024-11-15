@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>内存泄漏到底是怎么回事？（新手必看） - 玩转C语言和数据结构</title>
+<meta name="keywords" content="内存,泄漏,到底,是,怎么回事,新手,必看,内存," />
+<meta name="description" content="内存泄露是一个比较基础，也比较古老的话题，它是指程序中的无用内存持续堆积，但是又没有得到及时释放，从而导致程序内存占用过高，拖慢了运行速度，如果问题严重的话，程序" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>内存泄漏到底是怎么回事？（新手必看）</h1>
+			<div id="arc-body">内存泄露是一个比较基础，也比较古老的话题，它是指程序中的无用内存持续堆积，但是又没有得到及时释放，从而导致程序内存占用过高，拖慢了运行速度，如果问题严重的话，程序还可能直接卡死。<br />
+<br />
+当然，其它程序以及操作系统也会跟着遭殃，都会因为计算机内存资源的耗尽而变成蜗牛，一动不动。<br />
+<br />
+解决内存泄露的办法也非常简单，就是退出程序，然后重启！<br />
+<br />
+不过对于服务器上的程序，或者计算机的底层组件，频繁地重启是无法接受的，那将导致工作暂停，或者服务中断。所以，大量的内存泄露是一个非常严重的 Bug，我们必须要足够重视，并且着手解决。<br />
+<br />
+在了解内存泄露之前，我们先来看一下程序的内存布局。下图是 32 位 Linux 系统下一个进程的内存分段示意图。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="程序内存分布示意图" src="/uploads/allimg/241115/2-241115194300T1.gif" /></div>
+<br />
+在 32 位环境下，一个程序占用 4GB 的内存，其中「内核空间」是被操作系统占用的，我们没法直接干预；「保留区域」也不用来存储数据，只用作一些特殊目的，比如，你可以让空指针指向这里。<br />
+<br />
+除了这两个区域，剩下的那些内存才是被我们自己编写的程序所占用的，也就是图中的①和②两个部分，这其中：
+<ul>
+	<li>
+		② 在程序运行期间会一直存在，直到程序销毁才能被释放；</li>
+	<li>
+		① 在程序运行期间会不断变化，它被不断地分配和释放。</li>
+</ul>
+<br />
+在第①部分中，有一个分段叫做堆（Heap），这才是我们能够随意操作的内存，你可以随时分配，也可以随时释放，属于真正的自由空间。<br />
+<br />
+操作系统不会干预堆区内存，我们只能自己手动管理，如果我们分配了一段内存，后来它用完了，但是我们却没有及时释放，这个时候就会发生内存泄露。<br />
+<br />
+被泄露的内存，在程序运行期间会一直存在，并且会持续积累，直到程序运行结束后才会被操作系统一次性回收。<br />
+<br />
+除了堆区，其它区域的内存都由操作系统管理，要么用完即毁，要么一直存在，从来不会发生内存泄露。<br />
+<br />
+还记得C语言中的 malloc() 和 free() 函数吧，它们就是在堆上分配和释放内存。<br />
+<br />
+下面让我们看一段内存泄露的代码：
+<pre class="c">
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+    int *pOld = (int*) malloc( sizeof(int) );  //内存块1
+    int *pNew = (int*) malloc( sizeof(int) );  //内存块2
+    pNew = pOld;
+
+    //free(pOld)和free(pNew)只能调用一个
+    free(pOld);
+    //free(pNew);
+
+    return 0;
+}</stdlib.h></stdio.h></pre>
+刚开始&nbsp;pOld 和&nbsp;pNew 指向两块不同的内存，但是把&nbsp;pOld 赋值给&nbsp;pNew 以后，它们就都指向内存块1了。<br />
+<br />
+这个时候你会发现，内存块2没有指针指向它了！<br />
+<br />
+这意味着，我们永远无法知道内存块2的地址了，它就像消失在堆区的海洋里一样，再也找不到了，再也没法释放了。然而，它又实实在在地存在于堆区之中，不能被其它数据占用。<br />
+<br />
+这种内存丢失，就是一种典型的内存泄露。<br />
+<br />
+上面的代码比较简单，有经验的程序员可以轻松应对，但是在实际开发中，函数之间的调用关系非常复杂，有时候你搞不清应该在什么地方释放内存，所以你干脆就不释放了。<br />
+<br />
+虽然这块内存没有丢失，但是你没有及时释放，它也会成为垃圾内存，随着程序的运行而持续堆积。这也是内存泄露的一种常见情况。<br />
+<br />
+搞清楚了内存泄露的概念，你会发现，内存泄露并不是一种错误，只是一种由于管理不善而导致的潜在隐患。<br />
+<br />
+如果内存泄露的不多，比如只有 10KB，或者 30MB，那么它就不会影响程序运行，问题就不算严重，甚至你都发现不了。有一些比较宽松的公司，可能压根都不把它当做一个问题。<br />
+<br />
+只有当内存泄漏的足够多了，比如 1GB，或者3GB，这个时候才会影响程序运行，我们才必须要去解决。<br />
+<br />
+内存泄露是 C/C++ 中最难发现和解决的 Bug，即使非常有经验的程序员，也不能保证自己的程序没有内存泄露。<br />
+<br />
+帮助解决内存泄露的办法有很多，比如&nbsp;Valgrind、Windbg、Address Sanitizer（ASan）内存分析工具，以及 mtrace()、ccmalloc() 函数等，但是它们也只能解决一些常见的问题，对于那些复杂或者罕见的问题往往也力不从心。<br />
+<br />
+另外，它们还比较考验程序员的功力，并不是傻瓜式操作。<br />
+<br />
+总之，内存泄露是一个困扰 C/C++ 程序员多年的问题，它无法彻底根治，只能去尽力避免。<br />
+<br />
+后来的很多高级语言，比如 Java、Python、JavaScript、C#、PHP、Go 等，都增加了垃圾内存回收机制，这从根本上避免了内存泄露，程序员再也不用担心内存问题了。<br />
+<br />
+不过垃圾内存回收是有代价的，你需要对内存进行标记，并及时改变它的值，另外还需要额外增加一个线程或者进程，对内存进行实时监控，发现没用的内存就及时回收。<br />
+<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 637;
+window.arcId = "d3daUGsuSPgLDSmNr5MOjwIDzK7REiebkkWi5d4ITkpzkHxkbpsCQVrxIQ";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p style="
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+">Copyright ©2024 解学武. All rights reserved.</p >
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oxaqcuz255");
+</script>
+</body>
+</html>

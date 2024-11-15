@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>栈溢出到底是怎么回事？（新手必看） - 玩转C语言和数据结构</title>
+<meta name="keywords" content="栈,溢出,到底,是,怎么回事,新手,必看,大家,肯," />
+<meta name="description" content="大家肯定都知道 Stack Overflow 这个网站吧，它是全球最大的技术问答网站，国内很多程序员也在使用。 官网网址是：https://stackoverflow.com/ Stack Overflow 这个名字，其实是一种程序的运行时（" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/c/io/'>C语言输入输出</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>栈溢出到底是怎么回事？（新手必看）</h1>
+			<div id="arc-body">大家肯定都知道 Stack Overflow 这个网站吧，它是全球最大的技术问答网站，国内很多程序员也在使用。
+<p class="info-box">
+	官网网址是：https://stackoverflow.com/</p>
+Stack Overflow 这个名字，其实是一种程序的运行时（runtime）错误，中文翻译过来叫做&ldquo;<u><a href='/view/300.html' target='_blank'>栈</a></u>溢出&rdquo;。<br />
+<br />
+这里的栈（Stack），并不是数据结构中的栈，而是程序内存中的一个分段，或者说一个分区。<br />
+<br />
+一个程序可以使用很多内存，不同的内存有不同的作用，为了方便管理，操作系统会对程序的内存空间进行分区，把具有相同作用的内存都归纳到一个区域之中。
+<p class="info-box">
+	严格来说，这里的内存空间应该叫做&ldquo;虚拟地址空间&rdquo;，或者&ldquo;虚拟内存空间&rdquo;，不过为了照顾大部分初学者，这里就不照本宣科了，感兴趣的读者可以阅读《<a href="/c/memory/" target="_blank">C语言内存精讲，让你彻底明白C语言的运行机制！</a>》一章。</p>
+例如，在经典的 32 位环境下，程序可以使用的内存为 4GB，Linux 会按照下图进行分区。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="程序内存分布示意图" src="/uploads/allimg/241115/2-241115194300T1.gif" style="text-align: center;" /></div>
+<br />
+图片里的&ldquo;内核空间&rdquo;是被操作系统占用的，我们没法直接干预；图片里的&ldquo;保留区域&rdquo;也不用来存储数据，只用作一些特殊目的，比如，你可以让空指针指向这里。<br />
+<br />
+除了这两个区域，剩下的那些内存才是被我们自己编写的程序所占用的，也就是图中的 ① 和 ② 两个部分，这其中：
+<ul>
+	<li>
+		② 在程序运行期间会一直存在，直到程序销毁才能被释放；</li>
+	<li>
+		① 在程序运行期间会不断变化，它被不断地分配和释放。</li>
+</ul>
+<br />
+在第 ① 部分中，有一个分段叫做<span style="color:#008000;">栈（Stack）</span>，它只在一种情况下才会被用到，就是发生函数调用。<br />
+<br />
+函数被调用的时候，有很多数据需要暂时压入栈中，也就是存储到栈中，包括：
+<ul>
+	<li>
+		我们在代码中定义的数据，比如实参、局部变量、局部数组、局部对象、返回值等，我们可以称它们为局部数据；</li>
+	<li>
+		还有我们在代码中看不到的数据，比如函数的返回地址、一系列寄存器的值等，这些都是函数调用所需要的隐藏数据。</li>
+</ul>
+<br />
+局部数据是我们在函数内部定义的，它们的作用域也仅限于函数内部，只有等到函数被真正调用时，才会被实际创建出来，也就是分配好内存。<br />
+<br />
+至于隐藏数据，是为了实现函数的调用过程，并保证在函数退出时能够恢复到调用之前的场景，而不得不额外增加的一些冗余数据。这些隐藏数据都由编译器分配，程序员自己是没法干预的。<br />
+<br />
+以上提到的所有这些被压入栈中的数据，通常被称为<span style="color:#008000;">栈帧（Stack Frame）</span>或者<span style="color:#008000;">函数活动记录（Activate Record）</span>。<br />
+<br />
+函数每调用一次，就会生成一个栈帧，这个过程被称为<span style="color:#008000;">函数入栈</span>；当函数调用结束时，栈帧就会被销毁，腾出内存来供其它函数使用，这个过程被称为<span style="color:#008000;">函数出栈</span>。<br />
+<br />
+调用开始时，先调用的函数先入栈，后调用的函数后入栈；调用结束时，后调用的函数先出栈，先调用的函数后出栈。你看，这和数据结构中栈的进出方式是一样的，所以这段内存区域才被叫做栈。<br />
+<br />
+这里有一个常识，就是一个线程拥有一个栈，栈中的数据是被当前线程独占的，其它线程不能访问。<br />
+<br />
+为了保证可以同时运行多个线程，比如几十个，或者成百上千个，编译器不会给单一线程分配太多的栈内存，一般也就 1MB~8MB。<br />
+<br />
+栈内存的大小在编译时就已经确定了，程序在运行期间不能改变，所以如果程序使用的栈内存超出最大值，就会发生<span style="color:#008000;">栈溢出（Stack Overflow）</span>错误。
+<p class="info-box">
+	栈内存的大小和编译器有关，编译器会为栈内存指定一个最大值，在 VC/VS 下，默认是 1M，在 C-Free 下，默认是 2M，在 Linux GCC 下，默认是 8M。当然，我们也可以通过参数来修改栈内存的大小。</p>
+一般情况下，栈内存都是够用的，但是如果遇到以下两种情况，栈内存就会捉襟见肘：
+<ul>
+	<li>
+		在函数内部定义了大规模的数据，比如定义了一个很大的数组；</li>
+	<li>
+		函数调用层次太深，导致栈帧持续堆积，比如函数的嵌套调用。</li>
+</ul>
+<br />
+这是发生栈溢出错误的典型场景。<br />
+<br />
+我们不妨来看一段代码：
+<pre class="cpp">
+int main(){
+    char str[1024*1024*2] = {0};
+    return 0;
+}</pre>
+我们使用 VS2022 的 Debug 模式进行编译，然后运行，就会出现如下错误：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="栈溢出错误" src="/uploads/allimg/241115/2-24111519502JT.gif" /></div>
+<br />
+这里我们定义了一个大规模数组，它需要占用 2MB 内存，而 VS 的栈内存默认只有 1MB，所以就发生了栈溢出错误。<br />
+<br />
+栈溢出是一种致命错误，发生栈溢出错误以后，我们的程序就没法再继续运行了，你只能关闭它，没有其它的挽救措施。<br />
+<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 636;
+window.arcId = "2155zqr6ac08eO1YqTAP7qNYqZMU+9JfcBE9f/9CSvjAd8qZQqV+3rFokw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p style="
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+">Copyright ©2024 解学武. All rights reserved.</p >
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oxaqcuz255");
+</script>
+</body>
+</html>
