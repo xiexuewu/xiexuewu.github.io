@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Disallow: /*/vip_*.html
