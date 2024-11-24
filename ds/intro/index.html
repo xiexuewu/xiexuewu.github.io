@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构概述 - 玩转C语言和数据结构</title>
+<meta name="description" content="本专题讲解数据结构基础知识，包括什么是数据结构，数据结构有哪些，数据结构和算法的关系等，帮助初学者快速入门数据结构。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd class="this"> <span class="channel-num">1</span> <a href="/ds/intro/">数据结构概述</a> </dd><dl class="dl-sub"><dd>1.1 <a href="/view/282.html">什么是数据结构</a></dd><dd>1.2 <a href="/view/283.html">数据结构到底学什么</a></dd><dd>1.3 <a href="/view/vip_264.html">数据的逻辑结构和物理结构</a></dd><dd>1.4 <a href="/view/285.html">数据结构和算法的区别</a></dd><dd>1.5 <a href="/view/vip_284.html">时间复杂度和空间复杂度</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.6 <a href="/view/vip_273.html">数据结构如何自学，效率更高？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.7 <a href="/view/vip_274.html">数学不好，对学数据结构有影响吗？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>1.8 <a href="/view/vip_275.html">学好数据结构，你已然超越了99%的程序员！</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/ds/linear_list/'>线性表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/ds/stack_queue/'>栈和队列</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/ds/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/ds/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/ds/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/ds/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/ds/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/ds/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/ds/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/ds/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/ds/video/'>视频教程推荐</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>数据结构概述</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/intro/">数据结构概述</a></span>
+                    <span class="next right"><a href="/view/282.html">什么是数据结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/intro/";window.nextPageURL = "/view/282.html";</script>
+			<div id="arc-body"><img alt="数据结构快速入门，数据结构基础详解" src="/uploads/allimg/240305/2-240305210959353.png" style="padding-right: 12px; width: 64px; height: 64px; float: left;" />作为正式学习数据结构的一道「开胃小菜」，本章带领读者从整体上认识数据结构。<br />
+<br />
+提到数据结构，初学者肯定有一肚子的疑问，比如数据结构是什么、要学习哪些知识、需要具备什么基础、怎么学习更高效等等，这些问题都能在本章找到答案。<br />
+<br />
+数据结构和算法是两个独立的学科，但它们之间又存在紧密的联系，学习数据结构必定会接触一些算法。有关数据结构和算法的关系和区别，本章也会讲解。<br />
+<br />
+深度剖析数据结构的本质，同时以通俗易懂的语言描述出来，致力于让读者快速入门数据结构。</div>
+			<dl id="arc-list">
+				<dt>本章内容：</dt>
+				<dd >
+					<span>1.</span> <a href="/view/282.html">什么是数据结构（小白必读）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>2.</span> <a href="/view/283.html">数据结构到底学什么</a>
+				</dd>
+<dd >
+					<span>3.</span> <a href="/view/vip_264.html">数据的逻辑结构和存储结构（物理结构）详解</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>4.</span> <a href="/view/285.html">数据结构和算法的区别（小白必读）</a>
+				</dd>
+<dd >
+					<span>5.</span> <a href="/view/vip_284.html">时间复杂度和空间复杂度</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>6.</span> <a href="/view/vip_273.html">数据结构如何自学，效率更高？</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd >
+					<span>7.</span> <a href="/view/vip_274.html">数学不好，对学数据结构有影响吗？</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>8.</span> <a href="/view/vip_275.html">学好数据结构，你已然超越了99%的程序员！</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+
+			</dl>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/intro/">数据结构概述</a></span>
+                    <span class="next right"><a href="/view/282.html">什么是数据结构</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/intro/";window.nextPageURL = "/view/282.html";</script>
+		</div>
+		
+	</div>	
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 't_' + 1;
+window.arcId = "482b6WRIIDhllSVGeJQnCo5lI3rmPNj+uGJoHFQlczG6llMdkmIJgbU";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p style="
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+">Copyright ©2024 解学武. All rights reserved.</p >
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oxaqcuz255");
+</script>
+</body>
+</html>

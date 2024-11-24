@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>数据结构栈(Stack)和队列(Queue)详解 - 玩转C语言和数据结构</title>
+<meta name="description" content="栈和队列，特殊的线性表，栈讲究“先进后出”；队列讲究“先进先出”。栈又分为顺序栈和链栈，队列又分为顺序队列和链式队列。" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/view/212.html">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/ds/intro/'>数据结构概述</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/ds/linear_list/'>线性表</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="/ds/stack_queue/">栈和队列</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/300.html">栈是什么</a></dd><dd>3.2 <a href="/view/301.html">顺序栈的基本操作</a></dd><dd>3.3 <a href="/view/302.html">链栈的基本操作</a></dd><dd>3.4 <a href="/view/vip_303.html">递归实现栈的逆序（两种解决方案）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.5 <a href="/view/vip_221.html">栈实现进制转换器</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.6 <a href="/view/vip_222.html">栈解决括号匹配问题</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.7 <a href="/view/vip_304.html">栈求表达式的值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/305.html">队列是什么</a></dd><dd>3.9 <a href="/view/306.html">顺序队列的基本操作</a></dd><dd>3.10 <a href="/view/307.html">循环队列：更高级的顺序队列</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.11 <a href="/view/308.html">链式队列的基本操作</a></dd><dd>3.12 <a href="/view/vip_220.html">队列实现停车场管理系统</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/vip_223.html">队列实现“推小车”扑克牌游戏</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.14 <a href="/view/vip_309.html">用两个栈实现一个队列</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.15 <a href="/view/vip_310.html">用两个队列实现一个栈</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.16 <a href="/view/vip_311.html">为什么说栈和队列是线性存储结构？</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href='/ds/string/'>字符串</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/ds/array_list/'>数组和广义表</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/ds/tree/'>树</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/ds/graph/'>图</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/ds/search/'>查找算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/ds/sort/'>排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/ds/out_sort/'>外部排序算法</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/ds/memory/'>动态内存管理</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/ds/video/'>视频教程推荐</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>数据结构栈(Stack)和队列(Queue)详解</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_233.html">线性表实现俄罗斯轮盘赌游戏</a></span>
+                    <span class="next right"><a href="/view/300.html">栈是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_233.html";window.nextPageURL = "/view/300.html";</script>
+			<div id="arc-body"><img alt="数据结构栈(Stack)和队列(Queue)详解" src="/uploads/allimg/240305/2-2403052121123Z.png" style="padding-right: 12px; width: 64px; height: 64px; float: left;" />栈和队列存储的都是逻辑关系为&ldquo;一对一&rdquo;的数据，本质上它们也属于线性存储结构。<br />
+<br />
+栈存储数据，讲究&ldquo;先进后出&rdquo;，即最先进栈的数据，最后出栈；队列存储数据，讲究 &quot;先进先出&quot;，即最先进队列的数据，也最先出队列。<br />
+<br />
+根据数据在物理内存中的存储状态，栈分为顺序栈和链栈，队列分为顺序队列和链式队列。</div>
+			<dl id="arc-list">
+				<dt>本章内容：</dt>
+				<dd >
+					<span>1.</span> <a href="/view/300.html">栈是什么</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>2.</span> <a href="/view/301.html">顺序栈的基本操作（入栈和出栈）</a>
+				</dd>
+<dd >
+					<span>3.</span> <a href="/view/302.html">链栈的基本操作（入栈和出栈）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>4.</span> <a href="/view/vip_303.html">递归实现栈的逆序（两种解决方案）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd >
+					<span>5.</span> <a href="/view/vip_221.html">栈实现进制转换器（C语言完整代码）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>6.</span> <a href="/view/vip_222.html">栈解决括号匹配问题（C语言实现）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd >
+					<span>7.</span> <a href="/view/vip_304.html">栈求表达式的值（C语言实现）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>8.</span> <a href="/view/305.html">队列是什么（C语言实现）</a>
+				</dd>
+<dd >
+					<span>9.</span> <a href="/view/306.html">顺序队列的基本操作（入队和出队）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>10.</span> <a href="/view/307.html">循环队列完全攻略（C语言实现）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd >
+					<span>11.</span> <a href="/view/308.html">链式队列的基本操作（入队和出队）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>12.</span> <a href="/view/vip_220.html">队列实现停车场管理系统（含C语言源码）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd >
+					<span>13.</span> <a href="/view/vip_223.html">队列实现“推小车”扑克牌游戏（含C语言源码）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>14.</span> <a href="/view/vip_309.html">两个栈实现一个队列（超级详细）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd >
+					<span>15.</span> <a href="/view/vip_310.html">两个队列实现一个栈（超级详细）</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+<dd class="bg-f7f7f7">
+					<span>16.</span> <a href="/view/vip_311.html">栈和队列是线性存储结构</a><span class="glyphicon glyphicon-usd"></span>
+				</dd>
+
+			</dl>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_233.html">线性表实现俄罗斯轮盘赌游戏</a></span>
+                    <span class="next right"><a href="/view/300.html">栈是什么</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/vip_233.html";window.nextPageURL = "/view/300.html";</script>
+		</div>
+		
+	</div>	
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 't_' + 4;
+window.arcId = "c73eCW10YB1OQvctsEezldX7Pbv6T1PNtqkCw5jWSGulGosn7maHxQM";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/view/212.html" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p style="
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+">Copyright ©2024 解学武. All rights reserved.</p >
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oxaqcuz255");
+</script>
+</body>
+</html>
