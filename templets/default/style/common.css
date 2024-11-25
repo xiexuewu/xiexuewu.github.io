@@ -694,3 +694,29 @@ pre{
 		white-space: pre;
 	}
 }
+/*----------------212_buy页面添加-------------------*/
+/* tab公共样式 */
+.tab .title-list>li {
+    float: left;
+}
+.tab{
+	overflow: hidden;
+}
+.tab .title-list>li{
+	float: left;
+}
+.tab .cont-list>li{
+	display: none;
+}
+.tab .cont-list>li.this{
+	display: block;
+}
+/* 产品简介列表 */
+ul.product-intro{
+	margin-left: 20px;
+	list-style: disc;
+}
+ul.product-intro li{
+	padding: 2px 0px;
+	line-height: 1.6em;
+}

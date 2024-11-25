@@ -1,0 +1,15 @@
+body{background-color: #fff;}
+
+#title{
+	padding: 50px 0px 20px 0px;
+	font-size: 34px;
+	font-weight: lighter;
+	text-align: center;
+	color: #666;
+}
+@media all and (max-width: 800px){
+	#title{
+		padding: 30px 0px 5px 0px;
+		font-size: 26px;
+	}
+}

@@ -1,0 +1,159 @@
+﻿#profile{
+	padding: 20px;
+	font-size: 18px;
+	line-height: 1.6em;
+	background-color: #f6f6f6;
+	color: #555;
+}
+
+/***********************权益列表***********************/
+#rights-list{
+	margin: 10px auto auto auto;
+	border-collapse: collapse;
+}
+#rights-list td{
+	padding-bottom: 12px;
+	border: 10px solid #fff;
+	text-align: center;
+}
+#rights-list td .icon{
+	height: 60px;
+	margin: auto;
+}
+#rights-list h4{
+	padding: 8px 0px;
+	font-size: 16px;
+}
+#rights-list td p{
+	line-height: 1.6em;
+}
+
+/***********************产品列表***********************/
+#product-list{
+	border-top: 1px solid #ddd;
+}
+#product-list>dt{
+	padding: 8px 10px;
+	font-size: 16px;
+	border-bottom: 1px solid #ddd;
+	background-color: #f6f6f6;
+}
+#product-list>dd{
+	padding: 8px 10px 4px 10px;
+	border-bottom: 1px solid #ddd;
+}
+#product-list>dd.selected{
+	background-color: #f6f6f6;
+}
+
+#product-list>dd .btn-box{
+	padding-right: 5px;
+}
+#product-list>dd .btn-box .btn{
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	background: url("/templets/default/images/icon-select.png") center center no-repeat;
+}
+#product-list>dd.selected .btn-box .btn{
+	background: url("/templets/default/images/icon-selected.png") center center no-repeat;
+}
+
+#product-list>dd h4{
+	color: #444;
+}
+#product-list>dd .label-amount{
+	min-width: 65px;
+}
+#product-list>dd .amount{
+	color: #5ab55a;
+	font-weight: 700;
+}
+#product-list>dd .label-rights{
+	vertical-align: top;
+}
+#product-list>dd .rights span{
+	display: inline-block;
+	margin-right: 10px;
+	margin-bottom: 6px;
+	padding: 1px 12px;
+	color: #fff;
+	background-color: #bbb;
+	border-radius: 4px;
+}
+#product-list>dd .rights span.true{
+	background-color: #77b977;
+}
+
+/***********************购买按钮***********************/
+#btn-buy{
+	display: block;
+	margin: 40px auto auto auto;
+	width: 300px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	background-color: #67bf72;
+	border-radius: 4px;
+}
+
+/***********************细节说明***********************/
+#detail-list{
+	margin-top: 40px;
+}
+#detail-list .title-list{
+	height: 38px;
+	border: 1px solid #dbdbdb;
+	overflow: visible;
+	background-color: #f6f6f6;
+}
+#detail-list .title-list li{
+	height: 38px;
+	padding: 0px 12px;
+	line-height: 38px;
+	cursor: pointer;
+}
+#detail-list .title-list li.this{
+	border-bottom: 1px solid #D33428;
+	color: #D33428;
+}
+#detail-list .cont-list li ul{
+	margin: 10px 10px 10px 20px;
+}
+
+/***********************联系方式***********************/
+#contact-us h4{
+	height: 38px;
+	padding: 0px 12px;
+	line-height: 38px;
+	font-weight: lighter;
+	border-bottom: 1px solid #dbdbdb;
+	border-top: 1px solid #dbdbdb;
+	background-color: #f6f6f6;
+}
+#contact-us p{
+	padding: 6px 10px;
+	line-height: 1.6em;
+}
+
+/***********************移动端***********************/
+@media all and (max-width: 800px){
+	#title{
+		padding-bottom: 20px;
+	}
+	#profile{
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+	}
+	#detail-list .cont-list li ul{
+		margin-left: 32px;
+		margin-right: 12px;
+		
+	}
+	ul.product-intro {
+    	margin-left: 32px;
+    	list-style: disc;
+	}
+}
