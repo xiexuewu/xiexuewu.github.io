@@ -138,7 +138,7 @@
 <div style="text-align: center">
 	<img alt="arr 的指向" src="/uploads/allimg/240821/1525403335-1.jpg" style="height: 77px; width: 185px" /></div>
 <blockquote>
-	数组名的本意是表示整个数组，也就是表示多份数据的集合，但在使用过程中经常会转换为指向数组第 0 个元素的指针，所以上面使用了&ldquo;认为&rdquo;一词，表示数组名和数组首地址并不总是等价。初学者可以暂时忽略这个细节，把数组名当做指向第 0 个元素的指针使用即可，我们将在VIP教程《<a href="/view/523.html" target="_blank">数组和指针绝不等价，数组是另外一种类型</a>》和《<a href="/view/524.html" target="_blank">数组到底在什么时候会转换为指针</a>》中再深入讨论这一细节。</blockquote>
+	数组名的本意是表示整个数组，也就是表示多份数据的集合，但在使用过程中经常会转换为指向数组第 0 个元素的指针，所以上面使用了&ldquo;认为&rdquo;一词，表示数组名和数组首地址并不总是等价。初学者可以暂时忽略这个细节，把数组名当做指向第 0 个元素的指针使用即可，我们将在VIP教程《<a href="/view/vip_523.html" target="_blank">数组和指针绝不等价，数组是另外一种类型</a>》和《<a href="/view/vip_524.html" target="_blank">数组到底在什么时候会转换为指针</a>》中再深入讨论这一细节。</blockquote>
 下面的例子演示了如何以指针的方式遍历数组元素：
 <pre class="c">
 #include &lt;stdio.h&gt;
@@ -167,7 +167,7 @@ int arr[] = { 99, 15, 100, 888, 252 };
 int *p = arr;</pre>
 arr 本身就是一个指针，可以直接赋值给指针变量 p。arr 是数组第 0 个元素的地址，所以<code>int *p = arr;</code>也可以写作<code>int *p = &amp;arr[0];</code>。也就是说，arr、p、&amp;arr[0] 这三种写法都是等价的，它们都指向数组第 0 个元素，或者说指向数组的开头。
 <blockquote>
-	再强调一遍，&ldquo;arr 本身就是一个指针&rdquo;这种表述并不准确，严格来说应该是&ldquo;arr 被转换成了一个指针&rdquo;。这里请大家先忽略这个细节，我们将在VIP教程《<a href="/view/523.html" target="_blank">数组和指针绝不等价，数组是另外一种类型</a>》和《<a href="/view/524.html" target="_blank">数组到底在什么时候会转换为指针</a>》中深入讨论。</blockquote>
+	再强调一遍，&ldquo;arr 本身就是一个指针&rdquo;这种表述并不准确，严格来说应该是&ldquo;arr 被转换成了一个指针&rdquo;。这里请大家先忽略这个细节，我们将在VIP教程《<a href="/view/vip_523.html" target="_blank">数组和指针绝不等价，数组是另外一种类型</a>》和《<a href="/view/vip_524.html" target="_blank">数组到底在什么时候会转换为指针</a>》中深入讨论。</blockquote>
 如果一个指针指向了数组，我们就称它为<span style="color: #008000">数组指针（Array Pointer）</span>。<br />
 <br />
 数组指针指向的是数组中的一个具体元素，而不是整个数组，所以数组指针的类型和数组元素的类型有关，上面的例子中，p 指向的数组元素是 int 类型，所以 p 的类型必须也是<code>int *</code>。<br />
@@ -272,7 +272,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 516;
-window.arcId = "bcc1Szv6Sk6yl4HyuCWuISPgJR0oZDNKj2JdXnVrDG4zxGJs1kc6N8Q5Jg";
+window.arcId = "990cjb3+AVfjdCmnY7YnK0gNQ4YlYdM1hC2+A7CUkLoDPfdNiTbMyjDhkw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

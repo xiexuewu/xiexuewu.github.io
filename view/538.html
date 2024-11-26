@@ -205,7 +205,7 @@ int main(){
 <br />
 m、n、p 的类型都是 unsigned int，sizeof 的结果为 4 个字节（Byte），也即 32 个位（Bit）。m、n、p 的位宽之和为 6+12+4 = 22，小于 32，所以它们会挨着存储，中间没有缝隙。
 <blockquote>
-	sizeof(struct bs) 的大小之所以为 4，而不是 3，是因为要将内存对齐到 4 个字节，以便提高存取效率，这将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题的《<a href="/view/569.html" target="_blank">C语言内存对齐，提高寻址效率</a>》一节中详细讲解。</blockquote>
+	sizeof(struct bs) 的大小之所以为 4，而不是 3，是因为要将内存对齐到 4 个字节，以便提高存取效率，这将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题的《<a href="/view/vip_569.html" target="_blank">C语言内存对齐，提高寻址效率</a>》一节中详细讲解。</blockquote>
 如果将成员 m 的位宽改为 22，那么输出结果将会是 8，因为 22+12 = 34，大于 32，n 会从新的位置开始存储，相对 m 的偏移量是 sizeof(unsigned int)，也即 4 个字节。<br />
 <br />
 如果再将成员 p 的位宽也改为 22，那么输出结果将会是 12，三个成员都不会挨着存储。<br />
@@ -228,7 +228,7 @@ int main(){
 }</pre>
 在 GCC 下的运行结果为 4，三个成员挨着存储；在 VC/VS 下的运行结果为 12，三个成员按照各自的类型存储（与不指定位宽时的存储方式相同）。
 <blockquote>
-	m 、ch、p 的长度分别是 4、1、4 个字节，共计占用 9 个字节内存，为什么在 VC/VS 下的输出结果却是 12 呢？这个疑问将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题的《<a href="/view/569.html" target="_blank">C语言内存对齐，提高寻址效率</a>》一节中为您解开。</blockquote>
+	m 、ch、p 的长度分别是 4、1、4 个字节，共计占用 9 个字节内存，为什么在 VC/VS 下的输出结果却是 12 呢？这个疑问将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题的《<a href="/view/vip_569.html" target="_blank">C语言内存对齐，提高寻址效率</a>》一节中为您解开。</blockquote>
 3) 如果成员之间穿插着非位域成员，那么不会进行压缩。例如对于下面的 bs：
 <pre class="c">
 struct bs{
@@ -278,7 +278,7 @@ struct bs{
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 538;
-window.arcId = "01dcNnxJ+HWgZcaZiA1wMDotG4ePeBOb98oyOGzKuyt8dzBMg35KTEwZYQ";
+window.arcId = "8dc06oNvfPnZHC8+3Mlsigy7TmJdkkOSY1s06wt46DICDzcymv858SWIQw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

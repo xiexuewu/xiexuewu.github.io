@@ -245,7 +245,7 @@ int main(){
 }</pre>
 Mon、Tues、Wed 这些名字都被替换成了对应的数字。这意味着，Mon、Tues、Wed 等都不是变量，它们不占用数据区（常量区、全局数据区、<u><a href='/view/300.html' target='_blank'>栈</a></u>区和堆区）的内存，而是直接被编译到命令里面，放到代码区，所以不能用<code>&amp;</code>取得它们的地址。这就是枚举的本质。
 <blockquote>
-	关于程序在内存中的分区以及各个分区的作用，我们将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题中的《<a href="/view/573.html" target="_blank">Linux下C语言程序的内存布局（内存模型）</a>》一节中详细讲解。</blockquote>
+	关于程序在内存中的分区以及各个分区的作用，我们将在《<a href="/c/memory/" target="_blank">C语言内存精讲</a>》专题中的《<a href="/view/vip_573.html" target="_blank">Linux下C语言程序的内存布局（内存模型）</a>》一节中详细讲解。</blockquote>
 我们在《<a href="/view/449.html" target="_blank">C语言switch case语句</a>》一节中讲过，case 关键字后面必须是一个整数，或者是结果为整数的表达式，但不能包含任何变量，正是由于 Mon、Tues、Wed 这些名字最终会被替换成一个整数，所以它们才能放在 case 后面。<br />
 <br />
 枚举类型变量需要存放的是一个整数，我猜测它的长度和 int 应该相同，下面来验证一下：
@@ -286,7 +286,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 535;
-window.arcId = "ceaeKWJWPBnH8ZMAwbHYBzBCm2TGX9B8ytwWzYNSqF/YUslGm83lXWSCVg";
+window.arcId = "c93fXHfkZHUn8GQvtKyydAvDlqtdc1QiAk2DhexTLogXQ6RbfK57ceTtiA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

@@ -12,9 +12,9 @@
 <meta http-equiv="expires" content="0" />
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title>循环队列完全攻略（C语言实现） - 玩转C语言和数据结构</title>
-<meta name="keywords" content="循环,队列,完全攻略,语言,实现,前面,讲,顺序," />
-<meta name="description" content="前面讲顺序队列的时候提到，顺序队列的实现方案并不完美，存在以下两个弊端： 随着元素的入队和出队，队列整体向顺序表的尾部移动，队列左侧的空闲空间无法再次利用； 当队列移" />
+<title>为什么KMP算法的主串指针不用回退？ - 玩转C语言和数据结构</title>
+<meta name="keywords" content="为什么,KMP,算法,的,主串,指针,不用,回退,每个," />
+<meta name="description" content="每个人的学习方法各不相同，有这么一小撮人，他们不习惯直接吸收书本或者教程中的正确结论，喜欢钻牛角尖，总是试图找各种方法先验证这些结论是否正确，然后再说服自己接受它" />
 </head>
 <body>
 <div id="header" class="clearfix">
@@ -50,12 +50,12 @@
 				<span class="channel-num">2</span>
 				<a href='/ds/linear_list/'>线性表</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">3</span> <a href="/ds/stack_queue/">栈和队列</a> </dd><dl class="dl-sub"><dd>3.1 <a href="/view/300.html">栈是什么</a></dd><dd>3.2 <a href="/view/301.html">顺序栈的基本操作</a></dd><dd>3.3 <a href="/view/302.html">链栈的基本操作</a></dd><dd>3.4 <a href="/view/vip_303.html">递归实现栈的逆序（两种解决方案）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.5 <a href="/view/vip_221.html">栈实现进制转换器</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.6 <a href="/view/vip_222.html">栈解决括号匹配问题</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.7 <a href="/view/vip_304.html">栈求表达式的值</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.8 <a href="/view/305.html">队列是什么</a></dd><dd>3.9 <a href="/view/306.html">顺序队列的基本操作</a></dd><dd>3.10 <a href="/view/307.html">循环队列：更高级的顺序队列</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.11 <a href="/view/308.html">链式队列的基本操作</a></dd><dd>3.12 <a href="/view/vip_220.html">队列实现停车场管理系统</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.13 <a href="/view/vip_223.html">队列实现“推小车”扑克牌游戏</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.14 <a href="/view/vip_309.html">用两个栈实现一个队列</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.15 <a href="/view/vip_310.html">用两个队列实现一个栈</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.16 <a href="/view/vip_311.html">为什么说栈和队列是线性存储结构？</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
-			<dd>
-				<span class="channel-num">4</span>
-				<a href='/ds/string/'>字符串</a>
-			</dd>
 		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/ds/stack_queue/'>栈和队列</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/ds/string/">字符串</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/312.html">串是什么</a></dd><dd>4.2 <a href="/view/313.html">串的定长顺序存储结构</a></dd><dd>4.3 <a href="/view/314.html">串的堆分配存储结构</a></dd><dd>4.4 <a href="/view/315.html">串的块链存储结构</a></dd><dd>4.5 <a href="/view/316.html">BF算法（串的模式匹配算法）</a></dd><dd>4.6 <a href="/view/vip_227.html">KMP算法（串的快速模式匹配算法）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/vip_317.html">KMP算法还能再优化！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/vip_318.html">死抠：为什么KMP算法的主串指针不用回退？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/vip_228.html">串实现字符过滤系统</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
 				<a href='/ds/array_list/'>数组和广义表</a>
@@ -103,26 +103,26 @@
 			<div id="arc-info">
 	作者：解学武
 </div>
-			<h1>循环队列完全攻略（C语言实现）</h1>
+			<h1>为什么KMP算法的主串指针不用回退？</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/306.html">顺序队列的基本操作</a></span>
-                    <span class="next right"><a href="/view/308.html">链式队列的基本操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/317.html">KMP算法还能再优化！</a></span>
+                    <span class="next right"><a href="/view/vip_228.html">串实现字符过滤系统</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/306.html";window.nextPageURL = "/view/308.html";</script>
-			<div id="arc-body"><div id="buy-course-tip" aid="307"><p>您好，您正在阅读付费教程，请<a href="/buy/" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div><br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+                <script type="text/javascript">window.prePageURL = "/view/317.html";window.nextPageURL = "/view/vip_228.html";</script>
+			<div id="arc-body"><div id="buy-course-tip" aid="318"><p>您好，您正在阅读付费教程，请<a href="/buy/" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div><br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/306.html">顺序队列的基本操作</a></span>
-                    <span class="next right"><a href="/view/308.html">链式队列的基本操作</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/317.html">KMP算法还能再优化！</a></span>
+                    <span class="next right"><a href="/view/vip_228.html">串实现字符过滤系统</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/306.html";window.nextPageURL = "/view/308.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/317.html";window.nextPageURL = "/view/vip_228.html";</script>
 		</div>
 		
 	</div>
@@ -139,8 +139,8 @@
 </div>
 <script type="text/javascript">
 // 当前文章ID
-window.arcIdRaw = 'a_' + 307;
-window.arcId = "ba36p1ir6fWDllkRcRkYJOzw4/eSzzcLgxEFdUdP+fUIJmMONO1WOAWFeg";
+window.arcIdRaw = 'a_' + 318;
+window.arcId = "ad84aQ+sQn9OQ2UrIZCgJxigAf49qg3y8H0BkPOPz3MeI+mw0ZxzdC+XKQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>

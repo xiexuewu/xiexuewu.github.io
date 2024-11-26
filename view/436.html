@@ -471,7 +471,7 @@ int main()
 <br />
 其实，这一切都是输出缓冲区（缓存）在作怪！<br />
 <br />
-从本质上讲，printf() 执行结束以后数据并没有直接输出到显示器上，而是放入了缓冲区，直到遇见换行符<code>\n</code>才将缓冲区中的数据输出到显示器上。更加深入的内容，我们将在本章的《<a href="/view/440.html" target="_blank">进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</a>》中详细讲解。<br />
+从本质上讲，printf() 执行结束以后数据并没有直接输出到显示器上，而是放入了缓冲区，直到遇见换行符<code>\n</code>才将缓冲区中的数据输出到显示器上。更加深入的内容，我们将在本章的《<a href="/view/vip_440.html" target="_blank">进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</a>》中详细讲解。<br />
 <br />
 以上测试的是 Linux 和 Mac OS，我们不妨再测试一下 Windows，请看下面的代码：
 <pre class="cpp">
@@ -494,7 +494,7 @@ int main()
 <br />
 在第一个 printf() 的最后添加一个换行符，情况也是一样的，第一个 printf() 从来不会和第二个 printf() 一起输出。<br />
 <br />
-你看，Windows 和 Linux、Mac OS 的情况又不一样。这是因为，Windows 和 Linux、Mac OS 的缓存机制不同。更加深入的内容，我们将在本章的《<a href="/view/440.html" target="_blank">进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</a>》中详细讲解。<br />
+你看，Windows 和 Linux、Mac OS 的情况又不一样。这是因为，Windows 和 Linux、Mac OS 的缓存机制不同。更加深入的内容，我们将在本章的《<a href="/view/vip_440.html" target="_blank">进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</a>》中详细讲解。<br />
 <br />
 要想破解 printf() 输出的问题，必须要了解缓存，它能使你对输入输出的认识上升到一个更高的层次，以后不管遇到什么疑难杂症，都能迎刃而解。可以说，输入输出的&ldquo;命门&rdquo;就在于缓存。<br />
 <h2>
@@ -532,7 +532,7 @@ printf() 的这些格式规范不是&ldquo;小把戏&rdquo;，优美的输出格
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 436;
-window.arcId = "b506LJtHP6r09jp+GCCh0jOgRVpvcAFf+mKnI2cJY0JDdWnNKgwMcRQYxw";
+window.arcId = "0c0cPqTVveYXXULqFPB1mppC2YQoWWJ2HtRLtCHr4dtyfECeHsZvEcmXLA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
