@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>Sublime Text使用教程（用Sublime Text编写C语言程序） - 玩转C语言和数据结构</title>
+<meta name="keywords" content="Sublime,Text,使用,教程,用,编写,语言程序,S" />
+<meta name="description" content="Sublime Text 是一款当下非常流行的文本编辑器，其功能强大（提供有众多的插件）、界面简洁、还支持跨平台使用（包括 Mac OS X、Linux 和 Windows）。 在程序员眼中，Sublime Text 不仅仅是一个" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/buy/">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/642.html">Dev C++调试程序教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/643.html">Code::Blocks调试程序教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">23</span>
+        	<a href="/view/646.html">MinGW下载和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">24</span>
+        	<a href="/view/647.html">CLion下载、安装和汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">25</span>
+        	<a href="/view/648.html">使用CLion编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">26</span>
+        	<a href="/view/644.html">使用VS Code编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">27</span>
+        	<a href="/view/645.html">用使用Sublime Text编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">28</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">29</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>Sublime Text使用教程（用Sublime Text编写C语言程序）</h1>
+			
+			<div id="arc-body">Sublime Text 是一款当下非常流行的文本编辑器，其功能强大（提供有众多的插件）、界面简洁、还支持跨平台使用（包括 Mac OS X、Linux 和 Windows）。<br />
+<br />
+在程序员眼中，Sublime Text 不仅仅是一个文本编辑器，它还可以作为代码编辑器。只要对 Sublime Text 进行简单的设置，它就可以自行调用 GCC&nbsp;编译器编译写好的代码。<br />
+<br />
+考虑到 Sublime Text 跨平台的特性，本节将分别为读者讲解，如何设置 Windows、Linux（以 Ubuntu 为例）以及 Mac OS X 系统中的 Sublime text 编辑器，使其具备执行 C&nbsp;语言程序的能力。
+<h2>
+	Windows配置Sublime Text</h2>
+如图 1 所示，是笔者本机已经安装好的 Sublime Text。如果读者尚未安装，先前往<a href="https://www.sublimetext.com/3" rel="nofollow" target="_blank"> Sublime Text官网</a>下载并安装（安装过程非常简单，这里不做过多赘述）。
+<div style="text-align: center;">
+	<br />
+	<img alt="安装好的Sublime Text" src="/uploads/allimg/241215/2-2412151ZI9236.gif" /><br />
+	图 1 安装好的 Sublime Text</div>
+<br />
+要知道，刚刚安装的 Sublime Text 无法自行具备运行 C 语言代码的能力，需要我们手动对其进行设置。不过在开始设置之前，读者需保证当前系统中已经初始化好了 GCC 编译环境。打开命令行窗口，并执行 gcc -v 指令，如果输出 GCC 编译器的具体版本等信息，表明当前系统以成功配置了 GCC 编译环境（如图 2 所示）。
+<div style="text-align: center;">
+	<br />
+	<img alt="配置GCC编译环境" src="/uploads/allimg/241215/2-2412151ZK4495.gif" /><br />
+	图 2 配置 GCC 编译环境</div>
+<blockquote>
+	<p>
+		如果读者所用环境中尚未配置 GCC 编译环境，可阅读《<a href="/view/646.html" target="_blank">MinGW下载和安装教程</a>》一节进行安装。</p>
+</blockquote>
+在已安装好 GCC 编译器的基础上，接下来开始正式配置 Sublime Text 编辑器。<br />
+1) 要想使 Sublime Text 具备运行 C 语言程序的能力，需在菜单栏中依次点击&ldquo;Tools -&gt; Build System -&gt; New Build System&rdquo;,由此即可在 Sublime Text 打开一个临时文件，如下所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="运行C语言程序的配置文件" src="/uploads/allimg/241215/2-2412151ZP5V8.gif" /><br />
+	图 3 运行 C 语言程序的配置文件</div>
+<br />
+删除其所有内容，并将如下内容完整地复制到该文件中：
+<p class="info-box">
+	{<br />
+	&nbsp;&nbsp;&nbsp; &quot;cmd&quot;: [&quot;gcc&quot;,&quot;${file}&quot;,&quot;-o&quot;, &quot;${file_path}/${file_base_name}&quot;],<br />
+	&nbsp;&nbsp;&nbsp; &quot;file_regex&quot;:&quot;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;working_dir&quot;:&quot;${file_path}&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;selector&quot;: &quot;source.c&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;encoding&quot;:&quot;cp936&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;variants&quot;:<br />
+	&nbsp;&nbsp;&nbsp; [<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;name&quot;: &quot;C_Run&quot;,<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;cmd&quot;: [&quot;cmd&quot;,&quot;/c&quot;, &quot;gcc&quot;, &quot;${file}&quot;, &quot;-o&quot;, &quot;${file_path}/${file_base_name}&quot;,&quot;&amp;&amp;&quot;, &quot;cmd&quot;, &quot;/c&quot;,&quot;${file_path}/${file_base_name}&quot;]<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;name&quot;:&quot;C_RunInCommand&quot;,<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;cmd&quot;: [&quot;cmd&quot;,&quot;/c&quot;, &quot;gcc&quot;, &quot;${file}&quot;,&quot;-o&quot;,&quot;${file_path}/${file_base_name}&quot;, &quot;&amp;&amp;&quot;,&quot;start&quot;, &quot;cmd&quot;, &quot;/c&quot;,&quot;${file_path}/${file_base_name} &amp; pause&quot;]<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+	&nbsp;&nbsp;&nbsp; ]<br />
+	}</p>
+<blockquote>
+	<p>
+		此文件中的内容，实则是运行 C 语言程序时需要执行的 gcc 指令，只不过在 Sublime Text 文件中，需写成以上形式。</p>
+</blockquote>
+按 Ctrl+S 组合键，将此文件保存起来，其中文件名默认为&nbsp;untitled.sublime-build（untitile 可以自定义，例如 gcc_sublime-build），保存路径即为按 Ctrl+S 弹出的路径（切忌手动修改此路径）。<br />
+<br />
+2) 重新打开 Sublime Text，并依次在菜单栏中选择&ldquo;Tools -&gt; Build System&rdquo;， 在该选项中就可以看到上一步创建好的 gcc_sublime-build 的文件名 gcc，如图 4 所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="查看创建好的gcc编译选项" src="/uploads/allimg/241215/2-2412151ZR2235.gif" /><br />
+	图 4 查看创建好的 gcc 编译选项</div>
+<br />
+通过勾选 gcc 编译选项（直接在图 4 中点击即可），我们就可以直接在 Sublime Text 运行写好的 C 语言程序。比如，在 Sublime Text 编写如下程序：
+<div style="text-align: center;">
+	<br />
+	<img alt="SublimeText中编写C语言程序" src="/uploads/allimg/241215/2-2412151ZS1O7.gif" /><br />
+	图 5 SublimeText 中编写 C 语言程序</div>
+<br />
+在此基础上，选择&ldquo;Tools -&gt; Build With...&rdquo;选项，此时 Sublime Text 会弹出如下对话框：
+<div style="text-align: center;">
+	<br />
+	<img alt="可选择的编译选项" src="/uploads/allimg/241215/2-2412151ZT2G0.gif" /><br />
+	图 6 可选择的编译选项</div>
+<br />
+可以看到，这里有 gcc、gcc-C_Run 和 gcc-RunInCommand 3 个选项，其中 gcc 用于编译程序（读者可自行查看执行结果），gcc-C_Run 用于在 Sublime Text 内部调用 GCC 编译器并显示程序的执行结果（如图 7 a) 所示），gcc_RunInCommand 用于在命令行窗口中借助 gcc 指令运行该程序并输出执行结果（如图 7 b) ）。
+<div style="text-align: center;">
+	<br />
+	<img alt="Windows配置Sublime Text" src="/uploads/allimg/241215/2-2412151ZU1Y7.gif" /><br />
+	图 7 各个选项的功能</div>
+<br />
+由此，Sublime_Text 就具备执行 C 语言程序的能力了。
+<h2>
+	Mac OS X配置Sublime Text</h2>
+Mac OS X 系统中，使 Sublime Text 具备执行 C 语言代码能力的配置过程，和 Windows 系统中的配置步骤大致相同，有以下 2 点不同：
+<ul>
+	<li>
+		默认情况下，该操作系统中已默认安装有 GCC 编译器，所以如果读者对编译器版本没有刻意的要求，则可以省略安装 GCC 的过程；</li>
+	<li>
+		在 Mac OS X 系统中，需要修改 gcc_sublime-build 文件中的内容。</li>
+</ul>
+<br />
+若想使 Sublime Text 具备执行 C 语言程序的能力，在菜单栏中依次点击&ldquo;Tools -&gt; Build System -&gt; New Build System&rdquo;，创建一个 gcc.sublime-build 配置文件，其文件内容如下：
+<p class="info-box">
+	{<br />
+	&nbsp;&nbsp;&nbsp; &quot;cmd&quot; : [&quot;gcc -o ${file_base_name} $file_name&quot;],<br />
+	&nbsp;&nbsp;&nbsp; &quot;shell&quot; : true,<br />
+	&nbsp;&nbsp;&nbsp; &quot;working_dir&quot; : &quot;$file_path&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;selector&quot;: &quot;source.c&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;variants&quot; :<br />
+	&nbsp;&nbsp;&nbsp; [{<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;name&quot; : &quot;c_Run&quot;,<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;cmd&quot; : &quot;./${file_base_name}&quot;<br />
+	&nbsp;&nbsp;&nbsp; },<br />
+	&nbsp;&nbsp;&nbsp; {<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;name&quot;: &quot;c_RunInCommand&quot;,<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;shell_cmd&quot;: &quot;open -a Terminal.app &#39;${file_base_name}&#39;&quot;<br />
+	&nbsp;&nbsp;&nbsp; }]<br />
+	}</p>
+其中，c_Run 用于在 Sublime Text 底部显示程序的执行结果；而 c_RunInCommend 用于在命令行窗口中显示 C 语言程序的执行结果。仍以图 5 中的 C 语言程序为例，则 2 个编译选项的执行效果如下图所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="Mac OS X配置Sublime Text" src="/uploads/allimg/241215/2-24121519102IU.gif" /><br />
+	图 8 Mac OS X配置Sublime Text</div>
+<br />
+可以看到，使用如上指令调取命令行窗口执行 C 语言程序，除执行结果外，还会显示其它无用的信息。因此建议读者使用 c-Run 编译选项执行 C 语言程序，简单方便。<br />
+<h2>
+	Ubuntu配置Sublime Text</h2>
+要知道，Ubuntu 系统默认是不安装 GCC 编译器的，因此在配置 Sublime Text 之前，读者要自行安装 GCC 编译器（执行 sudo apt install gcc 指令即可安装）。<br />
+<br />
+安装 GCC 编译器之后，即可开始配置 Sublime Text。Sublime Text 的配置过程和在 Windows 环境中大致相同，唯一不同之处在于，要修改 xxx.sublime-build 配置文件（读者可自定义 xxx 的内容）中的内容。<br />
+<br />
+如果要使 Sublime Text 具备执行 C 语言程序的能力，则可以依次选择&ldquo;Tools -&gt; Build System -&gt; New Build System&rdquo;并创建一个 gcc.sublime-build 配置文件，其中包含如下内容：
+<p class="info-box">
+	{<br />
+	&nbsp;&nbsp;&nbsp; &quot;encoding&quot;: &quot;utf-8&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;working_dir&quot;: &quot;$file_path&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;shell_cmd&quot;: &quot;gcc \&quot;$file_name\&quot; -o \&quot;$file_base_name\&quot;&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;file_regex&quot;: &quot;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&quot;,<br />
+	&nbsp;&nbsp;&nbsp; &quot;selector&quot;: &quot;source.c&quot;,<br />
+	<br />
+	&nbsp;&nbsp;&nbsp; &quot;variants&quot;:<br />
+	&nbsp;&nbsp;&nbsp; [<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;&nbsp;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;name&quot;: &quot;c_Run&quot;,<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;shell_cmd&quot;: &quot;./${file_base_name}&quot;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;&nbsp;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;name&quot;: &quot;c_RunInCommand&quot;,<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;shell_cmd&quot;: &quot;gnome-terminal -x bash -c \&quot;&#39;${file_path}/${file_base_name}&#39;;read -p &#39;\nPress any key to continue...&#39;\&quot;&quot;<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+	&nbsp;&nbsp;&nbsp; ]<br />
+	}</p>
+由此，就完成了对 Sublime Text 的配置。仍以图 5 中的 C 语言程序为例，如下是使用 Sublime Text 执行它的效果图：
+<div style="text-align: center;">
+	<br />
+	<img alt="Ubuntu配置Sublime Text" src="/uploads/allimg/241215/2-2412151911102R.gif" /><br />
+	图 9 Ubuntu配置Sublime Text</div>
+<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+			
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 645;
+window.arcId = "42d0F1cGpx+qw5j1odGieLRYj3CywEplDX0CwkdrtG1a6HFIEspU4ixItA";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p style="
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+">Copyright ©2013-2024 解学武. All rights reserved.</p >
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oxaqcuz255");
+</script>
+</body>
+</html>

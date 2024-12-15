@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>Dev C++调试程序教程（超级详细） - 玩转C语言和数据结构</title>
+<meta name="keywords" content="Dev,C++,调试,程序,教程,超级,详细,Dev,C++" />
+<meta name="description" content="所谓调试程序，就是控制编译器一行一行地执行代码，过程中可以清楚看到每个变量值的变化情况、函数的调用过程等，进而发现程序中隐藏的错误或者低效的代码。 作为一款免费、开" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/buy/">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/642.html">Dev C++调试程序教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/643.html">Code::Blocks调试程序教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">23</span>
+        	<a href="/view/646.html">MinGW下载和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">24</span>
+        	<a href="/view/647.html">CLion下载、安装和汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">25</span>
+        	<a href="/view/648.html">使用CLion编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">26</span>
+        	<a href="/view/644.html">使用VS Code编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">27</span>
+        	<a href="/view/645.html">用使用Sublime Text编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">28</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">29</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>Dev C++调试程序教程（超级详细）</h1>
+			
+			<div id="arc-body">所谓调试程序，就是控制编译器一行一行地执行代码，过程中可以清楚看到每个变量值的变化情况、函数的调用过程等，进而发现程序中隐藏的错误或者低效的代码。<br />
+<br />
+作为一款免费、开源的 C/C++ IDE，Dev C++ 内嵌 GCC 编译器和 GDB 调试器，既能编译、运行程序，也能调试程序。本节，我们以一段完整的 C 语言程序为例，系统地学一下如何用 Dev C++ 调试程序。
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+int add(int a,int b){
+    int c = a+b;
+    return c;
+}
+int main(){
+    int a=10,b=20;
+    int sum = add(a,b);
+    printf(&quot;sum = %d&quot;,sum);
+    return 0;
+}</pre>
+<h2>
+	Dev C++调试程序</h2>
+默认情况下，程序会瞬间从开头执行到结尾，除非中途出现错误（称为&ldquo;运行时错误&rdquo;，比如读写内存失败、数组越界等）。要想让程序暂停执行，就需要设置一个断点。<br />
+<br />
+所谓断点（BreakPoint），可以简单地理解成障碍物，汽车遇到障碍物不能通行，程序遇到断点就会暂停执行。Dev C++ 给程序设置断点的方法很简单，想在哪一行代码处暂停执行，直接单击代码所在行的行号即可。例如：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="Dev C++添加断点" src="/uploads/allimg/241215/2-2412151R645V7.gif" /><br />
+	图 1 Dev C++添加断点</div>
+<br />
+如上图所示，我们成功地在第 7 行代码处添加了一个断点。注意，以正常方式点击&ldquo;编译运行&rdquo;按钮（快捷键是 &quot;Fn+F11&quot;）运行程序，断点是不会生效的，只有点击&ldquo;调试&rdquo;按钮（快捷键是 Fn+F5）运行程序时才有效。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="调试程序" src="/uploads/allimg/241215/2-2412151RAE55.gif" /><br />
+	图 2 调试程序</div>
+<blockquote>
+	<p>
+		注意，只有在&ldquo;Debug&rdquo;模式下才能使用调试功能，如图 2 所示，本节选用的是&ldquo;TDM-GCC 4.9.2 64-bit Debug&rdquo;模式。</p>
+</blockquote>
+点击&ldquo;调试&rdquo;按钮，或者按下快捷键&ldquo;Fn+F5&rdquo;，程序开始执行，直到第 7 行代码处（当前行代码尚未运行）暂停，如下所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="断点发挥作用" src="/uploads/allimg/241215/2-2412151RF5M6.gif" /><br />
+	图 3 断点发挥作用</div>
+<br />
+当程序暂时执行时，借助调试窗口中的按钮可以查看某些变量的值，还可以控制编译器继续往下执行程序。整个调试窗口中，常用的按钮以及含义分别是：
+<ul>
+	<li>
+		添加查看：查看某个变量的值，还可以看到值的变化情况；</li>
+	<li>
+		下一步：控制编译器向下执行一行语句；</li>
+	<li>
+		单步进入：功能和&ldquo;下一步&rdquo;按钮类似，不同之处在于，当程序中调用某个自定义的函数时，此按钮可以进入到函数内部，继续调试函数内部的代码，而 &quot;下一步&quot; 按钮不会；</li>
+	<li>
+		跳过：继续执行程序，遇到下一个断点暂停执行；</li>
+	<li>
+		停止执行：停止调试程序。</li>
+</ul>
+<br />
+举个例子，点击&ldquo;添加查看&rdquo;按钮监视变量 sum 值的变化情况，添加之后如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="添加要监控的变量" src="/uploads/allimg/241215/2-2412151RG4396.gif" /><br />
+	图 4 添加要监控的变量</div>
+<br />
+初始状态下，变量 sum 的值为 0。点击&ldquo;下一步&rdquo;，执行第 7 行代码，箭头光标指向第 8 行，变量 sum 的值仍为 0。再点击&ldquo;下一步&rdquo;，执行第 8 行代码，箭头光标指向第 9 行，变量 sum 的值变为 30。<br />
+<blockquote>
+	<p>
+		当箭头光标指向第 8 行代码时，点击&ldquo;单步进入&rdquo;按钮，箭头光标会进入 add() 函数并指向第 3 行代码，感兴趣的读者可自行尝试。</p>
+</blockquote>
+<br />
+调试过程中，Dev C++ 支持同时监控多个变量，还支持在程序中设置多个断点，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="多个断点和监控多个变量" src="/uploads/allimg/241215/2-2412151RZ51H.gif" /><br />
+	图 5 多个断点和监控多个变量</div>
+<h2>
+	Dev C++调试注意事项</h2>
+对于修改后的程序，调试程序之前一定要先编译程序。<br />
+<br />
+目前，多数人使用的都是 Windows 10/11 操作系统，但遗憾地是，即便是最新版本的 Dev C++（目前的最新版本是 5.11），在 Windows 10 上的兼容性并不好，有时会出现各种奇葩的问题。<br />
+<br />
+举个例子，某些版本的 Dev C++ 调试 C++ 程序时，遇到 endl 会出现&ldquo;卡死&rdquo;的情况，无法继续调试程序。遇到这种情况，比如容易的解决方案是：将 endl 用 &#39;\n&#39; 替换，就可以解决这个问题。<br />
+<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+			
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 642;
+window.arcId = "6207U8+kbF7ikHvfxZXkToS292mdK7eBY9TKBPPYPlW8z04yoRqb8lxYqw";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p style="
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+">Copyright ©2013-2024 解学武. All rights reserved.</p >
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oxaqcuz255");
+</script>
+</body>
+</html>

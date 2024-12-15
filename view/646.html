@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>MinGW下载和安装教程（超级详细） - 玩转C语言和数据结构</title>
+<meta name="keywords" content="MinGW,下载和,安装,教程,超级,详细,MinGW,下载" />
+<meta name="description" content="要知道，GCC 官网提供的 GCC 编译器是无法直接安装到 Windows 平台上的，如果我们想在 Windows 平台使用 GCC 编译器，可以安装 GCC 的移植版本。 目前适用于 Windows 平台、受欢迎的 GCC 移植版" />
+</head>
+<body>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="/">首页</a></li>
+		<li><a href="/ds/">数据结构教程</a></li>
+		<li><a href="/c/">C语言教程</a></li>
+		<li><a href="/buy/">购买教程</a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		<dd>
+        	<span class="channel-num">1</span>
+        	<a href="/view/382.html">什么是编译器？</a>
+        </dd>
+<dd>
+        	<span class="channel-num">2</span>
+        	<a href="/view/383.html">与编译器相关的几个知识点</a>
+        </dd>
+<dd>
+        	<span class="channel-num">3</span>
+        	<a href="/view/384.html">windows下的C语言编译器</a>
+        </dd>
+<dd>
+        	<span class="channel-num">4</span>
+        	<a href="/view/385.html">VS2022下载和安装教程（图解版）</a>
+        </dd>
+<dd>
+        	<span class="channel-num">5</span>
+        	<a href="/view/386.html">使用VS2022编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">6</span>
+        	<a href="/view/387.html">VS2019下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">7</span>
+        	<a href="/view/388.html">使用VS2019编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">8</span>
+        	<a href="/view/389.html">VS2017下载地址和安装</a>
+        </dd>
+<dd>
+        	<span class="channel-num">9</span>
+        	<a href="/view/390.html">使用VS2017编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">10</span>
+        	<a href="/view/391.html">VS2015下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">11</span>
+        	<a href="/view/392.html">使用VS2015编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">12</span>
+        	<a href="/view/393.html">Dev C++下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">13</span>
+        	<a href="/view/394.html">使用Dev C++编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">14</span>
+        	<a href="/view/642.html">Dev C++调试程序教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">15</span>
+        	<a href="/view/395.html">VC6.0下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">16</span>
+        	<a href="/view/403.html">使用VC6.0编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">17</span>
+        	<a href="/view/396.html">Code::Blocks下载地址和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">18</span>
+        	<a href="/view/397.html">Code::Blocks汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">19</span>
+        	<a href="/view/398.html">使用Code::Blocks编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">20</span>
+        	<a href="/view/643.html">Code::Blocks调试程序教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">21</span>
+        	<a href="/view/402.html">Xcode简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">22</span>
+        	<a href="/view/401.html">Linux GCC简明教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">23</span>
+        	<a href="/view/646.html">MinGW下载和安装教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">24</span>
+        	<a href="/view/647.html">CLion下载、安装和汉化教程</a>
+        </dd>
+<dd>
+        	<span class="channel-num">25</span>
+        	<a href="/view/648.html">使用CLion编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">26</span>
+        	<a href="/view/644.html">使用VS Code编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">27</span>
+        	<a href="/view/645.html">用使用Sublime Text编写C语言程序</a>
+        </dd>
+<dd>
+        	<span class="channel-num">28</span>
+        	<a href="/view/399.html">VS安全函数问题问题</a>
+        </dd>
+<dd>
+        	<span class="channel-num">29</span>
+        	<a href="/view/400.html">VS“无法查找或打开PDB文件”问题</a>
+        </dd>
+
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info">
+	作者：解学武
+</div>
+			<h1>MinGW下载和安装教程（超级详细）</h1>
+			
+			<div id="arc-body">要知道，GCC 官网提供的 GCC 编译器是无法直接安装到 Windows 平台上的，如果我们想在 Windows 平台使用 GCC 编译器，可以安装 GCC 的移植版本。<br />
+<br />
+目前适用于 Windows 平台、受欢迎的 GCC 移植版主要有 2 种，分别为 MinGW 和 Cygwin。其中，MinGW 侧重于服务 Windows 用户可以使用 GCC 编译环境，直接生成可运行 Windows 平台上的可执行程序，相比后者体积更小，使用更方便；而 Cygwin 则可以提供一个完整的 Linux 环境，借助它不仅可以在 Windows 平台上使用 GCC 编译器，理论上可以运行 Linux 平台上所有的程序。
+<blockquote>
+	<p>
+		如果读者仅需要在 Windows 平台上使用 GCC，可以使用 MinGW 或者 Cygwin；除此之外，如果读者还有更高的需求（例如运行 POSIX 应用程序），就只能选择安装 Cygwin。</p>
+</blockquote>
+本节要重点给大家介绍的是 MinGw 的安装和使用。MinGw 全称 Minimalist GNU for Windows，应用于 Windows 平台，可以为我们提供一个功能有限的 Linux 系统环境以使用一些 GNU 工具，比如 GCC 编译器、gawk、bison 等等。
+<h2>
+	MinGW的安装</h2>
+相比在 Linux 平台上安装 GCC 编译环境，在 Windows 平台上安装 MinGW 是比较简单的，只需经历以下几个过程。<br />
+<br />
+1) 下载 MinGW 安装包，网盘地址是：<a href="https://pan.quark.cn/s/9d9e45174a65" target="_blank">https://pan.quark.cn/s/9d9e45174a65</a>。<br />
+<br />
+2) 下载完成后，会得到一个名为&nbsp;mingw-get-setup.exe 的安装包，双击打开它，可以看到如下的对话框：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="开始安装MinGW" src="/uploads/allimg/241215/2-24121519144B44.gif" /><br />
+	图 1 开始安装 MinGW</div>
+<br />
+3) 直接点击&ldquo;Install&rdquo;，进入下面的对话框：
+<div style="text-align: center;">
+	<br />
+	<img alt="自定义MinGW的安装位置" src="/uploads/allimg/241215/2-241215191453415.gif" /><br />
+	图 2 自定义 MinGW 的安装位置</div>
+<br />
+4) 读者可根据自己操作系统的实际情况，自定义 MinGW 的安装位置（例如我选择将其安装到 E 盘），然后点击&ldquo;continue&rdquo;，进入下面的对话框：
+<div style="text-align: center;">
+	<br />
+	<img alt="下载并安装MinGW配置器" src="/uploads/allimg/241215/2-241215191500929.gif" /><br />
+	图 3 下载并安装 MinGW 配置器</div>
+<br />
+5) 进入安装 MinGW 配置器的界面，读者耐心等待安装完成（显示 100%）即可。安装完成之后，我们会得到一个名为 &quot;MinGW Installer Manager&quot; 的软件，借助它，我们可以随时根据需要修改 GCC 编译器的配置。点击&ldquo;continue&rdquo;,会自动弹出配置界面，如下所示：
+<div style="text-align: center;">
+	<br />
+	<img alt="配置GCC编译器" src="/uploads/allimg/241215/2-241215191614155.gif" /><br />
+	图 4 配置 GCC 编译器</div>
+<br />
+为使 GCC 支持编译 C 语言语言 ，需勾选图中标注的这一项。我们知道，GCC 还支持其它编程语言，读者可借助此配置器，随时实际需要安装自己需要的编译环境。勾选完成后，在菜单栏中选择<code>Installation -&gt; Apply Changes</code>，弹出如下对话框：
+<div style="text-align: center;">
+	<br />
+	<img alt="开始安装选中的编译环境" src="/uploads/allimg/241215/2-24121519163O95.gif" /><br />
+	图 5 开始安装选中的编译环境</div>
+<br />
+选择&ldquo;Apply&rdquo;。然后耐心等待，直至安装成功，即可关闭此界面。注意，整个安装过程中可能会提示某些组件下载失败，但没关系，后续需要时，可以通过 MinGw Installer（图 3 所示）安装界面中的 &ldquo;All Packages&rdquo;选项中，手动选择指定的安装包进行安装。<br />
+<br />
+6) 在安装完成的基础上，我们需要手动配置 PATH 环境变量。依次<code>右击计算机（我的电脑） -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量</code>，建议读者在当前用户的 PATH 环境变量中增加 MinGW 的安装路径，例如我将其安装到了<code>E:\MinGW</code>文件夹中，因此 PATH 环境变量的设置如下：
+<div style="text-align: center;">
+	<br />
+	<img alt="配置PATH环境变量" src="/uploads/allimg/241215/2-241215191A4537.gif" /><br />
+	图 6 配置 PATH 环境变量</div>
+<br />
+7) 由此，打开命令行窗口（通过在搜索栏中执行 cmd 指令即可），输入<code>gcc -v</code>指令，如果输出 GCC 编译器的具体信息，则表示安装成功，例如：
+<div style="text-align: center;">
+	<br />
+	<img alt="成功安装GCC编译环境" src="/uploads/allimg/241215/2-241215191F3E4.gif" /><br />
+	图 7 成功安装 GCC 编译环境</div>
+<h2>
+	MinGW的使用</h2>
+通过上面的安装，我们就可以在当前 Windows 平台上编译、运行 C 或者 C++ 程序了。<br />
+<br />
+这里以运行一个 C 语言程序为例（存储路径为：D:\demo.c）：
+<pre class="cpp">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main(){
+    printf(&quot;Hello, World!&quot;);
+    system(&quot;pause&quot;);
+    return 0;
+}</pre>
+在此基础上，在命令行窗口中执行如下指令：
+<p class="info-box">
+	C:\Users\mengma&gt;gcc D:\demo.c -o D:\demo.exe</p>
+其会在 D 盘生成一个 demo.exe 可执行文件，找到该文件并双击，即可看到程序的执行结果：
+<p class="info-box">
+	Hello, World!</p>
+<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+			
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 646;
+window.arcId = "a6afWLaDwZ+Kc8SSmZrHEfmxYoDc0DKg8SjrU7O/WBCWlHZ7nHAn1FWeAg";
+window.siteId = 1;
+window.cmsTempletsVer = "1.2";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p style="
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+">Copyright ©2013-2024 解学武. All rights reserved.</p >
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b2de4372415b89b41cef56560ba39728";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "oxaqcuz255");
+</script>
+</body>
+</html>
