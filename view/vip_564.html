@@ -17,6 +17,19 @@
 <meta name="description" content="上一节讲解了 assert 断言函数的使用，本节学习在调试器的调试窗口上输出我们自己的调试信息。 接下来，我们将用到一个 Windows 操作系统提供的函数，叫做 OutputDebugString()，这个函数非" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -155,7 +168,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 564;
-window.arcId = "dedewfmr1cdd81QRJOAaK9BPxK600xssDWQ2bdv5ztMCEUa8A8LiRt76hw";
+window.arcId = "cc91elWSSaIzoR8aQcw+k/W/anUzdnj02iMMmsJvWMLcBYRrvL0+mBuPTw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -171,7 +184,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

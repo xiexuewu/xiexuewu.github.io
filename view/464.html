@@ -17,6 +17,19 @@
 <meta name="description" content="在数学中，有些数字满足除了 1 和它本身外，不能被任何整数整除，这些数字就统称为素数（又称质数）。 例如，数字 17 就是素数，因为它不能被 2~16 的任意一个整数整除。 判断一个" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -227,7 +240,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 464;
-window.arcId = "a4c6vkVft+XZ0+eotIbyXkAcGo9p3fx4tXoDoTbxg681tNRAEtauu43l5g";
+window.arcId = "4a9d1H4Xb3/3sAvR72T2Le7it8G8Aou/jqCi41t+fmmE3WyuP48IQD3TDg";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -243,7 +256,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

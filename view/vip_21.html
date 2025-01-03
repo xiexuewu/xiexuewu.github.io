@@ -17,6 +17,19 @@
 <meta name="description" content="对于任意一个非空广义表来说，都是由两部分组成：表头和表尾。反之，只要确定的一个广义表的表头和表尾，那么这个广义表就可以唯一确定下来。 复制一个广义表，也是不断的复制" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -140,7 +153,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 21;
-window.arcId = "da5bgjl93elZZ3CGzsdLazDYMb6VThQndG/7S2dvNjnhZE1K0cLo3dYi";
+window.arcId = "4902GYOfnkNRBjbz8aq0u9rYmLS61U/TO5hnwQ/ITYvdUVyyuALIlTyp";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -156,7 +169,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

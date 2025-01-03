@@ -17,6 +17,19 @@
 <meta name="description" content="计算机要处理的信息是多种多样的，如数字、文字、符号、图形、音频、视频等，这些信息在人们的眼里是不同的。但对于计算机来说，它们在内存中都是一样的，都是以二进制的形式" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -221,7 +234,7 @@ D) 就像 100 是 10 的整数次方一样，1024 是 2 的整数次方，对于
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 366;
-window.arcId = "ebf3d2+Vw+ftPJm0l9LVKO2tT6jWujwOHMDsc/nKymV0aBMyDtuD13UMVQ";
+window.arcId = "11e7Smrf9EeM4E+MIPNNeMoSknOnWYQtNi2UhI/uWHG2chok+6kN4RcIjQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -237,7 +250,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

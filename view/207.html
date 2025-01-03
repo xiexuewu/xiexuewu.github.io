@@ -17,6 +17,19 @@
 <meta name="description" content="本套数据结构视频由郝斌老师录制，讲课风格不做学院派，内容讲解深入浅出，适合初学者。 郝斌，瑞德学校担任教学组长，曾在雅博等公司担任项目总监，6 年开发经验，擅长 C/C++、" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -307,7 +320,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 207;
-window.arcId = "e744sczfUbKFzscYmKhz2M6neeoCOxw0rhYEGZMvEYHBQBJMJ1LcuH0lVw";
+window.arcId = "d873IgO5JmVA9d52lxxayxc4z4/lGrJBBxuUm5uHv6WIzY0Iue9u40F7LA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -323,7 +336,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

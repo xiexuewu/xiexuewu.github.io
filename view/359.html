@@ -17,6 +17,19 @@
 <meta name="description" content="这篇文章主要是解答初学者的疑惑，没有信心的读者看了会吃一颗定心丸，浮躁的读者看了会被泼一盆冷水。 学编程难吗？ 编程是一门技术，我也不知道它难不难，我只知道，只要你想" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -193,7 +206,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 359;
-window.arcId = "9b3cvyRpEYgOqV06dHU7YxBsD5jCYcpX+Pj8vSaU3poqFuZICRKdRV+Yug";
+window.arcId = "7f79DZDAcDr0VwxC0cDsQFUKuJbRm7ETG2BOsNKmvYJxsjscim9WaJFkig";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -209,7 +222,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

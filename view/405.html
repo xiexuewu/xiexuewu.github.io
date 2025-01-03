@@ -17,6 +17,19 @@
 <meta name="description" content="我们今天使用的 Windows、Linux、Mac OS 等操作系统都是由一种叫做 Unix 的系统演化而来。Unix 作为80年代主流的操作系统，是整个软件工业的基础，是现代操作系统的开山鼻祖，C语言就是为" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -238,7 +251,7 @@ C89、C99 和 C11 是几个比较重要的版本，建议初学者先学习 C89 
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 405;
-window.arcId = "c001wnvY+aT83UvxGhf2w0/MBYer62/9rFs3XibGKSHkMDDboVZEUI5SSQ";
+window.arcId = "42370b60Hs2qAvEUkvuQT1bnXfT1cufajC5fP1rxpYIb16kE4s/aVwpLBw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -254,7 +267,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

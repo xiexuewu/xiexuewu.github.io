@@ -17,6 +17,19 @@
 <meta name="description" content="怎么反转链表呢？这个是面试中经常出现的一道题。一般在数据结构或者算法的面试题中，尽量不使用额外的空间去实现，尽管现在的计算机空间很充足，但是面试考察的还是对于整体" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -172,7 +185,7 @@ public class LinkReverseTest {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 112;
-window.arcId = "a981TTZQq1pClvQBK4Espq63/BGVpb+JrNNPh53Ls0rpK47wvnhcKkDpxw";
+window.arcId = "5ea0Cg9M+ErGP6dDfr7OuGlhtkW7qECsP8OTVb7da1j/Z/17b13Wg8OyOQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -188,7 +201,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

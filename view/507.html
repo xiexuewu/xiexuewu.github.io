@@ -17,6 +17,19 @@
 <meta name="description" content="带参数的宏和函数很相似，但有本质上的区别：宏展开仅仅是字符串的替换，不会对表达式进行计算；宏在编译之前就被处理掉了，它没有机会参与编译，也不会占用内存。而函数是一" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -215,7 +228,7 @@ sa=12, sb=15, sc=20, vv=60<br/>声明：当前文章为本站“玩转C语言和
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 507;
-window.arcId = "5a60uJA7MLL9QbsS2XoX0yucVzD31geYHNaGkLvqpFTMC1z0cxY5nMc6bw";
+window.arcId = "a718t41oL9IHz0qtDnRIXyzXhDIMkzFq0AbADafFvX2VUXiPG6MdrxITtQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -231,7 +244,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

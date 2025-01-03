@@ -17,6 +17,19 @@
 <meta name="description" content="本节我们从一个例子入手讲解，请看下面的代码： #include stdio.hint main(){ int a = 16, b = 4, c = 2; int d = a + b * c; int e = a / b * c; printf( d=%d, e=%d\n, d, e); return 0;} 运行结果： d=24, e=8 1) 对于表达式" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -202,7 +215,7 @@ C语言的运算符众多，每个运算符都具有优先级和结合性，还�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 433;
-window.arcId = "04c9DmTAXV9poGhHCzzxwQGSxLZuw9lZ3RDbVfZpFOpTdgCNeFEYA0OMiA";
+window.arcId = "56f535hLKjpkqB94EV/Le3sIqjybtOHUOmj9dB60m3nGEumAPYcIhfe45A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -218,7 +231,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

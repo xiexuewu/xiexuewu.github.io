@@ -17,6 +17,19 @@
 <meta name="description" content="C语言允许为一个数据类型起一个新的别名，就像给人起绰号一样。 起别名的目的不是为了提高程序运行效率，而是为了编码方便。例如有一个结构体的名字是 stu，要想定义一个结构体" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -273,7 +286,7 @@ p1、p2 类型相同，它们都是指向 int 类型的指针。<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 541;
-window.arcId = "3935KeL+ydlDmWxw2DVvxLgVY8xv8IT2Z6DR34loerWRV8adQ4f9RRQp6A";
+window.arcId = "5cddq10J1oYFcNbRr00FiOcN04+Md8nqTzHQ98z3gYliWeqkbX59OXP3hA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -289,7 +302,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

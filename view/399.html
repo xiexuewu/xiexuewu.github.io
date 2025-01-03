@@ -17,6 +17,19 @@
 <meta name="description" content="Turbo C 是美国 Borland 公司开发，应用于 DOS 平台上的一个 Ｃ 语言集成开发环境，它集编辑、编译，链接于一身，使得 Ｃ 语言的编辑，调试和测试都非常简捷，编译和链接速度极快，使" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -251,7 +264,7 @@ VS 之所以会提示使用安全函数，是因为它进行了 SDL 检查（安
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 399;
-window.arcId = "783axtCuu1PqnTjWvKBAhC00Ex0nM+uUB809oXRSKdhrpTXrNjdA3HbMfA";
+window.arcId = "2e46fOlVJ/3k5y1LUAlhVUfLIDGPMxFBLiNW9w4woX0x5KgFoBC5CCRHQA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -267,7 +280,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

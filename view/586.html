@@ -17,6 +17,19 @@
 <meta name="description" content="在前面的教程中，我们都是将所有的代码写到一个源文件里面，对于小程序，代码不过几百行，这或许无可厚非，但当程序膨胀代码到几千行甚至上万行后，就应该考虑将代码分散到多" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -241,7 +254,7 @@ extern 是&ldquo;外部&rdquo;的意思，很多教材讲到，extern 用来声�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 586;
-window.arcId = "fc7fM3Md3/sQlr0Vjlx3X5focwe84GgCWbRDfqWn6yuswuCfGygFFzpZaQ";
+window.arcId = "f00d/PhraaiRra3V6AFGMxHuxOvK24VgsAasoRClItPLw3QfALwL4mqyjw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -257,7 +270,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

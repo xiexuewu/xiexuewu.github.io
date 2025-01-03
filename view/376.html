@@ -17,6 +17,19 @@
 <meta name="description" content="在开发软件的过程中，我们需要将编写好的代码（Code）保存到一个文件中，这样代码才不会丢失，才能够被编译器找到，才能最终变成可执行文件。这种用来保存代码的文件就叫做 源文" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -177,7 +190,7 @@ C++ 是站在 C语言的肩膀上发展起来的，是在 C语言的基础上进
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 376;
-window.arcId = "5f96NEw8Iv+1PFGgGKn3hBqjJyEFK2HfNmpCPIjwXay0zE05RbyqO9JxoA";
+window.arcId = "c28dBajOPZnXL3ptJnUjmM6+xaOoDJQhSDTZCq4c7AJCzh/EE36MHvJnfA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -193,7 +206,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

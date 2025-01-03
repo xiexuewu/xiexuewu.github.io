@@ -17,6 +17,19 @@
 <meta name="description" content="所谓 函数调用（Function Call） ，就是使用已经定义好的函数。函数调用的一般形式为： functionName(param1, param2, param3 ...); functionName 是函数名称， param1, param2, param3 ... 是实参列表。实参可" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -234,7 +247,7 @@ int main(){
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 493;
-window.arcId = "ffc33rvJOIoCd2TFM78jZs6k/EKAV/YEoeWzyXl7RlH7dP1vbw0ALu3n0Q";
+window.arcId = "2d2a68nAXvUbCSHY2YkYPtYN7Jp6a7pvx/VGzuS99A1JglmW0sCDeqNDAA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -250,7 +263,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

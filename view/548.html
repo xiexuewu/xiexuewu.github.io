@@ -17,6 +17,19 @@
 <meta name="description" content="fgetc() 和 fputc() 函数每次只能读写一个字符，速度较慢；实际开发中往往是每次读写一个字符串或者一个数据块，这样能明显提高效率。 读字符串函数 fgets fgets() 函数用来从指定的文件" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -242,7 +255,7 @@ C C++ Java Linux Shell</pre>
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 548;
-window.arcId = "da5bgjl93elZZ3CGzsMebTGOZb3EQx53c236TDBvNj7kIElLnszm09gs+A";
+window.arcId = "17f96EBR6xuK+IIIM4K/+A9otlbUAXSNXzyjJ65inD+1hHA8NE4BDdLZ1A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -258,7 +271,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

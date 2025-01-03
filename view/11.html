@@ -17,6 +17,19 @@
 <meta name="description" content="串，即 字符串 ，由n个字符组成的一个整体（n=0）。这n个字符可以由字母、数字或者其他字符组成。 例如，S=BEIJING，S代表这个串的串名，BEIJING是串的值。 双引号不是串的值，作用只" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -252,7 +265,7 @@ aecd<br />
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 11;
-window.arcId = "c1e6E8DY0d7RPayIQKEo5Vtbh4LMPX5kHx2Kqrvk5aTMKDhrUg4f6hDh";
+window.arcId = "8862l9AVpxrcgTeG+YSrg327qQ4YOdDAQFd/rIwesZrMYP8vCqblKanW";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -268,7 +281,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

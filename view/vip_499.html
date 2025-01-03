@@ -17,6 +17,19 @@
 <meta name="description" content="所谓中间递归，就是发生递归的位置在函数体的中间，而不是末尾。 尾递归在逐层退出时除了 return 语句，一般不再执行其他操作；而中间递归在逐层退出时还要执行一些其他的操作，" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -155,7 +168,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 499;
-window.arcId = "729fMTNBSKedvh4vp5hROjhBvR3nfY4tZGmLdAanNrLikyglKv8g4cVNTA";
+window.arcId = "09a9EHvuq/wu6UiXp5wNr8KWaVKhPRnQlXP56gyEm8bXcXHfpI89Fqg9TA";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -171,7 +184,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

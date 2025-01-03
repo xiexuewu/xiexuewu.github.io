@@ -17,6 +17,19 @@
 <meta name="description" content="连通图中，如果任意两个顶点之间都存在不止一条通路，这样的图就称为 重连通图 。 举个简单的例子： 图 1 重连通图 图 1 不仅是连通图，还是重连通图，因为图中各个顶点之间存在不" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -432,7 +445,7 @@ DFSArticul() 函数对各个非叶子结点是否为关结点进行了判断，�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 347;
-window.arcId = "b507hcuDPMsGF31YBPIBeCr0KnN2d4E/NyF+vSM4PDyJO7aYMbmU5NeZtg";
+window.arcId = "2261DYWTq9e/hEtzsU0TC6DB54hAxjkOdeQMcqKQpPDDXBmVKXEn9vx49w";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -448,7 +461,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

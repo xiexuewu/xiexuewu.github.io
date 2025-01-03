@@ -17,6 +17,19 @@
 <meta name="description" content="几十年以前，计算机刚刚诞生，人们编写程序时，将所有的代码都写在同一个源文件中，经过长期的积累，程序包含了数百万行的代码，以至于人们无法维护这个程序了。于是人们开始" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -155,7 +168,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 589;
-window.arcId = "3f1bK4rfLFnff4ExwMMX7bHGV/MHtptaDRo6rGOULhQ1U87k6edhN0Etiw";
+window.arcId = "8dddaJlbAloLQUBdG8U9ClhQMVYVQx1AIF3hEhAMtw2LbsZxPQV9zVuE7Q";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -171,7 +184,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

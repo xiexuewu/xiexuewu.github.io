@@ -17,6 +17,19 @@
 <meta name="description" content="顾名思义，预定义宏就是已经预先定义好的宏，我们可以直接使用，无需再重新定义。 ANSI C 规定了以下几个预定义宏，它们在各个编译器下都可以使用： __LINE__：表示当前源代码的行号" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -155,7 +168,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 509;
-window.arcId = "c2dbM4bgwJ5gn5QGIGyp8xDXrX5T/zmsKldHUY/5ewoJmn1zg9LdKFZZ7w";
+window.arcId = "c47cKimXFp/vUfADUq0GoGfxnUS3ZW0SSNEpTQDhc6zyC5ChXN+MSABUCQ";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -171,7 +184,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

@@ -17,6 +17,19 @@
 <meta name="description" content="程序是人机交互的媒介，有输出必然也有输入，第三章我们讲解了如何将数据输出到显示器上，本章我们开始讲解如何从键盘输入数据。在C语言中，有多个函数可以从键盘获得用户输入" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -488,7 +501,7 @@ int main()
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 438;
-window.arcId = "d40ddxEAU91dlO5D5YWOW5V94Zg+j288OaawTdRxMWvdo9iABjYvDm+5Bw";
+window.arcId = "d38bAyum6t7x3lxWOlwXHCdnIB9Z919YvI33zABdjwL7FG62O7LEF+zdHw";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -504,7 +517,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>

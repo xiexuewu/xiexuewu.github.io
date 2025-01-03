@@ -17,6 +17,19 @@
 <meta name="description" content="CLion 是一款专为 C 语言和 C++ 设计的 IDE（Integrated Development Environment，集成开发环境），功能超级强大，既具有代码辅助、实时代码分析、集成调试器等多种基础功能，还附带版本控件等" />
 </head>
 <body>
+<script>
+        // 定义重定向函数
+        function redirectToNewServer() {
+            var currentPath = window.location.pathname;
+            var newServerAddress = "https://xiecoding.cn";
+            var redirectUrl = newServerAddress + currentPath;
+            window.location.href = redirectUrl;
+        }
+        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
+        (function () {
+            redirectToNewServer();
+        })();
+</script>
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -283,7 +296,7 @@ CLion 官方提供了 Windows、macOS 和 Linux 这三种平台的安装包，�
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 647;
-window.arcId = "aa02H8Rr9V7XUkna0KD3wT1hV9DBvSHNC1y2rKrHW55FMra38cFpJn/BgA";
+window.arcId = "fe85ram2d8Imx15DNfGSarYtooPadUSvIqN98Zsi56lb+9Fs8TlkIFMy8A";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -299,7 +312,8 @@ window.cmsTempletsVer = "1.2";
     font-size: 13px;
     color: #666;
     line-height: 1.6em;
-">Copyright ©2013-2024 解学武. All rights reserved.</p >
+"><span>Copyright ©2013-2024 xidcoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
