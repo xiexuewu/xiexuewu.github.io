@@ -133,6 +133,25 @@ blockquote{
 	background-color: #2f4b69;
 }
 
+.iconfont{
+    font-family: "iconfont" !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+.iconfont-user:before {
+    content: "\e602";
+}
+
+.user-info {
+    display: block;
+    float: right;
+    height: 42px;
+    margin-right: 20px;
+    padding: 0px 6px;
+    line-height: 42px;
+    font-size: 16px;
+}
+
 /***********布局************/
 #main{
 	min-width: 100%;
@@ -190,6 +209,11 @@ h1{
 	font-size: 26px;
 	line-height: 1.6em;
 	font-weight: normal;
+}
+
+/***********标题下方广告图片************/
+#top-banner img {
+    width: 100%;
 }
 
 /***********正文************/
@@ -333,6 +357,19 @@ h1{
 	padding: 0px 12px;
 	color: #999;
 	font-size: 12px;
+}
+#footer p{
+	margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6em;
+}
+#footer  img{
+	height: 1.2em;
+    vertical-align: middle;
+}
+#footer p a.grey {
+    color: #666;
 }
 
 /***********添加微信************/
@@ -499,6 +536,14 @@ pre{
     color:#1861a7;
 }
 
+
+.pc-yes {
+	display: block;
+}
+.wap-yes {
+	display: none;
+}
+
 /*----------------自适应处理-------------------*/
 @media all and (max-width: 1250px){
 	#main-no-course{
@@ -584,6 +629,12 @@ pre{
 	}
 }
 @media all and (max-width: 768px){  /* 移动端 */
+	.pc-yes {
+    display: none;
+	}
+	.wap-yes {
+    display: block;
+	}
 	#main-no-course{
 		width: 100%;
 	}
@@ -665,7 +716,18 @@ pre{
 		margin-right: 0px;
 	}
 
-	
+	.user-info {
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        float: none;
+        height: 48px;
+        margin-right: 0px;
+        padding: 0px 15px;
+        line-height: 48px;
+        font-size: 16px;
+    }
 	/*******正文*******/
 	#arc-info{
 		padding: 18px 10px 0px 10px;
@@ -719,4 +781,10 @@ ul.product-intro{
 ul.product-intro li{
 	padding: 2px 0px;
 	line-height: 1.6em;
+}
+
+
+/***********文章内容上方和下方广告************/
+#ad-arc-top .pic{
+	margin-top: 10px;
 }
