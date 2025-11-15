@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影帮</title>
+    <meta name="description" content="发现精彩电影，分享观影乐趣">
+    <link rel="stylesheet" href="/templets/movies/style.css">
+    <style>
+        /* 标题列表容器 - 玻璃拟态效果 */
+        .title-list {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 850px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 顶部渐变装饰条 */
+        .title-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+        }
+        
+        /* 标题样式 */
+        .title-list h2 {
+            font-size: 36px;
+            color: #f1f5f9;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .title-list h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 2px;
+        }
+        
+        /* 标题项 - 玻璃卡片 */
+        .title-item {
+            margin-bottom: 15px;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .title-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 悬停时整体提升和发光效果 */
+        .title-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* 左侧渐变条动画 */
+        .title-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .title-item:hover::before {
+            opacity: 1;
+        }
+        
+        /* 链接样式 */
+        .title-item a {
+            font-size: 19px;
+            color: #e2e8f0;
+            text-decoration: none;
+            display: block;
+            padding: 22px 30px;
+            padding-right: 60px;
+            position: relative;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        /* 左侧序号 */
+        .title-item a::before {
+            content: counter(list-counter);
+            counter-increment: list-counter;
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(145deg, #3b82f6, #60a5fa);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .title-item:hover a::before {
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        /* 右侧箭头图标 */
+        .title-item a::after {
+            content: '→';
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #60a5fa;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .title-item:hover a::after {
+            transform: translateY(-50%) translateX(5px);
+            opacity: 1;
+        }
+        
+        /* 悬停文字变色 */
+        .title-item:hover a {
+            color: #60a5fa;
+            padding-left: 35px;
+        }
+        
+        /* 计数器初始化 */
+        .title-list dl {
+            counter-reset: list-counter;
+            margin: 0;
+        }
+        
+        .title-list dt {
+            margin: 0;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .title-list {
+                padding: 25px;
+                margin: 30px 15px;
+                border-radius: 16px;
+            }
+            
+            .title-list h2 {
+                font-size: 26px;
+                margin-bottom: 25px;
+            }
+            
+            .title-item a {
+                font-size: 17px;
+                padding: 18px 20px;
+                padding-right: 50px;
+            }
+            
+            .title-item a::before {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+                left: 10px;
+            }
+            
+            .title-item a::after {
+                right: 15px;
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title-list {
+                padding: 20px;
+                margin: 20px 10px;
+            }
+            
+            .title-list h2 {
+                font-size: 22px;
+            }
+            
+            .title-item a {
+                font-size: 16px;
+                padding: 15px 15px;
+                padding-right: 40px;
+            }
+            
+            .title-item a::before {
+                display: none; /* 移动端隐藏序号 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-container">
+        <!-- Logo区域 -->
+        <div class="logo-section">
+            <div class="logo-circle">
+               电影帮
+            </div>
+            <p class="tagline">发现精彩电影，分享观影乐趣</p>
+        </div>
+        
+        <!-- 标题列表 - 只显示子栏目标题 -->
+        <div class="title-list">
+            <h2>最新更新</h2>
+            <dl>
+                    <dt><a href="/jason_statham/">杰森·斯坦森46部电影（在线观看，免费下载）</a></dt>
+                </dl><dl>
+                    <dt><a href="/dzd/">碟中谍8在线观看完整高清免费版（支持下载，建议收藏）</a></dt>
+                </dl><dl>
+                    <dt><a href="/langyabang/">琅琊榜电视剧免费观看全集完整版（在线看，免费下载）</a></dt>
+                </dl><dl>
+                    <dt><a href="/shitailong/">史泰龙电影大全（全部高清，免费下载）</a></dt>
+                </dl><dl>
+                    <dt><a href="/schwarzenegger/">施瓦辛格全部电影（在线观看，免费下载）</a></dt>
+                </dl><dl>
+                    <dt><a href="/mcu/">漫威电影的观看顺序（全网最新，免费下载）</a></dt>
+                </dl>
+        </div>
+    </div>
+</body>
+</html>
