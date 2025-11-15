@@ -1,56 +1,284 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
-<meta http-equiv="pragma" content="no-cache" /> 
-<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
-<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
-<meta http-equiv="expires" content="0" />
-<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
-<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
-<title> - 玩转C语言和数据结构</title>
-<meta name="description" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杰森·斯坦森46部电影（在线观看，免费下载）</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="/templets/movies/style.css">
+    <style>
+        /* 针对内容列表的特殊样式 */
+        .content-list-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        .channel-info {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            font-size: 17px;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+        
+        .channel-info h1 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            color: #e2e8f0;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .channel-info h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 2px;
+        }
+        
+        /* 直接在 .channel-info 内为所有内容标签添加样式 */
+        .channel-info h2 {
+            margin: 35px 0 20px;
+            font-size: 28px;
+            line-height: 1.4;
+            color: #f1f5f9;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .channel-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 2px;
+        }
+        
+        .channel-info h3 {
+            margin: 30px 0 18px;
+            font-size: 24px;
+            line-height: 1.4;
+            color: #cbd5e1;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .channel-info h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 60%;
+            background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+            border-radius: 3px;
+        }
+        
+        .channel-info h4 {
+            margin: 25px 0 15px;
+            font-size: 20px;
+            line-height: 1.4;
+            color: #94a3b8;
+        }
+        
+        .channel-info p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        /* 列表样式 */
+        .channel-info ul,
+        .channel-info ol {
+            margin: 20px 0;
+            padding-left: 0;
+            counter-reset: list-counter;
+        }
+        
+        .channel-info li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+            position: relative;
+        }
+        
+        /* 有序列表 */
+        .channel-info ol li {
+            counter-increment: list-counter;
+            padding-left: 35px;
+        }
+        
+        .channel-info ol li::before {
+            content: counter(list-counter);
+            position: absolute;
+            left: 0;
+            top: 3px;
+            background: linear-gradient(145deg, #3b82f6, #60a5fa);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        /* 无序列表 */
+        .channel-info ul li {
+            list-style: none;
+            padding-left: 25px;
+        }
+        
+        .channel-info ul li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #3b82f6;
+            font-size: 14px;
+        }
+        
+        /* blockquote 代码块风格 */
+        .channel-info blockquote {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-left: 4px solid #555;
+            border-radius: 6px;
+            padding: 20px 25px;
+            margin: 25px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 15px;
+            color: #d4d4d4;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+        
+        .channel-info blockquote p {
+            margin-bottom: 15px;
+        }
+        
+        .channel-info blockquote p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 代码块 */
+        .channel-info pre {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+        
+        .channel-info pre code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            color: #d4d4d4;
+            line-height: 1.6;
+        }
+        
+        /* 图片 */
+        .channel-info img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 25px 0;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .channel-info h1 {
+                font-size: 28px;
+            }
+            
+            .channel-info h2 {
+                font-size: 22px;
+                margin: 25px 0 15px;
+            }
+            
+            .channel-info h3 {
+                font-size: 20px;
+                margin: 20px 0 12px;
+            }
+            
+            .channel-info h4 {
+                font-size: 18px;
+                margin: 18px 0 10px;
+            }
+            
+            .channel-info {
+                padding: 25px;
+                font-size: 16px;
+            }
+            
+            .channel-info ol li {
+                padding-left: 30px;
+            }
+            
+            .channel-info ol li::before {
+                width: 20px;
+                height: 20px;
+                font-size: 11px;
+                top: 4px;
+            }
+            
+            .channel-info ul li {
+                padding-left: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .content-list-container {
+                padding: 15px;
+            }
+            
+            .channel-info h1 {
+                font-size: 24px;
+            }
+            
+            .channel-info h2 {
+                font-size: 20px;
+            }
+            
+            .channel-info h3 {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div id="header" class="clearfix">
-	<a id="logo" class="left" href="/">
-		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
-	</a>
-	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">首页</a></li>
-		<li><a href="/ds/">数据结构教程</a></li>
-		<li><a href="/c/">C语言教程</a></li>
-		<li><a href="/buy/">购买教程</a></li>
-		<!--<li><a href="/c/">辅导班</a></li>-->
-	</ul>
-	<a href="/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
-</div>
-<!--qq交流群
-<div id="header" class="clearfix">
-	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
-	</ul>
-</div>-->
-<div id="main-no-course" class="clearfix">
-		<div id="article">
-			<div id="arc-info">
-	作者：解学武
-</div>
-			<h1></h1>
-			<div id="arc-body"><blockquote>
+    <div class="content-list-container">
+        <!-- 栏目信息 -->
+        <div class="channel-info">
+            <h1>杰森·斯坦森46部电影（在线观看，免费下载）</h1>
+            
+            <!-- 栏目内容 -->
+            <blockquote>
 	<p>
 		观看地址（资源容易被和谐，简单转存或者下载）：<a href="http://xiecoding.cn/drive.php?id=79">杰森&middot;斯坦森46部电影（在线观看，免费下载）</a></p>
 </blockquote>
 杰森&middot;斯坦森（Jason Statham），英国著名影视男演员、前职业跳水运动员和模特。他以硬朗的外形、健硕的身材和荷尔蒙爆棚的雄性气质著称，是当今好莱坞最具票房号召力的动作巨星之一。<br />
-<br />
 <div style="text-align: center;">
-	<img alt="" src="/uploads/allimg/251114/2-251114232011C6.jpg" /></div>
-<br />
+	<img alt="" src="/uploads/allimg/251115/2-2511151Q400I5.jpg" /></div>
 斯坦森早年曾代表英国跳水队参加世界锦标赛，退役后凭借出色的身体素质和独特的硬汉气质进入演艺圈。<br />
 <br />
 1998年，31岁的他通过盖&middot;里奇导演的犯罪喜剧片《两杆大烟枪》一炮而红，从此开启了他的动作电影生涯。他以其&quot;定义性特征&quot;的表演风格闻名，亲自上阵的激烈打斗、惊险追车戏以及标志性的硬汉形象，被誉为引领2000年代动作片复兴的代表人物
@@ -89,7 +317,6 @@
 	<li>
 		《敢死队4》(2023)：系列最新续集。</li>
 </ul>
-<br />
 <h4>
 	4. 《机械师》系列（The Mechanic） - 2部</h4>
 斯坦森饰演顶级杀手的故事：<br />
@@ -148,48 +375,9 @@
 	<li>
 		《女间谍》(2015) ：展现喜剧天分，饰演自以为是、爱吹牛的特工，获得评论家选择奖最佳喜剧男演员提名。</li>
 </ul>
-<br />
 截至2025年，杰森&middot;斯坦森的电影生涯已持续超过25年，主演的电影在美国累计票房达数十亿美元，是全球最受欢迎的动作明星之一。他的最新作品包括《财富行动：战争之街》(2022)以及即将上映的《敢死队4》等。<br />
-</div>
-			<dl id="arc-list">
-				<dt>文章列表</dt>
-				
-			</dl>
-		</div>
-			
-</div>
-<div id="addweixin-widget" class="clearfix">
-	<div class="box">
-		<p>
-			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
-			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
-			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
-		</p>
-		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
-	</div>
-</div>
-<div id="footer">
-	<ul id="nav-bottom" class="clearfix">
-		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
-		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
-		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
-		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
-	</ul>
-	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
-		<span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
-</div>
 
-<script src="/templets/default/script/jquery1.12.4.min.js"></script>
-<script src="/templets/default/script/jquery.snippet.js"></script>
-<script src="/templets/default/script/common.js?v=1.2"></script>
-<span style="display: none;">
-<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
-</span>
-
-
-
+        </div>
+    </div>
 </body>
 </html>
