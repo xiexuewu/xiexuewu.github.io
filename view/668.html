@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>ExifTool下载、安装和使用教程（附官网安装包，适合新手小白）</title>
+<meta name="keywords" content="ExifTool,下载,、,安装,和,使用,教程,附官,网," />
+<meta name="description" content="ExifTool 安装包下载地址： ExifTool安装包 ExifTool 是一款开源、免费的命令行工具，支持跨平台，可以安装到 Windows、Linux 和 Mac OS 平台上。 ExifTool 用于读取、写入和编辑图像、音频、视频" />
+</head>
+<body>
+
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main-no-course" class="clearfix">
+	<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiecoding.cn/'>主页</a> > <a href='/soft/'>软件下载</a> 
+        </span>
+    </div>
+</div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
+			<h1>ExifTool下载、安装和使用教程（附官网安装包，适合新手小白）</h1>
+			<div id="arc-body"><blockquote>
+	<p>
+		ExifTool 安装包下载地址：<a href="https://pan.quark.cn/s/618e4bb53681" target="_blank">ExifTool安装包</a></p>
+</blockquote>
+ExifTool 是一款开源、免费的命令行工具，支持跨平台，可以安装到 Windows、Linux 和 Mac OS 平台上。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="ExifTool Logo" src="/uploads/allimg/251119/2-2511191G930921.gif" /></div>
+<br />
+ExifTool 用于读取、写入和编辑图像、音频、视频、PDF 等文件的元数据。元数据是指嵌入在文件中的隐藏信息，如拍摄时间、相机型号、GPS 坐标、作者、版权等。<br />
+<br />
+ExifTool 以命令行方式运行，虽然没有图形界面，但功能极其强大，支持超过 500 种文件格式和数十种元数据标准（如 EXIF、IPTC、XMP、GPS 等），适合技术用户和开发者使用。<br />
+<br />
+和 ExifTool 同领域的工具有很多，主流的有 Lightroom、XnView、IrfanView 等。相比之下，ExifTool 的优势是：完全免费，支持 200+ 多种格式，支持自动化脚本，支持自动备份等。<br />
+<h2>
+	下载ExifTool</h2>
+ExifTool官方发布了 3 款安装包：
+<blockquote>
+	<p>
+		下载地址：<a href="https://pan.quark.cn/s/618e4bb53681" target="_blank">https://pan.quark.cn/s/618e4bb53681</a></p>
+</blockquote>
+<ul>
+	<li>
+		exiftool-13.42_64.zip：适用于 Windows 平台的安装包；</li>
+	<li>
+		ExifTool-13.42.pkg：适用于 Mac OS 平台的安装包；</li>
+	<li>
+		Image-ExifTool-13.42.tar.gz：适用于 Linux 平台的安装包。</li>
+</ul>
+<h2>
+	安装ExifTool</h2>
+笔者使用的电脑是 Windows x64 系统，接下来教大家手把手在 Windows 上安装ExifTool。<br />
+<br />
+1) 下载得到 exiftool-13.42_64.zip，解压后的文件夹如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/251119/2-2511191H01T55.gif" /></div>
+<br />
+2) 将文件 exiftool(-k).exe 重命名为 exiftool.exe。<br />
+<br />
+3) 配置环境变量，步骤如下：<br />
+① 按照下图所示，打开电脑的设置窗口：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/251119/2-2511191H0344M.gif" /></div>
+<br />
+② 按照下图找到环境变量的设置入口：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/251119/2-2511191H04SY.gif" /></div>
+<br />
+③ 找到系统变量 Path，双击打开它：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/251119/2-2511191H104S2.gif" /></div>
+<br />
+④ 在 Path 系统变量中，添加 ExifTool 的安装路径，比如笔者将它安装到了 D 盘下的 exiftool-13.42_64 文件夹里：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/251119/2-2511191H11J52.gif" /></div>
+<br />
+逐级点击&ldquo;保存&rdquo;或者&ldquo;确定&rdquo;即可。<br />
+<br />
+4) 检测环境变量是否配置成功。按&ldquo;Win+R&rdquo;组合键，输入&ldquo;cmd&rdquo; 打开 CMD 命令行窗口，如下图所示，输入 exiftool -ver 命令：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/251119/2-2511191H151952.gif" /></div>
+<br />
+输出 exiftool 的版本号信息，表示配置成功。<br />
+<h2>
+	使用ExifTool</h2>
+使用 ExifTool 需要在 CMD 命令行窗口中执行相应的命令。例如，读取文件 a.jpg 的所有元数据（存储路径是 ），执行如下命令：
+<p class="info-box">
+	exiftool a.jpg</p>
+执行结果如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/251119/2-2511191H216316.gif" /></div>
+<br />
+还是以 a.jpg 文件为例，这里再给出几种使用 ExifTool 的命令：
+<pre class="info-box">
+//写入标签artist、值rmnof到文件a.jpg(如果artist已存在将更新其值)
+exiftool -artist=rmnof a.jpg
+exiftool -artist=rmnof a.jpg b.jpg c.jpg (同时写入多个文件)
+exiftool -artist=rmnof D:/images (写入目录中所有文件)
+exiftool -artist=rmnof D:/images -r (递归处理子目录)
+exiftool -artist=&quot;rmnof&quot; -copyright=&quot;rmnof.com&quot; a.jpg (同时写入多个标签)
+
+//将创建时间、光圈、快门速度和ISO四项以列表形式保存为out.txt
+exiftool -T -createdate -aperture -shutterspeed -iso DIR &gt; out.txt
+
+//打印某照片的尺寸和曝光时间
+exiftool -s -ImageSize -ExposureTime a.jpg
+
+//递归扫描某目录所有照片，将共有的元数据写入相同文件名的txt文件中
+exiftool -r -w .txt -common DIR
+
+//生成image.raw的缩略图thumbnail.jpg
+exiftool -b -ThumbnailImage image.raw &gt; thumbnail.jpg
+
+//从a.jpg提取完整的xmp数据记录
+exiftool -xmp -b a.jpg&gt; out.xmp
+
+//递归删除某目录下所有文件的全部元数据
+exiftool -all= -r DIR</pre>
+<h4>
+	ExifTool命令格式</h4>
+<pre class="info-box">
+读取：exiftool [OPTIONS] [-TAG...] [--TAG...] FILE...
+写入：exiftool [OPTIONS] -TAG[+-&lt;]=[VALUE]... FILE...
+复制：exiftool [OPTIONS] -tagsFromFile SRCFILE [-SRCTAG[&gt;DSTTAG]...] FILE...
+其他：exiftool [ -ver | -list[w|f|r|wf|g[NUM]|d|x] ]</pre>
+其中，各个参数的含义分别是：
+<pre class="info-box">
+标签选项
+  -TAG or --TAG                    提取或排除指定的标签
+  -TAG[+-^]=[VALUE]                向标签写入新值
+  -TAG[+-]&lt;=DATFILE                从数据文件读取标签写入文件
+  -TAG[+-]&lt;SRCTAG                  复制标签值（见-tagsFromFile）
+
+  -tagsFromFile SRCFILE            复制某文件的标签值
+  -x TAG      (-exclude)           排出指定标签
+ 
+输入输出文本格式
+  -args       (-argFormat)         将元数据格式化为ExifTool参数
+  -b          (-binary)            以二进制输出元数据
+  -c FMT      (-coordFormat)       设置GPS坐标格式
+  -charset [[TYPE=]CHARSET]        指定字符编码
+  -csv[[+]=CSVFILE]                以CSV格式导出/导入标签
+  -d FMT      (-dateFormat)        设置日期/时间的格式
+  -D          (-decimal)           以十进制显示标签ID号
+  -E,-ex,-ec  (-escape(HTML|XML|C))为HTML，XML或C的转义标记值
+  -f          (-forcePrint)        强制打印所有指定的标签
+  -g[NUM...]  (-groupHeadings)     按标签组输出
+  -G[NUM...]  (-groupNames)        打印每个标签的组名
+  -h          (-htmlFormat)        输出为HTML格式
+  -H          (-hex)               以十六进制显示标签ID号
+  -htmlDump[OFFSET]                生成HTML格式的二进制转储
+  -j[[+]=JSONFILE] (-json)         以JSON格式导出/导入标签
+  -l          (-long)              使用长2行输出格式（标签、值各一行）
+  -L          (-latin)             使用Windows Latin1编码
+  -lang [LANG]                     设定当前语言
+  -listItem INDEX                  从列表中提取特定项目
+  -n          (--printConv)        不转换，直接打印
+  -p FMTFILE  (-printFormat)       以指定格式输出
+  -php                             将标签导出为PHP数组
+  -s[NUM]     (-short)             简短输出
+  -S          (-veryShort)         非常简短输出
+  -sep STR    (-separator)         设置列表项的分隔符字符串
+  -sort                            按字母顺序对输出进行排序
+  -struct                          启用结构化信息的输出
+  -t          (-tab)               以制表符分隔的列表格式输出
+  -T          (-table)             以表格格式输出
+  -v[NUM]     (-verbose)           打印详细消息
+  -w[+|!] EXT (-textOut)           写入（或覆盖！）输出的文本文件
+  -W[+|!] FMT (-tagOut)            为每个标签写入输出文本文件
+  -Wext EXT   (-tagOutExt)         用-W指定要写入的文件类型
+  -X          (-xmlFormat)         使用RDF/XML输出格式
+
+执行选项
+  -a          (-duplicates)        允许提取重复的标签
+  -e          (--composite)        不生成复合标签
+  -ee         (-extractEmbedded)   从嵌入式文件中提取信息
+  -ext[+] EXT (-extension)         只处理具有指定扩展名的文件
+  -F[OFFSET]  (-fixBase)           修复制造商Makernotes偏移
+  -fast[NUM]                       提取元数据时提高速度
+  -fileOrder[NUM] [-]TAG           设置文件处理顺序
+  -i DIR      (-ignore)            忽略指定的目录名称
+  -if[NUM] EXPR                    按条件处理文件
+  -m          (-ignoreMinorErrors) 忽略小错误和警告
+  -o OUTFILE  (-out)               设置输出文件或目录名称
+  -overwrite_original              重命名tmp文件覆盖原始文件
+  -overwrite_original_in_place     通过复制tmp文件覆盖原始文件
+  -P          (-preserve)          保留文件修改日期/时间
+  -password PASSWD                 处理受保护文件的密码
+  -progress[:[TITLE]]              显示文件进度计数
+  -q          (-quiet)             -q不显示正常消息，-q-q不显示警告
+  -r[.]       (-recurse)           递归处理子目录
+  -scanForXMP                      扫描所有文件以获取XMP
+  -u          (-unknown)           提取未知标签
+  -U          (-unknown2)          提取未知的二进制标签
+  -wm MODE    (-writeMode)         设置用于写入/创建标签的模式
+  -z          (-zip)               读/写压缩信息
+
+其他选项
+  -@ ARGFILE                       从文件中读取命令行参数
+  -k          (-pause)             结束前先暂停
+  -list[w|f|wf|g[NUM]|d|x]         列出各种exiftool功能
+  -ver                             打印版本号
+  --                               结束选项
+
+特殊功能
+  -geotag TRKFILE                  从指定的GPS日志对图像进行地理标记
+  -globalTimeShift SHIFT           移位所有格式化的日期/时间值
+  -use MODULE                      从插件模块添加功能
+
+实用工具
+  -delete_original[!]              删除&quot;_original&quot;备份
+  -restore_original                从&quot;_original&quot;备份还原
+
+高级选项
+  -api OPT[[^]=[VAL]]              设置ExifTool API选项
+  -common_args                     定义通用参数
+  -config CFGFILE                  指定配置文件名
+  -echo[NUM] TEXT                  将文本回显到stdout或stderr
+  -efile[NUM][!] ERRFILE           保存错误的文件名
+  -execute[NUM]                    一行执行多个命令
+  -srcfile FMT                     处理其他文件来源
+  -stay_open FLAG                  继续阅读-@ argfile，即使在EOF之后
+  -userParam PARAM[[^]=[VAL]]      设置用户参数 (API UserParam opt)</pre>
+关于 ExifTool 更详细的介绍，感兴趣的读者可前往 <a href="https://exiftool.org/">ExifTool 官网</a>。<br /></div>
+</div>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+<span style="display: none;">
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
+</span>
+
+
+
+</body>
+</html>

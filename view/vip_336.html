@@ -17,31 +17,23 @@
 <meta name="description" content="八皇后问题是以国际象棋为背景的问题：有八个皇后（可以当成八个棋子），如何在 8*8 的棋盘中放置八个皇后，使得任意两个皇后都不在同一条横线、纵线或者斜线上。 图 2 八皇后问" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-</script>
+
 <div id="header" class="clearfix">
-	<a id="logo" class="left" href="/">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">首页</a></li>
-		<li><a href="/ds/">数据结构教程</a></li>
-		<li><a href="/c/">C语言教程</a></li>
-		<li><a href="/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
 	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+
 </div>
 <!--qq交流群
 <div id="header" class="clearfix">
@@ -113,9 +105,26 @@
 </div>
 	<div id="article-wrap">
 		<div id="article">
-			<div id="arc-info">
-	作者：解学武
+			<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiecoding.cn/'>主页</a> > <a href='/ds/'>数据结构教程</a> > <a href='/ds/tree/'>树</a> 
+        </span>
+    </div>
+    
+    <!-- 右侧：作者信息 -->
+    <div class="author-wrap right">
+        <span class="meta-item">
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="meta-text">作者：解学武</span>
+        </span>
+    </div>
 </div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
 			<h1>回溯算法解决八皇后问题（C语言实现）</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/335.html">回溯算法详解</a></span>
@@ -126,7 +135,26 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/335.html";window.nextPageURL = "/view/vip_242.html";</script>
-			<div id="arc-body"><div id="buy-course-tip" aid="336"><p>您好，您正在阅读付费教程，请<a href="/buy/" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div><br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
+			<div id="arc-body"><div id="buy-course-tip" aid="336" topid="5"><p>您好，您正在阅读付费教程，请<a href="https://xiecoding.cn/buy/">猛击这里购买（带永久一对一答疑）</a>。</p></div><br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/335.html">回溯算法详解</a></span>
                     <span class="next right"><a href="/view/vip_242.html">回溯算法实现移动迷宫小游戏(初级版)</a> <span class="glyphicon glyphicon-menu-right"></span></span>
@@ -153,9 +181,8 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 336;
-window.arcId = "0b3dJuX2C7fBLGSP+CF5Nm2UOOlGkAw1MmQKZd30fvAyBEXdNY+pVWGQFQ";
-window.siteId = 1;
-window.cmsTempletsVer = "1.2";
+window.arcId = "e99d9vwd73JpQBknvAomv21w6i+vs4ehjZiVhaIezV+jjXl2rItGObdEXw";
+window.typeidChain = "8|5";
 </script>
 <div id="footer">
 	<ul id="nav-bottom" class="clearfix">
@@ -164,13 +191,14 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -178,7 +206,10 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 </body>
 </html>

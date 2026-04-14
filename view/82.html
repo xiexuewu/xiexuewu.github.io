@@ -17,19 +17,7 @@
 <meta name="description" content="在上一章的《移动迷宫》小游戏中，使用回溯法帮助骑士在迷宫中找到了通往出口的一条通路，但是骑士还并不太满意，他又提高了需求。 《移动迷宫》升级版游戏简介： 迷宫只有两个" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-</script>
+
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -122,6 +110,25 @@
 	作者：解学武
 </div>
 			<h1>数据结构实践项目之移动迷宫小游戏(升级版)</h1>
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
 			<div id="arc-body">在上一章的《移动迷宫》小游戏中，使用回溯法帮助骑士在迷宫中找到了通往出口的一条通路，但是骑士并不太满意，他又提出了更高的需求。<br />
 <br />
 <span style="color:#b22222;">《移动迷宫》升级版游戏简介：</span>迷宫只有两个门，一个入口，一个出口。一个骑士骑马从入口走进迷宫，迷宫中设置有很多墙壁，对前进方向造成障碍。先需要你从迷宫中找到一条最短的通路，将行走路线和行走的最短距离告知骑士。
@@ -552,7 +559,7 @@ int main(int argc, const char * argv[]) {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 82;
-window.arcId = "534cNv+498wV0pagNH6q+utszjaH7cyIq7OVVilhpKh3RNQTTE5Z4N6f";
+window.arcId = "d934UwrolvgfyptZrrO0YTdt6YgdzuvPwnTUULaDFTnfxc4tfZOg8D46";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -563,13 +570,10 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -577,7 +581,10 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 </body>
 </html>

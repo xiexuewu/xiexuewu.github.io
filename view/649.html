@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>C语言gets()被删除了，改用fgets()！ - 玩转C语言和数据结构</title>
+<meta name="keywords" content="语言,gets,被,删,除了,改用,fgets,语言,get" />
+<meta name="description" content="在《 C语言的五套标准：C89、C99、C11、C17和C23 》一节里提到，作为上世纪 70 年代的产物，C语言历经了多个版本的迭代，增加了很多新的语法，也剔除了一些当下认为不再适用的语法，这" />
+</head>
+<body>
+
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>教程目录</dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href='/c/base/'>编程基础</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href='/c/begin/'>C语言初探</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href='/c/variable_datatype/'>变量和数据类型</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/vip_437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/649.html">C语言gets()被删除了，改用fgets()！</a></dd><dd>4.6 <a href="/view/vip_440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/vip_441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/vip_442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/vip_443.html">scanf的高级用法，原来scanf还有这么多新技能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="/view/vip_444.html">C语言模拟密码输入(显示星号)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.11 <a href="/view/vip_445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href='/c/branch_loop/'>循环结构和选择结构</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href='/c/array/'>C语言数组</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href='/c/function/'>C语言函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href='/c/preprocess/'>预处理命令</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/c/pointer/'>指针</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href='/c/struct/'>结构体</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href='/c/file/'>文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href='/c/debug/'>C语言调试</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">13</span>
+				<a href='/c/module/'>多文件编程</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">14</span>
+				<a href='/c/memory/'>C语言内存精讲</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">15</span>
+				<a href='/c/practice/'>C语言项目实战案例</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiecoding.cn/'>主页</a> > <a href='/c/'>C语言教程</a> > <a href='/c/io/'>C语言输入输出</a> 
+        </span>
+    </div>
+    
+    <!-- 右侧：作者信息 -->
+    <div class="author-wrap right">
+        <span class="meta-item">
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="meta-text">作者：解学武</span>
+        </span>
+    </div>
+</div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
+			<h1>C语言gets()被删除了，改用fgets()！</h1>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/439.html">从键盘输入字符和字符串</a></span>
+                    <span class="next right"><a href="/view/vip_440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/439.html";window.nextPageURL = "/view/vip_440.html";</script>
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
+			<div id="arc-body">在《<a href="/view/405.html" target="_blank">C语言的五套标准：C89、C99、C11、C17和C23</a>》一节里提到，作为上世纪 70 年代的产物，C语言历经了多个版本的迭代，增加很多新语法的同时，也剔除了当下认为不再适用的语法，这其中就包括 gets() 函数。<br />
+<br />
+gets() 算得上是 C 语言里&ldquo;元老级&rdquo;的输入函数，C语言诞生的时候就有它了。在 C99 标准发布，gets() 被标记为&ldquo;不推荐使用（deprecated）&rdquo;的函数，甚至在后来的 C11 标准里被正式移除了。
+<blockquote>
+	<p>
+		注意，虽然 gets() 函数在 C11 标准中被移除了，但很多 C语言编译器（或者 IDE）仍旧保留着 gets() 函数。</p>
+</blockquote>
+接下来，我将带领读者了解 gets() 被移除的原因，以及 gets() 函数的替代方案。<br />
+<h2>
+	gets()被移除的原因</h2>
+gets() 函数从最初的&ldquo;不推荐使用&rdquo;到最后被移除，原因其实很简单，就是它不安全！<br />
+<br />
+当 gets() 函数从键盘读取字符时，会一直读，直至遇到换行符<code>&#39;\n&#39;</code>为止，丝毫不关心已经读取到的字符数量。存在的安全隐患是，一旦存储字符串的空间不足，那么字符串里的一部分就会&ldquo;溢出&rdquo;到指定空间的外面，非法抢占一块内存空间。如果被抢占的空间里存放着程序运行所需要的重要数据，由于这部分数据被溢出的字符覆盖了，会导致程序运行过程不可控，又或者运行崩溃。<br />
+<br />
+举个简单的例子：
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    char buffer[10];  // 定义一个长度为10的字符数组。
+    printf(&quot;请输入一些字符: &quot;);
+    gets(buffer);  // 使用gets函数读取输入
+    printf(&quot;你输入的内容是: %s\n&quot;, buffer);
+    return 0;
+}</pre>
+上面代码中，buffer 数组最多存储 10 个字符。如果用户输入的字符数量超过 10 个（比如 &quot;https://xiexuewu.github.io/c/&quot;），gets() 函数依然会将所有字符一股脑塞进 buffer 数组，那么超出长度的字符会覆盖掉 buffer 数组后面内存空间中存放的数据，很可能导致程序运行不可控。<br />
+<br />
+对于这种异常情况，一些 C语言编译器（IDE）会给出警告信息。比如在 VS2022 运行上面的实例，运行结果为：
+<p class="info-box">
+	请输入一些字符: https://xiexuewu.github.io/c/<br />
+	你输入的内容是: https://xiexuewu.github.io/c/</p>
+同时 VS 会提示程序运行异常，如下图所示：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="图 VS提示运行异常" src="/uploads/allimg/250104/2-25010422052c08.gif" /><br />
+	图：VS 提示程序执行异常</div>
+<h2>
+	用fgets()函数替代gets()函数</h2>
+C14 标准将 gets() 函数彻底移除了，如果想在程序中读取一行字符，除了用 scanf() 函数以外，还可以考虑 fgets() 函数，且更推荐使用后者。<br />
+<br />
+fgets() 函数的使用也非常简单，这里直接将上文实例中的 gets() 改用 fgets() 函数：<br />
+<pre class="c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    char buffer[10];  // 定义一个长度为10的字符数组。
+    printf(&quot;请输入一些字符: &quot;);
+    fgets(buffer, 10, stdin);  // 使用gets函数读取输入
+    printf(&quot;你输入的内容是: %s\n&quot;, buffer);
+    return 0;
+}</pre>
+仔细观察第 6 行中的 fgets() 函数，fgets() 的括号里有三份数据，依次是：
+<ul>
+	<li>
+		buffer：和 gets() 函数一样，要指定一块存储字符串的空间；</li>
+	<li>
+		10：指定最多读取的字符个数；</li>
+	<li>
+		stdin：指定从哪里读取字符，当它的值设为 stdin 时，表示从键盘读取字符。关于 FILE，会在《<a href="/c/file/" target="_blank">C语言文件操作</a>》一章中讲解。</li>
+</ul>
+<br />
+和 gets() 对比不难发现，使用 fgets() 函数时需要指定最多读取的字符个数，这样就有效的避免了&ldquo;gets()函数无限制读取字符&rdquo;的安全隐患。<br />
+<br />
+再次运行程序，结果为：
+<p class="info-box">
+	请输入一些字符: https://xiexuewu.github.io/c/<br />
+	你输入的内容是: https://x</p>
+可以看到，fgets() 函数只读取了 9 个字符，最后的位置用来存储<code>&lsquo;\0&rsquo;</code>。
+<h2>
+	总结</h2>
+从 C99 标准开始，就不再推荐使用 gets() 函数了，当程序中需要读取一行字符时，可以用 fgets() 函数代替 gets() 函数。<br />
+<br />
+值得一提的是，尽管新的 C 语言标准已经移除了 gets() 函数，但很多 C 语言编译器（IDE）仍然保留着 gets() 函数，程序里使用 gets() 函数，大概率也能成功运行！<br />
+<br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+			<div class="pre-next-page pre-next-detail clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/439.html">从键盘输入字符和字符串</a></span>
+                    <span class="next right"><a href="/view/vip_440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <div class="pre-next-page pre-next-brief clearfix">
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
+                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
+                </div>
+                <script type="text/javascript">window.prePageURL = "/view/439.html";window.nextPageURL = "/view/vip_440.html";</script>
+		</div>
+		
+	</div>
+</div>
+<div id="addweixin-widget" class="clearfix">
+	<div class="box">
+		<p>
+			<a href="/uploads/allimg/240115/2-240115210631414.png" target="_blank"><img src="/uploads/allimg/240115/2-240115210631414.png" alt="添加微信咨询" title="点击查看大图"></a>
+			<span class="pc-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领<br>C语言学习小册</a></span>
+			<span class="wap-tip"><a href="/view/635.html" target="_blank" style="color: #55ab55; cursor: pointer;">加站长微信免费领C语言学习小册</a><br>微信ID：xiexuewu333</span>
+		</p>
+		<span id="close-addweixin-widget" class="glyphicon glyphicon-remove-circle"></span>
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 649;
+window.arcId = "dc7ff9a+eZb9WNlzYCmiOuW0FfYxdgpWMZ6jTsmwaR+PB2d6YvdlxJDRVg";
+window.typeidChain = "26|20";
+</script>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+<span style="display: none;">
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
+</span>
+
+
+
+</body>
+</html>

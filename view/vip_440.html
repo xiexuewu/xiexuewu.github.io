@@ -17,31 +17,23 @@
 <meta name="description" content="缓冲区（Buffer） 又称为 缓存（Cache） ，是内存空间的一部分。也就是说，计算机在内存中预留了一定的存储空间，用来暂时保存输入或输出的数据，这部分预留的空间就叫做缓冲区（" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-</script>
+
 <div id="header" class="clearfix">
-	<a id="logo" class="left" href="/">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">首页</a></li>
-		<li><a href="/ds/">数据结构教程</a></li>
-		<li><a href="/c/">C语言教程</a></li>
-		<li><a href="/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
 	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+
 </div>
 <!--qq交流群
 <div id="header" class="clearfix">
@@ -68,7 +60,7 @@
 				<span class="channel-num">3</span>
 				<a href='/c/variable_datatype/'>变量和数据类型</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/vip_437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/vip_440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.6 <a href="/view/vip_441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/vip_442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/vip_443.html">scanf的高级用法，原来scanf还有这么多新技能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/vip_444.html">C语言模拟密码输入(显示星号)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="/view/vip_445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		<dd class="this"> <span class="channel-num">4</span> <a href="/c/io/">C语言输入输出</a> </dd><dl class="dl-sub"><dd>4.1 <a href="/view/436.html">数据输出大汇总以及轻量进阶</a></dd><dd>4.2 <a href="/view/vip_437.html">在屏幕的任意位置输出字符，开发小游戏的第一步</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.3 <a href="/view/438.html">使用scanf读取从键盘输入的数据</a></dd><dd>4.4 <a href="/view/439.html">从键盘输入字符和字符串</a></dd><dd>4.5 <a href="/view/649.html">C语言gets()被删除了，改用fgets()！</a></dd><dd>4.6 <a href="/view/vip_440.html">进入缓冲区的世界，破解一切与输入输出有关的疑难杂症</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.7 <a href="/view/vip_441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.8 <a href="/view/vip_442.html">清空（刷新）缓冲区，从根本上消除那些奇怪的行为</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.9 <a href="/view/vip_443.html">scanf的高级用法，原来scanf还有这么多新技能</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="/view/vip_444.html">C语言模拟密码输入(显示星号)</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.11 <a href="/view/vip_445.html">非阻塞式键盘监听，用户不输入数据程序也能继续执行</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
 			<dd>
 				<span class="channel-num">5</span>
 				<a href='/c/branch_loop/'>循环结构和选择结构</a>
@@ -128,29 +120,65 @@
 </div>
 	<div id="article-wrap">
 		<div id="article">
-			<div id="arc-info">
-	作者：解学武
+			<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiecoding.cn/'>主页</a> > <a href='/c/'>C语言教程</a> > <a href='/c/io/'>C语言输入输出</a> 
+        </span>
+    </div>
+    
+    <!-- 右侧：作者信息 -->
+    <div class="author-wrap right">
+        <span class="meta-item">
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="meta-text">作者：解学武</span>
+        </span>
+    </div>
 </div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
 			<h1>进入缓冲区（缓存）的世界，破解一切与输入输出有关的疑难杂症</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/439.html">从键盘输入字符和字符串</a></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/649.html">C语言gets()被删除了，改用fgets()！</a></span>
                     <span class="next right"><a href="/view/vip_441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/439.html";window.nextPageURL = "/view/vip_441.html";</script>
-			<div id="arc-body"><div id="buy-course-tip" aid="440"><p>您好，您正在阅读付费教程，请<a href="/buy/" target="_blank">猛击这里购买（带永久一对一答疑）</a>。</p></div><br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
+                <script type="text/javascript">window.prePageURL = "/view/649.html";window.nextPageURL = "/view/vip_441.html";</script>
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
+			<div id="arc-body"><div id="buy-course-tip" aid="440" topid="20"><p>您好，您正在阅读付费教程，请<a href="https://xiecoding.cn/buy/">猛击这里购买（带永久一对一答疑）</a>。</p></div><br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
 			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/439.html">从键盘输入字符和字符串</a></span>
+                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/649.html">C语言gets()被删除了，改用fgets()！</a></span>
                     <span class="next right"><a href="/view/vip_441.html">结合缓冲区谈scanf函数，那些奇怪的行为其实都有章可循</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <div class="pre-next-page pre-next-brief clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
-                <script type="text/javascript">window.prePageURL = "/view/439.html";window.nextPageURL = "/view/vip_441.html";</script>
+                <script type="text/javascript">window.prePageURL = "/view/649.html";window.nextPageURL = "/view/vip_441.html";</script>
 		</div>
 		
 	</div>
@@ -168,9 +196,8 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 440;
-window.arcId = "ca79+1h43lhVizDbebImMTVgR8iaxqa+IOSHvtHy0H36minJQxUruBiM9Q";
-window.siteId = 1;
-window.cmsTempletsVer = "1.2";
+window.arcId = "f062LItrGl21sPW+NOjpzm/CBX12chNC0Azg/in23p2alHCkXe4wtLwtvw";
+window.typeidChain = "26|20";
 </script>
 <div id="footer">
 	<ul id="nav-bottom" class="clearfix">
@@ -179,13 +206,14 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -193,7 +221,10 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 </body>
 </html>

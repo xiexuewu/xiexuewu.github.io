@@ -17,31 +17,23 @@
 <meta name="description" content="前面学习了如何使用三元组顺序表存储稀疏矩阵，其实现过程就是将矩阵中各个非 0 元素的行标、列标和元素值以三元组的形式存储到一维数组中。通过研究实现代码你会发现，三元组" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-</script>
+
 <div id="header" class="clearfix">
-	<a id="logo" class="left" href="/">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">首页</a></li>
-		<li><a href="/ds/">数据结构教程</a></li>
-		<li><a href="/c/">C语言教程</a></li>
-		<li><a href="/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
 	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+
 </div>
 <!--qq交流群
 <div id="header" class="clearfix">
@@ -113,9 +105,26 @@
 </div>
 	<div id="article-wrap">
 		<div id="article">
-			<div id="arc-info">
-	作者：解学武
+			<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiecoding.cn/'>主页</a> > <a href='/ds/'>数据结构教程</a> > <a href='/ds/array_list/'>数组和广义表</a> 
+        </span>
+    </div>
+    
+    <!-- 右侧：作者信息 -->
+    <div class="author-wrap right">
+        <span class="meta-item">
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="meta-text">作者：解学武</span>
+        </span>
+    </div>
 </div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
 			<h1>行逻辑链接的顺序表（压缩存储稀疏矩阵）详解</h1>
 			<div class="pre-next-page pre-next-detail clearfix">
                     <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/321.html">三元组顺序表存储稀疏矩阵</a></span>
@@ -126,6 +135,25 @@
                     <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
                 </div>
                 <script type="text/javascript">window.prePageURL = "/view/321.html";window.nextPageURL = "/view/323.html";</script>
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
 			<div id="arc-body">前面学习了如何使用<u><a href='/view/321.html' target='_blank'>三元组顺序表</a></u>存储稀疏矩阵，其实现过程就是将矩阵中各个非 0 元素的行标、列标和元素值以三元组的形式存储到一维数组中。通过研究实现代码你会发现，三元组<u><a href='/view/288.html' target='_blank'>顺序表</a></u>每次提取指定元素都需要遍历整个数组，运行效率很低。<br />
 <br />
 本节将学习另一种存储矩阵的方法&mdash;&mdash;<span style="color: rgb(0, 128, 0);">行逻辑链接的顺序表</span>。<span style="color: rgb(178, 34, 34);">它可以看作是三元组顺序表的升级版，在三元组顺序表的基础上提高了查找某一行非 0 数据的效率。</span><br />
@@ -297,9 +325,8 @@ int main(int argc, char* argv[])
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 322;
-window.arcId = "a9c1D1hoFo8BnBrCwdsJ9Td37WomutK6KiyiwcmSeg2FUDaHiZTQK1VtEw";
-window.siteId = 1;
-window.cmsTempletsVer = "1.2";
+window.arcId = "ec3fWzBBY1cgk/hJr/DNdkPO88QmUPgtN5Dvp4uaSACtI1FzY+0iponmbg";
+window.typeidChain = "6|5";
 </script>
 <div id="footer">
 	<ul id="nav-bottom" class="clearfix">
@@ -308,13 +335,14 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -322,7 +350,10 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 </body>
 </html>

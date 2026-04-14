@@ -17,19 +17,7 @@
 <meta name="description" content="顺序存储的结构类型需要一个一个地按顺序访问元素，当这个总量很大且我们所要访问的元素比较靠后时，性能就会很低。 散列表 是一种空间换时间的存储结构，是在算法中提升效率的" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-</script>
+
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -42,6 +30,9 @@
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
 	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+
 </div>
 <!--qq交流群
 <div id="header" class="clearfix">
@@ -122,6 +113,25 @@
 	作者：解学武
 </div>
 			<h1>散列表（哈希表）及其存储结构和特点详解</h1>
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
 			<div id="arc-body">顺序存储的结构类型需要一个一个地按顺序访问元素，当这个总量很大且我们所要访问的元素比较靠后时，性能就会很低。<span style="color:#008000;"><u><a href='/view/63.html' target='_blank'>散列表</a></u></span>是一种空间换时间的存储结构，是在算法中提升效率的一种比较常用的方式，但是所需空间太大也会让人头疼，所以通常需要在二者之间权衡。我们会在之后的具体算法章节中得到更多的领悟。<br />
 <h2>
 	什么是散列表</h2>
@@ -233,9 +243,8 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 107;
-window.arcId = "7aa3runk5NCnkDcesrONpQyx2FUwWUHyxuOTyct1ku2GTGNZ3EMv4V2F7w";
-window.siteId = 1;
-window.cmsTempletsVer = "1.2";
+window.arcId = "bc115MT2P0QsUAMNw4ieq3pTw8oJAhixBUvRuQI5Mc5vweoXB7/2MxUj+w";
+window.typeidChain = "14";
 </script>
 <div id="footer">
 	<ul id="nav-bottom" class="clearfix">
@@ -244,13 +253,10 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -258,7 +264,10 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 </body>
 </html>

@@ -97,6 +97,13 @@ blockquote{
 .glyphicon-remove-circle:before{
 	content: "\e088";
 }
+
+.glyphicon-home:before {
+	content: "\e021";
+}
+.glyphicon-time:before {
+	content: "\e023";
+}
 /***********头部样式************/
 #header{
 	height: 42px;
@@ -158,7 +165,7 @@ blockquote{
 }
 #main-no-course{
 	width: 60%;
-	margin: 0px auto 40px auto;
+	margin: 10px auto 40px auto;
 }
 #sidebar{
 	float: left;
@@ -179,17 +186,100 @@ blockquote{
 	width: 80%;
 }
 
-/***********文章信息************/
-#arc-info{
-	margin-bottom: 6px;
-	line-height: 1em;
-	font-size: 14px;
-	color: #555;
-}
-#arc-info a{
-	color: #555;
+/***********文章信息栏（面包屑+作者）************/
+#arc-info {
+    font-size: 14px;
+    color: #555;
 }
 
+/* 左侧面包屑容器 */
+#arc-info .breadcrumb-wrap {
+    max-width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 主页图标 */
+#arc-info .breadcrumb-wrap .glyphicon-home {
+    color: #375a7f;
+    margin-right: 5px;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+/* 路径文字 */
+#arc-info .breadcrumb-path {
+    vertical-align: middle;
+}
+
+/* 路径中的链接 */
+#arc-info .breadcrumb-path a {
+    color: #007dbb;
+    text-decoration: none;
+}
+
+#arc-info .breadcrumb-path a:hover {
+    text-decoration: underline;
+}
+
+/* 当前栏目文字（无链接） */
+#arc-info .breadcrumb-path font {
+    color: #555;
+}
+
+/* 右侧作者容器 */
+#arc-info .author-wrap {
+    text-align: right;
+    padding-left: 10px;
+}
+
+/* 作者信息项 */
+#arc-info .meta-item {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+#arc-info .meta-item .glyphicon {
+    margin-right: 4px;
+    font-size: 13px;
+    color: #375a7f;
+    vertical-align: middle;
+}
+
+#arc-info .meta-text {
+    vertical-align: middle;
+}
+
+/* 强制清除浮动 */
+#arc-info + .clearfix {
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+/* 移动端适配 */
+@media all and (max-width: 768px) {
+    #arc-info {
+        padding: 10px;
+    }
+    
+    #arc-info .breadcrumb-wrap,
+    #arc-info .author-wrap {
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        text-align: left;
+        padding-left: 0;
+    }
+    
+    #arc-info .author-wrap {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px dashed #eee;
+    }
+}
 /***********上一页下一页************/
 .pre-next-page{
 	padding: 7px 0px;
@@ -729,9 +819,6 @@ pre{
         font-size: 16px;
     }
 	/*******正文*******/
-	#arc-info{
-		padding: 18px 10px 0px 10px;
-	}
 	h1{
 		padding: 0px 10px;
 	}
@@ -787,4 +874,61 @@ ul.product-intro li{
 /***********文章内容上方和下方广告************/
 #ad-arc-top .pic{
 	margin-top: 10px;
+}
+
+
+/***********回到顶部按钮************/
+#back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;  /* 距离底部80px，避免与微信小部件重叠 */
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    background-color: #7e8389;
+    color: #f3f3f3;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#back-to-top:hover {
+    background-color: #2f4b69;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#back-to-top .glyphicon {
+    font-size: 20px;
+    line-height: 44px;
+}
+
+/* 移动端适配 */
+@media all and (max-width: 768px) {
+    #back-to-top {
+        right: 10px;
+        bottom: 70px;  /* 移动端微信小部件高度约56px，留出间距 */
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+    #back-to-top .glyphicon {
+        font-size: 18px;
+        line-height: 40px;
+    }
+}
+
+/* 当微信小部件关闭时的位置调整 */
+#back-to-top.no-weixin {
+    bottom: 20px;
 }

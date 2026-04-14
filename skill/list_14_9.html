@@ -16,31 +16,23 @@
 <meta name="description" content="" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-</script>
+
 <div id="header" class="clearfix">
-	<a id="logo" class="left" href="/">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">首页</a></li>
-		<li><a href="/ds/">数据结构教程</a></li>
-		<li><a href="/c/">C语言教程</a></li>
-		<li><a href="/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
 	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+
 </div>
 <!--qq交流群
 <div id="header" class="clearfix">
@@ -117,10 +109,46 @@
 </div>
 	<div id="article-wrap">
 		<div id="article">
-			<div id="arc-info">
-	作者：解学武
+			<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiecoding.cn/'>主页</a> > <a href='/skill/'>经验技巧</a> 
+        </span>
+    </div>
+    
+    <!-- 右侧：作者信息 -->
+    <div class="author-wrap right">
+        <span class="meta-item">
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="meta-text">作者：解学武</span>
+        </span>
+    </div>
 </div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
 			<h1>数据结构经验和技巧分享</h1>
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
 			<div id="arc-body">本栏目专门用来分享与数据结构和算法有关的经验与技巧，旨在帮助大家提高解决编程问题的技能。<br />
 <br />
 这些文章都是用心整理的，必要的地方全部附带了完整的 C 语言代码，更有详细的注释、思路解析以及精美图片。重要的是，这些源码都是免费的。</div>
@@ -130,22 +158,40 @@
 					<a href="/view/635.html">C语言学习小册（轻量级C语言入门教程）</a>
 				</dd>
 <dd >
-					<a href="/view/639.html">如何选择编程语言和开发方向？（初学者避坑指南）</a>
-				</dd>
-<dd class="bg-f7f7f7">
-					<a href="/view/424.html">ASCII码一览表，ASCII码对照表（超级肝）</a>
-				</dd>
-<dd >
 					<a href="/view/638.html">为什么说C语言很重要？（新手必看）</a>
 				</dd>
 <dd class="bg-f7f7f7">
-					<a href="/view/619.html">C/C++后台开发学习路线（超级详细，新手必看）</a>
+					<a href="/view/636.html">栈溢出到底是怎么回事？（新手必看）</a>
 				</dd>
 <dd >
 					<a href="/view/637.html">内存泄漏到底是怎么回事？（新手必看）</a>
 				</dd>
 <dd class="bg-f7f7f7">
-					<a href="/view/636.html">栈溢出到底是怎么回事？（新手必看）</a>
+					<a href="/view/626.html">C语言常见编译器汇总（一览表，新手必看）</a>
+				</dd>
+<dd >
+					<a href="/view/632.html">C语言和C++的区别和联系，彻底讲清楚了！</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<a href="/view/639.html">如何选择编程语言和开发方向？（初学者避坑指南）</a>
+				</dd>
+<dd >
+					<a href="/view/2.html">算法时间复杂度和空间复杂度的计算</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<a href="/view/611.html">全方位讲解C语言函数（超级肝）</a>
+				</dd>
+<dd >
+					<a href="/view/619.html">C/C++后台开发学习路线（超级详细，新手必看）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<a href="/view/620.html">C/C++ Windows客户端开发学习路线（超级肝）</a>
+				</dd>
+<dd >
+					<a href="/view/628.html">数据结构C语言版严蔚敏PDF下载（新手必看）</a>
+				</dd>
+<dd class="bg-f7f7f7">
+					<a href="/view/424.html">ASCII码一览表，ASCII码对照表（超级肝）</a>
 				</dd>
 <dd >
 					<a href="/view/641.html">C语言水仙花数详解（附带源码和解析）</a>
@@ -184,34 +230,34 @@
 					<a href="/view/618.html">大白话带你玩转链表（超级肝，新手必看）</a>
 				</dd>
 <dd >
+					<a href="/view/72.html">简单选择排序、树形选择排序和堆排序算法及其C语言实现</a>
+				</dd>
+<dd class="bg-f7f7f7">
 					<a href="/view/160.html">链表（链式存储结构）及创建（C语言详解版）</a>
 				</dd>
-<dd class="bg-f7f7f7">
+<dd >
 					<a href="/view/16.html">矩阵转置算法及代码实现（三元组顺序表）</a>
 				</dd>
-<dd >
+<dd class="bg-f7f7f7">
 					<a href="/view/200.html">（数据结构）图的存储结构完全攻略</a>
 				</dd>
-<dd class="bg-f7f7f7">
+<dd >
 					<a href="/view/115.html">桶排序（箱排序）原理及其时间复杂度详解</a>
 				</dd>
-<dd >
+<dd class="bg-f7f7f7">
 					<a href="/view/188.html">稀疏矩阵的快速转置（C语言）算法详解</a>
 				</dd>
-<dd class="bg-f7f7f7">
+<dd >
 					<a href="/view/34.html">回溯法(八皇后问题)及C语言实现</a>
 				</dd>
-<dd >
+<dd class="bg-f7f7f7">
 					<a href="/view/140.html">矩阵快速转置算法详解</a>
 				</dd>
-<dd class="bg-f7f7f7">
+<dd >
 					<a href="/view/150.html">匈牙利算法详解（含时间复杂度）</a>
 				</dd>
-<dd >
-					<a href="/view/191.html">广义表的深度和长度（C语言）详解</a>
-				</dd>
 <dd class="bg-f7f7f7">
-					<a href="/view/628.html">数据结构C语言版严蔚敏PDF下载（新手必看）</a>
+					<a href="/view/191.html">广义表的深度和长度（C语言）详解</a>
 				</dd>
 <dd >
 					<a href="/view/634.html">C++和C语言有什么区别（新手必看）</a>
@@ -220,19 +266,13 @@
 					<a href="/view/633.html">C++和C语言的区别（超级肝）</a>
 				</dd>
 <dd >
-					<a href="/view/632.html">C语言和C++的区别和联系，彻底讲清楚了！</a>
-				</dd>
-<dd class="bg-f7f7f7">
 					<a href="/view/631.html">bool在C语言中的用法详解（超级肝）</a>
 				</dd>
-<dd >
+<dd class="bg-f7f7f7">
 					<a href="/view/630.html">C语言数据类型大全（新手必看）</a>
 				</dd>
-<dd class="bg-f7f7f7">
-					<a href="/view/629.html">C语言基本数据类型有哪几种（一览表，新手必看）</a>
-				</dd>
 <dd >
-					<a href="/view/626.html">C语言常见编译器汇总（一览表，新手必看）</a>
+					<a href="/view/629.html">C语言基本数据类型有哪几种（一览表，新手必看）</a>
 				</dd>
 <dd class="bg-f7f7f7">
 					<a href="/view/627.html">C语言基本数据类型大全（新手必看）</a>
@@ -245,12 +285,6 @@
 				</dd>
 <dd >
 					<a href="/view/623.html">C语言break用法详解</a>
-				</dd>
-<dd class="bg-f7f7f7">
-					<a href="/view/620.html">C/C++ Windows客户端开发学习路线（超级肝）</a>
-				</dd>
-<dd >
-					<a href="/view/611.html">全方位讲解C语言函数（超级肝）</a>
 				</dd>
 <dd class="bg-f7f7f7">
 					<a href="/view/476.html">C语言爱因斯坦的数学题</a>
@@ -420,12 +454,6 @@
 <dd >
 					<a href="/view/39.html">深度优先搜索（DFS、深搜）和广度优先搜索（BFS、广搜）</a>
 				</dd>
-<dd class="bg-f7f7f7">
-					<a href="/view/205.html">图的邻接多重表存储法（超详细）</a>
-				</dd>
-<dd >
-					<a href="/view/204.html">图的十字链表存储法详解</a>
-				</dd>
 
 			</dl>
 		</div>
@@ -444,10 +472,9 @@
 </div>
 <script type="text/javascript">
 // 当前文章ID
-window.arcIdRaw = 't_' + 14;
-window.arcId = "5806Pn+9B/+qs1wJ7lpHizR4zK1WjZUR2s6gaBjAgsY3qYdbSCaGhlJ+";
-window.siteId = 1;
-window.cmsTempletsVer = "1.2";
+window.arcIdRaw = 'a_' + 14;
+window.arcId = "a7ebJHA/3zO47ebONmz3lB9BEZfVo5N1gfjG0cjq3D1hhC/N+jIRWbne";
+window.typeidChain = "14";
 </script>
 <div id="footer">
 	<ul id="nav-bottom" class="clearfix">
@@ -456,13 +483,14 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -470,7 +498,10 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 </body>
 </html>

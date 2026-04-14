@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 	// 加载代码高亮插件
 	function codeHighlight(){
 		var pres = document.getElementsByTagName("pre");
@@ -85,5 +86,83 @@ $(document).ready(function(){
 		$("#close-addweixin-widget").click(function(){
 			$("#addweixin-widget").hide();
 		});
+	})();
+	
+	/*回到顶部功能*/
+	(function(){
+		var $backToTop = $("#back-to-top");
+		if(!$backToTop.length) return;
+
+		// 监听滚动事件，控制按钮显示/隐藏
+		$(window).scroll(function(){
+			if($(window).scrollTop() > 200){
+				$backToTop.addClass("show");
+			}else{
+				$backToTop.removeClass("show");
+			}
+		});
+
+		// 点击回到顶部
+		$backToTop.click(function(){
+			$("html, body").animate({
+				scrollTop: 0
+			}, 500);
+			return false;
+		});
+	})();
+	
+	/*开通VIP内容*/
+	(function () {
+    /* ===== 配置 ===== */
+    const courseMap = { 20: 20, 5: 5 };   // 栏目ID → 课程ID
+    const tipDiv    = document.getElementById('buy-course-tip');
+    if (!tipDiv) return;
+
+    const topid    = parseInt(tipDiv.getAttribute('topid'), 10);
+    const courseId = courseMap[topid];
+    if (!courseId) return;               // 不是付费栏目
+
+    /* ===== 工具 ===== */
+    const http = (url, data) =>
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(data)
+        }).then(r => r.json());
+
+    /* ===== 渲染付费墙 ===== */
+	async function showPaywall() {
+	    const { authorized } = await http('/user/check_access.php', { course_id: courseId });
+	    if (!authorized) {
+	        return;
+	    }
+
+	    /*已购买 → 获取并插入正文 */
+	    try {
+	        tipDiv.innerHTML = `<p>正在加载文章内容...</p>`;
+	        // ① 调你自己的接口，返回正文 HTML
+	        const res = await fetch('/user/get_article_body.php', {
+	            method: 'POST',
+	            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+	            body: new URLSearchParams({
+	                aid: tipDiv.getAttribute('aid'),
+	                course_id: courseId
+	            })
+	        });
+
+	        if (!res.ok) throw new Error('网络异常');
+	        const data = await res.json();
+	        if (!data.success) throw new Error(data.msg || '加载失败');
+
+	        // ② 把正文替换到占位元素
+	        tipDiv.parentNode.innerHTML = decodeURIComponent(data.body);
+	        codeHighlight();
+	    } catch (e) {
+	        tipDiv.innerHTML = `<p>加载文章内容失败，请刷新重试或联系站长！</p>`;
+	    }
+	}
+
+    /* ===== 启动 ===== */
+    showPaywall();
 	})();
 });

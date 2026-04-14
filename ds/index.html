@@ -13,35 +13,27 @@
 <link rel="shortcut icon" href="/favicon.ico?v=1.2" />
 <link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
 <link href="/templets/default/style/index.css?v=1.2" rel="stylesheet" />
-<title>数据结构与算法教程(C语言版) - 玩转C语言和数据结构</title>
+<title>2026数据结构与算法教程（C语言版，考研/面试/竞赛必备） - 玩转C语言和数据结构</title>
 <meta name="description" content="这套数据结构与算法教程，基于C语言，适合初学者入门。数据结构教程最大的特点就是通俗易懂，以图文配合的方式讲解每个知识点，更有C语言完整代码和项目实践。" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-</script>
+
 <div id="header" class="clearfix">
-	<a id="logo" class="left" href="/">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">首页</a></li>
-		<li><a href="/ds/">数据结构教程</a></li>
-		<li><a href="/c/">C语言教程</a></li>
-		<li><a href="/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
 	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+
 </div>
 <!--qq交流群
 <div id="header" class="clearfix">
@@ -118,10 +110,46 @@
 	</div>
 	<div id="article-wrap">
 		<div id="article">
-			<div id="arc-info">
-	作者：解学武
+			<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiecoding.cn/'>主页</a> > <a href='/ds/'>数据结构教程</a
+        </span>
+    </div>
+    
+    <!-- 右侧：作者信息 -->
+    <div class="author-wrap right">
+        <span class="meta-item">
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="meta-text">作者：解学武</span>
+        </span>
+    </div>
 </div>
-			<h1>数据结构与算法教程(C语言版)</h1>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
+			<h1>2026数据结构与算法教程（C语言版，考研/面试/竞赛必备）</h1>
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
 			<div id="arc-body"><p class="pb">
 	<img align="left" alt="数据结构与算法教程封面" height="78" src="/templets/default/images/cover.png" style="padding-right: 10px;" />数据结构研究的是数据之间的关系，再进一步说，它研究的是数据之间分布、排列和勾连的关系。针对各种关系的数据，数据结构给出了对应的存储方案。</p>
 <p class="pb">
@@ -433,13 +461,17 @@
 					</dd>
 <dd class="vip">7.<a href="/view/vip_260.html">快速排序算法（QSort，快排）</a><span class="glyphicon glyphicon-usd"></span>
 					</dd>
-<dd>8.<a href="/view/72.html">选择排序算法</a>
+<dd>8.<a href="/view/655.html">简单选择排序算法</a>
 					</dd>
-<dd class="vip">9.<a href="/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span>
+<dd class="vip">9.<a href="/view/vip_656.html">树形选择排序算法</a><span class="glyphicon glyphicon-usd"></span>
 					</dd>
-<dd class="vip">10.<a href="/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span>
+<dd class="vip">10.<a href="/view/vip_657.html">堆排序算法</a><span class="glyphicon glyphicon-usd"></span>
 					</dd>
-<dd class="vip">11.<a href="/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span>
+<dd class="vip">11.<a href="/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">12.<a href="/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span>
+					</dd>
+<dd class="vip">13.<a href="/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span>
 					</dd>
 
 				</dl><dl>
@@ -499,10 +531,9 @@
 </div>
 <script type="text/javascript">
 // 当前文章ID
-window.arcIdRaw = 'home';
-window.arcId = "f7eb2wokKCZ4DXyWGLxfGViI81VwJVKInr2btqmsAQkdn+FlOLyO+L31lT8";
-window.siteId = 1;
-window.cmsTempletsVer = "1.2";
+window.arcIdRaw = 'a_' + 5;
+window.arcId = "3cbfKH2P9QFicClvqJIwuI394uiTMOIhZzObL8NeljLV1T8ybc8x8O0";
+window.typeidChain = "5";
 </script>
 
 <div id="footer">
@@ -512,13 +543,14 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -526,8 +558,11 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 
 </body>
 </html>

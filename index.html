@@ -18,30 +18,20 @@
 <meta name="description" content="非常详细的C语言入门教程、数据结构与算法教程分享网站，既适合零基础的菜鸟学习，也适合有经验的程序员进阶。" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-    </script>
+
 <div id="header" class="clearfix">
-	<a id="logo" class="left" href="/">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
 	</a>
 	<ul id="nav-main" class="hover-none left clearfix">
-		<li><a href="/">首页</a></li>
-		<li><a href="/ds/">数据结构教程</a></li>
-		<li><a href="/c/">C语言教程</a></li>
-		<li><a href="/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
 		<!--<li><a href="/c/">辅导班</a></li>-->
 	</ul>
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
 </div>
 <!--qq交流群
 <div id="header" class="clearfix">
@@ -55,7 +45,25 @@
 		<h1>玩转C语言和数据结构</h1>
 		<p>一个在线学习C语言和数据结构的网站，专注于分享优质编程教程。您的下一套教程，何必是书籍，又何必是视频。</p>
 	</div>
+		<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
 
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
 		<div id="course-list">
 		<dl class="clearfix">
 			<dt class="clearfix">
@@ -139,7 +147,8 @@
 				<h4 class="title left"><a href="/compiler/" target="_blank">编译器汇总</a></h4>
 				<a class="more right" href="/compiler/" target="_blank" title="C语言编译器汇总">开始学习&gt;&gt;</a>
 			</dt>
-				<dd><a href="/view/385.html">VS2022（推荐）</a></dd>
+				<dd><a href="/view/673.html">VS2026（推荐）</a></dd>
+				<dd><a href="/view/385.html">VS2022</a></dd>
 				<dd><a href="/view/387.html">VS2019</a></dd>
 				<dd><a href="/view/389.html">VS2017</a></dd>
 				<dd><a href="/view/393.html">Dev C++</a></dd>
@@ -154,129 +163,149 @@
 			</dl>
 		</dl>
 	</div>
-
+	<div id="course-list">
+		<dl class="clearfix">
+			<dt class="clearfix">
+				<h4 class="title left"><a href="/soft/" target="_blank">工具推荐</a></h4>
+				<a class="more right" href="/soft/" target="_blank" title="工具推荐">更多工具&gt;&gt;</a>
+			</dt>
+				<dd><a href="/view/670.html">MySQL8</a></dd>
+				<dd><a href="/view/702.html">Notepad++</a></dd>
+				<dd><a href="/view/684.html">FileZilla</a></dd>
+				<dd><a href="/view/683.html">Typora</a></dd>
+				<dd><a href="/view/687.html">Dreamweaver8</a></dd>
+				<dd><a href="/view/692.html">Geek Uninstaller</a></dd>
+				<dd><a href="/view/697.html">XMind</a></dd>
+				<dd><a href="/view/667.html">7-Zip</a></dd>
+				<dd><a href="/view/700.html">WinMerge</a></dd>
+				<dd><a href="/view/704.html">PotPlayer</a></dd>
+				<dd><a href="/view/699.html">Uninstall Tool</a></dd>
+				<dd><a href="/view/714.html">Balabolka</a></dd>
+			</dl>
+		</dl>
+	</div>
 	<h2 id="recent-update-title" class="section-title">最近更新</h2>
 
 	<div id="arc-body-sitmap"></div>
 	<ul id="recent-update">
 			<li class="clearfix bg-f7f7f7">
 				<span class="table-cell">
-					<span class="index">1.</span><a class="link" href="/view/635.html" target="_blank">C语言学习小册（轻量级C语言入门教程）</a>
+					<span class="index">1.</span><a class="link" href="/view/282.html" target="_blank">什么是数据结构（小白必读）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-22
+					2026-03-24
 				</span>
 			</li>
 <li class="clearfix">
 				<span class="table-cell">
-					<span class="index">2.</span><a class="link" href="/view/639.html" target="_blank">如何选择编程语言和开发方向？（初学者避坑指南）</a>
+					<span class="index">2.</span><a class="link" href="/view/356.html" target="_blank">通俗地理解什么是编程语言</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-22
+					2026-03-24
 				</span>
 			</li>
 <li class="clearfix bg-f7f7f7">
 				<span class="table-cell">
-					<span class="index">3.</span><a class="link" href="/view/424.html" target="_blank">ASCII码一览表，ASCII码对照表（超级肝）</a>
+					<span class="index">3.</span><a class="link" href="/view/674.html" target="_blank">VS2026使用教程（使用VS2026编写C语言程序）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-22
+					2026-03-24
 				</span>
 			</li>
 <li class="clearfix">
 				<span class="table-cell">
-					<span class="index">4.</span><a class="link" href="/view/638.html" target="_blank">为什么说C语言很重要？（新手必看）</a>
+					<span class="index">4.</span><a class="link" href="/view/673.html" target="_blank">VS2026下载安装保姆级教程（附安装包+图文步骤）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-22
+					2026-03-24
 				</span>
 			</li>
 <li class="clearfix bg-f7f7f7">
 				<span class="table-cell">
-					<span class="index">5.</span><a class="link" href="/view/644.html" target="_blank">VS Code使用教程（用VS Code编写C语言程序）</a>
+					<span class="index">5.</span><a class="link" href="/view/635.html" target="_blank">C语言学习小册（轻量级C语言入门教程）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-16
+					2025-08-30
 				</span>
 			</li>
 <li class="clearfix">
 				<span class="table-cell">
-					<span class="index">6.</span><a class="link" href="/view/645.html" target="_blank">Sublime Text使用教程（用Sublime Text编写C语言程序）</a>
+					<span class="index">6.</span><a class="link" href="/view/638.html" target="_blank">为什么说C语言很重要？（新手必看）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-15
+					2025-08-30
 				</span>
 			</li>
 <li class="clearfix bg-f7f7f7">
 				<span class="table-cell">
-					<span class="index">7.</span><a class="link" href="/view/619.html" target="_blank">C/C++后台开发学习路线（超级详细，新手必看）</a>
+					<span class="index">7.</span><a class="link" href="/view/636.html" target="_blank">栈溢出到底是怎么回事？（新手必看）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-15
+					2025-08-30
 				</span>
 			</li>
 <li class="clearfix">
 				<span class="table-cell">
-					<span class="index">8.</span><a class="link" href="/view/648.html" target="_blank">CLion使用教程（用CLion编写C语言程序）</a>
+					<span class="index">8.</span><a class="link" href="/view/637.html" target="_blank">内存泄漏到底是怎么回事？（新手必看）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-15
+					2025-08-30
 				</span>
 			</li>
 <li class="clearfix bg-f7f7f7">
 				<span class="table-cell">
-					<span class="index">9.</span><a class="link" href="/view/647.html" target="_blank">CLion下载、安装和汉化教程（超级肝，新手必看）</a>
+					<span class="index">9.</span><a class="link" href="/view/626.html" target="_blank">C语言常见编译器汇总（一览表，新手必看）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-15
+					2025-08-30
 				</span>
 			</li>
 <li class="clearfix">
 				<span class="table-cell">
-					<span class="index">10.</span><a class="link" href="/view/646.html" target="_blank">MinGW下载和安装教程（超级详细）</a>
+					<span class="index">10.</span><a class="link" href="/view/632.html" target="_blank">C语言和C++的区别和联系，彻底讲清楚了！</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-15
+					2025-08-30
 				</span>
 			</li>
 <li class="clearfix bg-f7f7f7">
 				<span class="table-cell">
-					<span class="index">11.</span><a class="link" href="/view/643.html" target="_blank">Code::Blocks调试程序教程（超级详细）</a>
+					<span class="index">11.</span><a class="link" href="/view/639.html" target="_blank">如何选择编程语言和开发方向？（初学者避坑指南）</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-15
+					2025-08-30
 				</span>
 			</li>
 <li class="clearfix">
 				<span class="table-cell">
-					<span class="index">12.</span><a class="link" href="/view/642.html" target="_blank">Dev C++调试程序教程（超级详细）</a>
+					<span class="index">12.</span><a class="link" href="/view/374.html" target="_blank">第一个C语言程序</a>
 				</span>
 				<span class="table-cell time">
-					2024-12-15
+					2025-08-28
 				</span>
 			</li>
 <li class="clearfix bg-f7f7f7">
 				<span class="table-cell">
-					<span class="index">13.</span><a class="link" href="/view/637.html" target="_blank">内存泄漏到底是怎么回事？（新手必看）</a>
+					<span class="index">13.</span><a class="link" href="/view/2.html" target="_blank">算法时间复杂度和空间复杂度的计算</a>
 				</span>
 				<span class="table-cell time">
-					2024-11-26
+					2025-08-28
 				</span>
 			</li>
 <li class="clearfix">
 				<span class="table-cell">
-					<span class="index">14.</span><a class="link" href="/view/636.html" target="_blank">栈溢出到底是怎么回事？（新手必看）</a>
+					<span class="index">14.</span><a class="link" href="/view/649.html" target="_blank">C语言gets()被删除了，改用fgets()！</a>
 				</span>
 				<span class="table-cell time">
-					2024-11-26
+					2025-04-10
 				</span>
 			</li>
 <li class="clearfix bg-f7f7f7">
 				<span class="table-cell">
-					<span class="index">15.</span><a class="link" href="/view/607.html" target="_blank">C语言扫雷小游戏演示和说明</a>
+					<span class="index">15.</span><a class="link" href="/view/611.html" target="_blank">全方位讲解C语言函数（超级肝）</a>
 				</span>
 				<span class="table-cell time">
-					2024-11-26
+					2025-04-10
 				</span>
 			</li>
 
@@ -296,9 +325,7 @@
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'home';
-window.arcId = "86fca3/Okz2snqhqLQqOreqtQyabY9eLguwhCLWcj2SldiP2Ird3pjTrvk0";
-window.siteId = 1;
-window.cmsTempletsVer = "1.2";
+window.arcId = "44cdiFuIG/LaxE4dStC80UKqaLG9a3h+TGsJuHbwtXLrmPi258DdfpKBE8Y";
 </script>
 
 <div id="footer">
@@ -308,13 +335,14 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -322,8 +350,11 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 
 </body>
 </html>

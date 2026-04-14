@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>Docker Desktop下载安装保姆级教程（附安装包，非常详细）</title>
+<meta name="keywords" content="Docker,Desktop,下载,安装,保姆,级,教程,附" />
+<meta name="description" content="着急下载 Docker Desktop 的，直接提供下载地址： 最新版Docker Desktop Installer.rar Docker Desktop 是 Docker 官方发布的图形化桌面程序，能够在 Windows、macOS、Linux 电脑上快速拉起一套完整的容器开" />
+</head>
+<body>
+
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main-no-course" class="clearfix">
+	<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiecoding.cn/'>主页</a> > <a href='/soft/'>软件下载</a> 
+        </span>
+    </div>
+</div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
+			<h1>Docker Desktop下载安装保姆级教程（附安装包，非常详细）</h1>
+			<div id="arc-body"><blockquote>
+	<p>
+		着急下载 Docker Desktop 的，直接提供下载地址：<a href="https://pan.quark.cn/s/4ed1a94216a0" target="_blank">最新版Docker Desktop Installer.rar</a></p>
+</blockquote>
+Docker Desktop 是 Docker 官方发布的图形化桌面程序，能够在 Windows、macOS、Linux 电脑上快速拉起一套完整的容器开发环境。<br />
+<br />
+Docker Desktop 把 Docker Engine、Docker CLI、Docker Compose、Kubernetes 等组件预先打包好，用户装完就能直接 docker run，不必手动折腾守护进程、虚拟化驱动和证书。<br />
+<br />
+与同类工具对比，Linux 用户可以用原生 Docker Engine、Podman、Lima，Windows 还有 Rancher Desktop、Podman Desktop。Docker Desktop 的优势是&ldquo;零配置&rdquo;，虚拟化后端、文件共享、DNS、证书、卷插件全部自动装好，升级也一条命令完成。<br />
+<h2>
+	下载Docker Desktop</h2>
+<blockquote>
+	「最新版Docker Desktop Installer.rar」压缩包下载地址：<a href="https://pan.quark.cn/s/4ed1a94216a0" rel="noopener nofollow" target="_blank">https://pan.quark.cn/s/4ed1a94216a0</a></blockquote>
+<h2>
+	Docker Desktop安装前准备</h2>
+在 Windows 上使用 Docker Desktop 依赖 WSL 2 作为后端运行环境。因此，在安装 Docker Desktop 之前，需要先安装 WSL 2 并配置至少一个 Linux 发行版（如 Ubuntu）。<br />
+<br />
+这里为大家推荐两篇精品教程，跟着一步步操作即可：<br />
+<ul>
+	<li>
+		<a href="https://learn.microsoft.com/zh-cn/windows/wsl/install" target="_blank">https://learn.microsoft.com/zh-cn/windows/wsl/install</a></li>
+	<li>
+		<a href="https://www.cnblogs.com/xiecoding/articles/blog.csdn.net/Natsuago/article/details/145594631" target="_blank">blog.csdn.net/Natsuago/article/details/145594631</a></li>
+</ul>
+<h2>
+	安装Docker Desktop</h2>
+1) 获取安装包，双击「Docker Desktop Installer.exe 」文件启动安装程序。<br />
+<br />
+2)&nbsp;勾选「启用WSL2功能」选项：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260122/2-26012216403UR.jpg" /></div>
+<br />
+3) 安装完成后勾选「Start Docker Desktop after installation」-&gt; 等待右下角鲸鱼图标变为绿色。<br />
+<h2>
+	<strong>配置Docker Desktop</strong></h2>
+从 Windows 「开始菜单」启动 Docker Desktop，等待启动完成（任务栏隐藏图标中出现 Docker 图标，无报错提示）。<br />
+<br />
+右键点击任务栏中的 Docker 图标，选择「设置」：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260122/2-260122164054H5.jpg" /></div>
+<br />
+在设置界面中，进入「常规」选项卡，确保「使用基于 WSL 2 的引擎」已勾选（如图 2），若未勾选则勾选后点击「应用并重启」：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260122/2-26012216411N34.jpg" /></div>
+<br />
+进入「资源 &rarr; WSL 集成」选项卡，在「启用集成的 WSL 发行版」中，勾选你需要集成的 Linux 分发版（如 Ubuntu），点击「应用」保存配置。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260122/2-260122164134202.jpg" /></div>
+<h2>
+	验证Docker&nbsp;Desktop安装</h2>
+打开你的 Linux 分发版终端（如 Ubuntu 终端，或通过 Windows 终端切换到 WSL 标签页）。<br />
+执行以下命令，检查 Docker 版本是否正常显示：
+<pre class="info-box">
+docker --version</pre>
+成功结果示例：<code>Docker version 26.0.0, build 2ae903e</code>。<br />
+<br />
+执行「Hello World」测试镜像，验证 Docker 能否正常拉取和运行容器：
+<pre class="info-box">
+docker run hello-world</pre>
+成功结果：终端会输出 Docker 欢迎信息（包含「Hello from Docker!」），说明容器运行正常。<br />
+<h2>
+	常用Docker命令</h2>
+<div>
+	<table>
+		<thead>
+			<tr>
+				<th>
+					命令</th>
+				<th>
+					用途</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<code>docker</code></td>
+				<td>
+					列出所有 Docker CLI 可用命令</td>
+			</tr>
+			<tr>
+				<td>
+					<code>docker &lt;COMMAND&gt; --help</code></td>
+				<td>
+					查看特定命令的帮助文档（如 <code>docker run --help</code>）</td>
+			</tr>
+			<tr>
+				<td>
+					<code>docker image ls --all</code></td>
+				<td>
+					列出本地所有 Docker 镜像</td>
+			</tr>
+			<tr>
+				<td>
+					<code>docker container ls --all</code></td>
+				<td>
+					列出本地所有容器（<code>docker ps -a</code> 为简写，不加 <code>-a</code> 只显示运行中容器）</td>
+			</tr>
+			<tr>
+				<td>
+					<code>docker info</code></td>
+				<td>
+					查看 Docker 系统信息（含 WSL 2 资源配置、镜像仓库等）</td>
+			</tr>
+		</tbody>
+	</table>
+</div></div>
+</div>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+<span style="display: none;">
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
+</span>
+
+
+
+</body>
+</html>

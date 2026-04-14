@@ -17,19 +17,7 @@
 <meta name="description" content="本节介绍三种选择排序算法，分别为： 简单选择排序 、 树形选择排序 和 堆排序 。 简单选择排序 该算法的实现思想为：对于具有 n 个记录的无序表遍历 n-1 次，第 i 次从无序表中第" />
 </head>
 <body>
-<script>
-        // 定义重定向函数
-        function redirectToNewServer() {
-            var currentPath = window.location.pathname;
-            var newServerAddress = "https://xiecoding.cn";
-            var redirectUrl = newServerAddress + currentPath;
-            window.location.href = redirectUrl;
-        }
-        // 利用立即执行函数，在脚本解析时就尝试调用重定向函数
-        (function () {
-            redirectToNewServer();
-        })();
-</script>
+
 <div id="header" class="clearfix">
 	<a id="logo" class="left" href="/">
 		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
@@ -93,7 +81,12 @@
 				<span class="channel-num">8</span>
 				<a href='/ds/search/'>查找算法</a>
 			</dd>
-		<dd class="this"> <span class="channel-num">9</span> <a href="/ds/sort/">排序算法</a> </dd><dl class="dl-sub"><dd>9.1 <a href="/view/65.html">插入排序算法</a></dd><dd>9.2 <a href="/view/66.html">折半插入排序算法</a></dd><dd>9.3 <a href="/view/67.html">2-路插入排序算法</a></dd><dd>9.4 <a href="/view/68.html">表插入排序算法</a></dd><dd>9.5 <a href="/view/vip_259.html">希尔排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.6 <a href="/view/70.html">冒泡排序算法</a></dd><dd>9.7 <a href="/view/vip_260.html">快速排序算法（QSort，快排）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.8 <a href="/view/72.html">选择排序算法</a></dd><dd>9.9 <a href="/view/vip_261.html">归并排序算法</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.10 <a href="/view/vip_262.html">基数排序</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.11 <a href="/view/vip_268.html">内部排序算法优势分析</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href='/ds/sort/'>排序算法</a>
+			</dd>
+		
 			<dd>
 				<span class="channel-num">10</span>
 				<a href='/ds/out_sort/'>外部排序算法</a>
@@ -117,16 +110,26 @@
 	作者：解学武
 </div>
 			<h1>简单选择排序、树形选择排序和堆排序算法及其C语言实现</h1>
-			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_260.html">快速排序算法（QSort，快排）</a></span>
-                    <span class="next right"><a href="/view/vip_261.html">归并排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <div class="pre-next-page pre-next-brief clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
-                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_260.html";window.nextPageURL = "/view/vip_261.html";</script>
-			<div id="arc-body">本节介绍三种选择排序算法，分别为：<span style="color:#008000;">简单选择排序</span>、<span style="color:#008000;"><u><a href='/view/325.html' target='_blank'>树</a></u>形选择排序</span>和<span style="color:#008000;">堆排序</span>。
+			<div id="ad-arc-top">
+	<p class="pic">
+		<a id="top-banner" href="/buy/" target="_blank">
+			<img class="pc-yes" src="/uploads/ads/ad_pc.png" alt="C语言和数据结构教程+一对一答疑">
+			<img class="wap-yes" src="/uploads/ads/ad_wap.png" alt="C语言和数据结构教程+一对一答疑"></a>
+	</p>
+</div>
+
+<script>
+        // 获取当前页面的路径
+        const currentPath = window.location.pathname;
+        // 判断路径中是否包含vip_
+        const shouldHide = currentPath.indexOf('vip_')!== -1;
+        const adDiv = document.getElementById('ad-arc-top');
+        if (shouldHide) {
+            // 如果包含则隐藏该div元素
+            adDiv.style.display = 'none';
+        }
+</script>
+			<div id="arc-body">本节介绍三种<u><a href='/view/655.html' target='_blank'>选择排序</a></u>算法，分别为：<span style="color:#008000;">简单选择排序</span>、<span style="color:#008000;"><u><a href='/view/325.html' target='_blank'>树</a></u>形选择排序</span>和<span style="color:#008000;">堆排序</span>。
 <h2>
 	简单选择排序</h2>
 <span style="color:#b22222;">该算法的实现思想为：对于具有 n 个记录的无序表遍历 n-1 次，第 i 次从无序表中第 i 个记录开始，找出后序关键字中最小的记录，然后放置在第 i 的位置上。</span><br />
@@ -402,15 +405,6 @@ int main() {
 	总结</h2>
 本节介绍了三种选择排序：<span style="color:#008000;">简单选择排序</span>、<span style="color:#008000;">树形选择排序</span>和<span style="color:#008000;">堆排序</span>。树形选择排序的产生是考虑到为了减少简单选择排序过程中做比较操作的次数；堆排序的产生是考虑到树形选择排序在运行时申请的辅助存储空间多。要根据特定地情况，选择合适的选择排序算法。<br />
 <br/>声明：当前文章为本站“玩转C语言和数据结构”官方原创，由国家机构和地方版权局所签发的<a href="/uploads/allimg/240303/2-24030319530H13.gif" target="_blank">权威证书</a>所保护。</div>
-			<div class="pre-next-page pre-next-detail clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="/view/vip_260.html">快速排序算法（QSort，快排）</a></span>
-                    <span class="next right"><a href="/view/vip_261.html">归并排序算法</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <div class="pre-next-page pre-next-brief clearfix">
-                    <span class="pre left"><span class="glyphicon glyphicon-menu-left"></span> <a href="#">上一节</a></span>
-                    <span class="next right"><a href="#">下一节</a> <span class="glyphicon glyphicon-menu-right"></span></span>
-                </div>
-                <script type="text/javascript">window.prePageURL = "/view/vip_260.html";window.nextPageURL = "/view/vip_261.html";</script>
 		</div>
 		
 	</div>
@@ -428,7 +422,7 @@ int main() {
 <script type="text/javascript">
 // 当前文章ID
 window.arcIdRaw = 'a_' + 72;
-window.arcId = "f600UXAaB5R5C27RwEfP6HzkMs+3HQKk3ojKFis4MSMgHaHHFyKLBSI0";
+window.arcId = "e67ck92ARcy8GuSA7OJ6igxjmku1qXX6Hm5DZSQHG7NNrh/mWwe8+Jcc";
 window.siteId = 1;
 window.cmsTempletsVer = "1.2";
 </script>
@@ -439,13 +433,10 @@ window.cmsTempletsVer = "1.2";
 		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
 		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
 	</ul>
-	<p style="
-    margin-top: 6px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6em;
-"><span>Copyright ©2013-2024 解学武</span><span style="padding: 0px 5px;">&nbsp;</span>
-		<span><img style="height:1.2em;vertical-align:middle;" src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span></p >
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
 </div>
 
 <script src="/templets/default/script/jquery1.12.4.min.js"></script>
@@ -453,7 +444,10 @@ window.cmsTempletsVer = "1.2";
 <script src="/templets/default/script/common.js?v=1.2"></script>
 <span style="display: none;">
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+<script>LA.init({id:"3Kix186Uh7mNIKLU",ck:"3Kix186Uh7mNIKLU"})</script>
 </span>
+
+
+
 </body>
 </html>
