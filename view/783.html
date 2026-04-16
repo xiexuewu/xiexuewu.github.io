@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>【全网最详细】JDK下载安装图文教程 | Java JDK开发环境搭建指南</title>
+<meta name="keywords" content="【,全网,最,详细,】,JDK,下载,安装,图文,教程," />
+<meta name="description" content="JDK官网下载地址： JDK安装包下载 （从1.7~26，官网正版） JDK（Java Development Kit）是Java开发的核心工具包，没有它你就没法编译和运行Java程序。无论你是刚入门的新手，还是经验丰富的开" />
+</head>
+<body>
+
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main-no-course" class="clearfix">
+	<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiexuewu.github.io/'>主页</a> > <a href='/soft/'>软件下载</a> 
+        </span>
+    </div>
+</div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
+			<h1>【全网最详细】JDK下载安装图文教程 | Java JDK开发环境搭建指南</h1>
+			<div id="arc-body"><blockquote>
+	<p>
+		JDK官网下载地址：<a href="https://xiecoding.cn/drive.php?id=164" target="_blank">JDK安装包下载</a>（从1.7~26，官网正版）</p>
+</blockquote>
+JDK（Java Development Kit）是Java开发的核心工具包，没有它你就没法编译和运行Java程序。无论你是刚入门的新手，还是经验丰富的开发者，掌握JDK的下载和安装都是第一步。<br />
+<br />
+现在市面上主要有两种JDK：Oracle JDK和OpenJDK：
+<ul>
+	<li>
+		Oracle JDK是官方版本，功能完整但商业使用需要注意许可证；</li>
+	<li>
+		OpenJDK是开源版本，完全免费，功能和性能与Oracle JDK基本一致。</li>
+</ul>
+对于普通学习者来说，两者都可以。OpenJDK完全免费，Oracle JDK个人学习也免费。<br />
+<br />
+选择JDK版本是个技术活。Java每6个月发布一个新版本，但只有LTS（长期支持）版本适合生产环境。下面这个表格详细对比了各个版本，帮你做出明智选择：<br />
+<br />
+<table>
+	<thead>
+		<tr>
+			<th>
+				JDK版本</th>
+			<th>
+				类型</th>
+			<th>
+				支持期限</th>
+			<th>
+				核心特性</th>
+			<th>
+				推荐场景</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				JDK 8</td>
+			<td>
+				LTS</td>
+			<td>
+				支持到2030年</td>
+			<td>
+				Lambda、Stream API、新日期API</td>
+			<td>
+				学习基础、维护老项目</td>
+		</tr>
+		<tr>
+			<td>
+				JDK 11</td>
+			<td>
+				LTS</td>
+			<td>
+				支持到2026年</td>
+			<td>
+				局部变量推断、HTTP客户端、模块化</td>
+			<td>
+				企业开发、生产环境</td>
+		</tr>
+		<tr>
+			<td>
+				JDK 17</td>
+			<td>
+				LTS</td>
+			<td>
+				支持到2029年</td>
+			<td>
+				密封类、模式匹配、ZGC优化</td>
+			<td>
+				新项目开发、技术升级</td>
+		</tr>
+		<tr>
+			<td>
+				JDK 21</td>
+			<td>
+				LTS</td>
+			<td>
+				支持到2031年</td>
+			<td>
+				虚拟线程、记录模式、分代ZGC</td>
+			<td>
+				技术前沿、体验最新特性</td>
+		</tr>
+		<tr>
+			<td>
+				JDK 26</td>
+			<td>
+				短期</td>
+			<td>
+				最新版本</td>
+			<td>
+				包含所有实验性特性</td>
+			<td>
+				尝鲜测试、非生产环境</td>
+		</tr>
+	</tbody>
+</table>
+<h2>
+	JDK官网下载</h2>
+JDK官网下载地址：<a href="https://xiecoding.cn/drive.php?id=164" target="_blank">JDK安装包下载</a>（从1.7~26，官网正版）<br />
+<br />
+对于初学者，我建议下载OpenJDK 17，它平衡了稳定性和现代特性。
+<h2>
+	Java JDK安装</h2>
+各个版本的 JDK 安装过程 99.9% 都是相同的，接下来我以 JDK17 为例，演示 JDK17 安装和配置的过程。<br />
+1）下载JDK 17安装包后，双击运行安装程序：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101A912K2.jpg" /></div>
+<br />
+2）默认安装到 C 盘，这里我将其安装到了其他非系统盘（D:\JDK17\）。注意，安装路径一定要记住，不要搞丢，后面配置需要用到：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101A92Q11.jpg" /></div>
+<br />
+3）一直往后走，直到安装完成：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101A941358.jpg" /></div>
+<h2>
+	JDK配置环境变量（重要步骤）</h2>
+1）右键点击&quot;此电脑&quot;或&quot;计算机&quot;，选择&quot;属性&quot;：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101G25X16.jpg" /></div>
+<br />
+2）然后点击&quot;高级系统设置&quot;：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101G310B0.jpg" /></div>
+<br />
+3）在系统属性窗口中，点击&quot;环境变量&quot;按钮。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101G3241B.jpg" /></div>
+<br />
+4）在系统变量部分，找到并选中&quot;Path&quot;变量，点击&quot;编辑&quot;。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101G335L1.jpg" /></div>
+<br />
+5）点击&quot;新建&quot;，添加 JDK 的 bin 目录路径，我的是 &quot;D:\JDK17\bin&quot;。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101G34V37.jpg" /></div>
+<br />
+6）点击&quot;确定&quot;保存所有更改。<br />
+<br />
+7）验证安装是否成功。按组合键 Win+R，输入<code>cmd</code>打开命令提示符（cmd），输入&quot;java -version&quot;和&quot;javac -version&quot;，如果显示JDK 17的版本信息，说明安装和配置成功。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260410/2-2604101G405L1.jpg" /></div>
+<h2>
+	JDK基础使用</h2>
+安装配置完成后，你可以开始编写和运行第一个Java程序了。下面是一个简单的示例：<br />
+<br />
+1）创建一个文本文件，命名为&quot;HelloWorld.java&quot;。<br />
+<br />
+2）用文本编辑器打开这个文件，输入以下代码：<br />
+<pre class="java">
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println(&quot;Hello, World!&quot;);
+    }
+}</pre>
+3）保存文件，注意文件名必须与类名一致（HelloWorld.java）。<br />
+<br />
+4）打开命令提示符或终端，切换到文件所在目录。<br />
+<br />
+5）编译Java程序：输入命令&quot;javac HelloWorld.java&quot;。如果编译成功，会生成一个&quot;HelloWorld.class&quot;文件。<br />
+<br />
+6）运行Java程序：输入命令&quot;java HelloWorld&quot;。如果一切正常，你会看到输出&quot;Hello, World!&quot;。<br />
+<br />
+虽然可以用文本编辑器和命令行开发Java程序，但对于实际项目，建议使用专业的集成开发环境（IDE）：
+<ul>
+	<li>
+		IntelliJ IDEA：目前最流行的Java IDE，功能强大，社区版免费。</li>
+	<li>
+		Eclipse：老牌的Java IDE，完全免费，插件丰富。</li>
+	<li>
+		VS Code：轻量级编辑器，通过Java扩展包支持Java开发。</li>
+</ul>
+<br />
+这些IDE提供了代码自动补全、调试、版本控制、项目管理等功能，可以大大提高开发效率。
+<h2>
+	JDK常见问题</h2>
+如果java命令找不到，检查环境变量配置。设置JAVA_HOME和Path后，需要重新打开命令行窗口。<br />
+<br />
+编译时遇到版本错误，检查javac版本。用javac -version查看编译器版本，确保与java版本一致。<br />
+<br />
+系统中有多个JDK时，通过设置JAVA_HOME来指定使用哪个版本。大多数IDE也支持选择不同的JDK。<br />
+<br />
+从Oracle官网下载需要注册账户。如果不想注册，直接使用OpenJDK发行版，下载更方便。<br />
+<h2>
+	JDK下载安装教程总结</h2>
+JDK是Java开发的基石。选择哪个版本和发行版，取决于你的具体需求。对于大多数情况，OpenJDK 17是个安全的选择：它是LTS版本，有长期支持，性能优秀，而且完全免费。<br />
+<br />
+记住几个关键点：生产环境用LTS版本，企业开发优先选OpenJDK，新项目考虑JDK 17或21。正确安装和配置JDK，是你Java开发之旅的第一步，也是最重要的一步。</div>
+</div>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+<span style="display: none;">
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+</span>
+
+
+
+</body>
+</html>
