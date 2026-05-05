@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>【2026最新】MariaDB下载安装全攻略：数据库环境搭建与基础使用</title>
+<meta name="keywords" content="【,2026,最新,】,MariaDB,下载,安装,全攻略," />
+<meta name="description" content="MariaDB安装包下载地址： MariaDB安装包 （官网正版） MariaDB是一款开源的关系型数据库管理系统，由MySQL的创始人迈克尔维德纽斯主导开发。 MariaDB在MySQL的基础上进行了大量优化和改进，" />
+</head>
+<body>
+
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main-no-course" class="clearfix">
+	<div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiexuewu.github.io/'>主页</a> > <a href='/soft/'>软件下载</a> 
+        </span>
+    </div>
+</div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
+			<h1>【2026最新】MariaDB下载安装全攻略：数据库环境搭建与基础使用</h1>
+			<div id="arc-body"><blockquote>
+	<p>
+		MariaDB安装包下载地址：<a href="https://xiecoding.cn/drive.php?id=194" target="_blank">MariaDB安装包</a>（官网正版）</p>
+</blockquote>
+MariaDB是一款开源的关系型数据库管理系统，由MySQL的创始人迈克尔&middot;维德纽斯主导开发。<br />
+<br />
+MariaDB在MySQL的基础上进行了大量优化和改进，保持完全兼容的同时，加入了更多存储引擎、性能优化和安全性增强。对于需要数据库支持的Web应用、服务器项目和开发环境来说，MariaDB是目前最可靠的开源数据库选择之一。<br />
+<br />
+在开源关系型数据库领域，MariaDB和MySQL是双胞胎但又有区别：<br />
+<br />
+<table>
+	<thead>
+		<tr>
+			<th>
+				数据库</th>
+			<th>
+				许可证</th>
+			<th>
+				主要特点</th>
+			<th>
+				适合场景</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				MariaDB</td>
+			<td>
+				GPL完全开源</td>
+			<td>
+				兼容MySQL、性能优化好、存储引擎丰富</td>
+			<td>
+				Web应用、开发环境</td>
+		</tr>
+		<tr>
+			<td>
+				MySQL</td>
+			<td>
+				GPL/商业双许可</td>
+			<td>
+				生态成熟、文档丰富</td>
+			<td>
+				企业生产环境</td>
+		</tr>
+		<tr>
+			<td>
+				PostgreSQL</td>
+			<td>
+				开源</td>
+			<td>
+				功能全面、支持复杂查询和JSON</td>
+			<td>
+				数据分析、复杂业务</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+对于普通Web开发来说，MariaDB在兼容性、性能和社区支持之间达到了最好的平衡。如果你之前用过MySQL，那用MariaDB几乎不需要学习成本，命令、语法、工具完全兼容，直接换过来就行。<br />
+<h2>
+	MariaDB下载</h2>
+MariaDB安装包下载地址：<a href="https://xiecoding.cn/drive.php?id=194" target="_blank">MariaDB安装包</a>（官网正版）<br />
+<h2>
+	MariaDB安装</h2>
+1) 我的是 Windows 系统，下载.msi安装包后双击运行：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260426/2-260426163429493.jpg" /></div>
+<br />
+2) 点击&quot;Next&quot;进入安装选项，会安装所有组件包括数据库服务端、客户端和开发库。安装路径可以改到D盘：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260426/2-2604261635153W.jpg" /></div>
+<br />
+3)&nbsp;设置root密码，这个就是数据库管理员密码，一定要记住。建议勾选&quot;Enable access from remote machines for &#39;root&#39; user&quot;（如果需要在其他电脑连这台数据库的话）：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260426/2-260426163623Z0.jpg" /></div>
+<br />
+4)&nbsp;如果你已经安装过mysql，再安装mariaDB的时候回提示端口已经占用了，所以需要改变一下端口号即可：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260426/2-260426163F9445.jpg" /></div>
+<br />
+5)&nbsp;等待安装完成：<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260426/2-260426163J4Y5.jpg" /></div>
+<br />
+在开始菜单中找到安装好的 mariaDB 命令行窗口，可以输入mariadb --version查看是否安装成功，用mysql -u root -p输入密码后就能进入数据库管理界面。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260426/2-26042616405I40.jpg" /></div>
+<h2>
+	MariaDB基础使用</h2>
+安装完成后用 mysql -u root -p 登录数据库，输入之前设置的密码。<br />
+<br />
+创建数据库：CREATE DATABASE mydb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 建议用utf8mb4字符集，支持完整的Unicode字符（包括表情符号）。<br />
+<br />
+创建用户并授权：推荐创建专用的数据库用户，不要直接用root。CREATE USER &#39;myuser&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;密码&#39;; 然后授权：GRANT ALL PRIVILEGES ON mydb.* TO &#39;myuser&#39;@&#39;localhost&#39;; 最后FLUSH PRIVILEGES;让配置生效。<br />
+<br />
+查看状态：用SHOW DATABASES;查看所有数据库，用SHOW TABLES;查看当前数据库中的表，用STATUS;查看MariaDB的运行状态和版本信息。<br />
+<br />
+退出：输入exit或按Ctrl+D退出数据库命令行。
+<h2>
+	MariaDB常见问题</h2>
+连接数据库时报错&quot;Access denied for user &#39;root&#39;@&#39;localhost&#39;&quot;，一般是忘记了密码或者密码输入错误。Windows下可以以管理员身份运行命令提示符，执行mysqld --skip-grant-tables跳过权限验证来重置密码。Linux下则用sudo mysqld_safe --skip-grant-tables启动后修改密码。<br />
+<br />
+MariaDB服务无法启动，可以先检查3306端口是否被占用。运行netstat -ano | findstr :3306（Windows）或sudo lsof -i :3306（Linux/macOS）查看端口占用情况。如果有其他数据库占用了3306端口，修改MariaDB配置文件中的端口号即可。
+<h2>
+	总结</h2>
+MariaDB作为MySQL的完全兼容替代品，是目前开源数据库市场的不二之选。安装 MariaDB 后做好安全配置和基础设置，配合备份习惯，就能稳定运行数年不变。<br />
+<br />
+对于正在搭建Web项目或学习数据库的开发者和运维人员来说，MariaDB值得一试。</div>
+</div>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+<span style="display: none;">
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+</span>
+
+
+
+</body>
+</html>
