@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="renderer" content="webkit" /> <!-- 让360支持高速渲染模式 -->
+<meta http-equiv="pragma" content="no-cache" /> 
+<meta http-equiv="Cache-Control" content="no-store, must-revalidate" /> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /> 
+<meta http-equiv="expires" content="0" />
+<link rel="shortcut icon" href="/favicon.ico?v=1.2" />
+<link href="/templets/default/style/common.css?v=1.2" rel="stylesheet" />
+<title>【2026最新】BepInEx下载和安装保姆级教程（附官网安装包）</title>
+<meta name="description" content="" />
+<link href="/templets/default/style/list_movie.css?v=1.2" rel="stylesheet" />
+<style>
+#main-no-course {
+    width: 60%;
+    margin: 10px auto 40px auto;
+}
+#article {
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 100%;
+}
+.rec-box { border: 1px solid #e4e7ed; border-radius: 8px; padding: 15px; margin: 0 0 15px 0; background: #fafafa; }
+.rec-title { font-size: 16px; font-weight: bold; color: #409eff; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #409eff; }
+.rec-title::before { content: "★"; margin-right: 6px; }
+.rec-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.rec-list .rec-item { display: flex; align-items: center; justify-content: center; background: #fff; border: 1px solid #e4e7ed; border-radius: 6px; text-align: center; font-size: 13px; transition: all 0.2s; cursor: pointer; min-width: 0;max-width: 100%; }
+.rec-list .rec-item:hover { background: #409eff; border-color: #409eff; }
+.rec-list .rec-item a { display: block; width: 100%; padding: 10px 14px; color: #333; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-break: keep-all; }
+.rec-list .rec-item:hover a { color: #fff; }
+</style>
+</head>
+<body>
+
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="https://xiecoding.cn/">
+		<img height="26" src="/templets/default/images/logo_monkey.png" alt="玩转C语言和数据结构Logo" />
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a href="https://xiecoding.cn/">首页</a></li>
+		<li><a href="https://xiecoding.cn/ds/">数据结构教程</a></li>
+		<li><a href="https://xiecoding.cn/c/">C语言教程</a></li>
+		<li><a href="https://xiecoding.cn/buy/">购买教程</a></li>
+		<li><a href="https://xiecoding.cn/sitemap/">更多>></a></li>
+		<!--<li><a href="/c/">辅导班</a></li>-->
+	</ul>
+	<a href="https://xiecoding.cn/user/login.php" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<!--qq交流群
+<div id="header" class="clearfix">
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li><a style="padding-left:10px" href="/uploads/allimg/240128/2-24012R01153206.jpg" target="_blank">QQ交流群：937184979</a></li>
+	</ul>
+</div>-->
+<div id="main-no-course" class="clearfix">
+ <div id="article">
+ <div id="arc-info" class="clearfix">
+    <!-- 左侧：面包屑导航 -->
+    <div class="breadcrumb-wrap left">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="breadcrumb-path">
+            <a href='https://xiexuewu.github.io/'>主页</a> > <a href='/soft/'>软件下载</a> > <a href='/bepinex/'>BepInEx</a> 
+        </span>
+    </div>
+</div>
+
+<!-- 清除浮动，确保不影响下方标题 -->
+<div class="clearfix"></div>
+ <h1>【2026最新】BepInEx下载和安装保姆级教程（附官网安装包）</h1>
+ <div id="arc-body"><blockquote>
+	<p>
+		BepInEx下载地址：<a href="/drive.php?id=239" target="_blank">BepInEx安装包</a>（源自GitHub，长期维护，放心使用）</p>
+</blockquote>
+BepInEx是&quot;BepIn&quot;和&quot;Ex(extension)&quot;的组合，它是一款免费、开源、专门为Unity游戏打造的Mod（模组/插件）加载框架。<br />
+<br />
+BepInEx本身不提供任何游戏修改功能，它做的是给Unity游戏提供一个插件加载环境，让Mod开发者可以编写脚本注入到游戏中，实现修改游戏内容、增加新功能、改善体验等效果。<br />
+<br />
+在 Unity 游戏 Mod 加载领域，MelonLoader 是另一个常见选择。它们的主要区别：<br />
+<br />
+<table>
+	<thead>
+		<tr>
+			<th>
+				功能</th>
+			<th>
+				BepInEx</th>
+			<th>
+				MelonLoader</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				支持游戏</td>
+			<td>
+				绝大多数Unity游戏</td>
+			<td>
+				大多数Unity游戏</td>
+		</tr>
+		<tr>
+			<td>
+				插件格式</td>
+			<td>
+				.dll（使用Harmony补丁）</td>
+			<td>
+				.dll或MelonMod</td>
+		</tr>
+		<tr>
+			<td>
+				配置方式</td>
+			<td>
+				配置文件（cfg文件）</td>
+			<td>
+				命令行参数</td>
+		</tr>
+		<tr>
+			<td>
+				社区规模</td>
+			<td>
+				较大（主流Mod多）</td>
+			<td>
+				中等</td>
+		</tr>
+		<tr>
+			<td>
+				是否开源</td>
+			<td>
+				是（LGPL）</td>
+			<td>
+				是（Apache）</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+目前BepInEx的最新版本是BepInEx 5.x系列（稳定版），5.4.x是目前最广泛使用的版本，兼容绝大多数Unity游戏。<br />
+<h2>
+	BepInEx下载</h2>
+BepInEx下载地址：<a href="/drive.php?id=239" target="_blank">BepInEx安装包</a>（源自GitHub，长期维护，放心使用）
+<h2>
+	BepInEx安装</h2>
+BepInEx的安装很简单，但和普通软件不太一样，它是以&quot;注入&quot;方式安装到游戏目录里的。<br />
+<br />
+下面以Windows平台为例：<br />
+1）找到你要装Mod的游戏安装目录。比如在Steam里，右键游戏&rarr;管理&rarr;浏览本地文件，就能打开游戏所在文件夹。<br />
+<br />
+2）把下载好的BepInEx压缩包解压，把里面的所有文件和文件夹复制到游戏根目录（和游戏exe文件同一个目录）。解压后游戏目录里应该会有BepInEx文件夹、doorstop_config.ini文件、winhttp.dll文件等。<br />
+<br />
+<div style="text-align: center;">
+	<img alt="" src="/uploads/allimg/260514/2-260514163911b3.jpg" /></div>
+<br />
+3）运行一次游戏。BepInEx会在首次启动时自动创建一些必要的配置文件和文件夹。启动后你会看到游戏窗口顶部出现BepInEx的版本信息，同时游戏目录的BepInEx文件夹里会多出config、plugins、patchers等子文件夹。
+<pre class="info-box">
+|-BepInEx
+  |-cache //缓存文件夹
+  |-config //插件配置文件夹
+  |-core //框架核心文件夹
+  |-patchers //特殊插件文件夹
+  |-plugins //常规插件文件夹
+  |-LogPutput.log //BepInEx日志</pre>
+如果没有生成这几个文件夹，请重新确认游戏使用的 Unity 版本、游戏路径是否有中文、安装位置是否正确。<br />
+<br />
+4）关闭游戏。现在安装就完成了，可以开始装Mod了。
+<h2>
+	BepInEx基础使用</h2>
+BepInEx安装好之后，它的核心文件夹都在游戏根目录的BepInEx文件夹里。使用BepInEx主要就是和这几个文件夹打交道：<br />
+<h4>
+	1）plugins文件夹（BepInEx/plugins）</h4>
+这是最重要的文件夹。从网上下载的Mod插件（.dll文件）放到这里，BepInEx会在游戏启动时自动加载。有些Mod可能需要额外的资源文件（图片、配置文件等），通常会放在Mod自带的子文件夹里。<br />
+<h4>
+	2）config文件夹（BepInEx/config）</h4>
+这里存放BepInEx本身的配置文件和各Mod的配置文件。游戏的Mod设置通常在这里以.cfg文件的形式存在。用记事本打开就可以修改参数，比如调整Mod功能的开关、修改数值、改变热键绑定等。<br />
+<h4>
+	3）Log输出</h4>
+BepInEx启动时会生成日志文件，放在BepInEx/LogOutput.log（旧版）或BepInEx/BepInEx_Log.txt（新版）。如果装了Mod后游戏崩溃或者Mod没生效，可以先看看日志文件，里面会显示哪个插件加载失败、报了什么错。排查问题时的第一步就是看日志。<br />
+<h4>
+	4）禁用BepInEx</h4>
+如果装了BepInEx后遇到问题想先排除是不是它引起的，不需要卸载&mdash;&mdash;直接把游戏根目录下的winhttp.dll（或者BepInEx文件夹重命名）就行，BepInEx就不会加载了。想恢复的时候改回来即可。
+<h2>
+	BepInEx常见使用问题</h2>
+<h4>
+	1）装了BepInEx后游戏启动闪退</h4>
+最常见的两个原因：
+<ul>
+	<li>
+		一是BepInEx版本和游戏使用的Unity版本不兼容，检查一下游戏是Mono版还是IL2CPP版，选对应版本。</li>
+	<li>
+		二是某个Mod插件和游戏或者其他Mod冲突，把plugins文件夹里的.dll文件全部移走，一个一个放回去测试，找出冲突的那个。日志文件（LogOutput.log）能帮上大忙，先看它。</li>
+</ul>
+<h4>
+	2）BepInEx启动后顶部显示版本信息，但Mod没生效</h4>
+这说明BepInEx本身加载成功了，问题出在Mod上。<br />
+<br />
+检查一下Mod插件是否放对了位置（必须是BepInEx/plugins文件夹下的.dll文件，不能有子文件夹嵌套）。有些Mod会要求特定的BepInEx版本，确认一下Mod兼容的BepInEx版本和你装的是不是一致。<br />
+<h4>
+	3）游戏更新后Mod不能用了</h4>
+游戏更新后Unity版本可能发生了变化，或者游戏代码变了导致Mod的补丁失效。<br />
+<br />
+先确认BepInEx本身是否需要更新到最新版，然后等Mod作者更新Mod。BepInEx的配置文件和plugins文件夹不会因为游戏更新被删除，所以不用担心重装BepInEx。<br />
+<br />
+等待期间如果特别想玩，可以在Steam里回退到旧版本（Steam&rarr;游戏属性&rarr;测试版&rarr;选择旧版本）。<br />
+<h2>
+	总结</h2>
+BepInEx是目前给Unity游戏装Mod最常用的工具框架。它解决了Mod加载的核心问题，不需要修改游戏文件、不需要反编译、插件式管理。装好BepInEx后，把Mod作者的插件放到plugins文件夹就行，卸载Mod直接删除对应.dll文件。<br />
+<br />
+对于喜欢折腾游戏Mod的玩家来说，下载BepInEx安装到游戏目录是第一步，后面的Mod世界就靠它支撑起来了。<br />
+</div>
+ </div>
+</div>
+<div id="footer">
+	<ul id="nav-bottom" class="clearfix">
+		<li><a href="/sitemap/" target="_blank">编程笔记</a></li>
+		<li><a href="/buy/" target="_blank">购买教程（带答疑）</a></li>
+		<li><a href="/view/about_website.html" target="_blank">关于网站</a></li>
+		<li><a href="/view/267.html" target="_blank">联系站长</a></li>
+	</ul>
+	<p><span>Copyright ©2013-2025 xiecoding.cn</span><span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/icp.png" alt="网络备案"> ICP备案：<a class="grey" href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2025098420号</a></span>
+		<span style="padding: 0px 5px;">&nbsp;</span>
+		<span><img src="/templets/default/images/gongan.png" alt="公安部网络备案"> 公安部网络备案：<a class="grey" href="https://beian.mps.gov.cn/#/query/webSearch?code=13110202001476" target="_blank">冀公网安备13110202001476号</a></span></p >
+	<!-- 回到顶部按钮 -->
+	<div id="back-to-top" class="back-to-top" title="回到顶部">
+	    <span class="glyphicon glyphicon-menu-up"></span>
+	</div>
+</div>
+
+<script src="/templets/default/script/jquery1.12.4.min.js"></script>
+<script src="/templets/default/script/jquery.snippet.js"></script>
+<script src="/templets/default/script/common.js?v=1.2"></script>
+<span style="display: none;">
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3Kk6sXrEnyLTeaqP",ck:"3Kk6sXrEnyLTeaqP"})</script>
+</span>
+
+
+
+</body>
+</html>

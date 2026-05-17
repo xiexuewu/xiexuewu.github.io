@@ -15,6 +15,16 @@
 <title>软件免费下载</title>
 <meta name="description" content="" />
 <link href="/templets/default/style/list_movie.css?v=1.2" rel="stylesheet" />
+<style>
+.rec-box { border: 1px solid #e4e7ed; border-radius: 8px; padding: 15px; margin: 0 0 15px 0; background: #fafafa; }
+.rec-title { font-size: 16px; font-weight: bold; color: #409eff; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #409eff; }
+.rec-title::before { content: "★"; margin-right: 6px; }
+.rec-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.rec-list .rec-item { display: flex; align-items: center; justify-content: center; background: #fff; border: 1px solid #e4e7ed; border-radius: 6px; text-align: center; font-size: 13px; transition: all 0.2s; cursor: pointer; min-width: 0;max-width: 100%; }
+.rec-list .rec-item:hover { background: #409eff; border-color: #409eff; }
+.rec-list .rec-item a { display: block; width: 100%; padding: 10px 14px; color: #333; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-break: keep-all; }
+.rec-list .rec-item:hover a { color: #fff; }
+</style>
 </head>
 <body>
 
@@ -39,8 +49,8 @@
 	</ul>
 </div>-->
 <div id="main-no-course" class="clearfix">
-    <div id="article">
-        <div id="arc-info" class="clearfix">
+ <div id="article">
+ <div id="arc-info" class="clearfix">
     <!-- 左侧：面包屑导航 -->
     <div class="breadcrumb-wrap left">
         <span class="glyphicon glyphicon-home"></span>
@@ -52,53 +62,111 @@
 
 <!-- 清除浮动，确保不影响下方标题 -->
 <div class="clearfix"></div>
-        <h1>软件免费下载</h1>
-        <div id="arc-body">分享主流、实用、优质的软件资源，提供下载、安装和使用教程。</div>
-        <dl id="arc-list">
-            <dt>文章列表</dt>
-            <dd >
-                <span>1.</span> <a href="/view/717.html">【工具推荐】Winhance下载安装教程：Windows优化神器，一键清理臃肿软件</a>
-            </dd><dd class="bg-f7f7f7">
-                <span>2.</span> <a href="/view/716.html">【工具推荐】DiskGenius官网下载：硬盘分区+数据恢复神器，一键拯救误删文件</a>
-            </dd><dd >
-                <span>3.</span> <a href="/view/715.html">【工具推荐】Dopamine音乐播放器下载安装全攻略：极简设计+全格式支持，本地听</a>
-            </dd><dd class="bg-f7f7f7">
-                <span>4.</span> <a href="/view/714.html">Balabolka下载：无需联网的文字转语音工具（附安装包）</a>
-            </dd><dd >
-                <span>5.</span> <a href="/view/713.html">BongoCat下载电脑版：2026最新版安装教程，让萌宠猫咪陪你打字！</a>
-            </dd><dd class="bg-f7f7f7">
-                <span>6.</span> <a href="/view/712.html">【2026最新】m3u8下载器终极指南|m3u8文件下载工具实测（附安装包）</a>
-            </dd><dd >
-                <span>7.</span> <a href="/view/711.html">【2026最新】Czkawka下载安装完整教程：免费清理重复照片/视频/文档全攻略</a>
-            </dd><dd class="bg-f7f7f7">
-                <span>8.</span> <a href="/view/710.html">【2026最新】Escrcpy下载安装全攻略：大屏操控安卓手机必备工具</a>
-            </dd><dd >
-                <span>9.</span> <a href="/view/709.html">2026最新Sandboxie下载安装教程：免费沙盘软件，让流氓软件有来无回！</a>
-            </dd><dd class="bg-f7f7f7">
-                <span>10.</span> <a href="/view/708.html">稻壳阅读器下载2026最新版：PDF/CAJ/EPUB全格式免费支持</a>
-            </dd><dd >
-                <span>11.</span> <a href="/view/706.html">FC模拟器游戏合集下载：2026实测能玩+500款经典游戏合集（附资源包）</a>
-            </dd><dd class="bg-f7f7f7">
-                <span>12.</span> <a href="/view/705.html">2026最新FreeFileSync下载安装保姆级教程（附安装包）</a>
-            </dd><dd >
-                <span>13.</span> <a href="/view/704.html">【2026最新实测】PotPlayer万能播放器下载安装完整指南：一文解决所有播放难题</a>
-            </dd><dd class="bg-f7f7f7">
-                <span>14.</span> <a href="/view/703.html">DS4Windows下载安装完整指南：轻松实现PS4手柄PC无线连接（2026最新）</a>
-            </dd><dd >
-                <span>15.</span> <a href="/view/701.html">【2026最新】Everything下载安装图文指南（附官网安装包，完全免费）</a>
-            </dd>
-        </dl>
-        
-        <!-- 分页放在 list 标签闭合之后，使用 dede:pagelist 标签 -->
-        <div class="pagination-wrapper">
-            <div class="pagination">
-                <li><a href='list_41_1.html'><<</a></li>
+ <h1>软件免费下载</h1>
+
+ <div id="arc-body">分享主流、实用、优质的软件资源，提供下载、安装和使用教程。</div>
+
+ <div class="rec-box">
+ <div class="rec-title">站长推荐</div>
+ <div class="rec-list">
+ 
+ <div class="rec-item"><a href="/gxworks2/">GX Works2</a></div>
+ 
+ <div class="rec-item"><a href="/scratch/">Scratch</a></div>
+ 
+ <div class="rec-item"><a href="/dism++/">Dism++</a></div>
+ 
+ <div class="rec-item"><a href="/multisim/">Multisim</a></div>
+ 
+ <div class="rec-item"><a href="/3dmark/">3DMark</a></div>
+ 
+ <div class="rec-item"><a href="/memreduct/">Mem Reduct</a></div>
+ 
+ <div class="rec-item"><a href="/kazumi/">Kazumi</a></div>
+ 
+ <div class="rec-item"><a href="/emeditor/">EmEditor</a></div>
+ 
+ <div class="rec-item"><a href="/animeko/">Animeko</a></div>
+ 
+ <div class="rec-item"><a href="/formatfactory/">FormatFactory</a></div>
+ 
+ <div class="rec-item"><a href="/pcl/">PCL2</a></div>
+ 
+ <div class="rec-item"><a href="/xmind/">Xmind</a></div>
+ 
+ <div class="rec-item"><a href="/draw/">draw.io</a></div>
+ 
+ <div class="rec-item"><a href="/zotero/">Zotero</a></div>
+ 
+ <div class="rec-item"><a href="/assetstudio/">AssetStudio</a></div>
+ 
+ <div class="rec-item"><a href="/ventoy/">Ventoy</a></div>
+ 
+ <div class="rec-item"><a href="/spyder/">Spyder</a></div>
+ 
+ <div class="rec-item"><a href="/hwinfo/">HWiNFO</a></div>
+ 
+ <div class="rec-item"><a href="/marktext/">MarkText</a></div>
+ 
+ <div class="rec-item"><a href="/eclipse/">Eclipse</a></div>
+ 
+ <div class="rec-item"><a href="/maven/">Maven</a></div>
+ 
+ <div class="rec-item"><a href="/bepinex/">BepInEx</a></div>
+ 
+ <div class="rec-item"><a href="/winscp/">WinSCP</a></div>
+ 
+ <div class="rec-item"><a href="/sqlitestudio/">SQLiteStudio</a></div>
+ 
+ <div class="rec-item"><a href="/ddu/">DDU</a></div>
+ 
+ <div class="rec-item"><a href="/typora/">Typora</a></div>
+ 
+ <div class="rec-item"><a href="/localeemulator/">Locale Emulator</a></div>
+ 
+ </div>
+ </div>
+
+ <dl id="arc-list">
+ <dt>文章列表</dt>
+
+ <dd >
+ <span>1.</span> <a href="/view/717.html">【工具推荐】Winhance下载安装教程：Windows优化神器，一键清理臃肿软件</a>
+ </dd><dd class="bg-f7f7f7">
+ <span>2.</span> <a href="/view/716.html">【工具推荐】DiskGenius官网下载：硬盘分区+数据恢复神器，一键拯救误删文件</a>
+ </dd><dd >
+ <span>3.</span> <a href="/view/715.html">【工具推荐】Dopamine音乐播放器下载安装全攻略：极简设计+全格式支持，本地听</a>
+ </dd><dd class="bg-f7f7f7">
+ <span>4.</span> <a href="/view/714.html">Balabolka下载：无需联网的文字转语音工具（附安装包）</a>
+ </dd><dd >
+ <span>5.</span> <a href="/view/713.html">BongoCat下载电脑版：2026最新版安装教程，让萌宠猫咪陪你打字！</a>
+ </dd><dd class="bg-f7f7f7">
+ <span>6.</span> <a href="/view/712.html">【2026最新】m3u8下载器终极指南|m3u8文件下载工具实测（附安装包）</a>
+ </dd><dd >
+ <span>7.</span> <a href="/view/711.html">【2026最新】Czkawka下载安装完整教程：免费清理重复照片/视频/文档全攻略</a>
+ </dd><dd class="bg-f7f7f7">
+ <span>8.</span> <a href="/view/710.html">【2026最新】Escrcpy下载安装全攻略：大屏操控安卓手机必备工具</a>
+ </dd><dd >
+ <span>9.</span> <a href="/view/709.html">2026最新Sandboxie下载安装教程：免费沙盘软件，让流氓软件有来无回！</a>
+ </dd><dd class="bg-f7f7f7">
+ <span>10.</span> <a href="/view/708.html">稻壳阅读器下载2026最新版：PDF/CAJ/EPUB全格式免费支持</a>
+ </dd><dd >
+ <span>11.</span> <a href="/view/706.html">FC模拟器游戏合集下载：2026实测能玩+500款经典游戏合集（附资源包）</a>
+ </dd><dd class="bg-f7f7f7">
+ <span>12.</span> <a href="/view/705.html">2026最新FreeFileSync下载安装保姆级教程（附安装包）</a>
+ </dd><dd >
+ <span>13.</span> <a href="/view/704.html">【2026最新实测】PotPlayer万能播放器下载安装完整指南：一文解决所有播放难题</a>
+ </dd><dd class="bg-f7f7f7">
+ <span>14.</span> <a href="/view/703.html">DS4Windows下载安装完整指南：轻松实现PS4手柄PC无线连接（2026最新）</a>
+ </dd><dd >
+ <span>15.</span> <a href="/view/701.html">【2026最新】Everything下载安装图文指南（附官网安装包，完全免费）</a>
+ </dd>
+ </dl>
+ 
+ <div class="pagination-wrapper">
+ <div class="pagination">
+ <li><a href='list_41_1.html'><<</a></li>
 <li><a href='list_41_7.html'><</a></li>
-<li><a href='list_41_1.html'>1</a></li>
-<li><a href='list_41_2.html'>2</a></li>
-<li><a href='list_41_3.html'>3</a></li>
-<li><a href='list_41_4.html'>4</a></li>
-<li><a href='list_41_5.html'>5</a></li>
 <li><a href='list_41_6.html'>6</a></li>
 <li><a href='list_41_7.html'>7</a></li>
 <li class="thisclass">8</li>
@@ -107,11 +175,11 @@
 <li><a href='list_41_9.html'>></a></li>
 <li><a href='list_41_10.html'>>></a></li>
 
-            </div>
-        </div>
-        
-        <span>如有侵权请<a href="/view/267.html">【联系站长】</a>，会第一时间处理。</span>
-    </div>
+ </div>
+ </div>
+ 
+ <span>如有侵权请<a href="/view/267.html">【联系站长】</a>，会第一时间处理。</span>
+ </div>
 </div>
 <div id="footer">
 	<ul id="nav-bottom" class="clearfix">
